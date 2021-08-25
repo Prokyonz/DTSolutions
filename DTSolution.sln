@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTSolution", "DTSolution\DTSolution.csproj", "{54B7A4EC-0FBC-4B60-8569-6694119A0556}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{662900AE-5B30-464B-840F-FC76E964855E}"
-	ProjectSection(SolutionItems) = preProject
-		readme.txt = readme.txt
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{90D0F4B3-280D-4F6C-BFF2-464EEA272ECA}"
 EndProject
