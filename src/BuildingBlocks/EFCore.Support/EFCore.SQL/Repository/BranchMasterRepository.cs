@@ -2,19 +2,21 @@
 using EFCore.SQL.Interface;
 using Repository.Entities;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+
 
 namespace EFCore.SQL.Repository
 {
-    public class CompanyMasterRepository : ICompanyMaster
+    public class BranchMasterRepository : IBranchMaster
     {
         private readonly DatabaseContext _databaseContext;
-        public CompanyMasterRepository()
+
+        public BranchMasterRepository()
         {
             _databaseContext = new DatabaseContext();
         }
-        public CompanyMaster AddCompany(CompanyMaster companyMaster)
+
+        public BranchMaster AddCompany(BranchMaster companyMaster)
         {
             throw new NotImplementedException();
         }
@@ -24,12 +26,12 @@ namespace EFCore.SQL.Repository
             throw new NotImplementedException();
         }
 
-        public IQueryable<CompanyMaster> GetAllCompany()
+        public IQueryable<BranchMaster> GetAllCompany()
         {
-            return _databaseContext.CompanyMaster;
+            return _databaseContext.BranchMaster;
         }
 
-        public CompanyMaster UpdateCompany(CompanyMaster companyMaster)
+        public BranchMaster UpdateCompany(BranchMaster companyMaster)
         {
             throw new NotImplementedException();
         }

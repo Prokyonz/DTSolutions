@@ -11,7 +11,31 @@ namespace DBTest
         static void Main(string[] args)
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
-            IQueryable<CompanyMaster> companyMasters  = companyMasterRepository.GetAllCompany();                        
+
+            //CompanyMaster companyMaster = new CompanyMaster();
+            //companyMaster.Name = "Abhishek COmpany New New";
+
+
+            //companyMaster.Address = "Surat";
+            //companyMaster.Address2 = "Surat";
+            //companyMaster.MobileNo = "8530209649";
+            //companyMaster.Details = "8530209649";
+            //companyMaster.TermsCondition = "8530209649";
+            //companyMaster.GSTNo = "8530209649";
+            //companyMaster.PanCardNo = "8530209649";
+            //companyMaster.AadharCardNo = "8530209649";            
+            //companyMaster.Type = 0;
+            //companyMaster.IsDelete = false;
+            //companyMaster.CreatedDate = DateTime.Now;
+            //companyMaster.UpdatedDate = DateTime.Now;
+            //companyMaster.CreatedBy = 1;
+            //companyMaster.UpdatedBy = 1;
+
+            //var data = companyMasterRepository.AddCompanyAsync(companyMaster);
+
+            IQueryable<CompanyMaster> companyMasters  = companyMasterRepository.GetAllCompany();
+            int i = companyMasters.Count();
+            Console.ReadKey();
         }
     }
 }

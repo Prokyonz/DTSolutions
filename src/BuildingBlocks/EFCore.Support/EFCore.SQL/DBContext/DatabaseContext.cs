@@ -11,6 +11,7 @@ namespace EFCore.SQL.DBContext
         }
 
         public DbSet<CompanyMaster> CompanyMaster { get; set; }
+        public DbSet<BranchMaster> BranchMaster { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
