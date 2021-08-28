@@ -12,6 +12,8 @@ namespace EFCore.SQL.DBContext
 
         public DbSet<CompanyMaster> CompanyMaster { get; set; }
         public DbSet<BranchMaster> BranchMaster { get; set; }
+        public DbSet<UserMaster> UserMaster { get; set; }
+        public DbSet<PartyMaster> PartyMaster { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,6 +23,8 @@ namespace EFCore.SQL.DBContext
         {            
             modelBuilder.Entity<CompanyMaster>().Property(c => c.Id).UseIdentityColumn();
             modelBuilder.Entity<BranchMaster>().Property(c => c.Id).UseIdentityColumn();
+            modelBuilder.Entity<UserMaster>().Property(c => c.Id).UseIdentityColumn();
+            modelBuilder.Entity<PartyMaster>().Property(c => c.Id).UseIdentityColumn();
         }
     }
 }

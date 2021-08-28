@@ -1,13 +1,15 @@
 ﻿using Repository.Entities;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace EFCore.SQL.Interface
 {
     public interface IBranchMaster
     {
-        IQueryable<BranchMaster> GetAllCompany();
-        BranchMaster AddCompany(BranchMaster companyMaster);
-        BranchMaster UpdateCompany(BranchMaster companyMaster);
-        bool DeleteCompany(int CompanyId);
+        Task<List<BranchMaster>> GetAllBranchAsync(int companyId);
+        Task<BranchMaster> AddBranchAsync(BranchMaster branchMaster);
+        Task<BranchMaster> UpdateBranchAsync(BranchMaster branchMaster);
+        Task<bool> DeleteBranchAsync(int branchId);
     }
 }

@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210828052416_AddUserMasterTable")]
+    partial class AddUserMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,68 +156,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("CompanyMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.PartyMaster", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AadharCardNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Address2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmailId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GSTNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("MobileNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OfficeNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShortName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UpdatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("PartyMaster");
-                });
-
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>
                 {
                     b.Property<int>("Id")
@@ -291,17 +231,6 @@ namespace EFCore.SQL.Migrations
                     b.Navigation("CompanyMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.PartyMaster", b =>
-                {
-                    b.HasOne("Repository.Entities.CompanyMaster", "CompanyMaster")
-                        .WithMany("PartyMasters")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CompanyMaster");
-                });
-
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>
                 {
                     b.HasOne("Repository.Entities.BranchMaster", "BranchMaster")
@@ -321,8 +250,6 @@ namespace EFCore.SQL.Migrations
             modelBuilder.Entity("Repository.Entities.CompanyMaster", b =>
                 {
                     b.Navigation("BranchMasters");
-
-                    b.Navigation("PartyMasters");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,6 +25,8 @@ namespace Repository.Entities
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
 
+        //Get list of Child Records.
         public virtual List<BranchMaster> BranchMasters { get; set; }
+        public virtual  List<PartyMaster> PartyMasters { get; set; }
     }
 }

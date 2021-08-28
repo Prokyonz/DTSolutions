@@ -13,7 +13,8 @@ namespace DBTest
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
 
             //CompanyMaster companyMaster = new CompanyMaster();
-            //companyMaster.Name = "Abhishek COmpany New New";
+            //companyMaster.Id = 1;
+            //companyMaster.Name = "Updated Company";
 
 
             //companyMaster.Address = "Surat";
@@ -23,7 +24,7 @@ namespace DBTest
             //companyMaster.TermsCondition = "8530209649";
             //companyMaster.GSTNo = "8530209649";
             //companyMaster.PanCardNo = "8530209649";
-            //companyMaster.AadharCardNo = "8530209649";            
+            //companyMaster.AadharCardNo = "8530209649";
             //companyMaster.Type = 0;
             //companyMaster.IsDelete = false;
             //companyMaster.CreatedDate = DateTime.Now;
@@ -31,11 +32,20 @@ namespace DBTest
             //companyMaster.CreatedBy = 1;
             //companyMaster.UpdatedBy = 1;
 
-            //var data = companyMasterRepository.AddCompanyAsync(companyMaster);
+            //var data = companyMasterRepository.UpdateCompanyAsync(companyMaster);
 
-            IQueryable<CompanyMaster> companyMasters  = companyMasterRepository.GetAllCompany();
-            int i = companyMasters.Count();
+            Data();
+            Console.WriteLine("Didn't wait here");
             Console.ReadKey();
+        }
+
+        public async static void Data()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companyMasters = await companyMasterRepository.GetAllCompanyAsync();
+            int i = companyMasters.Count();
+            Console.WriteLine(i);            
+
         }
     }
 }
