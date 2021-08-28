@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Repository.Entities
 {
-    class ModuleMaster
+    public class ModuleMaster
     {
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool IsDetele { get; set; }
+
     }
 }

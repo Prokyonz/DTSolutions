@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210828070426_AddBrokerageMasterTable")]
+    partial class AddBrokerageMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,6 +138,9 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("AadharCardNo")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Address")
                         .HasColumnType("nvarchar(max)");
 
@@ -167,9 +172,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PanCardNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("RegistrationNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TermsCondition")

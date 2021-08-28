@@ -67,7 +67,7 @@ namespace EFCore.SQL.Repository
                 getCompany.TermsCondition = companyMaster.TermsCondition;
                 getCompany.GSTNo = companyMaster.GSTNo;
                 getCompany.PanCardNo = companyMaster.PanCardNo;
-                getCompany.AadharCardNo = companyMaster.AadharCardNo;
+                getCompany.RegistrationNo = companyMaster.RegistrationNo;
                 getCompany.Type = companyMaster.Type;
                 getCompany.IsDelete = companyMaster.IsDelete;
                 getCompany.CreatedDate = companyMaster.CreatedDate;
