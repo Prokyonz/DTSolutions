@@ -19,6 +19,7 @@ namespace EFCore.SQL.Repository
         public async Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster)
         {
             await _databaseContext.KapanMaster.AddAsync(kapanMaster);
+            await _databaseContext.SaveChangesAsync();
             return kapanMaster;
         }
 
@@ -31,9 +32,11 @@ namespace EFCore.SQL.Repository
                     _databaseContext.KapanMaster.Remove(getKapan);
                 else
                     getKapan.IsDelete = true;
-            }
-            await _databaseContext.SaveChangesAsync();
-            return true;
+
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }            
+            return false;
         }
 
         public async Task<List<KapanMaster>> GetAllKapanAsync()
@@ -53,6 +56,7 @@ namespace EFCore.SQL.Repository
                 getKapan.StartDate = kapanMaster.StartDate;
                 getKapan.EndDate = kapanMaster.EndDate;
             }
+            await _databaseContext.SaveChangesAsync();
             return kapanMaster;
         }
     }

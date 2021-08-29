@@ -25,6 +25,7 @@ namespace EFCore.SQL.Repository
         public async Task<ShapeMaster> AddShapeAsync(ShapeMaster shapeMaster)
         {
             await _databaseContext.ShapeMaster.AddAsync(shapeMaster);
+            await _databaseContext.SaveChangesAsync();
             return shapeMaster;
         }
 
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
                 getShape.UpdatedDate = shapeMaster.UpdatedDate;
                 getShape.UpdatedBy = shapeMaster.UpdatedBy;
             }
-
+            await _databaseContext.SaveChangesAsync();
             return shapeMaster;
         }
     }

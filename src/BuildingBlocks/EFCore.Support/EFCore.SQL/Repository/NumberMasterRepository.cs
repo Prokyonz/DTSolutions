@@ -25,6 +25,7 @@ namespace EFCore.SQL.Repository
         public async Task<NumberMaster> AddNumberAsync(NumberMaster numberMaster)
         {
             await _databaseContext.NumberMaster.AddAsync(numberMaster);
+            await _databaseContext.SaveChangesAsync();
             return numberMaster;
         }
 
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
                 getNumber.UpdatedDate = numberMaster.UpdatedDate;
                 getNumber.UpdatedBy = numberMaster.UpdatedBy;
             }
-
+            await _databaseContext.SaveChangesAsync();
             return numberMaster;
         }
     }

@@ -25,6 +25,7 @@ namespace EFCore.SQL.Repository
         public async Task<PurityMaster> AddPurityAsync(PurityMaster purityMaster)
         {
             await _databaseContext.PurityMaster.AddAsync(purityMaster);
+            await _databaseContext.SaveChangesAsync();
             return purityMaster;
         }
 
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
                 getPurity.UpdatedDate = purityMaster.UpdatedDate;
                 getPurity.UpdatedBy = purityMaster.UpdatedBy;
             }
-
+            await _databaseContext.SaveChangesAsync();
             return purityMaster;
         }
     }

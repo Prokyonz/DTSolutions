@@ -21,6 +21,7 @@ namespace EFCore.SQL.Repository
         public async Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster)
         {
             await _databaseContext.RoleMaster.AddAsync(roleMaster);
+            await _databaseContext.SaveChangesAsync();
             return roleMaster;
         }
 

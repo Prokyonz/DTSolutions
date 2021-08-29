@@ -22,6 +22,7 @@ namespace EFCore.SQL.Repository
         public async Task<UserMaster> AddUserAsync(UserMaster userMaster)
         {
             await _databaseContext.UserMaster.AddAsync(userMaster);
+            await _databaseContext.SaveChangesAsync();
             return userMaster;
         }
 

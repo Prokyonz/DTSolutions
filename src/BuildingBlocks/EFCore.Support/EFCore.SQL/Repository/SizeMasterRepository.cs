@@ -25,6 +25,7 @@ namespace EFCore.SQL.Repository
         public async Task<SizeMaster> AddSizeAsync(SizeMaster sizeMaster)
         {
             await _databaseContext.SizeMaster.AddAsync(sizeMaster);
+            await _databaseContext.SaveChangesAsync();
             return sizeMaster;
         }
 
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
                 getSize.UpdatedDate = sizeMaster.UpdatedDate;
                 getSize.UpdatedBy = sizeMaster.UpdatedBy;
             }
-
+            await _databaseContext.SaveChangesAsync();
             return sizeMaster;
         }
     }

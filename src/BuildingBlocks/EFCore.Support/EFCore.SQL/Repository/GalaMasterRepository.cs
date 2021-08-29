@@ -25,6 +25,7 @@ namespace EFCore.SQL.Repository
         public async Task<GalaMaster> AddGalaAsync(GalaMaster galaMaster)
         {
             await _databaseContext.GalaMaster.AddAsync(galaMaster);
+            await _databaseContext.SaveChangesAsync();
             return galaMaster;
         }
 
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
                 getGala.UpdatedDate = galaMaster.UpdatedDate;
                 getGala.UpdatedBy = galaMaster.UpdatedBy;
             }
-
+            await _databaseContext.SaveChangesAsync();
             return galaMaster;
         }
     }

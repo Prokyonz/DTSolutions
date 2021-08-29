@@ -20,6 +20,7 @@ namespace EFCore.SQL.Repository
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
         {
             await _databaseContext.PartyMaster.AddAsync(partyMaster);
+            await _databaseContext.SaveChangesAsync();
             return partyMaster;
         }
 
@@ -32,8 +33,12 @@ namespace EFCore.SQL.Repository
                     _databaseContext.PartyMaster.Remove(getParty);
                 else
                     getParty.IsDelete = true;
+
+                await _databaseContext.SaveChangesAsync();
+                return true;
             }
-            return true;
+            return false;
+            
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync()
@@ -59,6 +64,7 @@ namespace EFCore.SQL.Repository
                 getParty.UpdatedDate = partyMaster.UpdatedDate;
                 getParty.UpdatedBy = partyMaster.UpdatedBy;
             }
+            await _databaseContext.SaveChangesAsync();
             return partyMaster;
         }
     }
