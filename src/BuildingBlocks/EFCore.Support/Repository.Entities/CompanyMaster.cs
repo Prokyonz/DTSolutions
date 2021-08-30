@@ -8,7 +8,7 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }        
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Address2 { get; set; }

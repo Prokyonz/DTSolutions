@@ -19,6 +19,8 @@ namespace EFCore.SQL.Repository
 
         public async Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster)
         {
+            if (kapanMaster.Id != null)
+                kapanMaster.Id = Guid.NewGuid();
             await _databaseContext.KapanMaster.AddAsync(kapanMaster);
             await _databaseContext.SaveChangesAsync();
             return kapanMaster;

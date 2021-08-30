@@ -21,6 +21,8 @@ namespace EFCore.SQL.Repository
 
         public async Task<UserMaster> AddUserAsync(UserMaster userMaster)
         {
+            if (userMaster.Id != null)
+                userMaster.Id = Guid.NewGuid();
             await _databaseContext.UserMaster.AddAsync(userMaster);
             await _databaseContext.SaveChangesAsync();
             return userMaster;

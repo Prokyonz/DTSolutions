@@ -19,7 +19,9 @@ namespace EFCore.SQL.Repository
         public async Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster)
         {
             try
-            {                
+            {
+                if (companyMaster.Id != null)
+                    companyMaster.Id = Guid.NewGuid();
                 await _databaseContext.CompanyMaster.AddAsync(companyMaster);
                 await _databaseContext.SaveChangesAsync();                
             }

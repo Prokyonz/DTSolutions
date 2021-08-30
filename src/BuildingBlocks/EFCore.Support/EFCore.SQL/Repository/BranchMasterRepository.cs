@@ -22,6 +22,8 @@ namespace EFCore.SQL.Repository
         {
             try
             {
+                if(branchMaster.Id != null)
+                    branchMaster.Id = Guid.NewGuid();
                 await _databaseContext.BranchMaster.AddAsync(branchMaster);
                 await _databaseContext.SaveChangesAsync();
             }

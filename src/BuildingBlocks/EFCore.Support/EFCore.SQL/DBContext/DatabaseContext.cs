@@ -36,7 +36,7 @@ namespace EFCore.SQL.DBContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
-            modelBuilder.Entity<CompanyMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CompanyMaster>().Property(c => c.Sr).UseIdentityColumn();            
             modelBuilder.Entity<BranchMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<UserMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PartyMaster>().Property(c => c.Sr).UseIdentityColumn();
