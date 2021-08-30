@@ -20,7 +20,7 @@ namespace EFCore.SQL.Repository
         {
             try
             {
-                if (companyMaster.Id != null)
+                if (companyMaster.Id == null)
                     companyMaster.Id = Guid.NewGuid();
                 await _databaseContext.CompanyMaster.AddAsync(companyMaster);
                 await _databaseContext.SaveChangesAsync();                

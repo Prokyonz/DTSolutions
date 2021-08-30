@@ -12,27 +12,27 @@ namespace DBTest
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
 
-            //CompanyMaster companyMaster = new CompanyMaster();
-            //companyMaster.Id = 1;
-            //companyMaster.Name = "Updated Company";
+            CompanyMaster companyMaster = new CompanyMaster();
+            companyMaster.Id = Guid.NewGuid();
+            companyMaster.Name = "New Company";
 
 
-            //companyMaster.Address = "Surat";
-            //companyMaster.Address2 = "Surat";
-            //companyMaster.MobileNo = "8530209649";
-            //companyMaster.Details = "8530209649";
-            //companyMaster.TermsCondition = "8530209649";
-            //companyMaster.GSTNo = "8530209649";
-            //companyMaster.PanCardNo = "8530209649";
-            //companyMaster.AadharCardNo = "8530209649";
-            //companyMaster.Type = 0;
-            //companyMaster.IsDelete = false;
-            //companyMaster.CreatedDate = DateTime.Now;
-            //companyMaster.UpdatedDate = DateTime.Now;
-            //companyMaster.CreatedBy = 1;
-            //companyMaster.UpdatedBy = 1;
+            companyMaster.Address = "Surat";
+            companyMaster.Address2 = "Surat";
+            companyMaster.MobileNo = "8530209649";
+            companyMaster.Details = "8530209649";
+            companyMaster.TermsCondition = "8530209649";
+            companyMaster.GSTNo = "8530209649";
+            companyMaster.PanCardNo = "8530209649";
+            companyMaster.RegistrationNo = "8530209649";
+            companyMaster.Type = 0;
+            companyMaster.IsDelete = false;
+            companyMaster.CreatedDate = DateTime.Now;
+            companyMaster.UpdatedDate = DateTime.Now;
+            companyMaster.CreatedBy = 1;
+            companyMaster.UpdatedBy = 1;
 
-            //var data = companyMasterRepository.UpdateCompanyAsync(companyMaster);
+            //var data = companyMasterRepository.AddCompanyAsync(companyMaster);
 
             Data();
             Console.WriteLine("Didn't wait here");

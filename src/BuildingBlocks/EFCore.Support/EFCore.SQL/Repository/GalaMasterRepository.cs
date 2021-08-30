@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<GalaMaster> AddGalaAsync(GalaMaster galaMaster)
         {
-            if (galaMaster.Id != null)
+            if (galaMaster.Id == null)
                 galaMaster.Id = Guid.NewGuid();
             await _databaseContext.GalaMaster.AddAsync(galaMaster);
             await _databaseContext.SaveChangesAsync();

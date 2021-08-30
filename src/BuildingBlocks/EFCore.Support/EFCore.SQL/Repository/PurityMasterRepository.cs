@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<PurityMaster> AddPurityAsync(PurityMaster purityMaster)
         {
-            if (purityMaster.Id != null)
+            if (purityMaster.Id == null)
                 purityMaster.Id = Guid.NewGuid();
             await _databaseContext.PurityMaster.AddAsync(purityMaster);
             await _databaseContext.SaveChangesAsync();

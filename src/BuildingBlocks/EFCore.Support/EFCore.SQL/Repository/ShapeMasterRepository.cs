@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<ShapeMaster> AddShapeAsync(ShapeMaster shapeMaster)
         {
-            if (shapeMaster.Id != null)
+            if (shapeMaster.Id == null)
                 shapeMaster.Id = Guid.NewGuid();
             await _databaseContext.ShapeMaster.AddAsync(shapeMaster);
             await _databaseContext.SaveChangesAsync();

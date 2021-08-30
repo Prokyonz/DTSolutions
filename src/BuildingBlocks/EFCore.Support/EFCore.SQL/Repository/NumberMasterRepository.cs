@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<NumberMaster> AddNumberAsync(NumberMaster numberMaster)
         {
-            if (numberMaster.Id != null)
+            if (numberMaster.Id == null)
                 numberMaster.Id = Guid.NewGuid();
             await _databaseContext.NumberMaster.AddAsync(numberMaster);
             await _databaseContext.SaveChangesAsync();

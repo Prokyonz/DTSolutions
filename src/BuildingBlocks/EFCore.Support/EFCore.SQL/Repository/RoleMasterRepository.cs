@@ -20,7 +20,7 @@ namespace EFCore.SQL.Repository
         }
         public async Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster)
         {
-            if (roleMaster.Id != null)
+            if (roleMaster.Id == null)
                 roleMaster.Id = Guid.NewGuid();
             await _databaseContext.RoleMaster.AddAsync(roleMaster);
             await _databaseContext.SaveChangesAsync();

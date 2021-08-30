@@ -20,7 +20,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
         {
-            if (partyMaster.Id != null)
+            if (partyMaster.Id == null)
                 partyMaster.Id = Guid.NewGuid();
             await _databaseContext.PartyMaster.AddAsync(partyMaster);
             await _databaseContext.SaveChangesAsync();

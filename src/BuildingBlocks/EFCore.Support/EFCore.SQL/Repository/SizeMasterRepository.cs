@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<SizeMaster> AddSizeAsync(SizeMaster sizeMaster)
         {
-            if (sizeMaster.Id != null)
+            if (sizeMaster.Id == null)
                 sizeMaster.Id = Guid.NewGuid();
             await _databaseContext.SizeMaster.AddAsync(sizeMaster);
             await _databaseContext.SaveChangesAsync();
