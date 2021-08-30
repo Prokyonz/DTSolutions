@@ -7,9 +7,10 @@ namespace Repository.Entities
 {
     public class BranchMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }
-        public int CompanyId { get; set; }
+        public Guid Id { get; set; }        
+        public Guid CompanyId { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
         public string Address2 { get; set; }

@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
             return roleMaster;
         }
 
-        public async Task<bool> DeleteRoleAsync(int roleId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteRoleAsync(Guid roleId, bool isPermanantDetele = false)
         {
             var getRole = await _databaseContext.RoleMaster.Where(s => s.Id == roleId).FirstOrDefaultAsync();
             if (getRole != null)

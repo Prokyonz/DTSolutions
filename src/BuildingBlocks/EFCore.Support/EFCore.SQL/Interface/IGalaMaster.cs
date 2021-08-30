@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<GalaMaster>> GetAllGalaAsync();
         Task<GalaMaster> AddGalaAsync(GalaMaster shapeMaster);
         Task<GalaMaster> UpdateGalaAsync(GalaMaster shapeMaster);
-        Task<bool> DeleteGalaAsync(int galaId, bool isPermanantDetele = false);
+        Task<bool> DeleteGalaAsync(Guid galaId, bool isPermanantDetele = false);
     }
 }

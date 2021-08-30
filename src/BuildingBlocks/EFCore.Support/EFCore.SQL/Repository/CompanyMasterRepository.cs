@@ -5,7 +5,6 @@ using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
@@ -32,7 +31,7 @@ namespace EFCore.SQL.Repository
             return companyMaster;
         }
 
-        public async Task<bool> DeleteCompanyAsync(int CompanyId)
+        public async Task<bool> DeleteCompanyAsync(Guid CompanyId)
         {
             var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
             if (getCompany != null)

@@ -1,6 +1,6 @@
 ﻿using Repository.Entities;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.Interface
@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<BranchMaster>> GetAllBranchAsync(int companyId);
         Task<BranchMaster> AddBranchAsync(BranchMaster branchMaster);
         Task<BranchMaster> UpdateBranchAsync(BranchMaster branchMaster);
-        Task<bool> DeleteBranchAsync(int branchId);
+        Task<bool> DeleteBranchAsync(Guid branchId);
     }
 }

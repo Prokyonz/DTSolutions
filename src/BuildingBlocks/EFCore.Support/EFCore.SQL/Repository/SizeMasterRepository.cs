@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace EFCore.SQL.Repository
             return sizeMaster;
         }
 
-        public async Task<bool> DeleteSizeAsync(int purityId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteSizeAsync(Guid purityId, bool isPermanantDetele = false)
         {
             var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
             if (getSize != null)

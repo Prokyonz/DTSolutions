@@ -6,9 +6,10 @@ namespace Repository.Entities
 {
     public class KapanMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }
-        public int BranchId { get; set; }
+        public Guid Id { get; set; }
+        public Guid BranchId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
         public int CaratLimit { get; set; }

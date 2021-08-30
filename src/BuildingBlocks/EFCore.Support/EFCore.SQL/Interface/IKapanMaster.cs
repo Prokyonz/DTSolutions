@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<KapanMaster>> GetAllKapanAsync();
         Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster);
         Task<KapanMaster> UpdateKapanAsync(KapanMaster kapanMaster);
-        Task<bool> DeleteKapanAsync(int kapanId, bool isPermanantDetele = false);
+        Task<bool> DeleteKapanAsync(Guid kapanId, bool isPermanantDetele = false);
     }
 }

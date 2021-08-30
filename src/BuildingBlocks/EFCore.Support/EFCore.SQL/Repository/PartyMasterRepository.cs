@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace EFCore.SQL.Repository
             return partyMaster;
         }
 
-        public async Task<bool> DeletePartyAsync(int partyId, bool isPermanantDetele = false)
+        public async Task<bool> DeletePartyAsync(Guid partyId, bool isPermanantDetele = false)
         {
             var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyId).FirstOrDefaultAsync();
             if (getParty != null)

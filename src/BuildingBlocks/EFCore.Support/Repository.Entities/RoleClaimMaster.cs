@@ -6,9 +6,10 @@ namespace Repository.Entities
 {
     public class RoleClaimMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }
-        public int RoleId { get; set; }
+        public Guid Id { get; set; }
+        public Guid RoleId { get; set; }
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }
         public DateTime CreatedDate { get; set; }

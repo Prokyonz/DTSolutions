@@ -36,23 +36,22 @@ namespace EFCore.SQL.DBContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
-            modelBuilder.Entity<CompanyMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<BranchMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<UserMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<PartyMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<ModuleMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<RoleMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<PermissionMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<RoleClaimMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<UserRoleMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<KapanMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<CurrencyMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<LessWeightMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<ShapeMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<GalaMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<NumberMaster>().Property(c => c.Id).UseIdentityColumn();
-            modelBuilder.Entity<BrokerageMaster>().Property(c => c.Id).UseIdentityColumn();
-
+            modelBuilder.Entity<CompanyMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<BranchMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<UserMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PartyMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ModuleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<RoleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PermissionMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<RoleClaimMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<UserRoleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<KapanMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CurrencyMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<LessWeightMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ShapeMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<GalaMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<NumberMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<BrokerageMaster>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }

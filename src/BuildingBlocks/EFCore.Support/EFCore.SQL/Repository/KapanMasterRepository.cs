@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +24,7 @@ namespace EFCore.SQL.Repository
             return kapanMaster;
         }
 
-        public async Task<bool> DeleteKapanAsync(int kapanId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteKapanAsync(Guid kapanId, bool isPermanantDetele = false)
         {
             var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
             if (getKapan != null)

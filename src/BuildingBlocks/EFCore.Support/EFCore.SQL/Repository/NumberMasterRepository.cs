@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace EFCore.SQL.Repository
             return numberMaster;
         }
 
-        public async Task<bool> DeleteNumberAsync(int numberId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteNumberAsync(Guid numberId, bool isPermanantDetele = false)
         {
             var getNumber = await _databaseContext.NumberMaster.Where(s => s.Id == numberId).FirstOrDefaultAsync();
             if (getNumber != null)

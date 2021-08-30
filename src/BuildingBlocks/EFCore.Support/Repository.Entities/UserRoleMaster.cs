@@ -7,14 +7,13 @@ namespace Repository.Entities
 {
     public class UserRoleMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }
-        public int RoleId { get; set; }
-        public int UserId { get; set; }
-
+        public Guid Id { get; set; }
+        public Guid RoleId { get; set; }
+        public Guid UserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-
         public int CreatedBy { get; set; }
         public int UpdatedBy { get; set; }
 

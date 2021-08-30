@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace EFCore.SQL.Repository
             return purityMaster;
         }
 
-        public async Task<bool> DeletePurityAsync(int purityId, bool isPermanantDetele = false)
+        public async Task<bool> DeletePurityAsync(Guid purityId, bool isPermanantDetele = false)
         {
             var getPurity = await _databaseContext.PurityMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
             if (getPurity != null)

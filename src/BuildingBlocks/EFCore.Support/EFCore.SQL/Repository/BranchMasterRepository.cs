@@ -33,7 +33,7 @@ namespace EFCore.SQL.Repository
             return branchMaster;
         }
 
-        public async Task<bool> DeleteBranchAsync(int branchId)
+        public async Task<bool> DeleteBranchAsync(Guid branchId)
         {
             try
             {

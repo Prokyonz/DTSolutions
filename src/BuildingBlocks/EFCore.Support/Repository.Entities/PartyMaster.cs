@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Repository.Entities
 {
     public class PartyMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }
-        public int CompanyId { get; set; }
+        public Guid Id { get; set; }
+        public Guid CompanyId { get; set; }
         public int Type { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }

@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace Repository.Entities
 {
     public class UserMaster
     {
+        public int Sr { get; set; }
         [Key]
-        public int Id { get; set; }        
-        public int BranchId { get; set; }
+        public Guid Id { get; set; }        
+        public Guid BranchId { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string EmailId { get; set; }

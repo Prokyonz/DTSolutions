@@ -26,7 +26,7 @@ namespace EFCore.SQL.Repository
             return userMaster;
         }
 
-        public async Task<bool> DeleteUserAsync(int userId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteUserAsync(Guid userId, bool isPermanantDetele = false)
         {
             var getUser = await _databaseContext.UserMaster.Where(s => s.Id == userId).FirstOrDefaultAsync();            
             if(getUser != null)

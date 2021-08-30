@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace EFCore.SQL.Repository
             return galaMaster;
         }
 
-        public async Task<bool> DeleteGalaAsync(int galaId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteGalaAsync(Guid galaId, bool isPermanantDetele = false)
         {
             var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
             if (getGala != null)
