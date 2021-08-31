@@ -28,7 +28,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<GalaMaster> GalaMaster { get; set; }
         public DbSet<NumberMaster> NumberMaster { get; set; }
         public DbSet<BrokerageMaster> BrokerageMaster { get; set; }
-
+        public DbSet<FinancialYearMaster> FinancialYearMaster { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -53,6 +53,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<GalaMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<NumberMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BrokerageMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<FinancialYearMaster>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
