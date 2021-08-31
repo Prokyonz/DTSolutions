@@ -525,7 +525,11 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("UpdatedBy")
                         .HasColumnType("int");

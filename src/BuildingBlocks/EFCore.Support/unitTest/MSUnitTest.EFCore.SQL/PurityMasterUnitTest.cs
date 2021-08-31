@@ -1,5 +1,6 @@
 using EFCore.SQL.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Repository.Entities;
 using System;
 using System.Threading.Tasks;
 
@@ -16,29 +17,48 @@ namespace MSUnitTest.EFCore.SQL
         }
 
         [TestMethod]
-        public async Task AddPurityRecord()
-        {            
-            await _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
+        public void AddPurityRecord()
+        {
+            Guid tempId = Guid.NewGuid();
+            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
+                Id = tempId,
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
                 CreatedBy = 1,
                 UpdatedBy = 1,
                 IsDelete = false
-            });
-            Assert.IsTrue(true);
+            }).Result;
+
+            PurityMaster purityMaster = _purityMasterRepository.GetPurityById(tempId).Result;
+            _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+
+            Assert.IsTrue(purityMaster.Id == tempId);
         }
 
         [TestMethod]
-        public async Task GetPurityRecord()
+        public void GetPurityRecord()
         {
-            var data = await _purityMasterRepository.GetAllPurityAsync();
+            Guid tempId = Guid.NewGuid();
+            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
+            {
+                Id = tempId,
+                Name = "Purity1",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = 1,
+                UpdatedBy = 1,
+                IsDelete = false
+            }).Result;
+
+            var data = _purityMasterRepository.GetAllPurityAsync().Result;
             Assert.IsFalse(data.Count == 0);
             foreach (var item in data)
             {
                 if (item.Name == "Purity1")
-                {                    
+                {
+                    _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
                     Assert.IsTrue(true);
                 }
             }
@@ -46,53 +66,78 @@ namespace MSUnitTest.EFCore.SQL
 
 
         [TestMethod]
-        public async Task UpdatePurityRecord()
+        public void UpdatePurityRecord()
         {
-            //await _purityMasterRepository.UpdatePurityAsync(new Repository.Entities.PurityMaster
-            //{
-            //    Id = 1,
-            //    Name = "Purity2",
-            //    CreatedDate = DateTime.Now,
-            //    UpdatedDate = DateTime.Now,
-            //    CreatedBy = 1,
-            //    UpdatedBy = 1,
-            //    IsDelete = false
-            //});
+            Guid tempId = Guid.NewGuid();
+            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
+            {
+                Id = tempId,
+                Name = "Purity1",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = 1,
+                UpdatedBy = 1,
+                IsDelete = false
+            }).Result;
+
+            var data = _purityMasterRepository.UpdatePurityAsync(new Repository.Entities.PurityMaster
+            {
+                Id = tempId,
+                Name = "Purity2",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = 2,
+                UpdatedBy = 2,
+                IsDelete = false
+            }).Result;
+
+            var result = _purityMasterRepository.GetPurityById(tempId).Result;
+            _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+
+            Assert.IsTrue(data.Id == result.Id && data.Name == result.Name);
         }
 
         [TestMethod]
         public async Task DeletePurityRecord()
-        {            
-            var data = await _purityMasterRepository.GetAllPurityAsync();
-            foreach (var item in data)
+        {
+            Guid tempId = Guid.NewGuid();
+            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
-                if (item.Name == "Purity1")
-                {                    
-                    await _purityMasterRepository.DeletePurityAsync(item.Id);
-                }
-            }
+                Id = tempId,
+                Name = "Purity1",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = 1,
+                UpdatedBy = 1,
+                IsDelete = false
+            }).Result;
 
-            var data1 = await _purityMasterRepository.GetAllPurityAsync();
-            foreach (var item in data)
-            {
-                if (item.Name == "Purity1")
-                {
-                    Assert.IsTrue(item.IsDelete);
-                }
-            }
+            _ = _purityMasterRepository.DeletePurityAsync(tempId).Result;
+
+            var data = await _purityMasterRepository.GetPurityById(tempId, true);
+            _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+            Assert.IsTrue(data.IsDelete);
         }
 
         [TestMethod]
         public async Task PermanantDeletePurityRecord()
         {
-            var data = await _purityMasterRepository.GetAllPurityAsync();
-            foreach (var item in data)
+            Guid tempId = Guid.NewGuid();
+            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
-                if (item.Name == "Purity1")
-                {
-                    Assert.IsTrue(await _purityMasterRepository.DeletePurityAsync(item.Id, true));
-                }
-            }
+                Id = tempId,
+                Name = "Purity1",
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
+                CreatedBy = 1,
+                UpdatedBy = 1,
+                IsDelete = false
+            }).Result;
+
+            _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+
+            var data = await _purityMasterRepository.GetPurityById(tempId);
+            Assert.IsNull(data);
         }
     }
 }

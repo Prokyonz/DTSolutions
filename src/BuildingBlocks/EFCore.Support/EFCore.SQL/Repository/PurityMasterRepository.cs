@@ -18,9 +18,20 @@ namespace EFCore.SQL.Repository
             _databaseContext = new DatabaseContext();
         }
 
-        public async Task<List<PurityMaster>> GetAllPurityAsync()
+        public async Task<List<PurityMaster>> GetAllPurityAsync(bool isDeleteInclude = false)
         {
-            return await _databaseContext.PurityMaster.Where(s => s.IsDelete == false).ToListAsync();
+            if(isDeleteInclude == false)
+                return await _databaseContext.PurityMaster.Where(s => s.IsDelete == false).ToListAsync();
+            else
+                return await _databaseContext.PurityMaster.ToListAsync();
+        }
+
+        public async Task<PurityMaster> GetPurityById(Guid purityId, bool isDeleteInclude = false)
+        {
+            if(isDeleteInclude == false)
+                return await _databaseContext.PurityMaster.Where(s => s.IsDelete == false && s.Id == purityId).FirstOrDefaultAsync();
+            else
+                return await _databaseContext.PurityMaster.Where(s=> s.Id == purityId).FirstOrDefaultAsync();
         }
 
         public async Task<PurityMaster> AddPurityAsync(PurityMaster purityMaster)

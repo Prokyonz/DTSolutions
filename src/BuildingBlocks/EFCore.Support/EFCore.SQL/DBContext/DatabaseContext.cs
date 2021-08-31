@@ -49,6 +49,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CurrencyMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LessWeightMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ShapeMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PurityMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<GalaMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<NumberMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BrokerageMaster>().Property(c => c.Sr).UseIdentityColumn();
