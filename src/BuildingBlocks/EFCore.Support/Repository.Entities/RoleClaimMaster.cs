@@ -14,8 +14,8 @@ namespace Repository.Entities
         public string ClaimValue { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public int CreatedBy { get; set; }
-        public int UpdatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         [ForeignKey("RoleId")]
         public virtual RoleMaster RoleMaster { get; set; }

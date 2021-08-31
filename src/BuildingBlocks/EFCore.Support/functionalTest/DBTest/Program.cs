@@ -29,8 +29,8 @@ namespace DBTest
             companyMaster.IsDelete = false;
             companyMaster.CreatedDate = DateTime.Now;
             companyMaster.UpdatedDate = DateTime.Now;
-            companyMaster.CreatedBy = 1;
-            companyMaster.UpdatedBy = 1;
+            companyMaster.CreatedBy = Guid.NewGuid();
+            companyMaster.UpdatedBy = Guid.NewGuid();
 
             //var data = companyMasterRepository.AddCompanyAsync(companyMaster);
 

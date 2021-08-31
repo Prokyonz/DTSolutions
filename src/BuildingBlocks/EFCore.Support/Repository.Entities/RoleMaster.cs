@@ -14,8 +14,8 @@ namespace Repository.Entities
         public bool Isdelete { get; set; }
         public DateTime CratedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public int CreatedBy { get; set; }
-        public int? UpdatedBy { get; set; }
+        public Guid CreatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         public virtual List<RoleClaimMaster> RoleClaimMaster { get; set; }
     }

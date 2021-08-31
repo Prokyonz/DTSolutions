@@ -26,8 +26,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 1,
-                UpdatedBy = 1,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 
@@ -47,8 +47,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 1,
-                UpdatedBy = 1,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 
@@ -75,8 +75,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 1,
-                UpdatedBy = 1,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 
@@ -86,8 +86,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity2",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 2,
-                UpdatedBy = 2,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 
@@ -107,8 +107,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 1,
-                UpdatedBy = 1,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 
@@ -129,8 +129,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = 1,
-                UpdatedBy = 1,
+                CreatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid(),
                 IsDelete = false
             }).Result;
 

@@ -23,8 +23,8 @@ namespace Repository.Entities
         public bool IsDetele { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdateDate { get; set; }
-        public int CreatedBy { get; set; }
-        public int? UpdatedBy { get; set; }        
+        public Guid CreatedBy { get; set; }
+        public Guid? UpdatedBy { get; set; }
 
         [ForeignKey("BranchId")]
         public BranchMaster BranchMaster { get; set; }
