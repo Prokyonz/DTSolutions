@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using System;
+using System.Threading.Tasks;
 
 namespace EFCore.SQL.DBContext
 {
@@ -30,6 +32,12 @@ namespace EFCore.SQL.DBContext
         public DbSet<BrokerageMaster> BrokerageMaster { get; set; }
         public DbSet<FinancialYearMaster> FinancialYearMaster { get; set; }
         public DbSet<PurchaseMaster> PurchaseMaster  { get; set; }
+
+        internal Task SavedChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
         public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
