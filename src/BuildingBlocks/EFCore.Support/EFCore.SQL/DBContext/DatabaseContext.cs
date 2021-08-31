@@ -30,6 +30,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<BrokerageMaster> BrokerageMaster { get; set; }
         public DbSet<FinancialYearMaster> FinancialYearMaster { get; set; }
         public DbSet<PurchaseMaster> PurchaseMaster  { get; set; }
+        public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,6 +57,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BrokerageMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<FinancialYearMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurchaseMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PurchaseDetails>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }

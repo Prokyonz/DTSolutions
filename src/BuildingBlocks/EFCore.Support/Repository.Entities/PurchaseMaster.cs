@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Repository.Entities
@@ -48,5 +49,7 @@ namespace Repository.Entities
         public DateTime UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
+
+        public List<PurchaseDetails> PurchaseDetails { get; set; }
     }
 }
