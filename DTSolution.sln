@@ -14,19 +14,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{9BBB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{CDB5E6DC-16FB-4FE4-AF49-632ECDB6A28D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondTrade.API", "src\Service\DiamondTrade.API\DiamondTrade.API.csproj", "{AFFD71ED-90F6-48D2-881A-41ABE350B639}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiamondTrade.API", "src\Service\DiamondTrade.API\DiamondTrade.API.csproj", "{AFFD71ED-90F6-48D2-881A-41ABE350B639}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{ED0314C5-F8E6-4100-AB0B-4A78626C853B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EFCore.Support", "EFCore.Support", "{034FDF9C-A038-400D-98BF-DD62BE8E0451}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore.SQL", "src\BuildingBlocks\EFCore.Support\EFCore.SQL\EFCore.SQL.csproj", "{B4028C1E-59F7-43C0-BB8A-5F6974ABFA96}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore.SQL", "src\BuildingBlocks\EFCore.Support\EFCore.SQL\EFCore.SQL.csproj", "{B4028C1E-59F7-43C0-BB8A-5F6974ABFA96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.Entities", "src\BuildingBlocks\EFCore.Support\Repository.Entities\Repository.Entities.csproj", "{0AE26C14-A0AC-4B61-A8D2-A0E42177583C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.Entities", "src\BuildingBlocks\EFCore.Support\Repository.Entities\Repository.Entities.csproj", "{0AE26C14-A0AC-4B61-A8D2-A0E42177583C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functionalTest", "functionalTest", "{AD01DFA4-F6CF-484C-90A9-536C599C24BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBTest", "src\BuildingBlocks\EFCore.Support\functionalTest\DBTest\DBTest.csproj", "{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBTest", "src\BuildingBlocks\EFCore.Support\functionalTest\DBTest\DBTest.csproj", "{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTDesktop", "src\Desktop\DTDesktop\DTDesktop.csproj", "{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +52,10 @@ Global
 		{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -65,6 +71,7 @@ Global
 		{0AE26C14-A0AC-4B61-A8D2-A0E42177583C} = {034FDF9C-A038-400D-98BF-DD62BE8E0451}
 		{AD01DFA4-F6CF-484C-90A9-536C599C24BF} = {034FDF9C-A038-400D-98BF-DD62BE8E0451}
 		{3E8BB287-C781-409C-8741-5D3D7DD4EFB2} = {AD01DFA4-F6CF-484C-90A9-536C599C24BF}
+		{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB} = {90D0F4B3-280D-4F6C-BFF2-464EEA272ECA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84A0CA65-6A4E-446E-AEA0-2CC3AE08447F}

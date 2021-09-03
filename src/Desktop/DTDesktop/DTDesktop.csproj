@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DevExpress.Win.Design" Version="21.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExpress.XtraEditors.v21.1">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\DevExpress 21.1\Components\Offline Packages\devexpress.win.design\21.1.5\lib\net5.0-windows\DevExpress.XtraEditors.v21.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
