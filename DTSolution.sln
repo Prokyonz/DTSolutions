@@ -28,8 +28,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "functionalTest", "functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBTest", "src\BuildingBlocks\EFCore.Support\functionalTest\DBTest\DBTest.csproj", "{3E8BB287-C781-409C-8741-5D3D7DD4EFB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DTDesktop", "src\Desktop\DTDesktop\DTDesktop.csproj", "{CADA7DCA-D762-40D0-8DAE-BA84FCA85CBB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
