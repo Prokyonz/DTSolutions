@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "unitTest", "unitTest", "{29
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MSUnitTest.EFCore.SQL", "src\BuildingBlocks\EFCore.Support\unitTest\MSUnitTest.EFCore.SQL\MSUnitTest.EFCore.SQL.csproj", "{53EEAA45-CCDA-4DCD-BB31-EE1D0B9E0A27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiamondTrading", "src\Dekstop\DiamondTrading\DiamondTrading.csproj", "{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -64,6 +66,10 @@ Global
 		{53EEAA45-CCDA-4DCD-BB31-EE1D0B9E0A27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53EEAA45-CCDA-4DCD-BB31-EE1D0B9E0A27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53EEAA45-CCDA-4DCD-BB31-EE1D0B9E0A27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +88,7 @@ Global
 		{04F99C49-98B5-4F2E-B15C-21F0C01AE976} = {90D0F4B3-280D-4F6C-BFF2-464EEA272ECA}
 		{29DEB04F-F0E0-4F7A-B909-B0E3B0F8FD6D} = {034FDF9C-A038-400D-98BF-DD62BE8E0451}
 		{53EEAA45-CCDA-4DCD-BB31-EE1D0B9E0A27} = {29DEB04F-F0E0-4F7A-B909-B0E3B0F8FD6D}
+		{B0A4BBF9-FC44-463D-86B1-7CD4C4B9591B} = {90D0F4B3-280D-4F6C-BFF2-464EEA272ECA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {84A0CA65-6A4E-446E-AEA0-2CC3AE08447F}
