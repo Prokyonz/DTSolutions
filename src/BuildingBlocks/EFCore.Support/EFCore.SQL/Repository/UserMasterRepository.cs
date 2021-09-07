@@ -1,5 +1,6 @@
 ﻿using EFCore.SQL.DBContext;
 using EFCore.SQL.Interface;
+using EFCore.SQL.Models;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
 using System;
@@ -52,9 +53,18 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.UserMaster.Where(s => s.IsDetele == false).ToListAsync();
         }
 
-        public async Task<UserMaster> Login(string userId, string password)
+        public async Task<LoginResponse> Login(string userId, string password)
         {
-            return await _databaseContext.UserMaster.Where(w => w.Name == userId && w.Password == password).FirstOrDefaultAsync();
+            LoginResponse loginResponse  = new LoginResponse();
+
+            loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.Name == userId && w.Password == password).FirstOrDefaultAsync();
+            loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
+
+            if (loginResponse.UserRoleMasters.Count > 0) {
+                Guid roleId = loginResponse.UserRoleMasters[0].RoleId;
+                loginResponse.RoleClaimMasters = await _databaseContext.RoleClaimMaster.Where(w=>w.RoleId == roleId).ToListAsync();
+            }
+            return loginResponse;
         }
 
         public async Task<UserMaster> UpdateUserAsync(UserMaster userMaster)

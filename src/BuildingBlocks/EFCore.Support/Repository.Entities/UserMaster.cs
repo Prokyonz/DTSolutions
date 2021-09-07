@@ -30,6 +30,6 @@ namespace Repository.Entities
         [ForeignKey("BranchId")]
         public BranchMaster BranchMaster { get; set; }
 
-        public virtual List<UserRoleMaster> UserRoleMaster { get; set; }
+        public virtual List<UserRoleMaster> UserRoleMaster { get; set; }        
     }
 }

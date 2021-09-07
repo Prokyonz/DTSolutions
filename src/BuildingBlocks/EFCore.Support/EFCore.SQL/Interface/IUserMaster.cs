@@ -1,4 +1,5 @@
-﻿using Repository.Entities;
+﻿using EFCore.SQL.Models;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,7 +9,7 @@ namespace EFCore.SQL.Interface
 {
     public interface IUserMaster
     {
-        Task<UserMaster> Login(string userId, string password);
+        Task<LoginResponse> Login(string userId, string password);
         Task<List<RoleClaimMaster>> GetAllClaims(Guid userId);
         Task<List<UserMaster>> GetAllUserAsync();
         Task<UserMaster> AddUserAsync(UserMaster userMaster);

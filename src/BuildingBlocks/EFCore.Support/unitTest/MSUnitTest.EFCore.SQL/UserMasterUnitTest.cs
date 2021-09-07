@@ -1,5 +1,6 @@
 ﻿using EFCore.SQL.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,7 @@ namespace MSUnitTest.EFCore.SQL
             {
                 Id = tempId,
                 Name = "abedre",
-                BranchId = tempId,
+                BranchId = Guid.Parse("b63ad0da-bb6c-41a0-a8c2-7b05478e31ac"),
                 AadharCardNo = "2346",
                 Address = "Suat",
                 Address2 = "Suat",
@@ -34,17 +35,31 @@ namespace MSUnitTest.EFCore.SQL
                 MobileNo = "132456",
                 Password="abedre",
                 ReferenceBy= "",
-                Type = 0,
+                Type = 1,
                 CreatedBy = tempId,
                 CreatedDate = DateTime.Now,
                 UpdatedBy = tempId,
                 UpdateDate = DateTime.Now
             }).Result;
 
-            //PurityMaster purityMaster = _purityMasterRepository.GetPurityById(tempId).Result;
-            //_ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+            List<UserMaster> result = _userMasterRepository.GetAllUserAsync().Result;
+            bool tempResult = false;
 
-            //Assert.IsTrue(purityMaster.Id == tempId);
+            foreach (var item in result)
+            {
+                if(item.Id == tempId)
+                {
+                    tempResult = true;
+                    
+                }
+            }
+            Assert.IsTrue(tempResult);
+        }
+
+        [TestMethod]
+        public void LoginCheck()
+        {
+            var result = _userMasterRepository.Login("abedre", "abedre").Result;
         }
     }
 }

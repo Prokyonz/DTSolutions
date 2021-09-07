@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -21,6 +22,6 @@ namespace Repository.Entities
         public virtual RoleMaster RoleMaster { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual UserMaster UserMaster { get; set; }
+        public virtual UserMaster UserMaster { get; set; }        
     }
 }
