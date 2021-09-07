@@ -42,9 +42,19 @@ namespace EFCore.SQL.Repository
             return true;
         }
 
+        public async Task<List<RoleClaimMaster>> GetAllClaims(Guid userId)
+        {
+            return await _databaseContext.RoleClaimMaster.ToListAsync();
+        }
+
         public async Task<List<UserMaster>> GetAllUserAsync()
         {
             return await _databaseContext.UserMaster.Where(s => s.IsDetele == false).ToListAsync();
+        }
+
+        public async Task<UserMaster> Login(string userId, string password)
+        {
+            return await _databaseContext.UserMaster.Where(w => w.Name == userId && w.Password == password).FirstOrDefaultAsync();
         }
 
         public async Task<UserMaster> UpdateUserAsync(UserMaster userMaster)

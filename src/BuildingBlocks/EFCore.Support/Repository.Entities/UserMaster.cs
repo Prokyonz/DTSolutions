@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -28,5 +29,7 @@ namespace Repository.Entities
 
         [ForeignKey("BranchId")]
         public BranchMaster BranchMaster { get; set; }
+
+        public virtual List<UserRoleMaster> UserRoleMaster { get; set; }
     }
 }
