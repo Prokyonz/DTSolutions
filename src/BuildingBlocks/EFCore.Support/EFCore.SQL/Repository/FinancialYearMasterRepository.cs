@@ -3,6 +3,7 @@ using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -39,6 +40,11 @@ namespace EFCore.SQL.Repository
                 return true;
             }
             return false;
+        }
+
+        public async Task<List<FinancialYearMaster>> GetAllFinancialYear()
+        {
+            return await _databaseContext.FinancialYearMaster.Where(w => w.IsDelete == false).ToListAsync();
         }
     }
 }

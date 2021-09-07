@@ -1,5 +1,6 @@
 ﻿using Repository.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.Interface
@@ -8,5 +9,6 @@ namespace EFCore.SQL.Interface
     {
         Task<FinancialYearMaster> AddFinancialYearAsync(FinancialYearMaster financialYearMaster);
         Task<bool> DeleteFinancialYearAsync(Guid financialYearId, bool isPermanantDetele = false);
+        Task<List<FinancialYearMaster>> GetAllFinancialYear();
     }
 }
