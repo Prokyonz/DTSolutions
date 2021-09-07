@@ -30,6 +30,7 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
@@ -57,9 +58,9 @@ namespace DiamondTrading.Master
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -76,7 +77,6 @@ namespace DiamondTrading.Master
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -90,6 +90,17 @@ namespace DiamondTrading.Master
             this.groupControl1.Size = new System.Drawing.Size(710, 92);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Company Type && Name ";
+            // 
+            // lookUpEdit1
+            // 
+            this.lookUpEdit1.Location = new System.Drawing.Point(8, 49);
+            this.lookUpEdit1.Name = "lookUpEdit1";
+            this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
+            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpEdit1.Size = new System.Drawing.Size(193, 26);
+            this.lookUpEdit1.TabIndex = 0;
             // 
             // textEdit1
             // 
@@ -351,17 +362,6 @@ namespace DiamondTrading.Master
             this.simpleButton3.TabIndex = 6;
             this.simpleButton3.Text = "&Cancel";
             // 
-            // lookUpEdit1
-            // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(8, 49);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Size = new System.Drawing.Size(193, 26);
-            this.lookUpEdit1.TabIndex = 0;
-            // 
             // frmCompanyMaster
             // 
             this.Appearance.Options.UseFont = true;
@@ -385,6 +385,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -404,7 +405,6 @@ namespace DiamondTrading.Master
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -417,31 +417,31 @@ namespace DiamondTrading
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(974, 23);
+            this.barDockControlTop.Size = new System.Drawing.Size(988, 25);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 518);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 537);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(974, 22);
+            this.barDockControlBottom.Size = new System.Drawing.Size(988, 19);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 23);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 495);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 512);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(974, 23);
+            this.barDockControlRight.Location = new System.Drawing.Point(988, 25);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 495);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 512);
             // 
             // barButtonItem16
             // 
@@ -468,13 +468,13 @@ namespace DiamondTrading
             this.accordionControlElement26,
             this.accordionControlElement29,
             this.accordionControlElement30});
-            this.accordionControl1.Location = new System.Drawing.Point(752, 23);
+            this.accordionControl1.Location = new System.Drawing.Point(766, 25);
             this.accordionControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.accordionControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
-            this.accordionControl1.Size = new System.Drawing.Size(222, 495);
+            this.accordionControl1.Size = new System.Drawing.Size(222, 512);
             this.accordionControl1.TabIndex = 0;
             // 
             // accordionControlElement1
@@ -684,9 +684,9 @@ namespace DiamondTrading
             // panelControl1
             // 
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 23);
+            this.panelControl1.Location = new System.Drawing.Point(0, 25);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(752, 495);
+            this.panelControl1.Size = new System.Drawing.Size(766, 512);
             this.panelControl1.TabIndex = 9;
             // 
             // frmMain
@@ -694,7 +694,7 @@ namespace DiamondTrading
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(974, 540);
+            this.ClientSize = new System.Drawing.Size(988, 556);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.accordionControl1);
             this.Controls.Add(this.barDockControlLeft);
@@ -703,12 +703,14 @@ namespace DiamondTrading
             this.Controls.Add(this.barDockControlTop);
             this.Font = new System.Drawing.Font("Tahoma", 9F);
             this.IsMdiContainer = true;
-            this.LookAndFeel.SkinName = "Visual Studio 2013 Light";
+            this.LookAndFeel.SkinName = "Office 2019 White";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diamond Trading";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
+            this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

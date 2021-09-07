@@ -39,5 +39,19 @@ namespace DiamondTrading
                 frmmasterdetails.BringToFront();
             }
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            frmCompanyYearSelection frmCompanyYearSelection = new frmCompanyYearSelection();
+            if(frmCompanyYearSelection.ShowDialog()==DialogResult.OK)
+            {
+
+            }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
