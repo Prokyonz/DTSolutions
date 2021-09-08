@@ -25,7 +25,7 @@ namespace MSUnitTest.EFCore.SQL
             {
                 Id = tempId,
                 Name = "abedre",
-                BranchId = Guid.Parse("b63ad0da-bb6c-41a0-a8c2-7b05478e31ac"),
+                //BranchId = Guid.Parse("b63ad0da-bb6c-41a0-a8c2-7b05478e31ac"),
                 AadharCardNo = "2346",
                 Address = "Suat",
                 Address2 = "Suat",

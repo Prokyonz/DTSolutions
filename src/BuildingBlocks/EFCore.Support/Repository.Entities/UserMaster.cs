@@ -10,7 +10,7 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public Guid Id { get; set; }        
-        public Guid BranchId { get; set; }
+        //public Guid BranchId { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string EmailId { get; set; }
@@ -27,8 +27,8 @@ namespace Repository.Entities
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 
-        [ForeignKey("BranchId")]
-        public BranchMaster BranchMaster { get; set; }
+        //[ForeignKey("BranchId")]
+        //public BranchMaster BranchMaster { get; set; }
 
         public virtual List<UserRoleMaster> UserRoleMaster { get; set; }        
     }
