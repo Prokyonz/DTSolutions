@@ -37,18 +37,18 @@ namespace DiamondTrading
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.lblError = new System.Windows.Forms.Label();
+            this.chkRememberMe = new DevExpress.XtraEditors.CheckEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.txtUsername = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
-            this.chkRememberMe = new DevExpress.XtraEditors.CheckEdit();
-            this.lblError = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -118,6 +118,10 @@ namespace DiamondTrading
             this.panelControl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl2.Appearance.BorderColor = System.Drawing.Color.DodgerBlue;
+            this.panelControl2.Appearance.Options.UseBorderColor = true;
+            this.panelControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
             this.panelControl2.Controls.Add(this.lblError);
             this.panelControl2.Controls.Add(this.chkRememberMe);
             this.panelControl2.Controls.Add(this.pictureEdit1);
@@ -132,6 +136,27 @@ namespace DiamondTrading
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(307, 224);
             this.panelControl2.TabIndex = 0;
+            // 
+            // lblError
+            // 
+            this.lblError.ForeColor = System.Drawing.Color.Red;
+            this.lblError.Location = new System.Drawing.Point(121, 156);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(170, 16);
+            this.lblError.TabIndex = 7;
+            this.lblError.Text = "Error Text";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.lblError.Visible = false;
+            // 
+            // chkRememberMe
+            // 
+            this.chkRememberMe.Location = new System.Drawing.Point(18, 154);
+            this.chkRememberMe.Name = "chkRememberMe";
+            this.chkRememberMe.Properties.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
+            this.chkRememberMe.Properties.Caption = "Remember Me";
+            this.chkRememberMe.Size = new System.Drawing.Size(97, 18);
+            this.chkRememberMe.TabIndex = 6;
             // 
             // pictureEdit1
             // 
@@ -163,27 +188,6 @@ namespace DiamondTrading
             this.txtPassword.Size = new System.Drawing.Size(273, 26);
             this.txtPassword.TabIndex = 5;
             // 
-            // chkRememberMe
-            // 
-            this.chkRememberMe.Location = new System.Drawing.Point(18, 154);
-            this.chkRememberMe.Name = "chkRememberMe";
-            this.chkRememberMe.Properties.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
-            this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
-            this.chkRememberMe.Properties.Caption = "Remember Me";
-            this.chkRememberMe.Size = new System.Drawing.Size(97, 18);
-            this.chkRememberMe.TabIndex = 6;
-            // 
-            // lblError
-            // 
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(121, 156);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(170, 16);
-            this.lblError.TabIndex = 7;
-            this.lblError.Text = "Error Text";
-            this.lblError.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.lblError.Visible = false;
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -205,10 +209,10 @@ namespace DiamondTrading
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -29,44 +29,45 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
-            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
-            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabBranchMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabCompanyMaster = new DevExpress.XtraTab.XtraTabPage();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
-            this.xtraTabPage1.SuspendLayout();
+            this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
+            this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.xtabCompanyMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
-            this.xtraTabControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).BeginInit();
+            this.xtabMasterDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // xtraTabPage2
+            // xtabBranchMaster
             // 
-            this.xtraTabPage2.Name = "xtraTabPage2";
-            this.xtraTabPage2.Size = new System.Drawing.Size(824, 415);
-            this.xtraTabPage2.Text = "Branch Master";
+            this.xtabBranchMaster.Name = "xtabBranchMaster";
+            this.xtabBranchMaster.Size = new System.Drawing.Size(695, 411);
+            this.xtabBranchMaster.Text = "Branch Master";
             // 
-            // xtraTabPage1
+            // xtabCompanyMaster
             // 
-            this.xtraTabPage1.Controls.Add(this.gridControl1);
-            this.xtraTabPage1.Controls.Add(this.menuStrip1);
-            this.xtraTabPage1.Name = "xtraTabPage1";
-            this.xtraTabPage1.Size = new System.Drawing.Size(824, 415);
-            this.xtraTabPage1.Text = "Company Master";
+            this.xtabCompanyMaster.Controls.Add(this.gridControl1);
+            this.xtabCompanyMaster.Name = "xtabCompanyMaster";
+            this.xtabCompanyMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabCompanyMaster.Text = "Company Master";
             // 
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 24);
+            this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(824, 391);
+            this.gridControl1.Size = new System.Drawing.Size(764, 411);
             this.gridControl1.TabIndex = 0;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -76,55 +77,75 @@ namespace DiamondTrading
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             // 
-            // menuStrip1
+            // xtabMasterDetails
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.editToolStripMenuItem,
-            this.deleteToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(824, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.xtabMasterDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtabMasterDetails.Location = new System.Drawing.Point(57, 3);
+            this.xtabMasterDetails.Name = "xtabMasterDetails";
+            this.xtabMasterDetails.SelectedTabPage = this.xtabCompanyMaster;
+            this.xtabMasterDetails.Size = new System.Drawing.Size(766, 434);
+            this.xtabMasterDetails.TabIndex = 0;
+            this.xtabMasterDetails.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtabCompanyMaster,
+            this.xtabBranchMaster});
             // 
-            // addToolStripMenuItem
+            // accordionControl1
             // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(41, 20);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordianAddBtn,
+            this.accordionControlElement2,
+            this.accordionControlElement3});
+            this.accordionControl1.Location = new System.Drawing.Point(3, 3);
+            this.accordionControl1.Name = "accordionControl1";
+            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
+            this.accordionControl1.Size = new System.Drawing.Size(48, 434);
+            this.accordionControl1.TabIndex = 2;
+            this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
-            // editToolStripMenuItem
+            // accordianAddBtn
             // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
-            this.editToolStripMenuItem.Text = "Edit";
+            this.accordianAddBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.Add_24;
+            this.accordianAddBtn.Name = "accordianAddBtn";
+            this.accordianAddBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordianAddBtn.Text = "Add";
+            this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
             // 
-            // deleteToolStripMenuItem
+            // accordionControlElement2
             // 
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
-            this.deleteToolStripMenuItem.Text = "Delete";
+            this.accordionControlElement2.ImageOptions.Image = global::DiamondTrading.Properties.Resources.edit_24;
+            this.accordionControlElement2.Name = "accordionControlElement2";
+            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement2.Text = "Edit";
             // 
-            // xtraTabControl1
+            // accordionControlElement3
             // 
-            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.xtraTabControl1.Location = new System.Drawing.Point(0, 0);
-            this.xtraTabControl1.Name = "xtraTabControl1";
-            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
-            this.xtraTabControl1.Size = new System.Drawing.Size(826, 440);
-            this.xtraTabControl1.TabIndex = 0;
-            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.xtraTabPage1,
-            this.xtraTabPage2});
+            this.accordionControlElement3.ImageOptions.Image = global::DiamondTrading.Properties.Resources.delete_24;
+            this.accordionControlElement3.Name = "accordionControlElement3";
+            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlElement3.Text = "Delete";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.accordionControl1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.xtabMasterDetails, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // frmMasterDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(826, 440);
-            this.Controls.Add(this.xtraTabControl1);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -132,28 +153,28 @@ namespace DiamondTrading
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.xtraTabPage1.ResumeLayout(false);
-            this.xtraTabPage1.PerformLayout();
+            this.xtabCompanyMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
-            this.xtraTabControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).EndInit();
+            this.xtabMasterDetails.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
-        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private DevExpress.XtraTab.XtraTabPage xtabBranchMaster;
+        private DevExpress.XtraTab.XtraTabPage xtabCompanyMaster;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private DevExpress.XtraTab.XtraTabControl xtabMasterDetails;
+        private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordianAddBtn;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

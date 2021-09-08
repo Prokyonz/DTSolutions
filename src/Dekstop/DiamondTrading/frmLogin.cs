@@ -28,6 +28,17 @@ namespace DiamondTrading
         {
             try
             {
+                if(txtUsername.Text.Trim().Length==0)
+                {
+                    txtUsername.Focus();
+                    return;
+                }
+                if (txtPassword.Text.Trim().Length == 0)
+                {
+                    txtPassword.Focus();
+                    return;
+                }
+
                 this.Cursor = Cursors.WaitCursor;
                 var data = await _userMasterRepository.Login(txtUsername.Text, txtPassword.Text);
                 if (data.UserMaster != null)
@@ -40,7 +51,7 @@ namespace DiamondTrading
                 else
                 {
                     lblError.Visible = true;
-                    lblError.Text = "Invalid Username/Password";
+                    lblError.Text = AppMessages.GetString(AppMessageID.InvalidUsername_Password);
                 }
             }
             catch(Exception Ex)
