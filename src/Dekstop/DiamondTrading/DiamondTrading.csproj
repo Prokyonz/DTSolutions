@@ -172,6 +172,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\DataSecurity.cs" />
+    <Compile Include="Common\RegistryHelper.cs" />
     <Compile Include="frmCompanyYearSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -256,6 +259,9 @@
       <Project>{0ae26c14-a0ac-4b61-a8d2-a0e42177583c}</Project>
       <Name>Repository.Entities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lock.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

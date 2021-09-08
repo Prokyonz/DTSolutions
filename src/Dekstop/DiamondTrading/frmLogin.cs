@@ -26,10 +26,51 @@ namespace DiamondTrading
 
         private async void btnLogin_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmMain frmMain = new frmMain();
-            var data = await _userMasterRepository.Login(textEdit1.Text, textEdit2.Text);
-            frmMain.Show();
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                var data = await _userMasterRepository.Login(txtUsername.Text, txtPassword.Text);
+                if (data.UserMaster != null)
+                {
+                    SaveRegistrySettings();
+                    this.Hide();
+                    frmMain frmMain = new frmMain();
+                    frmMain.Show();
+                }
+                else
+                {
+                    lblError.Visible = true;
+                    lblError.Text = "Invalid Username/Password";
+                }
+            }
+            catch(Exception Ex)
+            {
+
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void SaveRegistrySettings()
+        {
+            RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.RememberLogin, chkRememberMe.Checked.ToString());
+            if (chkRememberMe.Checked)
+            {
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, DataSecurity.EncryptString(txtUsername.Text,SecurityType.Password));
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, DataSecurity.EncryptString(txtPassword.Text, SecurityType.Password));
+            }
+        }
+
+        private void LoadRegistrySettings()
+        {
+            chkRememberMe.Checked=Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.RememberLogin, "false"));
+            if(chkRememberMe.Checked)
+            { 
+                txtUsername.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, ""),SecurityType.Password);
+                txtPassword.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, ""), SecurityType.Password);
+            }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -46,9 +87,19 @@ namespace DiamondTrading
 
             SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
 
-            Thread.Sleep(5000);
+            Thread.Sleep(3000);
             SplashScreenManager.CloseForm();
+            LoadRegistrySettings();
+        }
 
+        private void MoveToNextControl(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
