@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraSplashScreen;
+using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,15 +16,19 @@ namespace DiamondTrading
 {
     public partial class frmLogin : DevExpress.XtraEditors.XtraForm
     {
+        private readonly UserMasterRepository _userMasterRepository;
+
         public frmLogin()
         {
             InitializeComponent();
+            _userMasterRepository = new UserMasterRepository();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
             this.Hide();
             frmMain frmMain = new frmMain();
+            var data = await _userMasterRepository.Login(textEdit1.Text, textEdit2.Text);
             frmMain.Show();
         }
 
