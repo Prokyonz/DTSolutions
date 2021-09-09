@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,12 @@ namespace DiamondTrading
 {
     public partial class frmMasterDetails : DevExpress.XtraEditors.XtraForm
     {
+        private readonly CompanyMasterRepository _companyMasterRepository;
+
         public frmMasterDetails()
         {
             InitializeComponent();
+            _companyMasterRepository = new CompanyMasterRepository();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -36,6 +40,15 @@ namespace DiamondTrading
                 //frmLogin.ShowDialog();
             }
 
+        }
+
+        private async void frmMasterDetails_Load(object sender, EventArgs e)
+        {
+            var result = await _companyMasterRepository.GetAllCompanyAsync();
+            if(result != null)
+            {
+                gridControl1.DataSource= result;
+            }
         }
     }
 }

@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210909070914_AddedSalesMasterTable")]
+    partial class AddedSalesMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -891,103 +893,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("RoleMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.SalesDetails", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<double>("CVDAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("CVDCharge")
-                        .HasColumnType("float");
-
-                    b.Property<float>("CVDWeight")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("CreatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FromCategory")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("KapanId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float>("LessDiscountPercentage")
-                        .HasColumnType("real");
-
-                    b.Property<float>("LessWeight")
-                        .HasColumnType("real");
-
-                    b.Property<float>("LessWeightDiscount")
-                        .HasColumnType("real");
-
-                    b.Property<float>("NetWeight")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("PurityId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float>("RejectedPercentage")
-                        .HasColumnType("real");
-
-                    b.Property<float>("RejectedWeight")
-                        .HasColumnType("real");
-
-                    b.Property<double>("RoundUpAmount")
-                        .HasColumnType("float");
-
-                    b.Property<double>("SaleRate")
-                        .HasColumnType("float");
-
-                    b.Property<Guid>("SalesId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("SalesMasterId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ShapeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("SizeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<float>("TIPWeight")
-                        .HasColumnType("real");
-
-                    b.Property<double>("Total")
-                        .HasColumnType("float");
-
-                    b.Property<Guid?>("UpdatedBy")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<float>("Weight")
-                        .HasColumnType("real");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SalesId");
-
-                    b.HasIndex("SalesMasterId");
-
-                    b.ToTable("SalesDetails");
-                });
-
             modelBuilder.Entity("Repository.Entities.SalesMaster", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1357,19 +1262,6 @@ namespace EFCore.SQL.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("Repository.Entities.SalesDetails", b =>
-                {
-                    b.HasOne("Repository.Entities.PurchaseMaster", "SalesMaster")
-                        .WithMany()
-                        .HasForeignKey("SalesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Repository.Entities.SalesMaster", null)
-                        .WithMany("SalesDetails")
-                        .HasForeignKey("SalesMasterId");
                 });
 
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>

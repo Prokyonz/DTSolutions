@@ -51,7 +51,7 @@ namespace DiamondTrading
             // xtabBranchMaster
             // 
             this.xtabBranchMaster.Name = "xtabBranchMaster";
-            this.xtabBranchMaster.Size = new System.Drawing.Size(695, 411);
+            this.xtabBranchMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabBranchMaster.Text = "Branch Master";
             // 
             // xtabCompanyMaster
@@ -153,6 +153,7 @@ namespace DiamondTrading
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.frmMasterDetails_Load);
             this.xtabCompanyMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();

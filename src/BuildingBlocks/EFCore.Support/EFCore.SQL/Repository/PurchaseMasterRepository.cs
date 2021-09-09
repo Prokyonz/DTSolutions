@@ -36,7 +36,7 @@ namespace EFCore.SQL.Repository
                 else
                     getPurchase.IsDelete = true;
 
-                await _databaseContext.SavedChangesAsync();
+                await _databaseContext.SaveChangesAsync();
                 return true;
             }
             return false;

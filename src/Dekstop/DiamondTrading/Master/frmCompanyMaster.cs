@@ -21,14 +21,14 @@ namespace DiamondTrading.Master
             _companyMasterRepository = new CompanyMasterRepository();
         }
 
-        private void frmCompanyMaster_Load(object sender, EventArgs e)
+        private async void frmCompanyMaster_Load(object sender, EventArgs e)
         { 
-            var CompanyList = _companyMasterRepository.GetAllCompanyAsync();
+            var CompanyList = await _companyMasterRepository.GetAllCompanyAsync();
             if(CompanyList!=null)
             {
                 lueCompanyType.Properties.DataSource = CompanyList;
-                lueCompanyType.Properties.DisplayMember = "";
-                lueCompanyType.Properties.ValueMember = "";
+                lueCompanyType.Properties.DisplayMember = "Name";
+                lueCompanyType.Properties.ValueMember = "Id";
             }
         }
          
@@ -64,13 +64,13 @@ namespace DiamondTrading.Master
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 Guid tempId = Guid.NewGuid();
-                var Result = _companyMasterRepository.AddCompanyAsync(new Repository.Entities.CompanyMaster
+                var Result = await _companyMasterRepository.AddCompanyAsync(new Repository.Entities.CompanyMaster
                 {
                     Id = tempId,
                     Type = 0,//Convert.ToInt32(lueCompanyType.EditValue),
@@ -89,9 +89,7 @@ namespace DiamondTrading.Master
                     CreatedDate = DateTime.Now,
                     UpdatedBy = tempId,
                     UpdatedDate = DateTime.Now,
-                    BranchMasters=new List<Repository.Entities.BranchMaster>(),
-                    PartyMasters= new List<Repository.Entities.PartyMaster>()
-                }).Result;
+                });
 
                 if (Result != null)
                 {
