@@ -20,8 +20,22 @@ namespace DiamondTrading
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Master.frmCompanyMaster frmcompanymaster = new Master.frmCompanyMaster();
-            frmcompanymaster.ShowDialog();
+            
+        }
+
+        private void accordianAddBtn_Click(object sender, EventArgs e)
+        {
+            if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
+            {
+                Master.frmCompanyMaster frmcompanymaster = new Master.frmCompanyMaster();
+                frmcompanymaster.ShowDialog();
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
+            {
+                //frmLogin frmLogin = new frmLogin();
+                //frmLogin.ShowDialog();
+            }
+
         }
     }
 }

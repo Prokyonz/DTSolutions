@@ -30,59 +30,59 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
-            this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
+            this.lueCompanyType = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtCompanyName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit3 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit2 = new DevExpress.XtraEditors.TextEdit();
+            this.txtOfficeNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtMobileNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.memoEdit2 = new DevExpress.XtraEditors.MemoEdit();
-            this.memoEdit1 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtAddress2 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtAddress = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
-            this.textEdit6 = new DevExpress.XtraEditors.TextEdit();
+            this.txtRegistrationNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
-            this.textEdit4 = new DevExpress.XtraEditors.TextEdit();
-            this.textEdit5 = new DevExpress.XtraEditors.TextEdit();
+            this.txtPancardNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtGSTNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.memoEdit3 = new DevExpress.XtraEditors.MemoEdit();
-            this.memoEdit4 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtTermsCondition = new DevExpress.XtraEditors.MemoEdit();
+            this.txtNotes = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.btnReset = new DevExpress.XtraEditors.SimpleButton();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompanyType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompanyName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRegistrationNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTermsCondition.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
-            this.groupControl1.Controls.Add(this.lookUpEdit1);
-            this.groupControl1.Controls.Add(this.textEdit1);
+            this.groupControl1.Controls.Add(this.lueCompanyType);
+            this.groupControl1.Controls.Add(this.txtCompanyName);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Location = new System.Drawing.Point(12, 12);
@@ -91,27 +91,27 @@ namespace DiamondTrading.Master
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Company Type && Name ";
             // 
-            // lookUpEdit1
+            // lueCompanyType
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(8, 49);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueCompanyType.Location = new System.Drawing.Point(8, 49);
+            this.lueCompanyType.Name = "lueCompanyType";
+            this.lueCompanyType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lueCompanyType.Properties.Appearance.Options.UseFont = true;
+            this.lueCompanyType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Size = new System.Drawing.Size(193, 26);
-            this.lookUpEdit1.TabIndex = 0;
+            this.lueCompanyType.Size = new System.Drawing.Size(193, 26);
+            this.lueCompanyType.TabIndex = 1;
             // 
-            // textEdit1
+            // txtCompanyName
             // 
-            this.textEdit1.Location = new System.Drawing.Point(207, 50);
-            this.textEdit1.Name = "textEdit1";
-            this.textEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.textEdit1.Properties.Appearance.Options.UseFont = true;
-            this.textEdit1.Properties.BeepOnError = false;
-            this.textEdit1.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.textEdit1.Size = new System.Drawing.Size(492, 26);
-            this.textEdit1.TabIndex = 1;
+            this.txtCompanyName.Location = new System.Drawing.Point(207, 50);
+            this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtCompanyName.Properties.Appearance.Options.UseFont = true;
+            this.txtCompanyName.Properties.BeepOnError = false;
+            this.txtCompanyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtCompanyName.Size = new System.Drawing.Size(492, 26);
+            this.txtCompanyName.TabIndex = 3;
             // 
             // labelControl2
             // 
@@ -135,12 +135,12 @@ namespace DiamondTrading.Master
             // 
             // groupControl2
             // 
-            this.groupControl2.Controls.Add(this.textEdit3);
-            this.groupControl2.Controls.Add(this.textEdit2);
+            this.groupControl2.Controls.Add(this.txtOfficeNo);
+            this.groupControl2.Controls.Add(this.txtMobileNo);
             this.groupControl2.Controls.Add(this.labelControl5);
             this.groupControl2.Controls.Add(this.labelControl6);
-            this.groupControl2.Controls.Add(this.memoEdit2);
-            this.groupControl2.Controls.Add(this.memoEdit1);
+            this.groupControl2.Controls.Add(this.txtAddress2);
+            this.groupControl2.Controls.Add(this.txtAddress);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl4);
             this.groupControl2.Location = new System.Drawing.Point(12, 110);
@@ -149,23 +149,23 @@ namespace DiamondTrading.Master
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Basic Details";
             // 
-            // textEdit3
+            // txtOfficeNo
             // 
-            this.textEdit3.Location = new System.Drawing.Point(356, 119);
-            this.textEdit3.Name = "textEdit3";
-            this.textEdit3.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textEdit3.Properties.Appearance.Options.UseFont = true;
-            this.textEdit3.Size = new System.Drawing.Size(343, 22);
-            this.textEdit3.TabIndex = 3;
+            this.txtOfficeNo.Location = new System.Drawing.Point(356, 119);
+            this.txtOfficeNo.Name = "txtOfficeNo";
+            this.txtOfficeNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtOfficeNo.Properties.Appearance.Options.UseFont = true;
+            this.txtOfficeNo.Size = new System.Drawing.Size(343, 22);
+            this.txtOfficeNo.TabIndex = 7;
             // 
-            // textEdit2
+            // txtMobileNo
             // 
-            this.textEdit2.Location = new System.Drawing.Point(7, 119);
-            this.textEdit2.Name = "textEdit2";
-            this.textEdit2.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textEdit2.Properties.Appearance.Options.UseFont = true;
-            this.textEdit2.Size = new System.Drawing.Size(343, 22);
-            this.textEdit2.TabIndex = 2;
+            this.txtMobileNo.Location = new System.Drawing.Point(7, 119);
+            this.txtMobileNo.Name = "txtMobileNo";
+            this.txtMobileNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMobileNo.Properties.Appearance.Options.UseFont = true;
+            this.txtMobileNo.Size = new System.Drawing.Size(343, 22);
+            this.txtMobileNo.TabIndex = 5;
             // 
             // labelControl5
             // 
@@ -184,22 +184,22 @@ namespace DiamondTrading.Master
             this.labelControl6.Location = new System.Drawing.Point(7, 98);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(53, 14);
-            this.labelControl6.TabIndex = 5;
+            this.labelControl6.TabIndex = 4;
             this.labelControl6.Text = "Mobile No";
             // 
-            // memoEdit2
+            // txtAddress2
             // 
-            this.memoEdit2.Location = new System.Drawing.Point(356, 50);
-            this.memoEdit2.Name = "memoEdit2";
-            this.memoEdit2.Size = new System.Drawing.Size(343, 42);
-            this.memoEdit2.TabIndex = 1;
+            this.txtAddress2.Location = new System.Drawing.Point(356, 50);
+            this.txtAddress2.Name = "txtAddress2";
+            this.txtAddress2.Size = new System.Drawing.Size(343, 42);
+            this.txtAddress2.TabIndex = 3;
             // 
-            // memoEdit1
+            // txtAddress
             // 
-            this.memoEdit1.Location = new System.Drawing.Point(7, 50);
-            this.memoEdit1.Name = "memoEdit1";
-            this.memoEdit1.Size = new System.Drawing.Size(343, 42);
-            this.memoEdit1.TabIndex = 0;
+            this.txtAddress.Location = new System.Drawing.Point(7, 50);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(343, 42);
+            this.txtAddress.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -223,10 +223,10 @@ namespace DiamondTrading.Master
             // 
             // groupControl3
             // 
-            this.groupControl3.Controls.Add(this.textEdit6);
+            this.groupControl3.Controls.Add(this.txtRegistrationNo);
             this.groupControl3.Controls.Add(this.labelControl9);
-            this.groupControl3.Controls.Add(this.textEdit4);
-            this.groupControl3.Controls.Add(this.textEdit5);
+            this.groupControl3.Controls.Add(this.txtPancardNo);
+            this.groupControl3.Controls.Add(this.txtGSTNo);
             this.groupControl3.Controls.Add(this.labelControl7);
             this.groupControl3.Controls.Add(this.labelControl8);
             this.groupControl3.Location = new System.Drawing.Point(13, 266);
@@ -235,14 +235,14 @@ namespace DiamondTrading.Master
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "Registration Details";
             // 
-            // textEdit6
+            // txtRegistrationNo
             // 
-            this.textEdit6.Location = new System.Drawing.Point(7, 49);
-            this.textEdit6.Name = "textEdit6";
-            this.textEdit6.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textEdit6.Properties.Appearance.Options.UseFont = true;
-            this.textEdit6.Size = new System.Drawing.Size(691, 22);
-            this.textEdit6.TabIndex = 0;
+            this.txtRegistrationNo.Location = new System.Drawing.Point(7, 49);
+            this.txtRegistrationNo.Name = "txtRegistrationNo";
+            this.txtRegistrationNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtRegistrationNo.Properties.Appearance.Options.UseFont = true;
+            this.txtRegistrationNo.Size = new System.Drawing.Size(691, 22);
+            this.txtRegistrationNo.TabIndex = 1;
             // 
             // labelControl9
             // 
@@ -251,26 +251,26 @@ namespace DiamondTrading.Master
             this.labelControl9.Location = new System.Drawing.Point(7, 28);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(135, 14);
-            this.labelControl9.TabIndex = 9;
+            this.labelControl9.TabIndex = 0;
             this.labelControl9.Text = "Registration/Gumasta No";
             // 
-            // textEdit4
+            // txtPancardNo
             // 
-            this.textEdit4.Location = new System.Drawing.Point(356, 97);
-            this.textEdit4.Name = "textEdit4";
-            this.textEdit4.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textEdit4.Properties.Appearance.Options.UseFont = true;
-            this.textEdit4.Size = new System.Drawing.Size(343, 22);
-            this.textEdit4.TabIndex = 2;
+            this.txtPancardNo.Location = new System.Drawing.Point(356, 97);
+            this.txtPancardNo.Name = "txtPancardNo";
+            this.txtPancardNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPancardNo.Properties.Appearance.Options.UseFont = true;
+            this.txtPancardNo.Size = new System.Drawing.Size(343, 22);
+            this.txtPancardNo.TabIndex = 5;
             // 
-            // textEdit5
+            // txtGSTNo
             // 
-            this.textEdit5.Location = new System.Drawing.Point(7, 97);
-            this.textEdit5.Name = "textEdit5";
-            this.textEdit5.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.textEdit5.Properties.Appearance.Options.UseFont = true;
-            this.textEdit5.Size = new System.Drawing.Size(343, 22);
-            this.textEdit5.TabIndex = 1;
+            this.txtGSTNo.Location = new System.Drawing.Point(7, 97);
+            this.txtGSTNo.Name = "txtGSTNo";
+            this.txtGSTNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtGSTNo.Properties.Appearance.Options.UseFont = true;
+            this.txtGSTNo.Size = new System.Drawing.Size(343, 22);
+            this.txtGSTNo.TabIndex = 3;
             // 
             // labelControl7
             // 
@@ -278,9 +278,9 @@ namespace DiamondTrading.Master
             this.labelControl7.Appearance.Options.UseFont = true;
             this.labelControl7.Location = new System.Drawing.Point(356, 76);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(51, 14);
-            this.labelControl7.TabIndex = 6;
-            this.labelControl7.Text = "Office No";
+            this.labelControl7.Size = new System.Drawing.Size(62, 14);
+            this.labelControl7.TabIndex = 4;
+            this.labelControl7.Text = "Pancard No";
             // 
             // labelControl8
             // 
@@ -288,14 +288,14 @@ namespace DiamondTrading.Master
             this.labelControl8.Appearance.Options.UseFont = true;
             this.labelControl8.Location = new System.Drawing.Point(7, 76);
             this.labelControl8.Name = "labelControl8";
-            this.labelControl8.Size = new System.Drawing.Size(53, 14);
-            this.labelControl8.TabIndex = 5;
-            this.labelControl8.Text = "Mobile No";
+            this.labelControl8.Size = new System.Drawing.Size(42, 14);
+            this.labelControl8.TabIndex = 2;
+            this.labelControl8.Text = "GST No";
             // 
             // groupControl4
             // 
-            this.groupControl4.Controls.Add(this.memoEdit3);
-            this.groupControl4.Controls.Add(this.memoEdit4);
+            this.groupControl4.Controls.Add(this.txtTermsCondition);
+            this.groupControl4.Controls.Add(this.txtNotes);
             this.groupControl4.Controls.Add(this.labelControl12);
             this.groupControl4.Controls.Add(this.labelControl13);
             this.groupControl4.Location = new System.Drawing.Point(13, 402);
@@ -304,19 +304,19 @@ namespace DiamondTrading.Master
             this.groupControl4.TabIndex = 3;
             this.groupControl4.Text = "Other Details";
             // 
-            // memoEdit3
+            // txtTermsCondition
             // 
-            this.memoEdit3.Location = new System.Drawing.Point(356, 50);
-            this.memoEdit3.Name = "memoEdit3";
-            this.memoEdit3.Size = new System.Drawing.Size(343, 69);
-            this.memoEdit3.TabIndex = 1;
+            this.txtTermsCondition.Location = new System.Drawing.Point(356, 50);
+            this.txtTermsCondition.Name = "txtTermsCondition";
+            this.txtTermsCondition.Size = new System.Drawing.Size(343, 69);
+            this.txtTermsCondition.TabIndex = 3;
             // 
-            // memoEdit4
+            // txtNotes
             // 
-            this.memoEdit4.Location = new System.Drawing.Point(7, 50);
-            this.memoEdit4.Name = "memoEdit4";
-            this.memoEdit4.Size = new System.Drawing.Size(343, 69);
-            this.memoEdit4.TabIndex = 0;
+            this.txtNotes.Location = new System.Drawing.Point(7, 50);
+            this.txtNotes.Name = "txtNotes";
+            this.txtNotes.Size = new System.Drawing.Size(343, 69);
+            this.txtNotes.TabIndex = 1;
             // 
             // labelControl12
             // 
@@ -338,29 +338,32 @@ namespace DiamondTrading.Master
             this.labelControl13.TabIndex = 0;
             this.labelControl13.Text = "Notes";
             // 
-            // simpleButton1
+            // btnSave
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(484, 535);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton1.TabIndex = 4;
-            this.simpleButton1.Text = "&Save";
+            this.btnSave.Location = new System.Drawing.Point(484, 535);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(75, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "&Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // simpleButton2
+            // btnReset
             // 
-            this.simpleButton2.Location = new System.Drawing.Point(565, 535);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton2.TabIndex = 5;
-            this.simpleButton2.Text = "&Reset";
+            this.btnReset.Location = new System.Drawing.Point(565, 535);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 5;
+            this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // simpleButton3
+            // btnCancel
             // 
-            this.simpleButton3.Location = new System.Drawing.Point(646, 535);
-            this.simpleButton3.Name = "simpleButton3";
-            this.simpleButton3.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton3.TabIndex = 6;
-            this.simpleButton3.Text = "&Cancel";
+            this.btnCancel.Location = new System.Drawing.Point(646, 535);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 6;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // frmCompanyMaster
             // 
@@ -368,43 +371,46 @@ namespace DiamondTrading.Master
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(735, 566);
-            this.Controls.Add(this.simpleButton3);
-            this.Controls.Add(this.simpleButton2);
-            this.Controls.Add(this.simpleButton1);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnReset);
+            this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
             this.Font = new System.Drawing.Font("Tahoma", 9F);
             this.IconOptions.ShowIcon = false;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmCompanyMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Company";
+            this.Load += new System.EventHandler(this.frmCompanyMaster_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmCompanyMaster_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompanyType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCompanyName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit6.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit4.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textEdit5.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRegistrationNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             this.groupControl4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.memoEdit4.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTermsCondition.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -412,33 +418,33 @@ namespace DiamondTrading.Master
         #endregion
 
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraEditors.TextEdit textEdit1;
+        private DevExpress.XtraEditors.TextEdit txtCompanyName;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.GroupControl groupControl2;
-        private DevExpress.XtraEditors.TextEdit textEdit3;
-        private DevExpress.XtraEditors.TextEdit textEdit2;
+        private DevExpress.XtraEditors.TextEdit txtOfficeNo;
+        private DevExpress.XtraEditors.TextEdit txtMobileNo;
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.LabelControl labelControl6;
-        private DevExpress.XtraEditors.MemoEdit memoEdit2;
-        private DevExpress.XtraEditors.MemoEdit memoEdit1;
+        private DevExpress.XtraEditors.MemoEdit txtAddress2;
+        private DevExpress.XtraEditors.MemoEdit txtAddress;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.GroupControl groupControl3;
-        private DevExpress.XtraEditors.TextEdit textEdit6;
+        private DevExpress.XtraEditors.TextEdit txtRegistrationNo;
         private DevExpress.XtraEditors.LabelControl labelControl9;
-        private DevExpress.XtraEditors.TextEdit textEdit4;
-        private DevExpress.XtraEditors.TextEdit textEdit5;
+        private DevExpress.XtraEditors.TextEdit txtPancardNo;
+        private DevExpress.XtraEditors.TextEdit txtGSTNo;
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.GroupControl groupControl4;
-        private DevExpress.XtraEditors.MemoEdit memoEdit3;
-        private DevExpress.XtraEditors.MemoEdit memoEdit4;
+        private DevExpress.XtraEditors.MemoEdit txtTermsCondition;
+        private DevExpress.XtraEditors.MemoEdit txtNotes;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl13;
-        private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraEditors.SimpleButton btnSave;
+        private DevExpress.XtraEditors.SimpleButton btnReset;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraEditors.LookUpEdit lueCompanyType;
     }
 }

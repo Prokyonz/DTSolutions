@@ -11,5 +11,5 @@ namespace EFCore.SQL.Interface
         Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster);
         Task<CompanyMaster> UpdateCompanyAsync(CompanyMaster companyMaster);
         Task<bool> DeleteCompanyAsync(Guid CompanyId);
-    }
+    }  
 }

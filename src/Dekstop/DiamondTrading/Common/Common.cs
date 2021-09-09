@@ -10,6 +10,13 @@ namespace DiamondTrading
     internal static class Common
     {
         public const string AppName = "Diamond Trading";
+
+        public static System.Globalization.CultureInfo AppUICultInfo
+        {
+            get;
+            set;
+        }
+
         public static void MoveToNextControl(object sender, KeyEventArgs e, Form form)
         {
             if (e.KeyCode == Keys.Enter)
