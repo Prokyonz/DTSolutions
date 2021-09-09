@@ -99,6 +99,9 @@ namespace DiamondTrading.Master
             this.lueCompanyType.Properties.Appearance.Options.UseFont = true;
             this.lueCompanyType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCompanyType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CompanyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompanyType.Size = new System.Drawing.Size(193, 26);
             this.lueCompanyType.TabIndex = 1;
             // 
@@ -119,9 +122,9 @@ namespace DiamondTrading.Master
             this.labelControl2.Appearance.Options.UseFont = true;
             this.labelControl2.Location = new System.Drawing.Point(207, 30);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(31, 14);
+            this.labelControl2.Size = new System.Drawing.Size(38, 14);
             this.labelControl2.TabIndex = 2;
-            this.labelControl2.Text = "Name";
+            this.labelControl2.Text = "Name*";
             // 
             // labelControl1
             // 
@@ -129,9 +132,9 @@ namespace DiamondTrading.Master
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Location = new System.Drawing.Point(7, 29);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(28, 14);
+            this.labelControl1.Size = new System.Drawing.Size(35, 14);
             this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Type";
+            this.labelControl1.Text = "Type*";
             // 
             // groupControl2
             // 
@@ -365,7 +368,7 @@ namespace DiamondTrading.Master
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // frmCompanyMaster
+            // FrmCompanyMaster
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -383,7 +386,7 @@ namespace DiamondTrading.Master
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmCompanyMaster";
+            this.Name = "FrmCompanyMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add New Company";
             this.Load += new System.EventHandler(this.frmCompanyMaster_Load);

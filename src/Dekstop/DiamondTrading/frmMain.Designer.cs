@@ -103,6 +103,7 @@ namespace DiamondTrading
             this.accordionControlElement29 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.barLoginUserName = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -151,9 +152,10 @@ namespace DiamondTrading
             this.barButtonItem25,
             this.barButtonItem26,
             this.barButtonItem27,
-            this.barButtonItem28});
+            this.barButtonItem28,
+            this.barLoginUserName});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 33;
+            this.barManager1.MaxItemId = 34;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -689,7 +691,13 @@ namespace DiamondTrading
             this.panelControl1.Size = new System.Drawing.Size(766, 512);
             this.panelControl1.TabIndex = 9;
             // 
-            // frmMain
+            // barLoginUserName
+            // 
+            this.barLoginUserName.Caption = "barStaticItem1";
+            this.barLoginUserName.Id = 33;
+            this.barLoginUserName.Name = "barLoginUserName";
+            // 
+            // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
@@ -705,7 +713,7 @@ namespace DiamondTrading
             this.IsMdiContainer = true;
             this.LookAndFeel.SkinName = "Office 2019 White";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.Name = "frmMain";
+            this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diamond Trading";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -794,5 +802,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem27;
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraBars.BarStaticItem barLoginUserName;
     }
 }

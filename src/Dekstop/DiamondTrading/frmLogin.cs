@@ -45,6 +45,8 @@ namespace DiamondTrading
                 {
                     SaveRegistrySettings();
                     this.Hide();
+                    Common.LoginUserID = data.UserMaster.Id;
+                    Common.LoginUserName = data.UserMaster.Name;
                     FrmMain frmMain = new FrmMain();
                     frmMain.Show();
                 }

@@ -10,6 +10,9 @@ namespace DiamondTrading
     internal static class Common
     {
         public const string AppName = "Diamond Trading";
+        public static Guid DefaultGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static Guid LoginUserID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginUserName = "Demo User";
 
         public static System.Globalization.CultureInfo AppUICultInfo
         {

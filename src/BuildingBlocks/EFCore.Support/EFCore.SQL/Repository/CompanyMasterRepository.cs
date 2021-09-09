@@ -20,8 +20,9 @@ namespace EFCore.SQL.Repository
         {
             try
             {
-                if (companyMaster.Id == null)
-                    companyMaster.Id = Guid.NewGuid();
+                //if (companyMaster.Id == null)
+                //    companyMaster.Id = Guid.NewGuid();
+
                 await _databaseContext.CompanyMaster.AddAsync(companyMaster);
                 await _databaseContext.SaveChangesAsync();                
             }
@@ -52,6 +53,12 @@ namespace EFCore.SQL.Repository
         public async Task<List<CompanyMaster>> GetAllCompanyAsync()
         {            
             List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).ToListAsync(); 
+            return companyMasters;
+        }
+
+        public async Task<List<CompanyMaster>> GetParentCompanyAsync()
+        {
+            List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
             return companyMasters;
         }
 

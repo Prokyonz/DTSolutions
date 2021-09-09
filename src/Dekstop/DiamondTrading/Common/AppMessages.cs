@@ -18,6 +18,11 @@ namespace DiamondTrading
         #region "Access messages"
         InvalidUsername_Password,
         #endregion
+        #region "FrmCompanyMaster"
+        NewCompany,
+        EmptyCompanyName,
+        CompanyNameExist,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -70,6 +75,17 @@ namespace DiamondTrading
                 #region "Access messages"
                 case AppMessageID.InvalidUsername_Password:
                     ReturnMsg = "Invalid Username/ Password";
+                    break;
+                #endregion
+                #region "FrmCompanyMaster"
+                case AppMessageID.NewCompany:
+                    ReturnMsg = "NEW COMPANY";
+                    break;
+                case AppMessageID.EmptyCompanyName:
+                    ReturnMsg = "Please write Company Name.";
+                    break;
+                case AppMessageID.CompanyNameExist:
+                    ReturnMsg = "Company Name already exist.";
                     break;
                 #endregion
                 case AppMessageID.AppMessageIDNotFound:

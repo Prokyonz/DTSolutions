@@ -31,17 +31,19 @@ namespace DiamondTrading
         {
             this.xtabBranchMaster = new DevExpress.XtraTab.XtraTabPage();
             this.xtabCompanyMaster = new DevExpress.XtraTab.XtraTabPage();
-            this.gridControl1 = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.tlCompanyMaster = new DevExpress.XtraTreeList.TreeList();
+            this.Name = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.Id = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.Type = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtabCompanyMaster.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlCompanyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).BeginInit();
             this.xtabMasterDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
@@ -51,31 +53,56 @@ namespace DiamondTrading
             // xtabBranchMaster
             // 
             this.xtabBranchMaster.Name = "xtabBranchMaster";
-            this.xtabBranchMaster.Size = new System.Drawing.Size(695, 411);
+            this.xtabBranchMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabBranchMaster.Text = "Branch Master";
             // 
             // xtabCompanyMaster
             // 
-            this.xtabCompanyMaster.Controls.Add(this.gridControl1);
+            this.xtabCompanyMaster.Controls.Add(this.tlCompanyMaster);
             this.xtabCompanyMaster.Name = "xtabCompanyMaster";
             this.xtabCompanyMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabCompanyMaster.Text = "Company Master";
             // 
-            // gridControl1
+            // tlCompanyMaster
             // 
-            this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControl1.Location = new System.Drawing.Point(0, 0);
-            this.gridControl1.MainView = this.gridView1;
-            this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(764, 411);
-            this.gridControl1.TabIndex = 0;
-            this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
+            this.tlCompanyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlCompanyMaster.Appearance.Row.Options.UseFont = true;
+            this.tlCompanyMaster.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
+            this.Name,
+            this.Id,
+            this.Type});
+            this.tlCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlCompanyMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tlCompanyMaster.KeyFieldName = "Id";
+            this.tlCompanyMaster.Location = new System.Drawing.Point(0, 0);
+            this.tlCompanyMaster.Name = "tlCompanyMaster";
+            this.tlCompanyMaster.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
+            this.tlCompanyMaster.OptionsBehavior.Editable = false;
+            this.tlCompanyMaster.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
+            this.tlCompanyMaster.OptionsSelection.UseIndicatorForSelection = true;
+            this.tlCompanyMaster.ParentFieldName = "Type";
+            this.tlCompanyMaster.Size = new System.Drawing.Size(764, 411);
+            this.tlCompanyMaster.TabIndex = 1;
             // 
-            // gridView1
+            // Name
             // 
-            this.gridView1.GridControl = this.gridControl1;
-            this.gridView1.Name = "gridView1";
+            this.Name.Caption = "Company Name";
+            this.Name.FieldName = "Name";
+            this.Name.Name = "Name";
+            this.Name.Visible = true;
+            this.Name.VisibleIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.Caption = "CompanyID";
+            this.Id.FieldName = "Id";
+            this.Id.Name = "Id";
+            // 
+            // Type
+            // 
+            this.Type.Caption = "Type";
+            this.Type.FieldName = "Type";
+            this.Type.Name = "Type";
             // 
             // xtabMasterDetails
             // 
@@ -88,14 +115,16 @@ namespace DiamondTrading
             this.xtabMasterDetails.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtabCompanyMaster,
             this.xtabBranchMaster});
+            this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // accordionControl1
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordianAddBtn,
-            this.accordionControlElement2,
-            this.accordionControlElement3});
+            this.accordionEditBtn,
+            this.accordionDeleteBtn,
+            this.accordionRefreshBtn});
             this.accordionControl1.Location = new System.Drawing.Point(3, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
@@ -111,19 +140,28 @@ namespace DiamondTrading
             this.accordianAddBtn.Text = "Add";
             this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
             // 
-            // accordionControlElement2
+            // accordionEditBtn
             // 
-            this.accordionControlElement2.ImageOptions.Image = global::DiamondTrading.Properties.Resources.edit_24;
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement2.Text = "Edit";
+            this.accordionEditBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.edit_24;
+            this.accordionEditBtn.Name = "accordionEditBtn";
+            this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionEditBtn.Text = "Edit";
+            this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
             // 
-            // accordionControlElement3
+            // accordionDeleteBtn
             // 
-            this.accordionControlElement3.ImageOptions.Image = global::DiamondTrading.Properties.Resources.delete_24;
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement3.Text = "Delete";
+            this.accordionDeleteBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.delete_24;
+            this.accordionDeleteBtn.Name = "accordionDeleteBtn";
+            this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionDeleteBtn.Text = "Delete";
+            // 
+            // accordionRefreshBtn
+            // 
+            this.accordionRefreshBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.refresh_24;
+            this.accordionRefreshBtn.Name = "accordionRefreshBtn";
+            this.accordionRefreshBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionRefreshBtn.Text = "Refresh";
+            this.accordionRefreshBtn.Click += new System.EventHandler(this.accordionRefreshBtn_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -140,7 +178,7 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // frmMasterDetails
+            // FrmMasterDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,13 +187,12 @@ namespace DiamondTrading
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmMasterDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmMasterDetails_Load);
             this.xtabCompanyMaster.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tlCompanyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).EndInit();
             this.xtabMasterDetails.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
@@ -168,13 +205,16 @@ namespace DiamondTrading
 
         private DevExpress.XtraTab.XtraTabPage xtabBranchMaster;
         private DevExpress.XtraTab.XtraTabPage xtabCompanyMaster;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraTab.XtraTabControl xtabMasterDetails;
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordianAddBtn;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionEditBtn;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionDeleteBtn;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraTreeList.TreeList tlCompanyMaster;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn Name;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn Id;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn Type;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionRefreshBtn;
     }
 }

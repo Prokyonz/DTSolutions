@@ -47,6 +47,8 @@ namespace DiamondTrading
             {
 
             }
+
+            barLoginUserName.Caption = Common.LoginUserName;
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
