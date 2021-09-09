@@ -12,18 +12,18 @@ using System.Windows.Forms;
 
 namespace DiamondTrading.Master
 {
-    public partial class frmCompanyMaster : DevExpress.XtraEditors.XtraForm
+    public partial class FrmCompanyMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly CompanyMasterRepository _companyMasterRepository;
-        public frmCompanyMaster()
+        public FrmCompanyMaster()
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
         }
 
-        private void frmCompanyMaster_Load(object sender, EventArgs e)
+        private async void frmCompanyMaster_Load(object sender, EventArgs e)
         { 
-            var CompanyList = _companyMasterRepository.GetAllCompanyAsync();
+            var CompanyList = await _companyMasterRepository.GetAllCompanyAsync();
             if(CompanyList!=null)
             {
                 lueCompanyType.Properties.DataSource = CompanyList;
@@ -64,14 +64,13 @@ namespace DiamondTrading.Master
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 Guid tempId = Guid.NewGuid();
-                var Result = _companyMasterRepository.AddCompanyAsync(new Repository.Entities.CompanyMaster
-                {
+                Repository.Entities.CompanyMaster companyMaster= new Repository.Entities.CompanyMaster{
                     Id = tempId,
                     Type = 0,//Convert.ToInt32(lueCompanyType.EditValue),
                     Name = txtCompanyName.Text,
@@ -89,9 +88,10 @@ namespace DiamondTrading.Master
                     CreatedDate = DateTime.Now,
                     UpdatedBy = tempId,
                     UpdatedDate = DateTime.Now,
-                    BranchMasters=new List<Repository.Entities.BranchMaster>(),
-                    PartyMasters= new List<Repository.Entities.PartyMaster>()
-                }).Result;
+                    BranchMasters = new List<Repository.Entities.BranchMaster>(),
+                    PartyMasters = new List<Repository.Entities.PartyMaster>()
+                };
+                var Result = await _companyMasterRepository.AddCompanyAsync(companyMaster);
 
                 if (Result != null)
                 {

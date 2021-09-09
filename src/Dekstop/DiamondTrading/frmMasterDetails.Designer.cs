@@ -1,7 +1,7 @@
 ﻿
 namespace DiamondTrading
 {
-    partial class frmMasterDetails
+    partial class FrmMasterDetails
     {
         /// <summary>
         /// Required designer variable.

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace DiamondTrading
 {
-    public partial class frmMain : DevExpress.XtraEditors.XtraForm
+    public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
         }
@@ -26,14 +26,14 @@ namespace DiamondTrading
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            frmMasterDetails page = Application.OpenForms["frmMasterDetails"] as frmMasterDetails;
+            FrmMasterDetails page = Application.OpenForms["frmMasterDetails"] as FrmMasterDetails;
             if (page != null)
             {
                 page.BringToFront();
             }
             else
             {
-                frmMasterDetails frmmasterdetails = new frmMasterDetails();
+                FrmMasterDetails frmmasterdetails = new FrmMasterDetails();
                 frmmasterdetails.MdiParent = this;
                 frmmasterdetails.Show();
                 frmmasterdetails.BringToFront();
@@ -42,7 +42,7 @@ namespace DiamondTrading
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            frmCompanyYearSelection frmCompanyYearSelection = new frmCompanyYearSelection();
+            FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
             if(frmCompanyYearSelection.ShowDialog()==DialogResult.OK)
             {
 

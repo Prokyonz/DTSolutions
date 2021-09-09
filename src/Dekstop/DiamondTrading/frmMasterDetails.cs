@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace DiamondTrading
 {
-    public partial class frmMasterDetails : DevExpress.XtraEditors.XtraForm
+    public partial class FrmMasterDetails : DevExpress.XtraEditors.XtraForm
     {
-        public frmMasterDetails()
+        public FrmMasterDetails()
         {
             InitializeComponent();
         }
@@ -27,7 +27,7 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
-                Master.frmCompanyMaster frmcompanymaster = new Master.frmCompanyMaster();
+                Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster();
                 frmcompanymaster.ShowDialog();
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
