@@ -28,6 +28,6 @@ namespace Repository.Entities
 
         //Get list of Child Records.
         public virtual List<BranchMaster> BranchMasters { get; set; }
-        public virtual  List<PartyMaster> PartyMasters { get; set; }
+        public virtual List<PartyMaster> PartyMasters { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace DiamondTrading
         #region "Basic commonly used messages"
         OK,
         Cancel,
+        SaveSuccessfully,
         #endregion
         #region "Access messages"
         InvalidUsername_Password,
@@ -61,6 +62,9 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.Cancel:
                     ReturnMsg = "Cancel";
+                    break;
+                case AppMessageID.SaveSuccessfully:
+                    ReturnMsg = "Save Successfully.";
                     break;
                 #endregion
                 #region "Access messages"

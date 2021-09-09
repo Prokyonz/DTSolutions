@@ -103,14 +103,14 @@ namespace DiamondTrading
             LoadRegistrySettings();
         }
 
-        private void MoveToNextControl(object sender, KeyEventArgs e)
-        {
-            Common.MoveToNextControl(sender, e, this);
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void frmLogin_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
         }
     }
 }
