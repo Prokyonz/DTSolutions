@@ -35,7 +35,7 @@ namespace MSUnitTest.EFCore.SQL
                 OfficeNo = "8954646",
                 RegistrationNo = "4564897",
                 TermsCondition = "5464",
-                Type = 0,
+                Type = null,
                 UpdatedBy = tempId,
                 CreatedBy = tempId,
                 CreatedDate = DateTime.Now,

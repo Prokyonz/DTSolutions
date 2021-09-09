@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.DBContext
@@ -32,13 +33,9 @@ namespace EFCore.SQL.DBContext
         public DbSet<BrokerageMaster> BrokerageMaster { get; set; }
         public DbSet<FinancialYearMaster> FinancialYearMaster { get; set; }
         public DbSet<PurchaseMaster> PurchaseMaster  { get; set; }
-
-        internal Task SavedChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
+        public DbSet<SalesMaster> SalesMaster { get; set; }
+        public DbSet<SalesDetails> SalesDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -66,6 +63,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<FinancialYearMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurchaseMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurchaseDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SalesMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SalesDetails>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
