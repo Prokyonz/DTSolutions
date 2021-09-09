@@ -73,7 +73,7 @@ namespace DiamondTrading.Master
                 var Result = await _companyMasterRepository.AddCompanyAsync(new Repository.Entities.CompanyMaster
                 {
                     Id = tempId,
-                    Type = 0,//Convert.ToInt32(lueCompanyType.EditValue),
+                    Type = null,//Convert.ToInt32(lueCompanyType.EditValue),
                     Name = txtCompanyName.Text,
                     Address = txtAddress.Text,
                     Address2 = txtAddress2.Text,
