@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
@@ -9,8 +8,7 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }        
-        //public Guid BranchId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string EmailId { get; set; }
@@ -26,9 +24,6 @@ namespace Repository.Entities
         public DateTime? UpdateDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
-
-        //[ForeignKey("BranchId")]
-        //public BranchMaster BranchMaster { get; set; }
 
         public virtual List<UserRoleMaster> UserRoleMaster { get; set; }        
     }
