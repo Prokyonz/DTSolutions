@@ -25,7 +25,7 @@ namespace DBTest
             companyMaster.GSTNo = "8530209649";
             companyMaster.PanCardNo = "8530209649";
             companyMaster.RegistrationNo = "8530209649";
-            companyMaster.Type = 0;
+            companyMaster.Type = null;
             companyMaster.IsDelete = false;
             companyMaster.CreatedDate = DateTime.Now;
             companyMaster.UpdatedDate = DateTime.Now;

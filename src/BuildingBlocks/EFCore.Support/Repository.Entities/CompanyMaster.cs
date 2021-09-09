@@ -19,7 +19,7 @@ namespace Repository.Entities
         public string GSTNo { get; set; }
         public string PanCardNo { get; set; }
         public string RegistrationNo { get; set; }
-        public int Type { get; set; }
+        public Guid? Type { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
