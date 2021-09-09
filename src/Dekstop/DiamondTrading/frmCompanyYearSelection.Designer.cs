@@ -1,7 +1,7 @@
 ﻿
 namespace DiamondTrading
 {
-    partial class frmCompanyYearSelection
+    partial class FrmCompanyYearSelection
     {
         /// <summary>
         /// Required designer variable.

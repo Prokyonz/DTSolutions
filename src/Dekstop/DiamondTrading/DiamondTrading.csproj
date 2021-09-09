@@ -176,52 +176,61 @@
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\DataSecurity.cs" />
     <Compile Include="Common\RegistryHelper.cs" />
-    <Compile Include="frmCompanyYearSelection.cs">
+    <Compile Include="FrmCompanyYearSelection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCompanyYearSelection.Designer.cs">
-      <DependentUpon>frmCompanyYearSelection.cs</DependentUpon>
+    <Compile Include="FrmCompanyYearSelection.Designer.cs">
+      <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <Compile Include="FrmLogin.Designer.cs">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMain.cs">
+    <Compile Include="FrmMain.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMasterDetails.cs">
+    <Compile Include="FrmMasterDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMasterDetails.Designer.cs">
-      <DependentUpon>frmMasterDetails.cs</DependentUpon>
+    <Compile Include="FrmMasterDetails.Designer.cs">
+      <DependentUpon>FrmMasterDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Master\frmCompanyMaster.cs">
+    <Compile Include="Master\FrmBranchMaster.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Master\frmCompanyMaster.Designer.cs">
-      <DependentUpon>frmCompanyMaster.cs</DependentUpon>
+    <Compile Include="Master\FrmBranchMaster.Designer.cs">
+      <DependentUpon>FrmBranchMaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\FrmCompanyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmCompanyMaster.Designer.cs">
+      <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCompanyYearSelection.resx">
-      <DependentUpon>frmCompanyYearSelection.cs</DependentUpon>
+    <EmbeddedResource Include="FrmCompanyYearSelection.resx">
+      <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
+    <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMasterDetails.resx">
-      <DependentUpon>frmMasterDetails.cs</DependentUpon>
+    <EmbeddedResource Include="FrmMasterDetails.resx">
+      <DependentUpon>FrmMasterDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Master\frmCompanyMaster.resx">
-      <DependentUpon>frmCompanyMaster.cs</DependentUpon>
+    <EmbeddedResource Include="Master\FrmBranchMaster.resx">
+      <DependentUpon>FrmBranchMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmCompanyMaster.resx">
+      <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

@@ -14,11 +14,11 @@ using System.Windows.Forms;
 
 namespace DiamondTrading
 {
-    public partial class frmLogin : DevExpress.XtraEditors.XtraForm
+    public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
         private readonly UserMasterRepository _userMasterRepository;
 
-        public frmLogin()
+        public FrmLogin()
         {
             InitializeComponent();
             _userMasterRepository = new UserMasterRepository();
@@ -45,7 +45,7 @@ namespace DiamondTrading
                 {
                     SaveRegistrySettings();
                     this.Hide();
-                    frmMain frmMain = new frmMain();
+                    FrmMain frmMain = new FrmMain();
                     frmMain.Show();
                 }
                 else

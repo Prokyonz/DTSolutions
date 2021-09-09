@@ -9,17 +9,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DiamondTrading
+namespace DiamondTrading.Master
 {
-    public partial class FrmCompanyYearSelection : DevExpress.XtraEditors.XtraForm
+    public partial class FrmBranchMaster : DevExpress.XtraEditors.XtraForm
     {
-        public FrmCompanyYearSelection()
+        public FrmBranchMaster()
         {
             InitializeComponent();
-        }
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.OK;
         }
     }
 }

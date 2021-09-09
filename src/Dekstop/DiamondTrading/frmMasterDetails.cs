@@ -1,5 +1,4 @@
 ﻿using DevExpress.XtraEditors;
-using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,14 +11,11 @@ using System.Windows.Forms;
 
 namespace DiamondTrading
 {
-    public partial class frmMasterDetails : DevExpress.XtraEditors.XtraForm
+    public partial class FrmMasterDetails : DevExpress.XtraEditors.XtraForm
     {
-        private readonly CompanyMasterRepository _companyMasterRepository;
-
-        public frmMasterDetails()
+        public FrmMasterDetails()
         {
             InitializeComponent();
-            _companyMasterRepository = new CompanyMasterRepository();
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -31,7 +27,7 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
-                Master.frmCompanyMaster frmcompanymaster = new Master.frmCompanyMaster();
+                Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster();
                 frmcompanymaster.ShowDialog();
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -40,15 +36,6 @@ namespace DiamondTrading
                 //frmLogin.ShowDialog();
             }
 
-        }
-
-        private async void frmMasterDetails_Load(object sender, EventArgs e)
-        {
-            var result = await _companyMasterRepository.GetAllCompanyAsync();
-            if(result != null)
-            {
-                gridControl1.DataSource= result;
-            }
         }
     }
 }

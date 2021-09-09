@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace DiamondTrading.Master
 {
-    public partial class frmCompanyMaster : DevExpress.XtraEditors.XtraForm
+    public partial class FrmCompanyMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly CompanyMasterRepository _companyMasterRepository;
-        public frmCompanyMaster()
+        public FrmCompanyMaster()
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
@@ -27,8 +27,8 @@ namespace DiamondTrading.Master
             if(CompanyList!=null)
             {
                 lueCompanyType.Properties.DataSource = CompanyList;
-                lueCompanyType.Properties.DisplayMember = "Name";
-                lueCompanyType.Properties.ValueMember = "Id";
+                lueCompanyType.Properties.DisplayMember = "";
+                lueCompanyType.Properties.ValueMember = "";
             }
         }
          
@@ -70,8 +70,7 @@ namespace DiamondTrading.Master
             {
                 this.Cursor = Cursors.WaitCursor;
                 Guid tempId = Guid.NewGuid();
-                var Result = await _companyMasterRepository.AddCompanyAsync(new Repository.Entities.CompanyMaster
-                {
+                Repository.Entities.CompanyMaster companyMaster= new Repository.Entities.CompanyMaster{
                     Id = tempId,
                     Type = null,//Convert.ToInt32(lueCompanyType.EditValue),
                     Name = txtCompanyName.Text,
@@ -89,7 +88,10 @@ namespace DiamondTrading.Master
                     CreatedDate = DateTime.Now,
                     UpdatedBy = tempId,
                     UpdatedDate = DateTime.Now,
-                });
+                    BranchMasters = new List<Repository.Entities.BranchMaster>(),
+                    PartyMasters = new List<Repository.Entities.PartyMaster>()
+                };
+                var Result = await _companyMasterRepository.AddCompanyAsync(companyMaster);
 
                 if (Result != null)
                 {
