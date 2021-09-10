@@ -52,17 +52,22 @@ namespace DiamondTrading
             this.grvShapeMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colShapeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabPurityMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdPurityMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvPurityMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurityName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.xtabPurityMaster = new DevExpress.XtraTab.XtraTabPage();
-            this.grdPurityMaster = new DevExpress.XtraGrid.GridControl();
-            this.grvPurityMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurityName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabSizeMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdSizeMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvSizeMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSizeName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -74,11 +79,14 @@ namespace DiamondTrading
             this.xtabShapeMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdShapeMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvShapeMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.xtabPurityMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPurityMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPurityMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.xtabSizeMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdSizeMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvSizeMaster)).BeginInit();
             this.SuspendLayout();
             // 
             // grdLessWeightGroupDetailMaster
@@ -242,7 +250,8 @@ namespace DiamondTrading
             this.xtabBranchMaster,
             this.xtabLessWeightGroupMaster,
             this.xtabShapeMaster,
-            this.xtabPurityMaster});
+            this.xtabPurityMaster,
+            this.xtabSizeMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabLessWeightGroupMaster
@@ -295,6 +304,50 @@ namespace DiamondTrading
             this.colShapeName.Name = "colShapeName";
             this.colShapeName.Visible = true;
             this.colShapeName.VisibleIndex = 0;
+            // 
+            // xtabPurityMaster
+            // 
+            this.xtabPurityMaster.Controls.Add(this.grdPurityMaster);
+            this.xtabPurityMaster.Name = "xtabPurityMaster";
+            this.xtabPurityMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabPurityMaster.Text = "Purity Master";
+            // 
+            // grdPurityMaster
+            // 
+            this.grdPurityMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPurityMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdPurityMaster.MainView = this.grvPurityMaster;
+            this.grdPurityMaster.Name = "grdPurityMaster";
+            this.grdPurityMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdPurityMaster.TabIndex = 1;
+            this.grdPurityMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvPurityMaster});
+            // 
+            // grvPurityMaster
+            // 
+            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvPurityMaster.Appearance.Row.Options.UseFont = true;
+            this.grvPurityMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPurityId,
+            this.colPurityName});
+            this.grvPurityMaster.GridControl = this.grdPurityMaster;
+            this.grvPurityMaster.Name = "grvPurityMaster";
+            this.grvPurityMaster.OptionsBehavior.Editable = false;
+            this.grvPurityMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colPurityId
+            // 
+            this.colPurityId.Caption = "Id";
+            this.colPurityId.FieldName = "Id";
+            this.colPurityId.Name = "colPurityId";
+            // 
+            // colPurityName
+            // 
+            this.colPurityName.Caption = "Purity Name";
+            this.colPurityName.FieldName = "Name";
+            this.colPurityName.Name = "colPurityName";
+            this.colPurityName.Visible = true;
+            this.colPurityName.VisibleIndex = 0;
             // 
             // accordionControl1
             // 
@@ -358,49 +411,49 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // xtabPurityMaster
+            // xtabSizeMaster
             // 
-            this.xtabPurityMaster.Controls.Add(this.grdPurityMaster);
-            this.xtabPurityMaster.Name = "xtabPurityMaster";
-            this.xtabPurityMaster.Size = new System.Drawing.Size(764, 411);
-            this.xtabPurityMaster.Text = "Purity Master";
+            this.xtabSizeMaster.Controls.Add(this.grdSizeMaster);
+            this.xtabSizeMaster.Name = "xtabSizeMaster";
+            this.xtabSizeMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabSizeMaster.Text = "Size Master";
             // 
-            // grdPurityMaster
+            // grdSizeMaster
             // 
-            this.grdPurityMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPurityMaster.Location = new System.Drawing.Point(0, 0);
-            this.grdPurityMaster.MainView = this.grvPurityMaster;
-            this.grdPurityMaster.Name = "grdPurityMaster";
-            this.grdPurityMaster.Size = new System.Drawing.Size(764, 411);
-            this.grdPurityMaster.TabIndex = 1;
-            this.grdPurityMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvPurityMaster});
+            this.grdSizeMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdSizeMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdSizeMaster.MainView = this.grvSizeMaster;
+            this.grdSizeMaster.Name = "grdSizeMaster";
+            this.grdSizeMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdSizeMaster.TabIndex = 2;
+            this.grdSizeMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvSizeMaster});
             // 
-            // grvPurityMaster
+            // grvSizeMaster
             // 
-            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grvPurityMaster.Appearance.Row.Options.UseFont = true;
-            this.grvPurityMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colPurityId,
-            this.colPurityName});
-            this.grvPurityMaster.GridControl = this.grdPurityMaster;
-            this.grvPurityMaster.Name = "grvPurityMaster";
-            this.grvPurityMaster.OptionsBehavior.Editable = false;
-            this.grvPurityMaster.OptionsView.ShowGroupPanel = false;
+            this.grvSizeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvSizeMaster.Appearance.Row.Options.UseFont = true;
+            this.grvSizeMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSizeId,
+            this.colSizeName});
+            this.grvSizeMaster.GridControl = this.grdSizeMaster;
+            this.grvSizeMaster.Name = "grvSizeMaster";
+            this.grvSizeMaster.OptionsBehavior.Editable = false;
+            this.grvSizeMaster.OptionsView.ShowGroupPanel = false;
             // 
-            // colPurityId
+            // colSizeId
             // 
-            this.colPurityId.Caption = "Id";
-            this.colPurityId.FieldName = "Id";
-            this.colPurityId.Name = "colPurityId";
+            this.colSizeId.Caption = "Id";
+            this.colSizeId.FieldName = "Id";
+            this.colSizeId.Name = "colSizeId";
             // 
-            // colPurityName
+            // colSizeName
             // 
-            this.colPurityName.Caption = "Purity Name";
-            this.colPurityName.FieldName = "Name";
-            this.colPurityName.Name = "colPurityName";
-            this.colPurityName.Visible = true;
-            this.colPurityName.VisibleIndex = 0;
+            this.colSizeName.Caption = "Size Name";
+            this.colSizeName.FieldName = "Name";
+            this.colSizeName.Name = "colSizeName";
+            this.colSizeName.Visible = true;
+            this.colSizeName.VisibleIndex = 0;
             // 
             // FrmMasterDetails
             // 
@@ -426,11 +479,14 @@ namespace DiamondTrading
             this.xtabShapeMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdShapeMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvShapeMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.xtabPurityMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPurityMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPurityMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.xtabSizeMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdSizeMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvSizeMaster)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -470,5 +526,10 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView grvPurityMaster;
         private DevExpress.XtraGrid.Columns.GridColumn colPurityId;
         private DevExpress.XtraGrid.Columns.GridColumn colPurityName;
+        private DevExpress.XtraTab.XtraTabPage xtabSizeMaster;
+        private DevExpress.XtraGrid.GridControl grdSizeMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvSizeMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colSizeId;
+        private DevExpress.XtraGrid.Columns.GridColumn colSizeName;
     }
 }

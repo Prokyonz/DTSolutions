@@ -68,7 +68,6 @@ namespace DiamondTrading.Master
                         Id = tempId,
                         Name = txtLessWeightGroupName.Text,
                         IsDelete = false,
-                        BranchId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED043"),
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,

@@ -20,10 +20,12 @@ namespace DiamondTrading
         private LessWeightMasterRepository _lessWeightMasterRepository;
         private ShapeMasterRepository _shapeMasterRepository;
         private PurityMasterRepository _purityMasterRepository;
+        private SizeMasterRepository _sizeMasterRepository;
         private List<CompanyMaster> _companyMaster;
         private List<LessWeightMaster> _lessWeightMaster;
         private List<ShapeMaster> _shapeMaster;
         private List<PurityMaster> _purityMaster;
+        private List<SizeMaster> _sizeMaster;
         public FrmMasterDetails()
         {
             InitializeComponent();
@@ -67,8 +69,16 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
-                Master.FrmPurityMaster frmpurityMaster = new Master.FrmPurityMaster(_purityMaster);
-                if (frmpurityMaster.ShowDialog() == DialogResult.OK)
+                Master.FrmPurityMaster frmPurityMaster = new Master.FrmPurityMaster(_purityMaster);
+                if (frmPurityMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                Master.FrmSizeMaster frmSizeMaster = new Master.FrmSizeMaster(_sizeMaster);
+                if (frmSizeMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -115,6 +125,12 @@ namespace DiamondTrading
                 _purityMaster = await _purityMasterRepository.GetAllPurityAsync();
                 grdPurityMaster.DataSource = _purityMaster;
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                _sizeMasterRepository = new SizeMasterRepository();
+                _sizeMaster = await _sizeMasterRepository.GetAllSizeAsync();
+                grdSizeMaster.DataSource = _sizeMaster;
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
@@ -156,6 +172,15 @@ namespace DiamondTrading
                 Guid SelectedGuid = Guid.Parse(grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString());
                 Master.FrmPurityMaster frmPurityMaster = new Master.FrmPurityMaster(_purityMaster, SelectedGuid);
                 if (frmPurityMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString());
+                Master.FrmSizeMaster frmSizeMaster = new Master.FrmSizeMaster(_sizeMaster, SelectedGuid);
+                if (frmSizeMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -215,9 +240,20 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
                 Guid SelectedGuid = Guid.Parse(grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString());
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvShapeMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _purityMasterRepository.DeletePurityAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);

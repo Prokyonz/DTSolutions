@@ -49,6 +49,12 @@ namespace DiamondTrading
         AddMorePurityConfirmation,
         DeletePurityConfirmation,
         #endregion
+        #region "FrmSizeMaster"
+        EmptySizeName,
+        SizeNameExist,
+        AddMoreSizeConfirmation,
+        DeleteSizeConfirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -178,6 +184,20 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeletePurityConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Purity...?";
+                    break;
+                #endregion
+                #region "FrmSizeMaster"
+                case AppMessageID.EmptySizeName:
+                    ReturnMsg = "Please write Size Name.";
+                    break;
+                case AppMessageID.SizeNameExist:
+                    ReturnMsg = "Purity Name already exist.";
+                    break;
+                case AppMessageID.AddMoreSizeConfirmation:
+                    ReturnMsg = "Do you want to add more Size...?";
+                    break;
+                case AppMessageID.DeleteSizeConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Size...?";
                     break;
                 #endregion
                 #region "Others"
