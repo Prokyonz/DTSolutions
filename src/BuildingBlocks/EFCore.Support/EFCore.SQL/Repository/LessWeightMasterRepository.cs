@@ -46,14 +46,17 @@ namespace EFCore.SQL.Repository
 
         public async Task<LessWeightMaster> UpdateLessWeightMaster(LessWeightMaster lessWeightMaster)
         {
-            var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMaster.Id).FirstOrDefaultAsync();
+            var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMaster.Id).Include("LessWeightDetails").FirstOrDefaultAsync();
             if (getLessWeightRecord != null)
             {
                 getLessWeightRecord.Name = lessWeightMaster.Name;
-                //getLessWeightRecord.LessWeight = lessWeightMaster.LessWeight;
-                //getLessWeightRecord.MaxWeight = lessWeightMaster.MaxWeight;
-                //getLessWeightRecord.MinWeight = lessWeightMaster.MinWeight;
+                getLessWeightRecord.IsDelete = lessWeightMaster.IsDelete;
+                getLessWeightRecord.CreatedBy = lessWeightMaster.CreatedBy;
+                getLessWeightRecord.UpdatedBy = lessWeightMaster.UpdatedBy;
+                getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
+                getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;                
                 getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
+                getLessWeightRecord.LessWeightDetails = lessWeightMaster.LessWeightDetails;
 
                 await _databaseContext.SaveChangesAsync();
             }
