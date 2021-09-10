@@ -28,6 +28,27 @@ namespace DiamondTrading
         AddMoreCompaniesConfirmation,
         DeleteCompanyCofirmation,
         #endregion
+        #region "FrmLessWeightGroupMaster"
+        EmptyLessWeightGroupName,
+        EmptyMinWeight,
+        EmptyMaxWeight,
+        EmptyLessWeight,
+        LessWeightGroupNameExist,
+        AddMoreLessWeightGroupConfirmation,
+        EmptyLessWeightGroupItems,
+        #endregion
+        #region "FrmShapeMaster"
+        EmptyShapeName,
+        ShapeNameExist,
+        AddMoreShapeConfirmation,
+        DeleteShapeConfirmation,
+        #endregion
+        #region "FrmPurityMaster"
+        EmptyPurityName,
+        PurityNameExist,
+        AddMorePurityConfirmation,
+        DeletePurityConfirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -105,15 +126,68 @@ namespace DiamondTrading
                     ReturnMsg = "Do you want to add more companies...?";
                     break;
                 case AppMessageID.DeleteCompanyCofirmation:
-                    ReturnMsg = "Are you sure you have to delete {0} company...?";
+                    ReturnMsg = "Are you sure you have to delete '{0}' company...?";
                     break;
                 #endregion
+                #region "FrmLessWeightGroupMaster"
+                case AppMessageID.EmptyLessWeightGroupName:
+                    ReturnMsg = "Please write Less Weight Group Name.";
+                    break;
+                case AppMessageID.EmptyMinWeight:
+                    ReturnMsg = "Please enter Min Weight of group.";
+                    break;
+                case AppMessageID.EmptyMaxWeight:
+                    ReturnMsg = "Please enter Max Weight of group.";
+                    break;
+                case AppMessageID.EmptyLessWeight:
+                    ReturnMsg = "Please enter Less Weight of group.";
+                    break;
+                case AppMessageID.LessWeightGroupNameExist:
+                    ReturnMsg = "Less Weight Group Name already exist.";
+                    break;
+                case AppMessageID.AddMoreLessWeightGroupConfirmation:
+                    ReturnMsg = "Do you want to add more Less Weight Groups...?";
+                    break;
+                case AppMessageID.EmptyLessWeightGroupItems:
+                    ReturnMsg = "Please enter some Less Weight Group items.";
+                    break;
+                #endregion
+                #region "FrmShapeMaster"
+                case AppMessageID.EmptyShapeName:
+                    ReturnMsg = "Please write Shape Name.";
+                    break;
+                case AppMessageID.ShapeNameExist:
+                    ReturnMsg = "Shape Name already exist.";
+                    break;
+                case AppMessageID.AddMoreShapeConfirmation:
+                    ReturnMsg = "Do you want to add more Shapes...?";
+                    break;
+                case AppMessageID.DeleteShapeConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Shape...?";
+                    break;
+                #endregion
+                #region "FrmPurityMaster"
+                case AppMessageID.EmptyPurityName:
+                    ReturnMsg = "Please write Purity Name.";
+                    break;
+                case AppMessageID.PurityNameExist:
+                    ReturnMsg = "Purity Name already exist.";
+                    break;
+                case AppMessageID.AddMorePurityConfirmation:
+                    ReturnMsg = "Do you want to add more Purity...?";
+                    break;
+                case AppMessageID.DeletePurityConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Purity...?";
+                    break;
+                #endregion
+                #region "Others"
                 case AppMessageID.AppMessageIDNotFound:
                     ReturnMsg = "Message ID Not Found";
                     break;
                 default:
                     ReturnMsg = string.Empty;
                     break;
+                #endregion
             }
             return ReturnMsg;
         }

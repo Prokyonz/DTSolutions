@@ -43,7 +43,7 @@ namespace DiamondTrading
             this.barButtonItem8 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem9 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem10 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barBtnShape = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem12 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem13 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem14 = new DevExpress.XtraBars.BarButtonItem();
@@ -70,6 +70,7 @@ namespace DiamondTrading
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            this.barLoginUserName = new DevExpress.XtraBars.BarStaticItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -103,7 +104,6 @@ namespace DiamondTrading
             this.accordionControlElement29 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.barLoginUserName = new DevExpress.XtraBars.BarStaticItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -131,7 +131,7 @@ namespace DiamondTrading
             this.barButtonItem8,
             this.barButtonItem9,
             this.barButtonItem10,
-            this.barButtonItem11,
+            this.barBtnShape,
             this.barButtonItem12,
             this.barButtonItem13,
             this.barButtonItem14,
@@ -193,7 +193,7 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem11),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnShape),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem13),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14),
@@ -261,11 +261,12 @@ namespace DiamondTrading
             this.barButtonItem10.Id = 10;
             this.barButtonItem10.Name = "barButtonItem10";
             // 
-            // barButtonItem11
+            // barBtnShape
             // 
-            this.barButtonItem11.Caption = "Shape Master";
-            this.barButtonItem11.Id = 11;
-            this.barButtonItem11.Name = "barButtonItem11";
+            this.barBtnShape.Caption = "Shape Master";
+            this.barBtnShape.Id = 11;
+            this.barBtnShape.Name = "barBtnShape";
+            this.barBtnShape.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barBtnShape_ItemClick);
             // 
             // barButtonItem12
             // 
@@ -450,6 +451,12 @@ namespace DiamondTrading
             this.barButtonItem16.Caption = "barButtonItem16";
             this.barButtonItem16.Id = 16;
             this.barButtonItem16.Name = "barButtonItem16";
+            // 
+            // barLoginUserName
+            // 
+            this.barLoginUserName.Caption = "barStaticItem1";
+            this.barLoginUserName.Id = 33;
+            this.barLoginUserName.Name = "barLoginUserName";
             // 
             // bar1
             // 
@@ -691,12 +698,6 @@ namespace DiamondTrading
             this.panelControl1.Size = new System.Drawing.Size(766, 512);
             this.panelControl1.TabIndex = 9;
             // 
-            // barLoginUserName
-            // 
-            this.barLoginUserName.Caption = "barStaticItem1";
-            this.barLoginUserName.Id = 33;
-            this.barLoginUserName.Name = "barLoginUserName";
-            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -747,7 +748,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem8;
         private DevExpress.XtraBars.BarButtonItem barButtonItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem10;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarButtonItem barBtnShape;
         private DevExpress.XtraBars.BarButtonItem barButtonItem12;
         private DevExpress.XtraBars.BarButtonItem barButtonItem13;
         private DevExpress.XtraBars.BarButtonItem barButtonItem14;

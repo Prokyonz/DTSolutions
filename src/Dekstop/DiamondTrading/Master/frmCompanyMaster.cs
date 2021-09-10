@@ -20,12 +20,6 @@ namespace DiamondTrading.Master
         private CompanyMaster _EditedCompnayMasterSet;
         private Guid _selectedCompany;
 
-        public FrmCompanyMaster()
-        {
-            InitializeComponent();
-            _companyMasterRepository = new CompanyMasterRepository();
-        }
-
         public FrmCompanyMaster(List<CompanyMaster> companyMasters)
         {
             InitializeComponent();
@@ -169,7 +163,7 @@ namespace DiamondTrading.Master
                     if (Result != null)
                     {
                         Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully));
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else
@@ -196,7 +190,7 @@ namespace DiamondTrading.Master
                     if (Result != null)
                     {
                         Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully));
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
@@ -207,7 +201,7 @@ namespace DiamondTrading.Master
             }
             catch(Exception Ex)
             {
-
+                MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

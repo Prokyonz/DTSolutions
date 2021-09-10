@@ -25,6 +25,11 @@ namespace DiamondTrading
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            OpenMasterDetailsForm("CompanyMaster");
+        }
+
+        private void OpenMasterDetailsForm(string PageRequested)
+        {
             panelControl1.SendToBack();
             FrmMasterDetails page = Application.OpenForms["frmMasterDetails"] as FrmMasterDetails;
             if (page != null)
@@ -54,6 +59,11 @@ namespace DiamondTrading
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void barBtnShape_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("ShapeMaster");
         }
     }
 }

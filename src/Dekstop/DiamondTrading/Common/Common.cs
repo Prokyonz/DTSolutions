@@ -30,6 +30,10 @@ namespace DiamondTrading
                         return;
                 }
 
+                if (form.ActiveControl.Parent.GetType() == typeof(DevExpress.XtraGrid.GridControl) ||
+                    (form.ActiveControl.Parent.Parent != null && form.ActiveControl.Parent.Parent.GetType() == typeof(DevExpress.XtraGrid.GridControl)))
+                    return;
+
                 form.SelectNextControl(form.ActiveControl, true, true, true, true);
             }
         }
