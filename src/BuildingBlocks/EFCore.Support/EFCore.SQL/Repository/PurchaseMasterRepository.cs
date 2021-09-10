@@ -57,6 +57,16 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.BranchId == branchId && s.FinancialYearId == financialYearId).ToListAsync();
         }
 
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, DateTime startDate, DateTime endDate)
+        {
+            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+        }
+
+        public async Task<List<PurchaseMaster>> GetAllSalesAsync(Guid companyId, Guid branchId, DateTime startDate, DateTime endDate)
+        {
+            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+        }
+
         public async Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster)
         {
             var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).FirstOrDefaultAsync();
@@ -104,6 +114,8 @@ namespace EFCore.SQL.Repository
                 getPurchase.UpdatedDate = purchaseMaster.UpdatedDate;
                 getPurchase.UpdatedBy = purchaseMaster.UpdatedBy;
                 //getPurchase.PurchaseDetails = purchaseMaster.PurchaseDetails;
+
+                await _databaseContext.SaveChangesAsync();
             }
             return purchaseMaster;
         }

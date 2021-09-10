@@ -2,6 +2,7 @@ using EFCore.SQL.Repository;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Repository.Entities;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MSUnitTest.EFCore.SQL
@@ -19,22 +20,13 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void AddPurityRecord()
         {
-            Guid tempId = Guid.NewGuid();
-            _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
-            {
-                Id = tempId,
-                Name = "Purity1",
-                CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
-                IsDelete = false
-            }).Result;
+            var purityList = PurityMaster.FakeData.Generate(1).ToList();
+            _ = _purityMasterRepository.AddPurityAsync(purityList[0]).Result;
 
-            PurityMaster purityMaster = _purityMasterRepository.GetPurityById(tempId).Result;
-            _ = _purityMasterRepository.DeletePurityAsync(tempId, true).Result;
+            PurityMaster purityMaster = _purityMasterRepository.GetPurityById(purityList[0].Id).Result;
+            _ = _purityMasterRepository.DeletePurityAsync(purityList[0].Id, true).Result;
 
-            Assert.IsTrue(purityMaster.Id == tempId);
+            Assert.IsTrue(purityMaster.Id == purityList[0].Id);
         }
 
         [TestMethod]
