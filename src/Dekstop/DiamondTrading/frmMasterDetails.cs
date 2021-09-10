@@ -27,12 +27,15 @@ namespace DiamondTrading
             
         }
 
-        private void accordianAddBtn_Click(object sender, EventArgs e)
+        private async void accordianAddBtn_Click(object sender, EventArgs e)
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster);
-                frmcompanymaster.ShowDialog();
+                if (frmcompanymaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
@@ -66,13 +69,16 @@ namespace DiamondTrading
             }
         }
 
-        private void accordionEditBtn_Click(object sender, EventArgs e)
+        private async void accordionEditBtn_Click(object sender, EventArgs e)
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
                 Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-                frmcompanymaster.ShowDialog();
+                if (frmcompanymaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
@@ -88,7 +94,27 @@ namespace DiamondTrading
 
         private async void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
-            await LoadGridData();
+            await LoadGridData(true);
+        }
+
+        private async void accordionDeleteBtn_Click(object sender, EventArgs e)
+        {
+            if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tlCompanyMaster.GetFocusedRowCellValue(Name).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
+            {
+                //frmLogin frmLogin = new frmLogin();
+                //frmLogin.ShowDialog();
+            }
         }
     }
 }

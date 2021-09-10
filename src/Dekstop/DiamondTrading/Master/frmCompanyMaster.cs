@@ -50,7 +50,7 @@ namespace DiamondTrading.Master
                 _EditedCompnayMasterSet = _companyMasters.Where(c => c.Id == _selectedCompany).FirstOrDefault();
                 if (_EditedCompnayMasterSet != null)
                 {
-                    btnSave.Text = "&Update";
+                    btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     lueCompanyType.EditValue = _EditedCompnayMasterSet.Type == null ? Common.DefaultGuid : _EditedCompnayMasterSet.Type;
                     txtCompanyName.Text = _EditedCompnayMasterSet.Name;
                     txtAddress.Text = _EditedCompnayMasterSet.Address;
@@ -117,7 +117,7 @@ namespace DiamondTrading.Master
             txtPancardNo.Text = "";
             txtNotes.Text = "";
             txtTermsCondition.Text = "";
-            btnSave.Text = "&Save";
+            btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             await GetParentCompanyList();
             lueCompanyType.Focus();
         }
@@ -136,7 +136,7 @@ namespace DiamondTrading.Master
                 if (!CheckValidation())
                     return;
 
-                if (btnSave.Text == "&Save")
+                if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
                     Guid tempId = Guid.NewGuid();
 
@@ -198,6 +198,11 @@ namespace DiamondTrading.Master
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully));
                     }
+                }
+
+                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "["+this.Text+"}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                {
+                    this.DialogResult = DialogResult.OK;
                 }
             }
             catch(Exception Ex)

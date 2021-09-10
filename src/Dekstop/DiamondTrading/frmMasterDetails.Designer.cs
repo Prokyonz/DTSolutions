@@ -35,6 +35,10 @@ namespace DiamondTrading
             this.Name = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.Id = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.Type = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colCompanyMobileNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colCompanyRegistrationNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colCompanyGSTNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colCompanyPancardNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -70,7 +74,11 @@ namespace DiamondTrading
             this.tlCompanyMaster.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.Name,
             this.Id,
-            this.Type});
+            this.Type,
+            this.colCompanyMobileNo,
+            this.colCompanyRegistrationNo,
+            this.colCompanyGSTNo,
+            this.colCompanyPancardNo});
             this.tlCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlCompanyMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlCompanyMaster.KeyFieldName = "Id";
@@ -78,6 +86,7 @@ namespace DiamondTrading
             this.tlCompanyMaster.Name = "tlCompanyMaster";
             this.tlCompanyMaster.OptionsBehavior.AllowPixelScrolling = DevExpress.Utils.DefaultBoolean.True;
             this.tlCompanyMaster.OptionsBehavior.Editable = false;
+            this.tlCompanyMaster.OptionsBehavior.PopulateServiceColumns = true;
             this.tlCompanyMaster.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
             this.tlCompanyMaster.OptionsSelection.UseIndicatorForSelection = true;
             this.tlCompanyMaster.ParentFieldName = "Type";
@@ -91,6 +100,7 @@ namespace DiamondTrading
             this.Name.Name = "Name";
             this.Name.Visible = true;
             this.Name.VisibleIndex = 0;
+            this.Name.Width = 302;
             // 
             // Id
             // 
@@ -103,6 +113,42 @@ namespace DiamondTrading
             this.Type.Caption = "Type";
             this.Type.FieldName = "Type";
             this.Type.Name = "Type";
+            // 
+            // colCompanyMobileNo
+            // 
+            this.colCompanyMobileNo.Caption = "Mobile No";
+            this.colCompanyMobileNo.FieldName = "MobileNo";
+            this.colCompanyMobileNo.Name = "colCompanyMobileNo";
+            this.colCompanyMobileNo.Visible = true;
+            this.colCompanyMobileNo.VisibleIndex = 1;
+            this.colCompanyMobileNo.Width = 106;
+            // 
+            // colCompanyRegistrationNo
+            // 
+            this.colCompanyRegistrationNo.Caption = "Registration No";
+            this.colCompanyRegistrationNo.FieldName = "RegistrationNo";
+            this.colCompanyRegistrationNo.Name = "colCompanyRegistrationNo";
+            this.colCompanyRegistrationNo.Visible = true;
+            this.colCompanyRegistrationNo.VisibleIndex = 2;
+            this.colCompanyRegistrationNo.Width = 92;
+            // 
+            // colCompanyGSTNo
+            // 
+            this.colCompanyGSTNo.Caption = "GST No";
+            this.colCompanyGSTNo.FieldName = "GSTNo";
+            this.colCompanyGSTNo.Name = "colCompanyGSTNo";
+            this.colCompanyGSTNo.Visible = true;
+            this.colCompanyGSTNo.VisibleIndex = 3;
+            this.colCompanyGSTNo.Width = 99;
+            // 
+            // colCompanyPancardNo
+            // 
+            this.colCompanyPancardNo.Caption = "Pancard No";
+            this.colCompanyPancardNo.FieldName = "PanCardNo";
+            this.colCompanyPancardNo.Name = "colCompanyPancardNo";
+            this.colCompanyPancardNo.Visible = true;
+            this.colCompanyPancardNo.VisibleIndex = 4;
+            this.colCompanyPancardNo.Width = 84;
             // 
             // xtabMasterDetails
             // 
@@ -154,6 +200,7 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
+            this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
             // 
@@ -216,5 +263,9 @@ namespace DiamondTrading
         private DevExpress.XtraTreeList.Columns.TreeListColumn Id;
         private DevExpress.XtraTreeList.Columns.TreeListColumn Type;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionRefreshBtn;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCompanyMobileNo;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCompanyRegistrationNo;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCompanyGSTNo;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCompanyPancardNo;
     }
 }
