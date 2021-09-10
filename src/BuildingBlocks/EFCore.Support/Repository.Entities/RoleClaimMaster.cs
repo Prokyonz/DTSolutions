@@ -6,7 +6,7 @@ namespace Repository.Entities
 {
     public class RoleClaimMaster
     {
-        public int Sr { get; set; }
+        public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
         public Guid RoleId { get; set; }

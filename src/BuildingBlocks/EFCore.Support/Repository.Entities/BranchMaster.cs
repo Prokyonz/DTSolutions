@@ -22,11 +22,15 @@ namespace Repository.Entities
         public string GSTNo { get; set; }
         public string PanCardNo { get; set; }
         public string AadharCardNo { get; set; }
-        public float CVDWeight{ get; set; }
-        public float TipWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal CVDWeight{ get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TipWeight { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 

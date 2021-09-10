@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210910141648_UpdateBranchMasterColumnDBTpe")]
+    partial class UpdateBranchMasterColumnDBTpe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -220,8 +222,8 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("Value")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("Value")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -356,17 +358,17 @@ namespace EFCore.SQL.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("LessWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessWeight")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("LessWeightId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("MaxWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("MaxWeight")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("MinWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("MinWeight")
+                        .HasColumnType("real");
 
                     b.Property<int>("Sr")
                         .ValueGeneratedOnAdd()
@@ -596,8 +598,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("CVDCharge")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("CVDWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CVDWeight")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -611,17 +613,17 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("KapanId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("LessDiscountPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessDiscountPercentage")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("LessWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessWeight")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("LessWeightDiscount")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessWeightDiscount")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("NetWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("NetWeight")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("PurchaseId")
                         .HasColumnType("uniqueidentifier");
@@ -629,11 +631,11 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("PurityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("RejectedPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("RejectedPercentage")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("RejectedWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("RejectedWeight")
+                        .HasColumnType("real");
 
                     b.Property<double>("RoundUpAmount")
                         .HasColumnType("float");
@@ -651,8 +653,8 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("TIPWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("TIPWeight")
+                        .HasColumnType("real");
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
@@ -663,11 +665,11 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -691,8 +693,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("BrokerAmount")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("BrokerPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("BrokerPercentage")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("BrokerageId")
                         .HasColumnType("uniqueidentifier");
@@ -703,8 +705,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("CommissionAmount")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("CommissionPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CommissionPercentage")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("CommissionToPartyId")
                         .HasColumnType("uniqueidentifier");
@@ -718,8 +720,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("CurrencyRate")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CurrencyRate")
+                        .HasColumnType("real");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
@@ -806,7 +808,7 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime?>("UpdatedDate")
+                    b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -942,8 +944,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("CVDCharge")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("CVDWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CVDWeight")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("CreatedBy")
                         .HasColumnType("uniqueidentifier");
@@ -957,26 +959,26 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("KapanId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("LessDiscountPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessDiscountPercentage")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("LessWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessWeight")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("LessWeightDiscount")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("LessWeightDiscount")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("NetWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("NetWeight")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("PurityId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("RejectedPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("RejectedPercentage")
+                        .HasColumnType("real");
 
-                    b.Property<decimal>("RejectedWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("RejectedWeight")
+                        .HasColumnType("real");
 
                     b.Property<double>("RoundUpAmount")
                         .HasColumnType("float");
@@ -1003,8 +1005,8 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<decimal>("TIPWeight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("TIPWeight")
+                        .HasColumnType("real");
 
                     b.Property<double>("Total")
                         .HasColumnType("float");
@@ -1015,8 +1017,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("Weight")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -1042,8 +1044,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("BrokerAmount")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("BrokerPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("BrokerPercentage")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("BrokerageId")
                         .HasColumnType("uniqueidentifier");
@@ -1051,8 +1053,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("CommissionAmount")
                         .HasColumnType("float");
 
-                    b.Property<decimal>("CommissionPercentage")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CommissionPercentage")
+                        .HasColumnType("real");
 
                     b.Property<Guid>("CommissionToPartyId")
                         .HasColumnType("uniqueidentifier");
@@ -1066,8 +1068,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("CurrencyRate")
-                        .HasColumnType("decimal(18, 4)");
+                    b.Property<float>("CurrencyRate")
+                        .HasColumnType("real");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
@@ -1212,6 +1214,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");

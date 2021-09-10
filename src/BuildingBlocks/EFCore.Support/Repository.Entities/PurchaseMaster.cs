@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
     public class PurchaseMaster
     {
-        public int Sr { get; set; }
+        public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
         public Guid BranchId { get; set; }
@@ -15,7 +16,8 @@ namespace Repository.Entities
         public Guid CurrencyId { get; set; }
         public Guid FinancialYearId { get; set; }
         public Guid BrokerageId { get; set; }
-        public float CurrencyRate { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal CurrencyRate { get; set; }
         public long PurchaseBillNo { get; set; }
         public long SlipNo { get; set; }
         public int TransactionType { get; set; }
@@ -23,7 +25,8 @@ namespace Repository.Entities
         public string Time { get; set; }
         public string DayName { get; set; }
         public double PartyLastBalanceWhilePurchase { get; set; }
-        public float BrokerPercentage { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal BrokerPercentage { get; set; }
         public double BrokerAmount { get; set; }
         public double RoundUpAmount { get; set; }
         public double Total { get; set; }
@@ -35,7 +38,8 @@ namespace Repository.Entities
         public bool IsSlip { get; set; }
         public bool IsPF { get; set; }
         public Guid CommissionToPartyId { get; set; }
-        public float CommissionPercentage { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal CommissionPercentage { get; set; }
         public double CommissionAmount { get; set; }
         public byte[] Image1 { get; set; }
         public byte[] Image2 { get; set; }
@@ -46,7 +50,7 @@ namespace Repository.Entities
         public bool IsDelete { get; set; }
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 

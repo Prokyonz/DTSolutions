@@ -30,13 +30,13 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
             this.txtLessWeightGroupName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.toggleSwitch1 = new DevExpress.XtraEditors.ToggleSwitch();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLessWeightGroupName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLessWeightGroupName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -49,6 +49,17 @@ namespace DiamondTrading.Master
             this.groupControl1.Size = new System.Drawing.Size(345, 154);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Kapan Details";
+            // 
+            // toggleSwitch1
+            // 
+            this.toggleSwitch1.EditValue = true;
+            this.toggleSwitch1.Location = new System.Drawing.Point(237, 29);
+            this.toggleSwitch1.Name = "toggleSwitch1";
+            this.toggleSwitch1.Properties.OffText = "In-Active";
+            this.toggleSwitch1.Properties.OnText = "Active";
+            this.toggleSwitch1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.toggleSwitch1.Size = new System.Drawing.Size(95, 17);
+            this.toggleSwitch1.TabIndex = 5;
             // 
             // txtLessWeightGroupName
             // 
@@ -71,16 +82,6 @@ namespace DiamondTrading.Master
             this.labelControl2.TabIndex = 2;
             this.labelControl2.Text = "Name*";
             // 
-            // toggleSwitch1
-            // 
-            this.toggleSwitch1.EditValue = true;
-            this.toggleSwitch1.Location = new System.Drawing.Point(237, 29);
-            this.toggleSwitch1.Name = "toggleSwitch1";
-            this.toggleSwitch1.Properties.OffText = "In-Active";
-            this.toggleSwitch1.Properties.OnText = "Active";
-            this.toggleSwitch1.Size = new System.Drawing.Size(95, 17);
-            this.toggleSwitch1.TabIndex = 5;
-            // 
             // FrmKapanMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -92,8 +93,8 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtLessWeightGroupName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.toggleSwitch1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLessWeightGroupName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -12,9 +12,15 @@ namespace Repository.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid LessWeightId { get; set; }
-        public float MinWeight { get; set; }
-        public float MaxWeight { get; set; }
-        public float LessWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal MinWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal MaxWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessWeight { get; set; }
 
         [ForeignKey("LessWeightId")]
         public LessWeightMaster LessWeightMaster { get; set; }

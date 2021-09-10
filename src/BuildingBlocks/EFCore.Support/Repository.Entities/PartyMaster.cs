@@ -6,7 +6,7 @@ namespace Repository.Entities
 {
     public class PartyMaster
     {
-        public int Sr { get; set; }
+        public int Sr { get;  }
         [Key]
         public Guid Id { get; set; }
         public Guid CompanyId { get; set; }

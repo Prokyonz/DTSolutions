@@ -36,18 +36,18 @@ namespace MSUnitTest.EFCore.SQL
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
-                       LessWeight = 10.2f,
+                       LessWeight = 10.2M,
                        LessWeightId = tempGid,
-                       MaxWeight = 15.2f,
-                       MinWeight = 9.5f,
+                       MaxWeight = 15.2M,
+                       MinWeight = 9.5M,
                    },
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
-                       LessWeight = 12.2f,
+                       LessWeight = 12.2M,
                        LessWeightId = tempGid,
-                       MaxWeight = 13.2f,
-                       MinWeight = 5.5f,
+                       MaxWeight = 13.2M,
+                       MinWeight = 5.5M,
                    }
                 }
             };
@@ -74,18 +74,18 @@ namespace MSUnitTest.EFCore.SQL
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
-                       LessWeight = 1.2f,
+                       LessWeight = 1.2M,
                        LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
-                       MaxWeight = 1.2f,
-                       MinWeight = 1.5f,
+                       MaxWeight = 1.2M,
+                       MinWeight = 1.5M,
                    },
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
-                       LessWeight = 11.2f,
+                       LessWeight = 11.2M,
                        LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
-                       MaxWeight = 16.2f,
-                       MinWeight = 4.5f,
+                       MaxWeight = 16.2M,
+                       MinWeight = 4.5M,
                    }
 
                 }

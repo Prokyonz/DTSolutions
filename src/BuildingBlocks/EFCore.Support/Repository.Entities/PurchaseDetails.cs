@@ -14,15 +14,25 @@ namespace Repository.Entities
         public Guid ShapeId { get; set; }
         public Guid SizeId { get; set; }
         public Guid PurityId { get; set; }
-        public float Weight { get; set; }
-        public float TIPWeight { get; set; }
-        public float CVDWeight { get; set; }
-        public float RejectedPercentage { get; set; }
-        public float RejectedWeight { get; set; }
-        public float LessWeight { get; set; }
-        public float LessDiscountPercentage { get; set; }
-        public float LessWeightDiscount { get; set; }
-        public float NetWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Weight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TIPWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal CVDWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal RejectedPercentage { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal RejectedWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessDiscountPercentage { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessWeightDiscount { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal NetWeight { get; set; }
         public double BuyingRate { get; set; }
         public double CVDCharge { get; set; }
         public double CVDAmount { get; set; }
@@ -31,7 +41,7 @@ namespace Repository.Entities
         public bool IsTransfer { get; set; }
         public Guid TransferParentId { get; set; }        
         public DateTime CreatedDate { get; set; }
-        public DateTime UpdatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 

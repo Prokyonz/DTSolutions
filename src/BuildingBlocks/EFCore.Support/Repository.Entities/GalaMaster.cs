@@ -5,7 +5,7 @@ namespace Repository.Entities
 {
     public class GalaMaster
     {
-        public int Sr { get; set; }
+        public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
         public string Name { get; set; }
