@@ -60,7 +60,7 @@ namespace EFCore.SQL.Repository
                 getLessWeightRecord.UpdatedBy = lessWeightMaster.UpdatedBy;
                 getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
                 getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;                
-                getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
+                //getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
 
                 _databaseContext.LessWeightDetails.RemoveRange(getLessWeightRecord.LessWeightDetails.ToArray());
 
