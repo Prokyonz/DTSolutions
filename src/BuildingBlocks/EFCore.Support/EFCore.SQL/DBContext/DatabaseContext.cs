@@ -25,6 +25,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<KapanMaster> KapanMaster { get; set; }
         public DbSet<CurrencyMaster> CurrencyMaster{ get; set; }
         public DbSet<LessWeightMaster> LessWeightMasters { get; set; }
+        public DbSet<LessWeightDetails> LessWeightDetails { get; set; }
         public DbSet<ShapeMaster> ShapeMaster { get; set; }
         public DbSet<SizeMaster> SizeMaster { get; set; }
         public DbSet<PurityMaster> PurityMaster { get; set; }
@@ -55,6 +56,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<KapanMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CurrencyMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LessWeightMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<LessWeightDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ShapeMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurityMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<GalaMaster>().Property(c => c.Sr).UseIdentityColumn();

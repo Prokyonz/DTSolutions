@@ -50,9 +50,9 @@ namespace EFCore.SQL.Repository
             if (getLessWeightRecord != null)
             {
                 getLessWeightRecord.Name = lessWeightMaster.Name;
-                getLessWeightRecord.LessWeight = lessWeightMaster.LessWeight;
-                getLessWeightRecord.MaxWeight = lessWeightMaster.MaxWeight;
-                getLessWeightRecord.MinWeight = lessWeightMaster.MinWeight;
+                //getLessWeightRecord.LessWeight = lessWeightMaster.LessWeight;
+                //getLessWeightRecord.MaxWeight = lessWeightMaster.MaxWeight;
+                //getLessWeightRecord.MinWeight = lessWeightMaster.MinWeight;
                 getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
 
                 await _databaseContext.SaveChangesAsync();

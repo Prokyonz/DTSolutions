@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20210910063320_UpdateLessWeightMasterAndDetails")]
+    partial class UpdateLessWeightMasterAndDetails
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -356,6 +358,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<Guid>("LessWeightId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("LessWeightMasterId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<float>("MaxWeight")
                         .HasColumnType("real");
 
@@ -371,7 +376,7 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LessWeightId");
+                    b.HasIndex("LessWeightMasterId");
 
                     b.ToTable("LessWeightDetails");
                 });
@@ -1354,11 +1359,9 @@ namespace EFCore.SQL.Migrations
 
             modelBuilder.Entity("Repository.Entities.LessWeightDetails", b =>
                 {
-                    b.HasOne("Repository.Entities.LessWeightMaster", "LessWeightMaster")
+                    b.HasOne("Repository.Entities.LessWeightMaster", null)
                         .WithMany("LessWeightDetails")
-                        .HasForeignKey("LessWeightId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LessWeightMasterId");
                 });
 
             modelBuilder.Entity("Repository.Entities.LessWeightMaster", b =>
