@@ -56,7 +56,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<KapanMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CurrencyMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LessWeightMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<LessWeightDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<LessWeightDetails>().Property(c => c.Sr).UseIdentityColumn().Metadata.SetAfterSaveBehavior(Microsoft.EntityFrameworkCore.Metadata.PropertySaveBehavior.Ignore);
             modelBuilder.Entity<ShapeMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurityMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<GalaMaster>().Property(c => c.Sr).UseIdentityColumn();

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class LessWeightMasterRepository : ILessWeightMaster
+    public class LessWeightMasterRepository : ILessWeightMaster, IDisposable
     {
         private readonly DatabaseContext _databaseContext;
 
@@ -39,6 +39,11 @@ namespace EFCore.SQL.Repository
             return false;
         }
 
+        public void Dispose()
+        {
+            _databaseContext.DisposeAsync();
+        }
+
         public async Task<List<LessWeightMaster>> GetLessWeightMasters()
         {
             return await _databaseContext.LessWeightMasters.ToListAsync();
@@ -56,8 +61,11 @@ namespace EFCore.SQL.Repository
                 getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
                 getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;                
                 getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
-                getLessWeightRecord.LessWeightDetails = lessWeightMaster.LessWeightDetails;
 
+                _databaseContext.LessWeightDetails.RemoveRange(getLessWeightRecord.LessWeightDetails.ToArray());
+
+                await _databaseContext.LessWeightDetails.AddRangeAsync(lessWeightMaster.LessWeightDetails);
+                
                 await _databaseContext.SaveChangesAsync();
             }
             return lessWeightMaster;

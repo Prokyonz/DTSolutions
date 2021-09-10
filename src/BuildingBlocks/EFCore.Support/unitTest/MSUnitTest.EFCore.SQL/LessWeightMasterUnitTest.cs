@@ -73,24 +73,32 @@ namespace MSUnitTest.EFCore.SQL
                 {
                    new LessWeightDetails
                    {
-                       Id = Guid.Parse("FCD3A1D1-B606-489D-942E-38517B27C16A"),
+                       Id = Guid.NewGuid(),
+                       LessWeight = 1.2f,
+                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       MaxWeight = 1.2f,
+                       MinWeight = 1.5f,
+                   },
+                   new LessWeightDetails
+                   {
+                       Id = Guid.NewGuid(),
                        LessWeight = 11.2f,
                        LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
                        MaxWeight = 16.2f,
                        MinWeight = 4.5f,
-                   },
-                   new LessWeightDetails
-                   {
-                       Id = Guid.Parse("2C6D4500-64F4-4B18-AABB-5764576DE501"),
-                       LessWeight = 20.2f,
-                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
-                       MaxWeight = 28.2f,
-                       MinWeight = 1.5f,
                    }
+
                 }
             };
-
-            _ = _lessWeightMasterRepositoy.UpdateLessWeightMaster(lessWeightMaster).Result;
+            try
+            {
+                _ = _lessWeightMasterRepositoy.UpdateLessWeightMaster(lessWeightMaster).Result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }

@@ -8,7 +8,7 @@ namespace Repository.Entities
 {
     public class LessWeightDetails
     {
-        public int Sr { get; set; }
+        public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
         public Guid LessWeightId { get; set; }
