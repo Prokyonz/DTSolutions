@@ -109,6 +109,10 @@ namespace EFCore.SQL.Repository
                 salesRecord.UpdatedDate = salesRecord.UpdatedDate;
                 salesRecord.UpdatedBy = salesRecord.UpdatedBy;
 
+                _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
+
+                await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+
                 await _databaseContext.SaveChangesAsync();
             }
            

@@ -46,7 +46,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<LessWeightMaster>> GetLessWeightMasters()
         {
-            return await _databaseContext.LessWeightMasters.ToListAsync();
+            return await _databaseContext.LessWeightMasters.Where(w=>w.IsDelete == false).ToListAsync();
         }
 
         public async Task<LessWeightMaster> UpdateLessWeightMaster(LessWeightMaster lessWeightMaster)

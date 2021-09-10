@@ -113,7 +113,10 @@ namespace EFCore.SQL.Repository
                 getPurchase.Remarks = purchaseMaster.Remarks;
                 getPurchase.UpdatedDate = purchaseMaster.UpdatedDate;
                 getPurchase.UpdatedBy = purchaseMaster.UpdatedBy;
-                //getPurchase.PurchaseDetails = purchaseMaster.PurchaseDetails;
+
+                _databaseContext.PurchaseDetails.RemoveRange(getPurchase.PurchaseDetails);
+
+                await _databaseContext.PurchaseDetails.AddRangeAsync(purchaseMaster.PurchaseDetails);
 
                 await _databaseContext.SaveChangesAsync();
             }
