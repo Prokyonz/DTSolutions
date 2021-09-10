@@ -79,7 +79,7 @@ namespace EFCore.SQL.Repository
                 getBranch.GSTNo = branchMaster.GSTNo;
                 getBranch.PanCardNo = branchMaster.PanCardNo;
                 getBranch.AadharCardNo = branchMaster.AadharCardNo;
-                getBranch.LessWeightId = branchMaster.LessWeightId;
+                //getBranch.LessWeightId = branchMaster.LessWeightId;
                 getBranch.CVDWeight = branchMaster.CVDWeight;
                 getBranch.TipWeight = branchMaster.TipWeight;
                 getBranch.CreatedDate = branchMaster.CreatedDate;

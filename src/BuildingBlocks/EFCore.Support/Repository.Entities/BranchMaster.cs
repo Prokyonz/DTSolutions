@@ -7,7 +7,7 @@ namespace Repository.Entities
 {
     public class BranchMaster
     {
-        public int Sr { get; set; }
+        public int Sr { get; }
         [Key]
         public Guid Id { get; set; }        
         public Guid CompanyId { get; set; }
@@ -21,7 +21,6 @@ namespace Repository.Entities
         public string GSTNo { get; set; }
         public string PanCardNo { get; set; }
         public string AadharCardNo { get; set; }
-        public int LessWeightId { get; set; }
         public float CVDWeight{ get; set; }
         public float TipWeight { get; set; }
         public bool IsDelete { get; set; }
