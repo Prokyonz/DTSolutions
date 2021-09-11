@@ -17,15 +17,23 @@ namespace DiamondTrading
     public partial class FrmMasterDetails : DevExpress.XtraEditors.XtraForm
     {
         private CompanyMasterRepository _companyMasterRepository;
+        private BranchMasterRepository _branchMasterRepository;
         private LessWeightMasterRepository _lessWeightMasterRepository;
         private ShapeMasterRepository _shapeMasterRepository;
         private PurityMasterRepository _purityMasterRepository;
         private SizeMasterRepository _sizeMasterRepository;
+        private GalaMasterRepository _galaMasterRepository;
+        private NumberMasterRepository _numberMasterRepository;
+
         private List<CompanyMaster> _companyMaster;
+        private List<BranchMaster> _branchMaster;
         private List<LessWeightMaster> _lessWeightMaster;
         private List<ShapeMaster> _shapeMaster;
         private List<PurityMaster> _purityMaster;
         private List<SizeMaster> _sizeMaster;
+        private List<GalaMaster> _galaMaster;
+        private List<NumberMaster> _numberMaster;
+
         public FrmMasterDetails(string SelectedTabPage)
         {
             InitializeComponent();
@@ -38,9 +46,11 @@ namespace DiamondTrading
                     break;
                 case "BranchMaster":
                     xtabBranchMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabBranchMaster;
                     break;
                 case "LessWeightGroupMaster":
                     xtabLessWeightGroupMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabLessWeightGroupMaster;
                     break;
                 case "ShapeMaster":
                     xtabShapeMaster.PageVisible = true;
@@ -48,9 +58,19 @@ namespace DiamondTrading
                     break;
                 case "PurityMaster":
                     xtabPurityMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabPurityMaster;
                     break;
                 case "SizeMaster":
                     xtabSizeMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabSizeMaster;
+                    break;
+                case "GalaMaster":
+                    xtabGalaMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabGalaMaster;
+                    break;
+                case "NumberMaster":
+                    xtabNumberMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabNumberMaster;
                     break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
@@ -66,6 +86,8 @@ namespace DiamondTrading
             xtabShapeMaster.PageVisible = false;
             xtabPurityMaster.PageVisible = false;
             xtabSizeMaster.PageVisible = false;
+            xtabGalaMaster.PageVisible = false;
+            xtabNumberMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -85,8 +107,11 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                //frmLogin frmLogin = new frmLogin();
-                //frmLogin.ShowDialog();
+                Master.FrmBranchMaster frmBranchMaster = new Master.FrmBranchMaster(_branchMaster);
+                if (frmBranchMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
@@ -120,6 +145,22 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                Master.FrmGalaMaster frmGalaMaster = new Master.FrmGalaMaster(_galaMaster);
+                if (frmGalaMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                Master.FrmNumberMaster frmNumberMaster = new Master.FrmNumberMaster(_numberMaster);
+                if (frmNumberMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private async void FrmMasterDetails_Load(object sender, EventArgs e)
@@ -141,32 +182,66 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                //frmLogin frmLogin = new frmLogin();
-                //frmLogin.ShowDialog();
+                if (IsForceLoad || _branchMaster == null)
+                {
+                    _branchMasterRepository = new BranchMasterRepository();
+                    _branchMaster = await _branchMasterRepository.GetAllBranchAsync();
+                    grdBranchMaster.DataSource = _branchMaster;
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
-                _lessWeightMasterRepository = new LessWeightMasterRepository();
-                _lessWeightMaster = await _lessWeightMasterRepository.GetLessWeightMasters();
-                grdLessGroupWeightMaster.DataSource = _lessWeightMaster;
+                if (IsForceLoad || _lessWeightMaster == null)
+                {
+                    _lessWeightMasterRepository = new LessWeightMasterRepository();
+                    _lessWeightMaster = await _lessWeightMasterRepository.GetLessWeightMasters();
+                    grdLessGroupWeightMaster.DataSource = _lessWeightMaster;
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
             {
-                _shapeMasterRepository = new ShapeMasterRepository();
-                _shapeMaster = await _shapeMasterRepository.GetAllShapeAsync();
-                grdShapeMaster.DataSource = _shapeMaster;
+                if (IsForceLoad || _shapeMaster == null)
+                {
+                    _shapeMasterRepository = new ShapeMasterRepository();
+                    _shapeMaster = await _shapeMasterRepository.GetAllShapeAsync();
+                    grdShapeMaster.DataSource = _shapeMaster;
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
-                _purityMasterRepository = new PurityMasterRepository();
-                _purityMaster = await _purityMasterRepository.GetAllPurityAsync();
-                grdPurityMaster.DataSource = _purityMaster;
+                if (IsForceLoad || _purityMaster == null)
+                {
+                    _purityMasterRepository = new PurityMasterRepository();
+                    _purityMaster = await _purityMasterRepository.GetAllPurityAsync();
+                    grdPurityMaster.DataSource = _purityMaster;
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
             {
-                _sizeMasterRepository = new SizeMasterRepository();
-                _sizeMaster = await _sizeMasterRepository.GetAllSizeAsync();
-                grdSizeMaster.DataSource = _sizeMaster;
+                if (IsForceLoad || _sizeMaster == null)
+                {
+                    _sizeMasterRepository = new SizeMasterRepository();
+                    _sizeMaster = await _sizeMasterRepository.GetAllSizeAsync();
+                    grdSizeMaster.DataSource = _sizeMaster;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                if (IsForceLoad || _galaMaster == null)
+                {
+                    _galaMasterRepository = new GalaMasterRepository();
+                    _galaMaster = await _galaMasterRepository.GetAllGalaAsync();
+                    grdGalaMaster.DataSource = _galaMaster;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                if (IsForceLoad || _numberMaster == null)
+                {
+                    _numberMasterRepository = new NumberMasterRepository();
+                    _numberMaster = await _numberMasterRepository.GetAllNumberAsync();
+                    grdNumberMaster.DataSource = _numberMaster;
+                }
             }
         }
 
@@ -175,16 +250,20 @@ namespace DiamondTrading
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
                 Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
-                Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-                if (frmcompanymaster.ShowDialog() == DialogResult.OK)
+                Master.FrmCompanyMaster frmCompanyMaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
+                if (frmCompanyMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                //frmLogin frmLogin = new frmLogin();
-                //frmLogin.ShowDialog();
+                Guid SelectedGuid = Guid.Parse(grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString());
+                Master.FrmBranchMaster frmBranchMaster = new Master.FrmBranchMaster(_branchMaster, SelectedGuid);
+                if (frmBranchMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
@@ -222,6 +301,24 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString());
+                Master.FrmGalaMaster frmGalaMaster = new Master.FrmGalaMaster(_galaMaster, SelectedGuid);
+                if (frmGalaMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString());
+                Master.FrmNumberMaster frmNumberMaster = new Master.FrmNumberMaster(_numberMaster, SelectedGuid);
+                if (frmNumberMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private async void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
@@ -249,8 +346,14 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                //frmLogin frmLogin = new frmLogin();
-                //frmLogin.ShowDialog();
+                Guid SelectedGuid = Guid.Parse(grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
@@ -291,6 +394,28 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _galaMasterRepository.DeleteGalaAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);

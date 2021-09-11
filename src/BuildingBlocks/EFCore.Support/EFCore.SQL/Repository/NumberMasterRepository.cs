@@ -18,7 +18,7 @@ namespace EFCore.SQL.Repository
             _databaseContext = new DatabaseContext();
         }
 
-        public async Task<List<NumberMaster>> GetAllGalaAsync()
+        public async Task<List<NumberMaster>> GetAllNumberAsync()
         {
             return await _databaseContext.NumberMaster.Where(s => s.IsDelete == false).ToListAsync();
         }

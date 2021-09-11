@@ -59,7 +59,7 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<BranchMaster>> GetAllBranchAsync(int companyId)
+        public async Task<List<BranchMaster>> GetAllBranchAsync()
         {
             return await _databaseContext.BranchMaster.Where(s=>s.IsDelete == false).ToListAsync();
         }
@@ -79,7 +79,7 @@ namespace EFCore.SQL.Repository
                 getBranch.GSTNo = branchMaster.GSTNo;
                 getBranch.PanCardNo = branchMaster.PanCardNo;
                 getBranch.AadharCardNo = branchMaster.AadharCardNo;
-                //getBranch.LessWeightId = branchMaster.LessWeightId;
+                getBranch.LessWeightId = branchMaster.LessWeightId;
                 getBranch.CVDWeight = branchMaster.CVDWeight;
                 getBranch.TipWeight = branchMaster.TipWeight;
                 getBranch.CreatedDate = branchMaster.CreatedDate;

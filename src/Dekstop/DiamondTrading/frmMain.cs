@@ -93,7 +93,7 @@ namespace DiamondTrading
 
         private void accrdianElementBranchMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("BranchMaster");
+             OpenMasterDetailsForm("BranchMaster");
         }
 
         private void accrdianElementShapeMaster_Click(object sender, EventArgs e)
@@ -114,6 +114,31 @@ namespace DiamondTrading
         private void accrdianElementLessWeightGroupMaster_Click(object sender, EventArgs e)
         {
             OpenMasterDetailsForm("LessWeightGroupMaster");
+        }
+
+        private void accordionControlElementMaster_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("GalaMaster");
+        }
+
+        private void accrdianElementGalaMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("GalaMaster");
+        }
+
+        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("NumberMaster");
+        }
+
+        private void accrdianElementNumberMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("NumberMaster");
         }
     }
 }

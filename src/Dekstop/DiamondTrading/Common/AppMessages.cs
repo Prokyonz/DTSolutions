@@ -28,6 +28,14 @@ namespace DiamondTrading
         AddMoreCompaniesConfirmation,
         DeleteCompanyCofirmation,
         #endregion
+        #region "BranchMaster"
+        EmptyParentCompanySelection,
+        EmptyBranchName,
+        EmptyLessWeightGroupSelection,
+        BranchNameExist,
+        AddMoreBranchConfirmation,
+        DeleteBranchCofirmation,
+        #endregion
         #region "FrmLessWeightGroupMaster"
         EmptyLessWeightGroupName,
         EmptyMinWeight,
@@ -54,6 +62,18 @@ namespace DiamondTrading
         SizeNameExist,
         AddMoreSizeConfirmation,
         DeleteSizeConfirmation,
+        #endregion
+        #region "FrmGalaMaster"
+        EmptyGalaName,
+        GalaNameExist,
+        AddMoreGalaConfirmation,
+        DeleteGalaConfirmation,
+        #endregion
+        #region "FrmNumberMaster"
+        EmptyNumberName,
+        NumberNameExist,
+        AddMoreNumberConfirmation,
+        DeleteNumberConfirmation,
         #endregion
         AppMessageIDNotFound
     }
@@ -135,6 +155,26 @@ namespace DiamondTrading
                     ReturnMsg = "Are you sure you have to delete '{0}' company...?";
                     break;
                 #endregion
+                #region "Branch Master"
+                case AppMessageID.EmptyParentCompanySelection:
+                    ReturnMsg = "Parent company is compulsory for Branch create.";
+                    break;
+                case AppMessageID.EmptyBranchName:
+                    ReturnMsg = "Please write Branch Name.";
+                    break;
+                case AppMessageID.EmptyLessWeightGroupSelection:
+                    ReturnMsg = "Please select Less Weight Group for current Branch.";
+                    break;
+                case AppMessageID.BranchNameExist:
+                    ReturnMsg = "Branch Name already exist.";
+                    break;
+                case AppMessageID.AddMoreBranchConfirmation:
+                    ReturnMsg = "Do you want to add more branch...?";
+                    break;
+                case AppMessageID.DeleteBranchCofirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' branch...?";
+                    break;
+                #endregion
                 #region "FrmLessWeightGroupMaster"
                 case AppMessageID.EmptyLessWeightGroupName:
                     ReturnMsg = "Please write Less Weight Group Name.";
@@ -198,6 +238,34 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeleteSizeConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Size...?";
+                    break;
+                #endregion
+                #region "FrmGalaMaster"
+                case AppMessageID.EmptyGalaName:
+                    ReturnMsg = "Please write Gala Name.";
+                    break;
+                case AppMessageID.GalaNameExist:
+                    ReturnMsg = "Gala Name already exist.";
+                    break;
+                case AppMessageID.AddMoreGalaConfirmation:
+                    ReturnMsg = "Do you want to add more Galas...?";
+                    break;
+                case AppMessageID.DeleteGalaConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Gala...?";
+                    break;
+                #endregion
+                #region "FrmNumberMaster"
+                case AppMessageID.EmptyNumberName:
+                    ReturnMsg = "Please write Number Name.";
+                    break;
+                case AppMessageID.NumberNameExist:
+                    ReturnMsg = "Number Name already exist.";
+                    break;
+                case AppMessageID.AddMoreNumberConfirmation:
+                    ReturnMsg = "Do you want to add more Numbers...?";
+                    break;
+                case AppMessageID.DeleteNumberConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Number...?";
                     break;
                 #endregion
                 #region "Others"

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class GalaRepository : IGalaMaster
+    public class GalaMasterRepository : IGalaMaster
     {
         private readonly DatabaseContext _databaseContext;
 
-        public GalaRepository()
+        public GalaMasterRepository()
         {
             _databaseContext = new DatabaseContext();
         }
