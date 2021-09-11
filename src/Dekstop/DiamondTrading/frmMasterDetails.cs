@@ -138,7 +138,7 @@ namespace DiamondTrading
                     tlCompanyMaster.DataSource = _companyMaster;
                     tlCompanyMaster.ExpandAll();
 
-                    gridControl1.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
+                    //gridControl1.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -176,8 +176,8 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
-                //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
-                Guid SelectedGuid = Guid.Parse(gridView1.GetFocusedRowCellValue("Id").ToString());
+                Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                //Guid SelectedGuid = Guid.Parse(gridView1.GetFocusedRowCellValue("Id").ToString());
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
                 if (frmcompanymaster.ShowDialog() == DialogResult.OK)
                 {
