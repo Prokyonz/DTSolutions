@@ -30,6 +30,7 @@ namespace DiamondTrading
         private void InitializeComponent()
         {
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -175,15 +176,6 @@ namespace DiamondTrading
             this.colLessWeightGroupName.VisibleIndex = 0;
             this.colLessWeightGroupName.Width = 697;
             // 
-            // colLessWeightUpdatedDate
-            // 
-            this.colLessWeightUpdatedDate.Caption = "Updated Date";
-            this.colLessWeightUpdatedDate.FieldName = "UpdatedDate";
-            this.colLessWeightUpdatedDate.Name = "colLessWeightUpdatedDate";
-            this.colLessWeightUpdatedDate.Visible = true;
-            this.colLessWeightUpdatedDate.VisibleIndex = 1;
-            this.colLessWeightUpdatedDate.Width = 93;
-            // 
             // xtabBranchMaster
             // 
             this.xtabBranchMaster.Controls.Add(this.grdBranchMaster);
@@ -272,7 +264,7 @@ namespace DiamondTrading
             this.tlCompanyMaster.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
             this.tlCompanyMaster.OptionsSelection.UseIndicatorForSelection = true;
             this.tlCompanyMaster.ParentFieldName = "Type";
-            this.tlCompanyMaster.Size = new System.Drawing.Size(764, 411);
+            this.tlCompanyMaster.Size = new System.Drawing.Size(764, 125);
             this.tlCompanyMaster.TabIndex = 1;
             // 
             // Name
@@ -719,6 +711,7 @@ namespace DiamondTrading
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            //this.Name = "FrmMasterDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

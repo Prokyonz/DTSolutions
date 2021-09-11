@@ -178,6 +178,8 @@ namespace DiamondTrading
                     _companyMaster = await _companyMasterRepository.GetAllCompanyAsync();
                     tlCompanyMaster.DataSource = _companyMaster;
                     tlCompanyMaster.ExpandAll();
+
+                    //gridControl1.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -250,8 +252,8 @@ namespace DiamondTrading
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
                 Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
-                Master.FrmCompanyMaster frmCompanyMaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-                if (frmCompanyMaster.ShowDialog() == DialogResult.OK)
+                Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
+                if (frmcompanymaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -451,6 +453,36 @@ namespace DiamondTrading
         private void grvLessGroupWeightMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
         {
             e.RelationName = "grdLessGroupWeightMaster";// grvLessWeightGroupDetailMaster.Name;
+        }
+
+        private void gridView1_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
+            if(companyMaster !=null)
+            {
+                e.IsEmpty = _companyMaster.Where(w => w.Type == companyMaster.Id).Count() > 0 ? false : true;
+            }
+        }
+
+        private void gridView1_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
+            if (companyMaster != null)
+            {
+                e.ChildList = _companyMaster.Where(w => w.Type == companyMaster.Id).ToList();
+            }
+        }
+
+        private void gridView1_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
+        {
+            e.RelationCount = 1;
+        }
+
+        private void gridView1_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
+        {
+            e.RelationName = "Detail";
         }
     }
 }
