@@ -291,6 +291,7 @@ namespace DiamondTrading
             this.barButtonItem5.Caption = "Financial Year Master";
             this.barButtonItem5.Id = 5;
             this.barButtonItem5.Name = "barButtonItem5";
+            this.barButtonItem5.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem5_ItemClick);
             // 
             // barButtonItem14
             // 
@@ -646,6 +647,7 @@ namespace DiamondTrading
             this.accrdianElementFinancialYearMaster.Name = "accrdianElementFinancialYearMaster";
             this.accrdianElementFinancialYearMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accrdianElementFinancialYearMaster.Text = "Finacial Year Master";
+            this.accrdianElementFinancialYearMaster.Click += new System.EventHandler(this.accrdianElementFinancialYearMaster_Click);
             // 
             // accordionControlSeparator5
             // 

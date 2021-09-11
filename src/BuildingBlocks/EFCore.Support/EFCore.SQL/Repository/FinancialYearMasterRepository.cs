@@ -46,5 +46,20 @@ namespace EFCore.SQL.Repository
         {
             return await _databaseContext.FinancialYearMaster.Where(w => w.IsDelete == false).ToListAsync();
         }
+
+        public async Task<FinancialYearMaster> UpdateFinancialYearAsync(FinancialYearMaster financialYearMaster)
+        {
+            var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.Id == financialYearMaster.Id).FirstOrDefaultAsync();
+            if (getFinancialYear != null)
+            {
+                getFinancialYear.Description = financialYearMaster.Description;
+                getFinancialYear.StatDate = financialYearMaster.StatDate;
+                getFinancialYear.EndDate = financialYearMaster.EndDate;
+                getFinancialYear.UpdatedDate = financialYearMaster.UpdatedDate;
+                getFinancialYear.UpdatedBy = financialYearMaster.UpdatedBy;
+            }
+            await _databaseContext.SaveChangesAsync();
+            return financialYearMaster;
+        }
     }
 }

@@ -228,6 +228,12 @@
     <Compile Include="Master\FrmCurrencyMaster.designer.cs">
       <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\FrmFinancialYearMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmFinancialYearMaster.Designer.cs">
+      <DependentUpon>FrmFinancialYearMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\FrmGalaMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmCurrencyMaster.resx">
       <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmFinancialYearMaster.resx">
+      <DependentUpon>FrmFinancialYearMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmGalaMaster.resx">
       <DependentUpon>FrmGalaMaster.cs</DependentUpon>

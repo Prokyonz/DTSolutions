@@ -75,6 +75,12 @@ namespace DiamondTrading
         AddMoreNumberConfirmation,
         DeleteNumberConfirmation,
         #endregion
+        #region "FrmFinancialYearMaster"
+        EmptyFinancialYearName,
+        FinancialYearNameExist,
+        AddMoreFinancialYearConfirmation,
+        DeleteFinancialYearConfirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -266,6 +272,20 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeleteNumberConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Number...?";
+                    break;
+                #endregion
+                #region "FrmFinancialYearMaster"
+                case AppMessageID.EmptyFinancialYearName:
+                    ReturnMsg = "Please write Financial Year Name.";
+                    break;
+                case AppMessageID.FinancialYearNameExist:
+                    ReturnMsg = "Financial Year Name already exist.";
+                    break;
+                case AppMessageID.AddMoreFinancialYearConfirmation:
+                    ReturnMsg = "Do you want to add more Financial Years...?";
+                    break;
+                case AppMessageID.DeleteFinancialYearConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Financial Year...?";
                     break;
                 #endregion
                 #region "Others"

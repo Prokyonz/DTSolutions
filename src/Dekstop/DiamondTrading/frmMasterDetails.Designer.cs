@@ -30,7 +30,6 @@ namespace DiamondTrading
         private void InitializeComponent()
         {
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -73,24 +72,32 @@ namespace DiamondTrading
             this.colSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSizeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSizeUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabGalaMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdGalaMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvGalaMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colGalaId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGalaName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGalaUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabNumberMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdNumberMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvNumberMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colNumberId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumberName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumberUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabFinancialYearMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdFinancialYearMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvFinancialYearMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colFinancialYearId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFinancialYearName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFinancialYearStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFinancialYearEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colFinancialYearUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.xtabGalaMaster = new DevExpress.XtraTab.XtraTabPage();
-            this.xtabNumberMaster = new DevExpress.XtraTab.XtraTabPage();
-            this.grdGalaMaster = new DevExpress.XtraGrid.GridControl();
-            this.grvGalaMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colGalaId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGalaName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colGalaUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdNumberMaster = new DevExpress.XtraGrid.GridControl();
-            this.grvNumberMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colNumberId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNumberName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNumberUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -111,14 +118,17 @@ namespace DiamondTrading
             this.xtabSizeMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSizeMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSizeMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.xtabGalaMaster.SuspendLayout();
-            this.xtabNumberMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGalaMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvGalaMaster)).BeginInit();
+            this.xtabNumberMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdNumberMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvNumberMaster)).BeginInit();
+            this.xtabFinancialYearMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdFinancialYearMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvFinancialYearMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdLessWeightGroupDetailMaster
@@ -175,6 +185,10 @@ namespace DiamondTrading
             this.colLessWeightGroupName.Visible = true;
             this.colLessWeightGroupName.VisibleIndex = 0;
             this.colLessWeightGroupName.Width = 697;
+            // 
+            // colLessWeightUpdatedDate
+            // 
+            this.colLessWeightUpdatedDate.Name = "colLessWeightUpdatedDate";
             // 
             // xtabBranchMaster
             // 
@@ -264,7 +278,7 @@ namespace DiamondTrading
             this.tlCompanyMaster.OptionsScrollAnnotations.ShowSelectedRows = DevExpress.Utils.DefaultBoolean.True;
             this.tlCompanyMaster.OptionsSelection.UseIndicatorForSelection = true;
             this.tlCompanyMaster.ParentFieldName = "Type";
-            this.tlCompanyMaster.Size = new System.Drawing.Size(764, 125);
+            this.tlCompanyMaster.Size = new System.Drawing.Size(764, 411);
             this.tlCompanyMaster.TabIndex = 1;
             // 
             // Name
@@ -349,7 +363,8 @@ namespace DiamondTrading
             this.xtabPurityMaster,
             this.xtabSizeMaster,
             this.xtabGalaMaster,
-            this.xtabNumberMaster});
+            this.xtabNumberMaster,
+            this.xtabFinancialYearMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabLessWeightGroupMaster
@@ -528,6 +543,193 @@ namespace DiamondTrading
             this.colSizeUpdatedDate.VisibleIndex = 1;
             this.colSizeUpdatedDate.Width = 96;
             // 
+            // xtabGalaMaster
+            // 
+            this.xtabGalaMaster.Controls.Add(this.grdGalaMaster);
+            this.xtabGalaMaster.Name = "xtabGalaMaster";
+            this.xtabGalaMaster.PageVisible = false;
+            this.xtabGalaMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabGalaMaster.Text = "Gala Master";
+            // 
+            // grdGalaMaster
+            // 
+            this.grdGalaMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdGalaMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdGalaMaster.MainView = this.grvGalaMaster;
+            this.grdGalaMaster.Name = "grdGalaMaster";
+            this.grdGalaMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdGalaMaster.TabIndex = 3;
+            this.grdGalaMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvGalaMaster});
+            // 
+            // grvGalaMaster
+            // 
+            this.grvGalaMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvGalaMaster.Appearance.Row.Options.UseFont = true;
+            this.grvGalaMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colGalaId,
+            this.colGalaName,
+            this.colGalaUpdatedDate});
+            this.grvGalaMaster.GridControl = this.grdGalaMaster;
+            this.grvGalaMaster.Name = "grvGalaMaster";
+            this.grvGalaMaster.OptionsBehavior.Editable = false;
+            this.grvGalaMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colGalaId
+            // 
+            this.colGalaId.Caption = "Id";
+            this.colGalaId.FieldName = "Id";
+            this.colGalaId.Name = "colGalaId";
+            // 
+            // colGalaName
+            // 
+            this.colGalaName.Caption = "Gala Name";
+            this.colGalaName.FieldName = "Name";
+            this.colGalaName.Name = "colGalaName";
+            this.colGalaName.Visible = true;
+            this.colGalaName.VisibleIndex = 0;
+            this.colGalaName.Width = 694;
+            // 
+            // colGalaUpdatedDate
+            // 
+            this.colGalaUpdatedDate.Caption = "Updated Date";
+            this.colGalaUpdatedDate.FieldName = "UpdatedDate";
+            this.colGalaUpdatedDate.Name = "colGalaUpdatedDate";
+            this.colGalaUpdatedDate.Visible = true;
+            this.colGalaUpdatedDate.VisibleIndex = 1;
+            this.colGalaUpdatedDate.Width = 96;
+            // 
+            // xtabNumberMaster
+            // 
+            this.xtabNumberMaster.Controls.Add(this.grdNumberMaster);
+            this.xtabNumberMaster.Name = "xtabNumberMaster";
+            this.xtabNumberMaster.PageVisible = false;
+            this.xtabNumberMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabNumberMaster.Text = "Number Master";
+            // 
+            // grdNumberMaster
+            // 
+            this.grdNumberMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdNumberMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdNumberMaster.MainView = this.grvNumberMaster;
+            this.grdNumberMaster.Name = "grdNumberMaster";
+            this.grdNumberMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdNumberMaster.TabIndex = 3;
+            this.grdNumberMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvNumberMaster});
+            // 
+            // grvNumberMaster
+            // 
+            this.grvNumberMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvNumberMaster.Appearance.Row.Options.UseFont = true;
+            this.grvNumberMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colNumberId,
+            this.colNumberName,
+            this.colNumberUpdatedDate});
+            this.grvNumberMaster.GridControl = this.grdNumberMaster;
+            this.grvNumberMaster.Name = "grvNumberMaster";
+            this.grvNumberMaster.OptionsBehavior.Editable = false;
+            this.grvNumberMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colNumberId
+            // 
+            this.colNumberId.Caption = "Id";
+            this.colNumberId.FieldName = "Id";
+            this.colNumberId.Name = "colNumberId";
+            // 
+            // colNumberName
+            // 
+            this.colNumberName.Caption = "Number Name";
+            this.colNumberName.FieldName = "Name";
+            this.colNumberName.Name = "colNumberName";
+            this.colNumberName.Visible = true;
+            this.colNumberName.VisibleIndex = 0;
+            this.colNumberName.Width = 694;
+            // 
+            // colNumberUpdatedDate
+            // 
+            this.colNumberUpdatedDate.Caption = "Updated Date";
+            this.colNumberUpdatedDate.FieldName = "UpdatedDate";
+            this.colNumberUpdatedDate.Name = "colNumberUpdatedDate";
+            this.colNumberUpdatedDate.Visible = true;
+            this.colNumberUpdatedDate.VisibleIndex = 1;
+            this.colNumberUpdatedDate.Width = 96;
+            // 
+            // xtabFinancialYearMaster
+            // 
+            this.xtabFinancialYearMaster.Controls.Add(this.grdFinancialYearMaster);
+            this.xtabFinancialYearMaster.Name = "xtabFinancialYearMaster";
+            this.xtabFinancialYearMaster.PageVisible = false;
+            this.xtabFinancialYearMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabFinancialYearMaster.Text = "Financial Year";
+            // 
+            // grdFinancialYearMaster
+            // 
+            this.grdFinancialYearMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdFinancialYearMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdFinancialYearMaster.MainView = this.grvFinancialYearMaster;
+            this.grdFinancialYearMaster.Name = "grdFinancialYearMaster";
+            this.grdFinancialYearMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdFinancialYearMaster.TabIndex = 4;
+            this.grdFinancialYearMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvFinancialYearMaster});
+            // 
+            // grvFinancialYearMaster
+            // 
+            this.grvFinancialYearMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvFinancialYearMaster.Appearance.Row.Options.UseFont = true;
+            this.grvFinancialYearMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colFinancialYearId,
+            this.colFinancialYearName,
+            this.colFinancialYearStartDate,
+            this.colFinancialYearEndDate,
+            this.colFinancialYearUpdatedDate});
+            this.grvFinancialYearMaster.GridControl = this.grdFinancialYearMaster;
+            this.grvFinancialYearMaster.Name = "grvFinancialYearMaster";
+            this.grvFinancialYearMaster.OptionsBehavior.Editable = false;
+            this.grvFinancialYearMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colFinancialYearId
+            // 
+            this.colFinancialYearId.Caption = "Id";
+            this.colFinancialYearId.FieldName = "Id";
+            this.colFinancialYearId.Name = "colFinancialYearId";
+            // 
+            // colFinancialYearName
+            // 
+            this.colFinancialYearName.Caption = "Financial Year Name";
+            this.colFinancialYearName.FieldName = "Description";
+            this.colFinancialYearName.Name = "colFinancialYearName";
+            this.colFinancialYearName.Visible = true;
+            this.colFinancialYearName.VisibleIndex = 0;
+            this.colFinancialYearName.Width = 541;
+            // 
+            // colFinancialYearStartDate
+            // 
+            this.colFinancialYearStartDate.Caption = "Start Date";
+            this.colFinancialYearStartDate.FieldName = "StatDate";
+            this.colFinancialYearStartDate.Name = "colFinancialYearStartDate";
+            this.colFinancialYearStartDate.Visible = true;
+            this.colFinancialYearStartDate.VisibleIndex = 1;
+            // 
+            // colFinancialYearEndDate
+            // 
+            this.colFinancialYearEndDate.Caption = "End Date";
+            this.colFinancialYearEndDate.FieldName = "EndDate";
+            this.colFinancialYearEndDate.Name = "colFinancialYearEndDate";
+            this.colFinancialYearEndDate.Visible = true;
+            this.colFinancialYearEndDate.VisibleIndex = 2;
+            this.colFinancialYearEndDate.Width = 77;
+            // 
+            // colFinancialYearUpdatedDate
+            // 
+            this.colFinancialYearUpdatedDate.Caption = "Updated Date";
+            this.colFinancialYearUpdatedDate.FieldName = "UpdatedDate";
+            this.colFinancialYearUpdatedDate.Name = "colFinancialYearUpdatedDate";
+            this.colFinancialYearUpdatedDate.Visible = true;
+            this.colFinancialYearUpdatedDate.VisibleIndex = 3;
+            this.colFinancialYearUpdatedDate.Width = 97;
+            // 
             // accordionControl1
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -590,118 +792,6 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // xtabGalaMaster
-            // 
-            this.xtabGalaMaster.Controls.Add(this.grdGalaMaster);
-            this.xtabGalaMaster.Name = "xtabGalaMaster";
-            this.xtabGalaMaster.PageVisible = false;
-            this.xtabGalaMaster.Size = new System.Drawing.Size(764, 411);
-            this.xtabGalaMaster.Text = "Gala Master";
-            // 
-            // xtabNumberMaster
-            // 
-            this.xtabNumberMaster.Controls.Add(this.grdNumberMaster);
-            this.xtabNumberMaster.Name = "xtabNumberMaster";
-            this.xtabNumberMaster.PageVisible = false;
-            this.xtabNumberMaster.Size = new System.Drawing.Size(764, 411);
-            this.xtabNumberMaster.Text = "Number Master";
-            // 
-            // grdGalaMaster
-            // 
-            this.grdGalaMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdGalaMaster.Location = new System.Drawing.Point(0, 0);
-            this.grdGalaMaster.MainView = this.grvGalaMaster;
-            this.grdGalaMaster.Name = "grdGalaMaster";
-            this.grdGalaMaster.Size = new System.Drawing.Size(764, 411);
-            this.grdGalaMaster.TabIndex = 3;
-            this.grdGalaMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvGalaMaster});
-            // 
-            // grvGalaMaster
-            // 
-            this.grvGalaMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.grvGalaMaster.Appearance.Row.Options.UseFont = true;
-            this.grvGalaMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colGalaId,
-            this.colGalaName,
-            this.colGalaUpdatedDate});
-            this.grvGalaMaster.GridControl = this.grdGalaMaster;
-            this.grvGalaMaster.Name = "grvGalaMaster";
-            this.grvGalaMaster.OptionsBehavior.Editable = false;
-            this.grvGalaMaster.OptionsView.ShowGroupPanel = false;
-            // 
-            // colGalaId
-            // 
-            this.colGalaId.Caption = "Id";
-            this.colGalaId.FieldName = "Id";
-            this.colGalaId.Name = "colGalaId";
-            // 
-            // colGalaName
-            // 
-            this.colGalaName.Caption = "Gala Name";
-            this.colGalaName.FieldName = "Name";
-            this.colGalaName.Name = "colGalaName";
-            this.colGalaName.Visible = true;
-            this.colGalaName.VisibleIndex = 0;
-            this.colGalaName.Width = 694;
-            // 
-            // colGalaUpdatedDate
-            // 
-            this.colGalaUpdatedDate.Caption = "Updated Date";
-            this.colGalaUpdatedDate.FieldName = "UpdatedDate";
-            this.colGalaUpdatedDate.Name = "colGalaUpdatedDate";
-            this.colGalaUpdatedDate.Visible = true;
-            this.colGalaUpdatedDate.VisibleIndex = 1;
-            this.colGalaUpdatedDate.Width = 96;
-            // 
-            // grdNumberMaster
-            // 
-            this.grdNumberMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdNumberMaster.Location = new System.Drawing.Point(0, 0);
-            this.grdNumberMaster.MainView = this.grvNumberMaster;
-            this.grdNumberMaster.Name = "grdNumberMaster";
-            this.grdNumberMaster.Size = new System.Drawing.Size(764, 411);
-            this.grdNumberMaster.TabIndex = 3;
-            this.grdNumberMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvNumberMaster});
-            // 
-            // grvNumberMaster
-            // 
-            this.grvNumberMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.grvNumberMaster.Appearance.Row.Options.UseFont = true;
-            this.grvNumberMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colNumberId,
-            this.colNumberName,
-            this.colNumberUpdatedDate});
-            this.grvNumberMaster.GridControl = this.grdNumberMaster;
-            this.grvNumberMaster.Name = "grvNumberMaster";
-            this.grvNumberMaster.OptionsBehavior.Editable = false;
-            this.grvNumberMaster.OptionsView.ShowGroupPanel = false;
-            // 
-            // colNumberId
-            // 
-            this.colNumberId.Caption = "Id";
-            this.colNumberId.FieldName = "Id";
-            this.colNumberId.Name = "colNumberId";
-            // 
-            // colNumberName
-            // 
-            this.colNumberName.Caption = "Number Name";
-            this.colNumberName.FieldName = "Name";
-            this.colNumberName.Name = "colNumberName";
-            this.colNumberName.Visible = true;
-            this.colNumberName.VisibleIndex = 0;
-            this.colNumberName.Width = 694;
-            // 
-            // colNumberUpdatedDate
-            // 
-            this.colNumberUpdatedDate.Caption = "Updated Date";
-            this.colNumberUpdatedDate.FieldName = "UpdatedDate";
-            this.colNumberUpdatedDate.Name = "colNumberUpdatedDate";
-            this.colNumberUpdatedDate.Visible = true;
-            this.colNumberUpdatedDate.VisibleIndex = 1;
-            this.colNumberUpdatedDate.Width = 96;
-            // 
             // FrmMasterDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,7 +801,6 @@ namespace DiamondTrading
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            //this.Name = "FrmMasterDetails";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Master Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -736,14 +825,17 @@ namespace DiamondTrading
             this.xtabSizeMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdSizeMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSizeMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.xtabGalaMaster.ResumeLayout(false);
-            this.xtabNumberMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdGalaMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvGalaMaster)).EndInit();
+            this.xtabNumberMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdNumberMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvNumberMaster)).EndInit();
+            this.xtabFinancialYearMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdFinancialYearMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvFinancialYearMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -810,5 +902,13 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colNumberId;
         private DevExpress.XtraGrid.Columns.GridColumn colNumberName;
         private DevExpress.XtraGrid.Columns.GridColumn colNumberUpdatedDate;
+        private DevExpress.XtraTab.XtraTabPage xtabFinancialYearMaster;
+        private DevExpress.XtraGrid.GridControl grdFinancialYearMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvFinancialYearMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearId;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearName;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearStartDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearEndDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearUpdatedDate;
     }
 }

@@ -24,6 +24,7 @@ namespace DiamondTrading
         private SizeMasterRepository _sizeMasterRepository;
         private GalaMasterRepository _galaMasterRepository;
         private NumberMasterRepository _numberMasterRepository;
+        private FinancialYearMasterRepository _financialYearMasterRepository;
 
         private List<CompanyMaster> _companyMaster;
         private List<BranchMaster> _branchMaster;
@@ -33,6 +34,7 @@ namespace DiamondTrading
         private List<SizeMaster> _sizeMaster;
         private List<GalaMaster> _galaMaster;
         private List<NumberMaster> _numberMaster;
+        private List<FinancialYearMaster> _financialYearMaster;
 
         public FrmMasterDetails(string SelectedTabPage)
         {
@@ -72,6 +74,10 @@ namespace DiamondTrading
                     xtabNumberMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabNumberMaster;
                     break;
+                case "FinancialYearMaster":
+                    xtabFinancialYearMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabFinancialYearMaster;
+                    break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
                     break;
@@ -88,6 +94,7 @@ namespace DiamondTrading
             xtabSizeMaster.PageVisible = false;
             xtabGalaMaster.PageVisible = false;
             xtabNumberMaster.PageVisible = false;
+            xtabFinancialYearMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -157,6 +164,14 @@ namespace DiamondTrading
             {
                 Master.FrmNumberMaster frmNumberMaster = new Master.FrmNumberMaster(_numberMaster);
                 if (frmNumberMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                Master.FrmFinancialYearMaster financialYearMaster= new Master.FrmFinancialYearMaster(_financialYearMaster);
+                if (financialYearMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -245,6 +260,15 @@ namespace DiamondTrading
                     grdNumberMaster.DataSource = _numberMaster;
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                if (IsForceLoad || _financialYearMaster == null)
+                {
+                    _financialYearMasterRepository = new FinancialYearMasterRepository();
+                    _financialYearMaster = await _financialYearMasterRepository.GetAllFinancialYear();
+                    grdFinancialYearMaster.DataSource = _financialYearMaster;
+                }
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
@@ -317,6 +341,15 @@ namespace DiamondTrading
                 Guid SelectedGuid = Guid.Parse(grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString());
                 Master.FrmNumberMaster frmNumberMaster = new Master.FrmNumberMaster(_numberMaster, SelectedGuid);
                 if (frmNumberMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString());
+                Master.FrmFinancialYearMaster financialYearMaster = new Master.FrmFinancialYearMaster(_financialYearMaster, SelectedGuid);
+                if (financialYearMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -418,6 +451,17 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _financialYearMasterRepository.DeleteFinancialYearAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);
