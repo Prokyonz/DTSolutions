@@ -26,9 +26,46 @@ namespace DiamondTrading
         private List<ShapeMaster> _shapeMaster;
         private List<PurityMaster> _purityMaster;
         private List<SizeMaster> _sizeMaster;
-        public FrmMasterDetails()
+        public FrmMasterDetails(string SelectedTabPage)
         {
             InitializeComponent();
+            HideAllTabs();
+            switch(SelectedTabPage)
+            {
+                case "CompanyMaster":
+                    xtabCompanyMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabCompanyMaster;
+                    break;
+                case "BranchMaster":
+                    xtabBranchMaster.PageVisible = true;
+                    break;
+                case "LessWeightGroupMaster":
+                    xtabLessWeightGroupMaster.PageVisible = true;
+                    break;
+                case "ShapeMaster":
+                    xtabShapeMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabShapeMaster;
+                    break;
+                case "PurityMaster":
+                    xtabPurityMaster.PageVisible = true;
+                    break;
+                case "SizeMaster":
+                    xtabSizeMaster.PageVisible = true;
+                    break;
+                default:
+                    xtabCompanyMaster.PageVisible = true;
+                    break;
+            }
+        }
+
+        private void HideAllTabs()
+        {
+            xtabCompanyMaster.PageVisible = false;
+            xtabBranchMaster.PageVisible = false;
+            xtabLessWeightGroupMaster.PageVisible = false;
+            xtabShapeMaster.PageVisible = false;
+            xtabPurityMaster.PageVisible = false;
+            xtabSizeMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -266,22 +303,32 @@ namespace DiamondTrading
 
         private void grvLessGroupWeightMaster_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e)
         {
-            //GridView view = sender as GridView;
-            //LessWeightMaster lessWeightMaster = view.GetRow(e.RowHandle) as LessWeightMaster;
-            //if(lessWeightMaster!=null)
-            //{
-            //    e.IsEmpty = _lessWeightMaster[e.RowHandle].LessWeightDetails.Any(x => x.LessWeightId == lessWeightMaster.Id);
-            //}
+            GridView grdiView = sender as GridView;
+            LessWeightMaster lessWeightMaster = grdiView.GetRow(e.RowHandle) as LessWeightMaster;
+            if (lessWeightMaster != null)
+            {
+                e.IsEmpty = _lessWeightMaster.Where(w => w.Id == lessWeightMaster.Id).Count() > 0 ? false : true;
+            }
         }
 
         private void grvLessGroupWeightMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
         {
-            //GridView view = sender as GridView;
-            //LessWeightMaster lessWeightMaster = view.GetRow(e.RowHandle) as LessWeightMaster;
-            //if (lessWeightMaster != null)
-            //{
-            //    e.ChildList=
-            //}
+            GridView grdiView = sender as GridView;
+            LessWeightMaster lessWeightMaster = grdiView.GetRow(e.RowHandle) as LessWeightMaster;
+            if (lessWeightMaster != null)
+            {
+                e.ChildList = _lessWeightMaster.Where(w => w.Id == lessWeightMaster.Id).FirstOrDefault().LessWeightDetails;
+            }
+        }
+
+        private void grvLessGroupWeightMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
+        {
+            e.RelationCount = 1;
+        }
+
+        private void grvLessGroupWeightMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
+        {
+            e.RelationName = "grdLessGroupWeightMaster";// grvLessWeightGroupDetailMaster.Name;
         }
 
         private void gridView1_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)

@@ -222,6 +222,12 @@
     <Compile Include="Master\FrmCompanyMaster.Designer.cs">
       <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\FrmCurrencyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmCurrencyMaster.designer.cs">
+      <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\FrmKapanMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,6 +280,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmCompanyMaster.resx">
       <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmCurrencyMaster.resx">
+      <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmKapanMaster.resx">
       <DependentUpon>FrmKapanMaster.cs</DependentUpon>
@@ -342,6 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\refresh_24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DefaultSelection.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

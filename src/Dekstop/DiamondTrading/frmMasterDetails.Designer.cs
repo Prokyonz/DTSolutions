@@ -65,6 +65,7 @@ namespace DiamondTrading
             this.colCompanyRegistrationNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colCompanyGSTNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colCompanyPancardNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.colCompanyLastUpdatedDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
             this.xtabLessWeightGroupMaster = new DevExpress.XtraTab.XtraTabPage();
             this.xtabShapeMaster = new DevExpress.XtraTab.XtraTabPage();
@@ -88,6 +89,10 @@ namespace DiamondTrading
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.colLessWeightUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colShapeUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurityUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSizeUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -136,11 +141,12 @@ namespace DiamondTrading
             // 
             // grvLessGroupWeightMaster
             // 
-            this.grvLessGroupWeightMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvLessGroupWeightMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.grvLessGroupWeightMaster.Appearance.Row.Options.UseFont = true;
             this.grvLessGroupWeightMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colLessWeightGroupID,
-            this.colLessWeightGroupName});
+            this.colLessWeightGroupName,
+            this.colLessWeightUpdatedDate});
             this.grvLessGroupWeightMaster.GridControl = this.grdLessGroupWeightMaster;
             this.grvLessGroupWeightMaster.Name = "grvLessGroupWeightMaster";
             this.grvLessGroupWeightMaster.OptionsBehavior.Editable = false;
@@ -148,6 +154,8 @@ namespace DiamondTrading
             this.grvLessGroupWeightMaster.OptionsView.ShowGroupPanel = false;
             this.grvLessGroupWeightMaster.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.grvLessGroupWeightMaster_MasterRowEmpty);
             this.grvLessGroupWeightMaster.MasterRowGetChildList += new DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventHandler(this.grvLessGroupWeightMaster_MasterRowGetChildList);
+            this.grvLessGroupWeightMaster.MasterRowGetRelationName += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventHandler(this.grvLessGroupWeightMaster_MasterRowGetRelationName);
+            this.grvLessGroupWeightMaster.MasterRowGetRelationCount += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventHandler(this.grvLessGroupWeightMaster_MasterRowGetRelationCount);
             // 
             // colLessWeightGroupID
             // 
@@ -162,7 +170,7 @@ namespace DiamondTrading
             this.colLessWeightGroupName.Name = "colLessWeightGroupName";
             this.colLessWeightGroupName.Visible = true;
             this.colLessWeightGroupName.VisibleIndex = 0;
-            this.colLessWeightGroupName.Width = 388;
+            this.colLessWeightGroupName.Width = 697;
             // 
             // gridView2
             // 
@@ -344,6 +352,7 @@ namespace DiamondTrading
             // xtabBranchMaster
             // 
             this.xtabBranchMaster.Name = "xtabBranchMaster";
+            this.xtabBranchMaster.PageVisible = false;
             this.xtabBranchMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabBranchMaster.Text = "Branch Master";
             // 
@@ -352,6 +361,7 @@ namespace DiamondTrading
             this.xtabCompanyMaster.Controls.Add(this.gridControl1);
             this.xtabCompanyMaster.Controls.Add(this.tlCompanyMaster);
             this.xtabCompanyMaster.Name = "xtabCompanyMaster";
+            this.xtabCompanyMaster.PageVisible = false;
             this.xtabCompanyMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabCompanyMaster.Text = "Company Master";
             // 
@@ -366,8 +376,9 @@ namespace DiamondTrading
             this.colCompanyMobileNo,
             this.colCompanyRegistrationNo,
             this.colCompanyGSTNo,
-            this.colCompanyPancardNo});
-            this.tlCompanyMaster.Dock = System.Windows.Forms.DockStyle.Top;
+            this.colCompanyPancardNo,
+            this.colCompanyLastUpdatedDate});
+            this.tlCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlCompanyMaster.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tlCompanyMaster.KeyFieldName = "Id";
             this.tlCompanyMaster.Location = new System.Drawing.Point(0, 0);
@@ -388,7 +399,7 @@ namespace DiamondTrading
             this.Name.Name = "Name";
             this.Name.Visible = true;
             this.Name.VisibleIndex = 0;
-            this.Name.Width = 302;
+            this.Name.Width = 305;
             // 
             // Id
             // 
@@ -409,7 +420,7 @@ namespace DiamondTrading
             this.colCompanyMobileNo.Name = "colCompanyMobileNo";
             this.colCompanyMobileNo.Visible = true;
             this.colCompanyMobileNo.VisibleIndex = 1;
-            this.colCompanyMobileNo.Width = 106;
+            this.colCompanyMobileNo.Width = 89;
             // 
             // colCompanyRegistrationNo
             // 
@@ -418,7 +429,7 @@ namespace DiamondTrading
             this.colCompanyRegistrationNo.Name = "colCompanyRegistrationNo";
             this.colCompanyRegistrationNo.Visible = true;
             this.colCompanyRegistrationNo.VisibleIndex = 2;
-            this.colCompanyRegistrationNo.Width = 92;
+            this.colCompanyRegistrationNo.Width = 76;
             // 
             // colCompanyGSTNo
             // 
@@ -427,7 +438,7 @@ namespace DiamondTrading
             this.colCompanyGSTNo.Name = "colCompanyGSTNo";
             this.colCompanyGSTNo.Visible = true;
             this.colCompanyGSTNo.VisibleIndex = 3;
-            this.colCompanyGSTNo.Width = 99;
+            this.colCompanyGSTNo.Width = 73;
             // 
             // colCompanyPancardNo
             // 
@@ -436,7 +447,16 @@ namespace DiamondTrading
             this.colCompanyPancardNo.Name = "colCompanyPancardNo";
             this.colCompanyPancardNo.Visible = true;
             this.colCompanyPancardNo.VisibleIndex = 4;
-            this.colCompanyPancardNo.Width = 84;
+            this.colCompanyPancardNo.Width = 57;
+            // 
+            // colCompanyLastUpdatedDate
+            // 
+            this.colCompanyLastUpdatedDate.Caption = "Updated Date";
+            this.colCompanyLastUpdatedDate.FieldName = "UpdatedDate";
+            this.colCompanyLastUpdatedDate.Name = "colCompanyLastUpdatedDate";
+            this.colCompanyLastUpdatedDate.Visible = true;
+            this.colCompanyLastUpdatedDate.VisibleIndex = 5;
+            this.colCompanyLastUpdatedDate.Width = 83;
             // 
             // xtabMasterDetails
             // 
@@ -459,6 +479,7 @@ namespace DiamondTrading
             // 
             this.xtabLessWeightGroupMaster.Controls.Add(this.grdLessGroupWeightMaster);
             this.xtabLessWeightGroupMaster.Name = "xtabLessWeightGroupMaster";
+            this.xtabLessWeightGroupMaster.PageVisible = false;
             this.xtabLessWeightGroupMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabLessWeightGroupMaster.Text = "Less Weight Group Master";
             // 
@@ -466,6 +487,7 @@ namespace DiamondTrading
             // 
             this.xtabShapeMaster.Controls.Add(this.grdShapeMaster);
             this.xtabShapeMaster.Name = "xtabShapeMaster";
+            this.xtabShapeMaster.PageVisible = false;
             this.xtabShapeMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabShapeMaster.Text = "Shape Master";
             // 
@@ -482,11 +504,12 @@ namespace DiamondTrading
             // 
             // grvShapeMaster
             // 
-            this.grvShapeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvShapeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.grvShapeMaster.Appearance.Row.Options.UseFont = true;
             this.grvShapeMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colShapeId,
-            this.colShapeName});
+            this.colShapeName,
+            this.colShapeUpdatedDate});
             this.grvShapeMaster.GridControl = this.grdShapeMaster;
             this.grvShapeMaster.Name = "grvShapeMaster";
             this.grvShapeMaster.OptionsBehavior.Editable = false;
@@ -505,11 +528,13 @@ namespace DiamondTrading
             this.colShapeName.Name = "colShapeName";
             this.colShapeName.Visible = true;
             this.colShapeName.VisibleIndex = 0;
+            this.colShapeName.Width = 695;
             // 
             // xtabPurityMaster
             // 
             this.xtabPurityMaster.Controls.Add(this.grdPurityMaster);
             this.xtabPurityMaster.Name = "xtabPurityMaster";
+            this.xtabPurityMaster.PageVisible = false;
             this.xtabPurityMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabPurityMaster.Text = "Purity Master";
             // 
@@ -526,11 +551,12 @@ namespace DiamondTrading
             // 
             // grvPurityMaster
             // 
-            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.grvPurityMaster.Appearance.Row.Options.UseFont = true;
             this.grvPurityMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPurityId,
-            this.colPurityName});
+            this.colPurityName,
+            this.colPurityUpdatedDate});
             this.grvPurityMaster.GridControl = this.grdPurityMaster;
             this.grvPurityMaster.Name = "grvPurityMaster";
             this.grvPurityMaster.OptionsBehavior.Editable = false;
@@ -549,11 +575,13 @@ namespace DiamondTrading
             this.colPurityName.Name = "colPurityName";
             this.colPurityName.Visible = true;
             this.colPurityName.VisibleIndex = 0;
+            this.colPurityName.Width = 693;
             // 
             // xtabSizeMaster
             // 
             this.xtabSizeMaster.Controls.Add(this.grdSizeMaster);
             this.xtabSizeMaster.Name = "xtabSizeMaster";
+            this.xtabSizeMaster.PageVisible = false;
             this.xtabSizeMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabSizeMaster.Text = "Size Master";
             // 
@@ -570,11 +598,12 @@ namespace DiamondTrading
             // 
             // grvSizeMaster
             // 
-            this.grvSizeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvSizeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.grvSizeMaster.Appearance.Row.Options.UseFont = true;
             this.grvSizeMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSizeId,
-            this.colSizeName});
+            this.colSizeName,
+            this.colSizeUpdatedDate});
             this.grvSizeMaster.GridControl = this.grdSizeMaster;
             this.grvSizeMaster.Name = "grvSizeMaster";
             this.grvSizeMaster.OptionsBehavior.Editable = false;
@@ -593,6 +622,7 @@ namespace DiamondTrading
             this.colSizeName.Name = "colSizeName";
             this.colSizeName.Visible = true;
             this.colSizeName.VisibleIndex = 0;
+            this.colSizeName.Width = 694;
             // 
             // accordionControl1
             // 
@@ -655,6 +685,42 @@ namespace DiamondTrading
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // colLessWeightUpdatedDate
+            // 
+            this.colLessWeightUpdatedDate.Caption = "Updated Date";
+            this.colLessWeightUpdatedDate.FieldName = "UpdatedDate";
+            this.colLessWeightUpdatedDate.Name = "colLessWeightUpdatedDate";
+            this.colLessWeightUpdatedDate.Visible = true;
+            this.colLessWeightUpdatedDate.VisibleIndex = 1;
+            this.colLessWeightUpdatedDate.Width = 93;
+            // 
+            // colShapeUpdatedDate
+            // 
+            this.colShapeUpdatedDate.Caption = "Updated Date";
+            this.colShapeUpdatedDate.FieldName = "UpdatedDate";
+            this.colShapeUpdatedDate.Name = "colShapeUpdatedDate";
+            this.colShapeUpdatedDate.Visible = true;
+            this.colShapeUpdatedDate.VisibleIndex = 1;
+            this.colShapeUpdatedDate.Width = 95;
+            // 
+            // colPurityUpdatedDate
+            // 
+            this.colPurityUpdatedDate.Caption = "Updated Date";
+            this.colPurityUpdatedDate.FieldName = "UpdatedDate";
+            this.colPurityUpdatedDate.Name = "colPurityUpdatedDate";
+            this.colPurityUpdatedDate.Visible = true;
+            this.colPurityUpdatedDate.VisibleIndex = 1;
+            this.colPurityUpdatedDate.Width = 97;
+            // 
+            // colSizeUpdatedDate
+            // 
+            this.colSizeUpdatedDate.Caption = "Updated Date";
+            this.colSizeUpdatedDate.FieldName = "UpdatedDate";
+            this.colSizeUpdatedDate.Name = "colSizeUpdatedDate";
+            this.colSizeUpdatedDate.Visible = true;
+            this.colSizeUpdatedDate.VisibleIndex = 1;
+            this.colSizeUpdatedDate.Width = 96;
             // 
             // FrmMasterDetails
             // 
@@ -736,24 +802,10 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView grvSizeMaster;
         private DevExpress.XtraGrid.Columns.GridColumn colSizeId;
         private DevExpress.XtraGrid.Columns.GridColumn colSizeName;
-        private DevExpress.XtraGrid.GridControl gridControl1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn14;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
+        private DevExpress.XtraTreeList.Columns.TreeListColumn colCompanyLastUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colLessWeightUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colShapeUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurityUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colSizeUpdatedDate;
     }
 }

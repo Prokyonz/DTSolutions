@@ -149,7 +149,8 @@ namespace DiamondTrading.Master
         {
             txtLessWeightGroupName.Text = "";
             grdLessGroupWeightDetails.DataSource = null;
-            LoadDefaultGridColumns();
+            grdLessGroupWeightDetails.DataSource = dtDefaultGridColumns();
+            btnSave.Text = AppMessages.GetString(AppMessageID.Save);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -165,7 +166,7 @@ namespace DiamondTrading.Master
 
         private void FrmLessWeightGroupMaster_Load(object sender, EventArgs e)
         {
-            LoadDefaultGridColumns();
+            grdLessGroupWeightDetails.DataSource = dtDefaultGridColumns();
 
             if (_selectedLessGroup != Guid.Empty)
             {
@@ -174,18 +175,22 @@ namespace DiamondTrading.Master
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     txtLessWeightGroupName.Text = _EditedLessWeightMasterSet.Name;
-                    grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails;
+
+                    //DataTable dtTemp = dtDefaultGridColumns();
+                    //for(int i=0;i<)
+
+                    grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails.ToList();
                 }
             }
         }
 
-        private void LoadDefaultGridColumns()
+        private DataTable dtDefaultGridColumns()
         {
             DataTable dtTemp = new DataTable();
             dtTemp.Columns.Add("MinWeight");
             dtTemp.Columns.Add("MaxWeight");
             dtTemp.Columns.Add("LessWeight");
-            grdLessGroupWeightDetails.DataSource = dtTemp;
+            return dtTemp;
         }
 
         private void grvLessGroupWeightDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)

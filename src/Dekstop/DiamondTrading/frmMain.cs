@@ -38,22 +38,22 @@ namespace DiamondTrading
             }
             else
             {
-                FrmMasterDetails frmmasterdetails = new FrmMasterDetails();
+                FrmMasterDetails frmmasterdetails = new FrmMasterDetails(PageRequested);
                 frmmasterdetails.MdiParent = this;
                 frmmasterdetails.Show();
                 frmmasterdetails.BringToFront();
             }
+            accordionControlElementMaster.Expanded = true;
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            barLblUserName.Caption = Common.LoginUserName;
             FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
             if(frmCompanyYearSelection.ShowDialog()==DialogResult.OK)
             {
 
             }
-
-            barLoginUserName.Caption = Common.LoginUserName;
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -64,6 +64,56 @@ namespace DiamondTrading
         private void barBtnShape_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             OpenMasterDetailsForm("ShapeMaster");
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("BranchMaster");
+        }
+
+        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("PurityMaster");
+        }
+
+        private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("SizeMaster");
+        }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("LessWeightGroupMaster");
+        }
+
+        private void accrdianElementCompanyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("CompanyMaster");
+        }
+
+        private void accrdianElementBranchMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("BranchMaster");
+        }
+
+        private void accrdianElementShapeMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("ShapeMaster");
+        }
+
+        private void accrdianElementSizeMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("SizeMaster");
+        }
+
+        private void accrdianElementPurityMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("PurityMaster");
+        }
+
+        private void accrdianElementLessWeightGroupMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("LessWeightGroupMaster");
         }
     }
 }
