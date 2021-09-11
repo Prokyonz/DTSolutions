@@ -65,28 +65,28 @@ namespace DiamondTrading
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barLblUserName = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
-            this.barLoginUserName = new DevExpress.XtraBars.BarStaticItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement2 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement3 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement4 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement5 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement6 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement7 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement8 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement9 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement10 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement11 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement12 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement13 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement14 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlElementMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementCompanyMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementBranchMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementUserMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementPartyMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementFinancialYearMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementRoleMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementShapeMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementSizeMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementPurityMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementGalaMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementNumberMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementBrokerageMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementLessWeightGroupMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement15 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement16 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement17 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -104,6 +104,13 @@ namespace DiamondTrading
             this.accordionControlElement29 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.accordionControlSeparator1 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.accordionControlSeparator4 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.accordionControlSeparator2 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.accrdianElementKapanMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accrdianElementCurrencyMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlSeparator3 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.accordionControlSeparator5 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -153,13 +160,17 @@ namespace DiamondTrading
             this.barButtonItem26,
             this.barButtonItem27,
             this.barButtonItem28,
-            this.barLoginUserName});
+            this.barLblUserName});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 34;
+            this.barManager1.MaxItemId = 35;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
             // 
+            this.bar2.BarAppearance.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Normal.Options.UseFont = true;
+            this.bar2.BarAppearance.Pressed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Pressed.Options.UseFont = true;
             this.bar2.BarName = "Main menu";
             this.bar2.DockCol = 0;
             this.bar2.DockRow = 0;
@@ -185,19 +196,19 @@ namespace DiamondTrading
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnShape, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem9),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem10),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnShape),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem13),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem13, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // barButtonItem1
@@ -212,6 +223,7 @@ namespace DiamondTrading
             this.barButtonItem2.Caption = "Branch Master";
             this.barButtonItem2.Id = 2;
             this.barButtonItem2.Name = "barButtonItem2";
+            this.barButtonItem2.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem2_ItemClick);
             // 
             // barButtonItem3
             // 
@@ -260,6 +272,7 @@ namespace DiamondTrading
             this.barButtonItem10.Caption = "Purity Master";
             this.barButtonItem10.Id = 10;
             this.barButtonItem10.Name = "barButtonItem10";
+            this.barButtonItem10.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
             // 
             // barBtnShape
             // 
@@ -273,6 +286,7 @@ namespace DiamondTrading
             this.barButtonItem12.Caption = "Size Master";
             this.barButtonItem12.Id = 12;
             this.barButtonItem12.Name = "barButtonItem12";
+            this.barButtonItem12.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem12_ItemClick);
             // 
             // barButtonItem13
             // 
@@ -291,6 +305,7 @@ namespace DiamondTrading
             this.barButtonItem15.Caption = "Less Weight Group Master";
             this.barButtonItem15.Id = 15;
             this.barButtonItem15.Name = "barButtonItem15";
+            this.barButtonItem15.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem15_ItemClick);
             // 
             // barSubItem2
             // 
@@ -404,15 +419,27 @@ namespace DiamondTrading
             // 
             // bar3
             // 
+            this.bar3.BarAppearance.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar3.BarAppearance.Normal.Options.UseFont = true;
             this.bar3.BarName = "Status bar";
             this.bar3.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom;
             this.bar3.DockCol = 0;
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
+            this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLblUserName)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
+            // 
+            // barLblUserName
+            // 
+            this.barLblUserName.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
+            this.barLblUserName.Caption = "Demo User";
+            this.barLblUserName.Id = 34;
+            this.barLblUserName.Name = "barLblUserName";
+            this.barLblUserName.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // barDockControlTop
             // 
@@ -420,43 +447,37 @@ namespace DiamondTrading
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(988, 25);
+            this.barDockControlTop.Size = new System.Drawing.Size(988, 26);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 537);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 532);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(988, 19);
+            this.barDockControlBottom.Size = new System.Drawing.Size(988, 24);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 25);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 512);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 506);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(988, 25);
+            this.barDockControlRight.Location = new System.Drawing.Point(988, 26);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 512);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 506);
             // 
             // barButtonItem16
             // 
             this.barButtonItem16.Caption = "barButtonItem16";
             this.barButtonItem16.Id = 16;
             this.barButtonItem16.Name = "barButtonItem16";
-            // 
-            // barLoginUserName
-            // 
-            this.barLoginUserName.Caption = "barStaticItem1";
-            this.barLoginUserName.Id = 33;
-            this.barLoginUserName.Name = "barLoginUserName";
             // 
             // bar1
             // 
@@ -469,119 +490,138 @@ namespace DiamondTrading
             // accordionControl1
             // 
             this.accordionControl1.AnimationType = DevExpress.XtraBars.Navigation.AnimationType.Office2016;
+            this.accordionControl1.Appearance.AccordionControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accordionControl1.Appearance.AccordionControl.Options.UseFont = true;
+            this.accordionControl1.Appearance.Group.Default.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accordionControl1.Appearance.Group.Default.Options.UseFont = true;
+            this.accordionControl1.Appearance.Item.Default.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.accordionControl1.Appearance.Item.Default.Options.UseFont = true;
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Right;
             this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement1,
+            this.accordionControlElementMaster,
             this.accordionControlElement15,
             this.accordionControlElement21,
             this.accordionControlElement26,
             this.accordionControlElement29,
             this.accordionControlElement30});
-            this.accordionControl1.Location = new System.Drawing.Point(766, 25);
+            this.accordionControl1.Location = new System.Drawing.Point(766, 26);
             this.accordionControl1.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.accordionControl1.LookAndFeel.UseDefaultLookAndFeel = false;
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
-            this.accordionControl1.Size = new System.Drawing.Size(222, 512);
+            this.accordionControl1.Size = new System.Drawing.Size(222, 506);
             this.accordionControl1.TabIndex = 0;
             // 
-            // accordionControlElement1
+            // accordionControlElementMaster
             // 
-            this.accordionControlElement1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement2,
-            this.accordionControlElement3,
-            this.accordionControlElement4,
-            this.accordionControlElement5,
-            this.accordionControlElement6,
-            this.accordionControlElement7,
-            this.accordionControlElement8,
-            this.accordionControlElement9,
-            this.accordionControlElement10,
-            this.accordionControlElement11,
-            this.accordionControlElement12,
-            this.accordionControlElement13,
-            this.accordionControlElement14});
-            this.accordionControlElement1.Name = "accordionControlElement1";
-            this.accordionControlElement1.Text = "Master";
+            this.accordionControlElementMaster.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accrdianElementCompanyMaster,
+            this.accrdianElementBranchMaster,
+            this.accordionControlSeparator1,
+            this.accrdianElementUserMaster,
+            this.accrdianElementPartyMaster,
+            this.accordionControlSeparator4,
+            this.accrdianElementKapanMaster,
+            this.accordionControlSeparator3,
+            this.accrdianElementShapeMaster,
+            this.accrdianElementSizeMaster,
+            this.accrdianElementPurityMaster,
+            this.accrdianElementGalaMaster,
+            this.accrdianElementNumberMaster,
+            this.accordionControlSeparator2,
+            this.accrdianElementCurrencyMaster,
+            this.accrdianElementFinancialYearMaster,
+            this.accordionControlSeparator5,
+            this.accrdianElementBrokerageMaster,
+            this.accrdianElementLessWeightGroupMaster,
+            this.accrdianElementRoleMaster});
+            this.accordionControlElementMaster.Name = "accordionControlElementMaster";
+            this.accordionControlElementMaster.Text = "Master";
             // 
-            // accordionControlElement2
+            // accrdianElementCompanyMaster
             // 
-            this.accordionControlElement2.Name = "accordionControlElement2";
-            this.accordionControlElement2.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement2.Text = "Company Master";
+            this.accrdianElementCompanyMaster.Name = "accrdianElementCompanyMaster";
+            this.accrdianElementCompanyMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementCompanyMaster.Text = "Company Master";
+            this.accrdianElementCompanyMaster.Click += new System.EventHandler(this.accrdianElementCompanyMaster_Click);
             // 
-            // accordionControlElement3
+            // accrdianElementBranchMaster
             // 
-            this.accordionControlElement3.Name = "accordionControlElement3";
-            this.accordionControlElement3.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement3.Text = "Branch Master";
+            this.accrdianElementBranchMaster.Name = "accrdianElementBranchMaster";
+            this.accrdianElementBranchMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementBranchMaster.Text = "Branch Master";
+            this.accrdianElementBranchMaster.Click += new System.EventHandler(this.accrdianElementBranchMaster_Click);
             // 
-            // accordionControlElement4
+            // accrdianElementUserMaster
             // 
-            this.accordionControlElement4.Name = "accordionControlElement4";
-            this.accordionControlElement4.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement4.Text = "User Master";
+            this.accrdianElementUserMaster.Name = "accrdianElementUserMaster";
+            this.accrdianElementUserMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementUserMaster.Text = "User Master";
             // 
-            // accordionControlElement5
+            // accrdianElementPartyMaster
             // 
-            this.accordionControlElement5.Name = "accordionControlElement5";
-            this.accordionControlElement5.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement5.Text = "Party Matser";
+            this.accrdianElementPartyMaster.Name = "accrdianElementPartyMaster";
+            this.accrdianElementPartyMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementPartyMaster.Text = "Party Matser";
             // 
-            // accordionControlElement6
+            // accrdianElementFinancialYearMaster
             // 
-            this.accordionControlElement6.Name = "accordionControlElement6";
-            this.accordionControlElement6.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement6.Text = "Finacial Year Master";
+            this.accrdianElementFinancialYearMaster.Name = "accrdianElementFinancialYearMaster";
+            this.accrdianElementFinancialYearMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementFinancialYearMaster.Text = "Finacial Year Master";
             // 
-            // accordionControlElement7
+            // accrdianElementRoleMaster
             // 
-            this.accordionControlElement7.Name = "accordionControlElement7";
-            this.accordionControlElement7.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement7.Text = "Role Master";
+            this.accrdianElementRoleMaster.Name = "accrdianElementRoleMaster";
+            this.accrdianElementRoleMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementRoleMaster.Text = "Role Master";
             // 
-            // accordionControlElement8
+            // accrdianElementShapeMaster
             // 
-            this.accordionControlElement8.Name = "accordionControlElement8";
-            this.accordionControlElement8.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement8.Text = "Shape Master";
+            this.accrdianElementShapeMaster.Name = "accrdianElementShapeMaster";
+            this.accrdianElementShapeMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementShapeMaster.Text = "Shape Master";
+            this.accrdianElementShapeMaster.Click += new System.EventHandler(this.accrdianElementShapeMaster_Click);
             // 
-            // accordionControlElement9
+            // accrdianElementSizeMaster
             // 
-            this.accordionControlElement9.Name = "accordionControlElement9";
-            this.accordionControlElement9.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement9.Text = "Size Master";
+            this.accrdianElementSizeMaster.Name = "accrdianElementSizeMaster";
+            this.accrdianElementSizeMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementSizeMaster.Text = "Size Master";
+            this.accrdianElementSizeMaster.Click += new System.EventHandler(this.accrdianElementSizeMaster_Click);
             // 
-            // accordionControlElement10
+            // accrdianElementPurityMaster
             // 
-            this.accordionControlElement10.Name = "accordionControlElement10";
-            this.accordionControlElement10.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement10.Text = "Purity Mater";
+            this.accrdianElementPurityMaster.Name = "accrdianElementPurityMaster";
+            this.accrdianElementPurityMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementPurityMaster.Text = "Purity Mater";
+            this.accrdianElementPurityMaster.Click += new System.EventHandler(this.accrdianElementPurityMaster_Click);
             // 
-            // accordionControlElement11
+            // accrdianElementGalaMaster
             // 
-            this.accordionControlElement11.Name = "accordionControlElement11";
-            this.accordionControlElement11.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement11.Text = "Gala Master";
+            this.accrdianElementGalaMaster.Name = "accrdianElementGalaMaster";
+            this.accrdianElementGalaMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementGalaMaster.Text = "Gala Master";
             // 
-            // accordionControlElement12
+            // accrdianElementNumberMaster
             // 
-            this.accordionControlElement12.Name = "accordionControlElement12";
-            this.accordionControlElement12.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement12.Text = "Number Master";
+            this.accrdianElementNumberMaster.Name = "accrdianElementNumberMaster";
+            this.accrdianElementNumberMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementNumberMaster.Text = "Number Master";
             // 
-            // accordionControlElement13
+            // accrdianElementBrokerageMaster
             // 
-            this.accordionControlElement13.Name = "accordionControlElement13";
-            this.accordionControlElement13.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement13.Text = "Brokerage Master";
+            this.accrdianElementBrokerageMaster.Name = "accrdianElementBrokerageMaster";
+            this.accrdianElementBrokerageMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementBrokerageMaster.Text = "Brokerage Master";
             // 
-            // accordionControlElement14
+            // accrdianElementLessWeightGroupMaster
             // 
-            this.accordionControlElement14.Name = "accordionControlElement14";
-            this.accordionControlElement14.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement14.Text = "Less Weight Group Master";
+            this.accrdianElementLessWeightGroupMaster.Name = "accrdianElementLessWeightGroupMaster";
+            this.accrdianElementLessWeightGroupMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementLessWeightGroupMaster.Text = "Less Weight Group Master";
+            this.accrdianElementLessWeightGroupMaster.Click += new System.EventHandler(this.accrdianElementLessWeightGroupMaster_Click);
             // 
             // accordionControlElement15
             // 
@@ -693,10 +733,42 @@ namespace DiamondTrading
             // panelControl1
             // 
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl1.Location = new System.Drawing.Point(0, 25);
+            this.panelControl1.Location = new System.Drawing.Point(0, 26);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(766, 512);
+            this.panelControl1.Size = new System.Drawing.Size(766, 506);
             this.panelControl1.TabIndex = 9;
+            // 
+            // accordionControlSeparator1
+            // 
+            this.accordionControlSeparator1.Name = "accordionControlSeparator1";
+            // 
+            // accordionControlSeparator4
+            // 
+            this.accordionControlSeparator4.Name = "accordionControlSeparator4";
+            // 
+            // accordionControlSeparator2
+            // 
+            this.accordionControlSeparator2.Name = "accordionControlSeparator2";
+            // 
+            // accrdianElementKapanMaster
+            // 
+            this.accrdianElementKapanMaster.Name = "accrdianElementKapanMaster";
+            this.accrdianElementKapanMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementKapanMaster.Text = "Kapan Master";
+            // 
+            // accrdianElementCurrencyMaster
+            // 
+            this.accrdianElementCurrencyMaster.Name = "accrdianElementCurrencyMaster";
+            this.accrdianElementCurrencyMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accrdianElementCurrencyMaster.Text = "Currency Master";
+            // 
+            // accordionControlSeparator3
+            // 
+            this.accordionControlSeparator3.Name = "accordionControlSeparator3";
+            // 
+            // accordionControlSeparator5
+            // 
+            this.accordionControlSeparator5.Name = "accordionControlSeparator5";
             // 
             // FrmMain
             // 
@@ -755,20 +827,20 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem15;
         private DevExpress.XtraBars.Bar bar1;
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement2;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement3;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement4;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement5;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement6;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement7;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement8;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement9;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement10;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement11;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement12;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement13;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement14;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElementMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementCompanyMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementBranchMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementUserMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementPartyMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementFinancialYearMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementRoleMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementShapeMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementSizeMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementPurityMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementGalaMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementNumberMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementBrokerageMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementLessWeightGroupMaster;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement15;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement16;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement17;
@@ -803,6 +875,13 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem27;
         private DevExpress.XtraBars.BarButtonItem barButtonItem28;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private DevExpress.XtraBars.BarStaticItem barLoginUserName;
+        private DevExpress.XtraBars.BarStaticItem barLblUserName;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator4;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementKapanMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator3;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator2;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementCurrencyMaster;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator5;
     }
 }
