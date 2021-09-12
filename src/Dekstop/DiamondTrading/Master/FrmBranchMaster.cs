@@ -56,7 +56,7 @@ namespace DiamondTrading.Master
                     txtTermsCondition.Text = _EditedBranchMasterSet.TermsCondition;
                     txtGSTNo.Text = _EditedBranchMasterSet.GSTNo;
                     txtPancardNo.Text = _EditedBranchMasterSet.PanCardNo;
-                    txtRegistrationNo.Text = _EditedBranchMasterSet.AadharCardNo;
+                    txtRegistrationNo.Text = _EditedBranchMasterSet.RegistrationNo;
                     txtCVDWeight.Text = _EditedBranchMasterSet.CVDWeight.ToString();
                     txtTipWeight.Text = _EditedBranchMasterSet.TipWeight.ToString();
                 }
@@ -158,7 +158,7 @@ namespace DiamondTrading.Master
                         TermsCondition = txtTermsCondition.Text,
                         GSTNo = txtGSTNo.Text,
                         PanCardNo = txtPancardNo.Text,
-                        AadharCardNo = txtRegistrationNo.Text,
+                        RegistrationNo = txtRegistrationNo.Text,
                         CVDWeight = Convert.ToDecimal(txtCVDWeight.Text),
                         TipWeight = Convert.ToDecimal(txtTipWeight.Text),
                         IsDelete = false,
@@ -189,7 +189,7 @@ namespace DiamondTrading.Master
                     _EditedBranchMasterSet.TermsCondition = txtTermsCondition.Text;
                     _EditedBranchMasterSet.GSTNo = txtGSTNo.Text;
                     _EditedBranchMasterSet.PanCardNo = txtPancardNo.Text;
-                    _EditedBranchMasterSet.AadharCardNo = txtRegistrationNo.Text;
+                    _EditedBranchMasterSet.RegistrationNo = txtRegistrationNo.Text;
                     _EditedBranchMasterSet.CVDWeight = Convert.ToDecimal(txtCVDWeight.Text);
                     _EditedBranchMasterSet.TipWeight = Convert.ToDecimal(txtTipWeight.Text);
                     _EditedBranchMasterSet.UpdatedBy = Common.LoginUserID;

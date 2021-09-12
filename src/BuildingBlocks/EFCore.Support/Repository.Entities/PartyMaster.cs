@@ -20,7 +20,9 @@ namespace Repository.Entities
         public string OfficeNo { get; set; }
         public string GSTNo { get; set; }
         public string AadharCardNo { get; set; }
+        public string PancardNo { get; set; }
         public bool IsDelete { get; set; }
+        public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }

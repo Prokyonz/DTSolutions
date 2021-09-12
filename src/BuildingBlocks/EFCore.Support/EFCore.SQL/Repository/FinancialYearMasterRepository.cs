@@ -52,8 +52,8 @@ namespace EFCore.SQL.Repository
             var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.Id == financialYearMaster.Id).FirstOrDefaultAsync();
             if (getFinancialYear != null)
             {
-                getFinancialYear.Description = financialYearMaster.Description;
-                getFinancialYear.StatDate = financialYearMaster.StatDate;
+                getFinancialYear.Name = financialYearMaster.Name;
+                getFinancialYear.StartDate= financialYearMaster.StartDate;
                 getFinancialYear.EndDate = financialYearMaster.EndDate;
                 getFinancialYear.UpdatedDate = financialYearMaster.UpdatedDate;
                 getFinancialYear.UpdatedBy = financialYearMaster.UpdatedBy;

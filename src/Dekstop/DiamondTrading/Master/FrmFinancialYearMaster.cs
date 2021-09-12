@@ -45,8 +45,8 @@ namespace DiamondTrading.Master
                 if (_EditedFinancialYearMasterSet != null)
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
-                    txtFinancialYearName.Text = _EditedFinancialYearMasterSet.Description;
-                    dtStartDate.EditValue = _EditedFinancialYearMasterSet.StatDate;
+                    txtFinancialYearName.Text = _EditedFinancialYearMasterSet.Name;
+                    dtStartDate.EditValue = _EditedFinancialYearMasterSet.StartDate;
                     dtEndDate.EditValue = _EditedFinancialYearMasterSet.EndDate;
                 }
             }
@@ -89,8 +89,8 @@ namespace DiamondTrading.Master
                     FinancialYearMaster FinancialYearMaster = new FinancialYearMaster
                     {
                         Id = tempId,
-                        Description = txtFinancialYearName.Text,
-                        StatDate = Convert.ToDateTime(dtStartDate.EditValue),
+                        Name = txtFinancialYearName.Text,
+                        StartDate = Convert.ToDateTime(dtStartDate.EditValue),
                         EndDate = Convert.ToDateTime(dtEndDate.EditValue),
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
@@ -109,8 +109,8 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    _EditedFinancialYearMasterSet.Description = txtFinancialYearName.Text;
-                    _EditedFinancialYearMasterSet.StatDate = Convert.ToDateTime(dtStartDate.EditValue);
+                    _EditedFinancialYearMasterSet.Name = txtFinancialYearName.Text;
+                    _EditedFinancialYearMasterSet.StartDate = Convert.ToDateTime(dtStartDate.EditValue);
                     _EditedFinancialYearMasterSet.EndDate = Convert.ToDateTime(dtEndDate.EditValue);
                     _EditedFinancialYearMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedFinancialYearMasterSet.UpdatedDate = DateTime.Now;
@@ -148,8 +148,8 @@ namespace DiamondTrading.Master
                 return false;
             }
 
-            FinancialYearMaster FinancialYearNameExist = _financialYearMaster.Where(s => s.Description == txtFinancialYearName.Text).FirstOrDefault();
-            if ((_EditedFinancialYearMasterSet == null && FinancialYearNameExist != null) || (FinancialYearNameExist != null && _EditedFinancialYearMasterSet != null && _EditedFinancialYearMasterSet.Description != FinancialYearNameExist.Description))
+            FinancialYearMaster FinancialYearNameExist = _financialYearMaster.Where(s => s.Name == txtFinancialYearName.Text).FirstOrDefault();
+            if ((_EditedFinancialYearMasterSet == null && FinancialYearNameExist != null) || (FinancialYearNameExist != null && _EditedFinancialYearMasterSet != null && _EditedFinancialYearMasterSet.Name != FinancialYearNameExist.Name))
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.FinancialYearNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtFinancialYearName.Focus();

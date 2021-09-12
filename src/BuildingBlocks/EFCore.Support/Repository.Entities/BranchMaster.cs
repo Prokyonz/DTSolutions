@@ -21,7 +21,7 @@ namespace Repository.Entities
         public string TermsCondition { get; set; }
         public string GSTNo { get; set; }
         public string PanCardNo { get; set; }
-        public string AadharCardNo { get; set; }
+        public string RegistrationNo { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CVDWeight{ get; set; }
