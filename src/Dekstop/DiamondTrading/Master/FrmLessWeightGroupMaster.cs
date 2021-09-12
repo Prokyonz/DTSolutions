@@ -85,8 +85,12 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
+                    var tempLessWeightDetails = (List<LessWeightDetails>)grdLessGroupWeightDetails.DataSource;
+                    // remove the reff. of lessweightmaster from all details record before updating them.
+                    tempLessWeightDetails.ForEach(x => x.LessWeightMaster = null);
+
                     _EditedLessWeightMasterSet.Name = txtLessWeightGroupName.Text;
-                    _EditedLessWeightMasterSet.LessWeightDetails = (List<LessWeightDetails>)grdLessGroupWeightDetails.DataSource;
+                    _EditedLessWeightMasterSet.LessWeightDetails = tempLessWeightDetails;
                     _EditedLessWeightMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedLessWeightMasterSet.UpdatedDate = DateTime.Now;
 

@@ -23,6 +23,6 @@ namespace Repository.Entities
         public decimal LessWeight { get; set; }
 
         [ForeignKey("LessWeightId")]
-        public LessWeightMaster LessWeightMaster { get; set; }
+        public virtual LessWeightMaster LessWeightMaster { get; set; }
     }
 }

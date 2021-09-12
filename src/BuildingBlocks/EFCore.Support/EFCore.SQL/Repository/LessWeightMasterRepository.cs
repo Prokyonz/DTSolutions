@@ -46,29 +46,35 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<LessWeightMaster>> GetLessWeightMasters()
         {
-            return await _databaseContext.LessWeightMasters.Where(w=>w.IsDelete == false).Include("LessWeightDetails").ToListAsync();
+            return await _databaseContext.LessWeightMasters.Where(w => w.IsDelete == false).Include("LessWeightDetails").ToListAsync();
         }
 
         public async Task<LessWeightMaster> UpdateLessWeightMaster(LessWeightMaster lessWeightMaster)
         {
-            var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMaster.Id).Include("LessWeightDetails").FirstOrDefaultAsync();
-            if (getLessWeightRecord != null)
+            try
             {
-                getLessWeightRecord.Name = lessWeightMaster.Name;
-                getLessWeightRecord.IsDelete = lessWeightMaster.IsDelete;
-                getLessWeightRecord.CreatedBy = lessWeightMaster.CreatedBy;
-                getLessWeightRecord.UpdatedBy = lessWeightMaster.UpdatedBy;
-                getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
-                getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;                
-                //getLessWeightRecord.BranchId = lessWeightMaster.BranchId;
+                var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMaster.Id).Include("LessWeightDetails").FirstOrDefaultAsync();
+                if (getLessWeightRecord != null)
+                {
+                    getLessWeightRecord.Name = lessWeightMaster.Name;
+                    getLessWeightRecord.IsDelete = lessWeightMaster.IsDelete;
+                    getLessWeightRecord.CreatedBy = lessWeightMaster.CreatedBy;
+                    getLessWeightRecord.UpdatedBy = lessWeightMaster.UpdatedBy;
+                    getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
+                    getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;
+                    
+                    _databaseContext.LessWeightDetails.RemoveRange(getLessWeightRecord.LessWeightDetails);
 
-                _databaseContext.LessWeightDetails.RemoveRange(getLessWeightRecord.LessWeightDetails.ToArray());
+                    await _databaseContext.LessWeightDetails.AddRangeAsync(lessWeightMaster.LessWeightDetails);
 
-                await _databaseContext.LessWeightDetails.AddRangeAsync(lessWeightMaster.LessWeightDetails);
-                
-                await _databaseContext.SaveChangesAsync();
+                    await _databaseContext.SaveChangesAsync();
+                }
+                return lessWeightMaster;
             }
-            return lessWeightMaster;
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

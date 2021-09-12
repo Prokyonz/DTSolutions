@@ -62,7 +62,7 @@ namespace MSUnitTest.EFCore.SQL
             LessWeightMaster lessWeightMaster = new LessWeightMaster
             {
                 Id = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
-                Name = "First Group",
+                Name = "First Group158",
                 IsDelete = false,
                 //BranchId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED043"),
                 CreatedBy = Guid.NewGuid(),
@@ -74,6 +74,14 @@ namespace MSUnitTest.EFCore.SQL
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
+                       LessWeight = 11.2M,
+                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       MaxWeight = 11.2M,
+                       MinWeight = 11.5M,
+                   },
+                   new LessWeightDetails
+                   {
+                       Id = Guid.NewGuid(),
                        LessWeight = 1.2M,
                        LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
                        MaxWeight = 1.2M,
@@ -82,11 +90,21 @@ namespace MSUnitTest.EFCore.SQL
                    new LessWeightDetails
                    {
                        Id = Guid.NewGuid(),
-                       LessWeight = 11.2M,
+                       LessWeight = 1.2M,
                        LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
-                       MaxWeight = 16.2M,
-                       MinWeight = 4.5M,
+                       MaxWeight = 1.2M,
+                       MinWeight = 1.5M,
                    }
+                   ,
+                   new LessWeightDetails
+                   {
+                       Id = Guid.NewGuid(),
+                       LessWeight = 1.2M,
+                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       MaxWeight = 1.2M,
+                       MinWeight = 1.5M,
+                   }
+
 
                 }
             };
