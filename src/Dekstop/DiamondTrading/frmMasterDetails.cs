@@ -209,7 +209,7 @@ namespace DiamondTrading
                     tlCompanyMaster.DataSource = _companyMaster;
                     tlCompanyMaster.ExpandAll();
 
-                    //gridControl1.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
+                    gridCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -299,8 +299,21 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
-                Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+
+                Guid SelectedGuid;
+
+                if (gridCompanyMaster.FocusedView.DetailLevel > 0)
+                {
+                    GridView tempChild = ((GridView)gridCompanyMaster.FocusedView);
+                    SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
+                } 
+                else                 
+                    SelectedGuid = Guid.Parse(gridViewCompanyMaster.GetFocusedRowCellValue("Id").ToString());                
+
+
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
+
                 if (frmcompanymaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
@@ -403,8 +416,23 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
-                Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tlCompanyMaster.GetFocusedRowCellValue(Name).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+
+                Guid SelectedGuid;
+                string tempCompanyName = "";
+
+                if (gridCompanyMaster.FocusedView.DetailLevel > 0)
+                {
+                    GridView tempChild = ((GridView)gridCompanyMaster.FocusedView);
+                    SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
+                    tempCompanyName = tempChild.GetFocusedRowCellValue("Name").ToString();
+                }
+                else
+                {
+                    SelectedGuid = Guid.Parse(gridViewCompanyMaster.GetFocusedRowCellValue("Id").ToString());
+                    tempCompanyName = gridViewCompanyMaster.GetFocusedRowCellValue("Name").ToString();
+                }
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
 
@@ -543,17 +571,27 @@ namespace DiamondTrading
             e.RelationName = "grdLessGroupWeightMaster";// grvLessWeightGroupDetailMaster.Name;
         }
 
-        private void gridView1_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void accordionCancelButton_Click(object sender, EventArgs e)
+        {
+            btnCancel_Click(sender,e);
+        }
+
+        private void gridViewCompanyMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
         {
             GridView gridView = sender as GridView;
             CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
-            if(companyMaster !=null)
+            if (companyMaster != null)
             {
                 e.IsEmpty = _companyMaster.Where(w => w.Type == companyMaster.Id).Count() > 0 ? false : true;
             }
         }
 
-        private void gridView1_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
+        private void gridViewCompanyMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
         {
             GridView gridView = sender as GridView;
             CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
@@ -563,24 +601,14 @@ namespace DiamondTrading
             }
         }
 
-        private void gridView1_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
+        private void gridViewCompanyMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
         {
             e.RelationCount = 1;
         }
 
-        private void gridView1_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
+        private void gridViewCompanyMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
         {
-            e.RelationName = "Detail";
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void accordionCancelButton_Click(object sender, EventArgs e)
-        {
-            btnCancel_Click(sender,e);
+            e.RelationName = "Child";
         }
     }
 }
