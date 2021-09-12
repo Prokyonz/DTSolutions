@@ -9,7 +9,6 @@ namespace Repository.Entities
         public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
-        public Guid BranchId { get; set; }
         public string Name { get; set; }
         public string Details { get; set; }
         public int CaratLimit { get; set; }
@@ -17,8 +16,9 @@ namespace Repository.Entities
         public bool IsDelete { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
-        [ForeignKey("BranchId")]
-        public virtual BranchMaster BranchMaster { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public Guid CreatedBy { get; set; }
+        public DateTime? UpdateDate { get; set; }
+        public Guid? UpdatedBy { get; set; }
     }
 }
