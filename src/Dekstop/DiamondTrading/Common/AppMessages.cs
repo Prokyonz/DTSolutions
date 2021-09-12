@@ -81,6 +81,12 @@ namespace DiamondTrading
         AddMoreFinancialYearConfirmation,
         DeleteFinancialYearConfirmation,
         #endregion
+        #region "FrmBrokerageMaster"
+        EmptyBrokerageName,
+        BrokerageNameExist,
+        AddMoreBrokerageConfirmation,
+        DeleteBrokerageConfirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -286,6 +292,20 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeleteFinancialYearConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Financial Year...?";
+                    break;
+                #endregion
+                #region "FrmBrokerageMaster"
+                case AppMessageID.EmptyBrokerageName:
+                    ReturnMsg = "Please write Brokerage Name.";
+                    break;
+                case AppMessageID.BrokerageNameExist:
+                    ReturnMsg = "Brokerage Name already exist.";
+                    break;
+                case AppMessageID.AddMoreBrokerageConfirmation:
+                    ReturnMsg = "Do you want to add more Brokerage...?";
+                    break;
+                case AppMessageID.DeleteBrokerageConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Brokerage...?";
                     break;
                 #endregion
                 #region "Others"

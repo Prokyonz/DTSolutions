@@ -107,7 +107,7 @@ namespace DiamondTrading.Master
             // 
             // txtCompanyName
             // 
-            this.txtCompanyName.Location = new System.Drawing.Point(207, 50);
+            this.txtCompanyName.Location = new System.Drawing.Point(207, 49);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.txtCompanyName.Properties.Appearance.Options.UseFont = true;

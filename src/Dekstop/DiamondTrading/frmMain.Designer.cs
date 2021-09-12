@@ -112,6 +112,7 @@ namespace DiamondTrading
             this.accordionControlElement29 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.accordionControlSeparator6 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -198,8 +199,7 @@ namespace DiamondTrading
             this.barSubItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem1),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem2),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem4, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barBtnShape, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem12),
@@ -210,7 +210,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem5),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem6, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3)});
             this.barSubItem1.Name = "barSubItem1";
             // 
             // barButtonItem1
@@ -298,6 +299,7 @@ namespace DiamondTrading
             this.barButtonItem14.Caption = "Brokerage Master";
             this.barButtonItem14.Id = 14;
             this.barButtonItem14.Name = "barButtonItem14";
+            this.barButtonItem14.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem14_ItemClick);
             // 
             // barButtonItem15
             // 
@@ -524,6 +526,7 @@ namespace DiamondTrading
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
             this.accordionControl1.Size = new System.Drawing.Size(222, 506);
             this.accordionControl1.TabIndex = 0;
+            this.accordionControl1.Click += new System.EventHandler(this.accordionControl1_Click);
             // 
             // accordionControlElementMaster
             // 
@@ -531,7 +534,6 @@ namespace DiamondTrading
             this.accrdianElementCompanyMaster,
             this.accrdianElementBranchMaster,
             this.accordionControlSeparator1,
-            this.accrdianElementUserMaster,
             this.accrdianElementPartyMaster,
             this.accordionControlSeparator4,
             this.accrdianElementKapanMaster,
@@ -547,7 +549,9 @@ namespace DiamondTrading
             this.accordionControlSeparator5,
             this.accrdianElementBrokerageMaster,
             this.accrdianElementLessWeightGroupMaster,
-            this.accrdianElementRoleMaster});
+            this.accordionControlSeparator6,
+            this.accrdianElementRoleMaster,
+            this.accrdianElementUserMaster});
             this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.Name = "accordionControlElementMaster";
             this.accordionControlElementMaster.Text = "Master";
@@ -658,6 +662,7 @@ namespace DiamondTrading
             this.accrdianElementBrokerageMaster.Name = "accrdianElementBrokerageMaster";
             this.accrdianElementBrokerageMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accrdianElementBrokerageMaster.Text = "Brokerage Master";
+            this.accrdianElementBrokerageMaster.Click += new System.EventHandler(this.accrdianElementBrokerageMaster_Click);
             // 
             // accrdianElementLessWeightGroupMaster
             // 
@@ -787,6 +792,10 @@ namespace DiamondTrading
             this.panelControl1.Size = new System.Drawing.Size(766, 506);
             this.panelControl1.TabIndex = 9;
             // 
+            // accordionControlSeparator6
+            // 
+            this.accordionControlSeparator6.Name = "accordionControlSeparator6";
+            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -901,5 +910,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementCurrencyMaster;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator5;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
+        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator6;
     }
 }

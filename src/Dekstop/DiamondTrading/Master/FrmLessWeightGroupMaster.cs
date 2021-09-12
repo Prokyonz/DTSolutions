@@ -51,11 +51,11 @@ namespace DiamondTrading.Master
                 {
                     Guid tempId = Guid.NewGuid();
 
-                    LessWeightDetails lessWeightDetails = new LessWeightDetails();
-                    Guid tempDetailId = Guid.NewGuid();
+                    LessWeightDetails lessWeightDetails;
                     for (int i = 0; i < grvLessGroupWeightDetails.RowCount; i++)
                     {
-                        lessWeightDetails.Id = tempDetailId;
+                        lessWeightDetails = new LessWeightDetails();
+                        lessWeightDetails.Id = Guid.NewGuid();
                         lessWeightDetails.LessWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colLessWeight).ToString());
                         lessWeightDetails.LessWeightId = tempId;
                         lessWeightDetails.MaxWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colMaxWeight).ToString());
