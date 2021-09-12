@@ -29,7 +29,7 @@ namespace EFCore.SQL.Repository
         public async Task<bool> DeletePurchaseAsync(Guid purchaseId, bool isPermanantDetele = false)
         {
             var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseId && s.IsDelete == false).FirstOrDefaultAsync();
-            if(getPurchase != null)
+            if (getPurchase != null)
             {
                 if (isPermanantDetele)
                     _databaseContext.PurchaseMaster.Remove(getPurchase);
@@ -62,7 +62,7 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
-        public async Task<List<PurchaseMaster>> GetAllSalesAsync(Guid companyId, Guid branchId, DateTime startDate, DateTime endDate)
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, Guid branchId, DateTime startDate, DateTime endDate)
         {
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
