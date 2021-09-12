@@ -150,5 +150,20 @@ namespace DiamondTrading
         {
             OpenMasterDetailsForm("FinancialYearMaster");
         }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("BrokerageMaster");
+        }
+
+        private void accrdianElementBrokerageMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("BrokerageMaster");
+        }
     }
 }

@@ -69,6 +69,9 @@ namespace DiamondTrading.Master
         {
             _selectedFinancialYearId = Guid.Empty;
             txtFinancialYearName.Text = "";
+            dtStartDate.EditValue = DateTime.Now;
+            dtEndDate.EditValue = DateTime.Now;
+            GetTotalDays();
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtFinancialYearName.Focus();
         }

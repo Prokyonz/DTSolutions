@@ -25,6 +25,7 @@ namespace DiamondTrading
         private GalaMasterRepository _galaMasterRepository;
         private NumberMasterRepository _numberMasterRepository;
         private FinancialYearMasterRepository _financialYearMasterRepository;
+        private BrokerageMasterRepository _brokerageMasterRepository;
 
         private List<CompanyMaster> _companyMaster;
         private List<BranchMaster> _branchMaster;
@@ -35,6 +36,7 @@ namespace DiamondTrading
         private List<GalaMaster> _galaMaster;
         private List<NumberMaster> _numberMaster;
         private List<FinancialYearMaster> _financialYearMaster;
+        private List<BrokerageMaster> _brokerageMaster;
 
         public FrmMasterDetails(string SelectedTabPage)
         {
@@ -78,6 +80,10 @@ namespace DiamondTrading
                     xtabFinancialYearMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabFinancialYearMaster;
                     break;
+                case "BrokerageMaster":
+                    xtabBrokerageMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabBrokerageMaster;
+                    break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
                     break;
@@ -95,6 +101,7 @@ namespace DiamondTrading
             xtabGalaMaster.PageVisible = false;
             xtabNumberMaster.PageVisible = false;
             xtabFinancialYearMaster.PageVisible = false;
+            xtabBrokerageMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -172,6 +179,14 @@ namespace DiamondTrading
             {
                 Master.FrmFinancialYearMaster financialYearMaster= new Master.FrmFinancialYearMaster(_financialYearMaster);
                 if (financialYearMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                Master.FrmBrokerageMaster frmBrokerageMaster= new Master.FrmBrokerageMaster(_brokerageMaster);
+                if (frmBrokerageMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -269,6 +284,15 @@ namespace DiamondTrading
                     grdFinancialYearMaster.DataSource = _financialYearMaster;
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                if (IsForceLoad || _brokerageMaster == null)
+                {
+                    _brokerageMasterRepository = new BrokerageMasterRepository();
+                    _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync();
+                    grdBrokerageMaster.DataSource = _brokerageMaster;
+                }
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
@@ -350,6 +374,15 @@ namespace DiamondTrading
                 Guid SelectedGuid = Guid.Parse(grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString());
                 Master.FrmFinancialYearMaster financialYearMaster = new Master.FrmFinancialYearMaster(_financialYearMaster, SelectedGuid);
                 if (financialYearMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString());
+                Master.FrmBrokerageMaster frmBrokerageMaster= new Master.FrmBrokerageMaster(_brokerageMaster, SelectedGuid);
+                if (frmBrokerageMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -467,6 +500,17 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private void grvLessGroupWeightMaster_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e)
@@ -527,6 +571,16 @@ namespace DiamondTrading
         private void gridView1_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
         {
             e.RelationName = "Detail";
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void accordionCancelButton_Click(object sender, EventArgs e)
+        {
+            btnCancel_Click(sender,e);
         }
     }
 }

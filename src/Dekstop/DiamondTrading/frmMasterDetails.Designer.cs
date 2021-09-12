@@ -52,6 +52,7 @@ namespace DiamondTrading
             this.colCompanyGSTNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colCompanyPancardNo = new DevExpress.XtraTreeList.Columns.TreeListColumn();
             this.colCompanyLastUpdatedDate = new DevExpress.XtraTreeList.Columns.TreeListColumn();
+            this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
             this.xtabLessWeightGroupMaster = new DevExpress.XtraTab.XtraTabPage();
             this.xtabShapeMaster = new DevExpress.XtraTab.XtraTabPage();
@@ -92,11 +93,19 @@ namespace DiamondTrading
             this.colFinancialYearStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFinancialYearEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colFinancialYearUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabBrokerageMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdBrokerageMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvBrokerageMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colBrokerageId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBrokerageName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBrokeragePercentage = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBrokerageUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
@@ -127,6 +136,9 @@ namespace DiamondTrading
             this.xtabFinancialYearMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdFinancialYearMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvFinancialYearMaster)).BeginInit();
+            this.xtabBrokerageMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdBrokerageMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvBrokerageMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -347,6 +359,16 @@ namespace DiamondTrading
             this.colCompanyLastUpdatedDate.VisibleIndex = 5;
             this.colCompanyLastUpdatedDate.Width = 83;
             // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(276, 47);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 2;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
             // xtabMasterDetails
             // 
             this.xtabMasterDetails.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -364,7 +386,8 @@ namespace DiamondTrading
             this.xtabSizeMaster,
             this.xtabGalaMaster,
             this.xtabNumberMaster,
-            this.xtabFinancialYearMaster});
+            this.xtabFinancialYearMaster,
+            this.xtabBrokerageMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabLessWeightGroupMaster
@@ -730,6 +753,71 @@ namespace DiamondTrading
             this.colFinancialYearUpdatedDate.VisibleIndex = 3;
             this.colFinancialYearUpdatedDate.Width = 97;
             // 
+            // xtabBrokerageMaster
+            // 
+            this.xtabBrokerageMaster.Controls.Add(this.grdBrokerageMaster);
+            this.xtabBrokerageMaster.Name = "xtabBrokerageMaster";
+            this.xtabBrokerageMaster.PageVisible = false;
+            this.xtabBrokerageMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabBrokerageMaster.Text = "Brokerage Master";
+            // 
+            // grdBrokerageMaster
+            // 
+            this.grdBrokerageMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdBrokerageMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdBrokerageMaster.MainView = this.grvBrokerageMaster;
+            this.grdBrokerageMaster.Name = "grdBrokerageMaster";
+            this.grdBrokerageMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdBrokerageMaster.TabIndex = 3;
+            this.grdBrokerageMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvBrokerageMaster});
+            // 
+            // grvBrokerageMaster
+            // 
+            this.grvBrokerageMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvBrokerageMaster.Appearance.Row.Options.UseFont = true;
+            this.grvBrokerageMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colBrokerageId,
+            this.colBrokerageName,
+            this.colBrokeragePercentage,
+            this.colBrokerageUpdatedDate});
+            this.grvBrokerageMaster.GridControl = this.grdBrokerageMaster;
+            this.grvBrokerageMaster.Name = "grvBrokerageMaster";
+            this.grvBrokerageMaster.OptionsBehavior.Editable = false;
+            this.grvBrokerageMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colBrokerageId
+            // 
+            this.colBrokerageId.Caption = "Id";
+            this.colBrokerageId.FieldName = "Id";
+            this.colBrokerageId.Name = "colBrokerageId";
+            // 
+            // colBrokerageName
+            // 
+            this.colBrokerageName.Caption = "Brokerage Name";
+            this.colBrokerageName.FieldName = "Name";
+            this.colBrokerageName.Name = "colBrokerageName";
+            this.colBrokerageName.Visible = true;
+            this.colBrokerageName.VisibleIndex = 0;
+            this.colBrokerageName.Width = 694;
+            // 
+            // colBrokeragePercentage
+            // 
+            this.colBrokeragePercentage.Caption = "Percentage";
+            this.colBrokeragePercentage.FieldName = "Percentage";
+            this.colBrokeragePercentage.Name = "colBrokeragePercentage";
+            this.colBrokeragePercentage.Visible = true;
+            this.colBrokeragePercentage.VisibleIndex = 1;
+            // 
+            // colBrokerageUpdatedDate
+            // 
+            this.colBrokerageUpdatedDate.Caption = "Updated Date";
+            this.colBrokerageUpdatedDate.FieldName = "UpdatedDate";
+            this.colBrokerageUpdatedDate.Name = "colBrokerageUpdatedDate";
+            this.colBrokerageUpdatedDate.Visible = true;
+            this.colBrokerageUpdatedDate.VisibleIndex = 2;
+            this.colBrokerageUpdatedDate.Width = 96;
+            // 
             // accordionControl1
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -737,7 +825,8 @@ namespace DiamondTrading
             this.accordianAddBtn,
             this.accordionEditBtn,
             this.accordionDeleteBtn,
-            this.accordionRefreshBtn});
+            this.accordionRefreshBtn,
+            this.accordionCancelButton});
             this.accordionControl1.Location = new System.Drawing.Point(3, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
@@ -777,6 +866,14 @@ namespace DiamondTrading
             this.accordionRefreshBtn.Text = "Refresh";
             this.accordionRefreshBtn.Click += new System.EventHandler(this.accordionRefreshBtn_Click);
             // 
+            // accordionCancelButton
+            // 
+            this.accordionCancelButton.ImageOptions.Image = global::DiamondTrading.Properties.Resources.close_24;
+            this.accordionCancelButton.Name = "accordionCancelButton";
+            this.accordionCancelButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionCancelButton.Text = "Cancel";
+            this.accordionCancelButton.Click += new System.EventHandler(this.accordionCancelButton_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -796,8 +893,11 @@ namespace DiamondTrading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(826, 440);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.btnCancel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -834,6 +934,9 @@ namespace DiamondTrading
             this.xtabFinancialYearMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdFinancialYearMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvFinancialYearMaster)).EndInit();
+            this.xtabBrokerageMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdBrokerageMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvBrokerageMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -910,5 +1013,14 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearStartDate;
         private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearEndDate;
         private DevExpress.XtraGrid.Columns.GridColumn colFinancialYearUpdatedDate;
+        private DevExpress.XtraTab.XtraTabPage xtabBrokerageMaster;
+        private DevExpress.XtraGrid.GridControl grdBrokerageMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvBrokerageMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colBrokerageId;
+        private DevExpress.XtraGrid.Columns.GridColumn colBrokerageName;
+        private DevExpress.XtraGrid.Columns.GridColumn colBrokeragePercentage;
+        private DevExpress.XtraGrid.Columns.GridColumn colBrokerageUpdatedDate;
+        private DevExpress.XtraEditors.SimpleButton btnCancel;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionCancelButton;
     }
 }
