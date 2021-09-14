@@ -15,34 +15,34 @@ namespace DiamondTrading.Master
 {
     public partial class FrmCurrencyMaster : DevExpress.XtraEditors.XtraForm
     {
-        private readonly SizeMasterRepository _sizeMasterRepository;
-        private readonly List<SizeMaster> _sizeMaster;
-        private SizeMaster _EditedSizeMasterSet;
-        private Guid _selectedSizeId;
-        public FrmCurrencyMaster(List<SizeMaster> SizeMasters)
+        private readonly CurrencyMasterRepository _currencyMasterRepository;
+        private readonly List<CurrencyMaster> _currencyMaster;
+        private CurrencyMaster _EditedCurrencyMasterSet;
+        private Guid _selectedCurrencyId;
+        public FrmCurrencyMaster(List<CurrencyMaster> CurrencyMasters)
         {
             InitializeComponent();
-            _sizeMasterRepository = new SizeMasterRepository();
-            this._sizeMaster = SizeMasters;
+            _currencyMasterRepository = new CurrencyMasterRepository();
+            this._currencyMaster = CurrencyMasters;
         }
 
-        public FrmCurrencyMaster(List<SizeMaster> SizeMasters, Guid SelectedSizeId)
+        public FrmCurrencyMaster(List<CurrencyMaster> CurrencyMasters, Guid SelectedCurrencyId)
         {
             InitializeComponent();
-            _sizeMasterRepository = new SizeMasterRepository();
-            this._sizeMaster = SizeMasters;
-            _selectedSizeId = SelectedSizeId;
+            _currencyMasterRepository = new CurrencyMasterRepository();
+            this._currencyMaster = CurrencyMasters;
+            _selectedCurrencyId = SelectedCurrencyId;
         }
 
-        private void FrmSizeMaster_Load(object sender, EventArgs e)
+        private void FrmCurrencyMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedSizeId != Guid.Empty)
+            if (_selectedCurrencyId != Guid.Empty)
             {
-                _EditedSizeMasterSet = _sizeMaster.Where(s => s.Id == _selectedSizeId).FirstOrDefault();
-                if (_EditedSizeMasterSet != null)
+                _EditedCurrencyMasterSet = _currencyMaster.Where(s => s.Id == _selectedCurrencyId).FirstOrDefault();
+                if (_EditedCurrencyMasterSet != null)
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
-                    txtCurrencyName.Text = _EditedSizeMasterSet.Name;
+                    txtCurrencyName.Text = _EditedCurrencyMasterSet.Name;
                 }
             }
         }
@@ -60,8 +60,10 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedSizeId = Guid.Empty;
+            _selectedCurrencyId = Guid.Empty;
             txtCurrencyName.Text = "";
+            txtShortName.Text = "";
+            txtRate.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtCurrencyName.Focus();
         }
@@ -79,10 +81,12 @@ namespace DiamondTrading.Master
                 {
                     Guid tempId = Guid.NewGuid();
 
-                    SizeMaster SizeMaster = new SizeMaster
+                    CurrencyMaster CurrencyMaster = new CurrencyMaster
                     {
                         Id = tempId,
                         Name = txtCurrencyName.Text,
+                        ShortName = txtShortName.Text,
+                        Value = Convert.ToDecimal(txtRate.Text),
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
@@ -90,7 +94,7 @@ namespace DiamondTrading.Master
                         UpdatedDate = DateTime.Now,
                     };
 
-                    var Result = await _sizeMasterRepository.AddSizeAsync(SizeMaster);
+                    var Result = await _currencyMasterRepository.AddCurrencyAsync(CurrencyMaster);
 
                     if (Result != null)
                     {
@@ -100,11 +104,13 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    _EditedSizeMasterSet.Name = txtCurrencyName.Text;
-                    _EditedSizeMasterSet.UpdatedBy = Common.LoginUserID;
-                    _EditedSizeMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedCurrencyMasterSet.Name = txtCurrencyName.Text;
+                    _EditedCurrencyMasterSet.ShortName = txtShortName.Text;
+                    _EditedCurrencyMasterSet.Value = Convert.ToDecimal(txtRate.Text);
+                    _EditedCurrencyMasterSet.UpdatedBy = Common.LoginUserID;
+                    _EditedCurrencyMasterSet.UpdatedDate = DateTime.Now;
 
-                    var Result = await _sizeMasterRepository.UpdateSizeAsync(_EditedSizeMasterSet);
+                    var Result = await _currencyMasterRepository.UpdateCurrencyAsync(_EditedCurrencyMasterSet);
 
                     if (Result != null)
                     {
@@ -113,7 +119,7 @@ namespace DiamondTrading.Master
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreSizeConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCurrencyConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
@@ -132,15 +138,27 @@ namespace DiamondTrading.Master
         {
             if (txtCurrencyName.Text.Trim().Length == 0)
             {
-                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptySizeName), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyCurrencyName), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCurrencyName.Focus();
                 return false;
             }
-
-            SizeMaster SizeNameExist = _sizeMaster.Where(s => s.Name == txtCurrencyName.Text).FirstOrDefault();
-            if ((_EditedSizeMasterSet == null && SizeNameExist != null) || (SizeNameExist != null && _EditedSizeMasterSet != null && _EditedSizeMasterSet.Name != SizeNameExist.Name))
+            else if (txtShortName.Text.Trim().Length == 0)
             {
-                MessageBox.Show(AppMessages.GetString(AppMessageID.SizeNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyCurrencyShortName), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtShortName.Focus();
+                return false;
+            }
+            else if (txtRate.Text.Trim().Length == 0)
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyCurrencyRate), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtRate.Focus();
+                return false;
+            }
+
+            CurrencyMaster CurrencyNameExist = _currencyMaster.Where(s => s.Name == txtCurrencyName.Text).FirstOrDefault();
+            if ((_EditedCurrencyMasterSet == null && CurrencyNameExist != null) || (CurrencyNameExist != null && _EditedCurrencyMasterSet != null && _EditedCurrencyMasterSet.Name != CurrencyNameExist.Name))
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.CurrencyNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCurrencyName.Focus();
                 return false;
             }
@@ -148,7 +166,7 @@ namespace DiamondTrading.Master
             return true;
         }
 
-        private void FrmSizeMaster_KeyDown(object sender, KeyEventArgs e)
+        private void FrmCurrencyMaster_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
         }

@@ -87,6 +87,14 @@ namespace DiamondTrading
         AddMoreBrokerageConfirmation,
         DeleteBrokerageConfirmation,
         #endregion
+        #region "FrmCurrencyMaster"
+        EmptyCurrencyName,
+        EmptyCurrencyShortName,
+        EmptyCurrencyRate,
+        CurrencyNameExist,
+        AddMoreCurrencyConfirmation,
+        DeleteCurrencyConfirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -306,6 +314,26 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeleteBrokerageConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Brokerage...?";
+                    break;
+                #endregion
+                #region "FrmCurrencyMaster"
+                case AppMessageID.EmptyCurrencyName:
+                    ReturnMsg = "Please write Currency Name.";
+                    break;
+                case AppMessageID.EmptyCurrencyShortName:
+                    ReturnMsg = "Please write Currency Short Name.";
+                    break;
+                case AppMessageID.EmptyCurrencyRate:
+                    ReturnMsg = "Please write Currency Rate.";
+                    break;
+                case AppMessageID.CurrencyNameExist:
+                    ReturnMsg = "Currency Name already exist.";
+                    break;
+                case AppMessageID.AddMoreCurrencyConfirmation:
+                    ReturnMsg = "Do you want to add more Currency...?";
+                    break;
+                case AppMessageID.DeleteCurrencyConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Currency...?";
                     break;
                 #endregion
                 #region "Others"

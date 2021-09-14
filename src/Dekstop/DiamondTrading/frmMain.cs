@@ -34,15 +34,19 @@ namespace DiamondTrading
             FrmMasterDetails page = Application.OpenForms["frmMasterDetails"] as FrmMasterDetails;
             if (page != null)
             {
-                page.BringToFront();
+                page.Close();
+                //barManager1.ForceInitialize();
+                //page.SelectedTabPage = PageRequested;
+                //page.ActiveTab();
+                //page.BringToFront();
             }
-            else
-            {
-                FrmMasterDetails frmmasterdetails = new FrmMasterDetails(PageRequested);
-                frmmasterdetails.MdiParent = this;
-                frmmasterdetails.Show();
-                frmmasterdetails.BringToFront();
-            }
+
+            FrmMasterDetails frmMasterDetails = new FrmMasterDetails();
+            frmMasterDetails.SelectedTabPage = PageRequested;
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
             accordionControlElementMaster.Expanded = true;
         }
 
@@ -164,6 +168,16 @@ namespace DiamondTrading
         private void accrdianElementBrokerageMaster_Click(object sender, EventArgs e)
         {
             OpenMasterDetailsForm("BrokerageMaster");
+        }
+
+        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("CurrencyMaster");
+        }
+
+        private void accrdianElementCurrencyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("CurrencyMaster");
         }
     }
 }

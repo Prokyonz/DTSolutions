@@ -18,6 +18,7 @@ namespace EFCore.SQL.Repository
         private BranchMasterRepository _branchMasterRepository;
         private BrokerageMasterRepository _brokerageMasterRepository;
         private CompanyMasterRepository _companyMasterRepository;
+        private CurrencyMasterRepository _currencyMasterRepository;
         private FinancialYearMasterRepository _financialYearMasterRepository;
         private LessWeightMasterRepository _lessWeightMasterRepository;
         private PartyMasterRepository _partyMasterRepository;
@@ -196,6 +197,16 @@ namespace EFCore.SQL.Repository
                 if (_expenseMasterRepository == null)
                     _expenseMasterRepository = new ExpenseMasterRepository();
                 return _expenseMasterRepository;
+            }
+        }
+
+        public ICurrencyMaster CurrencyMasterRepository
+        {
+            get
+            {
+                if (_currencyMasterRepository == null)
+                    _currencyMasterRepository = new CurrencyMasterRepository();
+                return _currencyMasterRepository;
             }
         }
     }

@@ -16,6 +16,7 @@ namespace DiamondTrading
 {
     public partial class FrmMasterDetails : DevExpress.XtraEditors.XtraForm
     {
+        private UnitOfWorkMaster _unitOfWorkMaster;
         private CompanyMasterRepository _companyMasterRepository;
         private BranchMasterRepository _branchMasterRepository;
         private LessWeightMasterRepository _lessWeightMasterRepository;
@@ -37,59 +38,83 @@ namespace DiamondTrading
         private List<NumberMaster> _numberMaster;
         private List<FinancialYearMaster> _financialYearMaster;
         private List<BrokerageMaster> _brokerageMaster;
+        private List<CurrencyMaster> _currencyMaster;
 
-        public FrmMasterDetails(string SelectedTabPage)
+        public FrmMasterDetails()
         {
             InitializeComponent();
+            _unitOfWorkMaster = new UnitOfWorkMaster();
+        }
+
+        public void ActiveTab()
+        {
             HideAllTabs();
-            switch(SelectedTabPage)
+            switch (SelectedTabPage)
             {
                 case "CompanyMaster":
                     xtabCompanyMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabCompanyMaster;
+                    this.Text = "Company Master";
                     break;
                 case "BranchMaster":
                     xtabBranchMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabBranchMaster;
+                    this.Text = "Branch Master";
                     break;
                 case "LessWeightGroupMaster":
                     xtabLessWeightGroupMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabLessWeightGroupMaster;
+                    this.Text = "Less Weight Group Master";
                     break;
                 case "ShapeMaster":
                     xtabShapeMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabShapeMaster;
+                    this.Text = "Shape Master";
                     break;
                 case "PurityMaster":
                     xtabPurityMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabPurityMaster;
+                    this.Text = "Purity Master";
                     break;
                 case "SizeMaster":
                     xtabSizeMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabSizeMaster;
+                    this.Text = "Size Master";
                     break;
                 case "GalaMaster":
                     xtabGalaMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabGalaMaster;
+                    this.Text = "Gala Master";
                     break;
                 case "NumberMaster":
                     xtabNumberMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabNumberMaster;
+                    this.Text = "Number Master";
                     break;
                 case "FinancialYearMaster":
                     xtabFinancialYearMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabFinancialYearMaster;
+                    this.Text = "Financial Master";
                     break;
                 case "BrokerageMaster":
                     xtabBrokerageMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabBrokerageMaster;
+                    this.Text = "Brokerage Master";
+                    break;
+                case "CurrencyMaster":
+                    xtabCurrencyMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabCurrencyMaster;
+                    this.Text = "Currency Master";
                     break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabCompanyMaster;
+                    this.Text = "Company Master";
                     break;
             }
         }
 
+        public string SelectedTabPage { get; set; }
         private void HideAllTabs()
         {
             xtabCompanyMaster.PageVisible = false;
@@ -102,6 +127,7 @@ namespace DiamondTrading
             xtabNumberMaster.PageVisible = false;
             xtabFinancialYearMaster.PageVisible = false;
             xtabBrokerageMaster.PageVisible = false;
+            xtabCurrencyMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -191,10 +217,19 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                Master.FrmCurrencyMaster frmCurrencyMaster= new Master.FrmCurrencyMaster(_currencyMaster);
+                if (frmCurrencyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private async void FrmMasterDetails_Load(object sender, EventArgs e)
         {
+            ActiveTab();
             await LoadGridData(true);
         }
 
@@ -206,10 +241,7 @@ namespace DiamondTrading
                 {
                     _companyMasterRepository = new CompanyMasterRepository();
                     _companyMaster = await _companyMasterRepository.GetAllCompanyAsync();
-                    tlCompanyMaster.DataSource = _companyMaster;
-                    tlCompanyMaster.ExpandAll();
-
-                    gridCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
+                    grdCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -293,6 +325,14 @@ namespace DiamondTrading
                     grdBrokerageMaster.DataSource = _brokerageMaster;
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                if (IsForceLoad || _currencyMaster == null)
+                {
+                    _currencyMaster = await _unitOfWorkMaster.CurrencyMasterRepository.GetAllCurrencyAsync();
+                    grdCurrencyMaster.DataSource = _currencyMaster;
+                }
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
@@ -303,13 +343,13 @@ namespace DiamondTrading
 
                 Guid SelectedGuid;
 
-                if (gridCompanyMaster.FocusedView.DetailLevel > 0)
+                if (grdCompanyMaster.FocusedView.DetailLevel > 0)
                 {
-                    GridView tempChild = ((GridView)gridCompanyMaster.FocusedView);
+                    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
                     SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
                 } 
                 else                 
-                    SelectedGuid = Guid.Parse(gridViewCompanyMaster.GetFocusedRowCellValue("Id").ToString());                
+                    SelectedGuid = Guid.Parse(grvCompanyMaster.GetFocusedRowCellValue("Id").ToString());                
 
 
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
@@ -400,6 +440,15 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
+                Master.FrmCurrencyMaster frmCurrencyMaster = new Master.FrmCurrencyMaster(_currencyMaster, SelectedGuid);
+                if (frmCurrencyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private async void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
@@ -421,16 +470,16 @@ namespace DiamondTrading
                 Guid SelectedGuid;
                 string tempCompanyName = "";
 
-                if (gridCompanyMaster.FocusedView.DetailLevel > 0)
+                if (grdCompanyMaster.FocusedView.DetailLevel > 0)
                 {
-                    GridView tempChild = ((GridView)gridCompanyMaster.FocusedView);
+                    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
                     SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
                     tempCompanyName = tempChild.GetFocusedRowCellValue("Name").ToString();
                 }
                 else
                 {
-                    SelectedGuid = Guid.Parse(gridViewCompanyMaster.GetFocusedRowCellValue("Id").ToString());
-                    tempCompanyName = gridViewCompanyMaster.GetFocusedRowCellValue("Name").ToString();
+                    SelectedGuid = Guid.Parse(grvCompanyMaster.GetFocusedRowCellValue("Id").ToString());
+                    tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
                 }
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -534,6 +583,17 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _unitOfWorkMaster.CurrencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);

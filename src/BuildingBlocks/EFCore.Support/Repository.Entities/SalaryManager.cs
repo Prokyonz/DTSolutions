@@ -20,16 +20,10 @@ namespace Repository.Entities
         public float OvetimeDays { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal PFAmount { get; set; }
-
-        [Column(TypeName = "decimal(18, 4)")]
-        public decimal ProfessionalTaxAmount { get; set; }
-
-        [Column(TypeName = "decimal(18, 4)")]
         public decimal AdvanceAmount { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal OtherDeductions { get; set; }
+        public decimal BonusAmount { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalAmount { get; set; }
@@ -41,14 +35,15 @@ namespace Repository.Entities
         public Guid? UpdatedBy { get; set; }
 
         //This propeties can be include in the UserMaster if the user if employee
+        //public bool IsEmployee { get; set; }
         //public string EmployeeCode { get; set; }
         //public string DepartmentName { get; set; }
         //public string Designation { get; set; }
         //public DateTime DateOfJoin { get; set; }
         //public DateTime DateOfBirth { get; set; }
+        //public decimal SalaryAmount { get; set; }
+        //public int JobType { get; set; }
         //public string BankName { get; set; }
-        //public string PFNo { get; set; }
-        //public string UANNo { get; set; }
 
         [ForeignKey("UserId")]
         public virtual UserMaster UserMaster { get; set; }
