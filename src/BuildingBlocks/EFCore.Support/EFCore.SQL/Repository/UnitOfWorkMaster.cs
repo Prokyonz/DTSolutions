@@ -1,4 +1,5 @@
 ﻿using EFCore.SQL.DBContext;
+using EFCore.SQL.Interface;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,6 +24,7 @@ namespace EFCore.SQL.Repository
         private SalesMasterRepository _salesMasterRepository;
         private UserMasterRepository _userMasterRepository;
         private RoleMasterRepository _roleMasterRepository;
+        private ExpenseMasterRepository _expenseMasterRepository;
 
         public UnitOfWorkMaster()
         {
@@ -184,6 +186,16 @@ namespace EFCore.SQL.Repository
                 if (_partyMasterRepository == null)
                     _partyMasterRepository = new PartyMasterRepository();
                 return _partyMasterRepository;
+            }
+        }
+
+        public IExpenseMaster ExpenseMasterRepository
+        {
+            get
+            {
+                if (_expenseMasterRepository == null)
+                    _expenseMasterRepository = new ExpenseMasterRepository();
+                return _expenseMasterRepository;
             }
         }
     }

@@ -58,8 +58,6 @@ namespace EFCore.SQL.Repository
                 {
                     getLessWeightRecord.Name = lessWeightMaster.Name;
                     getLessWeightRecord.IsDelete = lessWeightMaster.IsDelete;
-                    getLessWeightRecord.CreatedBy = lessWeightMaster.CreatedBy;
-                    getLessWeightRecord.UpdatedBy = lessWeightMaster.UpdatedBy;
                     getLessWeightRecord.CreatedDate = lessWeightMaster.CreatedDate;
                     getLessWeightRecord.UpdatedDate = lessWeightMaster.UpdatedDate;
                     

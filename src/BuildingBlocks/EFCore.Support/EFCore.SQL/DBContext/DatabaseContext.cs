@@ -37,6 +37,8 @@ namespace EFCore.SQL.DBContext
         public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
         public DbSet<SalesMaster> SalesMaster { get; set; }
         public DbSet<SalesDetails> SalesDetails { get; set; }
+        public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
+        public DbSet<ExpenseDetails> ExpenseDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -67,6 +69,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PurchaseDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ExpenseMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ExpenseDetails>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
