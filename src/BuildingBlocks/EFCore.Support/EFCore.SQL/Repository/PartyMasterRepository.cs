@@ -54,6 +54,8 @@ namespace EFCore.SQL.Repository
             var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyMaster.Id).FirstOrDefaultAsync();
             if (getParty != null)
             {
+                getParty.Status = partyMaster.Status;
+                getParty.CompanyId = partyMaster.CompanyId;
                 getParty.Type = partyMaster.Type;
                 getParty.Name = partyMaster.Name;
                 getParty.ShortName = partyMaster.ShortName;

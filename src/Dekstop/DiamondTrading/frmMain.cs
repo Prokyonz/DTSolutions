@@ -179,5 +179,25 @@ namespace DiamondTrading
         {
             OpenMasterDetailsForm("CurrencyMaster");
         }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("KapanMaster");
+        }
+
+        private void accrdianElementKapanMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("KapanMaster");
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("PartyMaster");
+        }
+
+        private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("PartyMaster");
+        }
     }
 }

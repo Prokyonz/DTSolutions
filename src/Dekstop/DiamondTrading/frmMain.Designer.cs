@@ -233,12 +233,14 @@ namespace DiamondTrading
             this.barButtonItem4.Caption = "Party Master";
             this.barButtonItem4.Id = 4;
             this.barButtonItem4.Name = "barButtonItem4";
+            this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
             // barButtonItem7
             // 
             this.barButtonItem7.Caption = "Kapan Master";
             this.barButtonItem7.Id = 7;
             this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick);
             // 
             // barBtnShape
             // 
@@ -581,6 +583,7 @@ namespace DiamondTrading
             this.accrdianElementPartyMaster.Name = "accrdianElementPartyMaster";
             this.accrdianElementPartyMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accrdianElementPartyMaster.Text = "Party Matser";
+            this.accrdianElementPartyMaster.Click += new System.EventHandler(this.accrdianElementPartyMaster_Click);
             // 
             // accordionControlSeparator4
             // 
@@ -591,6 +594,7 @@ namespace DiamondTrading
             this.accrdianElementKapanMaster.Name = "accrdianElementKapanMaster";
             this.accrdianElementKapanMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accrdianElementKapanMaster.Text = "Kapan Master";
+            this.accrdianElementKapanMaster.Click += new System.EventHandler(this.accrdianElementKapanMaster_Click);
             // 
             // accordionControlSeparator3
             // 

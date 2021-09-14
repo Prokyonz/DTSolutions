@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -118,6 +118,16 @@ namespace DiamondTrading
             this.colCurrencyShortName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrnecyRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrencyUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabKapanMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdKapanMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvKapanMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colKapanId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colKapanIsActive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colKapanName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDetails = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colKapanCaratLimit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colKapanUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -125,6 +135,15 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.xtabPartyMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdPartyMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvPartyMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPartyStatus = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPartyUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -162,8 +181,16 @@ namespace DiamondTrading
             this.xtabCurrencyMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrencyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvCurrencyMaster)).BeginInit();
+            this.xtabKapanMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdKapanMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvKapanMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.xtabPartyMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             this.SuspendLayout();
             // 
             // grdLessWeightGroupDetailMaster
@@ -174,10 +201,10 @@ namespace DiamondTrading
             // grdLessGroupWeightMaster
             // 
             this.grdLessGroupWeightMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.grdLessWeightGroupDetailMaster;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode3.LevelTemplate = this.grdLessWeightGroupDetailMaster;
+            gridLevelNode3.RelationName = "Level1";
             this.grdLessGroupWeightMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode3});
             this.grdLessGroupWeightMaster.Location = new System.Drawing.Point(0, 0);
             this.grdLessGroupWeightMaster.MainView = this.grvLessGroupWeightMaster;
             this.grdLessGroupWeightMaster.Name = "grdLessGroupWeightMaster";
@@ -297,10 +324,10 @@ namespace DiamondTrading
             // grdCompanyMaster
             // 
             this.grdCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode3.LevelTemplate = this.grdChildCompanyMaster;
-            gridLevelNode3.RelationName = "Child";
+            gridLevelNode1.LevelTemplate = this.grdChildCompanyMaster;
+            gridLevelNode1.RelationName = "Child";
             this.grdCompanyMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode3});
+            gridLevelNode1});
             this.grdCompanyMaster.Location = new System.Drawing.Point(0, 0);
             this.grdCompanyMaster.MainView = this.grvCompanyMaster;
             this.grdCompanyMaster.Name = "grdCompanyMaster";
@@ -485,7 +512,9 @@ namespace DiamondTrading
             this.xtabNumberMaster,
             this.xtabFinancialYearMaster,
             this.xtabBrokerageMaster,
-            this.xtabCurrencyMaster});
+            this.xtabCurrencyMaster,
+            this.xtabKapanMaster,
+            this.xtabPartyMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabLessWeightGroupMaster
@@ -992,6 +1021,100 @@ namespace DiamondTrading
             this.colCurrencyUpdatedDate.VisibleIndex = 3;
             this.colCurrencyUpdatedDate.Width = 93;
             // 
+            // xtabKapanMaster
+            // 
+            this.xtabKapanMaster.Controls.Add(this.grdKapanMaster);
+            this.xtabKapanMaster.Name = "xtabKapanMaster";
+            this.xtabKapanMaster.PageVisible = false;
+            this.xtabKapanMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabKapanMaster.Text = "Kapan Master";
+            // 
+            // grdKapanMaster
+            // 
+            this.grdKapanMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdKapanMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdKapanMaster.MainView = this.grvKapanMaster;
+            this.grdKapanMaster.Name = "grdKapanMaster";
+            this.grdKapanMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
+            this.grdKapanMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdKapanMaster.TabIndex = 5;
+            this.grdKapanMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvKapanMaster});
+            // 
+            // grvKapanMaster
+            // 
+            this.grvKapanMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvKapanMaster.Appearance.Row.Options.UseFont = true;
+            this.grvKapanMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colKapanId,
+            this.colKapanIsActive,
+            this.colKapanName,
+            this.colDetails,
+            this.colKapanCaratLimit,
+            this.colKapanUpdatedDate});
+            this.grvKapanMaster.GridControl = this.grdKapanMaster;
+            this.grvKapanMaster.Name = "grvKapanMaster";
+            this.grvKapanMaster.OptionsBehavior.Editable = false;
+            this.grvKapanMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colKapanId
+            // 
+            this.colKapanId.Caption = "Id";
+            this.colKapanId.FieldName = "Id";
+            this.colKapanId.Name = "colKapanId";
+            // 
+            // colKapanIsActive
+            // 
+            this.colKapanIsActive.Caption = "Active";
+            this.colKapanIsActive.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colKapanIsActive.FieldName = "IsStatus";
+            this.colKapanIsActive.Name = "colKapanIsActive";
+            this.colKapanIsActive.Visible = true;
+            this.colKapanIsActive.VisibleIndex = 0;
+            this.colKapanIsActive.Width = 48;
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            this.repositoryItemCheckEdit1.AutoHeight = false;
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            // 
+            // colKapanName
+            // 
+            this.colKapanName.Caption = "Kapan Name";
+            this.colKapanName.FieldName = "Name";
+            this.colKapanName.Name = "colKapanName";
+            this.colKapanName.Visible = true;
+            this.colKapanName.VisibleIndex = 1;
+            this.colKapanName.Width = 480;
+            // 
+            // colDetails
+            // 
+            this.colDetails.Caption = "Details";
+            this.colDetails.FieldName = "Details";
+            this.colDetails.Name = "colDetails";
+            this.colDetails.Visible = true;
+            this.colDetails.VisibleIndex = 2;
+            this.colDetails.Width = 108;
+            // 
+            // colKapanCaratLimit
+            // 
+            this.colKapanCaratLimit.Caption = "Carat Limit";
+            this.colKapanCaratLimit.FieldName = "CaratLimit";
+            this.colKapanCaratLimit.Name = "colKapanCaratLimit";
+            this.colKapanCaratLimit.Visible = true;
+            this.colKapanCaratLimit.VisibleIndex = 3;
+            this.colKapanCaratLimit.Width = 62;
+            // 
+            // colKapanUpdatedDate
+            // 
+            this.colKapanUpdatedDate.Caption = "Updated Date";
+            this.colKapanUpdatedDate.FieldName = "UpdatedDate";
+            this.colKapanUpdatedDate.Name = "colKapanUpdatedDate";
+            this.colKapanUpdatedDate.Visible = true;
+            this.colKapanUpdatedDate.VisibleIndex = 4;
+            this.colKapanUpdatedDate.Width = 92;
+            // 
             // accordionControl1
             // 
             this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -1063,6 +1186,90 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // xtabPartyMaster
+            // 
+            this.xtabPartyMaster.Controls.Add(this.grdPartyMaster);
+            this.xtabPartyMaster.Name = "xtabPartyMaster";
+            this.xtabPartyMaster.PageVisible = false;
+            this.xtabPartyMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabPartyMaster.Text = "PartyMaster";
+            // 
+            // grdPartyMaster
+            // 
+            this.grdPartyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPartyMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdPartyMaster.MainView = this.grvPartyMaster;
+            this.grdPartyMaster.Name = "grdPartyMaster";
+            this.grdPartyMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit2});
+            this.grdPartyMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdPartyMaster.TabIndex = 6;
+            this.grdPartyMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvPartyMaster});
+            // 
+            // grvPartyMaster
+            // 
+            this.grvPartyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvPartyMaster.Appearance.Row.Options.UseFont = true;
+            this.grvPartyMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPartyId,
+            this.colPartyStatus,
+            this.colPartyName,
+            this.colPartyType,
+            this.colPartyUpdatedDate});
+            this.grvPartyMaster.GridControl = this.grdPartyMaster;
+            this.grvPartyMaster.Name = "grvPartyMaster";
+            this.grvPartyMaster.OptionsBehavior.Editable = false;
+            this.grvPartyMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colPartyId
+            // 
+            this.colPartyId.Caption = "Id";
+            this.colPartyId.FieldName = "Id";
+            this.colPartyId.Name = "colPartyId";
+            // 
+            // colPartyStatus
+            // 
+            this.colPartyStatus.Caption = "Active";
+            this.colPartyStatus.ColumnEdit = this.repositoryItemCheckEdit2;
+            this.colPartyStatus.FieldName = "Status";
+            this.colPartyStatus.Name = "colPartyStatus";
+            this.colPartyStatus.Visible = true;
+            this.colPartyStatus.VisibleIndex = 0;
+            this.colPartyStatus.Width = 48;
+            // 
+            // repositoryItemCheckEdit2
+            // 
+            this.repositoryItemCheckEdit2.AutoHeight = false;
+            this.repositoryItemCheckEdit2.Name = "repositoryItemCheckEdit2";
+            // 
+            // colPartyName
+            // 
+            this.colPartyName.Caption = "Party Name";
+            this.colPartyName.FieldName = "Name";
+            this.colPartyName.Name = "colPartyName";
+            this.colPartyName.Visible = true;
+            this.colPartyName.VisibleIndex = 1;
+            this.colPartyName.Width = 480;
+            // 
+            // colPartyType
+            // 
+            this.colPartyType.Caption = "Type";
+            this.colPartyType.FieldName = "Type";
+            this.colPartyType.Name = "colPartyType";
+            this.colPartyType.Visible = true;
+            this.colPartyType.VisibleIndex = 2;
+            this.colPartyType.Width = 108;
+            // 
+            // colPartyUpdatedDate
+            // 
+            this.colPartyUpdatedDate.Caption = "Updated Date";
+            this.colPartyUpdatedDate.FieldName = "UpdatedDate";
+            this.colPartyUpdatedDate.Name = "colPartyUpdatedDate";
+            this.colPartyUpdatedDate.Visible = true;
+            this.colPartyUpdatedDate.VisibleIndex = 3;
+            this.colPartyUpdatedDate.Width = 92;
+            // 
             // FrmMasterDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1117,8 +1324,16 @@ namespace DiamondTrading
             this.xtabCurrencyMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdCurrencyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvCurrencyMaster)).EndInit();
+            this.xtabKapanMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdKapanMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvKapanMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.xtabPartyMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1219,5 +1434,24 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencyUpdatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrencyShortName;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrnecyRate;
+        private DevExpress.XtraTab.XtraTabPage xtabKapanMaster;
+        private DevExpress.XtraGrid.GridControl grdKapanMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvKapanMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colKapanId;
+        private DevExpress.XtraGrid.Columns.GridColumn colKapanIsActive;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colKapanName;
+        private DevExpress.XtraGrid.Columns.GridColumn colDetails;
+        private DevExpress.XtraGrid.Columns.GridColumn colKapanCaratLimit;
+        private DevExpress.XtraGrid.Columns.GridColumn colKapanUpdatedDate;
+        private DevExpress.XtraTab.XtraTabPage xtabPartyMaster;
+        private DevExpress.XtraGrid.GridControl grdPartyMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvPartyMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPartyStatus;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit2;
+        private DevExpress.XtraGrid.Columns.GridColumn colPartyName;
+        private DevExpress.XtraGrid.Columns.GridColumn colPartyType;
+        private DevExpress.XtraGrid.Columns.GridColumn colPartyUpdatedDate;
     }
 }

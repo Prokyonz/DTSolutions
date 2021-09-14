@@ -264,6 +264,12 @@
     <Compile Include="Master\FrmNumberMaster.Designer.cs">
       <DependentUpon>FrmNumberMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\FrmPartyMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\FrmPartyMaster.Designer.cs">
+      <DependentUpon>FrmPartyMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\FrmPurityMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -325,6 +331,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmNumberMaster.resx">
       <DependentUpon>FrmNumberMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmPartyMaster.resx">
+      <DependentUpon>FrmPartyMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmPurityMaster.resx">
       <DependentUpon>FrmPurityMaster.cs</DependentUpon>

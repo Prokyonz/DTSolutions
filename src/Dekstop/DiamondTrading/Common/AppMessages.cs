@@ -95,6 +95,20 @@ namespace DiamondTrading
         AddMoreCurrencyConfirmation,
         DeleteCurrencyConfirmation,
         #endregion
+        #region "FrmKapanMaster"
+        EmptyKapanName,
+        KapanNameExist,
+        AddMoreKapanConfirmation,
+        DeleteKapanConfirmation,
+        #endregion
+        #region "FrmPartyMaster"
+        EmptyPartyName,
+        EmptyPartyCompanySelection,
+        EmptyPartyTypeSelection,
+        PartyNameExist,
+        AddMorePartyConfirmation,
+        DeletePartyCofirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -334,6 +348,40 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeleteCurrencyConfirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Currency...?";
+                    break;
+                #endregion
+                #region "FrmKapanMaster"
+                case AppMessageID.EmptyKapanName:
+                    ReturnMsg = "Please write Kapan Name.";
+                    break;
+                case AppMessageID.KapanNameExist:
+                    ReturnMsg = "Kapan Name already exist.";
+                    break;
+                case AppMessageID.AddMoreKapanConfirmation:
+                    ReturnMsg = "Do you want to add more Kapan...?";
+                    break;
+                case AppMessageID.DeleteKapanConfirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Kapan...?";
+                    break;
+                #endregion
+                #region "FrmPartyMaster"
+                case AppMessageID.EmptyPartyName:
+                    ReturnMsg = "Please write Party Name.";
+                    break;
+                case AppMessageID.EmptyPartyCompanySelection:
+                    ReturnMsg = "Please select party company.";
+                    break;
+                case AppMessageID.EmptyPartyTypeSelection:
+                    ReturnMsg = "Please select party type.";
+                    break;
+                case AppMessageID.PartyNameExist:
+                    ReturnMsg = "Party Name already exist.";
+                    break;
+                case AppMessageID.AddMorePartyConfirmation:
+                    ReturnMsg = "Do you want to add more Party...?";
+                    break;
+                case AppMessageID.DeletePartyCofirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' Party...?";
                     break;
                 #endregion
                 #region "Others"

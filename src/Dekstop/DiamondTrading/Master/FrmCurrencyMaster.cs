@@ -43,6 +43,8 @@ namespace DiamondTrading.Master
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     txtCurrencyName.Text = _EditedCurrencyMasterSet.Name;
+                    txtShortName.Text = _EditedCurrencyMasterSet.ShortName;
+                    txtRate.Text = _EditedCurrencyMasterSet.Value.ToString();
                 }
             }
         }

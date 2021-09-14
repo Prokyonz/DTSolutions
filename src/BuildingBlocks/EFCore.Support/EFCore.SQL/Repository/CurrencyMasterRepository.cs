@@ -52,10 +52,12 @@ namespace EFCore.SQL.Repository
 
         public async Task<CurrencyMaster> UpdateCurrencyAsync(CurrencyMaster currencyMaster)
         {
-            var getCurrency = await _databaseContext.GalaMaster.Where(s => s.Id == currencyMaster.Id).FirstOrDefaultAsync();
+            var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyMaster.Id).FirstOrDefaultAsync();
             if (getCurrency != null)
             {
                 getCurrency.Name = currencyMaster.Name;
+                getCurrency.ShortName = currencyMaster.ShortName;
+                getCurrency.Value = currencyMaster.Value;
                 getCurrency.UpdatedDate = currencyMaster.UpdatedDate;
                 getCurrency.UpdatedBy = currencyMaster.UpdatedBy;
             }

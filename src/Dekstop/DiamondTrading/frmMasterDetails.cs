@@ -27,6 +27,9 @@ namespace DiamondTrading
         private NumberMasterRepository _numberMasterRepository;
         private FinancialYearMasterRepository _financialYearMasterRepository;
         private BrokerageMasterRepository _brokerageMasterRepository;
+        private CurrencyMasterRepository _currencyMasterRepository;
+        private KapanMasterRepository _kapanMasterRepository;
+        private PartyMasterRepository _partyMasterRepository;
 
         private List<CompanyMaster> _companyMaster;
         private List<BranchMaster> _branchMaster;
@@ -39,6 +42,8 @@ namespace DiamondTrading
         private List<FinancialYearMaster> _financialYearMaster;
         private List<BrokerageMaster> _brokerageMaster;
         private List<CurrencyMaster> _currencyMaster;
+        private List<KapanMaster> _kapanMaster;
+        private List<PartyMaster> _partyMaster;
 
         public FrmMasterDetails()
         {
@@ -106,6 +111,16 @@ namespace DiamondTrading
                     xtabMasterDetails.SelectedTabPage = xtabCurrencyMaster;
                     this.Text = "Currency Master";
                     break;
+                case "KapanMaster":
+                    xtabKapanMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabKapanMaster;
+                    this.Text = "Kapan Master";
+                    break;
+                case "PartyMaster":
+                    xtabPartyMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabPartyMaster;
+                    this.Text = "Party Master";
+                    break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabCompanyMaster;
@@ -128,6 +143,8 @@ namespace DiamondTrading
             xtabFinancialYearMaster.PageVisible = false;
             xtabBrokerageMaster.PageVisible = false;
             xtabCurrencyMaster.PageVisible = false;
+            xtabKapanMaster.PageVisible = false;
+            xtabPartyMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -221,6 +238,22 @@ namespace DiamondTrading
             {
                 Master.FrmCurrencyMaster frmCurrencyMaster= new Master.FrmCurrencyMaster(_currencyMaster);
                 if (frmCurrencyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
+            {
+                Master.FrmKapanMaster frmKapanMaster= new Master.FrmKapanMaster(_kapanMaster);
+                if (frmKapanMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            {
+                Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster(_partyMaster);
+                if (frmPartyMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -329,8 +362,27 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _currencyMaster == null)
                 {
-                    _currencyMaster = await _unitOfWorkMaster.CurrencyMasterRepository.GetAllCurrencyAsync();
+                    _currencyMasterRepository = new CurrencyMasterRepository();
+                    _currencyMaster = await _currencyMasterRepository.GetAllCurrencyAsync();
                     grdCurrencyMaster.DataSource = _currencyMaster;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
+            {
+                if (IsForceLoad || _kapanMaster == null)
+                {
+                    _kapanMasterRepository = new KapanMasterRepository();
+                    _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync();
+                    grdKapanMaster.DataSource = _kapanMaster;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            {
+                if (IsForceLoad || _partyMaster == null)
+                {
+                    _partyMasterRepository = new PartyMasterRepository();
+                    _partyMaster = await _partyMasterRepository.GetAllPartyAsync();
+                    grdPartyMaster.DataSource = _partyMaster;
                 }
             }
         }
@@ -445,6 +497,24 @@ namespace DiamondTrading
                 Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
                 Master.FrmCurrencyMaster frmCurrencyMaster = new Master.FrmCurrencyMaster(_currencyMaster, SelectedGuid);
                 if (frmCurrencyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString());
+                Master.FrmKapanMaster frmKapanMaster = new Master.FrmKapanMaster(_kapanMaster, SelectedGuid);
+                if (frmKapanMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
+                Master.FrmPartyMaster frmPartyMaster= new Master.FrmPartyMaster(_partyMaster, SelectedGuid);
+                if (frmPartyMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -591,9 +661,31 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
             {
                 Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    var Result = await _unitOfWorkMaster.CurrencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
+                    var Result = await _currencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);

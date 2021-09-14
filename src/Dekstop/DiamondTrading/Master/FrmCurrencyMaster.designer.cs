@@ -30,6 +30,7 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtShortName = new DevExpress.XtraEditors.TextEdit();
             this.txtRate = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -38,12 +39,11 @@ namespace DiamondTrading.Master
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtShortName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShortName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtShortName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -59,6 +59,16 @@ namespace DiamondTrading.Master
             this.groupControl1.Size = new System.Drawing.Size(345, 136);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Currency Details";
+            // 
+            // txtShortName
+            // 
+            this.txtShortName.Location = new System.Drawing.Point(10, 99);
+            this.txtShortName.Name = "txtShortName";
+            this.txtShortName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtShortName.Properties.Appearance.Options.UseFont = true;
+            this.txtShortName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtShortName.Size = new System.Drawing.Size(221, 22);
+            this.txtShortName.TabIndex = 3;
             // 
             // txtRate
             // 
@@ -137,15 +147,6 @@ namespace DiamondTrading.Master
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtShortName
-            // 
-            this.txtShortName.Location = new System.Drawing.Point(10, 99);
-            this.txtShortName.Name = "txtShortName";
-            this.txtShortName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtShortName.Properties.Appearance.Options.UseFont = true;
-            this.txtShortName.Size = new System.Drawing.Size(221, 22);
-            this.txtShortName.TabIndex = 3;
-            // 
             // FrmCurrencyMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -167,9 +168,9 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtShortName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtShortName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
