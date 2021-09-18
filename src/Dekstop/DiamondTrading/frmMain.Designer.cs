@@ -65,13 +65,22 @@ namespace DiamondTrading
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
+            this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
+            this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
+            this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
+            this.barbtnYear = new DevExpress.XtraBars.BarSubItem();
             this.barLblUserName = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
             this.barButtonItem16 = new DevExpress.XtraBars.BarButtonItem();
+            this.barLinkContainerItem1 = new DevExpress.XtraBars.BarLinkContainerItem();
+            this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem29 = new DevExpress.XtraBars.BarButtonItem();
+            this.barLinkContainerItem2 = new DevExpress.XtraBars.BarLinkContainerItem();
+            this.barButtonItem30 = new DevExpress.XtraBars.BarButtonItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElementMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -113,9 +122,14 @@ namespace DiamondTrading
             this.accordionControlElement29 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barButtonItem31 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem32 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -163,9 +177,20 @@ namespace DiamondTrading
             this.barButtonItem27,
             this.barButtonItem28,
             this.barLblUserName,
-            this.barToggleSwitchItem1});
+            this.barToggleSwitchItem1,
+            this.barLinkContainerItem1,
+            this.barButtonItem11,
+            this.barbtnYear,
+            this.barButtonItem29,
+            this.barLinkContainerItem2,
+            this.barButtonItem30,
+            this.barStaticItem1,
+            this.barSubItem6,
+            this.barSubItem7,
+            this.barButtonItem31,
+            this.barButtonItem32});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 36;
+            this.barManager1.MaxItemId = 47;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -437,12 +462,22 @@ namespace DiamondTrading
             this.bar3.DockRow = 0;
             this.bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom;
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barToggleSwitchItem1, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barLblUserName)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barToggleSwitchItem1),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem6, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem7, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnYear, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barLblUserName, true)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
             this.bar3.OptionsBar.UseWholeRow = true;
             this.bar3.Text = "Status bar";
+            // 
+            // barStaticItem1
+            // 
+            this.barStaticItem1.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
+            this.barStaticItem1.Id = 42;
+            this.barStaticItem1.Name = "barStaticItem1";
             // 
             // barToggleSwitchItem1
             // 
@@ -450,12 +485,43 @@ namespace DiamondTrading
             this.barToggleSwitchItem1.Id = 35;
             this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
             // 
+            // barSubItem6
+            // 
+            this.barSubItem6.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barSubItem6.Caption = "Demo Company";
+            this.barSubItem6.Id = 43;
+            this.barSubItem6.ImageOptions.Image = global::DiamondTrading.Properties.Resources.company_16;
+            this.barSubItem6.Name = "barSubItem6";
+            this.barSubItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barSubItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem6_ItemClick);
+            // 
+            // barSubItem7
+            // 
+            this.barSubItem7.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barSubItem7.Caption = "Demo Branch";
+            this.barSubItem7.Id = 44;
+            this.barSubItem7.ImageOptions.Image = global::DiamondTrading.Properties.Resources.branch_16;
+            this.barSubItem7.Name = "barSubItem7";
+            this.barSubItem7.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barSubItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem7_ItemClick);
+            // 
+            // barbtnYear
+            // 
+            this.barbtnYear.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barbtnYear.Caption = "2021-2022";
+            this.barbtnYear.Id = 38;
+            this.barbtnYear.ImageOptions.Image = global::DiamondTrading.Properties.Resources.year_16;
+            this.barbtnYear.Name = "barbtnYear";
+            this.barbtnYear.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barbtnYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnYear_ItemClick);
+            // 
             // barLblUserName
             // 
-            this.barLblUserName.AutoSize = DevExpress.XtraBars.BarStaticItemSize.Spring;
             this.barLblUserName.Caption = "Demo User";
             this.barLblUserName.Id = 34;
+            this.barLblUserName.ImageOptions.Image = global::DiamondTrading.Properties.Resources.user_16;
             this.barLblUserName.Name = "barLblUserName";
+            this.barLblUserName.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barLblUserName.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // barDockControlTop
@@ -470,9 +536,9 @@ namespace DiamondTrading
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 532);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 527);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(988, 24);
+            this.barDockControlBottom.Size = new System.Drawing.Size(988, 29);
             // 
             // barDockControlLeft
             // 
@@ -480,7 +546,7 @@ namespace DiamondTrading
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 26);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 506);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 501);
             // 
             // barDockControlRight
             // 
@@ -488,13 +554,47 @@ namespace DiamondTrading
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.barDockControlRight.Location = new System.Drawing.Point(988, 26);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 506);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 501);
             // 
             // barButtonItem16
             // 
             this.barButtonItem16.Caption = "barButtonItem16";
             this.barButtonItem16.Id = 16;
             this.barButtonItem16.Name = "barButtonItem16";
+            // 
+            // barLinkContainerItem1
+            // 
+            this.barLinkContainerItem1.Caption = "test";
+            this.barLinkContainerItem1.Id = 36;
+            this.barLinkContainerItem1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem11)});
+            this.barLinkContainerItem1.Name = "barLinkContainerItem1";
+            // 
+            // barButtonItem11
+            // 
+            this.barButtonItem11.Caption = "test1";
+            this.barButtonItem11.Id = 37;
+            this.barButtonItem11.Name = "barButtonItem11";
+            // 
+            // barButtonItem29
+            // 
+            this.barButtonItem29.Caption = "test1";
+            this.barButtonItem29.Id = 39;
+            this.barButtonItem29.Name = "barButtonItem29";
+            // 
+            // barLinkContainerItem2
+            // 
+            this.barLinkContainerItem2.Caption = "testlink";
+            this.barLinkContainerItem2.Id = 40;
+            this.barLinkContainerItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem30)});
+            this.barLinkContainerItem2.Name = "barLinkContainerItem2";
+            // 
+            // barButtonItem30
+            // 
+            this.barButtonItem30.Caption = "test";
+            this.barButtonItem30.Id = 41;
+            this.barButtonItem30.Name = "barButtonItem30";
             // 
             // bar1
             // 
@@ -527,7 +627,7 @@ namespace DiamondTrading
             this.accordionControl1.Margin = new System.Windows.Forms.Padding(2);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
-            this.accordionControl1.Size = new System.Drawing.Size(222, 506);
+            this.accordionControl1.Size = new System.Drawing.Size(222, 501);
             this.accordionControl1.TabIndex = 0;
             this.accordionControl1.Click += new System.EventHandler(this.accordionControl1_Click);
             // 
@@ -796,17 +896,45 @@ namespace DiamondTrading
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.pictureEdit1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl1.Location = new System.Drawing.Point(0, 26);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(766, 506);
+            this.panelControl1.Size = new System.Drawing.Size(766, 501);
             this.panelControl1.TabIndex = 9;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureEdit1.EditValue = global::DiamondTrading.Properties.Resources.background;
+            this.pictureEdit1.Location = new System.Drawing.Point(2, 2);
+            this.pictureEdit1.MenuManager = this.barManager1;
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
+            this.pictureEdit1.TabIndex = 0;
+            // 
+            // barButtonItem31
+            // 
+            this.barButtonItem31.Caption = "Teet Company";
+            this.barButtonItem31.Id = 45;
+            this.barButtonItem31.Name = "barButtonItem31";
+            // 
+            // barButtonItem32
+            // 
+            this.barButtonItem32.Caption = "Demo Company 1";
+            this.barButtonItem32.Id = 46;
+            this.barButtonItem32.Name = "barButtonItem32";
             // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayoutStore = System.Windows.Forms.ImageLayout.Tile;
+            this.BackgroundImageStore = global::DiamondTrading.Properties.Resources.background;
             this.ClientSize = new System.Drawing.Size(988, 556);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.accordionControl1);
@@ -814,6 +942,7 @@ namespace DiamondTrading
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Enabled = false;
             this.Font = new System.Drawing.Font("Tahoma", 9F);
             this.IsMdiContainer = true;
             this.LookAndFeel.SkinName = "Office 2019 White";
@@ -828,6 +957,8 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -918,5 +1049,17 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator5;
         private DevExpress.XtraBars.BarToggleSwitchItem barToggleSwitchItem1;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator6;
+        private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem11;
+        private DevExpress.XtraBars.BarSubItem barbtnYear;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem29;
+        private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem2;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem30;
+        private DevExpress.XtraBars.BarStaticItem barStaticItem1;
+        private DevExpress.XtraBars.BarSubItem barSubItem6;
+        private DevExpress.XtraBars.BarSubItem barSubItem7;
+        private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem31;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem32;
     }
 }

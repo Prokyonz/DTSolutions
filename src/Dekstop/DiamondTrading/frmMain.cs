@@ -52,11 +52,32 @@ namespace DiamondTrading
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            DevExpress.XtraSplashScreen.FluentSplashScreenOptions options = new DevExpress.XtraSplashScreen.FluentSplashScreenOptions();
+            options.LogoImageOptions.Image = Properties.Resources.user_64;
+            options.Title = "Welcome " + Common.LoginUserName;
+            options.Subtitle = "Good Morning";
+            options.RightFooter = "Starting...";
+            //options.LeftFooter = "Copyright @ 2021" + Environment.NewLine + "All Rights reserved.";
+            options.LoadingIndicatorType = DevExpress.XtraSplashScreen.FluentLoadingIndicatorType.Dots;
+            options.Opacity = 130;
+            options.OpacityColor = Color.DodgerBlue;
+
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
+
+            System.Threading.Thread.Sleep(2500);
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+
+            //splashScreenManager1.ShowWaitForm();
+            //System.Threading.Thread.Sleep(1800);
+            //splashScreenManager1.CloseWaitForm();
+
             barLblUserName.Caption = Common.LoginUserName;
+            this.BringToFront();
             FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
+            frmCompanyYearSelection.BringToFront();
             if(frmCompanyYearSelection.ShowDialog()==DialogResult.OK)
             {
-
+                this.Enabled = true;
             }
         }
 
@@ -198,6 +219,32 @@ namespace DiamondTrading
         private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
         {
             OpenMasterDetailsForm("PartyMaster");
+        }
+
+        private void barSubItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
+        }
+
+        private void YearCompanySelection()
+        {
+            this.Enabled = false;
+            FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
+            frmCompanyYearSelection.BringToFront();
+            if (frmCompanyYearSelection.ShowDialog() == DialogResult.OK)
+            {
+                this.Enabled = true;
+            }
+        }
+
+        private void barSubItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
+        }
+
+        private void barbtnYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
         }
     }
 }
