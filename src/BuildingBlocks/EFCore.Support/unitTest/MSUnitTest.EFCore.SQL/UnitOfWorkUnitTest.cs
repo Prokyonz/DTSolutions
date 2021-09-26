@@ -19,7 +19,8 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void GetCompany()
         {
-            var companyMasters = _unitOfWorkMaster.CompanyMaster.GetAllCompanyAsync().Result;
+            var companyMasters = _unitOfWorkMaster.CurrencyMasterRepository.GetAllCurrencyAsync().Result;
+           
 
             Assert.IsTrue(companyMasters.Count > 0);
         }

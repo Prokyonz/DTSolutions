@@ -10,7 +10,7 @@ namespace Repository.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid PurchaseId { get; set; }
-        public Guid KapanId { get; set; }
+        public Guid KapanId { get; set; } //Need remove from the deals.
         public Guid ShapeId { get; set; }
         public Guid SizeId { get; set; }
         public Guid PurityId { get; set; }
