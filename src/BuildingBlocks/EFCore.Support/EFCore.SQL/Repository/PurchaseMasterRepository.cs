@@ -69,14 +69,18 @@ namespace EFCore.SQL.Repository
 
         public async Task<long> GetMaxSlipNo(Guid branchId, Guid financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync();
-            return result.SlipNo;
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
+            if(result != null)
+                return result.SlipNo;
+            return 0;
         }
 
         public async Task<long> GetMaxSrNo(Guid companyId, Guid financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync();
-            return result.PurchaseBillNo;
+            var result = await _databaseContext.PurchaseMaster.FirstOrDefaultAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
+            if(result != null)
+                return result.PurchaseBillNo;
+            return 0;
         }
 
         public async Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster)
