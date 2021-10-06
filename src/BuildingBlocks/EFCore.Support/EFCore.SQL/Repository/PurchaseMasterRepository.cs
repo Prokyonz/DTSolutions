@@ -67,6 +67,18 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
+        public async Task<long> GetMaxSlipNo(Guid branchId, Guid financialYearId)
+        {
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync();
+            return result.SlipNo;
+        }
+
+        public async Task<long> GetMaxSrNo(Guid companyId, Guid financialYearId)
+        {
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync();
+            return result.PurchaseBillNo;
+        }
+
         public async Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster)
         {
             var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).FirstOrDefaultAsync();

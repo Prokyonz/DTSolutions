@@ -10,6 +10,7 @@ namespace Repository.Entities
         public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
+        public Guid CompanyId { get; set; }
         public Guid BranchId { get; set; }
         public Guid PartyId { get; set; }
         public Guid ByuerId { get; set; }

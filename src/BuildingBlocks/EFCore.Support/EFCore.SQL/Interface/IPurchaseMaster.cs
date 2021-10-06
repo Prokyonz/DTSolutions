@@ -14,5 +14,7 @@ namespace EFCore.SQL.Interface
         Task<PurchaseMaster> AddPurchaseAsync(PurchaseMaster purchaseMaster);
         Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster);
         Task<bool> DeletePurchaseAsync(Guid purchaseId, bool isPermanantDetele = false);
+        Task<long> GetMaxSlipNo(Guid branchId, Guid financialYearId);
+        Task<long> GetMaxSrNo(Guid companyId, Guid financialYearId);
     }
 }
