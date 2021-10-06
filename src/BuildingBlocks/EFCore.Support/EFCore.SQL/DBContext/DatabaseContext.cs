@@ -40,6 +40,9 @@ namespace EFCore.SQL.DBContext
         public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
         public DbSet<ExpenseDetails> ExpenseDetails { get; set; }
         public DbSet<SalaryManager> SalaryManager { get; set; }
+        public DbSet<GroupPaymentMaster> GroupPaymentMaster { get; set; }
+        public DbSet<PaymentMaster> PaymentMaster { get; set; }
+        public DbSet<PaymentDetails> PaymentDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -73,6 +76,9 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<ExpenseMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalaryManager>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<GroupPaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PaymentDetails>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
