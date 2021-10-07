@@ -47,7 +47,12 @@ namespace EFCore.SQL.Repository
         public async Task<List<PartyMaster>> GetAllPartyAsync()
         {
             return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
-        }        
+        }
+
+        public async Task<List<PartyMaster>> GetPartyAsync(int Type)
+        {
+            return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type==Type).ToListAsync();
+        }
 
         public async Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster)
         {

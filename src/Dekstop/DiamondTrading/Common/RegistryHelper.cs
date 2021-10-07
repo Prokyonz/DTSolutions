@@ -11,11 +11,18 @@ namespace DiamondTrading
     {
         public static readonly string RecSection = "InfoLogs\\" + Common.AppName;
         public const string MainSection = "Main";
+        public const string OtherSection = "Other";
 
         #region "Registry Name"
         public const string RememberLogin = "RememberLogin";
         public const string LoginUserName = "LoginUserName";
         public const string LoginPwd = "LoginPwd";
+
+        #region "FrmOther"
+        public const string FormTitle = "FormTitle";
+        public const string PrintPurchaseSlip = "PrintPurchaseSlip";
+        public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
+        #endregion "FrmOther"
         #endregion
         public static void SaveSettings(string SubSection, string Key, string Value)
         {

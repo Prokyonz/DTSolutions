@@ -6,17 +6,21 @@ namespace Repository.Entities
 {
     public class PartyTypeMaster
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        internal int Id { get; set; }
+        internal string Name { get; set; }
+        public static int Buyer = 0;
+        public static int Seller = 0;
+        public static int Broker = 0;
+        public static int Other = 0;
 
         public static List<PartyTypeMaster> GetAllPartyType()
         {
             List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
             {
-                new PartyTypeMaster {Id = 0, Name = "Buyer" },
-                new PartyTypeMaster {Id = 1, Name = "Seller" },
-                new PartyTypeMaster {Id = 2, Name = "Broker" },
-                new PartyTypeMaster {Id = 3, Name = "Other" }
+                new PartyTypeMaster {Id = Buyer, Name = "Buyer" },
+                new PartyTypeMaster {Id = Seller, Name = "Seller" },
+                new PartyTypeMaster {Id = Broker, Name = "Broker" },
+                new PartyTypeMaster {Id = Other, Name = "Other" }
             };
             return partyTypeMaster;
         }

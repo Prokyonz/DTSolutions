@@ -64,7 +64,8 @@ namespace DiamondTrading
 
             DevExpress.XtraSplashScreen.SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
 
-            System.Threading.Thread.Sleep(2500);
+            System.Threading.Thread.Sleep(500);
+            Common.LoadRegistry();
             DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
 
             //splashScreenManager1.ShowWaitForm();
@@ -245,6 +246,30 @@ namespace DiamondTrading
         private void barbtnYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             YearCompanySelection();
+        }
+
+        private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmPurchaseEntry page = Application.OpenForms["FrmPurchaseEntry"] as Transaction.FrmPurchaseEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry();
+            frmPurchaseEntry.ShowDialog();
+        }
+
+        private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            FrmOptions page = Application.OpenForms["FrmOptions"] as FrmOptions;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmOptions frmOptions = new FrmOptions();
+            frmOptions.ShowDialog();
         }
     }
 }
