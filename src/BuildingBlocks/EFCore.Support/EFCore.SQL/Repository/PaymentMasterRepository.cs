@@ -29,14 +29,21 @@ namespace EFCore.SQL.Repository
             return groupPaymentMaster;
         }
 
-        public Task<bool> DeletePaymentAsync(Guid groupId)
+        public async Task<bool> DeletePaymentAsync(Guid groupId)
         {
-            throw new NotImplementedException();
+            var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupId).FirstOrDefaultAsync();
+            if(paymentRecord != null)
+            {
+                paymentRecord.IsDelete = true;
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
         
         public void Dispose()
         {
-            throw new NotImplementedException();
+            _databaseContext.DisposeAsync();
         }
 
         public async Task<List<GroupPaymentMaster>> GetAllPaymentAsync(Guid companyId, Guid financialYearId)
@@ -44,9 +51,35 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMaster").Include("PaymentDetails").ToListAsync();
         }
 
-        public Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster)
+        public async Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster)
         {
-            throw new NotImplementedException();
+            var groupPaymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupPaymentMaster.Id).Include("PaymentMasters").FirstOrDefaultAsync();
+            if (groupPaymentRecord != null)
+            {
+                groupPaymentRecord.CompanyId = groupPaymentMaster.CompanyId;
+                groupPaymentRecord.BranchId = groupPaymentMaster.BranchId;
+                groupPaymentRecord.FinancialYearId = groupPaymentMaster.FinancialYearId;
+                groupPaymentRecord.ToPartyId = groupPaymentMaster.ToPartyId;
+                groupPaymentRecord.Remarks = groupPaymentMaster.Remarks;
+                groupPaymentRecord.UpdatedDate = groupPaymentMaster.UpdatedDate;
+                groupPaymentRecord.UpdatedBy = groupPaymentMaster.UpdatedBy;
+
+                //Remove all existing paymentDetails records                
+                foreach (var paymentMaster in groupPaymentMaster.PaymentMasters)
+                {
+                    var paymentDetailsRecords = await _databaseContext.PaymentDetails.Where(w => w.PaymentId == paymentMaster.Id).ToListAsync();
+                    if (paymentDetailsRecords != null)
+                        _databaseContext.PaymentDetails.RemoveRange(paymentDetailsRecords);
+                }
+
+                //now remove the existing paymentmaster record.
+                _databaseContext.PaymentMaster.RemoveRange(groupPaymentRecord.PaymentMasters);
+
+                //Add the new Payment Master and Payment details reocrd.
+                await _databaseContext.PaymentMaster.AddRangeAsync(groupPaymentMaster.PaymentMasters.ToList());
+                await _databaseContext.SaveChangesAsync();
+            }
+            return groupPaymentMaster;
         }
     }
 }
