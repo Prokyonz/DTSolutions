@@ -51,7 +51,7 @@ namespace EFCore.SQL.Repository
         }
 
         public async Task<List<CompanyMaster>> GetAllCompanyAsync()
-        {            
+        {
             List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).ToListAsync(); 
             return companyMasters;
         }

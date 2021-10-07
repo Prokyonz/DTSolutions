@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class PaymentMaster : IPaymentMaster, IDisposable
+    public class PaymentMasterRepository : IPaymentMaster, IDisposable
     {
         private readonly DatabaseContext _databaseContext;
 
-        public PaymentMaster()
+        public PaymentMasterRepository()
         {
             _databaseContext = new DatabaseContext();
         }

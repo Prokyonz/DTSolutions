@@ -54,5 +54,14 @@ namespace MSUnitTest.EFCore.SQL
             }
             Assert.IsTrue(tempResult);
         }
+
+        [TestMethod]
+        public void GetAllBranchUsingSP()
+        {
+            var data = _companyMasterRepository.GetAllCompanyAsync().Result;
+            if (data != null)
+                Assert.IsTrue(true);
+            Assert.IsTrue(false);
+        }
     }
 }
