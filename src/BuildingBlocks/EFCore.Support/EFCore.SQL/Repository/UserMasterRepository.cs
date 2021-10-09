@@ -76,7 +76,7 @@ namespace EFCore.SQL.Repository
             {                
                 getUser.Name = userMaster.Name;
                 getUser.EmailId = userMaster.EmailId;
-                getUser.Type = userMaster.Type;
+                getUser.UserType = userMaster.UserType;
                 getUser.Address = userMaster.Address;
                 getUser.Address2 = userMaster.Address2;
                 getUser.MobileNo = userMaster.MobileNo;
