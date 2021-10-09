@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
@@ -259,6 +260,11 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("CRate");
             dt.Columns.Add("CAmount");
             return dt;
+        }
+
+        private void labelControl9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
