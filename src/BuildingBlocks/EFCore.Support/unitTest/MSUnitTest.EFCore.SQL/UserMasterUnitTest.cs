@@ -35,7 +35,7 @@ namespace MSUnitTest.EFCore.SQL
                 MobileNo = "132456",
                 Password="abedre",
                 ReferenceBy= "",
-                Type = 1,
+                UserType = 1,
                 CreatedBy = tempId,
                 CreatedDate = DateTime.Now,
                 UpdatedBy = tempId,
