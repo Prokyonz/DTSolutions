@@ -28,7 +28,14 @@ namespace DiamondTrading
         {
             try
             {
-                if(txtUsername.Text.Trim().Length==0)
+                //Set cursor position to center
+                Screen screen = Screen.FromControl(this);
+                this.Cursor = new Cursor(Cursor.Current.Handle);
+                Cursor.Position = new Point(screen.Bounds.Width /2, screen.Bounds.Height/2);
+                Cursor.Clip = new Rectangle(this.Location, this.Size);
+                this.Cursor = Cursors.WaitCursor;
+
+                if (txtUsername.Text.Trim().Length==0)
                 {
                     txtUsername.Focus();
                     return;
@@ -39,7 +46,7 @@ namespace DiamondTrading
                     return;
                 }
 
-                this.Cursor = Cursors.WaitCursor;
+                
                 var data = await _userMasterRepository.Login(txtUsername.Text, txtPassword.Text);
                 if (data.UserMaster != null)
                 {

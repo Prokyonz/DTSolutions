@@ -36,15 +36,17 @@ namespace DiamondTrading
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.comboBoxEdit3 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit2 = new DevExpress.XtraEditors.ComboBoxEdit();
-            this.comboBoxEdit1 = new DevExpress.XtraEditors.ComboBoxEdit();
+            this.lookUpCompany = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
+            this.checkRemember = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl3
@@ -85,12 +87,12 @@ namespace DiamondTrading
             this.btnOk.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnOk.Appearance.Options.UseBackColor = true;
             this.btnOk.Appearance.Options.UseFont = true;
-            this.btnOk.Location = new System.Drawing.Point(12, 204);
+            this.btnOk.Location = new System.Drawing.Point(5, 223);
             this.btnOk.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(386, 33);
-            this.btnOk.TabIndex = 8;
+            this.btnOk.Size = new System.Drawing.Size(392, 33);
+            this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -107,18 +109,19 @@ namespace DiamondTrading
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelControl1.Controls.Add(this.checkRemember);
+            this.panelControl1.Controls.Add(this.lookUpFinancialYear);
+            this.panelControl1.Controls.Add(this.lookUpBranch);
+            this.panelControl1.Controls.Add(this.lookUpCompany);
             this.panelControl1.Controls.Add(this.pictureEdit1);
             this.panelControl1.Controls.Add(this.labelControl3);
-            this.panelControl1.Controls.Add(this.comboBoxEdit3);
             this.panelControl1.Controls.Add(this.btnOk);
             this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.labelControl1);
-            this.panelControl1.Controls.Add(this.comboBoxEdit2);
             this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.comboBoxEdit1);
             this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(412, 249);
+            this.panelControl1.Size = new System.Drawing.Size(412, 272);
             this.panelControl1.TabIndex = 16;
             // 
             // pictureEdit1
@@ -132,44 +135,68 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
             this.pictureEdit1.TabIndex = 16;
             // 
-            // comboBoxEdit3
+            // lookUpCompany
             // 
-            this.comboBoxEdit3.Location = new System.Drawing.Point(13, 117);
-            this.comboBoxEdit3.Name = "comboBoxEdit3";
-            this.comboBoxEdit3.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit3.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit3.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lookUpCompany.EditValue = "Select Company";
+            this.lookUpCompany.Location = new System.Drawing.Point(13, 74);
+            this.lookUpCompany.Name = "lookUpCompany";
+            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpCompany.Properties.Appearance.Options.UseFont = true;
+            this.lookUpCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit3.Size = new System.Drawing.Size(386, 26);
-            this.comboBoxEdit3.TabIndex = 15;
+            this.lookUpCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
+            this.lookUpCompany.Size = new System.Drawing.Size(385, 22);
+            this.lookUpCompany.TabIndex = 1;
             // 
-            // comboBoxEdit2
+            // lookUpBranch
             // 
-            this.comboBoxEdit2.Location = new System.Drawing.Point(12, 166);
-            this.comboBoxEdit2.Name = "comboBoxEdit2";
-            this.comboBoxEdit2.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit2.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit2.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lookUpBranch.EditValue = "<Select Branch>";
+            this.lookUpBranch.Location = new System.Drawing.Point(12, 121);
+            this.lookUpBranch.Name = "lookUpBranch";
+            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpBranch.Properties.Appearance.Options.UseFont = true;
+            this.lookUpBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit2.Size = new System.Drawing.Size(386, 26);
-            this.comboBoxEdit2.TabIndex = 13;
+            this.lookUpBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
+            this.lookUpBranch.Size = new System.Drawing.Size(385, 22);
+            this.lookUpBranch.TabIndex = 2;
             // 
-            // comboBoxEdit1
+            // lookUpFinancialYear
             // 
-            this.comboBoxEdit1.Location = new System.Drawing.Point(12, 68);
-            this.comboBoxEdit1.Name = "comboBoxEdit1";
-            this.comboBoxEdit1.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBoxEdit1.Properties.Appearance.Options.UseFont = true;
-            this.comboBoxEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lookUpFinancialYear.EditValue = "Select Financial Year";
+            this.lookUpFinancialYear.Location = new System.Drawing.Point(12, 170);
+            this.lookUpFinancialYear.Name = "lookUpFinancialYear";
+            this.lookUpFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpFinancialYear.Properties.Appearance.Options.UseFont = true;
+            this.lookUpFinancialYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.comboBoxEdit1.Size = new System.Drawing.Size(386, 26);
-            this.comboBoxEdit1.TabIndex = 12;
+            this.lookUpFinancialYear.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StartDate", "SartDate"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EndDate", "EndDate")});
+            this.lookUpFinancialYear.Size = new System.Drawing.Size(385, 22);
+            this.lookUpFinancialYear.TabIndex = 3;
+            // 
+            // checkRemember
+            // 
+            this.checkRemember.Location = new System.Drawing.Point(12, 199);
+            this.checkRemember.Name = "checkRemember";
+            this.checkRemember.Properties.Caption = "Remember Details";
+            this.checkRemember.Size = new System.Drawing.Size(101, 18);
+            this.checkRemember.TabIndex = 17;
             // 
             // FrmCompanyYearSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 274);
+            this.ClientSize = new System.Drawing.Size(436, 299);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;
@@ -183,9 +210,10 @@ namespace DiamondTrading
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit3.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.comboBoxEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,11 +224,12 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btnOk;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit1;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit2;
-        private DevExpress.XtraEditors.ComboBoxEdit comboBoxEdit3;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
+        public DevExpress.XtraEditors.LookUpEdit lookUpCompany;
+        public DevExpress.XtraEditors.LookUpEdit lookUpFinancialYear;
+        public DevExpress.XtraEditors.LookUpEdit lookUpBranch;
+        private DevExpress.XtraEditors.CheckEdit checkRemember;
     }
 }
