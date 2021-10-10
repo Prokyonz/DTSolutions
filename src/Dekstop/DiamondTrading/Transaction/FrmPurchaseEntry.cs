@@ -28,9 +28,31 @@ namespace DiamondTrading.Transaction
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
 
+            SetThemeColors(Color.FromArgb(250, 243, 197));
+            //SetThemeColors(Color.FromArgb(0));
             FillCombos();
         }
 
+        private void SetThemeColors(Color color)
+        {
+            if (!color.ToArgb().ToString().Equals(Color.FromArgb(0).Name))
+            {
+                grpGroup1.AppearanceCaption.BorderColor = color;
+                grpGroup2.AppearanceCaption.BorderColor = color;
+                grpGroup3.AppearanceCaption.BorderColor = color;
+                grpGroup4.AppearanceCaption.BorderColor = color;
+                grpGroup5.AppearanceCaption.BorderColor = color;
+                grpGroup6.AppearanceCaption.BorderColor = color;
+                grpGroup7.AppearanceCaption.BorderColor = color;
+                grpGroup8.AppearanceCaption.BorderColor = color;
+                grpGroup9.AppearanceCaption.BorderColor = color;
+
+                txtCurrencyType.BackColor = color;
+                txtBuyerCommisionBalance.BackColor = color;
+                txtPartyBalance.BackColor = color;
+                txtBrokerBalance.BackColor = color;
+            }
+        }
         private async void FillCombos()
         {
             dtDate.EditValue = DateTime.Now;
