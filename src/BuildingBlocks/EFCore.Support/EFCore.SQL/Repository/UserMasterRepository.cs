@@ -37,7 +37,7 @@ namespace EFCore.SQL.Repository
                 if(isPermanantDetele)
                     _databaseContext.UserMaster.Remove(getUser);
                 else
-                    getUser.IsDetele = true;
+                    getUser.IsDelete = true;
             }
             await _databaseContext.SaveChangesAsync();
             return true;
@@ -50,7 +50,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<UserMaster>> GetAllUserAsync()
         {
-            return await _databaseContext.UserMaster.Where(s => s.IsDetele == false).ToListAsync();
+            return await _databaseContext.UserMaster.Where(s => s.IsDelete == false).ToListAsync();
         }
 
         public async Task<LoginResponse> Login(string userId, string password)
@@ -91,7 +91,7 @@ namespace EFCore.SQL.Repository
                 getUser.DateOfJoin = userMaster.DateOfJoin;
                 getUser.DateOfEnd = userMaster.DateOfEnd;
                 getUser.AadharCardNo = userMaster.AadharCardNo;                
-                getUser.UpdateDate = userMaster.UpdateDate;
+                getUser.UpdatedDate = userMaster.UpdatedDate;
                 getUser.UpdatedBy = userMaster.UpdatedBy;
             }
             await _databaseContext.SaveChangesAsync();

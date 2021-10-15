@@ -12,7 +12,7 @@ namespace Repository.Entities
         public string UserCode { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public string EmailId { get; set; }
+        public string UserName { get; set; }
         public int UserType { get; set; }
         public Guid BrokerageId { get; set; }
         public string Address { get; set; }
@@ -30,9 +30,9 @@ namespace Repository.Entities
         public string BankName { get; set; }
         public string AccountNo { get; set; }
         public string IFSCCode { get; set; }
-        public bool IsDetele { get; set; }
+        public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
-        public DateTime? UpdateDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 

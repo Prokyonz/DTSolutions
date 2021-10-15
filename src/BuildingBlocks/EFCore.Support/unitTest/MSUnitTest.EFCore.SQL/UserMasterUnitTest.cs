@@ -29,9 +29,9 @@ namespace MSUnitTest.EFCore.SQL
                 AadharCardNo = "2346",
                 Address = "Suat",
                 Address2 = "Suat",
-                EmailId = "abedre@gmail.com",
+                UserName = "abedre",
                 HomeNo = "123465",
-                IsDetele = false,
+                IsDelete = false,
                 MobileNo = "132456",
                 Password="abedre",
                 ReferenceBy= "",
@@ -39,7 +39,7 @@ namespace MSUnitTest.EFCore.SQL
                 CreatedBy = tempId,
                 CreatedDate = DateTime.Now,
                 UpdatedBy = tempId,
-                UpdateDate = DateTime.Now
+                UpdatedDate = DateTime.Now
             }).Result;
 
             List<UserMaster> result = _userMasterRepository.GetAllUserAsync().Result;

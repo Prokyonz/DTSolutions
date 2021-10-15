@@ -188,11 +188,11 @@ namespace DiamondTrading.Master
                         DateOfBirth = Convert.ToDateTime(dtDateOfBirth.EditValue),
                         DateOfJoin = Convert.ToDateTime(dtStartDate.EditValue),
                         DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue),
-                        IsDetele = false,
+                        IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
-                        UpdateDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now,
                     };
 
                     var Result = await _UserMasterRepository.AddUserAsync(UserMaster);
@@ -222,7 +222,7 @@ namespace DiamondTrading.Master
                     _EditedUserMasterSet.DateOfJoin = Convert.ToDateTime(dtStartDate.EditValue);
                     _EditedUserMasterSet.DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue);
                     _EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
-                    _EditedUserMasterSet.UpdateDate = DateTime.Now;
+                    _EditedUserMasterSet.UpdatedDate = DateTime.Now;
 
 
                     var Result = await _UserMasterRepository.UpdateUserAsync(_EditedUserMasterSet);

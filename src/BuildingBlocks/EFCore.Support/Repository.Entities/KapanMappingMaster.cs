@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
@@ -15,5 +14,7 @@ namespace Repository.Entities
         public Guid KapanId { get; set; }
         public string SlipId { get; set; }
 
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Weight { get; set; }
     }
 }
