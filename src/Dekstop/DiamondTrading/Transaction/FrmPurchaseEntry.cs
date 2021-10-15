@@ -293,5 +293,10 @@ namespace DiamondTrading.Transaction
         {
             Common.MoveToNextControl(sender, e, this);
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

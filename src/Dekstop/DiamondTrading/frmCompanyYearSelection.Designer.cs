@@ -92,7 +92,7 @@ namespace DiamondTrading
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(392, 33);
-            this.btnOk.TabIndex = 4;
+            this.btnOk.TabIndex = 5;
             this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -126,14 +126,12 @@ namespace DiamondTrading
             // 
             // checkRemember
             // 
-            this.pictureEdit1.EditValue = global::DiamondTrading.Properties.Resources.DefaultSelection;
-            this.pictureEdit1.Location = new System.Drawing.Point(1, 10);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
-            this.pictureEdit1.TabIndex = 16;
+            this.checkRemember.EditValue = true;
+            this.checkRemember.Location = new System.Drawing.Point(10, 198);
+            this.checkRemember.Name = "checkRemember";
+            this.checkRemember.Properties.Caption = "Remember details";
+            this.checkRemember.Size = new System.Drawing.Size(121, 18);
+            this.checkRemember.TabIndex = 4;
             // 
             // lookUpFinancialYear
             // 
@@ -209,6 +207,7 @@ namespace DiamondTrading
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company/Year Selection";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCompanyYearSelection_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();

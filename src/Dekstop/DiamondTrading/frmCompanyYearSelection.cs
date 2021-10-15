@@ -65,5 +65,10 @@ namespace DiamondTrading
         }
 
         #endregion
+
+        private void FrmCompanyYearSelection_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
     }
 }
