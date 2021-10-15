@@ -6,8 +6,8 @@ namespace Repository.Entities
 {
     public class PartyTypeMaster
     {
-        internal int Id { get; set; }
-        internal string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static int Buyer = 0;
         public static int Seller = 1;
         public static int Broker = 2;
@@ -28,8 +28,8 @@ namespace Repository.Entities
 
     public class UserTypeMaster
     {
-        internal int Id { get; set; }
-        internal string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static int User = 0;
         public static int Buyer = 1;
         public static int Seller = 2;
@@ -52,8 +52,8 @@ namespace Repository.Entities
 
     public class DepartmentMaster
     {
-        internal int Id { get; set; }
-        internal string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static int Account = 0;
         public static int Production = 1;
         public static int Other = 2;
@@ -72,8 +72,8 @@ namespace Repository.Entities
 
     public class DesignationMaster
     {
-        internal int Id { get; set; }
-        internal string Name { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static int Accountant = 0;
         public static int Other = 1;
 
