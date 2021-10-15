@@ -63,21 +63,21 @@ namespace DiamondTrading
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 150);
+            this.labelControl2.Location = new System.Drawing.Point(12, 157);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(73, 14);
+            this.labelControl2.Size = new System.Drawing.Size(80, 16);
             this.labelControl2.TabIndex = 10;
             this.labelControl2.Text = "Financial Year";
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 53);
+            this.labelControl1.Location = new System.Drawing.Point(12, 55);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(50, 14);
+            this.labelControl1.Size = new System.Drawing.Size(53, 16);
             this.labelControl1.TabIndex = 9;
             this.labelControl1.Text = "Company";
             // 
@@ -87,22 +87,22 @@ namespace DiamondTrading
             this.btnOk.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.btnOk.Appearance.Options.UseBackColor = true;
             this.btnOk.Appearance.Options.UseFont = true;
-            this.btnOk.Location = new System.Drawing.Point(5, 223);
+            this.btnOk.Location = new System.Drawing.Point(12, 232);
             this.btnOk.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(392, 33);
+            this.btnOk.Size = new System.Drawing.Size(385, 33);
             this.btnOk.TabIndex = 5;
             this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(13, 101);
+            this.labelControl4.Location = new System.Drawing.Point(12, 106);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(37, 14);
+            this.labelControl4.Size = new System.Drawing.Size(39, 16);
             this.labelControl4.TabIndex = 14;
             this.labelControl4.Text = "Branch";
             // 
@@ -121,24 +121,26 @@ namespace DiamondTrading
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(412, 272);
+            this.panelControl1.Size = new System.Drawing.Size(412, 276);
             this.panelControl1.TabIndex = 16;
             // 
             // checkRemember
             // 
             this.checkRemember.EditValue = true;
-            this.checkRemember.Location = new System.Drawing.Point(10, 198);
+            this.checkRemember.Location = new System.Drawing.Point(12, 208);
             this.checkRemember.Name = "checkRemember";
+            this.checkRemember.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkRemember.Properties.Appearance.Options.UseFont = true;
             this.checkRemember.Properties.Caption = "Remember details";
-            this.checkRemember.Size = new System.Drawing.Size(121, 18);
+            this.checkRemember.Size = new System.Drawing.Size(134, 20);
             this.checkRemember.TabIndex = 4;
             // 
             // lookUpFinancialYear
             // 
             this.lookUpFinancialYear.EditValue = "Select Financial Year";
-            this.lookUpFinancialYear.Location = new System.Drawing.Point(12, 170);
+            this.lookUpFinancialYear.Location = new System.Drawing.Point(12, 175);
             this.lookUpFinancialYear.Name = "lookUpFinancialYear";
-            this.lookUpFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpFinancialYear.Properties.Appearance.Options.UseFont = true;
             this.lookUpFinancialYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -147,15 +149,16 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StartDate", "SartDate"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EndDate", "EndDate")});
-            this.lookUpFinancialYear.Size = new System.Drawing.Size(385, 22);
+            this.lookUpFinancialYear.Properties.NullText = "";
+            this.lookUpFinancialYear.Size = new System.Drawing.Size(385, 26);
             this.lookUpFinancialYear.TabIndex = 3;
             // 
             // lookUpBranch
             // 
             this.lookUpBranch.EditValue = "<Select Branch>";
-            this.lookUpBranch.Location = new System.Drawing.Point(12, 121);
+            this.lookUpBranch.Location = new System.Drawing.Point(12, 124);
             this.lookUpBranch.Name = "lookUpBranch";
-            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpBranch.Properties.Appearance.Options.UseFont = true;
             this.lookUpBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -163,15 +166,16 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
-            this.lookUpBranch.Size = new System.Drawing.Size(385, 22);
+            this.lookUpBranch.Properties.NullText = "";
+            this.lookUpBranch.Size = new System.Drawing.Size(385, 26);
             this.lookUpBranch.TabIndex = 2;
             // 
             // lookUpCompany
             // 
             this.lookUpCompany.EditValue = "Select Company";
-            this.lookUpCompany.Location = new System.Drawing.Point(13, 74);
+            this.lookUpCompany.Location = new System.Drawing.Point(12, 73);
             this.lookUpCompany.Name = "lookUpCompany";
-            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpCompany.Properties.Appearance.Options.UseFont = true;
             this.lookUpCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -179,8 +183,10 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
-            this.lookUpCompany.Size = new System.Drawing.Size(385, 22);
+            this.lookUpCompany.Properties.NullText = "";
+            this.lookUpCompany.Size = new System.Drawing.Size(385, 26);
             this.lookUpCompany.TabIndex = 1;
+            this.lookUpCompany.EditValueChanged += new System.EventHandler(this.lookUpCompany_EditValueChanged);
             // 
             // pictureEdit1
             // 
@@ -197,7 +203,7 @@ namespace DiamondTrading
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 299);
+            this.ClientSize = new System.Drawing.Size(436, 301);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;

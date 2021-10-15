@@ -69,6 +69,7 @@ namespace DiamondTrading.Master
         {
             try
             {
+                dtDateOfBirth.EditValue = DateTime.Now;
                 dtStartDate.EditValue = DateTime.Now;
                 dtEndDate.EditValue = DateTime.Now;
 

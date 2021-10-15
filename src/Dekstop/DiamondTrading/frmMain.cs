@@ -339,5 +339,30 @@ namespace DiamondTrading
         {
             OpenSaleForm();
         }
+
+        private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
+
+            frmPaymentEntry.ShowDialog();
+        }
     }
 }

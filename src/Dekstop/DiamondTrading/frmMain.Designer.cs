@@ -382,6 +382,7 @@ namespace DiamondTrading
             this.barButtonItem21.Caption = "Payment";
             this.barButtonItem21.Id = 25;
             this.barButtonItem21.Name = "barButtonItem21";
+            this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick);
             // 
             // barButtonItem22
             // 

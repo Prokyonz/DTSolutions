@@ -333,7 +333,6 @@ namespace DiamondTrading.Master
             // dtDateOfBirth
             // 
             this.dtDateOfBirth.EditValue = null;
-            this.dtDateOfBirth.Enabled = false;
             this.dtDateOfBirth.Location = new System.Drawing.Point(5, 88);
             this.dtDateOfBirth.Name = "dtDateOfBirth";
             this.dtDateOfBirth.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

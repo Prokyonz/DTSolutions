@@ -70,5 +70,10 @@ namespace DiamondTrading
         {
             Common.MoveToNextControl(sender, e, this);
         }
+
+        private void lookUpCompany_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
