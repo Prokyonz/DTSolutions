@@ -278,6 +278,31 @@ namespace DiamondTrading
             frmPurchaseEntry.ShowDialog();
         }
 
+        private void OpenSaleForm()
+        {
+            Transaction.FrmSalesEntry page = Application.OpenForms["FrmSalesEntry"] as Transaction.FrmSalesEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmSalesEntry frmSalesEntry = new Transaction.FrmSalesEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmSalesEntry.StartPosition = FormStartPosition.Manual;
+
+            frmSalesEntry.Location = new Point((w - frmSalesEntry.Width - 200) / 3, (Height - frmSalesEntry.Height) / 2);
+
+            frmSalesEntry.ShowDialog();
+        }
+
         private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrmOptions page = Application.OpenForms["FrmOptions"] as FrmOptions;
@@ -298,6 +323,21 @@ namespace DiamondTrading
         private void accrdianElementUserMaster_Click(object sender, EventArgs e)
         {
             OpenMasterDetailsForm("UserMaster");
+        }
+
+        private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenSaleForm();
+        }
+
+        private void accordionControlPurchase_Click(object sender, EventArgs e)
+        {
+            OpenPurchaseForm();
+        }
+
+        private void accordionControlElement17_Click(object sender, EventArgs e)
+        {
+            OpenSaleForm();
         }
     }
 }

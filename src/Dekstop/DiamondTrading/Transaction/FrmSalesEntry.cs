@@ -14,21 +14,21 @@ using System.Windows.Forms;
 
 namespace DiamondTrading.Transaction
 {
-    public partial class FrmPurchaseEntry : DevExpress.XtraEditors.XtraForm
+    public partial class FrmSalesEntry : DevExpress.XtraEditors.XtraForm
     {
-        public FrmPurchaseEntry()
+        public FrmSalesEntry()
         {
             InitializeComponent();
         }
 
-        private void FrmPurchaseEntry_Load(object sender, EventArgs e)
+        private void FrmSaleEntry_Load(object sender, EventArgs e)
         {
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
 
-            SetThemeColors(Color.FromArgb(250, 243, 197));
+            SetThemeColors(Color.FromArgb(215, 246, 214));
             //SetThemeColors(Color.FromArgb(0));
             FillCombos();
         }
@@ -112,6 +112,9 @@ namespace DiamondTrading.Transaction
         {
             grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();
 
+            //Category
+            GetCategoryDetail(false);
+
             //Shape
             GetShapeDetail(false);
 
@@ -123,6 +126,18 @@ namespace DiamondTrading.Transaction
 
             //Kapan
             GetKapanDetail(false);
+        }
+
+        private async void GetCategoryDetail(bool IsNew)
+        {
+            var Category = CategoryMaster.GetAllCategory();
+
+            if (Category != null)
+            {
+                repoCategory.DataSource = Category;
+                repoCategory.DisplayMember = "Name";
+                repoCategory.ValueMember = "Id";
+            }
         }
 
         private async void GetShapeDetail(bool IsNew)
@@ -267,6 +282,7 @@ namespace DiamondTrading.Transaction
         private static DataTable GetDTColumnsforPurchaseDetails()
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("Category");
             dt.Columns.Add("Shape");
             dt.Columns.Add("Size");
             dt.Columns.Add("Purity");
@@ -292,7 +308,7 @@ namespace DiamondTrading.Transaction
 
         }
 
-        private void FrmPurchaseEntry_KeyDown(object sender, KeyEventArgs e)
+        private void FrmSaleEntry_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
         }

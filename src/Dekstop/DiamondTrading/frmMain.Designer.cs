@@ -369,6 +369,7 @@ namespace DiamondTrading
             this.barButtonItem19.Caption = "Sales";
             this.barButtonItem19.Id = 23;
             this.barButtonItem19.Name = "barButtonItem19";
+            this.barButtonItem19.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem19_ItemClick);
             // 
             // barButtonItem20
             // 
@@ -820,6 +821,7 @@ namespace DiamondTrading
             this.accordionControlElement18,
             this.accordionControlElement19,
             this.accordionControlElement20});
+            this.accordionControlElement15.Expanded = true;
             this.accordionControlElement15.Name = "accordionControlElement15";
             this.accordionControlElement15.Text = "Transaction";
             this.accordionControlElement15.Click += new System.EventHandler(this.accordionControlElement15_Click);
@@ -834,12 +836,14 @@ namespace DiamondTrading
             this.accordionControlPurchase.Name = "accordionControlPurchase";
             this.accordionControlPurchase.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlPurchase.Text = "Purchase";
+            this.accordionControlPurchase.Click += new System.EventHandler(this.accordionControlPurchase_Click);
             // 
             // accordionControlElement17
             // 
             this.accordionControlElement17.Name = "accordionControlElement17";
             this.accordionControlElement17.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement17.Text = "Sales";
+            this.accordionControlElement17.Click += new System.EventHandler(this.accordionControlElement17_Click);
             // 
             // accordionControlElement18
             // 
