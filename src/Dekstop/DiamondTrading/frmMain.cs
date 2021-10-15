@@ -262,6 +262,19 @@ namespace DiamondTrading
             }
 
             Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+            
+            frmPurchaseEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPurchaseEntry.Location = new Point((w - frmPurchaseEntry.Width - 200)/3, (Height - frmPurchaseEntry.Height) / 2);
+            
             frmPurchaseEntry.ShowDialog();
         }
 
