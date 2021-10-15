@@ -137,13 +137,6 @@ namespace DiamondTrading
             this.colPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPartyUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
-            this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtabUserMaster = new DevExpress.XtraTab.XtraTabPage();
             this.grdUserMaster = new DevExpress.XtraGrid.GridControl();
             this.grvUserMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -153,6 +146,13 @@ namespace DiamondTrading
             this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColUserType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUserUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
+            this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -198,12 +198,12 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
             this.xtabUserMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdUserMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvUserMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // grdLessWeightGroupDetailMaster
@@ -1223,77 +1223,6 @@ namespace DiamondTrading
             this.colPartyUpdatedDate.VisibleIndex = 3;
             this.colPartyUpdatedDate.Width = 92;
             // 
-            // accordionControl1
-            // 
-            this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordianAddBtn,
-            this.accordionEditBtn,
-            this.accordionDeleteBtn,
-            this.accordionRefreshBtn,
-            this.accordionCancelButton});
-            this.accordionControl1.Location = new System.Drawing.Point(3, 3);
-            this.accordionControl1.Name = "accordionControl1";
-            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
-            this.accordionControl1.Size = new System.Drawing.Size(48, 434);
-            this.accordionControl1.TabIndex = 2;
-            this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
-            // 
-            // accordianAddBtn
-            // 
-            this.accordianAddBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.Add_24;
-            this.accordianAddBtn.Name = "accordianAddBtn";
-            this.accordianAddBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordianAddBtn.Text = "Add";
-            this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
-            // 
-            // accordionEditBtn
-            // 
-            this.accordionEditBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.edit_24;
-            this.accordionEditBtn.Name = "accordionEditBtn";
-            this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionEditBtn.Text = "Edit";
-            this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
-            // 
-            // accordionDeleteBtn
-            // 
-            this.accordionDeleteBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.delete_24;
-            this.accordionDeleteBtn.Name = "accordionDeleteBtn";
-            this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionDeleteBtn.Text = "Delete";
-            this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
-            // 
-            // accordionRefreshBtn
-            // 
-            this.accordionRefreshBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.refresh_24;
-            this.accordionRefreshBtn.Name = "accordionRefreshBtn";
-            this.accordionRefreshBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionRefreshBtn.Text = "Refresh";
-            this.accordionRefreshBtn.Click += new System.EventHandler(this.accordionRefreshBtn_Click);
-            // 
-            // accordionCancelButton
-            // 
-            this.accordionCancelButton.ImageOptions.Image = global::DiamondTrading.Properties.Resources.close_24;
-            this.accordionCancelButton.Name = "accordionCancelButton";
-            this.accordionCancelButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionCancelButton.Text = "Cancel";
-            this.accordionCancelButton.Click += new System.EventHandler(this.accordionCancelButton_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.accordionControl1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.xtabMasterDetails, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
-            this.tableLayoutPanel1.TabIndex = 3;
-            // 
             // xtabUserMaster
             // 
             this.xtabUserMaster.Controls.Add(this.grdUserMaster);
@@ -1371,11 +1300,82 @@ namespace DiamondTrading
             // colUserUpdatedDate
             // 
             this.colUserUpdatedDate.Caption = "Updated Date";
-            this.colUserUpdatedDate.FieldName = "UpdateDate";
+            this.colUserUpdatedDate.FieldName = "UpdatedDate";
             this.colUserUpdatedDate.Name = "colUserUpdatedDate";
             this.colUserUpdatedDate.Visible = true;
             this.colUserUpdatedDate.VisibleIndex = 3;
             this.colUserUpdatedDate.Width = 92;
+            // 
+            // accordionControl1
+            // 
+            this.accordionControl1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.accordionControl1.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
+            this.accordianAddBtn,
+            this.accordionEditBtn,
+            this.accordionDeleteBtn,
+            this.accordionRefreshBtn,
+            this.accordionCancelButton});
+            this.accordionControl1.Location = new System.Drawing.Point(3, 3);
+            this.accordionControl1.Name = "accordionControl1";
+            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
+            this.accordionControl1.Size = new System.Drawing.Size(48, 434);
+            this.accordionControl1.TabIndex = 2;
+            this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
+            // 
+            // accordianAddBtn
+            // 
+            this.accordianAddBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.Add_24;
+            this.accordianAddBtn.Name = "accordianAddBtn";
+            this.accordianAddBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordianAddBtn.Text = "Add";
+            this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
+            // 
+            // accordionEditBtn
+            // 
+            this.accordionEditBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.edit_24;
+            this.accordionEditBtn.Name = "accordionEditBtn";
+            this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionEditBtn.Text = "Edit";
+            this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
+            // 
+            // accordionDeleteBtn
+            // 
+            this.accordionDeleteBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.delete_24;
+            this.accordionDeleteBtn.Name = "accordionDeleteBtn";
+            this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionDeleteBtn.Text = "Delete";
+            this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
+            // 
+            // accordionRefreshBtn
+            // 
+            this.accordionRefreshBtn.ImageOptions.Image = global::DiamondTrading.Properties.Resources.refresh_24;
+            this.accordionRefreshBtn.Name = "accordionRefreshBtn";
+            this.accordionRefreshBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionRefreshBtn.Text = "Refresh";
+            this.accordionRefreshBtn.Click += new System.EventHandler(this.accordionRefreshBtn_Click);
+            // 
+            // accordionCancelButton
+            // 
+            this.accordionCancelButton.ImageOptions.Image = global::DiamondTrading.Properties.Resources.close_24;
+            this.accordionCancelButton.Name = "accordionCancelButton";
+            this.accordionCancelButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionCancelButton.Text = "Cancel";
+            this.accordionCancelButton.Click += new System.EventHandler(this.accordionCancelButton_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.accordionControl1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.xtabMasterDetails, 1, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
+            this.tableLayoutPanel1.TabIndex = 3;
             // 
             // FrmMasterDetails
             // 
@@ -1439,12 +1439,12 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.xtabUserMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdUserMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvUserMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
