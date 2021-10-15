@@ -308,6 +308,12 @@
     <Compile Include="SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transaction\FrmPaymentEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\FrmPaymentEntry.Designer.cs">
+      <DependentUpon>FrmPaymentEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmPurchaseEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -399,6 +405,9 @@
     </Compile>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\FrmPaymentEntry.resx">
+      <DependentUpon>FrmPaymentEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmPurchaseEntry.resx">
       <DependentUpon>FrmPurchaseEntry.cs</DependentUpon>

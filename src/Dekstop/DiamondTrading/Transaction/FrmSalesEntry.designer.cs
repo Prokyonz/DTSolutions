@@ -713,7 +713,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup5.Name = "grpGroup5";
             this.grpGroup5.Size = new System.Drawing.Size(1065, 157);
             this.grpGroup5.TabIndex = 5;
-            this.grpGroup5.Text = "Purchase Details";
+            this.grpGroup5.Text = "Sale Details";
             // 
             // grdPurchaseDetails
             // 
