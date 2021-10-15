@@ -288,5 +288,10 @@ namespace DiamondTrading.Transaction
         {
 
         }
+
+        private void FrmPurchaseEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
     }
 }

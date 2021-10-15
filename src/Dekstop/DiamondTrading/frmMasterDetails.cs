@@ -30,6 +30,7 @@ namespace DiamondTrading
         private CurrencyMasterRepository _currencyMasterRepository;
         private KapanMasterRepository _kapanMasterRepository;
         private PartyMasterRepository _partyMasterRepository;
+        private UserMasterRepository _userMasterRepository;
 
         private List<CompanyMaster> _companyMaster;
         private List<BranchMaster> _branchMaster;
@@ -44,6 +45,7 @@ namespace DiamondTrading
         private List<CurrencyMaster> _currencyMaster;
         private List<KapanMaster> _kapanMaster;
         private List<PartyMaster> _partyMaster;
+        private List<UserMaster> _userMaster;
 
         public FrmMasterDetails()
         {
@@ -121,6 +123,11 @@ namespace DiamondTrading
                     xtabMasterDetails.SelectedTabPage = xtabPartyMaster;
                     this.Text = "Party Master";
                     break;
+                case "UserMaster":
+                    xtabUserMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabUserMaster;
+                    this.Text = "User Master";
+                    break;
                 default:
                     xtabCompanyMaster.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabCompanyMaster;
@@ -145,6 +152,7 @@ namespace DiamondTrading
             xtabCurrencyMaster.PageVisible = false;
             xtabKapanMaster.PageVisible = false;
             xtabPartyMaster.PageVisible = false;
+            xtabUserMaster.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -254,6 +262,14 @@ namespace DiamondTrading
             {
                 Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster(_partyMaster);
                 if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
+            {
+                Master.frmUserMaster frmUserMaster = new Master.frmUserMaster(_userMaster);
+                if (frmUserMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -383,6 +399,15 @@ namespace DiamondTrading
                     _partyMasterRepository = new PartyMasterRepository();
                     _partyMaster = await _partyMasterRepository.GetAllPartyAsync();
                     grdPartyMaster.DataSource = _partyMaster;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
+            {
+                if (IsForceLoad || _userMaster == null)
+                {
+                    _userMasterRepository = new UserMasterRepository();
+                    _userMaster = await _userMasterRepository.GetAllUserAsync();
+                    grdUserMaster.DataSource = _userMaster;
                 }
             }
         }
@@ -515,6 +540,15 @@ namespace DiamondTrading
                 Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
                 Master.FrmPartyMaster frmPartyMaster= new Master.FrmPartyMaster(_partyMaster, SelectedGuid);
                 if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvUserMaster.GetFocusedRowCellValue(colUserID).ToString());
+                Master.frmUserMaster frmUserMaster = new Master.frmUserMaster(_userMaster, SelectedGuid);
+                if (frmUserMaster.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
                 }
@@ -686,6 +720,17 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
+            {
+                Guid SelectedGuid = Guid.Parse(grvUserMaster.GetFocusedRowCellValue(colUserID).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _userMasterRepository.DeleteUserAsync(SelectedGuid);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     await LoadGridData(true);

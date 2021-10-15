@@ -73,15 +73,23 @@ namespace EFCore.SQL.Repository
         {
             var getUser = await _databaseContext.UserMaster.Where(s => s.Id == userMaster.Id).FirstOrDefaultAsync();
             if (getUser != null)
-            {                
-                getUser.Name = userMaster.Name;
-                getUser.EmailId = userMaster.EmailId;
+            {
+                getUser.IsActive = userMaster.IsActive;
+                getUser.UserCode = userMaster.UserCode;
                 getUser.UserType = userMaster.UserType;
+                getUser.Name = userMaster.Name;
+                getUser.DepartmentName = userMaster.DepartmentName;
+                getUser.Designation = userMaster.Designation;
+                getUser.BrokerageId = userMaster.BrokerageId;
                 getUser.Address = userMaster.Address;
                 getUser.Address2 = userMaster.Address2;
                 getUser.MobileNo = userMaster.MobileNo;
                 getUser.HomeNo = userMaster.HomeNo;
                 getUser.ReferenceBy = userMaster.ReferenceBy;
+                getUser.AadharCardNo = userMaster.AadharCardNo;
+                getUser.DateOfBirth = userMaster.DateOfBirth;
+                getUser.DateOfJoin = userMaster.DateOfJoin;
+                getUser.DateOfEnd = userMaster.DateOfEnd;
                 getUser.AadharCardNo = userMaster.AadharCardNo;                
                 getUser.UpdateDate = userMaster.UpdateDate;
                 getUser.UpdatedBy = userMaster.UpdatedBy;

@@ -37,7 +37,7 @@ namespace DiamondTrading.Master
 
         private async void frmPartyMaster_Load(object sender, EventArgs e)
         {
-            await GetListForDepedendeFiels();
+            await GetListForDepedendeFields();
             
             if (_selectedParty != Guid.Empty)
             {
@@ -62,7 +62,7 @@ namespace DiamondTrading.Master
             txtPartyName.Focus();
         }
 
-        private async Task GetListForDepedendeFiels()
+        private async Task GetListForDepedendeFields()
         {
             try
             {
@@ -117,7 +117,7 @@ namespace DiamondTrading.Master
             txtGSTNo.Text = "";
             txtPancardNo.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
-            await GetListForDepedendeFiels();
+            await GetListForDepedendeFields();
             lueCompany.Focus();
         }
 

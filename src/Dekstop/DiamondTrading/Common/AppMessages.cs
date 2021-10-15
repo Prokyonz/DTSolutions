@@ -109,6 +109,13 @@ namespace DiamondTrading
         AddMorePartyConfirmation,
         DeletePartyCofirmation,
         #endregion
+        #region "FrmUserMaster"
+        EmptyUserName,
+        EmptyUserTypeSelection,
+        UserNameExist,
+        AddMoreUserConfirmation,
+        DeleteUserCofirmation,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -382,6 +389,23 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.DeletePartyCofirmation:
                     ReturnMsg = "Are you sure you have to delete '{0}' Party...?";
+                    break;
+                #endregion
+                #region "FrmUserMaster"
+                case AppMessageID.EmptyUserName:
+                    ReturnMsg = "Please write User Name.";
+                    break;
+                case AppMessageID.EmptyUserTypeSelection:
+                    ReturnMsg = "Please select user type.";
+                    break;
+                case AppMessageID.UserNameExist:
+                    ReturnMsg = "User Name already exist.";
+                    break;
+                case AppMessageID.AddMoreUserConfirmation:
+                    ReturnMsg = "Do you want to add more User...?";
+                    break;
+                case AppMessageID.DeleteUserCofirmation:
+                    ReturnMsg = "Are you sure you have to delete '{0}' User...?";
                     break;
                 #endregion
                 #region "Others"

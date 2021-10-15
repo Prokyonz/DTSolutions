@@ -122,7 +122,7 @@ namespace DiamondTrading.Transaction
             this.Image3 = new DevExpress.XtraEditors.PictureEdit();
             this.Image2 = new DevExpress.XtraEditors.PictureEdit();
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
-            this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCommision.Properties)).BeginInit();
@@ -184,7 +184,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // grpGroup1
@@ -1308,18 +1308,18 @@ namespace DiamondTrading.Transaction
             this.Image1.Size = new System.Drawing.Size(85, 85);
             this.Image1.TabIndex = 0;
             // 
-            // panelControl2
+            // pnlStatus
             // 
-            this.panelControl2.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.panelControl2.Appearance.Options.UseBackColor = true;
-            this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panelControl2.Location = new System.Drawing.Point(0, 0);
-            this.panelControl2.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
-            this.panelControl2.LookAndFeel.UseDefaultLookAndFeel = false;
-            this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(7, 534);
-            this.panelControl2.TabIndex = 9;
+            this.pnlStatus.Appearance.BackColor = System.Drawing.Color.Gray;
+            this.pnlStatus.Appearance.Options.UseBackColor = true;
+            this.pnlStatus.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnlStatus.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlStatus.Location = new System.Drawing.Point(0, 0);
+            this.pnlStatus.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
+            this.pnlStatus.LookAndFeel.UseDefaultLookAndFeel = false;
+            this.pnlStatus.Name = "pnlStatus";
+            this.pnlStatus.Size = new System.Drawing.Size(7, 534);
+            this.pnlStatus.TabIndex = 9;
             // 
             // FrmPurchaseEntry
             // 
@@ -1329,7 +1329,7 @@ namespace DiamondTrading.Transaction
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1094, 534);
             this.Controls.Add(this.panelControl1);
-            this.Controls.Add(this.panelControl2);
+            this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.grpGroup7);
             this.Controls.Add(this.grpGroup8);
             this.Controls.Add(this.grpGroup9);
@@ -1356,6 +1356,7 @@ namespace DiamondTrading.Transaction
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PURCHASE - COMPANY NAME - [2021-2022]";
             this.Load += new System.EventHandler(this.FrmPurchaseEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmPurchaseEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
             this.grpGroup1.PerformLayout();
@@ -1425,7 +1426,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1526,6 +1527,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrRate;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrAmount;
-        private DevExpress.XtraEditors.PanelControl panelControl2;
+        private DevExpress.XtraEditors.PanelControl pnlStatus;
     }
 }

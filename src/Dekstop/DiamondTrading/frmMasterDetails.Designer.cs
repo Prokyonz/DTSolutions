@@ -144,6 +144,15 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.xtabUserMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.grdUserMaster = new DevExpress.XtraGrid.GridControl();
+            this.grvUserMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colUserID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colIsUserActive = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ColUserType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUserUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -191,6 +200,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            this.xtabUserMaster.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvUserMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).BeginInit();
             this.SuspendLayout();
             // 
             // grdLessWeightGroupDetailMaster
@@ -524,7 +537,8 @@ namespace DiamondTrading
             this.xtabBrokerageMaster,
             this.xtabCurrencyMaster,
             this.xtabKapanMaster,
-            this.xtabPartyMaster});
+            this.xtabPartyMaster,
+            this.xtabUserMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabLessWeightGroupMaster
@@ -1280,6 +1294,89 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // xtabUserMaster
+            // 
+            this.xtabUserMaster.Controls.Add(this.grdUserMaster);
+            this.xtabUserMaster.Name = "xtabUserMaster";
+            this.xtabUserMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabUserMaster.Text = "User Master";
+            // 
+            // grdUserMaster
+            // 
+            this.grdUserMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdUserMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdUserMaster.MainView = this.grvUserMaster;
+            this.grdUserMaster.Name = "grdUserMaster";
+            this.grdUserMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit3});
+            this.grdUserMaster.Size = new System.Drawing.Size(764, 411);
+            this.grdUserMaster.TabIndex = 7;
+            this.grdUserMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvUserMaster});
+            // 
+            // grvUserMaster
+            // 
+            this.grvUserMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvUserMaster.Appearance.Row.Options.UseFont = true;
+            this.grvUserMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colUserID,
+            this.colIsUserActive,
+            this.colUserName,
+            this.ColUserType,
+            this.colUserUpdatedDate});
+            this.grvUserMaster.GridControl = this.grdUserMaster;
+            this.grvUserMaster.Name = "grvUserMaster";
+            this.grvUserMaster.OptionsBehavior.Editable = false;
+            this.grvUserMaster.OptionsView.ShowGroupPanel = false;
+            // 
+            // colUserID
+            // 
+            this.colUserID.Caption = "Id";
+            this.colUserID.FieldName = "Id";
+            this.colUserID.Name = "colUserID";
+            // 
+            // colIsUserActive
+            // 
+            this.colIsUserActive.Caption = "Active";
+            this.colIsUserActive.ColumnEdit = this.repositoryItemCheckEdit3;
+            this.colIsUserActive.FieldName = "Status";
+            this.colIsUserActive.Name = "colIsUserActive";
+            this.colIsUserActive.Visible = true;
+            this.colIsUserActive.VisibleIndex = 0;
+            this.colIsUserActive.Width = 48;
+            // 
+            // repositoryItemCheckEdit3
+            // 
+            this.repositoryItemCheckEdit3.AutoHeight = false;
+            this.repositoryItemCheckEdit3.Name = "repositoryItemCheckEdit3";
+            // 
+            // colUserName
+            // 
+            this.colUserName.Caption = "User Name";
+            this.colUserName.FieldName = "Name";
+            this.colUserName.Name = "colUserName";
+            this.colUserName.Visible = true;
+            this.colUserName.VisibleIndex = 1;
+            this.colUserName.Width = 480;
+            // 
+            // ColUserType
+            // 
+            this.ColUserType.Caption = "User Type";
+            this.ColUserType.FieldName = "UserType";
+            this.ColUserType.Name = "ColUserType";
+            this.ColUserType.Visible = true;
+            this.ColUserType.VisibleIndex = 2;
+            this.ColUserType.Width = 108;
+            // 
+            // colUserUpdatedDate
+            // 
+            this.colUserUpdatedDate.Caption = "Updated Date";
+            this.colUserUpdatedDate.FieldName = "UpdateDate";
+            this.colUserUpdatedDate.Name = "colUserUpdatedDate";
+            this.colUserUpdatedDate.Visible = true;
+            this.colUserUpdatedDate.VisibleIndex = 3;
+            this.colUserUpdatedDate.Width = 92;
+            // 
             // FrmMasterDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1344,6 +1441,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.xtabUserMaster.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdUserMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvUserMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1463,5 +1564,14 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colPartyName;
         private DevExpress.XtraGrid.Columns.GridColumn colPartyType;
         private DevExpress.XtraGrid.Columns.GridColumn colPartyUpdatedDate;
+        private DevExpress.XtraTab.XtraTabPage xtabUserMaster;
+        private DevExpress.XtraGrid.GridControl grdUserMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvUserMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserID;
+        private DevExpress.XtraGrid.Columns.GridColumn colIsUserActive;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit3;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn ColUserType;
+        private DevExpress.XtraGrid.Columns.GridColumn colUserUpdatedDate;
     }
 }
