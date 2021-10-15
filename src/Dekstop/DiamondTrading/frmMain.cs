@@ -250,6 +250,11 @@ namespace DiamondTrading
 
         private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            OpenPurchaseForm();
+        }
+
+        private void OpenPurchaseForm()
+        {
             Transaction.FrmPurchaseEntry page = Application.OpenForms["FrmPurchaseEntry"] as Transaction.FrmPurchaseEntry;
             if (page != null)
             {
@@ -270,6 +275,11 @@ namespace DiamondTrading
 
             FrmOptions frmOptions = new FrmOptions();
             frmOptions.ShowDialog();
+        }
+
+        private void accordionControlPurchase_Click(object sender, EventArgs e)
+        {
+            OpenPurchaseForm();
         }
     }
 }

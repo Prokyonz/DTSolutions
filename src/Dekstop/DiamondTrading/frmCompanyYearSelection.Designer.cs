@@ -35,18 +35,18 @@ namespace DiamondTrading
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.lookUpCompany = new DevExpress.XtraEditors.LookUpEdit();
-            this.lookUpBranch = new DevExpress.XtraEditors.LookUpEdit();
-            this.lookUpFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
             this.checkRemember = new DevExpress.XtraEditors.CheckEdit();
+            this.lookUpFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.lookUpCompany = new DevExpress.XtraEditors.LookUpEdit();
+            this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl3
@@ -124,48 +124,13 @@ namespace DiamondTrading
             this.panelControl1.Size = new System.Drawing.Size(412, 272);
             this.panelControl1.TabIndex = 16;
             // 
-            // pictureEdit1
+            // checkRemember
             // 
-            this.pictureEdit1.EditValue = global::DiamondTrading.Properties.Resources.DefaultSelection;
-            this.pictureEdit1.Location = new System.Drawing.Point(1, 10);
-            this.pictureEdit1.Name = "pictureEdit1";
-            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
-            this.pictureEdit1.TabIndex = 16;
-            // 
-            // lookUpCompany
-            // 
-            this.lookUpCompany.EditValue = "Select Company";
-            this.lookUpCompany.Location = new System.Drawing.Point(13, 74);
-            this.lookUpCompany.Name = "lookUpCompany";
-            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpCompany.Properties.Appearance.Options.UseFont = true;
-            this.lookUpCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
-            this.lookUpCompany.Size = new System.Drawing.Size(385, 22);
-            this.lookUpCompany.TabIndex = 1;
-            // 
-            // lookUpBranch
-            // 
-            this.lookUpBranch.EditValue = "<Select Branch>";
-            this.lookUpBranch.Location = new System.Drawing.Point(12, 121);
-            this.lookUpBranch.Name = "lookUpBranch";
-            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpBranch.Properties.Appearance.Options.UseFont = true;
-            this.lookUpBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
-            this.lookUpBranch.Size = new System.Drawing.Size(385, 22);
-            this.lookUpBranch.TabIndex = 2;
+            this.checkRemember.Location = new System.Drawing.Point(12, 199);
+            this.checkRemember.Name = "checkRemember";
+            this.checkRemember.Properties.Caption = "Remember Details";
+            this.checkRemember.Size = new System.Drawing.Size(101, 18);
+            this.checkRemember.TabIndex = 17;
             // 
             // lookUpFinancialYear
             // 
@@ -184,13 +149,48 @@ namespace DiamondTrading
             this.lookUpFinancialYear.Size = new System.Drawing.Size(385, 22);
             this.lookUpFinancialYear.TabIndex = 3;
             // 
-            // checkRemember
+            // lookUpBranch
             // 
-            this.checkRemember.Location = new System.Drawing.Point(12, 199);
-            this.checkRemember.Name = "checkRemember";
-            this.checkRemember.Properties.Caption = "Remember Details";
-            this.checkRemember.Size = new System.Drawing.Size(101, 18);
-            this.checkRemember.TabIndex = 17;
+            this.lookUpBranch.EditValue = "<Select Branch>";
+            this.lookUpBranch.Location = new System.Drawing.Point(12, 121);
+            this.lookUpBranch.Name = "lookUpBranch";
+            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpBranch.Properties.Appearance.Options.UseFont = true;
+            this.lookUpBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
+            this.lookUpBranch.Size = new System.Drawing.Size(385, 22);
+            this.lookUpBranch.TabIndex = 2;
+            // 
+            // lookUpCompany
+            // 
+            this.lookUpCompany.EditValue = "Select Company";
+            this.lookUpCompany.Location = new System.Drawing.Point(13, 74);
+            this.lookUpCompany.Name = "lookUpCompany";
+            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookUpCompany.Properties.Appearance.Options.UseFont = true;
+            this.lookUpCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lookUpCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
+            this.lookUpCompany.Size = new System.Drawing.Size(385, 22);
+            this.lookUpCompany.TabIndex = 1;
+            // 
+            // pictureEdit1
+            // 
+            this.pictureEdit1.EditValue = global::DiamondTrading.Properties.Resources.DefaultSelection;
+            this.pictureEdit1.Location = new System.Drawing.Point(1, 10);
+            this.pictureEdit1.Name = "pictureEdit1";
+            this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
+            this.pictureEdit1.TabIndex = 16;
             // 
             // FrmCompanyYearSelection
             // 
@@ -209,11 +209,11 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

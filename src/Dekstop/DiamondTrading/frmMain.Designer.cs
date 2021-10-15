@@ -62,6 +62,7 @@ namespace DiamondTrading
             this.barSubItem4 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem33 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
@@ -108,7 +109,7 @@ namespace DiamondTrading
             this.accrdianElementRoleMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accrdianElementUserMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement15 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlElement16 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlPurchase = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement17 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement18 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlElement19 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -125,7 +126,6 @@ namespace DiamondTrading
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem33 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -444,6 +444,13 @@ namespace DiamondTrading
             this.barButtonItem28.Id = 32;
             this.barButtonItem28.Name = "barButtonItem28";
             // 
+            // barButtonItem33
+            // 
+            this.barButtonItem33.Caption = "Options";
+            this.barButtonItem33.Id = 47;
+            this.barButtonItem33.Name = "barButtonItem33";
+            this.barButtonItem33.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem33_ItemClick);
+            // 
             // barSubItem5
             // 
             this.barSubItem5.Caption = "Reports";
@@ -671,7 +678,6 @@ namespace DiamondTrading
             this.accordionControlSeparator6,
             this.accrdianElementRoleMaster,
             this.accrdianElementUserMaster});
-            this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.Name = "accordionControlElementMaster";
             this.accordionControlElementMaster.Text = "Master";
             this.accordionControlElementMaster.Click += new System.EventHandler(this.accordionControlElementMaster_Click);
@@ -806,7 +812,7 @@ namespace DiamondTrading
             // accordionControlElement15
             // 
             this.accordionControlElement15.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
-            this.accordionControlElement16,
+            this.accordionControlPurchase,
             this.accordionControlElement17,
             this.accordionControlElement18,
             this.accordionControlElement19,
@@ -815,11 +821,17 @@ namespace DiamondTrading
             this.accordionControlElement15.Text = "Transaction";
             this.accordionControlElement15.Click += new System.EventHandler(this.accordionControlElement15_Click);
             // 
-            // accordionControlElement16
+            // accordionControlPurchase
             // 
-            this.accordionControlElement16.Name = "accordionControlElement16";
-            this.accordionControlElement16.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement16.Text = "Purchase";
+            this.accordionControlPurchase.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
+            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons)});
+            this.accordionControlPurchase.Name = "accordionControlPurchase";
+            this.accordionControlPurchase.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlPurchase.Text = "Purchase";
+            this.accordionControlPurchase.Click += new System.EventHandler(this.accordionControlPurchase_Click);
             // 
             // accordionControlElement17
             // 
@@ -932,13 +944,6 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 0;
             // 
-            // barButtonItem33
-            // 
-            this.barButtonItem33.Caption = "Options";
-            this.barButtonItem33.Id = 47;
-            this.barButtonItem33.Name = "barButtonItem33";
-            this.barButtonItem33.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem33_ItemClick);
-            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -1017,7 +1022,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementBrokerageMaster;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accrdianElementLessWeightGroupMaster;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement15;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement16;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlPurchase;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement17;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement18;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement19;
