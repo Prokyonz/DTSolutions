@@ -87,4 +87,28 @@ namespace Repository.Entities
             return designationMaster;
         }
     }
+
+    public class CategoryMaster
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Number = 0;
+        public static int Kapan = 1;
+        public static int Boil = 2;
+        public static int Charni = 3;
+        public static int Gala = 4;
+
+        public static List<CategoryMaster> GetAllCategory()
+        {
+            List<CategoryMaster> categoryMaster = new List<CategoryMaster>
+            {
+                new CategoryMaster {Id = Number, Name = "Number" },
+                new CategoryMaster {Id = Kapan, Name = "Kapan" },
+                new CategoryMaster {Id = Boil, Name = "Boil" },
+                new CategoryMaster {Id = Charni, Name = "Charni" },
+                new CategoryMaster {Id = Gala, Name = "Gala" }
+            };
+            return categoryMaster;
+        }
+    }
 }
