@@ -48,7 +48,7 @@ namespace DiamondTrading
 
         private async void LoadBranch(Guid companyId)
         {
-            var branches = await _branchMasterRepository.GetAllBranchAsync();
+            var branches = await _branchMasterRepository.GetAllBranchAsync(); //_branchMasterRepository.GetCompanyBranchAsync(companyId);
             lookUpBranch.Properties.DataSource = branches;
             lookUpBranch.Properties.DisplayMember = "Name";
             lookUpBranch.Properties.ValueMember = "Id";
@@ -65,6 +65,5 @@ namespace DiamondTrading
         }
 
         #endregion
-
     }
 }

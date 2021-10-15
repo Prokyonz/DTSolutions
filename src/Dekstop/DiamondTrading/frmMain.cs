@@ -250,6 +250,11 @@ namespace DiamondTrading
 
         private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            OpenPurchaseForm();
+        }
+
+        private void OpenPurchaseForm()
+        {
             Transaction.FrmPurchaseEntry page = Application.OpenForms["FrmPurchaseEntry"] as Transaction.FrmPurchaseEntry;
             if (page != null)
             {
@@ -257,6 +262,19 @@ namespace DiamondTrading
             }
 
             Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+            
+            frmPurchaseEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPurchaseEntry.Location = new Point((w - frmPurchaseEntry.Width - 200)/3, (Height - frmPurchaseEntry.Height) / 2);
+            
             frmPurchaseEntry.ShowDialog();
         }
 
@@ -270,16 +288,6 @@ namespace DiamondTrading
 
             FrmOptions frmOptions = new FrmOptions();
             frmOptions.ShowDialog();
-        }
-
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("UserMaster");
-        }
-
-        private void accrdianElementUserMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("UserMaster");
         }
     }
 }
