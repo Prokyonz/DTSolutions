@@ -44,6 +44,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<PaymentMaster> PaymentMaster { get; set; }
         public DbSet<PaymentDetails> PaymentDetails { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
+        public DbSet<BoilMaster> BoilMaster { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -81,6 +82,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PaymentDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMappingMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<BoilMaster>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
