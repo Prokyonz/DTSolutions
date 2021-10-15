@@ -289,5 +289,15 @@ namespace DiamondTrading
             FrmOptions frmOptions = new FrmOptions();
             frmOptions.ShowDialog();
         }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("UserMaster");
+        }
+
+        private void accrdianElementUserMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("UserMaster");
+        }
     }
 }

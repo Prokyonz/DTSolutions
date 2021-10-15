@@ -679,6 +679,7 @@ namespace DiamondTrading
             this.accordionControlSeparator6,
             this.accrdianElementRoleMaster,
             this.accrdianElementUserMaster});
+            this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.Name = "accordionControlElementMaster";
             this.accordionControlElementMaster.Text = "Master";
             this.accordionControlElementMaster.Click += new System.EventHandler(this.accordionControlElementMaster_Click);
@@ -833,7 +834,6 @@ namespace DiamondTrading
             this.accordionControlPurchase.Name = "accordionControlPurchase";
             this.accordionControlPurchase.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlPurchase.Text = "Purchase";
-            this.accordionControlPurchase.Click += new System.EventHandler(this.accordionControlPurchase_Click);
             // 
             // accordionControlElement17
             // 
