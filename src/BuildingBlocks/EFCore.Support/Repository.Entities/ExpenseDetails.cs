@@ -11,7 +11,8 @@ namespace Repository.Entities
         public int Sr { get; }
         [Key]
         public Guid Id { get; set; }
-        public Guid ExpenseId { get; set; }
+        public Guid? CompanyId { get; set; }
+        public Guid? BranchId { get; set; }
         public Guid PartyId { get; set; }
         public double Amount { get; set; }
         public string Remarks { get; set; }
@@ -20,9 +21,6 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
-
-        [ForeignKey("ExpenseId")]
-        public virtual ExpenseMaster ExpenseMaster { get; set; }
 
         [ForeignKey("PartyId")]
         public virtual PartyMaster PartyMaster { get; set; }

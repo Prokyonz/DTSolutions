@@ -342,6 +342,11 @@ namespace DiamondTrading
 
         private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            OpenPaymentForm();
+        }
+
+        private void OpenPaymentForm()
+        {
             Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
             if (page != null)
             {
@@ -363,6 +368,11 @@ namespace DiamondTrading
             frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
 
             frmPaymentEntry.ShowDialog();
+        }
+
+        private void accordionControlElement19_Click(object sender, EventArgs e)
+        {
+            OpenPaymentForm();
         }
     }
 }
