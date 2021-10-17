@@ -43,6 +43,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<GroupPaymentMaster> GroupPaymentMaster { get; set; }
         public DbSet<PaymentMaster> PaymentMaster { get; set; }
         public DbSet<PaymentDetails> PaymentDetails { get; set; }
+        public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
         public DbSet<BoilMaster> BoilMaster { get; set; }
 
@@ -81,6 +82,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<GroupPaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PaymentDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SlipTransferEntry>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMappingMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BoilMaster>().Property(c => c.Sr).UseIdentityColumn();
         }

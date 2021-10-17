@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211017120105_UpdateSlipTransferEntry")]
+    partial class UpdateSlipTransferEntry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1721,8 +1723,6 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PurchaseMasterId");
-
                     b.ToTable("SlipTransferEntry");
                 });
 
@@ -1972,15 +1972,6 @@ namespace EFCore.SQL.Migrations
                     b.HasOne("Repository.Entities.SalesMaster", null)
                         .WithMany("SalesDetails")
                         .HasForeignKey("SalesMasterId");
-                });
-
-            modelBuilder.Entity("Repository.Entities.SlipTransferEntry", b =>
-                {
-                    b.HasOne("Repository.Entities.PurchaseMaster", "PurchaseMaster")
-                        .WithMany()
-                        .HasForeignKey("PurchaseMasterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>
