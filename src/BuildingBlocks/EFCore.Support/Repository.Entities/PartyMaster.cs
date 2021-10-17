@@ -21,6 +21,8 @@ namespace Repository.Entities
         public string GSTNo { get; set; }
         public string AadharCardNo { get; set; }
         public string PancardNo { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal OpeningBalance { get; set; }
         public bool IsDelete { get; set; }
         public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
