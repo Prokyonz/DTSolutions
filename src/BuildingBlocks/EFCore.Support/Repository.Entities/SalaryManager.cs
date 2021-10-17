@@ -10,8 +10,9 @@ namespace Repository.Entities
         [Key]
 
         public Guid Id { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? CompanyId { get; set; }
         public Guid? BranchId { get; set; }
+        public Guid PartyId { get; set; }        
         public string SalaryMonthName { get; set; }
         public DateTime SalaryMonthDateTime { get; set; }
         public int MonthDays { get; set; }
@@ -34,19 +35,8 @@ namespace Repository.Entities
         public Guid CreatedBy { get; set; }
         public Guid? UpdatedBy { get; set; }
 
-        //This propeties can be include in the UserMaster if the user if employee
-        //public bool IsEmployee { get; set; }
-        //public string EmployeeCode { get; set; }
-        //public string DepartmentName { get; set; }
-        //public string Designation { get; set; }
-        //public DateTime DateOfJoin { get; set; }
-        //public DateTime DateOfBirth { get; set; }
-        //public decimal SalaryAmount { get; set; }
-        //public int JobType { get; set; }
-        //public string BankName { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual UserMaster UserMaster { get; set; }
+        [ForeignKey("PartyId")]
+        public virtual PartyMaster PartyMaster { get; set; }
 
     }
 }
