@@ -12,6 +12,7 @@ namespace Repository.Entities
         public Guid Id { get; set; }
         public Guid? CompanyId { get; set; }
         public Guid? BranchId { get; set; }
+        public Guid? FinancialYearId { get; set; }
         public string SalaryMonthName { get; set; }
         public DateTime SalaryMonthDateTime { get; set; }
         public int MonthDays { get; set; }
