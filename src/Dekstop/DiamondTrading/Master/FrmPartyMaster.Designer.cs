@@ -30,56 +30,79 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.luePartyType = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.tglIsActive = new DevExpress.XtraEditors.ToggleSwitch();
+            this.txtPartyName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.txtOfficeNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtMobileNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAddress2 = new DevExpress.XtraEditors.MemoEdit();
+            this.txtAddress = new DevExpress.XtraEditors.MemoEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.txtAadharcardNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPancardNo = new DevExpress.XtraEditors.TextEdit();
+            this.txtGSTNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.txtAadharcardNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtPancardNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtGSTNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtOfficeNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtMobileNo = new DevExpress.XtraEditors.TextEdit();
-            this.txtAddress2 = new DevExpress.XtraEditors.MemoEdit();
-            this.txtAddress = new DevExpress.XtraEditors.MemoEdit();
-            this.txtPartyName = new DevExpress.XtraEditors.TextEdit();
-            this.tglIsActive = new DevExpress.XtraEditors.ToggleSwitch();
-            this.luePartyType = new DevExpress.XtraEditors.LookUpEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.pnl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lueSubType = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
+            this.lueBrokerage = new DevExpress.XtraEditors.LookUpEdit();
+            this.pnl2 = new DevExpress.XtraEditors.PanelControl();
+            this.pnl3 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
+            this.txtOpeningBalance = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPartyName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAadharcardNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPartyName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl1)).BeginInit();
+            this.pnl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSubType.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBrokerage.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl2)).BeginInit();
+            this.pnl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).BeginInit();
+            this.pnl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
             this.groupControl1.Controls.Add(this.luePartyType);
-            this.groupControl1.Controls.Add(this.labelControl10);
             this.groupControl1.Controls.Add(this.lueCompany);
+            this.groupControl1.Controls.Add(this.labelControl10);
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.tglIsActive);
             this.groupControl1.Controls.Add(this.txtPartyName);
@@ -88,7 +111,83 @@ namespace DiamondTrading.Master
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(711, 136);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Party Name";
+            this.groupControl1.Text = "Ledger Name";
+            // 
+            // luePartyType
+            // 
+            this.luePartyType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.luePartyType.Location = new System.Drawing.Point(356, 101);
+            this.luePartyType.Name = "luePartyType";
+            this.luePartyType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.luePartyType.Properties.Appearance.Options.UseFont = true;
+            this.luePartyType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.luePartyType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Type", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyTypeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.luePartyType.Properties.NullText = "";
+            this.luePartyType.Size = new System.Drawing.Size(342, 26);
+            this.luePartyType.TabIndex = 4;
+            this.luePartyType.EditValueChanged += new System.EventHandler(this.luePartyType_EditValueChanged);
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(356, 81);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(35, 14);
+            this.labelControl10.TabIndex = 3;
+            this.labelControl10.Text = "Type*";
+            // 
+            // lueCompany
+            // 
+            this.lueCompany.Location = new System.Drawing.Point(9, 101);
+            this.lueCompany.Name = "lueCompany";
+            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lueCompany.Properties.Appearance.Options.UseFont = true;
+            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CompanyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueCompany.Properties.NullText = "";
+            this.lueCompany.Size = new System.Drawing.Size(341, 26);
+            this.lueCompany.TabIndex = 6;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(8, 81);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(57, 14);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "Company*";
+            // 
+            // tglIsActive
+            // 
+            this.tglIsActive.EditValue = true;
+            this.tglIsActive.Location = new System.Drawing.Point(564, 24);
+            this.tglIsActive.Name = "tglIsActive";
+            this.tglIsActive.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tglIsActive.Properties.Appearance.Options.UseFont = true;
+            this.tglIsActive.Properties.OffText = "In-Active";
+            this.tglIsActive.Properties.OnText = "Active";
+            this.tglIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tglIsActive.Size = new System.Drawing.Size(134, 19);
+            this.tglIsActive.TabIndex = 0;
+            // 
+            // txtPartyName
+            // 
+            this.txtPartyName.Location = new System.Drawing.Point(8, 48);
+            this.txtPartyName.Name = "txtPartyName";
+            this.txtPartyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtPartyName.Properties.Appearance.Options.UseFont = true;
+            this.txtPartyName.Properties.BeepOnError = false;
+            this.txtPartyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPartyName.Size = new System.Drawing.Size(690, 26);
+            this.txtPartyName.TabIndex = 2;
             // 
             // labelControl2
             // 
@@ -110,11 +209,29 @@ namespace DiamondTrading.Master
             this.groupControl2.Controls.Add(this.txtAddress);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Location = new System.Drawing.Point(12, 155);
+            this.groupControl2.Location = new System.Drawing.Point(12, 238);
             this.groupControl2.Name = "groupControl2";
             this.groupControl2.Size = new System.Drawing.Size(711, 149);
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Basic Details";
+            // 
+            // txtOfficeNo
+            // 
+            this.txtOfficeNo.Location = new System.Drawing.Point(356, 119);
+            this.txtOfficeNo.Name = "txtOfficeNo";
+            this.txtOfficeNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtOfficeNo.Properties.Appearance.Options.UseFont = true;
+            this.txtOfficeNo.Size = new System.Drawing.Size(342, 22);
+            this.txtOfficeNo.TabIndex = 7;
+            // 
+            // txtMobileNo
+            // 
+            this.txtMobileNo.Location = new System.Drawing.Point(7, 119);
+            this.txtMobileNo.Name = "txtMobileNo";
+            this.txtMobileNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMobileNo.Properties.Appearance.Options.UseFont = true;
+            this.txtMobileNo.Size = new System.Drawing.Size(343, 22);
+            this.txtMobileNo.TabIndex = 5;
             // 
             // labelControl5
             // 
@@ -135,6 +252,20 @@ namespace DiamondTrading.Master
             this.labelControl6.Size = new System.Drawing.Size(53, 14);
             this.labelControl6.TabIndex = 4;
             this.labelControl6.Text = "Mobile No";
+            // 
+            // txtAddress2
+            // 
+            this.txtAddress2.Location = new System.Drawing.Point(356, 50);
+            this.txtAddress2.Name = "txtAddress2";
+            this.txtAddress2.Size = new System.Drawing.Size(342, 42);
+            this.txtAddress2.TabIndex = 3;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(8, 50);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(342, 42);
+            this.txtAddress.TabIndex = 1;
             // 
             // labelControl3
             // 
@@ -164,11 +295,20 @@ namespace DiamondTrading.Master
             this.groupControl3.Controls.Add(this.txtGSTNo);
             this.groupControl3.Controls.Add(this.labelControl7);
             this.groupControl3.Controls.Add(this.labelControl8);
-            this.groupControl3.Location = new System.Drawing.Point(13, 311);
+            this.groupControl3.Location = new System.Drawing.Point(12, 394);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(710, 129);
+            this.groupControl3.Size = new System.Drawing.Size(711, 129);
             this.groupControl3.TabIndex = 2;
             this.groupControl3.Text = "Registration Details";
+            // 
+            // txtAadharcardNo
+            // 
+            this.txtAadharcardNo.Location = new System.Drawing.Point(7, 49);
+            this.txtAadharcardNo.Name = "txtAadharcardNo";
+            this.txtAadharcardNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtAadharcardNo.Properties.Appearance.Options.UseFont = true;
+            this.txtAadharcardNo.Size = new System.Drawing.Size(690, 22);
+            this.txtAadharcardNo.TabIndex = 1;
             // 
             // labelControl9
             // 
@@ -179,6 +319,24 @@ namespace DiamondTrading.Master
             this.labelControl9.Size = new System.Drawing.Size(80, 14);
             this.labelControl9.TabIndex = 0;
             this.labelControl9.Text = "Aadharcard No";
+            // 
+            // txtPancardNo
+            // 
+            this.txtPancardNo.Location = new System.Drawing.Point(355, 96);
+            this.txtPancardNo.Name = "txtPancardNo";
+            this.txtPancardNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPancardNo.Properties.Appearance.Options.UseFont = true;
+            this.txtPancardNo.Size = new System.Drawing.Size(342, 22);
+            this.txtPancardNo.TabIndex = 5;
+            // 
+            // txtGSTNo
+            // 
+            this.txtGSTNo.Location = new System.Drawing.Point(7, 97);
+            this.txtGSTNo.Name = "txtGSTNo";
+            this.txtGSTNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtGSTNo.Properties.Appearance.Options.UseFont = true;
+            this.txtGSTNo.Size = new System.Drawing.Size(342, 22);
+            this.txtGSTNo.TabIndex = 3;
             // 
             // labelControl7
             // 
@@ -202,7 +360,7 @@ namespace DiamondTrading.Master
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(486, 447);
+            this.btnSave.Location = new System.Drawing.Point(486, 530);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 4;
@@ -211,7 +369,7 @@ namespace DiamondTrading.Master
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(567, 447);
+            this.btnReset.Location = new System.Drawing.Point(567, 530);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 5;
@@ -220,150 +378,159 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(648, 447);
+            this.btnCancel.Location = new System.Drawing.Point(648, 530);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // txtAadharcardNo
+            // tableLayoutPanel1
             // 
-            this.txtAadharcardNo.Location = new System.Drawing.Point(7, 49);
-            this.txtAadharcardNo.Name = "txtAadharcardNo";
-            this.txtAadharcardNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtAadharcardNo.Properties.Appearance.Options.UseFont = true;
-            this.txtAadharcardNo.Size = new System.Drawing.Size(690, 22);
-            this.txtAadharcardNo.TabIndex = 1;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.Controls.Add(this.pnl3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnl2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnl1, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 23);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(700, 53);
+            this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // txtPancardNo
+            // pnl1
             // 
-            this.txtPancardNo.Location = new System.Drawing.Point(355, 96);
-            this.txtPancardNo.Name = "txtPancardNo";
-            this.txtPancardNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPancardNo.Properties.Appearance.Options.UseFont = true;
-            this.txtPancardNo.Size = new System.Drawing.Size(342, 22);
-            this.txtPancardNo.TabIndex = 5;
+            this.pnl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnl1.Controls.Add(this.lueSubType);
+            this.pnl1.Controls.Add(this.labelControl11);
+            this.pnl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl1.Location = new System.Drawing.Point(3, 3);
+            this.pnl1.Name = "pnl1";
+            this.pnl1.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.pnl1.Size = new System.Drawing.Size(200, 47);
+            this.pnl1.TabIndex = 0;
+            this.pnl1.Visible = false;
             // 
-            // txtGSTNo
+            // lueSubType
             // 
-            this.txtGSTNo.Location = new System.Drawing.Point(7, 97);
-            this.txtGSTNo.Name = "txtGSTNo";
-            this.txtGSTNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtGSTNo.Properties.Appearance.Options.UseFont = true;
-            this.txtGSTNo.Size = new System.Drawing.Size(342, 22);
-            this.txtGSTNo.TabIndex = 3;
-            // 
-            // txtOfficeNo
-            // 
-            this.txtOfficeNo.Location = new System.Drawing.Point(356, 119);
-            this.txtOfficeNo.Name = "txtOfficeNo";
-            this.txtOfficeNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtOfficeNo.Properties.Appearance.Options.UseFont = true;
-            this.txtOfficeNo.Size = new System.Drawing.Size(342, 22);
-            this.txtOfficeNo.TabIndex = 7;
-            // 
-            // txtMobileNo
-            // 
-            this.txtMobileNo.Location = new System.Drawing.Point(7, 119);
-            this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtMobileNo.Properties.Appearance.Options.UseFont = true;
-            this.txtMobileNo.Size = new System.Drawing.Size(343, 22);
-            this.txtMobileNo.TabIndex = 5;
-            // 
-            // txtAddress2
-            // 
-            this.txtAddress2.Location = new System.Drawing.Point(356, 50);
-            this.txtAddress2.Name = "txtAddress2";
-            this.txtAddress2.Size = new System.Drawing.Size(342, 42);
-            this.txtAddress2.TabIndex = 3;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(8, 50);
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(342, 42);
-            this.txtAddress.TabIndex = 1;
-            // 
-            // txtPartyName
-            // 
-            this.txtPartyName.Location = new System.Drawing.Point(8, 48);
-            this.txtPartyName.Name = "txtPartyName";
-            this.txtPartyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtPartyName.Properties.Appearance.Options.UseFont = true;
-            this.txtPartyName.Properties.BeepOnError = false;
-            this.txtPartyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPartyName.Size = new System.Drawing.Size(690, 26);
-            this.txtPartyName.TabIndex = 2;
-            // 
-            // tglIsActive
-            // 
-            this.tglIsActive.EditValue = true;
-            this.tglIsActive.Location = new System.Drawing.Point(564, 24);
-            this.tglIsActive.Name = "tglIsActive";
-            this.tglIsActive.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tglIsActive.Properties.Appearance.Options.UseFont = true;
-            this.tglIsActive.Properties.OffText = "In-Active";
-            this.tglIsActive.Properties.OnText = "Active";
-            this.tglIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tglIsActive.Size = new System.Drawing.Size(134, 19);
-            this.tglIsActive.TabIndex = 0;
-            // 
-            // luePartyType
-            // 
-            this.luePartyType.Location = new System.Drawing.Point(8, 101);
-            this.luePartyType.Name = "luePartyType";
-            this.luePartyType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.luePartyType.Properties.Appearance.Options.UseFont = true;
-            this.luePartyType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueSubType.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lueSubType.Location = new System.Drawing.Point(0, 21);
+            this.lueSubType.Name = "lueSubType";
+            this.lueSubType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lueSubType.Properties.Appearance.Options.UseFont = true;
+            this.lueSubType.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.luePartyType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueSubType.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Type", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyTypeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.luePartyType.Size = new System.Drawing.Size(344, 26);
-            this.luePartyType.TabIndex = 4;
+            this.lueSubType.Properties.NullText = "";
+            this.lueSubType.Size = new System.Drawing.Size(197, 26);
+            this.lueSubType.TabIndex = 6;
+            this.lueSubType.EditValueChanged += new System.EventHandler(this.lueSubType_EditValueChanged);
             // 
-            // labelControl10
+            // labelControl11
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(10, 81);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(35, 14);
-            this.labelControl10.TabIndex = 3;
-            this.labelControl10.Text = "Type*";
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(-1, 4);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(60, 14);
+            this.labelControl11.TabIndex = 5;
+            this.labelControl11.Text = "Sub Type*";
             // 
-            // lueCompany
+            // groupControl4
             // 
-            this.lueCompany.Location = new System.Drawing.Point(359, 101);
-            this.lueCompany.Name = "lueCompany";
-            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.lueCompany.Properties.Appearance.Options.UseFont = true;
-            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.groupControl4.Controls.Add(this.tableLayoutPanel1);
+            this.groupControl4.Location = new System.Drawing.Point(12, 154);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(710, 79);
+            this.groupControl4.TabIndex = 6;
+            this.groupControl4.Text = "Ledger Sub Details";
+            // 
+            // labelControl12
+            // 
+            this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl12.Appearance.Options.UseFont = true;
+            this.labelControl12.Location = new System.Drawing.Point(0, 4);
+            this.labelControl12.Name = "labelControl12";
+            this.labelControl12.Size = new System.Drawing.Size(88, 14);
+            this.labelControl12.TabIndex = 7;
+            this.labelControl12.Text = "Brokerage (%)*";
+            // 
+            // lueBrokerage
+            // 
+            this.lueBrokerage.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lueBrokerage.Location = new System.Drawing.Point(0, 21);
+            this.lueBrokerage.Name = "lueBrokerage";
+            this.lueBrokerage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lueBrokerage.Properties.Appearance.Options.UseFont = true;
+            this.lueBrokerage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CompanyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueCompany.Size = new System.Drawing.Size(341, 26);
-            this.lueCompany.TabIndex = 6;
+            this.lueBrokerage.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Type", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyTypeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueBrokerage.Properties.NullText = "";
+            this.lueBrokerage.Size = new System.Drawing.Size(238, 26);
+            this.lueBrokerage.TabIndex = 8;
             // 
-            // labelControl1
+            // pnl2
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(358, 81);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(57, 14);
-            this.labelControl1.TabIndex = 5;
-            this.labelControl1.Text = "Company*";
+            this.pnl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnl2.Controls.Add(this.lueBrokerage);
+            this.pnl2.Controls.Add(this.labelControl12);
+            this.pnl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl2.Location = new System.Drawing.Point(209, 3);
+            this.pnl2.Name = "pnl2";
+            this.pnl2.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.pnl2.Size = new System.Drawing.Size(241, 47);
+            this.pnl2.TabIndex = 1;
+            this.pnl2.Visible = false;
+            // 
+            // pnl3
+            // 
+            this.pnl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnl3.Controls.Add(this.txtOpeningBalance);
+            this.pnl3.Controls.Add(this.labelControl13);
+            this.pnl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl3.Location = new System.Drawing.Point(456, 3);
+            this.pnl3.Name = "pnl3";
+            this.pnl3.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.pnl3.Size = new System.Drawing.Size(241, 47);
+            this.pnl3.TabIndex = 2;
+            // 
+            // labelControl13
+            // 
+            this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl13.Appearance.Options.UseFont = true;
+            this.labelControl13.Location = new System.Drawing.Point(0, 4);
+            this.labelControl13.Name = "labelControl13";
+            this.labelControl13.Size = new System.Drawing.Size(98, 14);
+            this.labelControl13.TabIndex = 7;
+            this.labelControl13.Text = "Opening Balance*";
+            // 
+            // txtOpeningBalance
+            // 
+            this.txtOpeningBalance.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtOpeningBalance.EditValue = "0";
+            this.txtOpeningBalance.Location = new System.Drawing.Point(0, 21);
+            this.txtOpeningBalance.Name = "txtOpeningBalance";
+            this.txtOpeningBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtOpeningBalance.Properties.Appearance.Options.UseFont = true;
+            this.txtOpeningBalance.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtOpeningBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtOpeningBalance.Size = new System.Drawing.Size(238, 26);
+            this.txtOpeningBalance.TabIndex = 8;
             // 
             // FrmPartyMaster
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 480);
+            this.ClientSize = new System.Drawing.Size(735, 561);
+            this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -377,29 +544,44 @@ namespace DiamondTrading.Master
             this.MinimizeBox = false;
             this.Name = "FrmPartyMaster";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add/Edit Party";
+            this.Text = "Add/Edit Ledger";
             this.Load += new System.EventHandler(this.frmPartyMaster_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmPartyMaster_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPartyName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtAadharcardNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtOfficeNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPartyName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnl1)).EndInit();
+            this.pnl1.ResumeLayout(false);
+            this.pnl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSubType.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.lueBrokerage.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl2)).EndInit();
+            this.pnl2.ResumeLayout(false);
+            this.pnl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).EndInit();
+            this.pnl3.ResumeLayout(false);
+            this.pnl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,5 +615,16 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.LookUpEdit lueCompany;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.ToggleSwitch tglIsActive;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private DevExpress.XtraEditors.LookUpEdit lueSubType;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.PanelControl pnl1;
+        private DevExpress.XtraEditors.PanelControl pnl3;
+        private DevExpress.XtraEditors.LabelControl labelControl13;
+        private DevExpress.XtraEditors.PanelControl pnl2;
+        private DevExpress.XtraEditors.LookUpEdit lueBrokerage;
+        private DevExpress.XtraEditors.LabelControl labelControl12;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraEditors.TextEdit txtOpeningBalance;
     }
 }

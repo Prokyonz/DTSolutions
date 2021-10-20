@@ -8,10 +8,14 @@ namespace Repository.Entities
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public static int Buyer = 0;
-        public static int Seller = 1;
-        public static int Broker = 2;
-        public static int Other = 3;
+        public static int Party = 1;
+        public static int Employee = 2;
+        public static int Expense = 3;
+        public static int Other = 4;
+
+        public static int Buyer = 5;
+        public static int Seller = 6;
+        public static int Broker = 7;
 
         public static List<PartyTypeMaster> GetAllPartyType()
         {
@@ -25,19 +29,19 @@ namespace Repository.Entities
             return partyTypeMaster;
         }
 
-        public static List<PartyTypeMaster> GetAllPartyType1()
+        public static List<PartyTypeMaster> GetAllMainLedgerType()
         {
             List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
             {
-                new PartyTypeMaster {Id = Buyer, Name = "Employee" },
-                new PartyTypeMaster {Id = Buyer, Name = "Party" },
-                new PartyTypeMaster {Id = Broker, Name = "Expense" },
+                new PartyTypeMaster {Id = Party, Name = "Party" },
+                new PartyTypeMaster {Id = Employee, Name = "Employee" },
+                new PartyTypeMaster {Id = Expense, Name = "Expense" },
                 new PartyTypeMaster {Id = Other, Name = "Other" }
             };
             return partyTypeMaster;
         }
 
-        public static List<PartyTypeMaster> GetAllPartyType2()
+        public static List<PartyTypeMaster> GetAllSubLedgerType()
         {
             List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
             {

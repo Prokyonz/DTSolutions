@@ -76,9 +76,12 @@ namespace DiamondTrading
             this.BringToFront();
             FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
             frmCompanyYearSelection.BringToFront();
-            if(frmCompanyYearSelection.ShowDialog()==DialogResult.OK)
+            if (frmCompanyYearSelection.ShowDialog() == DialogResult.OK)
             {
                 this.Enabled = true;
+                barBtnLoginCompany.Caption = Common.LoginCompanyName;
+                barBtnLoginBranch.Caption = Common.LoginBranchName;
+                barBtnLoginFinancialYear.Caption = Common.LoginFinancialYearName;
             }
         }
 
@@ -214,12 +217,12 @@ namespace DiamondTrading
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenMasterDetailsForm("PartyMaster");
+            OpenMasterDetailsForm("LedgerMaster");
         }
 
         private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("PartyMaster");
+            OpenMasterDetailsForm("LedgerMaster");
         }
 
         private void barSubItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

@@ -176,6 +176,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AppLoadValues.cs" />
     <Compile Include="Common\AppMessages.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\DataSecurity.cs" />

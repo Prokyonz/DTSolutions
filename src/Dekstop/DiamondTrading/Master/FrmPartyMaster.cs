@@ -76,7 +76,7 @@ namespace DiamondTrading.Master
                     lueCompany.Properties.ValueMember = "Id";
                 }
 
-                var PartyTypes = PartyTypeMaster.GetAllPartyType();
+                var PartyTypes = PartyTypeMaster.GetAllMainLedgerType();
 
                 if (PartyTypes != null)
                 {
@@ -238,6 +238,72 @@ namespace DiamondTrading.Master
             }
 
             return true;
+        }
+
+        private void luePartyType_EditValueChanged(object sender, EventArgs e)
+        {
+            if (luePartyType.EditValue != null)
+            {
+                if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Party)
+                {
+                    pnl1.Visible = false;
+                    pnl2.Visible = false;
+                }
+                else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
+                {
+                    pnl1.Visible = true;
+                    pnl2.Visible = false;
+
+                    var SubTypes = PartyTypeMaster.GetAllSubLedgerType();
+
+                    if (SubTypes != null)
+                    {
+                        lueSubType.Properties.DataSource = SubTypes;
+                        lueSubType.Properties.DisplayMember = "Name";
+                        lueSubType.Properties.ValueMember = "Id";
+                    }
+
+                    if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                    {
+                        lueSubType_EditValueChanged(sender,e);
+                    }
+                }
+                //else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Expense)
+                //{
+                //    pnl1.Visible = false;
+                //    pnl2.Visible = false;
+                //}
+                else
+                {
+                    pnl1.Visible = false;
+                    pnl2.Visible = false;
+                }
+            }
+        }
+
+        private async void lueSubType_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueSubType.EditValue != null)
+            {
+                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller
+                    || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other)
+                {
+                    pnl2.Visible = false;
+                }
+                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                {
+                    pnl2.Visible = true;
+
+                    BrokerageMasterRepository brokerageMasterRepository = new BrokerageMasterRepository();
+                    var Brokerage = await brokerageMasterRepository.GetAllBrokerageAsync();
+                    if (Brokerage != null)
+                    {
+                        lueBrokerage.Properties.DataSource = Brokerage;
+                        lueBrokerage.Properties.DisplayMember = "Name";
+                        lueBrokerage.Properties.ValueMember = "Id";
+                    }
+                }
+            }
         }
     }
 }

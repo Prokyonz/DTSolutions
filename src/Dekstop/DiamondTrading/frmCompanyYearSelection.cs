@@ -25,43 +25,110 @@ namespace DiamondTrading
             _companyMasterRepository = new CompanyMasterRepository();
             _branchMasterRepository = new BranchMasterRepository();
             _financialYearRepository = new FinancialYearMasterRepository();
-            
-            LoadCompany();                        
-
         }
+
+        private void FrmCompanyYearSelection_Load(object sender, EventArgs e)
+        {
+            LoadCompany();
+            LoadFinancialYear();
+
+            LoadRegistrySettings();
+        }
+
         private void btnOk_Click(object sender, EventArgs e)
         {
+            if (!CheckValidation())
+                return;
+
+            SaveRegistrySettings();
+            Common.LoginCompany = Guid.Parse(lueCompany.EditValue.ToString());
+            Common.LoginCompanyName = lueCompany.Text;
+
+            Common.LoginBranch = Guid.Parse(lueBranch.EditValue.ToString());
+            Common.LoginBranchName = lueBranch.Text;
+
+            Common.LoginFinancialYear = Guid.Parse(lueFinancialYear.EditValue.ToString());
+            Common.LoginFinancialYearName = lueFinancialYear.Text;
+
             this.DialogResult = DialogResult.OK;
         }
 
         #region "Private Metods"
+        private void LoadRegistrySettings()
+        {
+            chkRememberMe.Checked = Common.RememberComapnyYearSelection;
+            if (chkRememberMe.Checked)
+            {
+                if (Common.LoginCompany != Common.DefaultGuid)
+                    lueCompany.EditValue = Common.LoginCompany;
+                if (Common.LoginBranch != Common.DefaultGuid)
+                    lueBranch.EditValue = Common.LoginBranch;
+                if (Common.LoginFinancialYear != Common.DefaultGuid)
+                    lueFinancialYear.EditValue = Common.LoginFinancialYear;
+            }
+        }
+
+        private void SaveRegistrySettings()
+        {
+            RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.RememberCompanyYearSelection, chkRememberMe.Checked.ToString());
+            if (chkRememberMe.Checked)
+            {
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompany, lueCompany.EditValue.ToString());
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompanyName, lueCompany.Text);
+
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranch, lueBranch.EditValue.ToString());
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranchName, lueBranch.Text);
+
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYear, lueFinancialYear.EditValue.ToString());
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYearName, lueFinancialYear.Text);
+            }
+        }
+
+        private bool CheckValidation()
+        {
+            if (lueCompany.EditValue == null || string.IsNullOrEmpty(lueCompany.EditValue.ToString()))
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.CompanyNotSelected), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lueCompany.Focus();
+                return false;
+            }
+            else if (lueBranch.EditValue == null || string.IsNullOrEmpty(lueBranch.EditValue.ToString()))
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.BranchNotSelected), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lueBranch.Focus();
+                return false;
+            }
+            else if (lueFinancialYear.EditValue == null || string.IsNullOrEmpty(lueFinancialYear.EditValue.ToString()))
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.FinancialYearNotSelected), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lueFinancialYear.Focus();
+                return false;
+            }
+            return true;
+        }
 
         private async void LoadCompany()
         {
-            var companies = await _companyMasterRepository.GetParentCompanyAsync();
-            lookUpCompany.Properties.DataSource = companies;
-            lookUpCompany.Properties.DisplayMember = "Name";
-            lookUpCompany.Properties.ValueMember = "Id";
-            
-            LoadBranch(Guid.NewGuid());
+            var companies = await _companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = companies;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
         }
 
         private async void LoadBranch(Guid companyId)
         {
-            var branches = await _branchMasterRepository.GetAllBranchAsync(); //_branchMasterRepository.GetCompanyBranchAsync(companyId);
-            lookUpBranch.Properties.DataSource = branches;
-            lookUpBranch.Properties.DisplayMember = "Name";
-            lookUpBranch.Properties.ValueMember = "Id";
-
-            LoadFinancialYear();
+            var branches = await _branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
+            lueBranch.Properties.DataSource = branches;
+            lueBranch.Properties.DisplayMember = "Name";
+            lueBranch.Properties.ValueMember = "Id";
         }
 
         private async void LoadFinancialYear()
         {
             var financialYear = await _financialYearRepository.GetAllFinancialYear();
-            lookUpFinancialYear.Properties.DataSource = financialYear;
-            lookUpFinancialYear.Properties.DisplayMember = "Name";
-            lookUpFinancialYear.Properties.ValueMember = "Id";            
+            lueFinancialYear.Properties.DataSource = financialYear;
+            lueFinancialYear.Properties.DisplayMember = "Name";
+            lueFinancialYear.Properties.ValueMember = "Id";            
         }
 
         #endregion
@@ -73,7 +140,9 @@ namespace DiamondTrading
 
         private void lookUpCompany_EditValueChanged(object sender, EventArgs e)
         {
-
+            if (lueCompany.EditValue != null)
+                LoadBranch(Guid.Parse(lueCompany.EditValue.ToString()));
         }
+
     }
 }

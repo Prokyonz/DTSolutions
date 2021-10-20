@@ -35,17 +35,17 @@ namespace DiamondTrading
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.checkRemember = new DevExpress.XtraEditors.CheckEdit();
-            this.lookUpFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
-            this.lookUpBranch = new DevExpress.XtraEditors.LookUpEdit();
-            this.lookUpCompany = new DevExpress.XtraEditors.LookUpEdit();
+            this.chkRememberMe = new DevExpress.XtraEditors.CheckEdit();
+            this.lueFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueFinancialYear.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,10 +109,10 @@ namespace DiamondTrading
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
-            this.panelControl1.Controls.Add(this.checkRemember);
-            this.panelControl1.Controls.Add(this.lookUpFinancialYear);
-            this.panelControl1.Controls.Add(this.lookUpBranch);
-            this.panelControl1.Controls.Add(this.lookUpCompany);
+            this.panelControl1.Controls.Add(this.chkRememberMe);
+            this.panelControl1.Controls.Add(this.lueFinancialYear);
+            this.panelControl1.Controls.Add(this.lueBranch);
+            this.panelControl1.Controls.Add(this.lueCompany);
             this.panelControl1.Controls.Add(this.pictureEdit1);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.btnOk);
@@ -124,69 +124,71 @@ namespace DiamondTrading
             this.panelControl1.Size = new System.Drawing.Size(412, 276);
             this.panelControl1.TabIndex = 16;
             // 
-            // checkRemember
+            // chkRememberMe
             // 
-            this.checkRemember.EditValue = true;
-            this.checkRemember.Location = new System.Drawing.Point(12, 208);
-            this.checkRemember.Name = "checkRemember";
-            this.checkRemember.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkRemember.Properties.Appearance.Options.UseFont = true;
-            this.checkRemember.Properties.Caption = "Remember details";
-            this.checkRemember.Size = new System.Drawing.Size(134, 20);
-            this.checkRemember.TabIndex = 4;
+            this.chkRememberMe.EditValue = true;
+            this.chkRememberMe.Location = new System.Drawing.Point(12, 208);
+            this.chkRememberMe.Name = "chkRememberMe";
+            this.chkRememberMe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRememberMe.Properties.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
+            this.chkRememberMe.Properties.Appearance.Options.UseFont = true;
+            this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
+            this.chkRememberMe.Properties.Caption = "Remember details";
+            this.chkRememberMe.Size = new System.Drawing.Size(134, 20);
+            this.chkRememberMe.TabIndex = 4;
             // 
-            // lookUpFinancialYear
+            // lueFinancialYear
             // 
-            this.lookUpFinancialYear.EditValue = "Select Financial Year";
-            this.lookUpFinancialYear.Location = new System.Drawing.Point(12, 175);
-            this.lookUpFinancialYear.Name = "lookUpFinancialYear";
-            this.lookUpFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpFinancialYear.Properties.Appearance.Options.UseFont = true;
-            this.lookUpFinancialYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueFinancialYear.EditValue = "";
+            this.lueFinancialYear.Location = new System.Drawing.Point(12, 175);
+            this.lueFinancialYear.Name = "lueFinancialYear";
+            this.lueFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueFinancialYear.Properties.Appearance.Options.UseFont = true;
+            this.lueFinancialYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpFinancialYear.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueFinancialYear.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StartDate", "SartDate"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EndDate", "EndDate")});
-            this.lookUpFinancialYear.Properties.NullText = "";
-            this.lookUpFinancialYear.Size = new System.Drawing.Size(385, 26);
-            this.lookUpFinancialYear.TabIndex = 3;
+            this.lueFinancialYear.Properties.NullText = "";
+            this.lueFinancialYear.Size = new System.Drawing.Size(385, 26);
+            this.lueFinancialYear.TabIndex = 3;
             // 
-            // lookUpBranch
+            // lueBranch
             // 
-            this.lookUpBranch.EditValue = "<Select Branch>";
-            this.lookUpBranch.Location = new System.Drawing.Point(12, 124);
-            this.lookUpBranch.Name = "lookUpBranch";
-            this.lookUpBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpBranch.Properties.Appearance.Options.UseFont = true;
-            this.lookUpBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueBranch.EditValue = "";
+            this.lueBranch.Location = new System.Drawing.Point(12, 124);
+            this.lueBranch.Name = "lueBranch";
+            this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueBranch.Properties.Appearance.Options.UseFont = true;
+            this.lueBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
-            this.lookUpBranch.Properties.NullText = "";
-            this.lookUpBranch.Size = new System.Drawing.Size(385, 26);
-            this.lookUpBranch.TabIndex = 2;
+            this.lueBranch.Properties.NullText = "";
+            this.lueBranch.Size = new System.Drawing.Size(385, 26);
+            this.lueBranch.TabIndex = 2;
             // 
-            // lookUpCompany
+            // lueCompany
             // 
-            this.lookUpCompany.EditValue = "Select Company";
-            this.lookUpCompany.Location = new System.Drawing.Point(12, 73);
-            this.lookUpCompany.Name = "lookUpCompany";
-            this.lookUpCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpCompany.Properties.Appearance.Options.UseFont = true;
-            this.lookUpCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueCompany.EditValue = "";
+            this.lueCompany.Location = new System.Drawing.Point(12, 73);
+            this.lueCompany.Name = "lueCompany";
+            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCompany.Properties.Appearance.Options.UseFont = true;
+            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
-            this.lookUpCompany.Properties.NullText = "";
-            this.lookUpCompany.Size = new System.Drawing.Size(385, 26);
-            this.lookUpCompany.TabIndex = 1;
-            this.lookUpCompany.EditValueChanged += new System.EventHandler(this.lookUpCompany_EditValueChanged);
+            this.lueCompany.Properties.NullText = "";
+            this.lueCompany.Size = new System.Drawing.Size(385, 26);
+            this.lueCompany.TabIndex = 1;
+            this.lueCompany.EditValueChanged += new System.EventHandler(this.lookUpCompany_EditValueChanged);
             // 
             // pictureEdit1
             // 
@@ -214,14 +216,15 @@ namespace DiamondTrading
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Company/Year Selection";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.FrmCompanyYearSelection_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCompanyYearSelection_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.checkRemember.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpFinancialYear.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpBranch.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueFinancialYear.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -236,9 +239,9 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
-        public DevExpress.XtraEditors.LookUpEdit lookUpCompany;
-        public DevExpress.XtraEditors.LookUpEdit lookUpFinancialYear;
-        public DevExpress.XtraEditors.LookUpEdit lookUpBranch;
-        private DevExpress.XtraEditors.CheckEdit checkRemember;
+        public DevExpress.XtraEditors.LookUpEdit lueCompany;
+        public DevExpress.XtraEditors.LookUpEdit lueFinancialYear;
+        public DevExpress.XtraEditors.LookUpEdit lueBranch;
+        private DevExpress.XtraEditors.CheckEdit chkRememberMe;
     }
 }

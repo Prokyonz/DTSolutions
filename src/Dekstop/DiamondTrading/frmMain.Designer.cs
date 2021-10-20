@@ -78,9 +78,9 @@ namespace DiamondTrading
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
             this.barToggleSwitchItem1 = new DevExpress.XtraBars.BarToggleSwitchItem();
-            this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
-            this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
-            this.barbtnYear = new DevExpress.XtraBars.BarSubItem();
+            this.barBtnLoginCompany = new DevExpress.XtraBars.BarSubItem();
+            this.barBtnLoginBranch = new DevExpress.XtraBars.BarSubItem();
+            this.barBtnLoginFinancialYear = new DevExpress.XtraBars.BarSubItem();
             this.barLblUserName = new DevExpress.XtraBars.BarStaticItem();
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -186,13 +186,13 @@ namespace DiamondTrading
             this.barToggleSwitchItem1,
             this.barLinkContainerItem1,
             this.barButtonItem11,
-            this.barbtnYear,
+            this.barBtnLoginFinancialYear,
             this.barButtonItem29,
             this.barLinkContainerItem2,
             this.barButtonItem30,
             this.barStaticItem1,
-            this.barSubItem6,
-            this.barSubItem7,
+            this.barBtnLoginCompany,
+            this.barBtnLoginBranch,
             this.barButtonItem31,
             this.barButtonItem32,
             this.barButtonItem33,
@@ -277,7 +277,7 @@ namespace DiamondTrading
             // 
             // barButtonItem4
             // 
-            this.barButtonItem4.Caption = "Party Master";
+            this.barButtonItem4.Caption = "Ledger Master";
             this.barButtonItem4.Id = 4;
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
@@ -582,9 +582,9 @@ namespace DiamondTrading
             this.bar3.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barStaticItem1, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barToggleSwitchItem1),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem6, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem7, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnYear, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnLoginCompany, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnLoginBranch, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barBtnLoginFinancialYear, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barLblUserName, true)});
             this.bar3.OptionsBar.AllowQuickCustomization = false;
             this.bar3.OptionsBar.DrawDragBorder = false;
@@ -603,35 +603,35 @@ namespace DiamondTrading
             this.barToggleSwitchItem1.Id = 35;
             this.barToggleSwitchItem1.Name = "barToggleSwitchItem1";
             // 
-            // barSubItem6
+            // barBtnLoginCompany
             // 
-            this.barSubItem6.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
-            this.barSubItem6.Caption = "Demo Company";
-            this.barSubItem6.Id = 43;
-            this.barSubItem6.ImageOptions.Image = global::DiamondTrading.Properties.Resources.company_16;
-            this.barSubItem6.Name = "barSubItem6";
-            this.barSubItem6.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barSubItem6.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem6_ItemClick);
+            this.barBtnLoginCompany.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barBtnLoginCompany.Caption = "Demo Company";
+            this.barBtnLoginCompany.Id = 43;
+            this.barBtnLoginCompany.ImageOptions.Image = global::DiamondTrading.Properties.Resources.company_16;
+            this.barBtnLoginCompany.Name = "barBtnLoginCompany";
+            this.barBtnLoginCompany.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBtnLoginCompany.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem6_ItemClick);
             // 
-            // barSubItem7
+            // barBtnLoginBranch
             // 
-            this.barSubItem7.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
-            this.barSubItem7.Caption = "Demo Branch";
-            this.barSubItem7.Id = 44;
-            this.barSubItem7.ImageOptions.Image = global::DiamondTrading.Properties.Resources.branch_16;
-            this.barSubItem7.Name = "barSubItem7";
-            this.barSubItem7.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barSubItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem7_ItemClick);
+            this.barBtnLoginBranch.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barBtnLoginBranch.Caption = "Demo Branch";
+            this.barBtnLoginBranch.Id = 44;
+            this.barBtnLoginBranch.ImageOptions.Image = global::DiamondTrading.Properties.Resources.branch_16;
+            this.barBtnLoginBranch.Name = "barBtnLoginBranch";
+            this.barBtnLoginBranch.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBtnLoginBranch.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem7_ItemClick);
             // 
-            // barbtnYear
+            // barBtnLoginFinancialYear
             // 
-            this.barbtnYear.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
-            this.barbtnYear.Caption = "2021-2022";
-            this.barbtnYear.Id = 38;
-            this.barbtnYear.ImageOptions.Image = global::DiamondTrading.Properties.Resources.year_16;
-            this.barbtnYear.Name = "barbtnYear";
-            this.barbtnYear.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
-            this.barbtnYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnYear_ItemClick);
+            this.barBtnLoginFinancialYear.AllowDrawArrow = DevExpress.Utils.DefaultBoolean.False;
+            this.barBtnLoginFinancialYear.Caption = "2021-2022";
+            this.barBtnLoginFinancialYear.Id = 38;
+            this.barBtnLoginFinancialYear.ImageOptions.Image = global::DiamondTrading.Properties.Resources.year_16;
+            this.barBtnLoginFinancialYear.Name = "barBtnLoginFinancialYear";
+            this.barBtnLoginFinancialYear.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
+            this.barBtnLoginFinancialYear.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barbtnYear_ItemClick);
             // 
             // barLblUserName
             // 
@@ -785,6 +785,7 @@ namespace DiamondTrading
             this.accordionControlSeparator6,
             this.accrdianElementRoleMaster,
             this.accrdianElementUserMaster});
+            this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.Name = "accordionControlElementMaster";
             this.accordionControlElementMaster.Text = "Master";
             this.accordionControlElementMaster.Click += new System.EventHandler(this.accordionControlElementMaster_Click);
@@ -811,7 +812,7 @@ namespace DiamondTrading
             // 
             this.accrdianElementPartyMaster.Name = "accrdianElementPartyMaster";
             this.accrdianElementPartyMaster.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accrdianElementPartyMaster.Text = "Party Matser";
+            this.accrdianElementPartyMaster.Text = "Ledger Matser";
             this.accrdianElementPartyMaster.Click += new System.EventHandler(this.accrdianElementPartyMaster_Click);
             // 
             // accordionControlSeparator4
@@ -925,7 +926,6 @@ namespace DiamondTrading
             this.accordionControlElement19,
             this.accordionControlElement18,
             this.accordionControlElement20});
-            this.accordionControlElement15.Expanded = true;
             this.accordionControlElement15.Name = "accordionControlElement15";
             this.accordionControlElement15.Text = "Transaction";
             this.accordionControlElement15.Click += new System.EventHandler(this.accordionControlElement15_Click);
@@ -1172,13 +1172,13 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator6;
         private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
-        private DevExpress.XtraBars.BarSubItem barbtnYear;
+        private DevExpress.XtraBars.BarSubItem barBtnLoginFinancialYear;
         private DevExpress.XtraBars.BarButtonItem barButtonItem29;
         private DevExpress.XtraBars.BarLinkContainerItem barLinkContainerItem2;
         private DevExpress.XtraBars.BarButtonItem barButtonItem30;
         private DevExpress.XtraBars.BarStaticItem barStaticItem1;
-        private DevExpress.XtraBars.BarSubItem barSubItem6;
-        private DevExpress.XtraBars.BarSubItem barSubItem7;
+        private DevExpress.XtraBars.BarSubItem barBtnLoginCompany;
+        private DevExpress.XtraBars.BarSubItem barBtnLoginBranch;
         private DevExpress.XtraEditors.PictureEdit pictureEdit1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem31;
         private DevExpress.XtraBars.BarButtonItem barButtonItem32;

@@ -116,6 +116,11 @@ namespace DiamondTrading
         AddMoreUserConfirmation,
         DeleteUserCofirmation,
         #endregion
+        #region "CompanyYearSelection"
+        CompanyNotSelected,
+        BranchNotSelected,
+        FinancialYearNotSelected,
+        #endregion
         AppMessageIDNotFound
     }
 
@@ -408,6 +413,17 @@ namespace DiamondTrading
                     ReturnMsg = "Are you sure you have to delete '{0}' User...?";
                     break;
                 #endregion
+                #region "CompanyYearSelection"
+                case AppMessageID.CompanyNotSelected:
+                    ReturnMsg = "Please select Company to login.";
+                    break;
+                case AppMessageID.BranchNotSelected:
+                    ReturnMsg = "Please select Branch to login.";
+                    break;
+                case AppMessageID.FinancialYearNotSelected:
+                    ReturnMsg = "Please select Financial Year to login.";
+                    break;
+                #endregion
                 #region "Others"
                 case AppMessageID.AppMessageIDNotFound:
                     ReturnMsg = "Message ID Not Found";
@@ -415,8 +431,8 @@ namespace DiamondTrading
                 default:
                     ReturnMsg = string.Empty;
                     break;
-                #endregion
-            }
+                    #endregion
+            }            
             return ReturnMsg;
         }
     }

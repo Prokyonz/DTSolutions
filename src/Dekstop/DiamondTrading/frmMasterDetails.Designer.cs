@@ -128,7 +128,7 @@ namespace DiamondTrading
             this.colDetails = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKapanCaratLimit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKapanUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtabPartyMaster = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabLedgerMaster = new DevExpress.XtraTab.XtraTabPage();
             this.grdPartyMaster = new DevExpress.XtraGrid.GridControl();
             this.grvPartyMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -194,7 +194,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdKapanMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvKapanMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
-            this.xtabPartyMaster.SuspendLayout();
+            this.xtabLedgerMaster.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).BeginInit();
@@ -537,7 +537,7 @@ namespace DiamondTrading
             this.xtabBrokerageMaster,
             this.xtabCurrencyMaster,
             this.xtabKapanMaster,
-            this.xtabPartyMaster,
+            this.xtabLedgerMaster,
             this.xtabUserMaster});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
@@ -1139,13 +1139,13 @@ namespace DiamondTrading
             this.colKapanUpdatedDate.VisibleIndex = 4;
             this.colKapanUpdatedDate.Width = 92;
             // 
-            // xtabPartyMaster
+            // xtabLedgerMaster
             // 
-            this.xtabPartyMaster.Controls.Add(this.grdPartyMaster);
-            this.xtabPartyMaster.Name = "xtabPartyMaster";
-            this.xtabPartyMaster.PageVisible = false;
-            this.xtabPartyMaster.Size = new System.Drawing.Size(764, 411);
-            this.xtabPartyMaster.Text = "PartyMaster";
+            this.xtabLedgerMaster.Controls.Add(this.grdPartyMaster);
+            this.xtabLedgerMaster.Name = "xtabLedgerMaster";
+            this.xtabLedgerMaster.PageVisible = false;
+            this.xtabLedgerMaster.Size = new System.Drawing.Size(764, 411);
+            this.xtabLedgerMaster.Text = "Ledger Master";
             // 
             // grdPartyMaster
             // 
@@ -1198,7 +1198,7 @@ namespace DiamondTrading
             // 
             // colPartyName
             // 
-            this.colPartyName.Caption = "Party Name";
+            this.colPartyName.Caption = "Ledger Name";
             this.colPartyName.FieldName = "Name";
             this.colPartyName.Name = "colPartyName";
             this.colPartyName.Visible = true;
@@ -1435,7 +1435,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdKapanMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvKapanMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
-            this.xtabPartyMaster.ResumeLayout(false);
+            this.xtabLedgerMaster.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPartyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPartyMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit2)).EndInit();
@@ -1555,7 +1555,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colKapanCaratLimit;
         private DevExpress.XtraGrid.Columns.GridColumn colKapanUpdatedDate;
-        private DevExpress.XtraTab.XtraTabPage xtabPartyMaster;
+        private DevExpress.XtraTab.XtraTabPage xtabLedgerMaster;
         private DevExpress.XtraGrid.GridControl grdPartyMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView grvPartyMaster;
         private DevExpress.XtraGrid.Columns.GridColumn colPartyId;

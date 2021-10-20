@@ -118,9 +118,9 @@ namespace DiamondTrading
                     xtabMasterDetails.SelectedTabPage = xtabKapanMaster;
                     this.Text = "Kapan Master";
                     break;
-                case "PartyMaster":
-                    xtabPartyMaster.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabPartyMaster;
+                case "LedgerMaster":
+                    xtabLedgerMaster.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabLedgerMaster;
                     this.Text = "Party Master";
                     break;
                 case "UserMaster":
@@ -151,7 +151,7 @@ namespace DiamondTrading
             xtabBrokerageMaster.PageVisible = false;
             xtabCurrencyMaster.PageVisible = false;
             xtabKapanMaster.PageVisible = false;
-            xtabPartyMaster.PageVisible = false;
+            xtabLedgerMaster.PageVisible = false;
             xtabUserMaster.PageVisible = false;
         }
 
@@ -258,7 +258,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
                 Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster(_partyMaster);
                 if (frmPartyMaster.ShowDialog() == DialogResult.OK)
@@ -392,7 +392,7 @@ namespace DiamondTrading
                     grdKapanMaster.DataSource = _kapanMaster;
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
                 if (IsForceLoad || _partyMaster == null)
                 {
@@ -535,7 +535,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
                 Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
                 Master.FrmPartyMaster frmPartyMaster= new Master.FrmPartyMaster(_partyMaster, SelectedGuid);
@@ -714,7 +714,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabPartyMaster)
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
                 Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)

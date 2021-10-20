@@ -15,6 +15,16 @@ namespace DiamondTrading
         public static Guid LoginUserID = Guid.Parse("00000000-0000-0000-0000-000000000000");
         public static string LoginUserName = "Demo User";
 
+        public static bool RememberComapnyYearSelection = false;
+        public static Guid LoginCompany = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginCompanyName = "Demo Company";
+
+        public static Guid LoginBranch = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginBranchName = "Demo Branch";
+
+        public static Guid LoginFinancialYear = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginFinancialYearName = "0000-0000";
+
         public static string FormTitle="|| શ્રીજી ||";
         public static bool PrintPurchaseSlip = false;
         public static bool AllowToSelectPurchaseDueDate = false;
@@ -62,6 +72,17 @@ namespace DiamondTrading
         {
             try
             {
+                #region "ComapnyYearSelection"
+                RememberComapnyYearSelection = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.RememberCompanyYearSelection, "false"));
+                LoginCompany = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompany, Common.LoginCompany.ToString()));
+                LoginBranch = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranch, Common.LoginBranch.ToString()));
+                LoginFinancialYear = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYear, Common.LoginFinancialYear.ToString()));
+
+                LoginCompanyName = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompanyName, Common.LoginCompanyName.ToString());
+                LoginBranchName = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranchName, Common.LoginBranchName.ToString());
+                LoginFinancialYearName = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYearName, Common.LoginFinancialYear.ToString());
+
+                #endregion
                 #region "FrmOption"
                 FormTitle = RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.FormTitle, "|| શ્રીજી ||");
 

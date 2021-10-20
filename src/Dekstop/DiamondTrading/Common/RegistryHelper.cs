@@ -17,13 +17,25 @@ namespace DiamondTrading
         public const string RememberLogin = "RememberLogin";
         public const string LoginUserName = "LoginUserName";
         public const string LoginPwd = "LoginPwd";
+        #endregion
+
+        #region "CompanyYearSelection"
+        public const string RememberCompanyYearSelection = "RememberCompanyYearSelection";
+        public const string LoginCompany = "LoginCompany";
+        public const string LoginBranch = "LoginBranch";
+        public const string LoginFinancialYear = "LoginFinancialYear";
+
+        public const string LoginCompanyName = "LoginCompanyName";
+        public const string LoginBranchName = "LoginBranchName";
+        public const string LoginFinancialYearName = "LoginFinancialYearName";
+        #endregion
 
         #region "FrmOther"
         public const string FormTitle = "FormTitle";
         public const string PrintPurchaseSlip = "PrintPurchaseSlip";
         public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
         #endregion "FrmOther"
-        #endregion
+        
         public static void SaveSettings(string SubSection, string Key, string Value)
         {
             string MainSec = "Software\\" + RecSection;
