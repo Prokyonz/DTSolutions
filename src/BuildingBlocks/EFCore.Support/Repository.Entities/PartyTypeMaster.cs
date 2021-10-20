@@ -24,6 +24,30 @@ namespace Repository.Entities
             };
             return partyTypeMaster;
         }
+
+        public static List<PartyTypeMaster> GetAllPartyType1()
+        {
+            List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
+            {
+                new PartyTypeMaster {Id = Buyer, Name = "Employee" },
+                new PartyTypeMaster {Id = Buyer, Name = "Party" },
+                new PartyTypeMaster {Id = Broker, Name = "Expense" },
+                new PartyTypeMaster {Id = Other, Name = "Other" }
+            };
+            return partyTypeMaster;
+        }
+
+        public static List<PartyTypeMaster> GetAllPartyType2()
+        {
+            List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
+            {
+                new PartyTypeMaster {Id = Buyer, Name = "Buyer" },
+                new PartyTypeMaster {Id = Buyer, Name = "Seller" },
+                new PartyTypeMaster {Id = Broker, Name = "Broker" },
+                new PartyTypeMaster {Id = Other, Name = "Other" }
+            };
+            return partyTypeMaster;
+        }
     }
 
     public class UserTypeMaster
