@@ -70,6 +70,8 @@ namespace EFCore.SQL.Repository
                 getParty.MobileNo = partyMaster.MobileNo;
                 getParty.OfficeNo = partyMaster.OfficeNo;
                 getParty.GSTNo = partyMaster.GSTNo;
+                getParty.PancardNo = partyMaster.PancardNo;
+                getParty.OpeningBalance = partyMaster.OpeningBalance;
                 getParty.AadharCardNo = partyMaster.AadharCardNo;
                 getParty.UpdatedDate = partyMaster.UpdatedDate;
                 getParty.UpdatedBy = partyMaster.UpdatedBy;

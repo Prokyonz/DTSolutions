@@ -39,10 +39,12 @@ namespace EFCore.SQL.DBContext
         public DbSet<SalesDetails> SalesDetails { get; set; }
         public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
         public DbSet<ExpenseDetails> ExpenseDetails { get; set; }
-        public DbSet<SalaryManager> SalaryManager { get; set; }
+        public DbSet<SalaryMaster> SalaryMaster { get; set; }
+        public DbSet<SalaryDetail> SalaryDetails { get; set; }
         public DbSet<GroupPaymentMaster> GroupPaymentMaster { get; set; }
         public DbSet<PaymentMaster> PaymentMaster { get; set; }
         public DbSet<PaymentDetails> PaymentDetails { get; set; }
+        public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
         public DbSet<BoilMaster> BoilMaster { get; set; }
 
@@ -77,10 +79,12 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalesDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseDetails>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<SalaryManager>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SalaryMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SalaryDetail>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<GroupPaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PaymentMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PaymentDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SlipTransferEntry>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMappingMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BoilMaster>().Property(c => c.Sr).UseIdentityColumn();
         }

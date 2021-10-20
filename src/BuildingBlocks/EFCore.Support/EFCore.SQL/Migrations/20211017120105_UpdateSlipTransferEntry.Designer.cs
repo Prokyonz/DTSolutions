@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211017120105_UpdateSlipTransferEntry")]
+    partial class UpdateSlipTransferEntry
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -807,9 +809,6 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("OfficeNo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("OpeningBalance")
-                        .HasColumnType("decimal(18, 4)");
-
                     b.Property<string>("PancardNo")
                         .HasColumnType("nvarchar(max)");
 
@@ -1320,7 +1319,7 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("RoleMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
+            modelBuilder.Entity("Repository.Entities.SalaryManager", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -1331,43 +1330,6 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<decimal>("BonusAmount")
                         .HasColumnType("decimal(18, 4)");
-
-                    b.Property<float>("OvetimeDays")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("PartyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<float>("PayDays")
-                        .HasColumnType("real");
-
-                    b.Property<Guid>("SalaryMasterId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("TotalAmount")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PartyId");
-
-                    b.HasIndex("SalaryMasterId");
-
-                    b.ToTable("SalaryDetails");
-                });
-
-            modelBuilder.Entity("Repository.Entities.SalaryMaster", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("BranchId")
                         .HasColumnType("uniqueidentifier");
@@ -1381,14 +1343,23 @@ namespace EFCore.SQL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid?>("FinancialYearId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<float>("Holidays")
                         .HasColumnType("real");
 
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
                     b.Property<int>("MonthDays")
                         .HasColumnType("int");
+
+                    b.Property<float>("OvetimeDays")
+                        .HasColumnType("real");
+
+                    b.Property<Guid>("PartyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<float>("PayDays")
+                        .HasColumnType("real");
 
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
@@ -1406,6 +1377,9 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18, 4)");
+
                     b.Property<Guid?>("UpdatedBy")
                         .HasColumnType("uniqueidentifier");
 
@@ -1414,7 +1388,9 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("SalaryMaster");
+                    b.HasIndex("PartyId");
+
+                    b.ToTable("SalaryManager");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalesDetails", b =>
@@ -1747,8 +1723,6 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PurchaseMasterId");
-
                     b.ToTable("SlipTransferEntry");
                 });
 
@@ -1978,17 +1952,11 @@ namespace EFCore.SQL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
+            modelBuilder.Entity("Repository.Entities.SalaryManager", b =>
                 {
                     b.HasOne("Repository.Entities.PartyMaster", "PartyMaster")
                         .WithMany()
                         .HasForeignKey("PartyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Repository.Entities.SalaryMaster", "SalaryMaster")
-                        .WithMany("SalaryDetails")
-                        .HasForeignKey("SalaryMasterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -2004,15 +1972,6 @@ namespace EFCore.SQL.Migrations
                     b.HasOne("Repository.Entities.SalesMaster", null)
                         .WithMany("SalesDetails")
                         .HasForeignKey("SalesMasterId");
-                });
-
-            modelBuilder.Entity("Repository.Entities.SlipTransferEntry", b =>
-                {
-                    b.HasOne("Repository.Entities.PurchaseMaster", "PurchaseMaster")
-                        .WithMany()
-                        .HasForeignKey("PurchaseMasterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>

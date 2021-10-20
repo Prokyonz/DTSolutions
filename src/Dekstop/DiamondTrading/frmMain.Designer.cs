@@ -785,7 +785,6 @@ namespace DiamondTrading
             this.accordionControlSeparator6,
             this.accrdianElementRoleMaster,
             this.accrdianElementUserMaster});
-            this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.Name = "accordionControlElementMaster";
             this.accordionControlElementMaster.Text = "Master";
             this.accordionControlElementMaster.Click += new System.EventHandler(this.accordionControlElementMaster_Click);
@@ -923,8 +922,8 @@ namespace DiamondTrading
             this.accordionControlElement15.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlPurchase,
             this.accordionControlElement17,
-            this.accordionControlElement18,
             this.accordionControlElement19,
+            this.accordionControlElement18,
             this.accordionControlElement20});
             this.accordionControlElement15.Expanded = true;
             this.accordionControlElement15.Name = "accordionControlElement15";
@@ -961,6 +960,7 @@ namespace DiamondTrading
             this.accordionControlElement19.Name = "accordionControlElement19";
             this.accordionControlElement19.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionControlElement19.Text = "Payment";
+            this.accordionControlElement19.Click += new System.EventHandler(this.accordionControlElement19_Click);
             // 
             // accordionControlElement20
             // 
