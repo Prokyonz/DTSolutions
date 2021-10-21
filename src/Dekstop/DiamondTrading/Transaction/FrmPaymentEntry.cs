@@ -17,7 +17,7 @@ namespace DiamondTrading.Transaction
         {
             InitializeComponent();
 
-            if (PaymentType == "Debit")
+            if (PaymentType == "Payment")
             {
                 SetThemeColors(Color.FromArgb(250, 243, 197));
                 this.Text = "PAYMENT";

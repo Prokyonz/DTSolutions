@@ -71,16 +71,16 @@ namespace EFCore.SQL.Repository
         {
             var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
             if(result != null)
-                return result.SlipNo;
-            return 0;
+                return result.SlipNo + 1;
+            return 1;
         }
 
         public async Task<long> GetMaxSrNo(Guid companyId, Guid financialYearId)
         {
             var result = await _databaseContext.PurchaseMaster.FirstOrDefaultAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
             if(result != null)
-                return result.PurchaseBillNo;
-            return 0;
+                return result.PurchaseBillNo + 1;
+            return 1;
         }
 
         public async Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster)

@@ -117,6 +117,7 @@ namespace DiamondTrading
 
         private async void LoadBranch(Guid companyId)
         {
+            lueBranch.EditValue = null;
             var branches = await _branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
             lueBranch.Properties.DataSource = branches;
             lueBranch.Properties.DisplayMember = "Name";
@@ -143,6 +144,5 @@ namespace DiamondTrading
             if (lueCompany.EditValue != null)
                 LoadBranch(Guid.Parse(lueCompany.EditValue.ToString()));
         }
-
     }
 }
