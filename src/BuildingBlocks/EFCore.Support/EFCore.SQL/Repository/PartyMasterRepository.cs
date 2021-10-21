@@ -61,6 +61,7 @@ namespace EFCore.SQL.Repository
             {
                 getParty.Status = partyMaster.Status;
                 getParty.CompanyId = partyMaster.CompanyId;
+                getParty.BrokerageId = partyMaster.BrokerageId;
                 getParty.Type = partyMaster.Type;
                 getParty.SubType = partyMaster.SubType;
                 getParty.Name = partyMaster.Name;

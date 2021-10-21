@@ -44,6 +44,8 @@ namespace EFCore.SQL.DBContext
         public DbSet<GroupPaymentMaster> GroupPaymentMaster { get; set; }
         public DbSet<PaymentMaster> PaymentMaster { get; set; }
         public DbSet<PaymentDetails> PaymentDetails { get; set; }
+        public DbSet<ContraEntryMaster> ContraEntryMaster { get; set; }
+        public DbSet<ContraEntryDetails> ContraEntryDetails { get; set; }
         public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
         public DbSet<BoilMaster> BoilMaster { get; set; }
@@ -75,6 +77,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<FinancialYearMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurchaseMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PurchaseDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ContraEntryMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<ContraEntryDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseMaster>().Property(c => c.Sr).UseIdentityColumn();

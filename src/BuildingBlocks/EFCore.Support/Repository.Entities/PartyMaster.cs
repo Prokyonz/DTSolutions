@@ -10,6 +10,7 @@ namespace Repository.Entities
         [Key]
         public Guid Id { get; set; }
         public Guid CompanyId { get; set; }
+        public Guid? BrokerageId { get; set; }
         public int Type { get; set; }
         public int SubType { get; set; }
         public string Name { get; set; }
