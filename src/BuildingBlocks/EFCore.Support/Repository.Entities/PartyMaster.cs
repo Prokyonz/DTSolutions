@@ -11,6 +11,7 @@ namespace Repository.Entities
         public Guid Id { get; set; }
         public Guid CompanyId { get; set; }
         public int Type { get; set; }
+        public int SubType { get; set; }
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string EmailId { get; set; }
