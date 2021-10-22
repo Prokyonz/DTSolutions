@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<PartyMaster>> GetAllPartyAsync();
         Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster);
         Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster);
-        Task<bool> DeletePartyAsync(Guid partyId, bool isPermanantDetele = false);
+        Task<bool> DeletePartyAsync(string partyId, bool isPermanantDetele = false);
     }
 }

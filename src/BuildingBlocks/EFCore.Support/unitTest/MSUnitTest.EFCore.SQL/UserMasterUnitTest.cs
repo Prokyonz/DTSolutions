@@ -20,7 +20,7 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void AddUserRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _userMasterRepository.AddUserAsync(new Repository.Entities.UserMaster
             {
                 Id = tempId,

@@ -20,13 +20,13 @@ namespace EFCore.SQL.Repository
         public async Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster)
         {
             if (kapanMaster.Id == null)
-                kapanMaster.Id = Guid.NewGuid();
+                kapanMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.KapanMaster.AddAsync(kapanMaster);
             await _databaseContext.SaveChangesAsync();
             return kapanMaster;
         }
 
-        public async Task<bool> DeleteKapanAsync(Guid kapanId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteKapanAsync(string kapanId, bool isPermanantDetele = false)
         {
             var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
             if (getKapan != null)

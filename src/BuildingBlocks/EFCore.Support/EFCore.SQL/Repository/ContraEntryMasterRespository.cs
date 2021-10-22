@@ -21,13 +21,13 @@ namespace EFCore.SQL.Repository
         public async Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster)
         {
             if (contraEntryMaster.Id == null)
-                contraEntryMaster.Id = Guid.NewGuid();
+                contraEntryMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.ContraEntryMaster.AddAsync(contraEntryMaster);
             await _databaseContext.SaveChangesAsync();
             return contraEntryMaster;
         }
 
-        public async Task<bool> DeleteContraEntryAsync(Guid contraEntryId)
+        public async Task<bool> DeleteContraEntryAsync(string contraEntryId)
         {
             var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.Id == contraEntryId).FirstOrDefaultAsync();
             if(getContraEntry != null)
@@ -51,22 +51,45 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<ContraEntryMaster>> GetAllContraEntryAsync(Guid companyId, Guid financialYearId)
+        public async Task<List<ContraEntryMaster>> GetAllContraEntryAsync(string companyId, string financialYearId)
         {
             return await _databaseContext.ContraEntryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<int> GetMaxNo(Guid companyId, Guid financialYearId)
+        public async Task<int> GetMaxNo(string companyId, string financialYearId)
         {
-            var record = await _databaseContext.ContraEntryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
-            if (record != null)
-                return record.Count + 1;
-            return 1;
+            var maxCount = await _databaseContext.ContraEntryMaster.CountAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
+            return maxCount + 1;            
         }
 
-        public Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster)
+        public async Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster)
         {
-            throw new NotImplementedException();
+            var getContra = await _databaseContext.ContraEntryMaster.Where(w => w.Id == contraEntryMaster.Id).FirstOrDefaultAsync();
+            if(getContra != null)
+            {
+                getContra.BranchId = contraEntryMaster.BranchId;
+                getContra.ToPartyId = contraEntryMaster.ToPartyId;
+                getContra.CompanyId = contraEntryMaster.CompanyId;
+                getContra.CreatedBy = contraEntryMaster.CreatedBy;
+                getContra.CreatedDate = contraEntryMaster.CreatedDate;
+                getContra.FinancialYearId = contraEntryMaster.FinancialYearId;
+                getContra.IsDelete = contraEntryMaster.IsDelete;
+                getContra.Remarks = contraEntryMaster.Remarks;
+                getContra.UpdatedBy = contraEntryMaster.UpdatedBy;
+                getContra.UpdatedDate = contraEntryMaster.UpdatedDate;
+
+                var getContraChild = await _databaseContext.ContraEntryDetails.Where(w=>w.ContraEntryMasterId == contraEntryMaster.Id).ToListAsync();
+                if(getContraChild != null && getContraChild.Count > 0)
+                {
+                    _databaseContext.ContraEntryDetails.RemoveRange(getContraChild);
+
+                    await _databaseContext.ContraEntryDetails.AddRangeAsync(contraEntryMaster.ContraEntryDetails);                    
+                }
+
+                await _databaseContext.SaveChangesAsync();
+            }
+
+            return contraEntryMaster;
         }
     }
 }

@@ -8,13 +8,13 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string UserCode { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
         public string UserName { get; set; }
         public int UserType { get; set; }
-        public Guid BrokerageId { get; set; }
+        public string BrokerageId { get; set; }
         public string Address { get; set; }
         public string Address2 { get; set; }
         public string MobileNo { get; set; }
@@ -33,8 +33,8 @@ namespace Repository.Entities
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         public virtual List<UserRoleMaster> UserRoleMaster { get; set; }        
     }

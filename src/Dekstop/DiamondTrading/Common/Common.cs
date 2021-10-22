@@ -11,18 +11,18 @@ namespace DiamondTrading
     internal static class Common
     {
         public const string AppName = "Diamond Trading";
-        public static Guid DefaultGuid = Guid.Parse("00000000-0000-0000-0000-000000000000");
-        public static Guid LoginUserID = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string DefaultGuid = "00000000-0000-0000-0000-000000000000";
+        public static string LoginUserID = "00000000-0000-0000-0000-000000000000";
         public static string LoginUserName = "Demo User";
 
         public static bool RememberComapnyYearSelection = false;
-        public static Guid LoginCompany = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginCompany = "00000000-0000-0000-0000-000000000000";
         public static string LoginCompanyName = "Demo Company";
 
-        public static Guid LoginBranch = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginBranch = "00000000-0000-0000-0000-000000000000";
         public static string LoginBranchName = "Demo Branch";
 
-        public static Guid LoginFinancialYear = Guid.Parse("00000000-0000-0000-0000-000000000000");
+        public static string LoginFinancialYear = "00000000-0000-0000-0000-000000000000";
         public static string LoginFinancialYearName = "0000-0000";
 
         public static string FormTitle="|| શ્રીજી ||";
@@ -74,9 +74,9 @@ namespace DiamondTrading
             {
                 #region "ComapnyYearSelection"
                 RememberComapnyYearSelection = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.RememberCompanyYearSelection, "false"));
-                LoginCompany = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompany, Common.LoginCompany.ToString()));
-                LoginBranch = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranch, Common.LoginBranch.ToString()));
-                LoginFinancialYear = Guid.Parse(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYear, Common.LoginFinancialYear.ToString()));
+                LoginCompany = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompany, Common.LoginCompany.ToString());
+                LoginBranch = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranch, Common.LoginBranch.ToString());
+                LoginFinancialYear = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYear, Common.LoginFinancialYear.ToString());
 
                 LoginCompanyName = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginCompanyName, Common.LoginCompanyName.ToString());
                 LoginBranchName = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginBranchName, Common.LoginBranchName.ToString());

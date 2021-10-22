@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly SizeMasterRepository _sizeMasterRepository;
         private readonly List<SizeMaster> _sizeMaster;
         private SizeMaster _EditedSizeMasterSet;
-        private Guid _selectedSizeId;
+        private string _selectedSizeId;
         public FrmSizeMaster(List<SizeMaster> SizeMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._sizeMaster = SizeMasters;
         }
 
-        public FrmSizeMaster(List<SizeMaster> SizeMasters, Guid SelectedSizeId)
+        public FrmSizeMaster(List<SizeMaster> SizeMasters, string SelectedSizeId)
         {
             InitializeComponent();
             _sizeMasterRepository = new SizeMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmSizeMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedSizeId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedSizeId) == false)
             {
                 _EditedSizeMasterSet = _sizeMaster.Where(s => s.Id == _selectedSizeId).FirstOrDefault();
                 if (_EditedSizeMasterSet != null)
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedSizeId = Guid.Empty;
+            _selectedSizeId = Guid.Empty.ToString();
             txtSizeName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtSizeName.Focus();
@@ -77,7 +77,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     SizeMaster SizeMaster = new SizeMaster
                     {

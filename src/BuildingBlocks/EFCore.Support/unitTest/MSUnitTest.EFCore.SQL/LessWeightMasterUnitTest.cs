@@ -20,7 +20,7 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void AddMasterAndDetails()
         {
-            Guid tempGid = Guid.NewGuid();
+            string tempGid = Guid.NewGuid().ToString();
             LessWeightMaster lessWeightMaster = new LessWeightMaster
             {
                 Id = tempGid,
@@ -35,7 +35,7 @@ namespace MSUnitTest.EFCore.SQL
                 {
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 10.2M,
                        LessWeightId = tempGid,
                        MaxWeight = 15.2M,
@@ -43,7 +43,7 @@ namespace MSUnitTest.EFCore.SQL
                    },
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 12.2M,
                        LessWeightId = tempGid,
                        MaxWeight = 13.2M,
@@ -61,46 +61,46 @@ namespace MSUnitTest.EFCore.SQL
 
             LessWeightMaster lessWeightMaster = new LessWeightMaster
             {
-                Id = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                Id = "1F617858-1ABB-43A8-911F-A7C4DD9840EE",
                 Name = "First Group158",
                 IsDelete = false,
                 //BranchId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED043"),
-                CreatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
                 CreatedDate = DateTime.Now,
-                UpdatedBy = Guid.NewGuid(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 UpdatedDate = DateTime.Now,
                 LessWeightDetails = new List<LessWeightDetails>
                 {
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 11.2M,
-                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       LessWeightId = "1F617858-1ABB-43A8-911F-A7C4DD9840EE",
                        MaxWeight = 11.2M,
                        MinWeight = 11.5M,
                    },
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 1.2M,
-                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       LessWeightId = "1F617858-1ABB-43A8-911F-A7C4DD9840EE",
                        MaxWeight = 1.2M,
                        MinWeight = 1.5M,
                    },
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 1.2M,
-                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       LessWeightId = "1F617858-1ABB-43A8-911F-A7C4DD9840EE",
                        MaxWeight = 1.2M,
                        MinWeight = 1.5M,
                    }
                    ,
                    new LessWeightDetails
                    {
-                       Id = Guid.NewGuid(),
+                       Id = Guid.NewGuid().ToString(),
                        LessWeight = 1.2M,
-                       LessWeightId = Guid.Parse("1F617858-1ABB-43A8-911F-A7C4DD9840EE"),
+                       LessWeightId = "1F617858-1ABB-43A8-911F-A7C4DD9840EE",
                        MaxWeight = 1.2M,
                        MinWeight = 1.5M,
                    }

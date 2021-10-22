@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly CompanyMasterRepository _companyMasterRepository;
         private readonly List<CompanyMaster> _companyMasters;
         private CompanyMaster _EditedCompnayMasterSet;
-        private Guid _selectedCompany;
+        private string _selectedCompany;
 
         public FrmCompanyMaster(List<CompanyMaster> companyMasters)
         {
@@ -27,7 +27,7 @@ namespace DiamondTrading.Master
             this._companyMasters = companyMasters;
         }
 
-        public FrmCompanyMaster(List<CompanyMaster> companyMasters,Guid SelectedCompany)
+        public FrmCompanyMaster(List<CompanyMaster> companyMasters,string SelectedCompany)
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
@@ -39,7 +39,7 @@ namespace DiamondTrading.Master
         {
             await GetParentCompanyList();
             
-            if (_selectedCompany != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedCompany) == false)
             {
                 _EditedCompnayMasterSet = _companyMasters.Where(c => c.Id == _selectedCompany).FirstOrDefault();
                 if (_EditedCompnayMasterSet != null)
@@ -99,7 +99,7 @@ namespace DiamondTrading.Master
 
         private async void Reset()
         {
-            _selectedCompany = Guid.Empty;
+            _selectedCompany = Guid.Empty.ToString();
             lueCompanyType.EditValue = 0;
             txtCompanyName.Text = "";
             txtAddress.Text = "";
@@ -132,12 +132,12 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     CompanyMaster companyMaster = new CompanyMaster
                     {
                         Id = tempId,
-                        Type = Guid.Parse(lueCompanyType.EditValue.ToString()),
+                        Type = lueCompanyType.EditValue.ToString(),
                         Name = txtCompanyName.Text,
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
@@ -168,7 +168,7 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    _EditedCompnayMasterSet.Type = Guid.Parse(lueCompanyType.EditValue.ToString());
+                    _EditedCompnayMasterSet.Type = lueCompanyType.EditValue.ToString();
                     _EditedCompnayMasterSet.Name = txtCompanyName.Text;
                     _EditedCompnayMasterSet.Address = txtAddress.Text;
                     _EditedCompnayMasterSet.Address2 = txtAddress2.Text;

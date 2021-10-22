@@ -9,7 +9,7 @@ namespace EFCore.SQL.Interface
     {
         Task<FinancialYearMaster> AddFinancialYearAsync(FinancialYearMaster financialYearMaster);
         Task<FinancialYearMaster> UpdateFinancialYearAsync(FinancialYearMaster financialYearMaster);
-        Task<bool> DeleteFinancialYearAsync(Guid financialYearId, bool isPermanantDetele = false);
+        Task<bool> DeleteFinancialYearAsync(string financialYearId, bool isPermanantDetele = false);
         Task<List<FinancialYearMaster>> GetAllFinancialYear();
     }
 }

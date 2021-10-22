@@ -21,7 +21,7 @@ namespace EFCore.SQL.Repository
         public async Task<GroupPaymentMaster> AddPaymentAsync(GroupPaymentMaster groupPaymentMaster)
         {
             if (groupPaymentMaster.Id == null)
-                groupPaymentMaster.Id = Guid.NewGuid();
+                groupPaymentMaster.Id = Guid.NewGuid().ToString();
 
             await _databaseContext.GroupPaymentMaster.AddAsync(groupPaymentMaster);
             await _databaseContext.SaveChangesAsync();
@@ -29,9 +29,9 @@ namespace EFCore.SQL.Repository
             return groupPaymentMaster;
         }
 
-        public async Task<bool> DeletePaymentAsync(Guid groupId)
+        public async Task<bool> DeletePaymentAsync(string groupId)
         {
-            var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupId).FirstOrDefaultAsync();
+            var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupId.ToString()).FirstOrDefaultAsync();
             if(paymentRecord != null)
             {
                 paymentRecord.IsDelete = true;
@@ -46,7 +46,7 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<GroupPaymentMaster>> GetAllPaymentAsync(Guid companyId, Guid financialYearId)
+        public async Task<List<GroupPaymentMaster>> GetAllPaymentAsync(string companyId, string financialYearId)
         {
             return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMaster").Include("PaymentDetails").ToListAsync();
         }

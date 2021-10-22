@@ -21,13 +21,13 @@ namespace EFCore.SQL.Repository
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
         {
             if (partyMaster.Id == null)
-                partyMaster.Id = Guid.NewGuid();
+                partyMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.PartyMaster.AddAsync(partyMaster);
             await _databaseContext.SaveChangesAsync();
             return partyMaster;
         }
 
-        public async Task<bool> DeletePartyAsync(Guid partyId, bool isPermanantDetele = false)
+        public async Task<bool> DeletePartyAsync(string partyId, bool isPermanantDetele = false)
         {
             var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyId).FirstOrDefaultAsync();
             if (getParty != null)

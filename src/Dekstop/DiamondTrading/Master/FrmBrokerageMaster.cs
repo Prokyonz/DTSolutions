@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly BrokerageMasterRepository _brokerageMasterRepository;
         private readonly List<BrokerageMaster> _brokerageMaster;
         private BrokerageMaster _EditedBrokerageMasterSet;
-        private Guid _selectedBrokerageId;
+        private string _selectedBrokerageId;
         public FrmBrokerageMaster(List<BrokerageMaster> BrokerageMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._brokerageMaster = BrokerageMasters;
         }
 
-        public FrmBrokerageMaster(List<BrokerageMaster> BrokerageMasters, Guid SelectedBrokerageId)
+        public FrmBrokerageMaster(List<BrokerageMaster> BrokerageMasters, string SelectedBrokerageId)
         {
             InitializeComponent();
             _brokerageMasterRepository = new BrokerageMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmBrokerageMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedBrokerageId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedBrokerageId) == false)
             {
                 _EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_EditedBrokerageMasterSet != null)
@@ -61,7 +61,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedBrokerageId = Guid.Empty;
+            _selectedBrokerageId = Guid.Empty.ToString();
             txtBrokerageName.Text = "";
             txtPercentage.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
@@ -79,7 +79,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     BrokerageMaster BrokerageMaster = new BrokerageMaster
                     {

@@ -23,7 +23,7 @@ namespace EFCore.SQL.Repository
             try
             {
                 if(branchMaster.Id == null)
-                    branchMaster.Id = Guid.NewGuid();
+                    branchMaster.Id = Guid.NewGuid().ToString();
                 await _databaseContext.BranchMaster.AddAsync(branchMaster);
                 await _databaseContext.SaveChangesAsync();
             }
@@ -35,7 +35,7 @@ namespace EFCore.SQL.Repository
             return branchMaster;
         }
 
-        public async Task<bool> DeleteBranchAsync(Guid branchId)
+        public async Task<bool> DeleteBranchAsync(string branchId)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.BranchMaster.Where(s=>s.IsDelete == false).ToListAsync();
         }
 
-        public async Task<List<BranchMaster>> GetCompanyBranchAsync(Guid companyId)
+        public async Task<List<BranchMaster>> GetCompanyBranchAsync(string companyId)
         {
             return await _databaseContext.BranchMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId).ToListAsync();
         }

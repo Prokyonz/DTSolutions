@@ -8,9 +8,9 @@ namespace Repository.Entities
     {
         public int Sr { get;  }
         [Key]
-        public Guid Id { get; set; }
-        public Guid CompanyId { get; set; }
-        public Guid? BrokerageId { get; set; }
+        public string Id { get; set; }
+        public string CompanyId { get; set; }
+        public string BrokerageId { get; set; }
         public int Type { get; set; }
         public int SubType { get; set; }
         public string Name { get; set; }
@@ -29,8 +29,8 @@ namespace Repository.Entities
         public bool Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("CompanyId")]
         public virtual CompanyMaster CompanyMaster { get; set; }

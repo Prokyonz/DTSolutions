@@ -8,8 +8,8 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid ModuleId { get; set; }
+        public string Id { get; set; }
+        public string ModuleId { get; set; }
         public string Name { get; set; }        
         public string ClaimType { get; set; }
         public string ClaimValue { get; set; }

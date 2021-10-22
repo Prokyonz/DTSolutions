@@ -8,10 +8,10 @@ namespace EFCore.SQL.Interface
 {
     public interface IContraEntryMaster
     {
-        Task<List<ContraEntryMaster>> GetAllContraEntryAsync(Guid companyId, Guid financialYearId);
-        Task<int> GetMaxNo(Guid companyId, Guid financialYearId);
+        Task<List<ContraEntryMaster>> GetAllContraEntryAsync(string companyId, string financialYearId);
+        Task<int> GetMaxNo(string companyId, string financialYearId);
         Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster);
         Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster);
-        Task<bool> DeleteContraEntryAsync(Guid contraEntryId);        
+        Task<bool> DeleteContraEntryAsync(string contraEntryId);        
     }
 }

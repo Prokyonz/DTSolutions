@@ -27,13 +27,13 @@ namespace EFCore.SQL.Repository
         public async Task<CurrencyMaster> AddCurrencyAsync(CurrencyMaster currencyMaster)
         {
             if (currencyMaster.Id == null)
-                currencyMaster.Id = Guid.NewGuid();
+                currencyMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.CurrencyMaster.AddAsync(currencyMaster);
             await _databaseContext.SaveChangesAsync();
             return currencyMaster;
         }
 
-        public async Task<bool> DeleteCurrencyAsync(Guid currencyId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteCurrencyAsync(string currencyId, bool isPermanantDetele = false)
         {
             var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyId).FirstOrDefaultAsync();
             if (getCurrency != null)

@@ -41,13 +41,13 @@ namespace DiamondTrading
                 return;
 
             SaveRegistrySettings();
-            Common.LoginCompany = Guid.Parse(lueCompany.EditValue.ToString());
+            Common.LoginCompany = lueCompany.EditValue.ToString();
             Common.LoginCompanyName = lueCompany.Text;
 
-            Common.LoginBranch = Guid.Parse(lueBranch.EditValue.ToString());
+            Common.LoginBranch = lueBranch.EditValue.ToString();
             Common.LoginBranchName = lueBranch.Text;
 
-            Common.LoginFinancialYear = Guid.Parse(lueFinancialYear.EditValue.ToString());
+            Common.LoginFinancialYear = lueFinancialYear.EditValue.ToString();
             Common.LoginFinancialYearName = lueFinancialYear.Text;
 
             this.DialogResult = DialogResult.OK;
@@ -115,7 +115,7 @@ namespace DiamondTrading
             lueCompany.Properties.ValueMember = "Id";
         }
 
-        private async void LoadBranch(Guid companyId)
+        private async void LoadBranch(string companyId)
         {
             lueBranch.EditValue = null;
             var branches = await _branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
@@ -142,7 +142,7 @@ namespace DiamondTrading
         private void lookUpCompany_EditValueChanged(object sender, EventArgs e)
         {
             if (lueCompany.EditValue != null)
-                LoadBranch(Guid.Parse(lueCompany.EditValue.ToString()));
+                LoadBranch(lueCompany.EditValue.ToString());
         }
     }
 }

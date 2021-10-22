@@ -6,7 +6,7 @@ namespace Repository.Entities
     public class SlipPrintMaster
     {
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
     }
 }

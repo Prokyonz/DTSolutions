@@ -9,13 +9,13 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         //Navigation Properties
         public virtual List<LessWeightDetails> LessWeightDetails { get; set; }

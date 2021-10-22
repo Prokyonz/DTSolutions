@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<ExpenseMaster>> GetAllExpenseAsync();
         Task<ExpenseMaster> AddExpenseAsync(ExpenseMaster expenseMaster);
         Task<ExpenseMaster> UpdateExpenseAsync(ExpenseMaster expenseMaster);
-        Task<bool> DeleteExpenseAsync(Guid expenseId, bool isPermanantDetele = false);
+        Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false);
     }
 }

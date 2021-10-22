@@ -20,8 +20,8 @@ namespace EFCore.SQL.Repository
         {
             try
             {
-                //if (companyMaster.Id == null)
-                //    companyMaster.Id = Guid.NewGuid();
+                if (companyMaster.Id == null)
+                    companyMaster.Id = Guid.NewGuid().ToString();
 
                 await _databaseContext.CompanyMaster.AddAsync(companyMaster);
                 await _databaseContext.SaveChangesAsync();                
@@ -34,7 +34,7 @@ namespace EFCore.SQL.Repository
             return companyMaster;
         }
 
-        public async Task<bool> DeleteCompanyAsync(Guid CompanyId)
+        public async Task<bool> DeleteCompanyAsync(string CompanyId)
         {
             var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
             if (getCompany != null)

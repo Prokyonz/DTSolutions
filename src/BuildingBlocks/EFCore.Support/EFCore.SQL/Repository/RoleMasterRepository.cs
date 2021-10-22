@@ -21,13 +21,13 @@ namespace EFCore.SQL.Repository
         public async Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster)
         {
             if (roleMaster.Id == null)
-                roleMaster.Id = Guid.NewGuid();
+                roleMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.RoleMaster.AddAsync(roleMaster);
             await _databaseContext.SaveChangesAsync();
             return roleMaster;
         }
 
-        public async Task<bool> DeleteRoleAsync(Guid roleId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteRoleAsync(string roleId, bool isPermanantDetele = false)
         {
             var getRole = await _databaseContext.RoleMaster.Where(s => s.Id == roleId).FirstOrDefaultAsync();
             if (getRole != null)

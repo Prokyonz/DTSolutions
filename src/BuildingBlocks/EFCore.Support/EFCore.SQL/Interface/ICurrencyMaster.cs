@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<CurrencyMaster>> GetAllCurrencyAsync();
         Task<CurrencyMaster> AddCurrencyAsync(CurrencyMaster currencyMaster);
         Task<CurrencyMaster> UpdateCurrencyAsync(CurrencyMaster currencyMaster);
-        Task<bool> DeleteCurrencyAsync(Guid currencyId, bool isPermanantDetele = false);
+        Task<bool> DeleteCurrencyAsync(string currencyId, bool isPermanantDetele = false);
     }
 }

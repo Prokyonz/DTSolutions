@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly FinancialYearMasterRepository _financialYearMasterRepository;
         private readonly List<FinancialYearMaster> _financialYearMaster;
         private FinancialYearMaster _EditedFinancialYearMasterSet;
-        private Guid _selectedFinancialYearId;
+        private string _selectedFinancialYearId;
         public FrmFinancialYearMaster(List<FinancialYearMaster> FinancialYearMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._financialYearMaster = FinancialYearMasters;
         }
 
-        public FrmFinancialYearMaster(List<FinancialYearMaster> FinancialYearMasters, Guid SelectedFinancialYearId)
+        public FrmFinancialYearMaster(List<FinancialYearMaster> FinancialYearMasters, string SelectedFinancialYearId)
         {
             InitializeComponent();
             _financialYearMasterRepository = new FinancialYearMasterRepository();
@@ -39,7 +39,7 @@ namespace DiamondTrading.Master
             dtStartDate.EditValue = DateTime.Now;
             dtEndDate.EditValue = DateTime.Now;
 
-            if (_selectedFinancialYearId != Guid.Empty)
+            if (string.IsNullOrEmpty( _selectedFinancialYearId) == false)
             {
                 _EditedFinancialYearMasterSet = _financialYearMaster.Where(s => s.Id == _selectedFinancialYearId).FirstOrDefault();
                 if (_EditedFinancialYearMasterSet != null)
@@ -67,7 +67,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedFinancialYearId = Guid.Empty;
+            _selectedFinancialYearId = Guid.Empty.ToString();
             txtFinancialYearName.Text = "";
             dtStartDate.EditValue = DateTime.Now;
             dtEndDate.EditValue = DateTime.Now;
@@ -87,7 +87,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     FinancialYearMaster FinancialYearMaster = new FinancialYearMaster
                     {

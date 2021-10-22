@@ -8,9 +8,9 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid SalaryMasterId { get; set; }
-        public Guid PartyId { get; set; }                
+        public string Id { get; set; }
+        public string SalaryMasterId { get; set; }
+        public string PartyId { get; set; }                
         public float PayDays { get; set; }
         public float OvetimeDays { get; set; }
 

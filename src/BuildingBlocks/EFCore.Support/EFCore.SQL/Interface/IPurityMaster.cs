@@ -7,10 +7,10 @@ namespace EFCore.SQL.Interface
 {
     public interface IPurityMaster
     {
-        Task<PurityMaster> GetPurityById(Guid purityId, bool isDeleteInclude = false);
+        Task<PurityMaster> GetPurityById(string purityId, bool isDeleteInclude = false);
         Task<List<PurityMaster>> GetAllPurityAsync(bool isDeleteInclude = false);
         Task<PurityMaster> AddPurityAsync(PurityMaster purityMaster);
         Task<PurityMaster> UpdatePurityAsync(PurityMaster purityMaster);
-        Task<bool> DeletePurityAsync(Guid purityId, bool isPermanantDetele = false);
+        Task<bool> DeletePurityAsync(string purityId, bool isPermanantDetele = false);
     }
 }

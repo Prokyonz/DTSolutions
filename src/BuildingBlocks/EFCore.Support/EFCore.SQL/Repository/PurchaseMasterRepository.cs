@@ -20,13 +20,13 @@ namespace EFCore.SQL.Repository
         public async Task<PurchaseMaster> AddPurchaseAsync(PurchaseMaster purchaseMaster)
         {
             if (purchaseMaster.Id == null)
-                purchaseMaster.Id = Guid.NewGuid();
+                purchaseMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.PurchaseMaster.AddAsync(purchaseMaster);
             await _databaseContext.SaveChangesAsync();
             return purchaseMaster;
         }
 
-        public async Task<bool> DeletePurchaseAsync(Guid purchaseId, bool isPermanantDetele = false)
+        public async Task<bool> DeletePurchaseAsync(string purchaseId, bool isPermanantDetele = false)
         {
             var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseId && s.IsDelete == false).FirstOrDefaultAsync();
             if (getPurchase != null)
@@ -47,27 +47,27 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, Guid financialYearId)
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string financialYearId)
         {
             return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, Guid branchId, Guid financialYearId)
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, string financialYearId)
         {
             return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.BranchId == branchId && s.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, DateTime startDate, DateTime endDate)
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, DateTime startDate, DateTime endDate)
         {
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
-        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(Guid companyId, Guid branchId, DateTime startDate, DateTime endDate)
+        public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, DateTime startDate, DateTime endDate)
         {
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
-        public async Task<long> GetMaxSlipNo(Guid branchId, Guid financialYearId)
+        public async Task<long> GetMaxSlipNo(string branchId, string financialYearId)
         {
             var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
             if(result != null)
@@ -75,7 +75,7 @@ namespace EFCore.SQL.Repository
             return 1;
         }
 
-        public async Task<long> GetMaxSrNo(Guid companyId, Guid financialYearId)
+        public async Task<long> GetMaxSrNo(string companyId, string financialYearId)
         {
             var result = await _databaseContext.PurchaseMaster.FirstOrDefaultAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
             if(result != null)

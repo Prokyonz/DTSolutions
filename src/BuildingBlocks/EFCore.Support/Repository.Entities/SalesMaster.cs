@@ -9,13 +9,13 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid BranchId { get; set; }
-        public Guid PartyId { get; set; }
-        public Guid SalerId { get; set; }
-        public Guid CurrencyId { get; set; }
-        public Guid FinancialYearId { get; set; }
-        public Guid BrokerageId { get; set; }
+        public string Id { get; set; }
+        public string BranchId { get; set; }
+        public string PartyId { get; set; }
+        public string SalerId { get; set; }
+        public string CurrencyId { get; set; }
+        public string FinancialYearId { get; set; }
+        public string BrokerageId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CurrencyRate { get; set; }
         public long SaleBillNo { get; set; }
@@ -37,7 +37,7 @@ namespace Repository.Entities
         public int PaymentDueDays { get; set; }
         public bool IsSlip { get; set; }
         public bool IsPF { get; set; }
-        public Guid CommissionToPartyId { get; set; }
+        public string CommissionToPartyId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CommissionPercentage { get; set; }
         public double CommissionAmount { get; set; }
@@ -49,8 +49,8 @@ namespace Repository.Entities
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
         public virtual List<SalesDetails> SalesDetails { get; set; }
 
     }

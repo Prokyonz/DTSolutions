@@ -10,9 +10,9 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid GroupId { get; set; }
-        public Guid FromPartyId { get; set; }
+        public string Id { get; set; }
+        public string GroupId { get; set; }
+        public string FromPartyId { get; set; }
         public decimal Amount { get; set; }
         public int CrDrType { get; set; } // 0 -> Debit, 1 -> Credit
         public string ChequeNo { get; set; }
@@ -20,8 +20,8 @@ namespace Repository.Entities
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("GroupId")]
         public virtual GroupPaymentMaster GroupPaymentMaster { get; set; }

@@ -8,14 +8,14 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid PaymentId { get; set; }
-        public Guid? GroupId { get; set; }
-        public Guid PurchaseId { get; set; }
+        public string Id { get; set; }
+        public string PaymentId { get; set; }
+        public string GroupId { get; set; }
+        public string PurchaseId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("PaymentId")]
         public virtual PaymentMaster PaymentMaster { get; set; }

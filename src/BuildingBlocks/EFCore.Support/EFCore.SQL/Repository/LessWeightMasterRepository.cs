@@ -21,13 +21,13 @@ namespace EFCore.SQL.Repository
         public async Task<LessWeightMaster> AddLessWeightMaster(LessWeightMaster lessWeightMaster)
         {
             if (lessWeightMaster.Id == null)
-                lessWeightMaster.Id = Guid.NewGuid();
+                lessWeightMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.LessWeightMasters.AddAsync(lessWeightMaster);
             await _databaseContext.SaveChangesAsync();
             return lessWeightMaster;
         }
 
-        public async Task<bool> DeleteLessWeightMaster(Guid lessWeightMasterId, bool isPermanantDelete = false)
+        public async Task<bool> DeleteLessWeightMaster(string lessWeightMasterId, bool isPermanantDelete = false)
         {
             var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMasterId).FirstOrDefaultAsync();
             if (getLessWeightRecord != null)

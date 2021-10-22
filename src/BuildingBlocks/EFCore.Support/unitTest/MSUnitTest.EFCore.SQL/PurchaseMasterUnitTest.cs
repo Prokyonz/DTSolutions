@@ -19,14 +19,14 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void GetMaxSlipNo()
         {
-            long maxSlipNo = _purchaseMasterRepository.GetMaxSlipNo(Guid.NewGuid(), Guid.NewGuid()).Result;
+            long maxSlipNo = _purchaseMasterRepository.GetMaxSlipNo(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()).Result;
             Assert.IsTrue(maxSlipNo == 0);
         }
 
         [TestMethod]
         public void GetMaxSerialNo()
         {
-            long maxSerialNo = _purchaseMasterRepository.GetMaxSrNo(Guid.NewGuid(), Guid.NewGuid()).Result;
+            long maxSerialNo = _purchaseMasterRepository.GetMaxSrNo(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()).Result;
             Assert.IsTrue(maxSerialNo == 0);
         }
     }
