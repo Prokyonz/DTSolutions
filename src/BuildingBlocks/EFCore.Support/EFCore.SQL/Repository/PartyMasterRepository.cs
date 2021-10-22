@@ -49,9 +49,14 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
         }
 
-        public async Task<List<PartyMaster>> GetPartyAsync(int Type)
+        public async Task<List<PartyMaster>> GetPartyAsync()
         {
-            return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type==Type).ToListAsync();
+            return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Party).ToListAsync();
+        }
+
+        public async Task<List<PartyMaster>> GetEmployeeAsync(int SubType)
+        {
+            return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Employee && s.SubType == SubType).ToListAsync();
         }
 
         public async Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster)

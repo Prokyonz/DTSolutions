@@ -104,7 +104,9 @@ namespace DiamondTrading
         #region "FrmPartyMaster"
         EmptyPartyName,
         EmptyPartyCompanySelection,
-        EmptyPartyTypeSelection,
+        EmptyLedgerTypeSelection,
+        EmptySubTypeSelection,
+        EmptyBrokerageSelection,
         PartyNameExist,
         AddMorePartyConfirmation,
         DeletePartyCofirmation,
@@ -383,8 +385,14 @@ namespace DiamondTrading
                 case AppMessageID.EmptyPartyCompanySelection:
                     ReturnMsg = "Please select party company.";
                     break;
-                case AppMessageID.EmptyPartyTypeSelection:
-                    ReturnMsg = "Please select party type.";
+                case AppMessageID.EmptyLedgerTypeSelection:
+                    ReturnMsg = "Please select Ledger type.";
+                    break;
+                case AppMessageID.EmptySubTypeSelection:
+                    ReturnMsg = "Please select sub type.";
+                    break;
+                case AppMessageID.EmptyBrokerageSelection:
+                    ReturnMsg = "Please select brokerage.";
                     break;
                 case AppMessageID.PartyNameExist:
                     ReturnMsg = "Party Name already exist.";

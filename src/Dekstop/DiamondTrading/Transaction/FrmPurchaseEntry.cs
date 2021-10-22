@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,9 +17,14 @@ namespace DiamondTrading.Transaction
 {
     public partial class FrmPurchaseEntry : DevExpress.XtraEditors.XtraForm
     {
+        PurchaseMasterRepository _purchaseMasterRepository;
+        PartyMasterRepository _partyMasterRepository;
+
         public FrmPurchaseEntry()
         {
             InitializeComponent();
+            _purchaseMasterRepository = new PurchaseMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository();
         }
 
         private void FrmPurchaseEntry_Load(object sender, EventArgs e)
@@ -59,8 +65,6 @@ namespace DiamondTrading.Transaction
             dtTime.EditValue = DateTime.Now;
             dtPayDate.EditValue = DateTime.Now;
 
-            GetPurchaseNo(); //Serial No/Slip No
-
             LoadPurchaseItemDetails();
 
             //Payment Mode
@@ -83,37 +87,23 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.ValueMember = "Id";
 
             //Buyer
-            PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
-            var partyMaster = await partyMasterRepository.GetPartyAsync(PartyTypeMaster.Buyer);
-            lueBuyer.Properties.DataSource = partyMaster;
-            lueBuyer.Properties.DisplayMember = "Name";
-            lueBuyer.Properties.ValueMember = "Id";
-
-            //Commision
-            partyMaster = await partyMasterRepository.GetAllPartyAsync();
-            lueCommision.Properties.DataSource = partyMaster;
-            lueCommision.Properties.DisplayMember = "Name";
-            lueCommision.Properties.ValueMember = "Id";
+            await GetBuyerList();
 
             //Party
-            partyMaster = await partyMasterRepository.GetAllPartyAsync();
-            lueParty.Properties.DataSource = partyMaster;
-            lueParty.Properties.DisplayMember = "Name";
-            lueParty.Properties.ValueMember = "Id";
+            await GetPartyList();
 
             //Broker
-            partyMaster = await partyMasterRepository.GetPartyAsync(PartyTypeMaster.Broker);
-            lueBroker.Properties.DataSource = partyMaster;
-            lueBroker.Properties.DisplayMember = "Name";
-            lueBroker.Properties.ValueMember = "Id";
+            await GetBrokerList();
         }
 
-        private void LoadPurchaseItemDetails()
+        private async void LoadPurchaseItemDetails()
         {
             grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();
+            //Company
+            LoadCompany();
 
             //Shape
-            GetShapeDetail(false);
+            await GetShapeDetail();
 
             //Size
             GetSizeDetail(false);
@@ -125,13 +115,87 @@ namespace DiamondTrading.Transaction
             GetKapanDetail(false);
         }
 
-        private async void GetShapeDetail(bool IsNew)
+        private async Task GetBuyerList()
+        {
+            var BuyerDetailList = await _partyMasterRepository.GetEmployeeAsync(PartyTypeMaster.Buyer);
+            lueBuyer.Properties.DataSource = BuyerDetailList;
+            lueBuyer.Properties.DisplayMember = "Name";
+            lueBuyer.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetPartyList()
+        {
+            var PartyDetailList = await _partyMasterRepository.GetPartyAsync();
+            lueParty.Properties.DataSource = PartyDetailList;
+            lueParty.Properties.DisplayMember = "Name";
+            lueParty.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetBrokerList()
+        {
+            var BrokerDetailList = await _partyMasterRepository.GetEmployeeAsync(PartyTypeMaster.Broker);
+            lueBroker.Properties.DataSource = BrokerDetailList;
+            lueBroker.Properties.DisplayMember = "Name";
+            lueBroker.Properties.ValueMember = "Id";
+        }
+        private async void LoadCompany()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companies = await companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = companies;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
+            LoadBranch(Common.LoginCompany);
+        }
+
+        private async void LoadBranch(Guid companyId)
+        {
+            BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
+            var branches = await branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
+            lueBranch.Properties.DataSource = branches;
+            lueBranch.Properties.DisplayMember = "Name";
+            lueBranch.Properties.ValueMember = "Id";
+            lueBranch.EditValue = Common.LoginBranch;
+
+            GetPurchaseNo(); //Serial No/Slip No
+        }
+
+        private async Task GetShapeDetail()
         {
             ShapeMasterRepository shapeMasterRepository = new ShapeMasterRepository();
             var shapeMaster = await shapeMasterRepository.GetAllShapeAsync();
-            repoShape.DataSource = shapeMaster;
+
+            DataTable dt = ToDataTable(shapeMaster);
+
+            repoShape.DataSource = dt;
             repoShape.DisplayMember = "Name";
             repoShape.ValueMember = "Id";
+        }
+
+        public DataTable ToDataTable<T>(List<T> items)
+        {
+            DataTable dataTable = new DataTable(typeof(T).Name);
+            //Get all the properties by using reflection   
+            PropertyInfo[] Props = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            foreach (PropertyInfo prop in Props)
+            {
+                //Setting column names as Property names  
+                dataTable.Columns.Add(prop.Name);
+            }
+            foreach (T item in items)
+            {
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
+                {
+
+                    values[i] = Props[i].GetValue(item, null);
+                }
+                dataTable.Rows.Add(values);
+            }
+
+            return dataTable;
         }
 
         private async void GetSizeDetail(bool IsNew)
@@ -161,12 +225,15 @@ namespace DiamondTrading.Transaction
             repoKapan.ValueMember = "Id";
         }
 
-        public void GetPurchaseNo()
+        public async void GetPurchaseNo()
         {
             try
             {
-                txtSerialNo.Text = "0";
-                txtSlipNo.Text = "0";
+                var SrNo = await _purchaseMasterRepository.GetMaxSrNo(Guid.Parse(lueCompany.EditValue.ToString()), Common.LoginFinancialYear);
+                txtSerialNo.Text = SrNo.ToString();
+
+                var SlipNo = await _purchaseMasterRepository.GetMaxSlipNo(Guid.Parse(lueBranch.EditValue.ToString()), Common.LoginFinancialYear);
+                txtSlipNo.Text = SlipNo.ToString();
             }
             catch(Exception Ex)
             {
@@ -202,6 +269,47 @@ namespace DiamondTrading.Transaction
             var ctrl = sender as Control;
             ctrl.Tag = ctrl.BackColor;
             ctrl.BackColor = Color.LightSteelBlue;
+        }
+
+        private async void NewEntry(object sender, KeyEventArgs e)
+        {
+            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (ControlName == lueBuyer.Name)
+                {
+                    Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                    frmPartyMaster.IsSilentEntry = true;
+                    frmPartyMaster.LedgerType = PartyTypeMaster.Buyer;
+                    if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await GetBuyerList();
+                        lueBuyer.EditValue = frmPartyMaster.CreatedLedgerID;
+                    }
+                }
+                else if (ControlName == lueParty.Name)
+                {
+                    Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                    frmPartyMaster.IsSilentEntry = true;
+                    frmPartyMaster.LedgerType = PartyTypeMaster.Party;
+                    if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await GetPartyList();
+                        lueParty.EditValue = frmPartyMaster.CreatedLedgerID;
+                    }
+                }
+                else if (ControlName == lueBroker.Name)
+                {
+                    Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                    frmPartyMaster.IsSilentEntry = true;
+                    frmPartyMaster.LedgerType = PartyTypeMaster.Broker;
+                    if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await GetBrokerList();
+                        lueBroker.EditValue = frmPartyMaster.CreatedLedgerID;
+                    }
+                }
+            }
         }
 
         private void lueCurrencyType_KeyDown(object sender, KeyEventArgs e)
@@ -300,6 +408,20 @@ namespace DiamondTrading.Transaction
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private async void repoShape_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                Master.FrmShapeMaster frmShapeMaster = new Master.FrmShapeMaster();
+                frmShapeMaster.IsSilentEntry = true;
+                if (frmShapeMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await GetShapeDetail();
+                    grvPurchaseDetails.SetFocusedRowCellValue(colShape, frmShapeMaster.CreatedLedgerID.ToString());
+                }
+            }
         }
     }
 }

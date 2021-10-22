@@ -84,7 +84,7 @@ namespace DiamondTrading.Transaction
 
             //Buyer
             PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
-            var partyMaster = await partyMasterRepository.GetPartyAsync(PartyTypeMaster.Buyer);
+            var partyMaster = await partyMasterRepository.GetPartyAsync();
             lueBuyer.Properties.DataSource = partyMaster;
             lueBuyer.Properties.DisplayMember = "Name";
             lueBuyer.Properties.ValueMember = "Id";
@@ -102,7 +102,7 @@ namespace DiamondTrading.Transaction
             lueParty.Properties.ValueMember = "Id";
 
             //Broker
-            partyMaster = await partyMasterRepository.GetPartyAsync(PartyTypeMaster.Broker);
+            partyMaster = await partyMasterRepository.GetPartyAsync();
             lueBroker.Properties.DataSource = partyMaster;
             lueBroker.Properties.DisplayMember = "Name";
             lueBroker.Properties.ValueMember = "Id";

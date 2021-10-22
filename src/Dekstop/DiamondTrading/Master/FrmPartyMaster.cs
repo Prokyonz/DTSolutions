@@ -16,9 +16,15 @@ namespace DiamondTrading.Master
     public partial class FrmPartyMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly PartyMasterRepository _partyMasterRepository;
-        private readonly List<PartyMaster> _partyMasters;
+        private List<PartyMaster> _partyMasters;
         private PartyMaster _EditedPartyMasterSet;
         private Guid _selectedParty;
+
+        public FrmPartyMaster()
+        {
+            InitializeComponent();
+            _partyMasterRepository = new PartyMasterRepository();
+        }
 
         public FrmPartyMaster(List<PartyMaster> PartyMasters)
         {
@@ -35,10 +41,60 @@ namespace DiamondTrading.Master
             _selectedParty = SelectedParty;
         }
 
+        public Guid CreatedLedgerID
+        {
+            get;
+            private set;
+        }
+
+        public bool IsSilentEntry
+        {
+            get;
+            set;
+        }
+
+        public int LedgerType
+        {
+            get;
+            set;
+        }
+
         private async void frmPartyMaster_Load(object sender, EventArgs e)
         {
+            if(_partyMasters == null)
+                _partyMasters = await _partyMasterRepository.GetAllPartyAsync();
+
             await GetListForDepedendeFields();
-            
+
+            if (LedgerType == PartyTypeMaster.Buyer)
+            {
+                luePartyType.EditValue = PartyTypeMaster.Employee;
+                lueSubType.EditValue = PartyTypeMaster.Buyer;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                lueSubType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+            else if (LedgerType == PartyTypeMaster.Broker)
+            {
+                luePartyType.EditValue = PartyTypeMaster.Employee;
+                lueSubType.EditValue = PartyTypeMaster.Broker;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                lueSubType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+            else if (LedgerType == PartyTypeMaster.Party)
+            {
+                luePartyType.EditValue = PartyTypeMaster.Party;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+
             if (_selectedParty != Guid.Empty)
             {
                 _EditedPartyMasterSet = _partyMasters.Where(c => c.Id == _selectedParty).FirstOrDefault();
@@ -48,6 +104,10 @@ namespace DiamondTrading.Master
                     tglIsActive.IsOn = _EditedPartyMasterSet.Status;
                     lueCompany.EditValue = _EditedPartyMasterSet.CompanyId;
                     luePartyType.EditValue = _EditedPartyMasterSet.Type;
+                    lueSubType.EditValue = _EditedPartyMasterSet.SubType;
+                    if(_EditedPartyMasterSet.BrokerageId != null)
+                        lueBrokerage.EditValue = _EditedPartyMasterSet.BrokerageId;
+                    txtOpeningBalance.Text = _EditedPartyMasterSet.OpeningBalance.ToString();
                     txtPartyName.Text = _EditedPartyMasterSet.Name;
                     txtAddress.Text = _EditedPartyMasterSet.Address;
                     txtAddress2.Text = _EditedPartyMasterSet.Address2;
@@ -74,6 +134,8 @@ namespace DiamondTrading.Master
                     lueCompany.Properties.DataSource = CompanyList;
                     lueCompany.Properties.DisplayMember = "Name";
                     lueCompany.Properties.ValueMember = "Id";
+
+                    lueCompany.EditValue = Common.LoginCompany;
                 }
 
                 var PartyTypes = PartyTypeMaster.GetAllMainLedgerType();
@@ -145,6 +207,7 @@ namespace DiamondTrading.Master
                         Status=tglIsActive.IsOn,
                         CompanyId = Guid.Parse(lueCompany.EditValue.ToString()),
                         Type = Convert.ToInt32(luePartyType.EditValue),
+                        OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text),
                         Name = txtPartyName.Text,
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
@@ -160,12 +223,24 @@ namespace DiamondTrading.Master
                         UpdatedDate = DateTime.Now,
                     };
 
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
+                        PartyMaster.SubType = Convert.ToInt32(lueSubType.EditValue);
+                    else
+                        PartyMaster.SubType = PartyTypeMaster.None;
+
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                        PartyMaster.BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString());
+
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
 
                     if (Result != null)
                     {
-                        Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CreatedLedgerID = Result.Id;
+                        if (!IsSilentEntry)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 else
@@ -173,6 +248,13 @@ namespace DiamondTrading.Master
                     _EditedPartyMasterSet.Status = tglIsActive.IsOn;
                     _EditedPartyMasterSet.CompanyId = Guid.Parse(lueCompany.EditValue.ToString());
                     _EditedPartyMasterSet.Type = Convert.ToInt32(luePartyType.EditValue);
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
+                        _EditedPartyMasterSet.SubType = Convert.ToInt32(lueSubType.EditValue);
+                    else
+                        _EditedPartyMasterSet.SubType = PartyTypeMaster.None;
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                        _EditedPartyMasterSet.BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString());
+                    _EditedPartyMasterSet.OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text);
                     _EditedPartyMasterSet.Name = txtPartyName.Text;
                     _EditedPartyMasterSet.Address = txtAddress.Text;
                     _EditedPartyMasterSet.Address2 = txtAddress2.Text;
@@ -188,12 +270,13 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
+                        CreatedLedgerID = Result.Id;
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMorePartyConfirmation), "["+this.Text+"}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                //if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMorePartyConfirmation), "["+this.Text+"}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
@@ -218,7 +301,19 @@ namespace DiamondTrading.Master
             }
             else if (luePartyType.EditValue == null)
             {
-                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyPartyTypeSelection), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyLedgerTypeSelection), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                luePartyType.Focus();
+                return false;
+            }
+            else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && lueSubType.EditValue == null)
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptySubTypeSelection), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                luePartyType.Focus();
+                return false;
+            }
+            else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker && lueBrokerage.EditValue == null)
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyBrokerageSelection), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 luePartyType.Focus();
                 return false;
             }
@@ -268,11 +363,6 @@ namespace DiamondTrading.Master
                         lueSubType_EditValueChanged(sender,e);
                     }
                 }
-                //else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Expense)
-                //{
-                //    pnl1.Visible = false;
-                //    pnl2.Visible = false;
-                //}
                 else
                 {
                     pnl1.Visible = false;

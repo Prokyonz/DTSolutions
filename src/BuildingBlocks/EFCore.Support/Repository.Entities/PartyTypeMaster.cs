@@ -50,7 +50,7 @@ namespace Repository.Entities
             List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
             {
                 new PartyTypeMaster {Id = Buyer, Name = "Buyer" },
-                new PartyTypeMaster {Id = Buyer, Name = "Seller" },
+                new PartyTypeMaster {Id = Seller, Name = "Seller" },
                 new PartyTypeMaster {Id = Broker, Name = "Broker" },
                 new PartyTypeMaster {Id = Other, Name = "Other" }
             };
