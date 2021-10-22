@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly NumberMasterRepository _numberMasterRepository;
         private readonly List<NumberMaster> _numberMaster;
         private NumberMaster _EditedNumberMasterSet;
-        private Guid _selectedNumberId;
+        private string _selectedNumberId;
         public FrmNumberMaster(List<NumberMaster> NumberMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._numberMaster = NumberMasters;
         }
 
-        public FrmNumberMaster(List<NumberMaster> NumberMasters, Guid SelectedNumberId)
+        public FrmNumberMaster(List<NumberMaster> NumberMasters, string SelectedNumberId)
         {
             InitializeComponent();
             _numberMasterRepository = new NumberMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmNumberMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedNumberId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedNumberId) == false)
             {
                 _EditedNumberMasterSet = _numberMaster.Where(s => s.Id == _selectedNumberId).FirstOrDefault();
                 if (_EditedNumberMasterSet != null)
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedNumberId = Guid.Empty;
+            _selectedNumberId = Guid.Empty.ToString();
             txtNumberName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtNumberName.Focus();
@@ -77,7 +77,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     NumberMaster NumberMaster = new NumberMaster
                     {

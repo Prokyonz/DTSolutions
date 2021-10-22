@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly BranchMasterRepository _branchMasterRepository;
         private readonly List<BranchMaster> _branchMasters;
         private BranchMaster _EditedBranchMasterSet;
-        private Guid _selectedBranch;
+        private string _selectedBranch;
 
         public FrmBranchMaster(List<BranchMaster> BranchMasters)
         {
@@ -27,7 +27,7 @@ namespace DiamondTrading.Master
             this._branchMasters = BranchMasters;
         }
 
-        public FrmBranchMaster(List<BranchMaster> BranchMasters,Guid SelectedBranch)
+        public FrmBranchMaster(List<BranchMaster> BranchMasters,string SelectedBranch)
         {
             InitializeComponent();
             _branchMasterRepository = new BranchMasterRepository();
@@ -39,7 +39,7 @@ namespace DiamondTrading.Master
         {
             await GetListForDepedendeFiels();
             
-            if (_selectedBranch != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedBranch) == false)
             {
                 _EditedBranchMasterSet = _branchMasters.Where(c => c.Id == _selectedBranch).FirstOrDefault();
                 if (_EditedBranchMasterSet != null)
@@ -106,7 +106,7 @@ namespace DiamondTrading.Master
 
         private async void Reset()
         {
-            _selectedBranch = Guid.Empty;
+            _selectedBranch = Guid.Empty.ToString();
             lueParentCompany.EditValue = 0;
             lueLessWeightGroup.EditValue = 0;
             txtBranchName.Text = "";
@@ -142,13 +142,13 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     BranchMaster BranchMaster = new BranchMaster
                     {
                         Id = tempId,
-                        CompanyId = Guid.Parse(lueParentCompany.EditValue.ToString()),
-                        LessWeightId = Guid.Parse(lueLessWeightGroup.EditValue.ToString()),
+                        CompanyId = lueParentCompany.EditValue.ToString(),
+                        LessWeightId = lueLessWeightGroup.EditValue.ToString(),
                         Name = txtBranchName.Text,
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
@@ -178,8 +178,8 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    _EditedBranchMasterSet.CompanyId = Guid.Parse(lueParentCompany.EditValue.ToString());
-                    _EditedBranchMasterSet.LessWeightId = Guid.Parse(lueLessWeightGroup.EditValue.ToString());
+                    _EditedBranchMasterSet.CompanyId = lueParentCompany.EditValue.ToString();
+                    _EditedBranchMasterSet.LessWeightId = lueLessWeightGroup.EditValue.ToString();
                     _EditedBranchMasterSet.Name = txtBranchName.Text;
                     _EditedBranchMasterSet.Address = txtAddress.Text;
                     _EditedBranchMasterSet.Address2 = txtAddress2.Text;

@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly GalaMasterRepository _galaMasterRepository;
         private readonly List<GalaMaster> _galaMaster;
         private GalaMaster _EditedGalaMasterSet;
-        private Guid _selectedGalaId;
+        private string _selectedGalaId;
         public FrmGalaMaster(List<GalaMaster> GalaMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._galaMaster = GalaMasters;
         }
 
-        public FrmGalaMaster(List<GalaMaster> GalaMasters, Guid SelectedGalaId)
+        public FrmGalaMaster(List<GalaMaster> GalaMasters, string SelectedGalaId)
         {
             InitializeComponent();
             _galaMasterRepository = new GalaMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmGalaMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedGalaId != Guid.Empty)
+            if (string.IsNullOrEmpty( _selectedGalaId) == false)
             {
                 _EditedGalaMasterSet = _galaMaster.Where(s => s.Id == _selectedGalaId).FirstOrDefault();
                 if (_EditedGalaMasterSet != null)
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedGalaId = Guid.Empty;
+            _selectedGalaId = Guid.Empty.ToString();
             txtGalaName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtGalaName.Focus();
@@ -77,7 +77,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     GalaMaster GalaMaster = new GalaMaster
                     {

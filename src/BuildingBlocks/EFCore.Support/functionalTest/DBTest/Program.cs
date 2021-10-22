@@ -13,7 +13,7 @@ namespace DBTest
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
 
             CompanyMaster companyMaster = new CompanyMaster();
-            companyMaster.Id = Guid.NewGuid();
+            companyMaster.Id = Guid.NewGuid().ToString();
             companyMaster.Name = "New Company";
 
 
@@ -29,8 +29,8 @@ namespace DBTest
             companyMaster.IsDelete = false;
             companyMaster.CreatedDate = DateTime.Now;
             companyMaster.UpdatedDate = DateTime.Now;
-            companyMaster.CreatedBy = Guid.NewGuid();
-            companyMaster.UpdatedBy = Guid.NewGuid();
+            companyMaster.CreatedBy = Guid.NewGuid().ToString();
+            companyMaster.UpdatedBy = Guid.NewGuid().ToString();
 
             //var data = companyMasterRepository.AddCompanyAsync(companyMaster);
 

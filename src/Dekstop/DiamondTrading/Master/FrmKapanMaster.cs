@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly KapanMasterRepository _kapanMasterRepository;
         private readonly List<KapanMaster> _kapanMaster;
         private KapanMaster _EditedKapanMasterSet;
-        private Guid _selectedKapanId;
+        private string _selectedKapanId;
         public FrmKapanMaster(List<KapanMaster> KapanMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._kapanMaster = KapanMasters;
         }
 
-        public FrmKapanMaster(List<KapanMaster> KapanMasters, Guid SelectedKapanId)
+        public FrmKapanMaster(List<KapanMaster> KapanMasters, string SelectedKapanId)
         {
             InitializeComponent();
             _kapanMasterRepository = new KapanMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmKapanMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedKapanId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedKapanId) == false)
             {
                 _EditedKapanMasterSet = _kapanMaster.Where(s => s.Id == _selectedKapanId).FirstOrDefault();
                 if (_EditedKapanMasterSet != null)
@@ -73,7 +73,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedKapanId = Guid.Empty;
+            _selectedKapanId = Guid.Empty.ToString();
             txtKapanName.Text = "";
             txtDetails.Text = "";
             chkCaratLimit.Checked = false;
@@ -98,7 +98,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     KapanMaster KapanMaster = new KapanMaster
                     {

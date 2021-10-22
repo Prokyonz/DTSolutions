@@ -32,15 +32,15 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void GetPurityRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
                 Id = tempId,
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 IsDelete = false
             }).Result;
 
@@ -60,15 +60,15 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void UpdatePurityRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
                 Id = tempId,
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 IsDelete = false
             }).Result;
 
@@ -78,8 +78,8 @@ namespace MSUnitTest.EFCore.SQL
                 Name = "Purity2",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 IsDelete = false
             }).Result;
 
@@ -92,15 +92,15 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public async Task DeletePurityRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
                 Id = tempId,
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 IsDelete = false
             }).Result;
 
@@ -114,15 +114,15 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public async Task PermanantDeletePurityRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _purityMasterRepository.AddPurityAsync(new Repository.Entities.PurityMaster
             {
                 Id = tempId,
                 Name = "Purity1",
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
-                UpdatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
+                UpdatedBy = Guid.NewGuid().ToString(),
                 IsDelete = false
             }).Result;
 

@@ -418,15 +418,15 @@ namespace DiamondTrading
             {
                 //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
-                Guid SelectedGuid;
+                string SelectedGuid;
 
                 if (grdCompanyMaster.FocusedView.DetailLevel > 0)
                 {
                     GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                    SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
+                    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
                 } 
                 else                 
-                    SelectedGuid = Guid.Parse(grvCompanyMaster.GetFocusedRowCellValue("Id").ToString());                
+                    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();                
 
 
                 Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
@@ -438,7 +438,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString());
+                string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 Master.FrmBranchMaster frmBranchMaster = new Master.FrmBranchMaster(_branchMaster, SelectedGuid);
                 if (frmBranchMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -447,7 +447,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupID).ToString());
+                string SelectedGuid = grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupID).ToString();
                 Master.FrmLessWeightGroupMaster frmLessWeightGroupMaster= new Master.FrmLessWeightGroupMaster(_lessWeightMaster, SelectedGuid);
                 if (frmLessWeightGroupMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -456,7 +456,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString());
+                string SelectedGuid = grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString();
                 Master.FrmShapeMaster frmShapeMaster = new Master.FrmShapeMaster(_shapeMaster, SelectedGuid);
                 if (frmShapeMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -465,7 +465,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString());
+                string SelectedGuid = grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString();
                 Master.FrmPurityMaster frmPurityMaster = new Master.FrmPurityMaster(_purityMaster, SelectedGuid);
                 if (frmPurityMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -474,7 +474,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString());
+                string SelectedGuid = grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString();
                 Master.FrmSizeMaster frmSizeMaster = new Master.FrmSizeMaster(_sizeMaster, SelectedGuid);
                 if (frmSizeMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -483,7 +483,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString());
+                string SelectedGuid = grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString();
                 Master.FrmGalaMaster frmGalaMaster = new Master.FrmGalaMaster(_galaMaster, SelectedGuid);
                 if (frmGalaMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -492,7 +492,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString());
+                string SelectedGuid = grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString();
                 Master.FrmNumberMaster frmNumberMaster = new Master.FrmNumberMaster(_numberMaster, SelectedGuid);
                 if (frmNumberMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -501,7 +501,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString());
+                string SelectedGuid = grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString();
                 Master.FrmFinancialYearMaster financialYearMaster = new Master.FrmFinancialYearMaster(_financialYearMaster, SelectedGuid);
                 if (financialYearMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -510,7 +510,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString());
+                string SelectedGuid = grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString();
                 Master.FrmBrokerageMaster frmBrokerageMaster= new Master.FrmBrokerageMaster(_brokerageMaster, SelectedGuid);
                 if (frmBrokerageMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -519,7 +519,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
+                string SelectedGuid = grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString();
                 Master.FrmCurrencyMaster frmCurrencyMaster = new Master.FrmCurrencyMaster(_currencyMaster, SelectedGuid);
                 if (frmCurrencyMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -528,7 +528,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString());
+                string SelectedGuid = grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString();
                 Master.FrmKapanMaster frmKapanMaster = new Master.FrmKapanMaster(_kapanMaster, SelectedGuid);
                 if (frmKapanMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -537,7 +537,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
+                string SelectedGuid = grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString();
                 Master.FrmPartyMaster frmPartyMaster= new Master.FrmPartyMaster(_partyMaster, SelectedGuid);
                 if (frmPartyMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -546,7 +546,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvUserMaster.GetFocusedRowCellValue(colUserID).ToString());
+                string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
                 Master.frmUserMaster frmUserMaster = new Master.frmUserMaster(_userMaster, SelectedGuid);
                 if (frmUserMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -571,18 +571,18 @@ namespace DiamondTrading
             {
                 //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
-                Guid SelectedGuid;
+                string SelectedGuid;
                 string tempCompanyName = "";
 
                 if (grdCompanyMaster.FocusedView.DetailLevel > 0)
                 {
                     GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                    SelectedGuid = Guid.Parse(tempChild.GetFocusedRowCellValue("Id").ToString());
+                    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
                     tempCompanyName = tempChild.GetFocusedRowCellValue("Name").ToString();
                 }
                 else
                 {
-                    SelectedGuid = Guid.Parse(grvCompanyMaster.GetFocusedRowCellValue("Id").ToString());
+                    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();
                     tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
                 }
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
@@ -595,7 +595,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString());
+                string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
@@ -617,7 +617,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString());
+                string SelectedGuid = grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteShapeConfirmation), grvShapeMaster.GetFocusedRowCellValue(colShapeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _shapeMasterRepository.DeleteShapeAsync(SelectedGuid);
@@ -628,7 +628,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString());
+                string SelectedGuid = grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _purityMasterRepository.DeletePurityAsync(SelectedGuid);
@@ -639,7 +639,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString());
+                string SelectedGuid = grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
@@ -650,7 +650,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString());
+                string SelectedGuid = grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _galaMasterRepository.DeleteGalaAsync(SelectedGuid);
@@ -661,7 +661,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString());
+                string SelectedGuid = grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
@@ -672,7 +672,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString());
+                string SelectedGuid = grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _financialYearMasterRepository.DeleteFinancialYearAsync(SelectedGuid);
@@ -683,7 +683,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString());
+                string SelectedGuid = grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
@@ -694,7 +694,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString());
+                string SelectedGuid = grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _currencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
@@ -705,7 +705,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString());
+                string SelectedGuid = grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
@@ -716,7 +716,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString());
+                string SelectedGuid = grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
@@ -727,7 +727,7 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
-                Guid SelectedGuid = Guid.Parse(grvUserMaster.GetFocusedRowCellValue(colUserID).ToString());
+                string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _userMasterRepository.DeleteUserAsync(SelectedGuid);

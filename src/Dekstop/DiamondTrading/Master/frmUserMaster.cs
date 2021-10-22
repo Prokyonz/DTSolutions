@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly UserMasterRepository _UserMasterRepository;
         private readonly List<UserMaster> _UserMasters;
         private UserMaster _EditedUserMasterSet;
-        private Guid _selectedUser;
+        private string _selectedUser;
 
         public frmUserMaster(List<UserMaster> UserMasters)
         {
@@ -27,7 +27,7 @@ namespace DiamondTrading.Master
             this._UserMasters = UserMasters;
         }
 
-        public frmUserMaster(List<UserMaster> UserMasters,Guid SelectedUser)
+        public frmUserMaster(List<UserMaster> UserMasters,string SelectedUser)
         {
             InitializeComponent();
             _UserMasterRepository = new UserMasterRepository();
@@ -39,7 +39,7 @@ namespace DiamondTrading.Master
         {
             await GetListForDepedendeFields();
             
-            if (_selectedUser != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedUser) == false)
             {
                 _EditedUserMasterSet = _UserMasters.Where(c => c.Id == _selectedUser).FirstOrDefault();
                 if (_EditedUserMasterSet != null)
@@ -134,7 +134,7 @@ namespace DiamondTrading.Master
 
         private async void Reset()
         {
-            _selectedUser = Guid.Empty;
+            _selectedUser = Guid.Empty.ToString();
             tglIsActive.IsOn = true;
             lueUserType.EditValue = 0;
             txtUserName.Text = "";
@@ -168,7 +168,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     UserMaster UserMaster = new UserMaster
                     {
@@ -179,7 +179,7 @@ namespace DiamondTrading.Master
                         Name = txtUserName.Text,
                         DepartmentName = lueDepartment.EditValue.ToString(),
                         Designation = lueDesignation.EditValue.ToString(),
-                        BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString()),
+                        BrokerageId = lueBrokerage.EditValue.ToString(),
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
                         MobileNo = txtMobileNo.Text,
@@ -212,7 +212,7 @@ namespace DiamondTrading.Master
                     _EditedUserMasterSet.Name = txtUserName.Text;
                     _EditedUserMasterSet.DepartmentName = lueDepartment.EditValue.ToString();
                     _EditedUserMasterSet.Designation = lueDesignation.EditValue.ToString();
-                    _EditedUserMasterSet.BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString());
+                    _EditedUserMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
                     _EditedUserMasterSet.Address = txtAddress.Text;
                     _EditedUserMasterSet.Address2 = txtAddress2.Text;
                     _EditedUserMasterSet.MobileNo = txtMobileNo.Text;

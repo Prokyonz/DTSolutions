@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly PurityMasterRepository _purityMasterRepository;
         private readonly List<PurityMaster> _purityMaster;
         private PurityMaster _EditedPurityMasterSet;
-        private Guid _selectedPurityId;
+        private string _selectedPurityId;
         public FrmPurityMaster(List<PurityMaster> PurityMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._purityMaster = PurityMasters;
         }
 
-        public FrmPurityMaster(List<PurityMaster> PurityMasters, Guid SelectedPurityId)
+        public FrmPurityMaster(List<PurityMaster> PurityMasters, string SelectedPurityId)
         {
             InitializeComponent();
             _purityMasterRepository = new PurityMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmPurityMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedPurityId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedPurityId) == false)
             {
                 _EditedPurityMasterSet = _purityMaster.Where(s => s.Id == _selectedPurityId).FirstOrDefault();
                 if (_EditedPurityMasterSet != null)
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedPurityId = Guid.Empty;
+            _selectedPurityId = Guid.Empty.ToString();
             txtPurityName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtPurityName.Focus();
@@ -77,7 +77,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     PurityMaster PurityMaster = new PurityMaster
                     {

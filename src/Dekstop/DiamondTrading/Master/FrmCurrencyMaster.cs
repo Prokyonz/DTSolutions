@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly CurrencyMasterRepository _currencyMasterRepository;
         private readonly List<CurrencyMaster> _currencyMaster;
         private CurrencyMaster _EditedCurrencyMasterSet;
-        private Guid _selectedCurrencyId;
+        private string _selectedCurrencyId;
         public FrmCurrencyMaster(List<CurrencyMaster> CurrencyMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._currencyMaster = CurrencyMasters;
         }
 
-        public FrmCurrencyMaster(List<CurrencyMaster> CurrencyMasters, Guid SelectedCurrencyId)
+        public FrmCurrencyMaster(List<CurrencyMaster> CurrencyMasters, string SelectedCurrencyId)
         {
             InitializeComponent();
             _currencyMasterRepository = new CurrencyMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmCurrencyMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedCurrencyId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedCurrencyId) == false)
             {
                 _EditedCurrencyMasterSet = _currencyMaster.Where(s => s.Id == _selectedCurrencyId).FirstOrDefault();
                 if (_EditedCurrencyMasterSet != null)
@@ -62,7 +62,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedCurrencyId = Guid.Empty;
+            _selectedCurrencyId = Guid.Empty.ToString();
             txtCurrencyName.Text = "";
             txtShortName.Text = "";
             txtRate.Text = "";
@@ -81,7 +81,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     CurrencyMaster CurrencyMaster = new CurrencyMaster
                     {

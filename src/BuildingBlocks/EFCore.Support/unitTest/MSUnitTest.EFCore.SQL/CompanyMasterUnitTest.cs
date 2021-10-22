@@ -20,7 +20,7 @@ namespace MSUnitTest.EFCore.SQL
         [TestMethod]
         public void AddCompanyRecord()
         {
-            Guid tempId = Guid.NewGuid();
+            string tempId = Guid.NewGuid().ToString();
             _ = _companyMasterRepository.AddCompanyAsync(new CompanyMaster
             {
                 Id = tempId,

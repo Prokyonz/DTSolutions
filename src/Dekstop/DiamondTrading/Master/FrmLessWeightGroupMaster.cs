@@ -19,7 +19,7 @@ namespace DiamondTrading.Master
         private readonly List<LessWeightMaster> _lessWeightMaster;
         private LessWeightMaster _EditedLessWeightMasterSet;
         private List<LessWeightDetails> _lessWeightDetails;
-        private Guid _selectedLessGroup;
+        private string _selectedLessGroup;
 
         public FrmLessWeightGroupMaster(List<LessWeightMaster> lessWeightMasters)
         {
@@ -29,7 +29,7 @@ namespace DiamondTrading.Master
             _lessWeightDetails = new List<LessWeightDetails>();
         }
 
-        public FrmLessWeightGroupMaster(List<LessWeightMaster> lessWeightMasters, Guid SelectedLessGroup)
+        public FrmLessWeightGroupMaster(List<LessWeightMaster> lessWeightMasters, string SelectedLessGroup)
         {
             InitializeComponent();
             _lessWeightMasterRepository = new LessWeightMasterRepository();
@@ -49,13 +49,13 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     LessWeightDetails lessWeightDetails;
                     for (int i = 0; i < grvLessGroupWeightDetails.RowCount; i++)
                     {
                         lessWeightDetails = new LessWeightDetails();
-                        lessWeightDetails.Id = Guid.NewGuid();
+                        lessWeightDetails.Id = Guid.NewGuid().ToString();
                         lessWeightDetails.LessWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colLessWeight).ToString());
                         lessWeightDetails.LessWeightId = tempId;
                         lessWeightDetails.MaxWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colMaxWeight).ToString());
@@ -172,7 +172,7 @@ namespace DiamondTrading.Master
         {
             grdLessGroupWeightDetails.DataSource = dtDefaultGridColumns();
 
-            if (_selectedLessGroup != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedLessGroup) == false)
             {
                 _EditedLessWeightMasterSet = _lessWeightMaster.Where(l => l.Id == _selectedLessGroup).FirstOrDefault();
                 if (_EditedLessWeightMasterSet != null)

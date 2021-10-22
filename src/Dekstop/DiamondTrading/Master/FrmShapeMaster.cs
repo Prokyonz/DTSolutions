@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly ShapeMasterRepository _shapeMasterRepository;
         private readonly List<ShapeMaster> _shapeMaster;
         private ShapeMaster _EditedShapeMasterSet;
-        private Guid _selectedShapeId;
+        private string _selectedShapeId;
         public FrmShapeMaster(List<ShapeMaster> shapeMasters)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DiamondTrading.Master
             this._shapeMaster = shapeMasters;
         }
 
-        public FrmShapeMaster(List<ShapeMaster> shapeMasters, Guid SelectedShapeId)
+        public FrmShapeMaster(List<ShapeMaster> shapeMasters, string SelectedShapeId)
         {
             InitializeComponent();
             _shapeMasterRepository = new ShapeMasterRepository();
@@ -36,7 +36,7 @@ namespace DiamondTrading.Master
 
         private void FrmShapeMaster_Load(object sender, EventArgs e)
         {
-            if (_selectedShapeId != Guid.Empty)
+            if (string.IsNullOrEmpty(_selectedShapeId) == false)
             {
                 _EditedShapeMasterSet = _shapeMaster.Where(s => s.Id == _selectedShapeId).FirstOrDefault();
                 if (_EditedShapeMasterSet != null)
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedShapeId = Guid.Empty;
+            _selectedShapeId = Guid.Empty.ToString();
             txtShapeName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtShapeName.Focus();
@@ -77,7 +77,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     ShapeMaster shapeMaster = new ShapeMaster
                     {
