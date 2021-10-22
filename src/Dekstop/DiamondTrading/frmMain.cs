@@ -345,52 +345,12 @@ namespace DiamondTrading
 
         private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
-            if (page != null)
-            {
-                page.Close();
-            }
-
-            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Credit");
-
-            Screen screen = Screen.FromControl(this);
-
-            int x = screen.Bounds.X;
-            int y = screen.Bounds.Y;
-            int w = screen.Bounds.Width;
-            int h = screen.Bounds.Height;
-
-
-            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
-
-            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
-
-            frmPaymentEntry.ShowDialog();
+            
         }
 
         private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
-            if (page != null)
-            {
-                page.Close();
-            }
-
-            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Debit");
-
-            Screen screen = Screen.FromControl(this);
-
-            int x = screen.Bounds.X;
-            int y = screen.Bounds.Y;
-            int w = screen.Bounds.Width;
-            int h = screen.Bounds.Height;
-
-
-            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
-
-            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
-
-            frmPaymentEntry.ShowDialog();
+            
         }
 
         private void barButtonItem35_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -591,6 +551,56 @@ namespace DiamondTrading
             frmNumberReceive.Location = new Point((w - frmNumberReceive.Width - 200) / 3, (Height - frmNumberReceive.Height) / 2);
 
             frmNumberReceive.ShowDialog();
+        }
+
+        private void barButtonItem23_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Receipt");
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
+
+            frmPaymentEntry.ShowDialog();
+        }
+
+        private void barButtonItem24_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Payment");
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
+
+            frmPaymentEntry.ShowDialog();
         }
     }
 }

@@ -9,10 +9,10 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid? CompanyId { get; set; }
-        public Guid? BranchId { get; set; }
-        public Guid? FinancialYearId { get; set; }
+        public string Id { get; set; }
+        public string CompanyId { get; set; }
+        public string BranchId { get; set; }
+        public string FinancialYearId { get; set; }
         public string SalaryMonthName { get; set; }
         public DateTime SalaryMonthDateTime { get; set; }
         public int MonthDays { get; set; }
@@ -20,8 +20,8 @@ namespace Repository.Entities
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         public virtual List<SalaryDetail> SalaryDetails { get; set; }
     }

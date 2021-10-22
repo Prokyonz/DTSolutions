@@ -20,13 +20,13 @@ namespace EFCore.SQL.Repository
         public async Task<FinancialYearMaster> AddFinancialYearAsync(FinancialYearMaster financialYearMaster)
         {
             if (financialYearMaster.Id == null)
-                financialYearMaster.Id = Guid.NewGuid();
+                financialYearMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.FinancialYearMaster.AddAsync(financialYearMaster);
             await _databaseContext.SaveChangesAsync();
             return financialYearMaster;
         }
 
-        public async Task<bool> DeleteFinancialYearAsync(Guid financialYearId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteFinancialYearAsync(string financialYearId, bool isPermanantDetele = false)
         {
             var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s =>s.IsDelete == false &&  s.Id == financialYearId).FirstOrDefaultAsync();
             if(getFinancialYear != null)

@@ -8,14 +8,14 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid ContraEntryMasterId { get; set; }
-        public Guid FromParty { get; set; }
+        public string Id { get; set; }
+        public string ContraEntryMasterId { get; set; }
+        public string FromParty { get; set; }
         public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("ContraEntryMasterId")]
         public virtual ContraEntryMaster ContraEntryMaster{ get; set; }

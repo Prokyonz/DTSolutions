@@ -8,10 +8,10 @@ namespace EFCore.SQL.Interface
 {
     public interface IPaymentMaster
     {
-        Task<List<GroupPaymentMaster>> GetAllPaymentAsync(Guid companyId, Guid financialYearId);
+        Task<List<GroupPaymentMaster>> GetAllPaymentAsync(string companyId, string financialYearId);
         Task<GroupPaymentMaster> AddPaymentAsync(GroupPaymentMaster groupPaymentMaster);
         Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster);
-        Task<bool> DeletePaymentAsync(Guid groupId);
+        Task<bool> DeletePaymentAsync(string groupId);
 
     }
 }

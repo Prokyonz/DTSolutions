@@ -7,10 +7,10 @@ namespace EFCore.SQL.Interface
 {
     public interface ISlipTransferEntry
     {
-        Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(Guid purchaseId);
+        Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(string purchaseId);
         Task<List<SlipTransferEntry>> AddSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries);
         Task<bool> UpdateSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries);
-        Task<bool> DeleteSlipTransferEntryAsync(Guid purchaseId);
+        Task<bool> DeleteSlipTransferEntryAsync(string purchaseId);
     }
 }
 

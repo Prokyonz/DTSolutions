@@ -52,6 +52,9 @@ namespace DiamondTrading
             this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
             this.barSubItem9 = new DevExpress.XtraBars.BarSubItem();
@@ -133,11 +136,6 @@ namespace DiamondTrading
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem24 = new DevExpress.XtraBars.BarButtonItem();
-            this.accordionControlElement1 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator7 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
-            this.accordionControlSeparator8 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -198,6 +196,9 @@ namespace DiamondTrading
             this.barButtonItem31,
             this.barButtonItem32,
             this.barButtonItem33,
+            this.barSubItem8,
+            this.barButtonItem21,
+            this.barButtonItem34,
             this.barSubItem9,
             this.barButtonItem35,
             this.barButtonItem36,
@@ -209,11 +210,9 @@ namespace DiamondTrading
             this.barButtonItem40,
             this.barSubItem12,
             this.barButtonItem41,
-            this.barButtonItem42,
-            this.barButtonItem23,
-            this.barButtonItem24});
+            this.barButtonItem42});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 65;
+            this.barManager1.MaxItemId = 63;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -373,9 +372,8 @@ namespace DiamondTrading
             this.barSubItem2.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem18),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem19),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem23, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem24),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem20, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem20),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem8),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem22)});
             this.barSubItem2.Name = "barSubItem2";
             // 
@@ -398,6 +396,29 @@ namespace DiamondTrading
             this.barButtonItem20.Caption = "Contra";
             this.barButtonItem20.Id = 24;
             this.barButtonItem20.Name = "barButtonItem20";
+            // 
+            // barSubItem8
+            // 
+            this.barSubItem8.Caption = "Payment";
+            this.barSubItem8.Id = 48;
+            this.barSubItem8.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem21),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem34)});
+            this.barSubItem8.Name = "barSubItem8";
+            // 
+            // barButtonItem21
+            // 
+            this.barButtonItem21.Caption = "Credit Note";
+            this.barButtonItem21.Id = 49;
+            this.barButtonItem21.Name = "barButtonItem21";
+            this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick);
+            // 
+            // barButtonItem34
+            // 
+            this.barButtonItem34.Caption = "Debit Note";
+            this.barButtonItem34.Id = 50;
+            this.barButtonItem34.Name = "barButtonItem34";
+            this.barButtonItem34.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem34_ItemClick);
             // 
             // barButtonItem22
             // 
@@ -902,13 +923,9 @@ namespace DiamondTrading
             this.accordionControlElement15.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlPurchase,
             this.accordionControlElement17,
-            this.accordionControlSeparator7,
             this.accordionControlElement19,
-            this.accordionControlElement1,
-            this.accordionControlSeparator8,
             this.accordionControlElement18,
             this.accordionControlElement20});
-            this.accordionControlElement15.Expanded = true;
             this.accordionControlElement15.Name = "accordionControlElement15";
             this.accordionControlElement15.Text = "Transaction";
             this.accordionControlElement15.Click += new System.EventHandler(this.accordionControlElement15_Click);
@@ -1036,34 +1053,6 @@ namespace DiamondTrading
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 0;
-            // 
-            // barButtonItem23
-            // 
-            this.barButtonItem23.Caption = "Payment";
-            this.barButtonItem23.Id = 63;
-            this.barButtonItem23.Name = "barButtonItem23";
-            this.barButtonItem23.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem23_ItemClick);
-            // 
-            // barButtonItem24
-            // 
-            this.barButtonItem24.Caption = "Receipt";
-            this.barButtonItem24.Id = 64;
-            this.barButtonItem24.Name = "barButtonItem24";
-            this.barButtonItem24.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem24_ItemClick);
-            // 
-            // accordionControlElement1
-            // 
-            this.accordionControlElement1.Name = "accordionControlElement1";
-            this.accordionControlElement1.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlElement1.Text = "Receipt";
-            // 
-            // accordionControlSeparator7
-            // 
-            this.accordionControlSeparator7.Name = "accordionControlSeparator7";
-            // 
-            // accordionControlSeparator8
-            // 
-            this.accordionControlSeparator8.Name = "accordionControlSeparator8";
             // 
             // FrmMain
             // 
@@ -1194,6 +1183,9 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem31;
         private DevExpress.XtraBars.BarButtonItem barButtonItem32;
         private DevExpress.XtraBars.BarButtonItem barButtonItem33;
+        private DevExpress.XtraBars.BarSubItem barSubItem8;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem21;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem34;
         private DevExpress.XtraBars.BarSubItem barSubItem9;
         private DevExpress.XtraBars.BarButtonItem barButtonItem35;
         private DevExpress.XtraBars.BarButtonItem barButtonItem36;
@@ -1206,10 +1198,5 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarSubItem barSubItem12;
         private DevExpress.XtraBars.BarButtonItem barButtonItem41;
         private DevExpress.XtraBars.BarButtonItem barButtonItem42;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem23;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem24;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator7;
-        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
-        private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator8;
     }
 }

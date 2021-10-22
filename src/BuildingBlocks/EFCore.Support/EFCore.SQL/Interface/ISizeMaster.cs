@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<SizeMaster>> GetAllSizeAsync();
         Task<SizeMaster> AddSizeAsync(SizeMaster sizeMaster);
         Task<SizeMaster> UpdateSizeAsync(SizeMaster sizeMaster);
-        Task<bool> DeleteSizeAsync(Guid shapeId, bool isPermanantDetele = false);
+        Task<bool> DeleteSizeAsync(string shapeId, bool isPermanantDetele = false);
     }
 }

@@ -23,7 +23,7 @@ namespace EFCore.SQL.Repository
             {
                 if (item.Id != null)
                 {
-                    item.Id = Guid.NewGuid();
+                    item.Id = Guid.NewGuid().ToString();
                 }
             }
 
@@ -32,7 +32,7 @@ namespace EFCore.SQL.Repository
             return slipTransferEntries;
         }
 
-        public async Task<bool> DeleteSlipTransferEntryAsync(Guid purchaseId)
+        public async Task<bool> DeleteSlipTransferEntryAsync(string purchaseId)
         {
             var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
             _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
@@ -45,7 +45,7 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(Guid purchaseId)
+        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(string purchaseId)
         {
             return await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
         }

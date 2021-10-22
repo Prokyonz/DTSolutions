@@ -8,12 +8,12 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid PurchaseId { get; set; }
-        public Guid KapanId { get; set; } //Need remove from the deals.
-        public Guid ShapeId { get; set; }
-        public Guid SizeId { get; set; }
-        public Guid PurityId { get; set; }
+        public string Id { get; set; }
+        public string PurchaseId { get; set; }
+        public string KapanId { get; set; } //Need remove from the deals.
+        public string ShapeId { get; set; }
+        public string SizeId { get; set; }
+        public string PurityId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
@@ -39,11 +39,11 @@ namespace Repository.Entities
         public double RoundUpAmount { get; set; }
         public double Total { get; set; }
         public bool IsTransfer { get; set; }
-        public Guid TransferParentId { get; set; }        
+        public string TransferParentId { get; set; }        
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("PurchaseId")]
         public virtual PurchaseMaster PurchaseMaster { get; set; }

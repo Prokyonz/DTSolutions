@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<BrokerageMaster>> GetAllBrokerageAsync();
         Task<BrokerageMaster> AddBrokerageAsync(BrokerageMaster brokerageMaster);
         Task<BrokerageMaster> UpdateBrokerageAsync(BrokerageMaster brokerageMaster);
-        Task<bool> DeleteBrokerageAsync(Guid brokerageId, bool isPermanantDetele = false);
+        Task<bool> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false);
     }
 }

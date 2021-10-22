@@ -7,10 +7,10 @@ namespace EFCore.SQL.Interface
 {
     public interface ISalaryMaster
     {
-        Task<List<SalaryMaster>> GetSalaries(Guid companyId, Guid branchId, Guid financialYear);
-        Task<SalaryMaster> GetSalaries(int month, Guid companyId, Guid branchId, Guid financialYear);
+        Task<List<SalaryMaster>> GetSalaries(string companyId, string branchId, string financialYear);
+        Task<SalaryMaster> GetSalaries(int month, string companyId, string branchId, string financialYear);
         Task<SalaryMaster> AddSalary(SalaryMaster salaryMaster);
         Task<bool> UpdateSalary(SalaryMaster salaryMaster);
-        Task<bool> DeleteSalary(Guid salaryMasterId);
+        Task<bool> DeleteSalary(string salaryMasterId);
     }
 }

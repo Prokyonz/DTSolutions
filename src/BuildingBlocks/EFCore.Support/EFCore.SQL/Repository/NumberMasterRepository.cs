@@ -26,13 +26,13 @@ namespace EFCore.SQL.Repository
         public async Task<NumberMaster> AddNumberAsync(NumberMaster numberMaster)
         {
             if (numberMaster.Id == null)
-                numberMaster.Id = Guid.NewGuid();
+                numberMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.NumberMaster.AddAsync(numberMaster);
             await _databaseContext.SaveChangesAsync();
             return numberMaster;
         }
 
-        public async Task<bool> DeleteNumberAsync(Guid numberId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteNumberAsync(string numberId, bool isPermanantDetele = false)
         {
             var getNumber = await _databaseContext.NumberMaster.Where(s => s.Id == numberId).FirstOrDefaultAsync();
             if (getNumber != null)

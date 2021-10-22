@@ -9,14 +9,14 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid CompanyId { get; set; }
-        public Guid BranchId { get; set; }
-        public Guid PartyId { get; set; }
-        public Guid ByuerId { get; set; }
-        public Guid CurrencyId { get; set; }
-        public Guid FinancialYearId { get; set; }
-        public Guid BrokerageId { get; set; }
+        public string Id { get; set; }
+        public string CompanyId { get; set; }
+        public string BranchId { get; set; }
+        public string PartyId { get; set; }
+        public string ByuerId { get; set; }
+        public string CurrencyId { get; set; }
+        public string FinancialYearId { get; set; }
+        public string BrokerageId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CurrencyRate { get; set; }
         public long PurchaseBillNo { get; set; }
@@ -47,13 +47,13 @@ namespace Repository.Entities
         public byte[] Image3 { get; set; }
         public bool AllowSlipPrint { get; set; }
         public bool IsTransfer { get; set; }
-        public Guid TransferParentId { get; set; }
+        public string TransferParentId { get; set; }
         public bool IsDelete { get; set; }
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         public List<PurchaseDetails> PurchaseDetails { get; set; }
     }

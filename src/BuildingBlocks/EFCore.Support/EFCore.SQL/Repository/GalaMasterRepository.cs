@@ -26,13 +26,13 @@ namespace EFCore.SQL.Repository
         public async Task<GalaMaster> AddGalaAsync(GalaMaster galaMaster)
         {
             if (galaMaster.Id == null)
-                galaMaster.Id = Guid.NewGuid();
+                galaMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.GalaMaster.AddAsync(galaMaster);
             await _databaseContext.SaveChangesAsync();
             return galaMaster;
         }
 
-        public async Task<bool> DeleteGalaAsync(Guid galaId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteGalaAsync(string galaId, bool isPermanantDetele = false)
         {
             var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
             if (getGala != null)

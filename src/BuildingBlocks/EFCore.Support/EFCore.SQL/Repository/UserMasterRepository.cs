@@ -23,13 +23,13 @@ namespace EFCore.SQL.Repository
         public async Task<UserMaster> AddUserAsync(UserMaster userMaster)
         {
             if (userMaster.Id == null)
-                userMaster.Id = Guid.NewGuid();
+                userMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.UserMaster.AddAsync(userMaster);
             await _databaseContext.SaveChangesAsync();
             return userMaster;
         }
 
-        public async Task<bool> DeleteUserAsync(Guid userId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteUserAsync(string userId, bool isPermanantDetele = false)
         {
             var getUser = await _databaseContext.UserMaster.Where(s => s.Id == userId).FirstOrDefaultAsync();            
             if(getUser != null)
@@ -43,7 +43,7 @@ namespace EFCore.SQL.Repository
             return true;
         }
 
-        public async Task<List<RoleClaimMaster>> GetAllClaims(Guid userId)
+        public async Task<List<RoleClaimMaster>> GetAllClaims(string userId)
         {
             return await _databaseContext.RoleClaimMaster.ToListAsync();
         }
@@ -62,7 +62,7 @@ namespace EFCore.SQL.Repository
                 loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
 
                 if (loginResponse.UserRoleMasters.Count > 0) {
-                    Guid roleId = loginResponse.UserRoleMasters[0].RoleId;
+                    string roleId = loginResponse.UserRoleMasters[0].RoleId;
                     loginResponse.RoleClaimMasters = await _databaseContext.RoleClaimMaster.Where(w => w.RoleId == roleId).ToListAsync();
                 }
             }

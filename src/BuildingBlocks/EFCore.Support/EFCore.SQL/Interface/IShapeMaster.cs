@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<ShapeMaster>> GetAllShapeAsync();
         Task<ShapeMaster> AddShapeAsync(ShapeMaster shapeMaster);
         Task<ShapeMaster> UpdateShapeAsync(ShapeMaster shapeMaster);
-        Task<bool> DeleteShapeAsync(Guid shapeId, bool isPermanantDetele = false);
+        Task<bool> DeleteShapeAsync(string shapeId, bool isPermanantDetele = false);
     }
 }

@@ -26,13 +26,13 @@ namespace EFCore.SQL.Repository
         public async Task<ShapeMaster> AddShapeAsync(ShapeMaster shapeMaster)
         {
             if (shapeMaster.Id == null)
-                shapeMaster.Id = Guid.NewGuid();
+                shapeMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.ShapeMaster.AddAsync(shapeMaster);
             await _databaseContext.SaveChangesAsync();
             return shapeMaster;
         }
 
-        public async Task<bool> DeleteShapeAsync(Guid purityId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteShapeAsync(string purityId, bool isPermanantDetele = false)
         {
             var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
             if (getShape != null)

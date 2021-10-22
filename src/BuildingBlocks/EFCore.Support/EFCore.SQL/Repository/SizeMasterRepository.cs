@@ -26,13 +26,13 @@ namespace EFCore.SQL.Repository
         public async Task<SizeMaster> AddSizeAsync(SizeMaster sizeMaster)
         {
             if (sizeMaster.Id == null)
-                sizeMaster.Id = Guid.NewGuid();
+                sizeMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.SizeMaster.AddAsync(sizeMaster);
             await _databaseContext.SaveChangesAsync();
             return sizeMaster;
         }
 
-        public async Task<bool> DeleteSizeAsync(Guid purityId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteSizeAsync(string purityId, bool isPermanantDetele = false)
         {
             var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
             if (getSize != null)

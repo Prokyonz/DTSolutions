@@ -10,8 +10,8 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid LessWeightId { get; set; }
+        public string Id { get; set; }
+        public string LessWeightId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal MinWeight { get; set; }

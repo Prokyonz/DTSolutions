@@ -21,14 +21,14 @@ namespace EFCore.SQL.Repository
         public async Task<ExpenseMaster> AddExpenseAsync(ExpenseMaster expenseMaster)
         {
             if (expenseMaster.Id == null)
-                expenseMaster.Id = Guid.NewGuid();
+                expenseMaster.Id = Guid.NewGuid().ToString();
 
             await _databaseContext.ExpenseMaster.AddAsync(expenseMaster);
             await _databaseContext.SaveChangesAsync();
             return expenseMaster;
         }
 
-        public async Task<bool> DeleteExpenseAsync(Guid expenseId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false)
         {
             var getExpense = await _databaseContext.ExpenseMaster.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
             if (getExpense != null)

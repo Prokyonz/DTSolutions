@@ -21,13 +21,13 @@ namespace EFCore.SQL.Repository
         public async Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster)
         {
             if (contraEntryMaster.Id == null)
-                contraEntryMaster.Id = Guid.NewGuid();
+                contraEntryMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.ContraEntryMaster.AddAsync(contraEntryMaster);
             await _databaseContext.SaveChangesAsync();
             return contraEntryMaster;
         }
 
-        public async Task<bool> DeleteContraEntryAsync(Guid contraEntryId)
+        public async Task<bool> DeleteContraEntryAsync(string contraEntryId)
         {
             var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.Id == contraEntryId).FirstOrDefaultAsync();
             if(getContraEntry != null)
@@ -51,12 +51,12 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<ContraEntryMaster>> GetAllContraEntryAsync(Guid companyId, Guid financialYearId)
+        public async Task<List<ContraEntryMaster>> GetAllContraEntryAsync(string companyId, string financialYearId)
         {
             return await _databaseContext.ContraEntryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<int> GetMaxNo(Guid companyId, Guid financialYearId)
+        public async Task<int> GetMaxNo(string companyId, string financialYearId)
         {
             var record = await _databaseContext.ContraEntryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
             if (record != null)

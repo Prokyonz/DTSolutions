@@ -10,12 +10,12 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid SalesId { get; set; }
-        public Guid KapanId { get; set; }
-        public Guid ShapeId { get; set; }
-        public Guid SizeId { get; set; }
-        public Guid PurityId { get; set; }
+        public string Id { get; set; }
+        public string SalesId { get; set; }
+        public string KapanId { get; set; }
+        public string ShapeId { get; set; }
+        public string SizeId { get; set; }
+        public string PurityId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
@@ -42,8 +42,8 @@ namespace Repository.Entities
         public string FromCategory { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-        public Guid CreatedBy { get; set; }
-        public Guid? UpdatedBy { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
 
         [ForeignKey("SalesId")]
         public virtual PurchaseMaster SalesMaster { get; set; }

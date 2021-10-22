@@ -25,44 +25,44 @@ namespace MSUnitTest.EFCore.SQL
 
             GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
             {
-                Id = groupId,
-                CompanyId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED042"),
-                BranchId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED043"),
+                Id = groupId.ToString(),
+                CompanyId = "0A8689F1-5920-4F38-99D0-4B479B2ED042",
+                BranchId = "0A8689F1-5920-4F38-99D0-4B479B2ED043",
                 IsDelete = false,
                 Remarks = "First Payment",
-                FinancialYearId = Guid.Parse("99D6F778-A702-4197-9BA6-135709A27FC5"),
-                ToPartyId = Guid.Parse("B6EC7276-AFE9-4511-86B7-98FC5E6487CE"),
-                UpdatedBy = Guid.NewGuid(),
+                FinancialYearId = "99D6F778-A702-4197-9BA6-135709A27FC5",
+                ToPartyId = "B6EC7276-AFE9-4511-86B7-98FC5E6487CE",
+                UpdatedBy = Guid.NewGuid().ToString(),
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
                 CreatedDate = DateTime.Now,
                 PaymentMasters = new List<PaymentMaster>
                 {
                     new PaymentMaster
                     {
-                        Id = paymentid,
-                        GroupId = groupId,
+                        Id = paymentid.ToString(),
+                        GroupId = groupId.ToString(),
                         Amount = 5000,
                         ChequeDate = DateTime.Now,
                         ChequeNo = "1231564",
                         CrDrType = 0,
-                        CreatedBy = Guid.NewGuid(),
+                        CreatedBy = Guid.NewGuid().ToString(),
                         CreatedDate = DateTime.Now,
-                        FromPartyId = Guid.NewGuid(),
+                        FromPartyId = Guid.NewGuid().ToString(),
                         Remarks = "Pary Entry",
-                        UpdatedBy = Guid.NewGuid(),
+                        UpdatedBy = Guid.NewGuid().ToString(),
                         UpdatedDate = DateTime.Now,
                         PaymentDetails = new List<PaymentDetails>
                         {
                             new PaymentDetails
                             {
-                                Id = Guid.NewGuid(),
-                                CreatedBy = Guid.NewGuid(),
+                                Id = Guid.NewGuid().ToString(),
+                                CreatedBy = Guid.NewGuid().ToString(),
                                 CreatedDate = DateTime.Now,
-                                GroupId = groupId,
-                                PaymentId = paymentid,
-                                PurchaseId = Guid.NewGuid(),
-                                UpdatedBy = Guid.NewGuid(),
+                                GroupId = groupId.ToString(),
+                                PaymentId = paymentid.ToString(),
+                                PurchaseId = Guid.NewGuid().ToString(),
+                                UpdatedBy = Guid.NewGuid().ToString(),
                                 UpdatedDate = DateTime.Now,
                             }
                         }
@@ -84,55 +84,55 @@ namespace MSUnitTest.EFCore.SQL
 
             GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
             {
-                Id = groupId,
-                CompanyId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED042"),
-                BranchId = Guid.Parse("0A8689F1-5920-4F38-99D0-4B479B2ED043"),
+                Id = groupId.ToString(),
+                CompanyId = "0A8689F1-5920-4F38-99D0-4B479B2ED042",
+                BranchId = "0A8689F1-5920-4F38-99D0-4B479B2ED043",
                 IsDelete = false,
                 Remarks = "First Payment From Group Master",
-                FinancialYearId = Guid.Parse("99D6F778-A702-4197-9BA6-135709A27FC5"),
-                ToPartyId = Guid.Parse("B6EC7276-AFE9-4511-86B7-98FC5E6487CE"),
-                UpdatedBy = Guid.NewGuid(),
+                FinancialYearId = "99D6F778-A702-4197-9BA6-135709A27FC5",
+                ToPartyId = "B6EC7276-AFE9-4511-86B7-98FC5E6487CE",
+                UpdatedBy = Guid.NewGuid().ToString(),
                 UpdatedDate = DateTime.Now,
-                CreatedBy = Guid.NewGuid(),
+                CreatedBy = Guid.NewGuid().ToString(),
                 CreatedDate = DateTime.Now,
                 PaymentMasters = new List<PaymentMaster>
                 {
                     new PaymentMaster
                     {
-                        Id = paymentid,
-                        GroupId = groupId,
+                        Id = paymentid.ToString(),
+                        GroupId = groupId.ToString(),
                         Amount = 5000,
                         ChequeDate = DateTime.Now,
                         ChequeNo = "123456789",
                         CrDrType = 0,
-                        CreatedBy = Guid.NewGuid(),
+                        CreatedBy = Guid.NewGuid().ToString(),
                         CreatedDate = DateTime.Now,
-                        FromPartyId = Guid.NewGuid(),
+                        FromPartyId = Guid.NewGuid().ToString(),
                         Remarks = "Pary Entry Update",
-                        UpdatedBy = Guid.NewGuid(),
+                        UpdatedBy = Guid.NewGuid().ToString(),
                         UpdatedDate = DateTime.Now,
                         PaymentDetails = new List<PaymentDetails>
                         {
                             new PaymentDetails
                             {
-                                Id = Guid.NewGuid(),
-                                CreatedBy = Guid.NewGuid(),
+                                Id = Guid.NewGuid().ToString(),
+                                CreatedBy = Guid.NewGuid().ToString(),
                                 CreatedDate = DateTime.Now,
-                                GroupId = groupId,
-                                PaymentId = paymentid,
-                                PurchaseId = Guid.NewGuid(),
-                                UpdatedBy = Guid.NewGuid(),
+                                GroupId = groupId.ToString(),
+                                PaymentId = paymentid.ToString(),
+                                PurchaseId = Guid.NewGuid().ToString(),
+                                UpdatedBy = Guid.NewGuid().ToString(),
                                 UpdatedDate = DateTime.Now,
                             },
                             new PaymentDetails
                             {
-                                Id = Guid.NewGuid(),
-                                CreatedBy = Guid.NewGuid(),
+                                Id = Guid.NewGuid().ToString(),
+                                CreatedBy = Guid.NewGuid().ToString(),
                                 CreatedDate = DateTime.Now,
-                                GroupId = groupId,
-                                PaymentId = paymentid,
-                                PurchaseId = Guid.NewGuid(),
-                                UpdatedBy = Guid.NewGuid(),
+                                GroupId = groupId.ToString(),
+                                PaymentId = paymentid.ToString(),
+                                PurchaseId = Guid.NewGuid().ToString(),
+                                UpdatedBy = Guid.NewGuid().ToString(),
                                 UpdatedDate = DateTime.Now,
                             }
                         }

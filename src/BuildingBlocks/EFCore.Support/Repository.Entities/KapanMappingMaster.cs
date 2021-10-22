@@ -8,10 +8,10 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public Guid Id { get; set; }
-        public Guid PurchaseMasterId { get; set; }
-        public Guid PurchaseDetailsId { get; set; }
-        public Guid KapanId { get; set; }
+        public string Id { get; set; }
+        public string PurchaseMasterId { get; set; }
+        public string PurchaseDetailsId { get; set; }
+        public string KapanId { get; set; }
         public string SlipId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]

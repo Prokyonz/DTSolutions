@@ -21,14 +21,14 @@ namespace EFCore.SQL.Repository
         public async Task<SalaryMaster> AddSalary(SalaryMaster salaryMaster)
         {
             if (salaryMaster.Id == null)
-                salaryMaster.Id = Guid.NewGuid();
+                salaryMaster.Id = Guid.NewGuid().ToString();
 
             await _databaseContext.SalaryMaster.AddAsync(salaryMaster);
             await _databaseContext.SaveChangesAsync();
             return salaryMaster;
         }
 
-        public async Task<bool> DeleteSalary(Guid salaryMasterId)
+        public async Task<bool> DeleteSalary(string salaryMasterId)
         {
             var salaryRecord = await _databaseContext.SalaryMaster.Where(w => w.Id == salaryMasterId).FirstOrDefaultAsync();
             if (salaryRecord != null)
@@ -50,12 +50,12 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
-        public async Task<List<SalaryMaster>> GetSalaries(Guid companyId, Guid branchId, Guid financialYear)
+        public async Task<List<SalaryMaster>> GetSalaries(string companyId, string branchId, string financialYear)
         {
             return await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYear).Include("SalaryDetails").ToListAsync();
         }
 
-        public async Task<SalaryMaster> GetSalaries(int month, Guid companyId, Guid branchId, Guid financialYear)
+        public async Task<SalaryMaster> GetSalaries(int month, string companyId, string branchId, string financialYear)
         {
             return await _databaseContext.SalaryMaster.Where(w => w.SalaryMonthDateTime.Month == month && w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYear).Include("SalaryDetails").FirstOrDefaultAsync();
         }

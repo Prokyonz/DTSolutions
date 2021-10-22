@@ -21,14 +21,14 @@ namespace EFCore.SQL.Repository
         public async Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster)
         {
             if (salesMaster.Id == null)
-                salesMaster.Id = Guid.NewGuid();
+                salesMaster.Id = Guid.NewGuid().ToString();
 
             await _databaseContext.SalesMaster.AddAsync(salesMaster);
             await _databaseContext.SaveChangesAsync();
             return salesMaster;
         }
 
-        public async Task<bool> DeleteSalesAsync(Guid salesId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteSalesAsync(string salesId, bool isPermanantDetele = false)
         {
             var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
             if (salesRecord != null)
@@ -44,22 +44,22 @@ namespace EFCore.SQL.Repository
             
         }
 
-        public async Task<List<SalesMaster>> GetAllSalesAsync(Guid companyId, Guid financialYearId)
+        public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string financialYearId)
         {
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<List<SalesMaster>> GetAllSalesAsync(Guid companyId, DateTime startDate, DateTime endDate)
+        public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, DateTime startDate, DateTime endDate)
         {
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
-        public async Task<List<SalesMaster>> GetAllSalesAsync(Guid companyId, Guid branchId, Guid financialYearId)
+        public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, string financialYearId)
         {
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
         }
 
-        public async Task<List<SalesMaster>> GetAllSalesAsync(Guid companyId, Guid branchId, DateTime startDate, DateTime endDate)
+        public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, DateTime startDate, DateTime endDate)
         {
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }

@@ -27,13 +27,13 @@ namespace EFCore.SQL.Repository
         public async Task<BrokerageMaster> AddBrokerageAsync(BrokerageMaster brokerageMaster)
         {
             if (brokerageMaster.Id == null)
-                brokerageMaster.Id = Guid.NewGuid();
+                brokerageMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.BrokerageMaster.AddAsync(brokerageMaster);
             await _databaseContext.SaveChangesAsync();
             return brokerageMaster;
         }
 
-        public async Task<bool> DeleteBrokerageAsync(Guid brokerageId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false)
         {
             var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageId).FirstOrDefaultAsync();
             if (getBrokerage != null)

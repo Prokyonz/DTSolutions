@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<RoleMaster>> GetAllRoleAsync();
         Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster);
         Task<RoleMaster> UpdateRoleAsync(RoleMaster roleMaster);
-        Task<bool> DeleteRoleAsync(Guid roleId, bool isPermanantDetele = false);
+        Task<bool> DeleteRoleAsync(string roleId, bool isPermanantDetele = false);
     }
 }
