@@ -367,7 +367,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("Amount");
             dt.Columns.Add("CRate");
             dt.Columns.Add("CAmount");
-            dt.Columns.Add("DiscAmount");
+            dt.Columns.Add("DisAmount");
             dt.Columns.Add("CVDAmount");
             return dt;
         }
@@ -1090,9 +1090,12 @@ namespace DiamondTrading.Transaction
                 purchaseMaster.IsPF = tglPF.IsOn;
                 purchaseMaster.CommissionPercentage = Convert.ToDecimal(txtBuyerCommisionPer.Text);
                 purchaseMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
-                purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
-                purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
-                purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
+                if (Image1.Image != null)
+                    purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
+                if (Image2.Image != null)
+                    purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
+                if (Image3.Image != null)
+                    purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
                 purchaseMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
                 purchaseMaster.IsTransfer = false;
                 purchaseMaster.TransferParentId = null;
