@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 namespace EFCore.SQL.Interface
 {
     public interface IPartyMaster
-    {        
-
+    {
         Task<List<PartyMaster>> GetAllPartyAsync();
+        Task<List<PartyMaster>> GetAllPartyAsync(string companyId);
+        Task<List<PartyMaster>> GetAllPartyAsync(string companyId, PartyTypeMaster partyTypeMaster);
         Task<decimal> GetPartyBalance(string partyId);
         Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster);
         Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster);

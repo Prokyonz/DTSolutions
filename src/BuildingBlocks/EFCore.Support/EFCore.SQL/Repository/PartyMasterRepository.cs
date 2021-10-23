@@ -58,6 +58,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
+            }
+        }
+
+        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partyTypeMaster)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
+            }
+        }
+
         public async Task<List<PartyMaster>> GetPartyAsync()
         {
             using (_databaseContext = new DatabaseContext())
@@ -114,6 +130,6 @@ namespace EFCore.SQL.Repository
                     return result.OpeningBalance;
                 return 0;
             }
-        }
+        }        
     }
 }
