@@ -50,6 +50,14 @@ namespace EFCore.SQL.Repository
             _databaseContext.DisposeAsync();
         }
 
+        public async Task<long> GetMaxSrNoAsync(string companyId, string finanialYearId)
+        {
+            var getCountRecord = await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == finanialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
+            if (getCountRecord != null)
+                return getCountRecord.Sr + 1;
+            return 1;
+        }
+
         public async Task<List<SalaryMaster>> GetSalaries(string companyId, string branchId, string financialYear)
         {
             return await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYear).Include("SalaryDetails").ToListAsync();
