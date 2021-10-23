@@ -35,10 +35,10 @@ namespace Repository.Entities
         public int DueDays { get; set; }
         public DateTime DueDate { get; set; }
         public int PaymentDays { get; set; }
-        public int PaymentDueDays { get; set; }
+        public DateTime PaymentDueDate { get; set; }
         public bool IsSlip { get; set; }
         public bool IsPF { get; set; }
-        public Guid CommissionToPartyId { get; set; }
+        //public Guid CommissionToPartyId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CommissionPercentage { get; set; }
         public double CommissionAmount { get; set; }

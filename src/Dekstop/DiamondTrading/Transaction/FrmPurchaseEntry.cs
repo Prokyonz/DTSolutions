@@ -367,6 +367,8 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("Amount");
             dt.Columns.Add("CRate");
             dt.Columns.Add("CAmount");
+            dt.Columns.Add("DiscAmount");
+            dt.Columns.Add("CVDAmount");
             return dt;
         }
 
@@ -732,12 +734,16 @@ namespace DiamondTrading.Transaction
                         LessPer *= -1;
                     decimal LessAmt = (FinalAmount * LessPer) / 100;
                     FinalAmount -= LessAmt;
+
+                    grvPurchaseDetails.SetRowCellValue(GridRowIndex, colDisAmount, LessAmt);
                 }
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
                 {
                     decimal CVDCharge = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge));
                     CVDCharge *= Carat;
                     FinalAmount = FinalAmount - CVDCharge;
+
+                    grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDAmount, CVDCharge);
                 }
                 ItemFinalAmount = FinalAmount;
                 //txtAmount.Text = ItemFinalAmount.ToString("0.00");
@@ -1006,55 +1012,124 @@ namespace DiamondTrading.Transaction
             Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-            if (!CheckValidation())
-                return;
-
-            string PurchaseId = Guid.NewGuid().ToString();
-            string PurchaseDetailsId= Guid.NewGuid().ToString();
-
-            List<PurchaseDetails> purchaseDetailsList = new List<PurchaseDetails>();
-            PurchaseDetails purchaseDetails = new PurchaseDetails();
-            for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+            try
             {
-                purchaseDetails = new PurchaseDetails();
-                purchaseDetails.Id = PurchaseDetailsId;
-                purchaseDetails.PurchaseId = PurchaseId;
-                purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                this.Cursor = Cursors.WaitCursor;
+                if (!CheckValidation())
+                    return;
 
-                purchaseDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
-                purchaseDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
-                purchaseDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
-                purchaseDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
-                purchaseDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
-                purchaseDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
-                purchaseDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
-                //purchaseDetails.LessWeightDiscount= Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
-                purchaseDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
-                purchaseDetails.BuyingRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
-                purchaseDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                //purchaseDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                //purchaseDetails.RoundUpAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                //purchaseDetails.Total = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                purchaseDetails.IsTransfer = false;
-                purchaseDetails.TransferParentId = null;
-                purchaseDetails.CreatedDate = DateTime.Now;
-                purchaseDetails.CreatedBy = Common.LoginUserID;
-                purchaseDetails.UpdatedDate = DateTime.Now; 
-                purchaseDetails.UpdatedBy = Common.LoginUserID;
+                string PurchaseId = Guid.NewGuid().ToString();
+                string PurchaseDetailsId = Guid.NewGuid().ToString();
 
-                purchaseDetailsList.Insert(i, purchaseDetails);
+                List<PurchaseDetails> purchaseDetailsList = new List<PurchaseDetails>();
+                PurchaseDetails purchaseDetails = new PurchaseDetails();
+                for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+                {
+                    purchaseDetails = new PurchaseDetails();
+                    purchaseDetails.Id = PurchaseDetailsId;
+                    purchaseDetails.PurchaseId = PurchaseId;
+                    purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                    purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                    purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                    purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+
+                    purchaseDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+                    purchaseDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
+                    purchaseDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
+                    purchaseDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
+                    purchaseDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
+                    purchaseDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
+                    purchaseDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
+                    purchaseDetails.LessWeightDiscount= Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisAmount).ToString());
+                    purchaseDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
+                    purchaseDetails.BuyingRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
+                    purchaseDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
+                    purchaseDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDAmount).ToString());
+                    purchaseDetails.Amount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colAmount).ToString());
+                    purchaseDetails.CurrencyRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrRate).ToString());
+                    purchaseDetails.CurrencyAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrAmount).ToString());
+                    purchaseDetails.IsTransfer = false;
+                    purchaseDetails.TransferParentId = null;
+                    purchaseDetails.CreatedDate = DateTime.Now;
+                    purchaseDetails.CreatedBy = Common.LoginUserID;
+                    purchaseDetails.UpdatedDate = DateTime.Now;
+                    purchaseDetails.UpdatedBy = Common.LoginUserID;
+
+                    purchaseDetailsList.Insert(i, purchaseDetails);
+                }
+
+                PurchaseMaster purchaseMaster = new PurchaseMaster();
+                purchaseMaster.Id = PurchaseId;
+                purchaseMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
+                purchaseMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
+                purchaseMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
+                purchaseMaster.ByuerId = lueBuyer.GetColumnValue("Id").ToString();
+                purchaseMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
+                purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
+                purchaseMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
+                purchaseMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
+                purchaseMaster.PurchaseBillNo = Convert.ToInt32(txtSerialNo.Text);
+                purchaseMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
+                purchaseMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
+                purchaseMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                purchaseMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                purchaseMaster.PartyLastBalanceWhilePurchase = float.Parse(txtPartyBalance.Text);
+                purchaseMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPer.Text);
+                purchaseMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
+                purchaseMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
+                purchaseMaster.Total = float.Parse(txtAmount.Text);
+                purchaseMaster.GrossTotal = float.Parse(txtNetAmount.Text);
+                purchaseMaster.DueDays = Convert.ToInt32(txtDays.Text);
+                purchaseMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                purchaseMaster.PaymentDays = Convert.ToInt32(txtDays.Text);
+                purchaseMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                purchaseMaster.IsSlip = tglSlip.IsOn;
+                purchaseMaster.IsPF = tglPF.IsOn;
+                purchaseMaster.CommissionPercentage = Convert.ToDecimal(txtBuyerCommisionPer.Text);
+                purchaseMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
+                purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
+                purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
+                purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
+                purchaseMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+                purchaseMaster.IsTransfer = false;
+                purchaseMaster.TransferParentId = null;
+                purchaseMaster.IsDelete = false;
+                purchaseMaster.Remarks = txtRemark.Text;
+                purchaseMaster.CreatedDate = DateTime.Now;
+                purchaseMaster.CreatedBy = Common.LoginUserID;
+                purchaseMaster.UpdatedDate = DateTime.Now;
+                purchaseMaster.UpdatedBy = Common.LoginUserID;
+                purchaseMaster.PurchaseDetails = purchaseDetailsList;
+
+                PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
+                var Result = await purchaseMasterRepository.AddPurchaseAsync(purchaseMaster);
+
+                if (Result != null)
+                {
+                    Reset();
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
 
-            PurchaseMaster purchaseMaster = new PurchaseMaster();
-            purchaseMaster.Id = PurchaseId;
-            purchaseMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
-            purchaseMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
-
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
         }
 
         private bool CheckValidation()
@@ -1124,6 +1199,30 @@ namespace DiamondTrading.Transaction
                 txtCurrencyAmount.Text = "1";
 
             return true;
+        }
+
+        private void Reset()
+        {
+            grdPurchaseDetails.DataSource = null;
+            FillCombos();
+            txtRemark.Text = "";
+            txtDays.Text = "";
+            txtPaymentDays.Text = "";
+            dtPayDate.EditValue = DateTime.Today;
+            Image1.Image = null;
+            Image2.Image = null;
+            Image3.Image = null;
+            txtBuyerCommisionPer.Text = "0";
+            txtPartyBalance.Text = "0";
+            txtBrokerPer.Text = "0";
+            txtBrokerageAmount.Text = "0";
+            txtCommisionAmount.Text = "0";
+            txtAmount.Text = "0";
+            txtRoundAmount.Text = "0";
+            txtNetAmount.Text = "0";
+            txtCurrencyAmount.Text = "0";
+            tglSlip.IsOn = Common.PrintPurchaseSlip;
+            txtSlipNo.Focus();
         }
     }
 }

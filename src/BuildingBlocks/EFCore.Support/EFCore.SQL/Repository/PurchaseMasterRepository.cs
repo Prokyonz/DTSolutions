@@ -112,11 +112,10 @@ namespace EFCore.SQL.Repository
                 getPurchase.DueDays = purchaseMaster.DueDays;
                 getPurchase.DueDate = purchaseMaster.DueDate;
                 getPurchase.PaymentDays = purchaseMaster.PaymentDays;
-                getPurchase.PaymentDueDays = purchaseMaster.PaymentDueDays;
+                getPurchase.PaymentDueDate = purchaseMaster.PaymentDueDate;
                 getPurchase.IsSlip = purchaseMaster.IsSlip;
                 getPurchase.IsPF = purchaseMaster.IsPF;
 
-                getPurchase.CommissionToPartyId = purchaseMaster.CommissionToPartyId;
                 getPurchase.CommissionPercentage = purchaseMaster.CommissionPercentage;
                 getPurchase.CommissionAmount = purchaseMaster.CommissionAmount;
                 getPurchase.Image1 = purchaseMaster.Image1;

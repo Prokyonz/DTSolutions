@@ -124,6 +124,8 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colDisAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCVDAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -774,7 +776,9 @@ namespace DiamondTrading.Transaction
             this.colCVDCharge,
             this.colAmount,
             this.colCurrRate,
-            this.colCurrAmount});
+            this.colCurrAmount,
+            this.colDisAmount,
+            this.colCVDAmount});
             this.grvPurchaseDetails.GridControl = this.grdPurchaseDetails;
             this.grvPurchaseDetails.Name = "grvPurchaseDetails";
             this.grvPurchaseDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -1396,6 +1400,20 @@ namespace DiamondTrading.Transaction
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // colDisAmount
+            // 
+            this.colDisAmount.Caption = "Dis Amount";
+            this.colDisAmount.ColumnEdit = this.repoTxtEdit;
+            this.colDisAmount.FieldName = "DisAmount";
+            this.colDisAmount.Name = "colDisAmount";
+            // 
+            // colCVDAmount
+            // 
+            this.colCVDAmount.Caption = "CVD Amount";
+            this.colCVDAmount.ColumnEdit = this.repoTxtEdit;
+            this.colCVDAmount.FieldName = "CVDAmount";
+            this.colCVDAmount.Name = "colCVDAmount";
+            // 
             // FrmPurchaseEntry
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1605,5 +1623,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colCurrAmount;
         private DevExpress.XtraEditors.PanelControl pnlStatus;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private DevExpress.XtraGrid.Columns.GridColumn colDisAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colCVDAmount;
     }
 }
