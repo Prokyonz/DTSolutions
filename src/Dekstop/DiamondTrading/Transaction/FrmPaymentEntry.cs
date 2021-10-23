@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +14,15 @@ namespace DiamondTrading.Transaction
 {
     public partial class FrmPaymentEntry : DevExpress.XtraEditors.XtraForm
     {
+        private readonly CompanyMasterRepository _companyMasterRepository;
+        private readonly PartyMasterRepository _partyMasterRepository;
+
         public FrmPaymentEntry(string PaymentType)
         {
             InitializeComponent();
+
+            _companyMasterRepository = new CompanyMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository();
 
             if (PaymentType == "Payment")
             {
@@ -27,6 +34,8 @@ namespace DiamondTrading.Transaction
                 SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "RECEIPT";
             }
+            LoadCompany();
+            LoadLedgers();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -56,6 +65,28 @@ namespace DiamondTrading.Transaction
 
                 //txtLedgerBalance.BackColor = color;
             }
+        }
+
+        private async void LoadCompany()
+        {
+            var result = await _companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = result;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+        }
+
+        private async void LoadLedgers()
+        {
+            var result = await _partyMasterRepository.GetAllPartyAsync();
+            lueLeadger.Properties.DataSource = result;
+            lueLeadger.Properties.DisplayMember = "Name";
+            lueLeadger.Properties.ValueMember = "Id";
+        }
+
+        private async void lueLeadger_EditValueChanged(object sender, EventArgs e)
+        {
+            var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString());
+            txtLedgerBalance.Text = result.ToString();
         }
     }
 }
