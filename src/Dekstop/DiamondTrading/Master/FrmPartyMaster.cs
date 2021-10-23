@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly PartyMasterRepository _partyMasterRepository;
         private List<PartyMaster> _partyMasters;
         private PartyMaster _EditedPartyMasterSet;
-        private Guid _selectedParty;
+        private string _selectedParty;
 
         public FrmPartyMaster()
         {
@@ -33,7 +33,7 @@ namespace DiamondTrading.Master
             this._partyMasters = PartyMasters;
         }
 
-        public FrmPartyMaster(List<PartyMaster> PartyMasters,Guid SelectedParty)
+        public FrmPartyMaster(List<PartyMaster> PartyMasters, string SelectedParty)
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
@@ -41,7 +41,7 @@ namespace DiamondTrading.Master
             _selectedParty = SelectedParty;
         }
 
-        public Guid CreatedLedgerID
+        public string CreatedLedgerID
         {
             get;
             private set;
@@ -95,7 +95,7 @@ namespace DiamondTrading.Master
                 btnReset.Enabled = false;
             }
 
-            if (_selectedParty != Guid.Empty)
+            if (_selectedParty != string.Empty)
             {
                 _EditedPartyMasterSet = _partyMasters.Where(c => c.Id == _selectedParty).FirstOrDefault();
                 if (_EditedPartyMasterSet != null)
@@ -166,7 +166,7 @@ namespace DiamondTrading.Master
 
         private async void Reset()
         {
-            _selectedParty = Guid.Empty;
+            _selectedParty = string.Empty;
             tglIsActive.IsOn = true;
             lueCompany.EditValue = 0;
             luePartyType.EditValue = 0;
@@ -199,13 +199,13 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     PartyMaster PartyMaster = new PartyMaster
                     {
                         Id = tempId,
                         Status=tglIsActive.IsOn,
-                        CompanyId = Guid.Parse(lueCompany.EditValue.ToString()),
+                        CompanyId = lueCompany.EditValue.ToString(),
                         Type = Convert.ToInt32(luePartyType.EditValue),
                         OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text),
                         Name = txtPartyName.Text,
@@ -229,7 +229,7 @@ namespace DiamondTrading.Master
                         PartyMaster.SubType = PartyTypeMaster.None;
 
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
-                        PartyMaster.BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString());
+                        PartyMaster.BrokerageId = lueBrokerage.EditValue.ToString();
 
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
 
@@ -246,14 +246,14 @@ namespace DiamondTrading.Master
                 else
                 {
                     _EditedPartyMasterSet.Status = tglIsActive.IsOn;
-                    _EditedPartyMasterSet.CompanyId = Guid.Parse(lueCompany.EditValue.ToString());
+                    _EditedPartyMasterSet.CompanyId = lueCompany.EditValue.ToString();
                     _EditedPartyMasterSet.Type = Convert.ToInt32(luePartyType.EditValue);
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
                         _EditedPartyMasterSet.SubType = Convert.ToInt32(lueSubType.EditValue);
                     else
                         _EditedPartyMasterSet.SubType = PartyTypeMaster.None;
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
-                        _EditedPartyMasterSet.BrokerageId = Guid.Parse(lueBrokerage.EditValue.ToString());
+                        _EditedPartyMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
                     _EditedPartyMasterSet.OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text);
                     _EditedPartyMasterSet.Name = txtPartyName.Text;
                     _EditedPartyMasterSet.Address = txtAddress.Text;

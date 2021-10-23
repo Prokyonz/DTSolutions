@@ -18,7 +18,7 @@ namespace DiamondTrading.Master
         private readonly ShapeMasterRepository _shapeMasterRepository;
         private List<ShapeMaster> _shapeMaster;
         private ShapeMaster _EditedShapeMasterSet;
-        private Guid _selectedShapeId;
+        private string _selectedShapeId;
         public FrmShapeMaster()
         {
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace DiamondTrading.Master
             this._shapeMaster = shapeMasters;
         }
 
-        public FrmShapeMaster(List<ShapeMaster> shapeMasters, Guid SelectedShapeId)
+        public FrmShapeMaster(List<ShapeMaster> shapeMasters, string SelectedShapeId)
         {
             InitializeComponent();
             _shapeMasterRepository = new ShapeMasterRepository();
@@ -40,7 +40,7 @@ namespace DiamondTrading.Master
             _selectedShapeId = SelectedShapeId;
         }
 
-        public Guid CreatedLedgerID
+        public string CreatedLedgerID
         {
             get;
             private set;
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
             if (IsSilentEntry)
                 btnReset.Enabled = false;
 
-            if (_selectedShapeId != Guid.Empty)
+            if (_selectedShapeId != string.Empty)
             {
                 _EditedShapeMasterSet = _shapeMaster.Where(s => s.Id == _selectedShapeId).FirstOrDefault();
                 if (_EditedShapeMasterSet != null)
@@ -84,7 +84,7 @@ namespace DiamondTrading.Master
 
         private void Reset()
         {
-            _selectedShapeId = Guid.Empty;
+            _selectedShapeId = string.Empty;
             txtShapeName.Text = "";
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtShapeName.Focus();
@@ -101,7 +101,7 @@ namespace DiamondTrading.Master
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Guid tempId = Guid.NewGuid();
+                    string tempId = Guid.NewGuid().ToString();
 
                     ShapeMaster shapeMaster = new ShapeMaster
                     {

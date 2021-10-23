@@ -183,7 +183,7 @@ namespace DiamondTrading.Master
                     //DataTable dtTemp = dtDefaultGridColumns();
                     //for(int i=0;i<)
 
-                    grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails.ToList();
+                    grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails.OrderBy(x=>x.MinWeight).ToList();
                 }
             }
         }
@@ -191,9 +191,9 @@ namespace DiamondTrading.Master
         private DataTable dtDefaultGridColumns()
         {
             DataTable dtTemp = new DataTable();
-            dtTemp.Columns.Add("MinWeight");
-            dtTemp.Columns.Add("MaxWeight");
-            dtTemp.Columns.Add("LessWeight");
+            dtTemp.Columns.Add("MinWeight",typeof(decimal));
+            dtTemp.Columns.Add("MaxWeight", typeof(decimal));
+            dtTemp.Columns.Add("LessWeight", typeof(decimal));
             return dtTemp;
         }
 

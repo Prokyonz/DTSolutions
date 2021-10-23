@@ -29,6 +29,12 @@ namespace DiamondTrading
         public static bool PrintPurchaseSlip = false;
         public static bool AllowToSelectPurchaseDueDate = false;
 
+        #region "Default Values"
+        public static string DefaultShape = "00000000-0000-0000-0000-000000000000";
+        public static string DefaultSize = "00000000-0000-0000-0000-000000000000";
+        public static string DefaultPurity = "00000000-0000-0000-0000-000000000000";
+        #endregion
+
         public static System.Globalization.CultureInfo AppUICultInfo
         {
             get;

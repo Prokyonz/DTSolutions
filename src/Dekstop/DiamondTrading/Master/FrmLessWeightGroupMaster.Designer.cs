@@ -138,6 +138,7 @@ namespace DiamondTrading.Master
             this.repositoryItemTextEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.repositoryItemTextEdit1.MaskSettings.Set("mask", "f");
             this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
+            this.repositoryItemTextEdit1.UseMaskAsDisplayFormat = true;
             this.repositoryItemTextEdit1.ValidateOnEnterKey = true;
             // 
             // colMaxWeight

@@ -16,9 +16,16 @@ namespace DiamondTrading.Master
     public partial class FrmKapanMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly KapanMasterRepository _kapanMasterRepository;
-        private readonly List<KapanMaster> _kapanMaster;
+        private List<KapanMaster> _kapanMaster;
         private KapanMaster _EditedKapanMasterSet;
         private string _selectedKapanId;
+
+        public FrmKapanMaster()
+        {
+            InitializeComponent();
+            _kapanMasterRepository = new KapanMasterRepository();
+        }
+
         public FrmKapanMaster(List<KapanMaster> KapanMasters)
         {
             InitializeComponent();
@@ -34,8 +41,26 @@ namespace DiamondTrading.Master
             _selectedKapanId = SelectedKapanId;
         }
 
-        private void FrmKapanMaster_Load(object sender, EventArgs e)
+        public string CreatedLedgerID
         {
+            get;
+            private set;
+        }
+
+        public bool IsSilentEntry
+        {
+            get;
+            set;
+        }
+
+        private async void FrmKapanMaster_Load(object sender, EventArgs e)
+        {
+            if (_kapanMaster == null)
+                _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync();
+
+            if (IsSilentEntry)
+                btnReset.Enabled = false;
+
             if (string.IsNullOrEmpty(_selectedKapanId) == false)
             {
                 _EditedKapanMasterSet = _kapanMaster.Where(s => s.Id == _selectedKapanId).FirstOrDefault();
@@ -118,8 +143,12 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
-                        Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CreatedLedgerID = Result.Id;
+                        if (!IsSilentEntry)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 else
@@ -135,12 +164,13 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
+                        CreatedLedgerID = Result.Id;
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreKapanConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                //if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreKapanConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }

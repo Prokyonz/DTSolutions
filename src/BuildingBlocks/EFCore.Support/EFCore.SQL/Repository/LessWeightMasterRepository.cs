@@ -49,6 +49,11 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.LessWeightMasters.Where(w => w.IsDelete == false).Include("LessWeightDetails").ToListAsync();
         }
 
+        public async Task<LessWeightDetails> GetLessWeightDetailsMasters(string Id, decimal Weight)
+        {
+            return await _databaseContext.LessWeightDetails.Where(w => w.LessWeightId == Id && w.MinWeight <= Weight && w.MaxWeight >= Weight).FirstOrDefaultAsync();
+        }
+
         public async Task<LessWeightMaster> UpdateLessWeightMaster(LessWeightMaster lessWeightMaster)
         {
             try

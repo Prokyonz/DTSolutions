@@ -16,9 +16,16 @@ namespace DiamondTrading.Master
     public partial class FrmSizeMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly SizeMasterRepository _sizeMasterRepository;
-        private readonly List<SizeMaster> _sizeMaster;
+        private List<SizeMaster> _sizeMaster;
         private SizeMaster _EditedSizeMasterSet;
         private string _selectedSizeId;
+
+        public FrmSizeMaster()
+        {
+            InitializeComponent();
+            _sizeMasterRepository = new SizeMasterRepository();
+        }
+
         public FrmSizeMaster(List<SizeMaster> SizeMasters)
         {
             InitializeComponent();
@@ -34,8 +41,26 @@ namespace DiamondTrading.Master
             _selectedSizeId = SelectedSizeId;
         }
 
-        private void FrmSizeMaster_Load(object sender, EventArgs e)
+        public string CreatedLedgerID
         {
+            get;
+            private set;
+        }
+
+        public bool IsSilentEntry
+        {
+            get;
+            set;
+        }
+
+        private async void FrmSizeMaster_Load(object sender, EventArgs e)
+        {
+            if (_sizeMaster == null)
+                _sizeMaster = await _sizeMasterRepository.GetAllSizeAsync();
+
+            if (IsSilentEntry)
+                btnReset.Enabled = false;
+
             if (string.IsNullOrEmpty(_selectedSizeId) == false)
             {
                 _EditedSizeMasterSet = _sizeMaster.Where(s => s.Id == _selectedSizeId).FirstOrDefault();
@@ -94,8 +119,12 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
-                        Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CreatedLedgerID = Result.Id;
+                        if (!IsSilentEntry)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 else
@@ -108,12 +137,13 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
+                        CreatedLedgerID = Result.Id;
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreSizeConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                //if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreSizeConfirmation), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
