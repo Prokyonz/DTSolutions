@@ -360,6 +360,7 @@ namespace DiamondTrading.Transaction
             this.lueLeadger.Properties.NullText = "";
             this.lueLeadger.Size = new System.Drawing.Size(275, 22);
             this.lueLeadger.TabIndex = 6;
+            this.lueLeadger.EditValueChanged += new System.EventHandler(this.lueLeadger_EditValueChanged);
             // 
             // dtTime
             // 
