@@ -13,6 +13,7 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
+        public string FinancialYearId { get; set; }
         public string PartyId { get; set; }
         public double Amount { get; set; }
         public string Remarks { get; set; }

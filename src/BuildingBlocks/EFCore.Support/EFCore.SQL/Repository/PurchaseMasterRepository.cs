@@ -69,7 +69,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<long> GetMaxSlipNo(string branchId, string financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.SlipNo).FirstOrDefaultAsync();
             if(result != null)
                 return result.SlipNo + 1;
             return 1;
@@ -77,7 +77,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<long> GetMaxSrNo(string companyId, string financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.FirstOrDefaultAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.PurchaseBillNo).FirstOrDefaultAsync();
             if(result != null)
                 return result.PurchaseBillNo + 1;
             return 1;

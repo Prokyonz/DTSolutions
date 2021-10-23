@@ -51,6 +51,12 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMaster").Include("PaymentDetails").ToListAsync();
         }
 
+        public async Task<int> GetMaxSrNoAsync(string companyId, string financialYearId)
+        {
+            var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.Sr).FirstOrDefaultAsync();
+            return countResult.BillNo + 1;
+        }
+
         public async Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster)
         {
             var groupPaymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupPaymentMaster.Id).Include("PaymentMasters").FirstOrDefaultAsync();

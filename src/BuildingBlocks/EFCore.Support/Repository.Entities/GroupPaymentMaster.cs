@@ -13,6 +13,7 @@ namespace Repository.Entities
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
         public string ToPartyId { get; set; } //Bank or Cash PartyId
+        public int BillNo { get; set; }
         public string Remarks { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
