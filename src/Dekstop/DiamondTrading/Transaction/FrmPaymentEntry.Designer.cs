@@ -41,10 +41,6 @@ namespace DiamondTrading.Transaction
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoKapan = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -65,10 +61,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvPurchaseDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPayType)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -167,10 +159,6 @@ namespace DiamondTrading.Transaction
             this.grdPurchaseDetails.MainView = this.grvPurchaseDetails;
             this.grdPurchaseDetails.Name = "grdPurchaseDetails";
             this.grdPurchaseDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repoPayType,
-            this.repoSize,
-            this.repoPurity,
-            this.repoKapan,
             this.repoTxtEdit,
             this.repoParty});
             this.grdPurchaseDetails.Size = new System.Drawing.Size(602, 244);
@@ -233,49 +221,8 @@ namespace DiamondTrading.Transaction
             this.repoTxtEdit.BeepOnError = true;
             this.repoTxtEdit.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.repoTxtEdit.MaskSettings.Set("mask", "f3");
+            this.repoTxtEdit.MaskSettings.Set("mask", "f");
             this.repoTxtEdit.Name = "repoTxtEdit";
-            // 
-            // repoPayType
-            // 
-            this.repoPayType.AutoHeight = false;
-            this.repoPayType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoPayType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Shape", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "ShapeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoPayType.Name = "repoPayType";
-            this.repoPayType.ValueMember = "Guid";
-            // 
-            // repoSize
-            // 
-            this.repoSize.AutoHeight = false;
-            this.repoSize.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoSize.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Size", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "SizeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoSize.Name = "repoSize";
-            // 
-            // repoPurity
-            // 
-            this.repoPurity.AutoHeight = false;
-            this.repoPurity.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoPurity.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Purity", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PurityID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoPurity.Name = "repoPurity";
-            // 
-            // repoKapan
-            // 
-            this.repoKapan.AutoHeight = false;
-            this.repoKapan.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoKapan.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Kapan", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoKapan.Name = "repoKapan";
             // 
             // grpGroup2
             // 
@@ -469,10 +416,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvPurchaseDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPayType)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
             this.grpGroup2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
@@ -501,10 +444,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Views.Grid.GridView grvPurchaseDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colParty;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoParty;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoPayType;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSize;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoPurity;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoKapan;
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
         private DevExpress.XtraEditors.GroupControl grpGroup2;

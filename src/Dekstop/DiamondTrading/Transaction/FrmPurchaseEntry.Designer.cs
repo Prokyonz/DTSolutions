@@ -92,6 +92,8 @@ namespace DiamondTrading.Transaction
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCurrAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDisAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCVDAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpGroup6 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -124,8 +126,6 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colDisAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCVDAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -799,7 +799,7 @@ namespace DiamondTrading.Transaction
             this.colShape.Name = "colShape";
             this.colShape.Visible = true;
             this.colShape.VisibleIndex = 0;
-            this.colShape.Width = 46;
+            this.colShape.Width = 48;
             // 
             // repoShape
             // 
@@ -822,7 +822,7 @@ namespace DiamondTrading.Transaction
             this.colSize.Name = "colSize";
             this.colSize.Visible = true;
             this.colSize.VisibleIndex = 1;
-            this.colSize.Width = 46;
+            this.colSize.Width = 48;
             // 
             // repoSize
             // 
@@ -844,7 +844,7 @@ namespace DiamondTrading.Transaction
             this.colPurity.Name = "colPurity";
             this.colPurity.Visible = true;
             this.colPurity.VisibleIndex = 2;
-            this.colPurity.Width = 46;
+            this.colPurity.Width = 48;
             // 
             // repoPurity
             // 
@@ -866,7 +866,7 @@ namespace DiamondTrading.Transaction
             this.colKapan.Name = "colKapan";
             this.colKapan.Visible = true;
             this.colKapan.VisibleIndex = 3;
-            this.colKapan.Width = 46;
+            this.colKapan.Width = 48;
             // 
             // repoKapan
             // 
@@ -888,7 +888,7 @@ namespace DiamondTrading.Transaction
             this.colCarat.Name = "colCarat";
             this.colCarat.Visible = true;
             this.colCarat.VisibleIndex = 4;
-            this.colCarat.Width = 46;
+            this.colCarat.Width = 48;
             // 
             // repoTxtEdit
             // 
@@ -907,7 +907,7 @@ namespace DiamondTrading.Transaction
             this.colTipWeight.Name = "colTipWeight";
             this.colTipWeight.Visible = true;
             this.colTipWeight.VisibleIndex = 5;
-            this.colTipWeight.Width = 35;
+            this.colTipWeight.Width = 47;
             // 
             // colCVDWeight
             // 
@@ -917,7 +917,7 @@ namespace DiamondTrading.Transaction
             this.colCVDWeight.Name = "colCVDWeight";
             this.colCVDWeight.Visible = true;
             this.colCVDWeight.VisibleIndex = 6;
-            this.colCVDWeight.Width = 33;
+            this.colCVDWeight.Width = 42;
             // 
             // colRejPer
             // 
@@ -927,7 +927,7 @@ namespace DiamondTrading.Transaction
             this.colRejPer.Name = "colRejPer";
             this.colRejPer.Visible = true;
             this.colRejPer.VisibleIndex = 7;
-            this.colRejPer.Width = 46;
+            this.colRejPer.Width = 47;
             // 
             // colRejCts
             // 
@@ -937,7 +937,7 @@ namespace DiamondTrading.Transaction
             this.colRejCts.Name = "colRejCts";
             this.colRejCts.Visible = true;
             this.colRejCts.VisibleIndex = 8;
-            this.colRejCts.Width = 46;
+            this.colRejCts.Width = 45;
             // 
             // colLessCts
             // 
@@ -947,7 +947,7 @@ namespace DiamondTrading.Transaction
             this.colLessCts.Name = "colLessCts";
             this.colLessCts.Visible = true;
             this.colLessCts.VisibleIndex = 9;
-            this.colLessCts.Width = 46;
+            this.colLessCts.Width = 45;
             // 
             // colNetCts
             // 
@@ -959,7 +959,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetCts", "{0:0.##}")});
             this.colNetCts.Visible = true;
             this.colNetCts.VisibleIndex = 10;
-            this.colNetCts.Width = 51;
+            this.colNetCts.Width = 55;
             // 
             // colRate
             // 
@@ -969,7 +969,7 @@ namespace DiamondTrading.Transaction
             this.colRate.Name = "colRate";
             this.colRate.Visible = true;
             this.colRate.VisibleIndex = 11;
-            this.colRate.Width = 45;
+            this.colRate.Width = 53;
             // 
             // colDisPer
             // 
@@ -979,7 +979,7 @@ namespace DiamondTrading.Transaction
             this.colDisPer.Name = "colDisPer";
             this.colDisPer.Visible = true;
             this.colDisPer.VisibleIndex = 12;
-            this.colDisPer.Width = 41;
+            this.colDisPer.Width = 49;
             // 
             // colCVDCharge
             // 
@@ -989,7 +989,7 @@ namespace DiamondTrading.Transaction
             this.colCVDCharge.Name = "colCVDCharge";
             this.colCVDCharge.Visible = true;
             this.colCVDCharge.VisibleIndex = 13;
-            this.colCVDCharge.Width = 34;
+            this.colCVDCharge.Width = 38;
             // 
             // colAmount
             // 
@@ -1001,7 +1001,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 14;
-            this.colAmount.Width = 67;
+            this.colAmount.Width = 62;
             // 
             // colCurrRate
             // 
@@ -1009,8 +1009,6 @@ namespace DiamondTrading.Transaction
             this.colCurrRate.ColumnEdit = this.repoTxtEdit;
             this.colCurrRate.FieldName = "CRate";
             this.colCurrRate.Name = "colCurrRate";
-            this.colCurrRate.Visible = true;
-            this.colCurrRate.VisibleIndex = 15;
             this.colCurrRate.Width = 41;
             // 
             // colCurrAmount
@@ -1022,7 +1020,22 @@ namespace DiamondTrading.Transaction
             this.colCurrAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CAmount", "{0:0.##}")});
             this.colCurrAmount.Visible = true;
-            this.colCurrAmount.VisibleIndex = 16;
+            this.colCurrAmount.VisibleIndex = 15;
+            this.colCurrAmount.Width = 67;
+            // 
+            // colDisAmount
+            // 
+            this.colDisAmount.Caption = "Dis Amount";
+            this.colDisAmount.ColumnEdit = this.repoTxtEdit;
+            this.colDisAmount.FieldName = "DisAmount";
+            this.colDisAmount.Name = "colDisAmount";
+            // 
+            // colCVDAmount
+            // 
+            this.colCVDAmount.Caption = "CVD Amount";
+            this.colCVDAmount.ColumnEdit = this.repoTxtEdit;
+            this.colCVDAmount.FieldName = "CVDAmount";
+            this.colCVDAmount.Name = "colCVDAmount";
             // 
             // grpGroup6
             // 
@@ -1055,6 +1068,7 @@ namespace DiamondTrading.Transaction
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(1011, 530);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -1400,26 +1414,13 @@ namespace DiamondTrading.Transaction
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // colDisAmount
-            // 
-            this.colDisAmount.Caption = "Dis Amount";
-            this.colDisAmount.ColumnEdit = this.repoTxtEdit;
-            this.colDisAmount.FieldName = "DisAmount";
-            this.colDisAmount.Name = "colDisAmount";
-            // 
-            // colCVDAmount
-            // 
-            this.colCVDAmount.Caption = "CVD Amount";
-            this.colCVDAmount.ColumnEdit = this.repoTxtEdit;
-            this.colCVDAmount.FieldName = "CVDAmount";
-            this.colCVDAmount.Name = "colCVDAmount";
-            // 
             // FrmPurchaseEntry
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1094, 565);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.pnlStatus);
@@ -1446,7 +1447,6 @@ namespace DiamondTrading.Transaction
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmPurchaseEntry";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PURCHASE - COMPANY NAME - [2021-2022]";
             this.Load += new System.EventHandler(this.FrmPurchaseEntry_Load);

@@ -294,11 +294,9 @@ namespace DiamondTrading
             int w = screen.Bounds.Width;
             int h = screen.Bounds.Height;
 
-            
             frmPurchaseEntry.StartPosition = FormStartPosition.Manual;
 
             frmPurchaseEntry.Location = new Point((w - frmPurchaseEntry.Width - 200)/3, (Height - frmPurchaseEntry.Height) / 2);
-            
             frmPurchaseEntry.ShowDialog();
         }
 
@@ -576,30 +574,25 @@ namespace DiamondTrading
 
         private void barButtonItem23_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
-            if (page != null)
-            {
-                page.Close();
-            }
-
-            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Receipt");
-
-            Screen screen = Screen.FromControl(this);
-
-            int x = screen.Bounds.X;
-            int y = screen.Bounds.Y;
-            int w = screen.Bounds.Width;
-            int h = screen.Bounds.Height;
-
-
-            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
-
-            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
-
-            frmPaymentEntry.ShowDialog();
+            
         }
 
         private void barButtonItem24_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            
+        }
+
+        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("Purchase");
+        }
+
+        private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("Sales");
+        }
+
+        private void barButtonItem25_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
             if (page != null)
@@ -624,14 +617,29 @@ namespace DiamondTrading
             frmPaymentEntry.ShowDialog();
         }
 
-        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonItem26_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenMasterDetailsForm("Purchase");
-        }
+            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
 
-        private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("Sales");
+            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Receipt");
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
+
+            frmPaymentEntry.ShowDialog();
         }
     }
 }
