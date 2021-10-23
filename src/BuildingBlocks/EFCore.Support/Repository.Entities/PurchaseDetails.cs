@@ -36,8 +36,11 @@ namespace Repository.Entities
         public double BuyingRate { get; set; }
         public double CVDCharge { get; set; }
         public double CVDAmount { get; set; }
-        public double RoundUpAmount { get; set; }
-        public double Total { get; set; }
+        public double Amount { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public double CurrencyRate { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public double CurrencyAmount { get; set; }
         public bool IsTransfer { get; set; }
         public string TransferParentId { get; set; }        
         public DateTime CreatedDate { get; set; }
