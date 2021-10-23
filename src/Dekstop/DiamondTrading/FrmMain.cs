@@ -50,6 +50,27 @@ namespace DiamondTrading
             accordionControlElementMaster.Expanded = true;
         }
 
+        private void OpenTransactionDetailsForm(string PageRequested)
+        {
+            panelControl1.SendToBack();
+            FrmTransactionDetails page = Application.OpenForms["FrmTransactionDetails"] as FrmTransactionDetails;
+            if (page != null)
+            {
+                page.Close();
+                //barManager1.ForceInitialize();
+                //page.SelectedTabPage = PageRequested;
+                //page.ActiveTab();
+                //page.BringToFront();
+            }
+
+            FrmTransactionDetails frmTransactionDetails = new FrmTransactionDetails();
+            frmTransactionDetails.SelectedTabPage = PageRequested;
+            frmTransactionDetails.MdiParent = this;
+            frmTransactionDetails.Show();
+            frmTransactionDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
         private void frmMain_Load(object sender, EventArgs e)
         {
             DevExpress.XtraSplashScreen.FluentSplashScreenOptions options = new DevExpress.XtraSplashScreen.FluentSplashScreenOptions();
@@ -601,6 +622,16 @@ namespace DiamondTrading
             frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
 
             frmPaymentEntry.ShowDialog();
+        }
+
+        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("Purchase");
+        }
+
+        private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("Sales");
         }
     }
 }

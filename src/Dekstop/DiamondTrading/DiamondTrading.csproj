@@ -217,6 +217,12 @@
     <Compile Include="FrmOptions.Designer.cs">
       <DependentUpon>FrmOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTransactionDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTransactionDetails.designer.cs">
+      <DependentUpon>FrmTransactionDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\FrmBranchMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -398,6 +404,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOptions.resx">
       <DependentUpon>FrmOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTransactionDetails.resx">
+      <DependentUpon>FrmTransactionDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmBranchMaster.resx">
       <DependentUpon>FrmBranchMaster.cs</DependentUpon>
