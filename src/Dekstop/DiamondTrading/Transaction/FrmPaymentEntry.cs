@@ -47,20 +47,19 @@ namespace DiamondTrading.Transaction
                 SetThemeColors(Color.FromArgb(217, 217, 217));
                 this.Text = "CONTRA";
             }
-            LoadCompany();
-            LoadSeries(_paymentType);                         
         }
 
         private async void LoadSeries(int paymentType)
         {
+            grdPaymentDetails.DataSource = GetDTColumnsForPaymentDetails();
             if (paymentType == -1)
             {
-                var result = await _contraEntryRepository.GetMaxNo(Common.LoginCompany, Common.LoginFinancialYear);
+                var result = await _contraEntryRepository.GetMaxNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
                 txtSerialNo.Text = result.ToString();
             }
             else
             {
-                var result = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, Common.LoginCompany, Common.LoginFinancialYear);
+                var result = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
                 txtSerialNo.Text = result.ToString();
             }
         }
@@ -75,12 +74,22 @@ namespace DiamondTrading.Transaction
 
         }
 
-        private void FrmPaymentEntry_Load(object sender, EventArgs e)
+        private async void FrmPaymentEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
-            lueCompany.EditValue = "Abhishek Bendre";
+            await LoadCompany();
+            LoadSeries(_paymentType);
+            LoadLedgers(lueCompany.EditValue.ToString());
+        }
+
+        private static DataTable GetDTColumnsForPaymentDetails()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Party");
+            dt.Columns.Add("Amount");
+            return dt;
         }
 
         private void SetThemeColors(Color color)
@@ -94,15 +103,13 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        private async void LoadCompany()
+        private async Task LoadCompany()
         {
             var result = await _companyMasterRepository.GetAllCompanyAsync();
             lueCompany.Properties.DataSource = result;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
             lueCompany.EditValue = Common.LoginCompany;
-
-            LoadLedgers(Common.LoginCompany);
         }
 
         private async void LoadLedgers(string companyId)
@@ -133,14 +140,16 @@ namespace DiamondTrading.Transaction
 
         private async void lueLeadger_EditValueChanged(object sender, EventArgs e)
         {
-            var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString());
-            txtLedgerBalance.Text = result.ToString();
+            if (lueLeadger.EditValue != null)
+            {
+                var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString());
+                txtLedgerBalance.Text = result.ToString();
+            }
         }
 
         private void grvPurchaseDetails_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
-
+            //string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -156,7 +165,7 @@ namespace DiamondTrading.Transaction
                     {
                         Id = Guid.NewGuid().ToString(),
                         BranchId = Common.LoginBranch,
-                        CompanyId = Common.LoginCompany,
+                        CompanyId = lueCompany.EditValue.ToString(),
                         FinancialYearId = Common.LoginFinancialYear,
                         CreatedBy = Guid.NewGuid().ToString(),
                         CreatedDate = DateTime.Now,
@@ -172,7 +181,6 @@ namespace DiamondTrading.Transaction
                     {
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadSeries(_paymentType);
                     }
                 }
                 else
@@ -182,13 +190,14 @@ namespace DiamondTrading.Transaction
                         Id = Guid.NewGuid().ToString(),
                         BillNo = Convert.ToInt32(txtSerialNo.Text),
                         BranchId = Common.LoginBranch,
-                        CompanyId = Common.LoginCompany,
+                        CompanyId = lueCompany.EditValue.ToString(),
                         FinancialYearId = Common.LoginFinancialYear,
                         CreatedBy = Guid.NewGuid().ToString(),
                         CreatedDate = DateTime.Now,
                         IsDelete = false,
                         Remarks = txtRemark.Text,
                         ToPartyId = lueLeadger.EditValue.ToString(),
+                        CrDrType = _paymentType,
                         PaymentMasters = null,
                     };
 
@@ -198,7 +207,6 @@ namespace DiamondTrading.Transaction
                     {
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadSeries(_paymentType);
                     }
                 }
             }
@@ -213,12 +221,31 @@ namespace DiamondTrading.Transaction
         }
         private void Reset()
         {
+            dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
+            grdPaymentDetails.DataSource = null;
             txtRemark.Text = "";
+            txtLedgerBalance.Text = "0";
+            lueLeadger.EditValue = null;
+            LoadLedgers(lueCompany.EditValue.ToString());
+            LoadSeries(_paymentType);
+            lueLeadger.Focus();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueCompany.EditValue != null)
+                LoadLedgers(lueCompany.EditValue.ToString());
+        }
+
+        private void FrmPaymentEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
         }
     }
 }

@@ -35,8 +35,8 @@ namespace DiamondTrading.Transaction
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
-            this.grdPurchaseDetails = new DevExpress.XtraGrid.GridControl();
-            this.grvPurchaseDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
+            this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -57,8 +57,8 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPurchaseDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
@@ -87,13 +87,14 @@ namespace DiamondTrading.Transaction
             this.lblFormTitle.Location = new System.Drawing.Point(0, 2);
             this.lblFormTitle.Name = "lblFormTitle";
             this.lblFormTitle.Size = new System.Drawing.Size(626, 23);
-            this.lblFormTitle.TabIndex = 23;
+            this.lblFormTitle.TabIndex = 0;
             this.lblFormTitle.Text = "|| શ્રીજી ||";
             this.lblFormTitle.UseMnemonic = false;
             this.lblFormTitle.Click += new System.EventHandler(this.lblFormTitle_Click);
             // 
             // lueCompany
             // 
+            this.lueCompany.Enabled = false;
             this.lueCompany.Location = new System.Drawing.Point(170, 31);
             this.lueCompany.Name = "lueCompany";
             this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,7 +107,8 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(299, 22);
-            this.lueCompany.TabIndex = 1;
+            this.lueCompany.TabIndex = 2;
+            this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
             // 
             // labelControl12
             // 
@@ -115,7 +117,7 @@ namespace DiamondTrading.Transaction
             this.labelControl12.Location = new System.Drawing.Point(11, 61);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(61, 16);
-            this.labelControl12.TabIndex = 2;
+            this.labelControl12.TabIndex = 3;
             this.labelControl12.Text = "Serial No :";
             // 
             // txtSerialNo
@@ -128,7 +130,7 @@ namespace DiamondTrading.Transaction
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
             this.txtSerialNo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtSerialNo.Size = new System.Drawing.Size(97, 24);
-            this.txtSerialNo.TabIndex = 3;
+            this.txtSerialNo.TabIndex = 4;
             // 
             // labelControl6
             // 
@@ -137,53 +139,54 @@ namespace DiamondTrading.Transaction
             this.labelControl6.Location = new System.Drawing.Point(11, 105);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(62, 16);
-            this.labelControl6.TabIndex = 2;
+            this.labelControl6.TabIndex = 8;
             this.labelControl6.Text = "Account* :";
             // 
             // grpGroup1
             // 
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
-            this.grpGroup1.Controls.Add(this.grdPurchaseDetails);
+            this.grpGroup1.Controls.Add(this.grdPaymentDetails);
             this.grpGroup1.Location = new System.Drawing.Point(11, 158);
             this.grpGroup1.Name = "grpGroup1";
             this.grpGroup1.Size = new System.Drawing.Size(606, 269);
-            this.grpGroup1.TabIndex = 26;
+            this.grpGroup1.TabIndex = 11;
             this.grpGroup1.Text = "Particulars Details";
             // 
-            // grdPurchaseDetails
+            // grdPaymentDetails
             // 
-            this.grdPurchaseDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPurchaseDetails.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdPurchaseDetails.Location = new System.Drawing.Point(2, 23);
-            this.grdPurchaseDetails.MainView = this.grvPurchaseDetails;
-            this.grdPurchaseDetails.Name = "grdPurchaseDetails";
-            this.grdPurchaseDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.grdPaymentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPaymentDetails.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdPaymentDetails.Location = new System.Drawing.Point(2, 23);
+            this.grdPaymentDetails.MainView = this.grvPaymentDetails;
+            this.grdPaymentDetails.Name = "grdPaymentDetails";
+            this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoTxtEdit,
             this.repoParty});
-            this.grdPurchaseDetails.Size = new System.Drawing.Size(602, 244);
-            this.grdPurchaseDetails.TabIndex = 4;
-            this.grdPurchaseDetails.UseEmbeddedNavigator = true;
-            this.grdPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvPurchaseDetails});
+            this.grdPaymentDetails.Size = new System.Drawing.Size(602, 244);
+            this.grdPaymentDetails.TabIndex = 0;
+            this.grdPaymentDetails.UseEmbeddedNavigator = true;
+            this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvPaymentDetails});
             // 
-            // grvPurchaseDetails
+            // grvPaymentDetails
             // 
-            this.grvPurchaseDetails.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.grvPurchaseDetails.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
-            this.grvPurchaseDetails.Appearance.HeaderPanel.Options.UseFont = true;
-            this.grvPurchaseDetails.Appearance.HeaderPanel.Options.UseForeColor = true;
-            this.grvPurchaseDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.grvPurchaseDetails.Appearance.Row.Options.UseFont = true;
-            this.grvPurchaseDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvPaymentDetails.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.grvPaymentDetails.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.grvPaymentDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
+            this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colParty,
             this.colAmount});
-            this.grvPurchaseDetails.GridControl = this.grdPurchaseDetails;
-            this.grvPurchaseDetails.Name = "grvPurchaseDetails";
-            this.grvPurchaseDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.grvPurchaseDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.grvPurchaseDetails.OptionsView.ShowGroupPanel = false;
-            this.grvPurchaseDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvPurchaseDetails_InitNewRow);
+            this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
+            this.grvPaymentDetails.Name = "grvPaymentDetails";
+            this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.grvPaymentDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.grvPaymentDetails.OptionsView.ShowFooter = true;
+            this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
+            this.grvPaymentDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvPurchaseDetails_InitNewRow);
             // 
             // colParty
             // 
@@ -212,6 +215,8 @@ namespace DiamondTrading.Transaction
             this.colAmount.ColumnEdit = this.repoTxtEdit;
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
+            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 1;
             this.colAmount.Width = 223;
@@ -233,7 +238,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup2.Location = new System.Drawing.Point(11, 433);
             this.grpGroup2.Name = "grpGroup2";
             this.grpGroup2.Size = new System.Drawing.Size(606, 83);
-            this.grpGroup2.TabIndex = 27;
+            this.grpGroup2.TabIndex = 12;
             this.grpGroup2.Text = "Remark";
             // 
             // txtRemark
@@ -244,7 +249,7 @@ namespace DiamondTrading.Transaction
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
-            this.txtRemark.TabIndex = 5;
+            this.txtRemark.TabIndex = 0;
             // 
             // btnCancel
             // 
@@ -254,7 +259,7 @@ namespace DiamondTrading.Transaction
             this.btnCancel.Location = new System.Drawing.Point(563, 534);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 8;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -265,7 +270,7 @@ namespace DiamondTrading.Transaction
             this.btnReset.Location = new System.Drawing.Point(482, 534);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
-            this.btnReset.TabIndex = 7;
+            this.btnReset.TabIndex = 2;
             this.btnReset.Text = "&Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -276,7 +281,7 @@ namespace DiamondTrading.Transaction
             this.btnSave.Location = new System.Drawing.Point(401, 534);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
-            this.btnSave.TabIndex = 6;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -294,7 +299,7 @@ namespace DiamondTrading.Transaction
             this.txtLedgerBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.txtLedgerBalance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtLedgerBalance.Size = new System.Drawing.Size(109, 20);
-            this.txtLedgerBalance.TabIndex = 7;
+            this.txtLedgerBalance.TabIndex = 10;
             // 
             // lueLeadger
             // 
@@ -310,7 +315,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueLeadger.Properties.NullText = "";
             this.lueLeadger.Size = new System.Drawing.Size(275, 22);
-            this.lueLeadger.TabIndex = 3;
+            this.lueLeadger.TabIndex = 9;
             this.lueLeadger.EditValueChanged += new System.EventHandler(this.lueLeadger_EditValueChanged);
             // 
             // dtTime
@@ -337,7 +342,7 @@ namespace DiamondTrading.Transaction
             this.dtTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtTime.Properties.MaskSettings.Set("mask", "t");
             this.dtTime.Size = new System.Drawing.Size(88, 20);
-            this.dtTime.TabIndex = 8;
+            this.dtTime.TabIndex = 7;
             // 
             // labelControl8
             // 
@@ -346,7 +351,7 @@ namespace DiamondTrading.Transaction
             this.labelControl8.Location = new System.Drawing.Point(479, 63);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 16);
-            this.labelControl8.TabIndex = 6;
+            this.labelControl8.TabIndex = 5;
             this.labelControl8.Text = "Date* :";
             // 
             // dtDate
@@ -363,7 +368,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 2;
+            this.dtDate.TabIndex = 6;
             // 
             // labelControl1
             // 
@@ -372,7 +377,7 @@ namespace DiamondTrading.Transaction
             this.labelControl1.Location = new System.Drawing.Point(103, 34);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(62, 16);
-            this.labelControl1.TabIndex = 31;
+            this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Company :";
             // 
             // panelControl1
@@ -393,7 +398,7 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Location = new System.Drawing.Point(10, 0);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
-            this.panelControl1.TabIndex = 32;
+            this.panelControl1.TabIndex = 0;
             // 
             // FrmPaymentEntry
             // 
@@ -407,18 +412,20 @@ namespace DiamondTrading.Transaction
             this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.ShowIcon = false;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmPaymentEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PAYMENT";
             this.Load += new System.EventHandler(this.FrmPaymentEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmPaymentEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdPurchaseDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPurchaseDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
@@ -445,8 +452,8 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.TextEdit txtSerialNo;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.GroupControl grpGroup1;
-        private DevExpress.XtraGrid.GridControl grdPurchaseDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView grvPurchaseDetails;
+        private DevExpress.XtraGrid.GridControl grdPaymentDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvPaymentDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colParty;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoParty;
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
