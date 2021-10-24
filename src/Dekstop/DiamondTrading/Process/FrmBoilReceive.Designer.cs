@@ -43,7 +43,9 @@ namespace DiamondTrading.Process
             this.grvPurchaseDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -60,8 +62,6 @@ namespace DiamondTrading.Process
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -279,6 +279,14 @@ namespace DiamondTrading.Process
             this.repoParty.Name = "repoParty";
             this.repoParty.NullText = "";
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Slip No";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 81;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Size";
@@ -286,6 +294,14 @@ namespace DiamondTrading.Process
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 182;
+            // 
+            // gridColumn4
+            // 
+            this.gridColumn4.Caption = "Category";
+            this.gridColumn4.Name = "gridColumn4";
+            this.gridColumn4.Visible = true;
+            this.gridColumn4.VisibleIndex = 4;
+            this.gridColumn4.Width = 125;
             // 
             // colAmount
             // 
@@ -454,6 +470,7 @@ namespace DiamondTrading.Process
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(564, 539);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
@@ -481,26 +498,11 @@ namespace DiamondTrading.Process
             this.btnSave.TabIndex = 37;
             this.btnSave.Text = "&Save";
             // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Slip No";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 81;
-            // 
-            // gridColumn4
-            // 
-            this.gridColumn4.Caption = "Category";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 4;
-            this.gridColumn4.Width = 125;
-            // 
             // FrmBoilReceive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(650, 565);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.btnCancel);
