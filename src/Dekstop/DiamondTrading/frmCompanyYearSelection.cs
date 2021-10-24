@@ -27,10 +27,10 @@ namespace DiamondTrading
             _financialYearRepository = new FinancialYearMasterRepository();
         }
 
-        private void FrmCompanyYearSelection_Load(object sender, EventArgs e)
+        private async void FrmCompanyYearSelection_Load(object sender, EventArgs e)
         {
-            LoadCompany();
-            LoadFinancialYear();
+            await LoadCompany();
+            await LoadFinancialYear();
 
             LoadRegistrySettings();
         }
@@ -65,6 +65,13 @@ namespace DiamondTrading
                     lueBranch.EditValue = Common.LoginBranch;
                 if (Common.LoginFinancialYear != Common.DefaultGuid)
                     lueFinancialYear.EditValue = Common.LoginFinancialYear;
+                btnOk.Focus();
+                btnOk.Select();
+            }
+            else
+            {
+                lueCompany.Focus();
+                lueCompany.Select();
             }
         }
 
@@ -107,7 +114,7 @@ namespace DiamondTrading
             return true;
         }
 
-        private async void LoadCompany()
+        private async Task LoadCompany()
         {
             var companies = await _companyMasterRepository.GetAllCompanyAsync();
             lueCompany.Properties.DataSource = companies;
@@ -115,7 +122,7 @@ namespace DiamondTrading
             lueCompany.Properties.ValueMember = "Id";
         }
 
-        private async void LoadBranch(string companyId)
+        private async Task LoadBranch(string companyId)
         {
             lueBranch.EditValue = null;
             var branches = await _branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
@@ -124,7 +131,7 @@ namespace DiamondTrading
             lueBranch.Properties.ValueMember = "Id";
         }
 
-        private async void LoadFinancialYear()
+        private async Task LoadFinancialYear()
         {
             var financialYear = await _financialYearRepository.GetAllFinancialYear();
             lueFinancialYear.Properties.DataSource = financialYear;
@@ -139,10 +146,10 @@ namespace DiamondTrading
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private void lookUpCompany_EditValueChanged(object sender, EventArgs e)
+        private async void lookUpCompany_EditValueChanged(object sender, EventArgs e)
         {
             if (lueCompany.EditValue != null)
-                LoadBranch(lueCompany.EditValue.ToString());
+                await LoadBranch(lueCompany.EditValue.ToString());
         }
     }
 }

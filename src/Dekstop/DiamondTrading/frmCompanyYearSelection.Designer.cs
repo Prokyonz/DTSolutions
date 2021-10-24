@@ -58,7 +58,7 @@ namespace DiamondTrading
             this.labelControl3.Location = new System.Drawing.Point(40, 17);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(364, 28);
-            this.labelControl3.TabIndex = 11;
+            this.labelControl3.TabIndex = 1;
             this.labelControl3.Text = "Current Company/Branch/Year";
             // 
             // labelControl2
@@ -68,7 +68,7 @@ namespace DiamondTrading
             this.labelControl2.Location = new System.Drawing.Point(12, 157);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(80, 16);
-            this.labelControl2.TabIndex = 10;
+            this.labelControl2.TabIndex = 6;
             this.labelControl2.Text = "Financial Year";
             // 
             // labelControl1
@@ -78,7 +78,7 @@ namespace DiamondTrading
             this.labelControl1.Location = new System.Drawing.Point(12, 55);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(53, 16);
-            this.labelControl1.TabIndex = 9;
+            this.labelControl1.TabIndex = 2;
             this.labelControl1.Text = "Company";
             // 
             // btnOk
@@ -92,7 +92,7 @@ namespace DiamondTrading
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(385, 33);
-            this.btnOk.TabIndex = 5;
+            this.btnOk.TabIndex = 9;
             this.btnOk.Text = "OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -103,7 +103,7 @@ namespace DiamondTrading
             this.labelControl4.Location = new System.Drawing.Point(12, 106);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(39, 16);
-            this.labelControl4.TabIndex = 14;
+            this.labelControl4.TabIndex = 4;
             this.labelControl4.Text = "Branch";
             // 
             // panelControl1
@@ -122,7 +122,7 @@ namespace DiamondTrading
             this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(412, 276);
-            this.panelControl1.TabIndex = 16;
+            this.panelControl1.TabIndex = 0;
             // 
             // chkRememberMe
             // 
@@ -135,7 +135,7 @@ namespace DiamondTrading
             this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
             this.chkRememberMe.Properties.Caption = "Remember details";
             this.chkRememberMe.Size = new System.Drawing.Size(134, 20);
-            this.chkRememberMe.TabIndex = 4;
+            this.chkRememberMe.TabIndex = 8;
             // 
             // lueFinancialYear
             // 
@@ -153,7 +153,7 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EndDate", "EndDate")});
             this.lueFinancialYear.Properties.NullText = "";
             this.lueFinancialYear.Size = new System.Drawing.Size(385, 26);
-            this.lueFinancialYear.TabIndex = 3;
+            this.lueFinancialYear.TabIndex = 7;
             // 
             // lueBranch
             // 
@@ -170,7 +170,7 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(385, 26);
-            this.lueBranch.TabIndex = 2;
+            this.lueBranch.TabIndex = 5;
             // 
             // lueCompany
             // 
@@ -187,7 +187,7 @@ namespace DiamondTrading
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(385, 26);
-            this.lueCompany.TabIndex = 1;
+            this.lueCompany.TabIndex = 3;
             this.lueCompany.EditValueChanged += new System.EventHandler(this.lookUpCompany_EditValueChanged);
             // 
             // pictureEdit1
@@ -199,7 +199,7 @@ namespace DiamondTrading
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
-            this.pictureEdit1.TabIndex = 16;
+            this.pictureEdit1.TabIndex = 0;
             // 
             // FrmCompanyYearSelection
             // 
@@ -209,6 +209,7 @@ namespace DiamondTrading
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCompanyYearSelection";

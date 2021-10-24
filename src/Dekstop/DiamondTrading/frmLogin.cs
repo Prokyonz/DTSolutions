@@ -90,6 +90,13 @@ namespace DiamondTrading
             { 
                 txtUsername.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, ""),SecurityType.Password);
                 txtPassword.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, ""), SecurityType.Password);
+                btnLogin.Focus();
+                btnLogin.Select();
+            }
+            else
+            {
+                txtUsername.Focus();
+                txtUsername.Select();
             }
         }
 

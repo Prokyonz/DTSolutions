@@ -221,9 +221,13 @@ namespace DiamondTrading
             // 
             // bar2
             // 
-            this.bar2.BarAppearance.Normal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Disabled.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Disabled.Options.UseFont = true;
+            this.bar2.BarAppearance.Hovered.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Hovered.Options.UseFont = true;
+            this.bar2.BarAppearance.Normal.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bar2.BarAppearance.Normal.Options.UseFont = true;
-            this.bar2.BarAppearance.Pressed.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bar2.BarAppearance.Pressed.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.bar2.BarAppearance.Pressed.Options.UseFont = true;
             this.bar2.BarName = "Main menu";
             this.bar2.DockCol = 0;
