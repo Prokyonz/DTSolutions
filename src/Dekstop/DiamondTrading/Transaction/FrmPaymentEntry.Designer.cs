@@ -162,7 +162,7 @@ namespace DiamondTrading.Transaction
             this.repoTxtEdit,
             this.repoParty});
             this.grdPurchaseDetails.Size = new System.Drawing.Size(602, 244);
-            this.grdPurchaseDetails.TabIndex = 0;
+            this.grdPurchaseDetails.TabIndex = 4;
             this.grdPurchaseDetails.UseEmbeddedNavigator = true;
             this.grdPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPurchaseDetails});
@@ -183,6 +183,7 @@ namespace DiamondTrading.Transaction
             this.grvPurchaseDetails.OptionsNavigation.EnterMoveNextColumn = true;
             this.grvPurchaseDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvPurchaseDetails.OptionsView.ShowGroupPanel = false;
+            this.grvPurchaseDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvPurchaseDetails_InitNewRow);
             // 
             // colParty
             // 
@@ -243,16 +244,17 @@ namespace DiamondTrading.Transaction
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
-            this.txtRemark.TabIndex = 0;
+            this.txtRemark.TabIndex = 5;
             // 
             // btnCancel
             // 
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(563, 534);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 30;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -263,8 +265,9 @@ namespace DiamondTrading.Transaction
             this.btnReset.Location = new System.Drawing.Point(482, 534);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
-            this.btnReset.TabIndex = 29;
+            this.btnReset.TabIndex = 7;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
@@ -273,8 +276,9 @@ namespace DiamondTrading.Transaction
             this.btnSave.Location = new System.Drawing.Point(401, 534);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
-            this.btnSave.TabIndex = 28;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "&Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtLedgerBalance
             // 
@@ -306,7 +310,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueLeadger.Properties.NullText = "";
             this.lueLeadger.Size = new System.Drawing.Size(275, 22);
-            this.lueLeadger.TabIndex = 6;
+            this.lueLeadger.TabIndex = 3;
             this.lueLeadger.EditValueChanged += new System.EventHandler(this.lueLeadger_EditValueChanged);
             // 
             // dtTime
@@ -359,7 +363,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 7;
+            this.dtDate.TabIndex = 2;
             // 
             // labelControl1
             // 
@@ -395,6 +399,7 @@ namespace DiamondTrading.Transaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(650, 565);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.btnCancel);

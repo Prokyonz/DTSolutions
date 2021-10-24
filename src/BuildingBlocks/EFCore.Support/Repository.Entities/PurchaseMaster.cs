@@ -20,6 +20,8 @@ namespace Repository.Entities
         [Column(TypeName = "decimal(18, 4)")]
         public decimal CurrencyRate { get; set; }
         public long PurchaseBillNo { get; set; }
+        public int ApprovalType { get; set; }
+        public string Message { get; set; }
         public long SlipNo { get; set; }
         public int TransactionType { get; set; }
         public string Date { get; set; }

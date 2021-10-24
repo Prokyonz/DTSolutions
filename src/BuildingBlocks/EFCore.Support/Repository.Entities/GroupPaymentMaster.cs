@@ -12,6 +12,7 @@ namespace Repository.Entities
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
+        public int CrDrType { get; set; } // 0 -> Debit, 1 -> Credit
         public string ToPartyId { get; set; } //Bank or Cash PartyId
         public int BillNo { get; set; }
         public string Remarks { get; set; }

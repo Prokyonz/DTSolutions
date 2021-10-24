@@ -11,7 +11,7 @@ namespace EFCore.SQL.Repository
 {
     public class PartyMasterRepository : IPartyMaster
     {
-        private static DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public PartyMasterRepository()
         {
