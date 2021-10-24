@@ -1152,6 +1152,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<bool>("AllowSlipPrint")
                         .HasColumnType("bit");
 
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
+
                     b.Property<string>("BranchId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1226,6 +1229,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<bool>("IsTransfer")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
