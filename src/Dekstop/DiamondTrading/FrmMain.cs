@@ -584,7 +584,26 @@ namespace DiamondTrading
 
         private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenMasterDetailsForm("Purchase");
+            panelControl1.SendToBack();
+            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            if (page != null)
+            {
+                page.Close();
+                //barManager1.ForceInitialize();
+                //page.SelectedTabPage = PageRequested;
+                //page.ActiveTab();
+                //page.BringToFront();
+            }
+
+            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+            frmMasterDetails.SelectedTabPage = "Purchase";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+
+            //OpenMasterDetailsForm("Purchase");
         }
 
         private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -626,6 +645,31 @@ namespace DiamondTrading
             }
 
             Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Receipt");
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPaymentEntry.StartPosition = FormStartPosition.Manual;
+
+            frmPaymentEntry.Location = new Point((w - frmPaymentEntry.Width - 200) / 3, (Height - frmPaymentEntry.Height) / 2);
+
+            frmPaymentEntry.ShowDialog();
+        }
+
+        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Contra");
 
             Screen screen = Screen.FromControl(this);
 

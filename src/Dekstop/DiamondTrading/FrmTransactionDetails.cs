@@ -16,7 +16,6 @@ namespace DiamondTrading
 {
     public partial class FrmTransactionDetails : DevExpress.XtraEditors.XtraForm
     {
-        private UnitOfWorkMaster _unitOfWorkMaster;
         private PurchaseMasterRepository _purchaseMasterRepository;
         private SalesMasterRepository _salesMasterRepository;
 
@@ -26,7 +25,7 @@ namespace DiamondTrading
         public FrmTransactionDetails()
         {
             InitializeComponent();
-            _unitOfWorkMaster = new UnitOfWorkMaster();
+            //LoadGridData();
         }
 
         public void ActiveTab()
@@ -94,12 +93,12 @@ namespace DiamondTrading
         {
             if (xtabMasterDetails.SelectedTabPage == xtabPurchase)
             {
-                //if (IsForceLoad || _companyMaster == null)
-                //{
-                //    _companyMasterRepository = new CompanyMasterRepository();
-                //    _companyMaster = await _companyMasterRepository.GetAllCompanyAsync();
-                //    grdCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
-                //}
+                if (IsForceLoad || _purchaseMasterRepository == null)
+                {
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    _purchaseMaster = await _purchaseMasterRepository.GetAllPurchaseAsync(Common.LoginCompany,Common.LoginFinancialYear);
+                    grdTransactionMaster.DataSource = _purchaseMaster.OrderBy(o=>o.SlipNo);
+                }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSales)
             {

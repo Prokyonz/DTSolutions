@@ -11,38 +11,44 @@ namespace EFCore.SQL.Repository
 {
     public class CompanyMasterRepository : ICompanyMaster, IDisposable
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
         public CompanyMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
         public async Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                if (companyMaster.Id == null)
-                    companyMaster.Id = Guid.NewGuid().ToString();
+                try
+                {
+                    if (companyMaster.Id == null)
+                        companyMaster.Id = Guid.NewGuid().ToString();
 
-                await _databaseContext.CompanyMaster.AddAsync(companyMaster);
-                await _databaseContext.SaveChangesAsync();                
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+                    await _databaseContext.CompanyMaster.AddAsync(companyMaster);
+                    await _databaseContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
 
-            return companyMaster;
+                return companyMaster;
+            }
         }
 
         public async Task<bool> DeleteCompanyAsync(string CompanyId)
         {
-            var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
-            if (getCompany != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getCompany.IsDelete = true;
+                var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
+                if (getCompany != null)
+                {
+                    getCompany.IsDelete = true;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return true;
             }
-            await _databaseContext.SaveChangesAsync();
-            return true;
         }
 
         public void Dispose()
@@ -52,39 +58,48 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<CompanyMaster>> GetAllCompanyAsync()
         {
-            List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).ToListAsync(); 
-            return companyMasters;
+            using (_databaseContext = new DatabaseContext())
+            {
+                List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).ToListAsync();
+                return companyMasters;
+            }
         }
 
         public async Task<List<CompanyMaster>> GetParentCompanyAsync()
         {
-            List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
-            return companyMasters;
+            using (_databaseContext = new DatabaseContext())
+            {
+                List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
+                return companyMasters;
+            }
         }
 
         public async Task<CompanyMaster> UpdateCompanyAsync(CompanyMaster companyMaster)
         {
-            var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == companyMaster.Id).FirstOrDefaultAsync();
-            if (getCompany != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getCompany.Name = companyMaster.Name;
-                getCompany.Address = companyMaster.Address;
-                getCompany.Address2 = companyMaster.Address2;
-                getCompany.MobileNo = companyMaster.MobileNo;
-                getCompany.Details = companyMaster.Details;
-                getCompany.TermsCondition = companyMaster.TermsCondition;
-                getCompany.GSTNo = companyMaster.GSTNo;
-                getCompany.PanCardNo = companyMaster.PanCardNo;
-                getCompany.RegistrationNo = companyMaster.RegistrationNo;
-                getCompany.Type = companyMaster.Type;
-                getCompany.IsDelete = companyMaster.IsDelete;
-                getCompany.CreatedDate = companyMaster.CreatedDate;
-                getCompany.UpdatedDate = companyMaster.UpdatedDate;
-                getCompany.CreatedBy = companyMaster.CreatedBy;
-                getCompany.UpdatedBy = companyMaster.UpdatedBy;
+                var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == companyMaster.Id).FirstOrDefaultAsync();
+                if (getCompany != null)
+                {
+                    getCompany.Name = companyMaster.Name;
+                    getCompany.Address = companyMaster.Address;
+                    getCompany.Address2 = companyMaster.Address2;
+                    getCompany.MobileNo = companyMaster.MobileNo;
+                    getCompany.Details = companyMaster.Details;
+                    getCompany.TermsCondition = companyMaster.TermsCondition;
+                    getCompany.GSTNo = companyMaster.GSTNo;
+                    getCompany.PanCardNo = companyMaster.PanCardNo;
+                    getCompany.RegistrationNo = companyMaster.RegistrationNo;
+                    getCompany.Type = companyMaster.Type;
+                    getCompany.IsDelete = companyMaster.IsDelete;
+                    getCompany.CreatedDate = companyMaster.CreatedDate;
+                    getCompany.UpdatedDate = companyMaster.UpdatedDate;
+                    getCompany.CreatedBy = companyMaster.CreatedBy;
+                    getCompany.UpdatedBy = companyMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return companyMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return companyMaster;
         }
     }
 }

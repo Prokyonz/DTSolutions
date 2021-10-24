@@ -49,22 +49,22 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string financialYearId)
         {
-            return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.FinancialYearId == financialYearId).ToListAsync();
+            return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId && s.FinancialYearId == financialYearId).ToListAsync();
         }
 
         public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, string financialYearId)
         {
-            return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.BranchId == branchId && s.FinancialYearId == financialYearId).ToListAsync();
+            return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId && s.BranchId == branchId && s.FinancialYearId == financialYearId).ToListAsync();
         }
 
         public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, DateTime startDate, DateTime endDate)
         {
-            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
         public async Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, DateTime startDate, DateTime endDate)
         {
-            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+            return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
         public async Task<long> GetMaxSlipNo(string branchId, string financialYearId)

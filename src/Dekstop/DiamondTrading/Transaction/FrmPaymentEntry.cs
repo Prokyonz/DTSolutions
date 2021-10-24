@@ -18,6 +18,7 @@ namespace DiamondTrading.Transaction
         private readonly CompanyMasterRepository _companyMasterRepository;
         private readonly PartyMasterRepository _partyMasterRepository;
         private PaymentMasterRepository _paymentMaterRepository;
+        private readonly ContraEntryMasterRespository _contraEntryRepository;
         int _paymentType = 0;
 
         public FrmPaymentEntry(string PaymentType)
@@ -27,6 +28,7 @@ namespace DiamondTrading.Transaction
             _companyMasterRepository = new CompanyMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _paymentMaterRepository = new PaymentMasterRepository();
+            _contraEntryRepository = new ContraEntryMasterRespository();
 
             if (PaymentType == "Payment")
             {
@@ -34,11 +36,16 @@ namespace DiamondTrading.Transaction
                 SetThemeColors(Color.FromArgb(250, 243, 197));
                 this.Text = "PAYMENT";
             }
-            else
+            else if(PaymentType == "Receipt")
             {
                 _paymentType = 1;
                 SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "RECEIPT";
+            } else
+            {
+                _paymentType = -1;
+                SetThemeColors(Color.FromArgb(217, 217, 217));
+                this.Text = "CONTRA";
             }
             LoadCompany();
             LoadSeries(_paymentType);                         
@@ -46,8 +53,16 @@ namespace DiamondTrading.Transaction
 
         private async void LoadSeries(int paymentType)
         {
-            var result = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, Common.LoginCompany, Common.LoginFinancialYear);
-            txtSerialNo.Text = result.ToString();
+            if (paymentType == -1)
+            {
+                var result = await _contraEntryRepository.GetMaxNo(Common.LoginCompany, Common.LoginFinancialYear);
+                txtSerialNo.Text = result.ToString();
+            }
+            else
+            {
+                var result = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, Common.LoginCompany, Common.LoginFinancialYear);
+                txtSerialNo.Text = result.ToString();
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -92,14 +107,28 @@ namespace DiamondTrading.Transaction
 
         private async void LoadLedgers(string companyId)
         {
-            var result = await _partyMasterRepository.GetAllPartyAsync(companyId);
-            lueLeadger.Properties.DataSource = result;
-            lueLeadger.Properties.DisplayMember = "Name";
-            lueLeadger.Properties.ValueMember = "Id";
+            if (_paymentType == -1)
+            {
+                var result = await _partyMasterRepository.GetAllPartyAsync(companyId, new int[] { 4,5});
+                lueLeadger.Properties.DataSource = result;
+                lueLeadger.Properties.DisplayMember = "Name";
+                lueLeadger.Properties.ValueMember = "Id";
 
-            repoParty.DataSource = result;
-            repoParty.DisplayMember = "Name";
-            repoParty.ValueMember = "Id";
+                repoParty.DataSource = result;
+                repoParty.DisplayMember = "Name";
+                repoParty.ValueMember = "Id";
+            }
+            else
+            {
+                var result = await _partyMasterRepository.GetAllPartyAsync(companyId);
+                lueLeadger.Properties.DataSource = result;
+                lueLeadger.Properties.DisplayMember = "Name";
+                lueLeadger.Properties.ValueMember = "Id";
+
+                repoParty.DataSource = result;
+                repoParty.DisplayMember = "Name";
+                repoParty.ValueMember = "Id";
+            }
         }
 
         private async void lueLeadger_EditValueChanged(object sender, EventArgs e)
@@ -119,28 +148,58 @@ namespace DiamondTrading.Transaction
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
+                
+                //Contra Entry
+                if (_paymentType == -1)
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    BillNo = Convert.ToInt32(txtSerialNo.Text),
-                    BranchId = Common.LoginBranch,
-                    CompanyId = Common.LoginCompany,
-                    FinancialYearId = Common.LoginFinancialYear,
-                    CreatedBy = Guid.NewGuid().ToString(),
-                    CreatedDate = DateTime.Now,
-                    IsDelete = false,
-                    Remarks = txtRemark.Text,
-                    ToPartyId = lueLeadger.EditValue.ToString(),
-                    PaymentMasters = null,
-                };
+                    ContraEntryMaster contraEntryMaster = new ContraEntryMaster
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        BranchId = Common.LoginBranch,
+                        CompanyId = Common.LoginCompany,
+                        FinancialYearId = Common.LoginFinancialYear,
+                        CreatedBy = Guid.NewGuid().ToString(),
+                        CreatedDate = DateTime.Now,
+                        IsDelete = false,
+                        Remarks = txtRemark.Text,
+                        ToPartyId = lueLeadger.EditValue.ToString(),
+                        ContraEntryDetails = null
+                    };
 
-                var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
+                    var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
 
-                if (Result != null)
+                    if (result != null)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadSeries(_paymentType);
+                    }
+                }
+                else
                 {
-                    Reset();
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    LoadSeries(_paymentType);
+                    GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        BillNo = Convert.ToInt32(txtSerialNo.Text),
+                        BranchId = Common.LoginBranch,
+                        CompanyId = Common.LoginCompany,
+                        FinancialYearId = Common.LoginFinancialYear,
+                        CreatedBy = Guid.NewGuid().ToString(),
+                        CreatedDate = DateTime.Now,
+                        IsDelete = false,
+                        Remarks = txtRemark.Text,
+                        ToPartyId = lueLeadger.EditValue.ToString(),
+                        PaymentMasters = null,
+                    };
+
+                    var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
+
+                    if (Result != null)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadSeries(_paymentType);
+                    }
                 }
             }
             catch (Exception Ex)

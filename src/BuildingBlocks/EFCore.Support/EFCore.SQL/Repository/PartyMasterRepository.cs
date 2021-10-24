@@ -5,6 +5,7 @@ using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
@@ -71,6 +72,14 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
+            }
+        }
+
+        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int[] partyTypeMaster)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PartyMaster.Where(w=>w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
             }
         }
 
