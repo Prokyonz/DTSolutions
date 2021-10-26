@@ -11,6 +11,7 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
+        public string FinancialYearId { get; set; }
         public string PurchaseMasterId { get; set; }
         public string PurchaseDetailsId { get; set; }
         public string KapanId { get; set; }
