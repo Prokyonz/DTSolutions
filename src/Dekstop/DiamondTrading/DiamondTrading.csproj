@@ -307,6 +307,18 @@
     <Compile Include="Master\frmUserMaster.designer.cs">
       <DependentUpon>frmUserMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmAssortProcessReceive.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmAssortProcessReceive.designer.cs">
+      <DependentUpon>FrmAssortProcessReceive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\FrmAssortProcessSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmAssortProcessSend.designer.cs">
+      <DependentUpon>FrmAssortProcessSend.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmBoilReceive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,6 +374,12 @@
     </Compile>
     <Compile Include="SplashScreen1.Designer.cs">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\FrmKapanMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmKapanMap.Designer.cs">
+      <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </Compile>
     <Compile Include="Transaction\FrmPaymentEntry.cs">
       <SubType>Form</SubType>
@@ -450,6 +468,12 @@
     <EmbeddedResource Include="Master\frmUserMaster.resx">
       <DependentUpon>frmUserMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmAssortProcessReceive.resx">
+      <DependentUpon>FrmAssortProcessReceive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmAssortProcessSend.resx">
+      <DependentUpon>FrmAssortProcessSend.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmBoilReceive.resx">
       <DependentUpon>FrmBoilReceive.cs</DependentUpon>
     </EmbeddedResource>
@@ -487,6 +511,9 @@
     </Compile>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmKapanMap.resx">
+      <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmPaymentEntry.resx">
       <DependentUpon>FrmPaymentEntry.cs</DependentUpon>

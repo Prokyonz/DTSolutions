@@ -685,5 +685,80 @@ namespace DiamondTrading
 
             frmPaymentEntry.ShowDialog();
         }
+
+        private void barButtonItem21_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.FrmKapanMap page = Application.OpenForms["FrmKapanMap"] as Process.FrmKapanMap;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmKapanMap frmKapanMap = new Process.FrmKapanMap();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmKapanMap.StartPosition = FormStartPosition.Manual;
+
+            frmKapanMap.Location = new Point((w - frmKapanMap.Width - 200) / 3, (Height - frmKapanMap.Height) / 2);
+
+            frmKapanMap.ShowDialog();
+        }
+
+        private void barButtonItem34_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.FrmAssortProcessSend page = Application.OpenForms["FrmAssortProcessSend"] as Process.FrmAssortProcessSend;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmAssortProcessSend frmAssortProcessSend = new Process.FrmAssortProcessSend();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmAssortProcessSend.StartPosition = FormStartPosition.Manual;
+
+            frmAssortProcessSend.Location = new Point((w - frmAssortProcessSend.Width - 200) / 3, (Height - frmAssortProcessSend.Height) / 2);
+
+            frmAssortProcessSend.ShowDialog();
+        }
+
+        private void barButtonItem43_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.FrmAssortProcessReceive page = Application.OpenForms["FrmAssortProcessReceive"] as Process.FrmAssortProcessReceive;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmAssortProcessReceive frmAssortProcessReceive = new Process.FrmAssortProcessReceive();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmAssortProcessReceive.StartPosition = FormStartPosition.Manual;
+
+            frmAssortProcessReceive.Location = new Point((w - frmAssortProcessReceive.Width - 200) / 3, (Height - frmAssortProcessReceive.Height) / 2);
+
+            frmAssortProcessReceive.ShowDialog();
+        }
     }
 }
