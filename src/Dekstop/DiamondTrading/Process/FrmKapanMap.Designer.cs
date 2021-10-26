@@ -30,7 +30,7 @@ namespace DiamondTrading.Process
         private void InitializeComponent()
         {
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lueLeadger = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueKapan = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -43,6 +43,7 @@ namespace DiamondTrading.Process
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
@@ -55,13 +56,12 @@ namespace DiamondTrading.Process
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.tglIsActive = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtDays = new DevExpress.XtraEditors.TextEdit();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.lueLeadger.Properties)).BeginInit();
+            this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -80,36 +80,36 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(13, 84);
+            this.labelControl1.Location = new System.Drawing.Point(13, 83);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(62, 16);
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "Company :";
             // 
-            // lueLeadger
+            // lueKapan
             // 
-            this.lueLeadger.Location = new System.Drawing.Point(387, 81);
-            this.lueLeadger.Name = "lueLeadger";
-            this.lueLeadger.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueLeadger.Properties.Appearance.Options.UseFont = true;
-            this.lueLeadger.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueKapan.Location = new System.Drawing.Point(387, 80);
+            this.lueKapan.Name = "lueKapan";
+            this.lueKapan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueKapan.Properties.Appearance.Options.UseFont = true;
+            this.lueKapan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueLeadger.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueKapan.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueLeadger.Properties.NullText = "";
-            this.lueLeadger.Size = new System.Drawing.Size(230, 22);
-            this.lueLeadger.TabIndex = 9;
+            this.lueKapan.Properties.NullText = "";
+            this.lueKapan.Size = new System.Drawing.Size(230, 22);
+            this.lueKapan.TabIndex = 9;
             // 
             // labelControl8
             // 
@@ -262,6 +262,14 @@ namespace DiamondTrading.Process
             this.grvPaymentDetails.OptionsView.ShowFooter = true;
             this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Size";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            this.gridColumn3.Width = 229;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Total Cts";
@@ -297,7 +305,7 @@ namespace DiamondTrading.Process
             // lueCompany
             // 
             this.lueCompany.Enabled = false;
-            this.lueCompany.Location = new System.Drawing.Point(80, 81);
+            this.lueCompany.Location = new System.Drawing.Point(80, 80);
             this.lueCompany.Name = "lueCompany";
             this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCompany.Properties.Appearance.Options.UseFont = true;
@@ -325,7 +333,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(300, 83);
+            this.labelControl6.Location = new System.Drawing.Point(300, 82);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(52, 16);
             this.labelControl6.TabIndex = 8;
@@ -389,8 +397,8 @@ namespace DiamondTrading.Process
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lueBranch);
             this.panelControl1.Controls.Add(this.separatorControl1);
-            this.panelControl1.Controls.Add(this.lookUpEdit1);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.tglIsActive);
             this.panelControl1.Controls.Add(this.labelControl14);
@@ -401,7 +409,7 @@ namespace DiamondTrading.Process
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.lblFormTitle);
             this.panelControl1.Controls.Add(this.grpGroup1);
-            this.panelControl1.Controls.Add(this.lueLeadger);
+            this.panelControl1.Controls.Add(this.lueKapan);
             this.panelControl1.Controls.Add(this.grpGroup2);
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Controls.Add(this.dtTime);
@@ -420,23 +428,6 @@ namespace DiamondTrading.Process
             this.separatorControl1.Size = new System.Drawing.Size(21, 72);
             this.separatorControl1.TabIndex = 49;
             // 
-            // lookUpEdit1
-            // 
-            this.lookUpEdit1.Enabled = false;
-            this.lookUpEdit1.Location = new System.Drawing.Point(80, 109);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CommisionID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lookUpEdit1.Properties.NullText = "";
-            this.lookUpEdit1.Size = new System.Drawing.Size(190, 22);
-            this.lookUpEdit1.TabIndex = 18;
-            // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -450,7 +441,7 @@ namespace DiamondTrading.Process
             // tglIsActive
             // 
             this.tglIsActive.EditValue = true;
-            this.tglIsActive.Location = new System.Drawing.Point(483, 109);
+            this.tglIsActive.Location = new System.Drawing.Point(483, 111);
             this.tglIsActive.Name = "tglIsActive";
             this.tglIsActive.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tglIsActive.Properties.Appearance.Options.UseFont = true;
@@ -464,7 +455,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(300, 110);
+            this.labelControl14.Location = new System.Drawing.Point(300, 112);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(81, 16);
             this.labelControl14.TabIndex = 13;
@@ -472,7 +463,7 @@ namespace DiamondTrading.Process
             // 
             // txtDays
             // 
-            this.txtDays.Location = new System.Drawing.Point(387, 108);
+            this.txtDays.Location = new System.Drawing.Point(387, 109);
             this.txtDays.Name = "txtDays";
             this.txtDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDays.Properties.Appearance.Options.UseFont = true;
@@ -483,13 +474,21 @@ namespace DiamondTrading.Process
             this.txtDays.Size = new System.Drawing.Size(90, 22);
             this.txtDays.TabIndex = 14;
             // 
-            // gridColumn3
+            // lueBranch
             // 
-            this.gridColumn3.Caption = "Size";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 229;
+            this.lueBranch.Enabled = false;
+            this.lueBranch.Location = new System.Drawing.Point(80, 109);
+            this.lueBranch.Name = "lueBranch";
+            this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueBranch.Properties.Appearance.Options.UseFont = true;
+            this.lueBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueBranch.Properties.NullText = "";
+            this.lueBranch.Size = new System.Drawing.Size(190, 22);
+            this.lueBranch.TabIndex = 50;
             // 
             // FrmKapanMap
             // 
@@ -509,7 +508,8 @@ namespace DiamondTrading.Process
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KAPAN MAPPING";
-            ((System.ComponentModel.ISupportInitialize)(this.lueLeadger.Properties)).EndInit();
+            this.Load += new System.EventHandler(this.FrmKapanMap_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
@@ -529,9 +529,9 @@ namespace DiamondTrading.Process
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -539,7 +539,7 @@ namespace DiamondTrading.Process
         #endregion
 
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LookUpEdit lueLeadger;
+        private DevExpress.XtraEditors.LookUpEdit lueKapan;
         private DevExpress.XtraEditors.LabelControl labelControl8;
         private DevExpress.XtraEditors.DateEdit dtTime;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
@@ -564,11 +564,11 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl labelControl14;
         private DevExpress.XtraEditors.TextEdit txtDays;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.ToggleSwitch tglIsActive;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraEditors.LookUpEdit lueBranch;
     }
 }
