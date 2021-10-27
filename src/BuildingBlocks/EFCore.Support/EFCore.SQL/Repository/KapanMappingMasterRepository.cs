@@ -59,6 +59,19 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<int> GetMaxSrNo(string companyId, string financialYearId)
+        {
+            try
+            {
+                var getResult = await _databaseContext.KapanMappingMaster.MaxAsync(m => m.Sr);
+                return getResult + 1;
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }            
+        }
+
         public async Task<List<KapanMappingMaster>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())

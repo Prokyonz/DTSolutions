@@ -4,115 +4,22 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211027080306_AssortToAccountTables")]
+    partial class AssortToAccountTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.18")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AccountToAssortMasterId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("AssignWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("SizeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SlipNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("TotalWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AccountToAssortMasterId");
-
-                    b.ToTable("AccountToAssortDetails");
-                });
-
-            modelBuilder.Entity("Repository.Entities.AccountToAssortMaster", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("Department")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("EntryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FinancialId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FromParyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("KapanId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ToPartyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("AccountToAssortMaster");
-                });
 
             modelBuilder.Entity("Repository.Entities.BoilMaster", b =>
                 {
@@ -2078,20 +1985,6 @@ namespace EFCore.SQL.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserRoleMaster");
-                });
-
-            modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
-                {
-                    b.HasOne("Repository.Entities.AccountToAssortMaster", "AccountToAssortMaster")
-                        .WithMany("AccountToAssortDetails")
-                        .HasForeignKey("AccountToAssortMasterId");
-                });
-
-            modelBuilder.Entity("Repository.Entities.AccountToAssortMaster", b =>
-                {
-                    b.HasOne("Repository.Entities.CompanyMaster", "CompanyMaster")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
                 });
 
             modelBuilder.Entity("Repository.Entities.BranchMaster", b =>

@@ -49,6 +49,8 @@ namespace EFCore.SQL.DBContext
         public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
         public DbSet<BoilMaster> BoilMaster { get; set; }
+        public DbSet<AccountToAssortMaster> AccountToAssortMaster { get; set; }
+        public DbSet<AccountToAssortDetails> AccountToAssortDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -91,6 +93,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SlipTransferEntry>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMappingMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BoilMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<AccountToAssortMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<AccountToAssortDetails>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
