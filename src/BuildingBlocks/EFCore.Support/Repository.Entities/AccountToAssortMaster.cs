@@ -15,6 +15,7 @@ namespace Repository.Entities
         public string BranchId { get; set; }
         public string FinancialId { get; set; }
         public DateTime? EntryDate { get; set; }
+        public int AccountToAssortType { get; set; } //Send, Receive
         public string FromParyId { get; set; }
         public string ToPartyId { get; set; }
         public string KapanId { get; set; }
