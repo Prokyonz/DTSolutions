@@ -936,13 +936,13 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CalculateCommisionRate(false);
+                //CalculateCommisionRate(false);
             }
         }
 
         private void txtCommisionAmount_Leave(object sender, EventArgs e)
         {
-            CalculateCommisionRate(false);
+            //CalculateCommisionRate(false);
         }
 
         private void txtBrokerPer_KeyDown(object sender, KeyEventArgs e)
@@ -962,13 +962,13 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CalculateBrokerageRate(false);
+                //CalculateBrokerageRate(false);
             }
         }
 
         private void txtBrokerageAmount_Leave(object sender, EventArgs e)
         {
-            CalculateBrokerageRate(false);
+            //CalculateBrokerageRate(false);
         }
 
         private void Image1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1241,7 +1241,7 @@ namespace DiamondTrading.Transaction
         {
             var selectedBuyer = (PartyMaster)lueBuyer.GetSelectedDataRow();
             var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedBuyer.BrokerageId);
-            txtBrokerPer.Text =brokerageDetail != null ?  brokerageDetail.Percentage.ToString() : "0";
+            txtBuyerCommisionPer.Text =brokerageDetail != null ?  brokerageDetail.Percentage.ToString() : "0";
         }
 
         private void lueParty_EditValueChanged(object sender, EventArgs e)
