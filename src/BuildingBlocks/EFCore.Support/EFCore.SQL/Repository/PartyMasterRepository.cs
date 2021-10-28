@@ -71,7 +71,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
+                return await _databaseContext.PartyMaster.Where(s => s.CompanyId == companyId && s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
             }
         }
 
@@ -79,7 +79,14 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(w=>w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
+                return await _databaseContext.PartyMaster.Where(w=>w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
+            }
+        }
+        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int subType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType ).ToListAsync();
             }
         }
 
@@ -88,14 +95,6 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Party).ToListAsync();
-            }
-        }
-
-        public async Task<List<PartyMaster>> GetEmployeeAsync(int SubType)
-        {
-            using (_databaseContext = new DatabaseContext())
-            {
-                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Employee && s.SubType == SubType).ToListAsync();
             }
         }
 

@@ -9,6 +9,7 @@ namespace EFCore.SQL.Interface
     public interface IBrokerageMaster
     {
         Task<List<BrokerageMaster>> GetAllBrokerageAsync();
+        Task<BrokerageMaster> GetBrokerageAsync(string brokerageId);
         Task<BrokerageMaster> AddBrokerageAsync(BrokerageMaster brokerageMaster);
         Task<BrokerageMaster> UpdateBrokerageAsync(BrokerageMaster brokerageMaster);
         Task<bool> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false);
