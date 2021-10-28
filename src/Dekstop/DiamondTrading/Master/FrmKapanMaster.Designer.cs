@@ -40,8 +40,8 @@ namespace DiamondTrading.Master
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.grpCaratLimit = new DevExpress.XtraEditors.GroupControl();
-            this.chkCaratLimit = new DevExpress.XtraEditors.CheckEdit();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.chkCaratLimit = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDetails.Properties)).BeginInit();
@@ -128,6 +128,7 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(279, 248);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -163,6 +164,16 @@ namespace DiamondTrading.Master
             this.grpCaratLimit.Size = new System.Drawing.Size(345, 73);
             this.grpCaratLimit.TabIndex = 2;
             // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(10, 26);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(64, 14);
+            this.labelControl6.TabIndex = 0;
+            this.labelControl6.Text = "Carate Limit";
+            // 
             // chkCaratLimit
             // 
             this.chkCaratLimit.Location = new System.Drawing.Point(19, 169);
@@ -174,20 +185,11 @@ namespace DiamondTrading.Master
             this.chkCaratLimit.TabIndex = 1;
             this.chkCaratLimit.CheckedChanged += new System.EventHandler(this.chkCaratLimit_CheckedChanged);
             // 
-            // labelControl6
-            // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(10, 26);
-            this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(64, 14);
-            this.labelControl6.TabIndex = 0;
-            this.labelControl6.Text = "Carate Limit";
-            // 
             // FrmKapanMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 281);
             this.Controls.Add(this.chkCaratLimit);
             this.Controls.Add(this.grpCaratLimit);

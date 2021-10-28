@@ -30,11 +30,11 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtGalaName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtGalaName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtGalaName.Properties)).BeginInit();
@@ -50,6 +50,17 @@ namespace DiamondTrading.Master
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Gala Name ";
             // 
+            // txtGalaName
+            // 
+            this.txtGalaName.Location = new System.Drawing.Point(10, 50);
+            this.txtGalaName.Name = "txtGalaName";
+            this.txtGalaName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtGalaName.Properties.Appearance.Options.UseFont = true;
+            this.txtGalaName.Properties.BeepOnError = false;
+            this.txtGalaName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtGalaName.Size = new System.Drawing.Size(324, 26);
+            this.txtGalaName.TabIndex = 3;
+            // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
@@ -62,6 +73,7 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(279, 98);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -87,21 +99,11 @@ namespace DiamondTrading.Master
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtGalaName
-            // 
-            this.txtGalaName.Location = new System.Drawing.Point(10, 50);
-            this.txtGalaName.Name = "txtGalaName";
-            this.txtGalaName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtGalaName.Properties.Appearance.Options.UseFont = true;
-            this.txtGalaName.Properties.BeepOnError = false;
-            this.txtGalaName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtGalaName.Size = new System.Drawing.Size(324, 26);
-            this.txtGalaName.TabIndex = 3;
-            // 
             // FrmGalaMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 133);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);

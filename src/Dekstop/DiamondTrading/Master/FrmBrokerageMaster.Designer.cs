@@ -30,17 +30,17 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtPercentage = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtBrokerageName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtPercentage = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerageName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentage.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerageName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -54,6 +54,25 @@ namespace DiamondTrading.Master
             this.groupControl1.Size = new System.Drawing.Size(345, 131);
             this.groupControl1.TabIndex = 2;
             this.groupControl1.Text = "Brokerage Name && Percentage";
+            // 
+            // txtPercentage
+            // 
+            this.txtPercentage.Location = new System.Drawing.Point(10, 101);
+            this.txtPercentage.Name = "txtPercentage";
+            this.txtPercentage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtPercentage.Properties.Appearance.Options.UseFont = true;
+            this.txtPercentage.Size = new System.Drawing.Size(160, 22);
+            this.txtPercentage.TabIndex = 5;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Location = new System.Drawing.Point(10, 82);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(63, 14);
+            this.labelControl14.TabIndex = 4;
+            this.labelControl14.Text = "Percentage";
             // 
             // txtBrokerageName
             // 
@@ -78,6 +97,7 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(279, 142);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -103,29 +123,11 @@ namespace DiamondTrading.Master
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtPercentage
-            // 
-            this.txtPercentage.Location = new System.Drawing.Point(10, 101);
-            this.txtPercentage.Name = "txtPercentage";
-            this.txtPercentage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtPercentage.Properties.Appearance.Options.UseFont = true;
-            this.txtPercentage.Size = new System.Drawing.Size(160, 22);
-            this.txtPercentage.TabIndex = 5;
-            // 
-            // labelControl14
-            // 
-            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl14.Appearance.Options.UseFont = true;
-            this.labelControl14.Location = new System.Drawing.Point(10, 82);
-            this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(63, 14);
-            this.labelControl14.TabIndex = 4;
-            this.labelControl14.Text = "Percentage";
-            // 
             // FrmBrokerageMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 173);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
@@ -143,8 +145,8 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerageName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPercentage.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerageName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

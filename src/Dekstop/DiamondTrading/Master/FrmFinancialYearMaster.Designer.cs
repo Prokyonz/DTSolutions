@@ -36,21 +36,21 @@ namespace DiamondTrading.Master
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.dtStartDate = new DevExpress.XtraEditors.DateEdit();
+            this.lblTotalDays = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.dtEndDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.lblTotalDays = new DevExpress.XtraEditors.LabelControl();
+            this.dtStartDate = new DevExpress.XtraEditors.DateEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtFinancialYearName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -86,6 +86,7 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(281, 189);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -125,30 +126,28 @@ namespace DiamondTrading.Master
             this.groupControl2.TabIndex = 1;
             this.groupControl2.Text = "Financial Year Details";
             // 
-            // labelControl1
+            // lblTotalDays
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(10, 30);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(64, 14);
-            this.labelControl1.TabIndex = 0;
-            this.labelControl1.Text = "Start Date*";
+            this.lblTotalDays.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.lblTotalDays.Appearance.Options.UseFont = true;
+            this.lblTotalDays.Appearance.Options.UseTextOptions = true;
+            this.lblTotalDays.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.lblTotalDays.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            this.lblTotalDays.Location = new System.Drawing.Point(274, 53);
+            this.lblTotalDays.Name = "lblTotalDays";
+            this.lblTotalDays.Size = new System.Drawing.Size(55, 14);
+            this.lblTotalDays.TabIndex = 5;
+            this.lblTotalDays.Text = "365";
             // 
-            // dtStartDate
+            // labelControl4
             // 
-            this.dtStartDate.EditValue = null;
-            this.dtStartDate.Location = new System.Drawing.Point(10, 51);
-            this.dtStartDate.Name = "dtStartDate";
-            this.dtStartDate.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtStartDate.Properties.Appearance.Options.UseFont = true;
-            this.dtStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtStartDate.Size = new System.Drawing.Size(111, 22);
-            this.dtStartDate.TabIndex = 1;
-            this.dtStartDate.EditValueChanged += new System.EventHandler(this.dtStartDate_EditValueChanged);
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(272, 30);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(57, 14);
+            this.labelControl4.TabIndex = 4;
+            this.labelControl4.Text = "Total Days";
             // 
             // dtEndDate
             // 
@@ -175,33 +174,36 @@ namespace DiamondTrading.Master
             this.labelControl3.TabIndex = 2;
             this.labelControl3.Text = "End Date*";
             // 
-            // labelControl4
+            // dtStartDate
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(272, 30);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(57, 14);
-            this.labelControl4.TabIndex = 4;
-            this.labelControl4.Text = "Total Days";
+            this.dtStartDate.EditValue = null;
+            this.dtStartDate.Location = new System.Drawing.Point(10, 51);
+            this.dtStartDate.Name = "dtStartDate";
+            this.dtStartDate.Properties.Appearance.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtStartDate.Properties.Appearance.Options.UseFont = true;
+            this.dtStartDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtStartDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtStartDate.Size = new System.Drawing.Size(111, 22);
+            this.dtStartDate.TabIndex = 1;
+            this.dtStartDate.EditValueChanged += new System.EventHandler(this.dtStartDate_EditValueChanged);
             // 
-            // lblTotalDays
+            // labelControl1
             // 
-            this.lblTotalDays.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.lblTotalDays.Appearance.Options.UseFont = true;
-            this.lblTotalDays.Appearance.Options.UseTextOptions = true;
-            this.lblTotalDays.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.lblTotalDays.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            this.lblTotalDays.Location = new System.Drawing.Point(274, 53);
-            this.lblTotalDays.Name = "lblTotalDays";
-            this.lblTotalDays.Size = new System.Drawing.Size(55, 14);
-            this.lblTotalDays.TabIndex = 5;
-            this.lblTotalDays.Text = "365";
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(10, 30);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(64, 14);
+            this.labelControl1.TabIndex = 0;
+            this.labelControl1.Text = "Start Date*";
             // 
             // FrmFinancialYearMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(368, 222);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.btnCancel);
@@ -224,10 +226,10 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             this.groupControl2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtEndDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtStartDate.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
