@@ -317,7 +317,7 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("BrokerageMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.CharniMaster", b =>
+            modelBuilder.Entity("Repository.Entities.CharniProcessMaster", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -409,7 +409,7 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("CharniMaster");
+                    b.ToTable("CharniProcessMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.CompanyMaster", b =>
@@ -848,7 +848,11 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1222,7 +1226,11 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");

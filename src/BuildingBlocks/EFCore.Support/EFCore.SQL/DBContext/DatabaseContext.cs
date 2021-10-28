@@ -98,7 +98,9 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BoilProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<AccountToAssortMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<AccountToAssortDetails>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<CharniMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CharniProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<GalaProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<NumberProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }
