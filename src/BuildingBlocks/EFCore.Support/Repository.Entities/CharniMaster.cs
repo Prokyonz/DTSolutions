@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Repository.Entities
 {
-    public class CharniMaster
+    public class CharniProcessMaster
     {
         public int Sr { get; set; }
         [Key]

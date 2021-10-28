@@ -47,11 +47,11 @@ namespace EFCore.SQL.DBContext
         public DbSet<ContraEntryMaster> ContraEntryMaster { get; set; }
         public DbSet<ContraEntryDetails> ContraEntryDetails { get; set; }
         public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
-        public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
-        public DbSet<BoilProcessMaster> BoilProcessMaster { get; set; }
+        public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }        
         public DbSet<AccountToAssortMaster> AccountToAssortMaster { get; set; }
         public DbSet<AccountToAssortDetails> AccountToAssortDetails { get; set; }
-        public DbSet<CharniMaster> CharniMaster { get; set; }
+        public DbSet<BoilProcessMaster> BoilProcessMaster { get; set; }
+        public DbSet<CharniProcessMaster> CharniProcessMaster { get; set; }
         public DbSet<GalaProcessMaster> GalaProcessMaster { get; set; }
         public  DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
 
