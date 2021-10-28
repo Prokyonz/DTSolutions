@@ -55,12 +55,12 @@ namespace DiamondTrading.Process
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.tglIsActive = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtDays = new DevExpress.XtraEditors.TextEdit();
-            this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -79,10 +79,10 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -420,6 +420,22 @@ namespace DiamondTrading.Process
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 4;
             // 
+            // lueBranch
+            // 
+            this.lueBranch.Enabled = false;
+            this.lueBranch.Location = new System.Drawing.Point(80, 109);
+            this.lueBranch.Name = "lueBranch";
+            this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueBranch.Properties.Appearance.Options.UseFont = true;
+            this.lueBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueBranch.Properties.NullText = "";
+            this.lueBranch.Size = new System.Drawing.Size(190, 22);
+            this.lueBranch.TabIndex = 50;
+            // 
             // separatorControl1
             // 
             this.separatorControl1.LineOrientation = System.Windows.Forms.Orientation.Vertical;
@@ -474,26 +490,11 @@ namespace DiamondTrading.Process
             this.txtDays.Size = new System.Drawing.Size(90, 22);
             this.txtDays.TabIndex = 14;
             // 
-            // lueBranch
-            // 
-            this.lueBranch.Enabled = false;
-            this.lueBranch.Location = new System.Drawing.Point(80, 109);
-            this.lueBranch.Name = "lueBranch";
-            this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueBranch.Properties.Appearance.Options.UseFont = true;
-            this.lueBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueBranch.Properties.NullText = "";
-            this.lueBranch.Size = new System.Drawing.Size(190, 22);
-            this.lueBranch.TabIndex = 50;
-            // 
             // FrmKapanMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(650, 565);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
@@ -528,10 +529,10 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
