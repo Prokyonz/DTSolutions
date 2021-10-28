@@ -6,10 +6,10 @@ namespace EFCore.SQL.Interface
 {
     public interface IBoilMaster
     {
-        Task<List<BoilMaster>> GetBoilAsync(string companyId, string branchId, string financialYearId, int boilType);
+        Task<List<BoilProcessMaster>> GetBoilAsync(string companyId, string branchId, string financialYearId, int boilType);
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId, int boilTpe);
-        Task<BoilMaster> AddBoilAsync(BoilMaster boilMaster);
-        Task<BoilMaster> UpdateBoilAsync(BoilMaster boilMaster);
+        Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster);
+        Task<BoilProcessMaster> UpdateBoilAsync(BoilProcessMaster boilMaster);
         Task<bool> DeleteBoilAsync(string boilMasterId);
     }
 }

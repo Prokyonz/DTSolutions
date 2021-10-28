@@ -48,9 +48,12 @@ namespace EFCore.SQL.DBContext
         public DbSet<ContraEntryDetails> ContraEntryDetails { get; set; }
         public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
         public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
-        public DbSet<BoilMaster> BoilMaster { get; set; }
+        public DbSet<BoilProcessMaster> BoilProcessMaster { get; set; }
         public DbSet<AccountToAssortMaster> AccountToAssortMaster { get; set; }
         public DbSet<AccountToAssortDetails> AccountToAssortDetails { get; set; }
+        public DbSet<CharniMaster> CharniMaster { get; set; }
+        public DbSet<GalaProcessMaster> GalaProcessMaster { get; set; }
+        public  DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -92,9 +95,10 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PaymentDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SlipTransferEntry>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMappingMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<BoilMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<BoilProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<AccountToAssortMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<AccountToAssortDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CharniMaster>().Property(c => c.Sr).UseIdentityColumn();
         }
     }
 }

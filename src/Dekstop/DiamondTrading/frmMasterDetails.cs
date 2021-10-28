@@ -298,7 +298,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _branchMaster == null)
                 {
                     _branchMasterRepository = new BranchMasterRepository();
-                    _branchMaster = await _branchMasterRepository.GetAllBranchAsync();
+                    _branchMaster = await _branchMasterRepository.GetAllBranchAsync(Common.LoginCompany);
                     grdBranchMaster.DataSource = _branchMaster;
                 }
             }
@@ -397,7 +397,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _partyMaster == null)
                 {
                     _partyMasterRepository = new PartyMasterRepository();
-                    _partyMaster = await _partyMasterRepository.GetAllPartyAsync();
+                    _partyMaster = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
                     grdPartyMaster.DataSource = _partyMaster;
                 }
             }

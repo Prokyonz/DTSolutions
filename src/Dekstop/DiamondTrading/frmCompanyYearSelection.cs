@@ -125,7 +125,7 @@ namespace DiamondTrading
         private async Task LoadBranch(string companyId)
         {
             lueBranch.EditValue = null;
-            var branches = await _branchMasterRepository.GetCompanyBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
+            var branches = await _branchMasterRepository.GetAllBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
             lueBranch.Properties.DataSource = branches;
             lueBranch.Properties.DisplayMember = "Name";
             lueBranch.Properties.ValueMember = "Id";

@@ -17,14 +17,14 @@ namespace EFCore.SQL.Repository
         {
             
         }
-        public async Task<BoilMaster> AddBoilAsync(BoilMaster boilMaster)
+        public async Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster)
         {
             using(_databaseContext = new DatabaseContext())
             {
                 if (boilMaster.Id == null)
                     boilMaster.Id = Guid.NewGuid().ToString();
 
-                await _databaseContext.BoilMaster.AddAsync(boilMaster);
+                await _databaseContext.BoilProcessMaster.AddAsync(boilMaster);
                 await _databaseContext.SaveChangesAsync();
 
                 return boilMaster;
@@ -35,10 +35,10 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.BoilMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
+                var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
                 if(getReccord == null)
                 {
-                    _databaseContext.BoilMaster.Remove(getReccord);
+                    _databaseContext.BoilProcessMaster.Remove(getReccord);
                     await _databaseContext.SaveChangesAsync();
 
                     return true;
@@ -48,11 +48,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<BoilMaster>> GetBoilAsync(string companyId, string branchId, string financialYearId, int boilType)
+        public async Task<List<BoilProcessMaster>> GetBoilAsync(string companyId, string branchId, string financialYearId, int boilType)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.BoilMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.BoilType == boilType).ToListAsync();
+                return await _databaseContext.BoilProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.BoilType == boilType).ToListAsync();
             }
         }
 
@@ -62,7 +62,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.BoilMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.Sr);
                     return getCount + 1;
                 }
             }
@@ -72,11 +72,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<BoilMaster> UpdateBoilAsync(BoilMaster boilMaster)
+        public async Task<BoilProcessMaster> UpdateBoilAsync(BoilProcessMaster boilMaster)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getRecord = await _databaseContext.BoilMaster.Where(w => w.Id == boilMaster.Id).FirstOrDefaultAsync();
+                var getRecord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMaster.Id).FirstOrDefaultAsync();
                 
                 if(getRecord != null)
                 {

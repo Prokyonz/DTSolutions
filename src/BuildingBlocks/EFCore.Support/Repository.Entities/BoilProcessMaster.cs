@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
-    public class BoilMaster
+    public class BoilProcessMaster
     {
         public int Sr { get; set; }
         [Key]

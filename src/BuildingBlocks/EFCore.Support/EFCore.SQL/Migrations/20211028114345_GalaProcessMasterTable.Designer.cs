@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211028114345_GalaProcessMasterTable")]
+    partial class GalaProcessMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,7 +119,7 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("AccountToAssortMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.BoilProcessMaster", b =>
+            modelBuilder.Entity("Repository.Entities.BoilMaster", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -200,7 +202,7 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BoilProcessMaster");
+                    b.ToTable("BoilMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.BranchMaster", b =>
@@ -1145,97 +1147,6 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NumberMaster");
-                });
-
-            modelBuilder.Entity("Repository.Entities.NumberProcessMaster", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("EntryDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FinancialId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GalaNumberId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HandOverById")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("HandOverToId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDelete")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("JangadNo")
-                        .HasColumnType("int");
-
-                    b.Property<string>("KapanId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("LossWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<int>("NumberCategoy")
-                        .HasColumnType("int");
-
-                    b.Property<string>("NumberId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("NumberNo")
-                        .HasColumnType("int");
-
-                    b.Property<int>("NumberProcessType")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("NumberWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal>("RejectionWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ShapeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SizeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SlipNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<decimal>("Weight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("NumberProcessMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.PartyMaster", b =>
