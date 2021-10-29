@@ -259,6 +259,9 @@ namespace DiamondTrading
             if (frmCompanyYearSelection.ShowDialog() == DialogResult.OK)
             {
                 this.Enabled = true;
+                barBtnLoginCompany.Caption = Common.LoginCompanyName;
+                barBtnLoginBranch.Caption = Common.LoginBranchName;
+                barBtnLoginFinancialYear.Caption = Common.LoginFinancialYearName;
             }
         }
 
