@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,17 +70,26 @@ namespace EFCore.SQL.Repository
             catch (Exception ex)
             {
                 return 1;
-            }            
+            }
         }
 
-        public async Task<List<KapanMappingMaster>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId)
+        public async Task<List<KapanMapping>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId)
         {
-            using (_databaseContext = new DatabaseContext())
+            try
             {
-                var data = _databaseContext.KapanMappingMaster.FromSqlRaw<KapanMappingMaster>("$GetPendingKapanMapping '"+companyId+"', '"+branchId+"'");
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPKapanMapping.FromSqlRaw($"GetPendingKapanMapping '" + companyId + "', '" + branchId + "'").ToListAsync();
 
-                return await _databaseContext.KapanMappingMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+                    return data;
+                    //return await _databaseContext.KapanMappingMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+                }
             }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            
         }
 
         public async Task<KapanMappingMaster> UpdateKapanMappingMasterAsync(KapanMappingMaster kapanMappingMaster)

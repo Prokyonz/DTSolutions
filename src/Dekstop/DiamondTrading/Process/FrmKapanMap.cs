@@ -29,7 +29,7 @@ namespace DiamondTrading.Process
             await LoadCompany();
             await GetKapanDetail();
             await GetMaxSrNo();
-            await GetPendingKapanDetails();
+            GetPendingKapanDetails();
         }
 
         private async Task LoadCompany()
@@ -71,7 +71,7 @@ namespace DiamondTrading.Process
 
         private async Task GetPendingKapanDetails()
         {
-            var PendingKapanDetails = kapanMappingMasterRepository.GetPendingKapanMapping(lueCompany.EditValue.ToString(),lueBranch.EditValue.ToString(),Common.LoginFinancialYear);
+            var PendingKapanDetails = await kapanMappingMasterRepository.GetPendingKapanMapping(lueCompany.EditValue.ToString(),lueBranch.EditValue.ToString(),Common.LoginFinancialYear);
             grdPendingKapanDetails.DataSource = PendingKapanDetails;
         }
     }
