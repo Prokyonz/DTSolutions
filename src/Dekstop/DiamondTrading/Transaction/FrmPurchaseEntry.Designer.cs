@@ -492,6 +492,7 @@ namespace DiamondTrading.Transaction
             this.lueBuyer.Properties.NullText = "";
             this.lueBuyer.Size = new System.Drawing.Size(193, 22);
             this.lueBuyer.TabIndex = 1;
+            this.lueBuyer.EditValueChanged += new System.EventHandler(this.lueBuyer_EditValueChanged);
             this.lueBuyer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // txtPartyBalance
@@ -524,6 +525,7 @@ namespace DiamondTrading.Transaction
             this.lueParty.Properties.NullText = "";
             this.lueParty.Size = new System.Drawing.Size(193, 22);
             this.lueParty.TabIndex = 4;
+            this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
             this.lueParty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // labelControl7
@@ -567,10 +569,12 @@ namespace DiamondTrading.Transaction
             this.lueBroker.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Broker Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BrokerID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BrokerageId", "BrokerageId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBroker.Properties.NullText = "";
             this.lueBroker.Size = new System.Drawing.Size(193, 22);
             this.lueBroker.TabIndex = 7;
+            this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
             this.lueBroker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // labelControl8

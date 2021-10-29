@@ -12,57 +12,77 @@ namespace EFCore.SQL.Repository
 {
     public class BrokerageMasterRepository : IBrokerageMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public BrokerageMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<List<BrokerageMaster>> GetAllBrokerageAsync()
         {
-            return await _databaseContext.BrokerageMaster.Where(b => b.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.BrokerageMaster.Where(b => b.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<BrokerageMaster> AddBrokerageAsync(BrokerageMaster brokerageMaster)
         {
-            if (brokerageMaster.Id == null)
-                brokerageMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.BrokerageMaster.AddAsync(brokerageMaster);
-            await _databaseContext.SaveChangesAsync();
-            return brokerageMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (brokerageMaster.Id == null)
+                    brokerageMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.BrokerageMaster.AddAsync(brokerageMaster);
+                await _databaseContext.SaveChangesAsync();
+                return brokerageMaster;
+            }
         }
 
         public async Task<bool> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false)
         {
-            var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageId).FirstOrDefaultAsync();
-            if (getBrokerage != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.BrokerageMaster.Remove(getBrokerage);
-                else
-                    getBrokerage.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
+                var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageId).FirstOrDefaultAsync();
+                if (getBrokerage != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.BrokerageMaster.Remove(getBrokerage);
+                    else
+                        getBrokerage.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+
+                return false;
             }
-
-            return false;
         }
 
 
         public async Task<BrokerageMaster> UpdateBrokerageAsync(BrokerageMaster brokerageMaster)
         {
-            var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageMaster.Id).FirstOrDefaultAsync();
-            if (getBrokerage != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getBrokerage.Name = brokerageMaster.Name;
-                getBrokerage.Percentage = brokerageMaster.Percentage;
-                getBrokerage.UpdatedDate = brokerageMaster.UpdatedDate;
-                getBrokerage.UpdatedBy = brokerageMaster.UpdatedBy;
+                var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageMaster.Id).FirstOrDefaultAsync();
+                if (getBrokerage != null)
+                {
+                    getBrokerage.Name = brokerageMaster.Name;
+                    getBrokerage.Percentage = brokerageMaster.Percentage;
+                    getBrokerage.UpdatedDate = brokerageMaster.UpdatedDate;
+                    getBrokerage.UpdatedBy = brokerageMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return brokerageMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return brokerageMaster;
+        }
+
+        public async Task<BrokerageMaster> GetBrokerageAsync(string brokerageId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.BrokerageMaster.Where(b => b.IsDelete == false && b.Id == brokerageId).FirstOrDefaultAsync();
+            }
         }
     }
 }

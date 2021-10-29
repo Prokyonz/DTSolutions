@@ -228,7 +228,7 @@ namespace DiamondTrading.Master
                     else
                         PartyMaster.SubType = PartyTypeMaster.None;
 
-                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer))
                         PartyMaster.BrokerageId = lueBrokerage.EditValue.ToString();
 
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
@@ -375,12 +375,12 @@ namespace DiamondTrading.Master
         {
             if (lueSubType.EditValue != null)
             {
-                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller
+                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller
                     || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other)
                 {
                     pnl2.Visible = false;
                 }
-                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer)
                 {
                     pnl2.Visible = true;
 

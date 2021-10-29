@@ -20,6 +20,7 @@ namespace DiamondTrading.Transaction
     {
         PurchaseMasterRepository _purchaseMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        private readonly BrokerageMasterRepository _brokerageMasterRepository;
         decimal ItemRunningWeight = 0;
         decimal ItemFinalAmount = 0;
         public FrmPurchaseEntry()
@@ -27,6 +28,7 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
             _purchaseMasterRepository = new PurchaseMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
         }
 
         private void FrmPurchaseEntry_Load(object sender, EventArgs e)
@@ -119,7 +121,7 @@ namespace DiamondTrading.Transaction
 
         private async Task GetBuyerList()
         {
-            var BuyerDetailList = await _partyMasterRepository.GetEmployeeAsync(PartyTypeMaster.Buyer);
+            var BuyerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Buyer);
             lueBuyer.Properties.DataSource = BuyerDetailList;
             lueBuyer.Properties.DisplayMember = "Name";
             lueBuyer.Properties.ValueMember = "Id";
@@ -127,7 +129,7 @@ namespace DiamondTrading.Transaction
 
         private async Task GetPartyList()
         {
-            var PartyDetailList = await _partyMasterRepository.GetPartyAsync();
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Party);
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
@@ -135,7 +137,7 @@ namespace DiamondTrading.Transaction
 
         private async Task GetBrokerList()
         {
-            var BrokerDetailList = await _partyMasterRepository.GetEmployeeAsync(PartyTypeMaster.Broker);
+            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
             lueBroker.Properties.DataSource = BrokerDetailList;
             lueBroker.Properties.DisplayMember = "Name";
             lueBroker.Properties.ValueMember = "Id";
@@ -934,13 +936,13 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CalculateCommisionRate(false);
+                //CalculateCommisionRate(false);
             }
         }
 
         private void txtCommisionAmount_Leave(object sender, EventArgs e)
         {
-            CalculateCommisionRate(false);
+            //CalculateCommisionRate(false);
         }
 
         private void txtBrokerPer_KeyDown(object sender, KeyEventArgs e)
@@ -960,13 +962,13 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                CalculateBrokerageRate(false);
+                //CalculateBrokerageRate(false);
             }
         }
 
         private void txtBrokerageAmount_Leave(object sender, EventArgs e)
         {
-            CalculateBrokerageRate(false);
+            //CalculateBrokerageRate(false);
         }
 
         private void Image1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -1226,6 +1228,26 @@ namespace DiamondTrading.Transaction
             txtCurrencyAmount.Text = "0";
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             txtSlipNo.Focus();
+        }
+
+        private async void lueBroker_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedBoker = (PartyMaster)lueBroker.GetSelectedDataRow();
+            var brokerageDetail  = await _brokerageMasterRepository.GetBrokerageAsync(selectedBoker.BrokerageId);
+            txtBrokerPer.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
+        }
+
+        private async void lueBuyer_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedBuyer = (PartyMaster)lueBuyer.GetSelectedDataRow();
+            var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedBuyer.BrokerageId);
+            txtBuyerCommisionPer.Text =brokerageDetail != null ?  brokerageDetail.Percentage.ToString() : "0";
+        }
+
+        private void lueParty_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
+            txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
         }
     }
 }
