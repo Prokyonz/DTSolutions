@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repository.Entities.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -23,5 +24,8 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+
+        [ForeignKey("SlipId")]
+        public virtual KapanMapping KapanMapping {get; set;} 
     }
 }

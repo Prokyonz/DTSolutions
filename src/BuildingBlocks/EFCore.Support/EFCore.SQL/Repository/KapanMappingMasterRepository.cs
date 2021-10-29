@@ -76,7 +76,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var data = _databaseContext.KapanMappingMaster.FromSqlRaw<KapanMappingMaster>("$GetPendingKapanMapping 'name', 10");
+                var data = _databaseContext.KapanMappingMaster.FromSqlRaw<KapanMappingMaster>("$GetPendingKapanMapping '"+companyId+"', '"+branchId+"'");
 
                 return await _databaseContext.KapanMappingMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
             }

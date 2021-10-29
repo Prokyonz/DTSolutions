@@ -14,9 +14,22 @@ namespace DiamondTrading.Process
 {
     public partial class FrmKapanMap : DevExpress.XtraEditors.XtraForm
     {
+        KapanMappingMasterRepository kapanMappingMasterRepository;
         public FrmKapanMap()
         {
             InitializeComponent();
+            kapanMappingMasterRepository = new KapanMappingMasterRepository();
+        }
+
+        private async void FrmKapanMap_Load(object sender, EventArgs e)
+        {
+            dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
+
+            await LoadCompany();
+            await GetKapanDetail();
+            await GetMaxSrNo();
+            await GetPendingKapanDetails();
         }
 
         private async Task LoadCompany()
@@ -50,10 +63,16 @@ namespace DiamondTrading.Process
             lueKapan.Properties.ValueMember = "Id";
         }
 
-        private async void FrmKapanMap_Load(object sender, EventArgs e)
+        private async Task GetMaxSrNo()
         {
-            await LoadCompany();
-            await GetKapanDetail();
+            var SrNo = await kapanMappingMasterRepository.GetMaxSrNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+            txtSerialNo.Text = SrNo.ToString();
+        }
+
+        private async Task GetPendingKapanDetails()
+        {
+            var PendingKapanDetails = kapanMappingMasterRepository.GetPendingKapanMapping(lueCompany.EditValue.ToString(),lueBranch.EditValue.ToString(),Common.LoginFinancialYear);
+            grdPendingKapanDetails.DataSource = PendingKapanDetails;
         }
     }
 }

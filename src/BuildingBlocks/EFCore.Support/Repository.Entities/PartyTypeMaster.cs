@@ -102,6 +102,28 @@ namespace Repository.Entities
         }
     }
 
+    public class DepartmentMaster1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Boil = 1;
+        public static int Charni = 2;
+        public static int Gala = 3;
+        public static int Number = 4;
+
+        public static List<DepartmentMaster> GetAllDepartment()
+        {
+            List<DepartmentMaster> departmentMaster = new List<DepartmentMaster>
+            {
+                new DepartmentMaster {Id = Boil, Name = "Boil" },
+                new DepartmentMaster {Id = Charni, Name = "Charni" },
+                new DepartmentMaster {Id = Gala, Name = "Gala" },
+                new DepartmentMaster {Id = Number, Name = "Number" }
+            };
+            return departmentMaster;
+        }
+    }
+
     public class DesignationMaster
     {
         public int Id { get; set; }
