@@ -56,6 +56,10 @@ namespace DiamondTrading
             this.barButtonItem20 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem22 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem3 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem43 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem9 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem35 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem36 = new DevExpress.XtraBars.BarButtonItem();
@@ -138,10 +142,6 @@ namespace DiamondTrading
             this.accordionControlElement30 = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem21 = new DevExpress.XtraBars.BarButtonItem();
-            this.barSubItem7 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem34 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem43 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -447,6 +447,36 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem11),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem12)});
             this.barSubItem3.Name = "barSubItem3";
+            // 
+            // barButtonItem21
+            // 
+            this.barButtonItem21.Caption = "Kapan Map";
+            this.barButtonItem21.Id = 69;
+            this.barButtonItem21.Name = "barButtonItem21";
+            this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick_1);
+            // 
+            // barSubItem7
+            // 
+            this.barSubItem7.Caption = "Assort Process";
+            this.barSubItem7.Id = 71;
+            this.barSubItem7.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem34),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem43)});
+            this.barSubItem7.Name = "barSubItem7";
+            // 
+            // barButtonItem34
+            // 
+            this.barButtonItem34.Caption = "Send";
+            this.barButtonItem34.Id = 72;
+            this.barButtonItem34.Name = "barButtonItem34";
+            this.barButtonItem34.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem34_ItemClick_1);
+            // 
+            // barButtonItem43
+            // 
+            this.barButtonItem43.Caption = "Receive";
+            this.barButtonItem43.Id = 73;
+            this.barButtonItem43.Name = "barButtonItem43";
+            this.barButtonItem43.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem43_ItemClick);
             // 
             // barSubItem9
             // 
@@ -1089,36 +1119,6 @@ namespace DiamondTrading
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 0;
-            // 
-            // barButtonItem21
-            // 
-            this.barButtonItem21.Caption = "Kapan Map";
-            this.barButtonItem21.Id = 69;
-            this.barButtonItem21.Name = "barButtonItem21";
-            this.barButtonItem21.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem21_ItemClick_1);
-            // 
-            // barSubItem7
-            // 
-            this.barSubItem7.Caption = "Assort Process";
-            this.barSubItem7.Id = 71;
-            this.barSubItem7.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem34),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem43)});
-            this.barSubItem7.Name = "barSubItem7";
-            // 
-            // barButtonItem34
-            // 
-            this.barButtonItem34.Caption = "Send";
-            this.barButtonItem34.Id = 72;
-            this.barButtonItem34.Name = "barButtonItem34";
-            this.barButtonItem34.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem34_ItemClick_1);
-            // 
-            // barButtonItem43
-            // 
-            this.barButtonItem43.Caption = "Receive";
-            this.barButtonItem43.Id = 73;
-            this.barButtonItem43.Name = "barButtonItem43";
-            this.barButtonItem43.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem43_ItemClick);
             // 
             // FrmMain
             // 
