@@ -39,14 +39,17 @@ namespace DiamondTrading.Process
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCts = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grvPendingKapanDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotalCts = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAvailableCts = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurchaseID = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurchaseDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdPendingKapanDetails = new DevExpress.XtraGrid.GridControl();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -56,12 +59,13 @@ namespace DiamondTrading.Process
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.btnMap = new DevExpress.XtraEditors.SimpleButton();
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.tglIsActive = new DevExpress.XtraEditors.ToggleSwitch();
+            this.tglIsAutoAdjust = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDays = new DevExpress.XtraEditors.TextEdit();
+            this.txtCarat = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -82,8 +86,8 @@ namespace DiamondTrading.Process
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tglIsAutoAdjust.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarat.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl1
@@ -168,6 +172,7 @@ namespace DiamondTrading.Process
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 3;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
@@ -178,6 +183,7 @@ namespace DiamondTrading.Process
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 2;
             this.btnSave.Text = "&Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtRemark
             // 
@@ -209,17 +215,23 @@ namespace DiamondTrading.Process
             this.repoTxtEdit.MaskSettings.Set("mask", "f");
             this.repoTxtEdit.Name = "repoTxtEdit";
             // 
-            // colAmount
+            // colCts
             // 
-            this.colAmount.Caption = "Cts";
-            this.colAmount.ColumnEdit = this.repoTxtEdit;
-            this.colAmount.FieldName = "cts";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
-            this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 4;
-            this.colAmount.Width = 151;
+            this.colCts.AppearanceCell.BackColor = System.Drawing.Color.Silver;
+            this.colCts.AppearanceCell.Options.UseBackColor = true;
+            this.colCts.AppearanceHeader.BackColor = System.Drawing.Color.Silver;
+            this.colCts.AppearanceHeader.Options.UseBackColor = true;
+            this.colCts.Caption = "Cts";
+            this.colCts.ColumnEdit = this.repoTxtEdit;
+            this.colCts.FieldName = "Cts";
+            this.colCts.Name = "colCts";
+            this.colCts.OptionsColumn.AllowEdit = false;
+            this.colCts.OptionsColumn.ReadOnly = true;
+            this.colCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Cts", "{0:0.##}")});
+            this.colCts.Visible = true;
+            this.colCts.VisibleIndex = 5;
+            this.colCts.Width = 134;
             // 
             // repoParty
             // 
@@ -232,15 +244,16 @@ namespace DiamondTrading.Process
             this.repoParty.Name = "repoParty";
             this.repoParty.NullText = "";
             // 
-            // colParty
+            // colSlipNo
             // 
-            this.colParty.Caption = "Slip No";
-            this.colParty.FieldName = "SlipNo";
-            this.colParty.Name = "colParty";
-            this.colParty.OptionsColumn.ReadOnly = true;
-            this.colParty.Visible = true;
-            this.colParty.VisibleIndex = 0;
-            this.colParty.Width = 174;
+            this.colSlipNo.Caption = "Slip No";
+            this.colSlipNo.FieldName = "SlipNo";
+            this.colSlipNo.Name = "colSlipNo";
+            this.colSlipNo.OptionsColumn.AllowEdit = false;
+            this.colSlipNo.OptionsColumn.ReadOnly = true;
+            this.colSlipNo.Visible = true;
+            this.colSlipNo.VisibleIndex = 1;
+            this.colSlipNo.Width = 148;
             // 
             // grvPendingKapanDetails
             // 
@@ -251,12 +264,15 @@ namespace DiamondTrading.Process
             this.grvPendingKapanDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
             this.grvPendingKapanDetails.Appearance.Row.Options.UseFont = true;
             this.grvPendingKapanDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colParty,
-            this.gridColumn3,
-            this.gridColumn4,
-            this.gridColumn2,
-            this.gridColumn1,
-            this.colAmount});
+            this.colDate,
+            this.colSlipNo,
+            this.colSizeId,
+            this.colSize,
+            this.colTotalCts,
+            this.colAvailableCts,
+            this.colCts,
+            this.colPurchaseID,
+            this.colPurchaseDetailId});
             this.grvPendingKapanDetails.GridControl = this.grdPendingKapanDetails;
             this.grvPendingKapanDetails.Name = "grvPendingKapanDetails";
             this.grvPendingKapanDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -264,42 +280,71 @@ namespace DiamondTrading.Process
             this.grvPendingKapanDetails.OptionsView.ShowFooter = true;
             this.grvPendingKapanDetails.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn3
+            // colDate
             // 
-            this.gridColumn3.Caption = "SizeId";
-            this.gridColumn3.FieldName = "SizeId";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Width = 229;
+            this.colDate.Caption = "Date";
+            this.colDate.FieldName = "Date";
+            this.colDate.Name = "colDate";
+            this.colDate.OptionsColumn.AllowEdit = false;
+            this.colDate.OptionsColumn.ReadOnly = true;
+            this.colDate.Visible = true;
+            this.colDate.VisibleIndex = 0;
+            this.colDate.Width = 111;
             // 
-            // gridColumn4
+            // colSizeId
             // 
-            this.gridColumn4.Caption = "Size";
-            this.gridColumn4.FieldName = "Size";
-            this.gridColumn4.Name = "gridColumn4";
-            this.gridColumn4.OptionsColumn.ReadOnly = true;
-            this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 1;
-            this.gridColumn4.Width = 193;
+            this.colSizeId.Caption = "SizeId";
+            this.colSizeId.FieldName = "SizeId";
+            this.colSizeId.Name = "colSizeId";
+            this.colSizeId.OptionsColumn.AllowEdit = false;
+            this.colSizeId.Width = 229;
             // 
-            // gridColumn2
+            // colSize
             // 
-            this.gridColumn2.Caption = "Total Cts";
-            this.gridColumn2.FieldName = "NetWeight";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.OptionsColumn.ReadOnly = true;
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
-            this.gridColumn2.Width = 136;
+            this.colSize.Caption = "Size";
+            this.colSize.FieldName = "Size";
+            this.colSize.Name = "colSize";
+            this.colSize.OptionsColumn.AllowEdit = false;
+            this.colSize.OptionsColumn.ReadOnly = true;
+            this.colSize.Visible = true;
+            this.colSize.VisibleIndex = 2;
+            this.colSize.Width = 165;
             // 
-            // gridColumn1
+            // colTotalCts
             // 
-            this.gridColumn1.Caption = "Available Cts";
-            this.gridColumn1.FieldName = "AvailableCts";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.OptionsColumn.ReadOnly = true;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 3;
-            this.gridColumn1.Width = 136;
+            this.colTotalCts.Caption = "Total Cts";
+            this.colTotalCts.FieldName = "NetWeight";
+            this.colTotalCts.Name = "colTotalCts";
+            this.colTotalCts.OptionsColumn.AllowEdit = false;
+            this.colTotalCts.OptionsColumn.ReadOnly = true;
+            this.colTotalCts.Visible = true;
+            this.colTotalCts.VisibleIndex = 3;
+            this.colTotalCts.Width = 116;
+            // 
+            // colAvailableCts
+            // 
+            this.colAvailableCts.Caption = "Available Cts";
+            this.colAvailableCts.FieldName = "AvailableCts";
+            this.colAvailableCts.Name = "colAvailableCts";
+            this.colAvailableCts.OptionsColumn.AllowEdit = false;
+            this.colAvailableCts.OptionsColumn.ReadOnly = true;
+            this.colAvailableCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableCts", "{0:0.##}")});
+            this.colAvailableCts.Visible = true;
+            this.colAvailableCts.VisibleIndex = 4;
+            this.colAvailableCts.Width = 116;
+            // 
+            // colPurchaseID
+            // 
+            this.colPurchaseID.Caption = "PurchaseID";
+            this.colPurchaseID.FieldName = "PurchaseID";
+            this.colPurchaseID.Name = "colPurchaseID";
+            // 
+            // colPurchaseDetailId
+            // 
+            this.colPurchaseDetailId.Caption = "PurchaseDetailId";
+            this.colPurchaseDetailId.FieldName = "PurchaseDetailId";
+            this.colPurchaseDetailId.Name = "colPurchaseDetailId";
             // 
             // grdPendingKapanDetails
             // 
@@ -311,7 +356,7 @@ namespace DiamondTrading.Process
             this.grdPendingKapanDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoTxtEdit,
             this.repoParty});
-            this.grdPendingKapanDetails.Size = new System.Drawing.Size(602, 255);
+            this.grdPendingKapanDetails.Size = new System.Drawing.Size(602, 235);
             this.grdPendingKapanDetails.TabIndex = 0;
             this.grdPendingKapanDetails.UseEmbeddedNavigator = true;
             this.grdPendingKapanDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -376,9 +421,9 @@ namespace DiamondTrading.Process
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
             this.grpGroup1.Controls.Add(this.grdPendingKapanDetails);
-            this.grpGroup1.Location = new System.Drawing.Point(11, 147);
+            this.grpGroup1.Location = new System.Drawing.Point(11, 167);
             this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(606, 280);
+            this.grpGroup1.Size = new System.Drawing.Size(606, 260);
             this.grpGroup1.TabIndex = 17;
             this.grpGroup1.Text = "Particulars Details";
             // 
@@ -386,7 +431,7 @@ namespace DiamondTrading.Process
             // 
             this.txtSerialNo.EditValue = "0";
             this.txtSerialNo.Enabled = false;
-            this.txtSerialNo.Location = new System.Drawing.Point(80, 32);
+            this.txtSerialNo.Location = new System.Drawing.Point(80, 30);
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
@@ -412,12 +457,13 @@ namespace DiamondTrading.Process
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.btnMap);
             this.panelControl1.Controls.Add(this.lueBranch);
             this.panelControl1.Controls.Add(this.separatorControl1);
             this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Controls.Add(this.tglIsActive);
+            this.panelControl1.Controls.Add(this.tglIsAutoAdjust);
             this.panelControl1.Controls.Add(this.labelControl14);
-            this.panelControl1.Controls.Add(this.txtDays);
+            this.panelControl1.Controls.Add(this.txtCarat);
             this.panelControl1.Controls.Add(this.lueCompany);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl12);
@@ -434,6 +480,17 @@ namespace DiamondTrading.Process
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 1;
+            // 
+            // btnMap
+            // 
+            this.btnMap.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMap.Appearance.Options.UseFont = true;
+            this.btnMap.Location = new System.Drawing.Point(529, 140);
+            this.btnMap.Name = "btnMap";
+            this.btnMap.Size = new System.Drawing.Size(88, 21);
+            this.btnMap.TabIndex = 18;
+            this.btnMap.Text = "&Auto Map";
+            this.btnMap.Click += new System.EventHandler(this.btnMap_Click);
             // 
             // lueBranch
             // 
@@ -469,18 +526,19 @@ namespace DiamondTrading.Process
             this.labelControl2.TabIndex = 8;
             this.labelControl2.Text = "Branch :";
             // 
-            // tglIsActive
+            // tglIsAutoAdjust
             // 
-            this.tglIsActive.EditValue = true;
-            this.tglIsActive.Location = new System.Drawing.Point(483, 111);
-            this.tglIsActive.Name = "tglIsActive";
-            this.tglIsActive.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tglIsActive.Properties.Appearance.Options.UseFont = true;
-            this.tglIsActive.Properties.OffText = "Manual";
-            this.tglIsActive.Properties.OnText = "Auto Adjust";
-            this.tglIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.tglIsActive.Size = new System.Drawing.Size(134, 19);
-            this.tglIsActive.TabIndex = 16;
+            this.tglIsAutoAdjust.EditValue = true;
+            this.tglIsAutoAdjust.Location = new System.Drawing.Point(483, 111);
+            this.tglIsAutoAdjust.Name = "tglIsAutoAdjust";
+            this.tglIsAutoAdjust.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tglIsAutoAdjust.Properties.Appearance.Options.UseFont = true;
+            this.tglIsAutoAdjust.Properties.OffText = "Manual";
+            this.tglIsAutoAdjust.Properties.OnText = "Auto Adjust";
+            this.tglIsAutoAdjust.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.tglIsAutoAdjust.Size = new System.Drawing.Size(134, 19);
+            this.tglIsAutoAdjust.TabIndex = 16;
+            this.tglIsAutoAdjust.Toggled += new System.EventHandler(this.tglIsAutoAdjust_Toggled);
             // 
             // labelControl14
             // 
@@ -492,18 +550,18 @@ namespace DiamondTrading.Process
             this.labelControl14.TabIndex = 14;
             this.labelControl14.Text = "Total Carat* :";
             // 
-            // txtDays
+            // txtCarat
             // 
-            this.txtDays.Location = new System.Drawing.Point(387, 109);
-            this.txtDays.Name = "txtDays";
-            this.txtDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDays.Properties.Appearance.Options.UseFont = true;
-            this.txtDays.Properties.BeepOnError = false;
-            this.txtDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.txtDays.Properties.MaskSettings.Set("mask", "d");
-            this.txtDays.Size = new System.Drawing.Size(90, 22);
-            this.txtDays.TabIndex = 15;
+            this.txtCarat.Location = new System.Drawing.Point(387, 109);
+            this.txtCarat.Name = "txtCarat";
+            this.txtCarat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCarat.Properties.Appearance.Options.UseFont = true;
+            this.txtCarat.Properties.BeepOnError = false;
+            this.txtCarat.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtCarat.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtCarat.Properties.MaskSettings.Set("mask", "f3");
+            this.txtCarat.Size = new System.Drawing.Size(90, 22);
+            this.txtCarat.TabIndex = 15;
             // 
             // FrmKapanMap
             // 
@@ -525,6 +583,7 @@ namespace DiamondTrading.Process
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "KAPAN MAPPING";
             this.Load += new System.EventHandler(this.FrmKapanMap_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmKapanMap_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).EndInit();
@@ -546,8 +605,8 @@ namespace DiamondTrading.Process
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDays.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tglIsAutoAdjust.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCarat.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -564,9 +623,9 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.MemoEdit txtRemark;
         private DevExpress.XtraEditors.GroupControl grpGroup2;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
-        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colCts;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoParty;
-        private DevExpress.XtraGrid.Columns.GridColumn colParty;
+        private DevExpress.XtraGrid.Columns.GridColumn colSlipNo;
         private DevExpress.XtraGrid.Views.Grid.GridView grvPendingKapanDetails;
         private DevExpress.XtraGrid.GridControl grdPendingKapanDetails;
         private DevExpress.XtraEditors.LookUpEdit lueCompany;
@@ -578,14 +637,18 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.DateEdit dtDate;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl14;
-        private DevExpress.XtraEditors.TextEdit txtDays;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraEditors.TextEdit txtCarat;
+        private DevExpress.XtraGrid.Columns.GridColumn colAvailableCts;
         private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.ToggleSwitch tglIsActive;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.ToggleSwitch tglIsAutoAdjust;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotalCts;
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn colSizeId;
         private DevExpress.XtraEditors.LookUpEdit lueBranch;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn colSize;
+        private DevExpress.XtraEditors.SimpleButton btnMap;
+        private DevExpress.XtraGrid.Columns.GridColumn colDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseID;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailId;
     }
 }
