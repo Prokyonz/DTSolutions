@@ -13,6 +13,8 @@ namespace DiamondTrading
 {
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
+        #region "FormEvents"
+
         public FrmMain()
         {
             InitializeComponent();
@@ -25,8 +27,458 @@ namespace DiamondTrading
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
             OpenMasterDetailsForm("CompanyMaster");
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            DevExpress.XtraSplashScreen.FluentSplashScreenOptions options = new DevExpress.XtraSplashScreen.FluentSplashScreenOptions();
+            options.LogoImageOptions.Image = Properties.Resources.user_64;
+            options.Title = "Welcome " + Common.LoginUserName;
+            options.Subtitle = "Good Morning";
+            options.RightFooter = "Starting...";
+            //options.LeftFooter = "Copyright @ 2021" + Environment.NewLine + "All Rights reserved.";
+            options.LoadingIndicatorType = DevExpress.XtraSplashScreen.FluentLoadingIndicatorType.Dots;
+            options.Opacity = 130;
+            options.OpacityColor = Color.DodgerBlue;
+
+            DevExpress.XtraSplashScreen.SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
+
+            System.Threading.Thread.Sleep(500);
+            Common.LoadRegistry();
+            DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
+
+            //splashScreenManager1.ShowWaitForm();
+            //System.Threading.Thread.Sleep(1800);
+            //splashScreenManager1.CloseWaitForm();
+
+            barLblUserName.Caption = Common.LoginUserName;
+            this.BringToFront();
+            FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
+            frmCompanyYearSelection.BringToFront();
+            if (frmCompanyYearSelection.ShowDialog() == DialogResult.OK)
+            {
+                this.Enabled = true;
+                barBtnLoginCompany.Caption = Common.LoginCompanyName;
+                barBtnLoginBranch.Caption = Common.LoginBranchName;
+                barBtnLoginFinancialYear.Caption = Common.LoginFinancialYearName;
+            }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void barBtnShape_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("ShapeMaster");
+        }
+
+        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("BranchMaster");
+        }
+
+        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("PurityMaster");
+        }
+
+        private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("SizeMaster");
+        }
+
+        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("LessWeightGroupMaster");
+        }
+
+        private void accrdianElementCompanyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("CompanyMaster");
+        }
+
+        private void accrdianElementBranchMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("BranchMaster");
+        }
+
+        private void accrdianElementShapeMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("ShapeMaster");
+        }
+
+        private void accrdianElementSizeMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("SizeMaster");
+        }
+
+        private void accrdianElementPurityMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("PurityMaster");
+        }
+
+        private void accrdianElementLessWeightGroupMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("LessWeightGroupMaster");
+        }
+
+        private void accordionControlElementMaster_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("GalaMaster");
+        }
+
+        private void accrdianElementGalaMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("GalaMaster");
+        }
+
+        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("NumberMaster");
+        }
+
+        private void accrdianElementNumberMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("NumberMaster");
+        }
+
+        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("FinancialYearMaster");
+        }
+
+        private void accrdianElementFinancialYearMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("FinancialYearMaster");
+        }
+
+        private void accordionControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("BrokerageMaster");
+        }
+
+        private void accrdianElementBrokerageMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("BrokerageMaster");
+        }
+
+        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("CurrencyMaster");
+        }
+
+        private void accrdianElementCurrencyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("CurrencyMaster");
+        }
+
+        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("KapanMaster");
+        }
+
+        private void accrdianElementKapanMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("KapanMaster");
+        }
+
+        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("LedgerMaster");
+        }
+
+        private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("LedgerMaster");
+        }
+
+        private void barSubItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
+        }
+
+        private void barSubItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
+        }
+
+        private void barbtnYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            YearCompanySelection();
+        }
+
+        private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            OpenPurchaseForm();
+        }
+
+        private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlUtility);
+            OpenOptionsPage();
+        }
+
+        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlElementMaster);
+            OpenMasterDetailsForm("UserMaster");
+            
+        }
+
+        private void barButtonItem23_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem24_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            if (page != null)
+            {
+                page.Close();
+                //barManager1.ForceInitialize();
+                //page.SelectedTabPage = PageRequested;
+                //page.ActiveTab();
+                //page.BringToFront();
+            }
+
+            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+            frmMasterDetails.SelectedTabPage = "Purchase";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+
+            //OpenMasterDetailsForm("Purchase");
+        }
+
+        private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenMasterDetailsForm("Sales");
+        }
+
+        private void barButtonItem25_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            OpenPaymentPage();
+        }
+
+        private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem35_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            BoilSendPage();
+        }
+
+        private void accrdianElementUserMaster_Click(object sender, EventArgs e)
+        {
+            OpenMasterDetailsForm("UserMaster");
+        }
+
+        private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            OpenSaleForm();
+        }
+
+        private void accordionControlPurchase_Click(object sender, EventArgs e)
+        {
+            OpenPurchaseForm();
+        }
+
+        private void accordionControlElement17_Click(object sender, EventArgs e)
+        {
+            OpenSaleForm();
+        }
+
+        private void barButtonItem36_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            BoilReceivePage();
+        }
+
+        private void accordionControlPayment_Click(object sender, EventArgs e)
+        {
+            OpenPaymentPage();
+        }
+
+        private void accordionControlReceipt_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            OpenReceiptPage();
+        }
+
+        private void accordionControlContra_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            OpenContraPage();
+        }
+
+        private void accordionControlKapanMapping_Click(object sender, EventArgs e)
+        {
+            OpenKapanMappingPage();
+        }
+
+        private void accordionControlAssortSend_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            OpenAssortSendPage();
+        }
+
+        private void accordionControlAssortReceive_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            OpenAssortReceivePage();
+        }
+
+        private void accordionControlBoilSend_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            BoilSendPage();
+        }
+
+        private void accordionControlBoilReceive_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            BoilReceivePage();
+        }
+
+        private void accordionControlCharniSend_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            CharniSendPage();
+        }
+
+        private void accordionControlCharniReceive_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            CharniReceivePage();
+        }
+
+        private void accordionControlGalaSend_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            GalaSendPage();
+        }
+
+        private void accordionControGalaReceive_Click(object sender, EventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            GalaReceivePage();
+        }
+
+        private void accordionControlNumberSend_Click(object sender, EventArgs e)
+        {
+            NumberSendPage();
+            accordionControl1.ExpandElement(accordionControlProcess);
+        }
+
+        private void accordionControlNumberReceive_Click(object sender, EventArgs e)
+        {
+            NumberReceivePage();
+        }
+
+        private void accordionControlExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void accordionControlTransfer_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlCalculator_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void accordionControlOptions_Click(object sender, EventArgs e)
+        {
+            OpenOptionsPage();
+        }
+
+        private void barButtonItem37_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            CharniSendPage();
+        }
+
+        private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            CharniReceivePage();
+        }
+
+        private void barButtonItem39_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            GalaSendPage();
+        }
+
+        private void barButtonItem40_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            GalaReceivePage();
+        }
+
+        private void barButtonItem41_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            NumberSendPage();
+        }
+
+        private void barButtonItem42_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            NumberReceivePage();
+            accordionControl1.ExpandElement(accordionControlProcess);
+        }
+
+
+        #endregion
 
         private void OpenMasterDetailsForm(string PageRequested)
         {
@@ -71,186 +523,7 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            DevExpress.XtraSplashScreen.FluentSplashScreenOptions options = new DevExpress.XtraSplashScreen.FluentSplashScreenOptions();
-            options.LogoImageOptions.Image = Properties.Resources.user_64;
-            options.Title = "Welcome " + Common.LoginUserName;
-            options.Subtitle = "Good Morning";
-            options.RightFooter = "Starting...";
-            //options.LeftFooter = "Copyright @ 2021" + Environment.NewLine + "All Rights reserved.";
-            options.LoadingIndicatorType = DevExpress.XtraSplashScreen.FluentLoadingIndicatorType.Dots;
-            options.Opacity = 130;
-            options.OpacityColor = Color.DodgerBlue;
-
-            DevExpress.XtraSplashScreen.SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
-
-            System.Threading.Thread.Sleep(500);
-            Common.LoadRegistry();
-            DevExpress.XtraSplashScreen.SplashScreenManager.CloseForm();
-
-            //splashScreenManager1.ShowWaitForm();
-            //System.Threading.Thread.Sleep(1800);
-            //splashScreenManager1.CloseWaitForm();
-
-            barLblUserName.Caption = Common.LoginUserName;
-            this.BringToFront();
-            FrmCompanyYearSelection frmCompanyYearSelection = new FrmCompanyYearSelection();
-            frmCompanyYearSelection.BringToFront();
-            if (frmCompanyYearSelection.ShowDialog() == DialogResult.OK)
-            {
-                this.Enabled = true;
-                barBtnLoginCompany.Caption = Common.LoginCompanyName;
-                barBtnLoginBranch.Caption = Common.LoginBranchName;
-                barBtnLoginFinancialYear.Caption = Common.LoginFinancialYearName;
-            }
-        }
-
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void barBtnShape_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("ShapeMaster");
-        }
-
-        private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("BranchMaster");
-        }
-
-        private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("PurityMaster");
-        }
-
-        private void barButtonItem12_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("SizeMaster");
-        }
-
-        private void barButtonItem15_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("LessWeightGroupMaster");
-        }
-
-        private void accrdianElementCompanyMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("CompanyMaster");
-        }
-
-        private void accrdianElementBranchMaster_Click(object sender, EventArgs e)
-        {
-             OpenMasterDetailsForm("BranchMaster");
-        }
-
-        private void accrdianElementShapeMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("ShapeMaster");
-        }
-
-        private void accrdianElementSizeMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("SizeMaster");
-        }
-
-        private void accrdianElementPurityMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("PurityMaster");
-        }
-
-        private void accrdianElementLessWeightGroupMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("LessWeightGroupMaster");
-        }
-
-        private void accordionControlElementMaster_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void barButtonItem8_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("GalaMaster");
-        }
-
-        private void accrdianElementGalaMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("GalaMaster");
-        }
-
-        private void barButtonItem9_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("NumberMaster");
-        }
-
-        private void accrdianElementNumberMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("NumberMaster");
-        }
-
-        private void barButtonItem5_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("FinancialYearMaster");
-        }
-
-        private void accrdianElementFinancialYearMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("FinancialYearMaster");
-        }
-
-        private void accordionControl1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void barButtonItem14_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("BrokerageMaster");
-        }
-
-        private void accrdianElementBrokerageMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("BrokerageMaster");
-        }
-
-        private void barButtonItem13_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("CurrencyMaster");
-        }
-
-        private void accrdianElementCurrencyMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("CurrencyMaster");
-        }
-
-        private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("KapanMaster");
-        }
-
-        private void accrdianElementKapanMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("KapanMaster");
-        }
-
-        private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("LedgerMaster");
-        }
-
-        private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("LedgerMaster");
-        }
-
-        private void barSubItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            YearCompanySelection();
-        }
-
+        
         private void YearCompanySelection()
         {
             this.Enabled = false;
@@ -263,21 +536,6 @@ namespace DiamondTrading
                 barBtnLoginBranch.Caption = Common.LoginBranchName;
                 barBtnLoginFinancialYear.Caption = Common.LoginFinancialYearName;
             }
-        }
-
-        private void barSubItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            YearCompanySelection();
-        }
-
-        private void barbtnYear_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            YearCompanySelection();
-        }
-
-        private void barButtonItem18_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenPurchaseForm();
         }
 
         private void OpenPurchaseForm()
@@ -327,8 +585,8 @@ namespace DiamondTrading
 
             frmSalesEntry.ShowDialog();
         }
-
-        private void barButtonItem33_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private static void OpenOptionsPage()
         {
             FrmOptions page = Application.OpenForms["FrmOptions"] as FrmOptions;
             if (page != null)
@@ -339,43 +597,8 @@ namespace DiamondTrading
             FrmOptions frmOptions = new FrmOptions();
             frmOptions.ShowDialog();
         }
-
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("UserMaster");
-        }
-
-        private void accrdianElementUserMaster_Click(object sender, EventArgs e)
-        {
-            OpenMasterDetailsForm("UserMaster");
-        }
-
-        private void barButtonItem19_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenSaleForm();
-        }
-
-        private void accordionControlPurchase_Click(object sender, EventArgs e)
-        {
-            OpenPurchaseForm();
-        }
-
-        private void accordionControlElement17_Click(object sender, EventArgs e)
-        {
-            OpenSaleForm();
-        }
-
-        private void barButtonItem21_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-        }
-
-        private void barButtonItem34_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-        }
-
-        private void barButtonItem35_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private void BoilSendPage()
         {
             Process.FrmBoilSend page = Application.OpenForms["FrmBoilSend"] as Process.FrmBoilSend;
             if (page != null)
@@ -399,8 +622,8 @@ namespace DiamondTrading
 
             frmBoilSend.ShowDialog();
         }
-
-        private void barButtonItem36_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private void BoilReceivePage()
         {
             Process.FrmBoilReceive page = Application.OpenForms["FrmBoilReceive"] as Process.FrmBoilReceive;
             if (page != null)
@@ -424,8 +647,8 @@ namespace DiamondTrading
 
             frmBoilReceive.ShowDialog();
         }
-
-        private void barButtonItem37_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private void CharniSendPage()
         {
             Process.FrmCharniSend page = Application.OpenForms["FrmCharniSend"] as Process.FrmCharniSend;
             if (page != null)
@@ -450,7 +673,7 @@ namespace DiamondTrading
             frmCharniSend.ShowDialog();
         }
 
-        private void barButtonItem38_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void CharniReceivePage()
         {
             Process.FrmCharniReceive page = Application.OpenForms["FrmCharniReceive"] as Process.FrmCharniReceive;
             if (page != null)
@@ -475,7 +698,7 @@ namespace DiamondTrading
             frmCharniReceive.ShowDialog();
         }
 
-        private void barButtonItem39_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void GalaSendPage()
         {
             Process.FrmGalaSend page = Application.OpenForms["FrmGalaSend"] as Process.FrmGalaSend;
             if (page != null)
@@ -500,7 +723,7 @@ namespace DiamondTrading
             frmGalaSend.ShowDialog();
         }
 
-        private void barButtonItem40_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void GalaReceivePage()
         {
             Process.FrmGalaReceive page = Application.OpenForms["FrmGalaReceive"] as Process.FrmGalaReceive;
             if (page != null)
@@ -525,7 +748,7 @@ namespace DiamondTrading
             frmGalaReceive.ShowDialog();
         }
 
-        private void barButtonItem41_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void NumberSendPage()
         {
             Process.FrmNumberSend page = Application.OpenForms["FrmNumberSend"] as Process.FrmNumberSend;
             if (page != null)
@@ -550,7 +773,8 @@ namespace DiamondTrading
             frmNumberSend.ShowDialog();
         }
 
-        private void barButtonItem42_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private void NumberReceivePage()
         {
             Process.FrmNumberReceive page = Application.OpenForms["FrmNumberReceive"] as Process.FrmNumberReceive;
             if (page != null)
@@ -575,46 +799,8 @@ namespace DiamondTrading
             frmNumberReceive.ShowDialog();
         }
 
-        private void barButtonItem23_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-        }
-
-        private void barButtonItem24_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            
-        }
-
-        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
-
-            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
-            frmMasterDetails.SelectedTabPage = "Purchase";
-            frmMasterDetails.MdiParent = this;
-            frmMasterDetails.Show();
-            frmMasterDetails.BringToFront();
-
-            accordionControlElementMaster.Expanded = true;
-
-            //OpenMasterDetailsForm("Purchase");
-        }
-
-        private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            OpenMasterDetailsForm("Sales");
-        }
-
-        private void barButtonItem25_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        
+        private void OpenPaymentPage()
         {
             Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
             if (page != null)
@@ -639,7 +825,7 @@ namespace DiamondTrading
             frmPaymentEntry.ShowDialog();
         }
 
-        private void barButtonItem26_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void OpenReceiptPage()
         {
             Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
             if (page != null)
@@ -664,7 +850,7 @@ namespace DiamondTrading
             frmPaymentEntry.ShowDialog();
         }
 
-        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void OpenContraPage()
         {
             Transaction.FrmPaymentEntry page = Application.OpenForms["FrmPaymentEntry"] as Transaction.FrmPaymentEntry;
             if (page != null)
@@ -689,7 +875,27 @@ namespace DiamondTrading
             frmPaymentEntry.ShowDialog();
         }
 
+        private void barButtonItem26_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenReceiptPage();
+        }
+
+        
+
+        private void barButtonItem20_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenContraPage();
+        }
+
+        
+
         private void barButtonItem21_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            OpenKapanMappingPage();
+        }
+
+        private void OpenKapanMappingPage()
         {
             Process.FrmKapanMap page = Application.OpenForms["FrmKapanMap"] as Process.FrmKapanMap;
             if (page != null)
@@ -716,6 +922,12 @@ namespace DiamondTrading
 
         private void barButtonItem34_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            OpenAssortSendPage();
+        }
+
+        private void OpenAssortSendPage()
+        {
             Process.FrmAssortProcessSend page = Application.OpenForms["FrmAssortProcessSend"] as Process.FrmAssortProcessSend;
             if (page != null)
             {
@@ -741,6 +953,12 @@ namespace DiamondTrading
 
         private void barButtonItem43_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            OpenAssortReceivePage();
+        }
+
+        private void OpenAssortReceivePage()
+        {
             Process.FrmAssortProcessReceive page = Application.OpenForms["FrmAssortProcessReceive"] as Process.FrmAssortProcessReceive;
             if (page != null)
             {
@@ -762,6 +980,21 @@ namespace DiamondTrading
             frmAssortProcessReceive.Location = new Point((w - frmAssortProcessReceive.Width - 200) / 3, (Height - frmAssortProcessReceive.Height) / 2);
 
             frmAssortProcessReceive.ShowDialog();
+        }
+
+        private void barButtonItem17_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void barButtonItem27_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
         }
     }
 }

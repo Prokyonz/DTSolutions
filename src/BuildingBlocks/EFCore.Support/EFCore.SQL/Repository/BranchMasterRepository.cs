@@ -9,91 +9,100 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class BranchMasterRepository : IBranchMaster, IDisposable
+    public class BranchMasterRepository : IBranchMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public BranchMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
         }
 
         public async Task<BranchMaster> AddBranchAsync(BranchMaster branchMaster)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                if(branchMaster.Id == null)
-                    branchMaster.Id = Guid.NewGuid().ToString();
-                await _databaseContext.BranchMaster.AddAsync(branchMaster);
-                await _databaseContext.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+                try
+                {
+                    if (branchMaster.Id == null)
+                        branchMaster.Id = Guid.NewGuid().ToString();
+                    await _databaseContext.BranchMaster.AddAsync(branchMaster);
+                    await _databaseContext.SaveChangesAsync();
+                }
+                catch (Exception ex)
+                {
+                    throw;
+                }
 
-            return branchMaster;
+                return branchMaster;
+            }
         }
 
         public async Task<bool> DeleteBranchAsync(string branchId)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchId).FirstOrDefaultAsync();
-                if (getBranch != null)
+                try
                 {
-                    getBranch.IsDelete = true;
+                    var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchId).FirstOrDefaultAsync();
+                    if (getBranch != null)
+                    {
+                        getBranch.IsDelete = true;
+                    }
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
                 }
-                await _databaseContext.SaveChangesAsync();
-                return true;
-            }
-            catch (Exception)
-            {
+                catch (Exception)
+                {
 
-                throw;
+                    throw;
+                }
             }
-        }
-
-        public void Dispose()
-        {
-            _databaseContext.DisposeAsync();
         }
 
         public async Task<List<BranchMaster>> GetAllBranchAsync()
         {
-            return await _databaseContext.BranchMaster.Where(s=>s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.BranchMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<List<BranchMaster>> GetAllBranchAsync(string companyId)
         {
-            return await _databaseContext.BranchMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.BranchMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId).ToListAsync();
+            }
         }
 
         public async Task<BranchMaster> UpdateBranchAsync(BranchMaster branchMaster)
         {
-            var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchMaster.Id).FirstOrDefaultAsync();
-            if (getBranch != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getBranch.Name = branchMaster.Name;
-                getBranch.Address = branchMaster.Address;
-                getBranch.Address2 = branchMaster.Address2;
-                getBranch.MobileNo = branchMaster.MobileNo;
-                getBranch.OfficeNo = branchMaster.OfficeNo;
-                getBranch.Details = branchMaster.Details;
-                getBranch.TermsCondition = branchMaster.TermsCondition;
-                getBranch.GSTNo = branchMaster.GSTNo;
-                getBranch.PanCardNo = branchMaster.PanCardNo;
-                getBranch.RegistrationNo = branchMaster.RegistrationNo;
-                getBranch.LessWeightId = branchMaster.LessWeightId;
-                getBranch.CVDWeight = branchMaster.CVDWeight;
-                getBranch.TipWeight = branchMaster.TipWeight;
-                getBranch.CreatedDate = branchMaster.CreatedDate;
-                getBranch.UpdatedDate = branchMaster.UpdatedDate;
-                getBranch.CreatedBy = branchMaster.CreatedBy;
-                getBranch.UpdatedBy = branchMaster.UpdatedBy;
+                var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchMaster.Id).FirstOrDefaultAsync();
+                if (getBranch != null)
+                {
+                    getBranch.Name = branchMaster.Name;
+                    getBranch.Address = branchMaster.Address;
+                    getBranch.Address2 = branchMaster.Address2;
+                    getBranch.MobileNo = branchMaster.MobileNo;
+                    getBranch.OfficeNo = branchMaster.OfficeNo;
+                    getBranch.Details = branchMaster.Details;
+                    getBranch.TermsCondition = branchMaster.TermsCondition;
+                    getBranch.GSTNo = branchMaster.GSTNo;
+                    getBranch.PanCardNo = branchMaster.PanCardNo;
+                    getBranch.RegistrationNo = branchMaster.RegistrationNo;
+                    getBranch.LessWeightId = branchMaster.LessWeightId;
+                    getBranch.CVDWeight = branchMaster.CVDWeight;
+                    getBranch.TipWeight = branchMaster.TipWeight;
+                    getBranch.CreatedDate = branchMaster.CreatedDate;
+                    getBranch.UpdatedDate = branchMaster.UpdatedDate;
+                    getBranch.CreatedBy = branchMaster.CreatedBy;
+                    getBranch.UpdatedBy = branchMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return branchMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return branchMaster;
         }
     }
 }

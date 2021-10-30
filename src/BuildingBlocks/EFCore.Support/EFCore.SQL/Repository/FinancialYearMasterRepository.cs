@@ -11,55 +11,67 @@ namespace EFCore.SQL.Repository
 {
     public class FinancialYearMasterRepository : IFinancialYearMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public FinancialYearMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+
         }
         public async Task<FinancialYearMaster> AddFinancialYearAsync(FinancialYearMaster financialYearMaster)
         {
-            if (financialYearMaster.Id == null)
-                financialYearMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.FinancialYearMaster.AddAsync(financialYearMaster);
-            await _databaseContext.SaveChangesAsync();
-            return financialYearMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (financialYearMaster.Id == null)
+                    financialYearMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.FinancialYearMaster.AddAsync(financialYearMaster);
+                await _databaseContext.SaveChangesAsync();
+                return financialYearMaster;
+            }
         }
 
         public async Task<bool> DeleteFinancialYearAsync(string financialYearId, bool isPermanantDetele = false)
         {
-            var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s =>s.IsDelete == false &&  s.Id == financialYearId).FirstOrDefaultAsync();
-            if(getFinancialYear != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.FinancialYearMaster.Remove(getFinancialYear);
-                else
-                    getFinancialYear.IsDelete = true;
+                var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.IsDelete == false && s.Id == financialYearId).FirstOrDefaultAsync();
+                if (getFinancialYear != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.FinancialYearMaster.Remove(getFinancialYear);
+                    else
+                        getFinancialYear.IsDelete = true;
 
-                await _databaseContext.SaveChangesAsync();
-                return true;
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
 
         public async Task<List<FinancialYearMaster>> GetAllFinancialYear()
         {
-            return await _databaseContext.FinancialYearMaster.Where(w => w.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.FinancialYearMaster.Where(w => w.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<FinancialYearMaster> UpdateFinancialYearAsync(FinancialYearMaster financialYearMaster)
         {
-            var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.Id == financialYearMaster.Id).FirstOrDefaultAsync();
-            if (getFinancialYear != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getFinancialYear.Name = financialYearMaster.Name;
-                getFinancialYear.StartDate= financialYearMaster.StartDate;
-                getFinancialYear.EndDate = financialYearMaster.EndDate;
-                getFinancialYear.UpdatedDate = financialYearMaster.UpdatedDate;
-                getFinancialYear.UpdatedBy = financialYearMaster.UpdatedBy;
+                var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.Id == financialYearMaster.Id).FirstOrDefaultAsync();
+                if (getFinancialYear != null)
+                {
+                    getFinancialYear.Name = financialYearMaster.Name;
+                    getFinancialYear.StartDate = financialYearMaster.StartDate;
+                    getFinancialYear.EndDate = financialYearMaster.EndDate;
+                    getFinancialYear.UpdatedDate = financialYearMaster.UpdatedDate;
+                    getFinancialYear.UpdatedBy = financialYearMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return financialYearMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return financialYearMaster;
         }
     }
 }

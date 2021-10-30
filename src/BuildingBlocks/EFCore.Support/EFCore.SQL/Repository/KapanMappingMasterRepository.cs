@@ -17,7 +17,7 @@ namespace EFCore.SQL.Repository
 
         public KapanMappingMasterRepository()
         {
-            
+
         }
 
         public async Task<KapanMappingMaster> AddKapanMappingAsync(KapanMappingMaster kapanMappingMaster)
@@ -39,7 +39,7 @@ namespace EFCore.SQL.Repository
             {
                 var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanMappingId).FirstOrDefaultAsync();
 
-                if(getKapanRecord != null)
+                if (getKapanRecord != null)
                 {
                     _databaseContext.KapanMappingMaster.Remove(getKapanRecord);
 
@@ -62,14 +62,17 @@ namespace EFCore.SQL.Repository
 
         public async Task<int> GetMaxSrNo(string companyId, string financialYearId)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                var getResult = await _databaseContext.KapanMappingMaster.MaxAsync(m => m.Sr);
-                return getResult + 1;
-            }
-            catch (Exception ex)
-            {
-                return 1;
+                try
+                {
+                    var getResult = await _databaseContext.KapanMappingMaster.MaxAsync(m => m.Sr);
+                    return getResult + 1;
+                }
+                catch (Exception ex)
+                {
+                    return 1;
+                }
             }
         }
 
@@ -89,7 +92,7 @@ namespace EFCore.SQL.Repository
             {
                 throw;
             }
-            
+
         }
 
         public async Task<KapanMappingMaster> UpdateKapanMappingMasterAsync(KapanMappingMaster kapanMappingMaster)
@@ -97,7 +100,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanMappingMaster.Id).FirstOrDefaultAsync();
-                if(getKapanRecord != null)
+                if (getKapanRecord != null)
                 {
                     getKapanRecord.CompanyId = kapanMappingMaster.CompanyId;
                     getKapanRecord.BranchId = kapanMappingMaster.BranchId;

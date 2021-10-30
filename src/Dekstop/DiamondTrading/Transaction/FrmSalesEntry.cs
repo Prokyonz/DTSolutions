@@ -23,6 +23,8 @@ namespace DiamondTrading.Transaction
 
         private void FrmSaleEntry_Load(object sender, EventArgs e)
         {
+            this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
+
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
             tglSlip.IsOn = Common.PrintPurchaseSlip;

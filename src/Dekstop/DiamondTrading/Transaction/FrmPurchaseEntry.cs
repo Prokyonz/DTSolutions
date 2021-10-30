@@ -29,6 +29,7 @@ namespace DiamondTrading.Transaction
             _purchaseMasterRepository = new PurchaseMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            this.Text = "PURCHASE - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
         }
 
         private void FrmPurchaseEntry_Load(object sender, EventArgs e)
@@ -39,8 +40,27 @@ namespace DiamondTrading.Transaction
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
 
             SetThemeColors(Color.FromArgb(250, 243, 197));
+
             //SetThemeColors(Color.FromArgb(0));
+
+            LoadCompany();
             FillCombos();
+            //FillBranches();
+            FillCurrency();
+            FillCurrency();
+            
+        }
+
+        private async void LoadCompany()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companies = await companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = companies;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
+            LoadBranch(Common.LoginCompany);
         }
 
         private void SetThemeColors(Color color)
@@ -63,7 +83,28 @@ namespace DiamondTrading.Transaction
                 txtBrokerPer.BackColor = color;
             }
         }
-        private async void FillCombos()
+
+        private async void FillBranches()
+        {
+            //Branch
+            BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
+            var branchMaster = await branchMasterRepository.GetAllBranchAsync(Common.LoginCompany);
+            lueBranch.Properties.DataSource = branchMaster;
+            lueBranch.Properties.DisplayMember = "Name";
+            lueBranch.Properties.ValueMember = "Id";
+        }
+
+        private async void FillCurrency()
+        {
+            //Currency
+            CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
+            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync();
+            lueCurrencyType.Properties.DataSource = currencyMaster;
+            lueCurrencyType.Properties.DisplayMember = "Name";
+            lueCurrencyType.Properties.ValueMember = "Id";
+        }
+
+        private void FillCombos()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -74,49 +115,33 @@ namespace DiamondTrading.Transaction
             //Payment Mode
             luePaymentMode.Properties.DataSource = Common.GetPaymentType;
             luePaymentMode.Properties.DisplayMember = "PTypeName";
-            luePaymentMode.Properties.ValueMember = "PTypeID";
-
-            //Branch
-            BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
-            var branchMaster = await branchMasterRepository.GetAllBranchAsync();
-            lueBranch.Properties.DataSource = branchMaster;
-            lueBranch.Properties.DisplayMember = "Name";
-            lueBranch.Properties.ValueMember = "Id";
-
-            //Currency
-            CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
-            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync();
-            lueCurrencyType.Properties.DataSource = currencyMaster;
-            lueCurrencyType.Properties.DisplayMember = "Name";
-            lueCurrencyType.Properties.ValueMember = "Id";
+            luePaymentMode.Properties.ValueMember = "PTypeID";                        
 
             //Buyer
-            await GetBuyerList();
+            GetBuyerList();
 
             //Party
-            await GetPartyList();
+            GetPartyList();
 
             //Broker
-            await GetBrokerList();
+            GetBrokerList();
         }
 
-        private async void LoadPurchaseItemDetails()
+        private void LoadPurchaseItemDetails()
         {
-            grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();
-            //Company
-            LoadCompany();
+            grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();            
 
             //Shape
-            await GetShapeDetail();
+            GetShapeDetail();
 
             //Size
-            await GetSizeDetail();
+            GetSizeDetail();
 
             //Purity
-            await GetPurityDetail();
+            GetPurityDetail();
 
             //Kapan
-            await GetKapanDetail ();
+            GetKapanDetail ();
         }
 
         private async Task GetBuyerList()
@@ -142,18 +167,7 @@ namespace DiamondTrading.Transaction
             lueBroker.Properties.DisplayMember = "Name";
             lueBroker.Properties.ValueMember = "Id";
         }
-        private async void LoadCompany()
-        {
-            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
-            var companies = await companyMasterRepository.GetAllCompanyAsync();
-            lueCompany.Properties.DataSource = companies;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-
-            lueCompany.EditValue = Common.LoginCompany;
-            LoadBranch(Common.LoginCompany);
-        }
-
+        
         private async void LoadBranch(string companyId)
         {
             BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
@@ -1210,6 +1224,8 @@ namespace DiamondTrading.Transaction
         {
             grdPurchaseDetails.DataSource = null;
             FillCombos();
+            //FillBranches();
+            FillCurrency();
             txtRemark.Text = "";
             txtDays.Text = "";
             txtPaymentDays.Text = "";

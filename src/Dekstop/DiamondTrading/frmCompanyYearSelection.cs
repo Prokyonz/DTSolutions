@@ -27,11 +27,10 @@ namespace DiamondTrading
             _financialYearRepository = new FinancialYearMasterRepository();
         }
 
-        private async void FrmCompanyYearSelection_Load(object sender, EventArgs e)
+        private void FrmCompanyYearSelection_Load(object sender, EventArgs e)
         {
-            await LoadCompany();
-            await LoadFinancialYear();
-
+            LoadCompany();
+            LoadFinancialYear();
             LoadRegistrySettings();
         }
 
@@ -120,6 +119,8 @@ namespace DiamondTrading
             lueCompany.Properties.DataSource = companies;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
+            if (Common.RememberComapnyYearSelection == true)
+                btnOk.Focus();
         }
 
         private async Task LoadBranch(string companyId)
@@ -129,6 +130,8 @@ namespace DiamondTrading
             lueBranch.Properties.DataSource = branches;
             lueBranch.Properties.DisplayMember = "Name";
             lueBranch.Properties.ValueMember = "Id";
+            if (Common.RememberComapnyYearSelection == true)
+                btnOk.Focus();
         }
 
         private async Task LoadFinancialYear()
@@ -136,7 +139,9 @@ namespace DiamondTrading
             var financialYear = await _financialYearRepository.GetAllFinancialYear();
             lueFinancialYear.Properties.DataSource = financialYear;
             lueFinancialYear.Properties.DisplayMember = "Name";
-            lueFinancialYear.Properties.ValueMember = "Id";            
+            lueFinancialYear.Properties.ValueMember = "Id";
+            if (Common.RememberComapnyYearSelection == true)
+                btnOk.Focus();
         }
 
         #endregion
