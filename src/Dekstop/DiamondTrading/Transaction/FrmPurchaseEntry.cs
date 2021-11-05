@@ -220,10 +220,10 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                var SrNo = await _purchaseMasterRepository.GetMaxSrNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+                var SrNo = await _purchaseMasterRepository.GetMaxSrNo(lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
                 txtSerialNo.Text = SrNo.ToString();
 
-                var SlipNo = await _purchaseMasterRepository.GetMaxSlipNo(lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                var SlipNo = await _purchaseMasterRepository.GetMaxSlipNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
                 txtSlipNo.Text = SlipNo.ToString();
             }
             catch(Exception Ex)

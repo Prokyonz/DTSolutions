@@ -67,17 +67,17 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.PurchaseMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
-        public async Task<long> GetMaxSlipNo(string branchId, string financialYearId)
+        public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.SlipNo).FirstOrDefaultAsync();
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.SlipNo).FirstOrDefaultAsync();
             if(result != null)
                 return result.SlipNo + 1;
             return 1;
         }
 
-        public async Task<long> GetMaxSrNo(string companyId, string financialYearId)
+        public async Task<long> GetMaxSrNo(string branchId, string financialYearId)
         {
-            var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.PurchaseBillNo).FirstOrDefaultAsync();
+            var result = await _databaseContext.PurchaseMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).OrderByDescending(o=>o.PurchaseBillNo).FirstOrDefaultAsync();
             if(result != null)
                 return result.PurchaseBillNo + 1;
             return 1;
