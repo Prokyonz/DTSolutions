@@ -1265,5 +1265,10 @@ namespace DiamondTrading.Transaction
             var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
             txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
         }
+
+        private void lueBranch_EditValueChanged(object sender, EventArgs e)
+        {
+            GetPurchaseNo();
+        }
     }
 }

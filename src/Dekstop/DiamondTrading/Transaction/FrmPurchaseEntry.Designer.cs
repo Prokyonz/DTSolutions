@@ -337,7 +337,6 @@ namespace DiamondTrading.Transaction
             // 
             // lueBranch
             // 
-            this.lueBranch.Enabled = false;
             this.lueBranch.Location = new System.Drawing.Point(13, 136);
             this.lueBranch.Name = "lueBranch";
             this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -350,6 +349,7 @@ namespace DiamondTrading.Transaction
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(267, 22);
             this.lueBranch.TabIndex = 6;
+            this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
             // 
             // luePaymentMode
             // 
