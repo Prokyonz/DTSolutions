@@ -149,7 +149,7 @@ namespace DiamondTrading.Process
                         kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseID).ToString();
                         kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseDetailId).ToString();
                         kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
-                        kapanMappingMaster.SlipId = grvPendingKapanDetails.GetRowCellValue(i, colSlipNo).ToString();
+                        kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(i, colSlipNo).ToString();
                         kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts));
                         kapanMappingMaster.CreatedDate = DateTime.Now;
                         kapanMappingMaster.CreatedBy = Common.LoginUserID;

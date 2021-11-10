@@ -52,7 +52,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.GalaProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.GalaProcessType == galaProcessType).ToListAsync();
+                return await _databaseContext.GalaProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId && w.GalaProcessType == galaProcessType).ToListAsync();
             }
         }
 
@@ -62,7 +62,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.GalaProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.GalaProcessType == galaProcessType).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.GalaProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.GalaProcessType == galaProcessType).MaxAsync(m => m.Sr);
                     return getCount + 1;
                 }
             }
@@ -85,7 +85,7 @@ namespace EFCore.SQL.Repository
                     getRecord.BranchId = galaProcessMaster.BranchId;
                     getRecord.CompanyId = galaProcessMaster.CompanyId;
                     getRecord.EntryDate = galaProcessMaster.EntryDate;
-                    getRecord.FinancialId = galaProcessMaster.FinancialId;
+                    getRecord.FinancialYearId = galaProcessMaster.FinancialYearId;
                     getRecord.HandOverById = galaProcessMaster.HandOverById;
                     getRecord.HandOverToId = galaProcessMaster.HandOverToId;
                     getRecord.IsDelete = false;
@@ -96,6 +96,7 @@ namespace EFCore.SQL.Repository
                     getRecord.Remarks = galaProcessMaster.Remarks;
                     getRecord.ShapeId = galaProcessMaster.ShapeId;
                     getRecord.SizeId = galaProcessMaster.SizeId;
+                    getRecord.PurityId = galaProcessMaster.PurityId;
                     getRecord.SlipNo = galaProcessMaster.SlipNo;
                     getRecord.UpdatedBy = galaProcessMaster.UpdatedBy;
                     getRecord.UpdatedDate = galaProcessMaster.UpdatedDate;

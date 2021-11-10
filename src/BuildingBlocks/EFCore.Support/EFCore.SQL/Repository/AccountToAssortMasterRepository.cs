@@ -53,7 +53,7 @@ namespace EFCore.SQL.Repository
         {
             using(_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.AccountToAssortMaster.Where(w=>w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId).ToListAsync();
+                return await _databaseContext.AccountToAssortMaster.Where(w=>w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
             }            
         }
 
@@ -85,7 +85,7 @@ namespace EFCore.SQL.Repository
                     getMasterRecord.CompanyId = accountToAssortMaster.CompanyId;
                     getMasterRecord.Department = accountToAssortMaster.Department;
                     getMasterRecord.EntryDate = accountToAssortMaster.EntryDate;
-                    getMasterRecord.FinancialId = accountToAssortMaster.FinancialId;
+                    getMasterRecord.FinancialYearId = accountToAssortMaster.FinancialYearId;
                     getMasterRecord.FromParyId = accountToAssortMaster.FromParyId;
                     getMasterRecord.ToPartyId = accountToAssortMaster.ToPartyId;
                     getMasterRecord.Remarks = accountToAssortMaster.Remarks;

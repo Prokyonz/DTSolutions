@@ -51,7 +51,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.CharniProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.CharniType == charniType).ToListAsync();
+                return await _databaseContext.CharniProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId && w.CharniType == charniType).ToListAsync();
             }
         }
 
@@ -61,7 +61,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.CharniProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.CharniType == charniType).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.CharniProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.CharniType == charniType).MaxAsync(m => m.Sr);
                     return getCount + 1;
                 }
             }
@@ -84,7 +84,7 @@ namespace EFCore.SQL.Repository
                     getRecord.BranchId = charniProcessMaster.BranchId;
                     getRecord.CompanyId = charniProcessMaster.CompanyId;
                     getRecord.EntryDate = charniProcessMaster.EntryDate;
-                    getRecord.FinancialId = charniProcessMaster.FinancialId;
+                    getRecord.FinancialYearId = charniProcessMaster.FinancialYearId;
                     getRecord.HandOverById = charniProcessMaster.HandOverById;
                     getRecord.HandOverToId = charniProcessMaster.HandOverToId;
                     getRecord.IsDelete = false;
@@ -95,6 +95,7 @@ namespace EFCore.SQL.Repository
                     getRecord.Remarks = charniProcessMaster.Remarks;
                     getRecord.ShapeId = charniProcessMaster.ShapeId;
                     getRecord.SizeId = charniProcessMaster.SizeId;
+                    getRecord.PurityId = charniProcessMaster.PurityId;
                     getRecord.SlipNo = charniProcessMaster.SlipNo;
                     getRecord.UpdatedBy = charniProcessMaster.UpdatedBy;
                     getRecord.UpdatedDate = charniProcessMaster.UpdatedDate;

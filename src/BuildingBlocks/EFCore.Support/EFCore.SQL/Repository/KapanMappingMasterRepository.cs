@@ -105,7 +105,8 @@ namespace EFCore.SQL.Repository
                     getKapanRecord.CompanyId = kapanMappingMaster.CompanyId;
                     getKapanRecord.BranchId = kapanMappingMaster.BranchId;
                     getKapanRecord.KapanId = kapanMappingMaster.KapanId;
-                    getKapanRecord.SlipId = kapanMappingMaster.SlipId;
+                    getKapanRecord.SlipNo = kapanMappingMaster.SlipNo;
+                    getKapanRecord.PurityId = kapanMappingMaster.PurityId;
                     getKapanRecord.PurchaseMasterId = kapanMappingMaster.PurchaseMasterId;
                     getKapanRecord.PurchaseDetailsId = kapanMappingMaster.PurchaseDetailsId;
                     getKapanRecord.Weight = kapanMappingMaster.Weight;

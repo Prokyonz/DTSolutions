@@ -54,7 +54,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.NumberProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.NumberProcessType == numberProcessType).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.NumberProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.NumberProcessType == numberProcessType).MaxAsync(m => m.Sr);
                     return getCount + 1;
                 }
             }
@@ -68,7 +68,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.NumberProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.NumberProcessType == numberProcessType).ToListAsync();
+                return await _databaseContext.NumberProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId && w.NumberProcessType == numberProcessType).ToListAsync();
             }
         }
 
@@ -85,7 +85,7 @@ namespace EFCore.SQL.Repository
                     getRecord.BranchId = numberProcessMaste.BranchId;
                     getRecord.CompanyId = numberProcessMaste.CompanyId;
                     getRecord.EntryDate = numberProcessMaste.EntryDate;
-                    getRecord.FinancialId = numberProcessMaste.FinancialId;
+                    getRecord.FinancialYearId = numberProcessMaste.FinancialYearId;
                     getRecord.HandOverById = numberProcessMaste.HandOverById;
                     getRecord.HandOverToId = numberProcessMaste.HandOverToId;
                     getRecord.IsDelete = false;
@@ -96,6 +96,7 @@ namespace EFCore.SQL.Repository
                     getRecord.Remarks = numberProcessMaste.Remarks;
                     getRecord.ShapeId = numberProcessMaste.ShapeId;
                     getRecord.SizeId = numberProcessMaste.SizeId;
+                    getRecord.PurityId = numberProcessMaste.PurityId;
                     getRecord.SlipNo = numberProcessMaste.SlipNo;
                     getRecord.UpdatedBy = numberProcessMaste.UpdatedBy;
                     getRecord.UpdatedDate = numberProcessMaste.UpdatedDate;

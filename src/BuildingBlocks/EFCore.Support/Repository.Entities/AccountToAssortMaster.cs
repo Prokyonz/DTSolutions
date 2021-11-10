@@ -13,7 +13,7 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
-        public string FinancialId { get; set; }
+        public string FinancialYearId { get; set; }
         public DateTime? EntryDate { get; set; }
         public int AccountToAssortType { get; set; } //Send, Receive
         public string FromParyId { get; set; }

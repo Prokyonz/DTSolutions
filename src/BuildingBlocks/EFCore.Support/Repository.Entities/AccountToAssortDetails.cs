@@ -13,10 +13,12 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string AccountToAssortMasterId { get; set; }
         public string SlipNo { get; set; }
+        public string ShapeId { get; set; }
         public string SizeId { get; set; }
-
+        public string PurityId { get; set; }
+        
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal TotalWeight { get; set; }
+        public decimal Weight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal AssignWeight { get; set; }
 

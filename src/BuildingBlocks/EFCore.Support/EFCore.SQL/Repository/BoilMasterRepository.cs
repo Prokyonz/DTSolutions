@@ -52,7 +52,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.BoilProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialId == financialYearId && w.BoilType == boilType).ToListAsync();
+                return await _databaseContext.BoilProcessMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId && w.BoilType == boilType).ToListAsync();
             }
         }
 
@@ -62,7 +62,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.Sr);
                     return getCount + 1;
                 }
             }
@@ -85,7 +85,7 @@ namespace EFCore.SQL.Repository
                     getRecord.BranchId = boilMaster.BranchId;
                     getRecord.CompanyId = boilMaster.CompanyId;
                     getRecord.EntryDate = boilMaster.EntryDate;
-                    getRecord.FinancialId = boilMaster.FinancialId;
+                    getRecord.FinancialYearId = boilMaster.FinancialYearId;
                     getRecord.HandOverById = boilMaster.HandOverById;
                     getRecord.HandOverToId = boilMaster.HandOverToId;
                     getRecord.IsDelete = false;
@@ -96,6 +96,7 @@ namespace EFCore.SQL.Repository
                     getRecord.Remarks = boilMaster.Remarks;
                     getRecord.ShapeId = boilMaster.ShapeId;
                     getRecord.SizeId = boilMaster.SizeId;
+                    getRecord.PurityId = boilMaster.PurityId;
                     getRecord.SlipNo = boilMaster.SlipNo;
                     getRecord.UpdatedBy = boilMaster.UpdatedBy;
                     getRecord.UpdatedDate = boilMaster.UpdatedDate;

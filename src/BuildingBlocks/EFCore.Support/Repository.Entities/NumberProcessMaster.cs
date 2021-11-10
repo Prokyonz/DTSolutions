@@ -16,11 +16,13 @@ namespace Repository.Entities
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public DateTime? EntryDate { get; set; }
-        public string FinancialId { get; set; }
+        public string FinancialYearId { get; set; }
         public int NumberProcessType { get; set; } //Send, Receive
         public string KapanId { get; set; }
         public string ShapeId { get; set; }
         public string SizeId { get; set; }
+        public string PurityId { get; set; }
+
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         public string GalaNumberId { get; set; }

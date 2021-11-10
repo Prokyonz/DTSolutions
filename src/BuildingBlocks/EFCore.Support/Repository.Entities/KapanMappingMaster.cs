@@ -16,7 +16,8 @@ namespace Repository.Entities
         public string PurchaseMasterId { get; set; }
         public string PurchaseDetailsId { get; set; }
         public string KapanId { get; set; }
-        public string SlipId { get; set; }
+        public string PurityId { get; set; }
+        public string SlipNo { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
