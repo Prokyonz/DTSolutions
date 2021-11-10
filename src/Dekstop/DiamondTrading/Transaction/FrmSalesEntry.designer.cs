@@ -346,6 +346,7 @@ namespace DiamondTrading.Transaction
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(267, 22);
             this.lueBranch.TabIndex = 6;
+            this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
             // 
             // luePaymentMode
             // 

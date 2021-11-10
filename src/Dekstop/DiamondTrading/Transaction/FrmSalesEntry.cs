@@ -368,13 +368,12 @@ namespace DiamondTrading.Transaction
             Common.MoveToNextControl(sender, e, this);
         }
 
+        #region Control Events
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        #region Control Events
-        
         private async void lueSaler_EditValueChanged(object sender, EventArgs e)
         {
             var selectedSaler = (PartyMaster)lueSaler.GetSelectedDataRow();
@@ -387,9 +386,7 @@ namespace DiamondTrading.Transaction
         {
             var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
             txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
-        }
-
-        #endregion
+        }        
 
         private async void lueBroker_EditValueChanged(object sender, EventArgs e)
         {
@@ -397,5 +394,12 @@ namespace DiamondTrading.Transaction
             var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedBoker.BrokerageId);
             txtBrokerPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
         }
+
+        private void lueBranch_EditValueChanged(object sender, EventArgs e)
+        {
+            GetSalesNo();
+        }
+
+        #endregion
     }
 }
