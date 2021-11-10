@@ -228,7 +228,7 @@ namespace DiamondTrading.Master
                     else
                         PartyMaster.SubType = PartyTypeMaster.None;
 
-                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer))
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller))
                         PartyMaster.BrokerageId = lueBrokerage.EditValue.ToString();
 
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
@@ -252,7 +252,8 @@ namespace DiamondTrading.Master
                         _EditedPartyMasterSet.SubType = Convert.ToInt32(lueSubType.EditValue);
                     else
                         _EditedPartyMasterSet.SubType = PartyTypeMaster.None;
-                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker ||
+                        Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller))
                         _EditedPartyMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
                     _EditedPartyMasterSet.OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text);
                     _EditedPartyMasterSet.Name = txtPartyName.Text;
@@ -375,12 +376,12 @@ namespace DiamondTrading.Master
         {
             if (lueSubType.EditValue != null)
             {
-                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller
-                    || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other)
+                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other)
                 {
                     pnl2.Visible = false;
                 }
-                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer)
+                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer
+                    || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller)
                 {
                     pnl2.Visible = true;
 

@@ -14,6 +14,8 @@ namespace EFCore.SQL.Interface
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, DateTime startDate, DateTime endDate);
         Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster);
         Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster);
+        Task<long> GetMaxSlipNo(string companyId, string financialYearId);
+        Task<long> GetMaxSrNo(string branchId, string financialYearId);
         Task<bool> DeleteSalesAsync(string salesId, bool isPermanantDetele = false);
     }
 }

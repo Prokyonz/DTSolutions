@@ -10,53 +10,68 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class SalesMasterRepository : ISalesMaster, IDisposable
+    public class SalesMasterRepository : ISalesMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public SalesMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
         public async Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster)
         {
-            if (salesMaster.Id == null)
-                salesMaster.Id = Guid.NewGuid().ToString();
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesMaster.Id == null)
+                    salesMaster.Id = Guid.NewGuid().ToString();
 
-            await _databaseContext.SalesMaster.AddAsync(salesMaster);
-            await _databaseContext.SaveChangesAsync();
-            return salesMaster;
+                await _databaseContext.SalesMaster.AddAsync(salesMaster);
+                await _databaseContext.SaveChangesAsync();
+                return salesMaster;
+            }
         }
 
         public async Task<bool> DeleteSalesAsync(string salesId, bool isPermanantDetele = false)
         {
-            var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
-            if (salesRecord != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.SalesMaster.Remove(salesRecord);
-                else
-                    salesRecord.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
-                return true;
+                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
+                if (salesRecord != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.SalesMaster.Remove(salesRecord);
+                    else
+                        salesRecord.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
-            return false;
             
         }
 
         public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string financialYearId)
         {
-            return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.FinancialYearId == financialYearId).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.FinancialYearId == financialYearId).ToListAsync();
+            }
         }
 
         public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, DateTime startDate, DateTime endDate)
         {
-            return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
+            }
         }
 
         public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, string financialYearId)
         {
-            return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+            }
         }
 
         public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, DateTime startDate, DateTime endDate)
@@ -64,64 +79,95 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
+        public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var result = await _databaseContext.SalesMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SlipNo);
+                    return result + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }
+        }
+
+        public async Task<long> GetMaxSrNo(string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var result = await _databaseContext.SalesMaster.Where(w => w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SaleBillNo);
+                    return result + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }
+        }
+
+
         public async Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster)
         {
-            var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id).FirstOrDefaultAsync();
-            if (salesRecord != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                salesRecord.BranchId = salesRecord.BranchId;
-                salesRecord.PartyId = salesRecord.PartyId;
-                salesRecord.SalerId = salesRecord.SalerId;
-                salesRecord.CurrencyId = salesRecord.CurrencyId;
-                salesRecord.FinancialYearId = salesRecord.FinancialYearId;
-                salesRecord.BrokerageId = salesRecord.BrokerageId;
-                
-                salesRecord.CurrencyRate = salesRecord.CurrencyRate;
-                salesRecord.SaleBillNo = salesRecord.SaleBillNo;
-                salesRecord.SlipNo = salesRecord.SlipNo;
-                salesRecord.TransactionType = salesRecord.TransactionType;
-                salesRecord.Date = salesRecord.Date;
-                salesRecord.Time = salesRecord.Time;
-                salesRecord.DayName = salesRecord.DayName;
-                salesRecord.PartyLastBalanceWhileSale = salesRecord.PartyLastBalanceWhileSale;
-                salesRecord.BrokerPercentage = salesRecord.BrokerPercentage;
-                
-                salesRecord.BrokerAmount = salesRecord.BrokerAmount;
-                salesRecord.RoundUpAmount = salesRecord.RoundUpAmount;
-                salesRecord.Total = salesRecord.Total;
-                salesRecord.GrossTotal = salesRecord.GrossTotal;
-                salesRecord.DueDays = salesRecord.DueDays;
-                salesRecord.DueDate = salesRecord.DueDate;
-                salesRecord.PaymentDays = salesRecord.PaymentDays;
-                salesRecord.PaymentDueDays = salesRecord.PaymentDueDays;
-                salesRecord.IsSlip = salesRecord.IsSlip;
-                salesRecord.IsPF = salesRecord.IsPF;
-                
-                salesRecord.CommissionToPartyId = salesRecord.CommissionToPartyId;
-                salesRecord.CommissionPercentage = salesRecord.CommissionPercentage;
-                salesRecord.CommissionAmount = salesRecord.CommissionAmount;
-                salesRecord.Image1 = salesRecord.Image1;
-                salesRecord.Image2 = salesRecord.Image2;
-                salesRecord.Image3 = salesRecord.Image3;
-                salesRecord.AllowSlipPrint = salesRecord.AllowSlipPrint;
-                salesRecord.IsDelete = salesRecord.IsDelete;
-                salesRecord.Remarks = salesRecord.Remarks;
-                salesRecord.UpdatedDate = salesRecord.UpdatedDate;
-                salesRecord.UpdatedBy = salesRecord.UpdatedBy;
+                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id).FirstOrDefaultAsync();
+                if (salesRecord != null)
+                {
+                    salesRecord.BranchId = salesRecord.BranchId;
+                    salesRecord.PartyId = salesRecord.PartyId;
+                    salesRecord.SalerId = salesRecord.SalerId;
+                    salesRecord.CurrencyId = salesRecord.CurrencyId;
+                    salesRecord.FinancialYearId = salesRecord.FinancialYearId;
+                    salesRecord.BrokerageId = salesRecord.BrokerageId;
 
-                _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
+                    salesRecord.CurrencyRate = salesRecord.CurrencyRate;
+                    salesRecord.SaleBillNo = salesRecord.SaleBillNo;
+                    salesRecord.SlipNo = salesRecord.SlipNo;
+                    salesRecord.TransactionType = salesRecord.TransactionType;
+                    salesRecord.Date = salesRecord.Date;
+                    salesRecord.Time = salesRecord.Time;
+                    salesRecord.DayName = salesRecord.DayName;
+                    salesRecord.PartyLastBalanceWhileSale = salesRecord.PartyLastBalanceWhileSale;
+                    salesRecord.BrokerPercentage = salesRecord.BrokerPercentage;
 
-                await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+                    salesRecord.BrokerAmount = salesRecord.BrokerAmount;
+                    salesRecord.RoundUpAmount = salesRecord.RoundUpAmount;
+                    salesRecord.Total = salesRecord.Total;
+                    salesRecord.GrossTotal = salesRecord.GrossTotal;
+                    salesRecord.DueDays = salesRecord.DueDays;
+                    salesRecord.DueDate = salesRecord.DueDate;
+                    salesRecord.PaymentDays = salesRecord.PaymentDays;
+                    salesRecord.PaymentDueDays = salesRecord.PaymentDueDays;
+                    salesRecord.IsSlip = salesRecord.IsSlip;
+                    salesRecord.IsPF = salesRecord.IsPF;
 
-                await _databaseContext.SaveChangesAsync();
+                    salesRecord.CommissionToPartyId = salesRecord.CommissionToPartyId;
+                    salesRecord.CommissionPercentage = salesRecord.CommissionPercentage;
+                    salesRecord.CommissionAmount = salesRecord.CommissionAmount;
+                    salesRecord.Image1 = salesRecord.Image1;
+                    salesRecord.Image2 = salesRecord.Image2;
+                    salesRecord.Image3 = salesRecord.Image3;
+                    salesRecord.AllowSlipPrint = salesRecord.AllowSlipPrint;
+                    salesRecord.IsDelete = salesRecord.IsDelete;
+                    salesRecord.Remarks = salesRecord.Remarks;
+                    salesRecord.UpdatedDate = salesRecord.UpdatedDate;
+                    salesRecord.UpdatedBy = salesRecord.UpdatedBy;
+
+                    _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
+
+                    await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+
+                    await _databaseContext.SaveChangesAsync();
+                }
             }
            
             return salesMaster;
-        }
-
-        public void Dispose()
-        {
-            _databaseContext.DisposeAsync();
         }
     }
 }

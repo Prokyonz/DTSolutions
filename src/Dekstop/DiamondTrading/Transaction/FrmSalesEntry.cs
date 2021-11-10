@@ -16,23 +16,35 @@ namespace DiamondTrading.Transaction
 {
     public partial class FrmSalesEntry : DevExpress.XtraEditors.XtraForm
     {
+        SalesMasterRepository _salesMasterRepository;
+        PartyMasterRepository _partyMasterRepository;
+        private readonly BrokerageMasterRepository _brokerageMasterRepository;
+
         public FrmSalesEntry()
         {
             InitializeComponent();
+            _salesMasterRepository = new SalesMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
+
+            this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
         }
 
         private void FrmSaleEntry_Load(object sender, EventArgs e)
         {
-            this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
-
+            
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
 
             SetThemeColors(Color.FromArgb(215, 246, 214));
-            //SetThemeColors(Color.FromArgb(0));
+
             FillCombos();
+
+            LoadCompany();
+
+            FillCurrency();
         }
 
         private void SetThemeColors(Color color)
@@ -50,9 +62,9 @@ namespace DiamondTrading.Transaction
                 grpGroup9.AppearanceCaption.BorderColor = color;
 
                 txtCurrencyType.BackColor = color;
-                txtBuyerCommisionBalance.BackColor = color;
+                txtSalerCommisionPercentage.BackColor = color;
                 txtPartyBalance.BackColor = color;
-                txtBrokerBalance.BackColor = color;
+                txtBrokerPercentage.BackColor = color;
             }
         }
         private async void FillCombos()
@@ -61,7 +73,7 @@ namespace DiamondTrading.Transaction
             dtTime.EditValue = DateTime.Now;
             dtPayDate.EditValue = DateTime.Now;
 
-            GetPurchaseNo(); //Serial No/Slip No
+            //GetPurchaseNo(); //Serial No/Slip No
 
             LoadPurchaseItemDetails();
 
@@ -70,45 +82,83 @@ namespace DiamondTrading.Transaction
             luePaymentMode.Properties.DisplayMember = "PTypeName";
             luePaymentMode.Properties.ValueMember = "PTypeID";
 
-            //Branch
+            GetSalerList();
+
+            //Commision
+            //partyMaster = await partyMasterRepository.GetAllPartyAsync();
+            //lueCompany.Properties.DataSource = partyMaster;
+            //lueCompany.Properties.DisplayMember = "Name";
+            //lueCompany.Properties.ValueMember = "Id";
+
+            GetPartyList();
+
+            GetBrokerList();
+        }
+
+
+        #region Private Methods
+
+        private async Task GetBrokerList()
+        {
+            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
+            lueBroker.Properties.DataSource = BrokerDetailList;
+            lueBroker.Properties.DisplayMember = "Name";
+            lueBroker.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetPartyList()
+        {
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Party);
+            lueParty.Properties.DataSource = PartyDetailList;
+            lueParty.Properties.DisplayMember = "Name";
+            lueParty.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetSalerList()
+        {
+            var SalerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Seller);
+            lueSaler.Properties.DataSource = SalerDetailList;
+            lueSaler.Properties.DisplayMember = "Name";
+            lueSaler.Properties.ValueMember = "Id";
+        }
+
+        private async void LoadCompany()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companies = await companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = companies;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
+
+            lueCompany.Enabled = false;
+            LoadBranch(Common.LoginCompany);
+        }
+
+        private async void LoadBranch(string companyId)
+        {
             BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
-            var branchMaster = await branchMasterRepository.GetAllBranchAsync();
-            lueBranch.Properties.DataSource = branchMaster;
+            var branches = await branchMasterRepository.GetAllBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
+            lueBranch.Properties.DataSource = branches;
             lueBranch.Properties.DisplayMember = "Name";
             lueBranch.Properties.ValueMember = "Id";
+            lueBranch.EditValue = Common.LoginBranch;
 
+            GetSalesNo(); //Serial No/Slip No
+        }
+
+        private async void FillCurrency()
+        {
             //Currency
             CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
             var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync();
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
-
-            //Buyer
-            PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
-            var partyMaster = await partyMasterRepository.GetPartyAsync();
-            lueBuyer.Properties.DataSource = partyMaster;
-            lueBuyer.Properties.DisplayMember = "Name";
-            lueBuyer.Properties.ValueMember = "Id";
-
-            //Commision
-            partyMaster = await partyMasterRepository.GetAllPartyAsync();
-            lueCommision.Properties.DataSource = partyMaster;
-            lueCommision.Properties.DisplayMember = "Name";
-            lueCommision.Properties.ValueMember = "Id";
-
-            //Party
-            partyMaster = await partyMasterRepository.GetAllPartyAsync();
-            lueParty.Properties.DataSource = partyMaster;
-            lueParty.Properties.DisplayMember = "Name";
-            lueParty.Properties.ValueMember = "Id";
-
-            //Broker
-            partyMaster = await partyMasterRepository.GetPartyAsync();
-            lueBroker.Properties.DataSource = partyMaster;
-            lueBroker.Properties.DisplayMember = "Name";
-            lueBroker.Properties.ValueMember = "Id";
         }
+
+        #endregion
 
         private void LoadPurchaseItemDetails()
         {
@@ -178,16 +228,19 @@ namespace DiamondTrading.Transaction
             repoKapan.ValueMember = "Id";
         }
 
-        public void GetPurchaseNo()
+        public async void GetSalesNo()
         {
             try
             {
-                txtSerialNo.Text = "0";
-                txtSlipNo.Text = "0";
+                var SrNo = await _salesMasterRepository.GetMaxSrNo(lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                txtSerialNo.Text = SrNo.ToString();
+
+                var SlipNo = await _salesMasterRepository.GetMaxSlipNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+                txtSlipNo.Text = SlipNo.ToString();
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
-                MessageBox.Show("Error : " + Ex.Message.ToString(), "["+this.Name+"]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Name + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -318,6 +371,31 @@ namespace DiamondTrading.Transaction
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        #region Control Events
+        
+        private async void lueSaler_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedSaler = (PartyMaster)lueSaler.GetSelectedDataRow();
+            var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedSaler.BrokerageId);
+            txtSalerCommisionPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
+        }
+
+        
+        private void lueParty_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
+            txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
+        }
+
+        #endregion
+
+        private async void lueBroker_EditValueChanged(object sender, EventArgs e)
+        {
+            var selectedBoker = (PartyMaster)lueBroker.GetSelectedDataRow();
+            var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedBoker.BrokerageId);
+            txtBrokerPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
         }
     }
 }

@@ -47,7 +47,7 @@ namespace DiamondTrading.Transaction
             FillCombos();
             //FillBranches();
             FillCurrency();
-            FillCurrency();
+            //FillCurrency();
             
         }
 

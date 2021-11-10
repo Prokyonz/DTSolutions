@@ -32,7 +32,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.lueCommision = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.txtSlipNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -48,8 +48,8 @@ namespace DiamondTrading.Transaction
             this.txtCurrencyType = new DevExpress.XtraEditors.TextEdit();
             this.labelControl9 = new DevExpress.XtraEditors.LabelControl();
             this.lueCurrencyType = new DevExpress.XtraEditors.LookUpEdit();
-            this.txtBuyerCommisionBalance = new DevExpress.XtraEditors.TextEdit();
-            this.lueBuyer = new DevExpress.XtraEditors.LookUpEdit();
+            this.txtSalerCommisionPercentage = new DevExpress.XtraEditors.TextEdit();
+            this.lueSaler = new DevExpress.XtraEditors.LookUpEdit();
             this.txtPartyBalance = new DevExpress.XtraEditors.TextEdit();
             this.lueParty = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -59,7 +59,7 @@ namespace DiamondTrading.Transaction
             this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup3 = new DevExpress.XtraEditors.GroupControl();
-            this.txtBrokerBalance = new DevExpress.XtraEditors.TextEdit();
+            this.txtBrokerPercentage = new DevExpress.XtraEditors.TextEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl17 = new DevExpress.XtraEditors.LabelControl();
             this.dtPayDate = new DevExpress.XtraEditors.DateEdit();
@@ -127,7 +127,7 @@ namespace DiamondTrading.Transaction
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueCommision.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -140,8 +140,8 @@ namespace DiamondTrading.Transaction
             this.grpGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCurrencyType.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBuyerCommisionBalance.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBuyer.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalerCommisionPercentage.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSaler.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPartyBalance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).BeginInit();
@@ -149,7 +149,7 @@ namespace DiamondTrading.Transaction
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup3)).BeginInit();
             this.grpGroup3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerBalance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerPercentage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPayDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPayDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaymentDays.Properties)).BeginInit();
@@ -196,7 +196,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
             this.grpGroup1.Controls.Add(this.labelControl13);
             this.grpGroup1.Controls.Add(this.labelControl4);
-            this.grpGroup1.Controls.Add(this.lueCommision);
+            this.grpGroup1.Controls.Add(this.lueCompany);
             this.grpGroup1.Controls.Add(this.txtSlipNo);
             this.grpGroup1.Controls.Add(this.labelControl2);
             this.grpGroup1.Controls.Add(this.labelControl12);
@@ -230,21 +230,21 @@ namespace DiamondTrading.Transaction
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "Company*";
             // 
-            // lueCommision
+            // lueCompany
             // 
-            this.lueCommision.Location = new System.Drawing.Point(10, 43);
-            this.lueCommision.Name = "lueCommision";
-            this.lueCommision.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueCommision.Properties.Appearance.Options.UseFont = true;
-            this.lueCommision.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueCompany.Location = new System.Drawing.Point(10, 43);
+            this.lueCompany.Name = "lueCompany";
+            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCompany.Properties.Appearance.Options.UseFont = true;
+            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueCommision.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CommisionID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueCommision.Properties.NullText = "";
-            this.lueCommision.Size = new System.Drawing.Size(190, 22);
-            this.lueCommision.TabIndex = 1;
+            this.lueCompany.Properties.NullText = "";
+            this.lueCompany.Size = new System.Drawing.Size(190, 22);
+            this.lueCompany.TabIndex = 1;
             // 
             // txtSlipNo
             // 
@@ -443,36 +443,37 @@ namespace DiamondTrading.Transaction
             this.lueCurrencyType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lueCurrencyType_KeyDown);
             this.lueCurrencyType.Leave += new System.EventHandler(this.lueCurrencyType_Leave);
             // 
-            // txtBuyerCommisionBalance
+            // txtSalerCommisionPercentage
             // 
-            this.txtBuyerCommisionBalance.EditValue = "0";
-            this.txtBuyerCommisionBalance.Enabled = false;
-            this.txtBuyerCommisionBalance.Location = new System.Drawing.Point(203, 43);
-            this.txtBuyerCommisionBalance.Name = "txtBuyerCommisionBalance";
-            this.txtBuyerCommisionBalance.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtBuyerCommisionBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuyerCommisionBalance.Properties.Appearance.Options.UseBackColor = true;
-            this.txtBuyerCommisionBalance.Properties.Appearance.Options.UseFont = true;
-            this.txtBuyerCommisionBalance.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtBuyerCommisionBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtBuyerCommisionBalance.Size = new System.Drawing.Size(76, 22);
-            this.txtBuyerCommisionBalance.TabIndex = 2;
+            this.txtSalerCommisionPercentage.EditValue = "0";
+            this.txtSalerCommisionPercentage.Enabled = false;
+            this.txtSalerCommisionPercentage.Location = new System.Drawing.Point(203, 43);
+            this.txtSalerCommisionPercentage.Name = "txtSalerCommisionPercentage";
+            this.txtSalerCommisionPercentage.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtSalerCommisionPercentage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSalerCommisionPercentage.Properties.Appearance.Options.UseBackColor = true;
+            this.txtSalerCommisionPercentage.Properties.Appearance.Options.UseFont = true;
+            this.txtSalerCommisionPercentage.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSalerCommisionPercentage.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtSalerCommisionPercentage.Size = new System.Drawing.Size(76, 22);
+            this.txtSalerCommisionPercentage.TabIndex = 2;
             // 
-            // lueBuyer
+            // lueSaler
             // 
-            this.lueBuyer.Location = new System.Drawing.Point(11, 43);
-            this.lueBuyer.Name = "lueBuyer";
-            this.lueBuyer.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueBuyer.Properties.Appearance.Options.UseFont = true;
-            this.lueBuyer.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueSaler.Location = new System.Drawing.Point(11, 43);
+            this.lueSaler.Name = "lueSaler";
+            this.lueSaler.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueSaler.Properties.Appearance.Options.UseFont = true;
+            this.lueSaler.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueBuyer.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueSaler.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Buyer Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BuyerID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueBuyer.Properties.NullText = "";
-            this.lueBuyer.Size = new System.Drawing.Size(193, 22);
-            this.lueBuyer.TabIndex = 1;
+            this.lueSaler.Properties.NullText = "";
+            this.lueSaler.Size = new System.Drawing.Size(193, 22);
+            this.lueSaler.TabIndex = 1;
+            this.lueSaler.EditValueChanged += new System.EventHandler(this.lueSaler_EditValueChanged);
             // 
             // txtPartyBalance
             // 
@@ -504,6 +505,7 @@ namespace DiamondTrading.Transaction
             this.lueParty.Properties.NullText = "";
             this.lueParty.Size = new System.Drawing.Size(193, 22);
             this.lueParty.TabIndex = 4;
+            this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
             // 
             // labelControl7
             // 
@@ -530,6 +532,7 @@ namespace DiamondTrading.Transaction
             this.lueBroker.Properties.NullText = "";
             this.lueBroker.Size = new System.Drawing.Size(193, 22);
             this.lueBroker.TabIndex = 7;
+            this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
             // 
             // labelControl8
             // 
@@ -588,35 +591,35 @@ namespace DiamondTrading.Transaction
             // 
             this.grpGroup3.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup3.AppearanceCaption.Options.UseFont = true;
-            this.grpGroup3.Controls.Add(this.txtBrokerBalance);
+            this.grpGroup3.Controls.Add(this.txtBrokerPercentage);
             this.grpGroup3.Controls.Add(this.lueBroker);
             this.grpGroup3.Controls.Add(this.labelControl3);
             this.grpGroup3.Controls.Add(this.txtPartyBalance);
             this.grpGroup3.Controls.Add(this.labelControl8);
-            this.grpGroup3.Controls.Add(this.txtBuyerCommisionBalance);
+            this.grpGroup3.Controls.Add(this.txtSalerCommisionPercentage);
             this.grpGroup3.Controls.Add(this.lueParty);
             this.grpGroup3.Controls.Add(this.labelControl7);
-            this.grpGroup3.Controls.Add(this.lueBuyer);
+            this.grpGroup3.Controls.Add(this.lueSaler);
             this.grpGroup3.Location = new System.Drawing.Point(528, 31);
             this.grpGroup3.Name = "grpGroup3";
             this.grpGroup3.Size = new System.Drawing.Size(288, 165);
             this.grpGroup3.TabIndex = 3;
             this.grpGroup3.Text = "Seller/Party/Broker Details";
             // 
-            // txtBrokerBalance
+            // txtBrokerPercentage
             // 
-            this.txtBrokerBalance.EditValue = "0";
-            this.txtBrokerBalance.Enabled = false;
-            this.txtBrokerBalance.Location = new System.Drawing.Point(202, 136);
-            this.txtBrokerBalance.Name = "txtBrokerBalance";
-            this.txtBrokerBalance.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.txtBrokerBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBrokerBalance.Properties.Appearance.Options.UseBackColor = true;
-            this.txtBrokerBalance.Properties.Appearance.Options.UseFont = true;
-            this.txtBrokerBalance.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtBrokerBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtBrokerBalance.Size = new System.Drawing.Size(76, 22);
-            this.txtBrokerBalance.TabIndex = 8;
+            this.txtBrokerPercentage.EditValue = "0";
+            this.txtBrokerPercentage.Enabled = false;
+            this.txtBrokerPercentage.Location = new System.Drawing.Point(202, 136);
+            this.txtBrokerPercentage.Name = "txtBrokerPercentage";
+            this.txtBrokerPercentage.Properties.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.txtBrokerPercentage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBrokerPercentage.Properties.Appearance.Options.UseBackColor = true;
+            this.txtBrokerPercentage.Properties.Appearance.Options.UseFont = true;
+            this.txtBrokerPercentage.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtBrokerPercentage.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtBrokerPercentage.Size = new System.Drawing.Size(76, 22);
+            this.txtBrokerPercentage.TabIndex = 8;
             // 
             // labelControl3
             // 
@@ -1408,7 +1411,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
             this.grpGroup1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueCommision.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).EndInit();
@@ -1422,8 +1425,8 @@ namespace DiamondTrading.Transaction
             this.grpGroup2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCurrencyType.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBuyerCommisionBalance.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBuyer.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalerCommisionPercentage.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueSaler.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPartyBalance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).EndInit();
@@ -1433,7 +1436,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup3)).EndInit();
             this.grpGroup3.ResumeLayout(false);
             this.grpGroup3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerBalance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBrokerPercentage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPayDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtPayDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPaymentDays.Properties)).EndInit();
@@ -1496,12 +1499,12 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.TextEdit txtPartyBalance;
         private DevExpress.XtraEditors.LookUpEdit lueParty;
         private DevExpress.XtraEditors.LabelControl labelControl7;
-        private DevExpress.XtraEditors.TextEdit txtBuyerCommisionBalance;
-        private DevExpress.XtraEditors.LookUpEdit lueCommision;
+        private DevExpress.XtraEditors.TextEdit txtSalerCommisionPercentage;
+        private DevExpress.XtraEditors.LookUpEdit lueCompany;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LookUpEdit lueBranch;
         private DevExpress.XtraEditors.LookUpEdit luePaymentMode;
-        private DevExpress.XtraEditors.LookUpEdit lueBuyer;
+        private DevExpress.XtraEditors.LookUpEdit lueSaler;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LabelControl labelControl10;
         private DevExpress.XtraEditors.LabelControl lblFormTitle;
@@ -1575,7 +1578,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colCurrRate;
         private DevExpress.XtraGrid.Columns.GridColumn colCurrAmount;
         private DevExpress.XtraEditors.PanelControl pnlStatus;
-        private DevExpress.XtraEditors.TextEdit txtBrokerBalance;
+        private DevExpress.XtraEditors.TextEdit txtBrokerPercentage;
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraGrid.Columns.GridColumn colCategory;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoCategory;
