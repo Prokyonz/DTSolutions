@@ -100,7 +100,13 @@ namespace DiamondTrading.Transaction
 
         private async Task GetBrokerList()
         {
-            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
             lueBroker.Properties.DataSource = BrokerDetailList;
             lueBroker.Properties.DisplayMember = "Name";
             lueBroker.Properties.ValueMember = "Id";
@@ -108,7 +114,13 @@ namespace DiamondTrading.Transaction
 
         private async Task GetPartyList()
         {
-            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Party);
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Party);
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
@@ -116,7 +128,13 @@ namespace DiamondTrading.Transaction
 
         private async Task GetSalerList()
         {
-            var SalerDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, PartyTypeMaster.Employee, PartyTypeMaster.Seller);
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var SalerDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Employee, PartyTypeMaster.Seller);
             lueSaler.Properties.DataSource = SalerDetailList;
             lueSaler.Properties.DisplayMember = "Name";
             lueSaler.Properties.ValueMember = "Id";
@@ -401,5 +419,16 @@ namespace DiamondTrading.Transaction
         }
 
         #endregion
+
+        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        {
+            this.Text = "SALES - " + lueCompany.Text + " - [" + Common.LoginFinancialYearName + "]";
+
+            LoadBranch(lueCompany.EditValue.ToString());
+
+            FillCombos();
+
+
+        }
     }
 }

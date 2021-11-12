@@ -232,7 +232,6 @@ namespace DiamondTrading.Transaction
             // 
             // lueCompany
             // 
-            this.lueCompany.Enabled = false;
             this.lueCompany.Location = new System.Drawing.Point(12, 43);
             this.lueCompany.Name = "lueCompany";
             this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -245,6 +244,7 @@ namespace DiamondTrading.Transaction
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(190, 22);
             this.lueCompany.TabIndex = 1;
+            this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
             // 
             // txtSlipNo
             // 
