@@ -150,7 +150,6 @@ namespace DiamondTrading.Transaction
 
             lueCompany.EditValue = Common.LoginCompany;
 
-            lueCompany.Enabled = false;
             LoadBranch(Common.LoginCompany);
         }
 
