@@ -134,36 +134,40 @@ namespace DiamondTrading.Process
                 if (!CheckValidation())
                     return;
 
-                List<KapanMappingMaster> ListKapanMappingMasters = new List<KapanMappingMaster>();
-                KapanMappingMaster kapanMappingMaster=null;
-                int count = 1;
-                for (int i = 0; i < grvPendingKapanDetails.RowCount; i++)
+                KapanMappingMaster kapanMappingMaster = null;
+                bool IsSuccess = false;
+                try
                 {
-                    if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
+                    for (int i = 0; i < grvPendingKapanDetails.RowCount; i++)
                     {
-                        kapanMappingMaster = new KapanMappingMaster();
-                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
-                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
-                        kapanMappingMaster.BranchId = lueBranch.EditValue.ToString();
-                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                        kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseID).ToString();
-                        kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseDetailId).ToString();
-                        kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
-                        kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(i, colSlipNo).ToString();
-                        kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts));
-                        kapanMappingMaster.CreatedDate = DateTime.Now;
-                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
-                        kapanMappingMaster.UpdatedDate = DateTime.Now;
-                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
+                        if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
+                        {
+                            kapanMappingMaster = new KapanMappingMaster();
+                            kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                            kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                            kapanMappingMaster.BranchId = lueBranch.EditValue.ToString();
+                            kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                            kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseID).ToString();
+                            kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(i, colPurchaseDetailId).ToString();
+                            kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
+                            kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(i, colSlipNo).ToString();
+                            kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts));
+                            kapanMappingMaster.CreatedDate = DateTime.Now;
+                            kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                            kapanMappingMaster.UpdatedDate = DateTime.Now;
+                            kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                        ListKapanMappingMasters.Insert(count, kapanMappingMaster);
-                        count++;
+                            var Result = await _kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                            IsSuccess = true;
+                        }
                     }
                 }
+                catch
+                {
+                    IsSuccess = false;
+                }
 
-                var Result = await _kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
-
-                if (Result != null)
+                if (IsSuccess)
                 {
                     Reset();
                     MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
