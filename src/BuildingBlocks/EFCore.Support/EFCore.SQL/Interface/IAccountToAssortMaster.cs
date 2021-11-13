@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,8 @@ namespace EFCore.SQL.Interface
         Task<AccountToAssortMaster> AddAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);
         Task<AccountToAssortMaster> UpdateAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);
         Task<bool> DeleteAccountToAssortAsync(string expenseId);
+
+        Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId);
+
     }
 }

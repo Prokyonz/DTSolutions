@@ -1047,9 +1047,9 @@ namespace DiamondTrading.Transaction
                     purchaseDetails.Id = PurchaseDetailsId;
                     purchaseDetails.PurchaseId = PurchaseId;
                     purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                    purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                    purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                    purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                    purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
+                    purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
+                    purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
 
                     purchaseDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
                     purchaseDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
@@ -1134,7 +1134,7 @@ namespace DiamondTrading.Transaction
             }
             catch (Exception Ex)
             {
-                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

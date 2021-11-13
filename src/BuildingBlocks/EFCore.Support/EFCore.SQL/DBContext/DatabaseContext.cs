@@ -59,6 +59,8 @@ namespace EFCore.SQL.DBContext
 
         public virtual DbSet<KapanMapping> SPKapanMapping { get; set; }
 
+        public virtual DbSet<AssortmentProcessSend> SPAssortmentProcessSend { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
@@ -107,6 +109,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
+            modelBuilder.Entity<AssortmentProcessSend>().HasNoKey();
         }
     }
 }

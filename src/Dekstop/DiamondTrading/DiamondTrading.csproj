@@ -180,6 +180,7 @@
     <Compile Include="Common\AppMessages.cs" />
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\DataSecurity.cs" />
+    <Compile Include="Common\enum.cs" />
     <Compile Include="Common\RegistryHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
