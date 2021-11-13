@@ -10,6 +10,7 @@ namespace Repository.Entities
         [Key]
         public string Id { get; set; }
         public int BoilNo { get; set; }
+        public string PurchaseDetailsId { get; set; }
         public int JangadNo { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
