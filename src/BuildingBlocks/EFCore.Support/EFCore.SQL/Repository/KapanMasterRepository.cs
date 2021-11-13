@@ -11,7 +11,7 @@ namespace EFCore.SQL.Repository
 {
     public class KapanMasterRepository : IKapanMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
         public KapanMasterRepository()
         {
             _databaseContext = new DatabaseContext();
@@ -45,6 +45,23 @@ namespace EFCore.SQL.Repository
         public async Task<List<KapanMaster>> GetAllKapanAsync()
         {
             return await _databaseContext.KapanMaster.Where(s => s.IsDelete == false).ToListAsync();
+        }
+
+        public async Task<List<KapanMaster>> GetAssortProcessKapanDetails(string companyId, string branchId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.KapanMaster.FromSqlRaw($"GetAssortProcessKapanDetails '" + companyId + "', '" + branchId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         public async Task<KapanMaster> UpdateKapanAsync(KapanMaster kapanMaster)

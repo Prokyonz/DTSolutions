@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,6 +107,23 @@ namespace EFCore.SQL.Repository
                 }
 
                 return boilMaster;
+            }
+        }
+
+        public async Task<List<BoilProcessSend>> GetBoilSendToDetails(string KapanId, string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPBoilProcessSend.FromSqlRaw($"GetBoilProcessSendToDetail '" + KapanId + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }
