@@ -16,7 +16,8 @@ namespace Repository.Entities
         public int BoilJangadNo { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
-        public DateTime? EntryDate { get; set; }
+        public string EntryDate { get; set; }
+        public string EntryTime { get; set; }
         public string FinancialYearId { get; set; }
         public int CharniType { get; set; } //Send, Receive
         public string KapanId { get; set; }
