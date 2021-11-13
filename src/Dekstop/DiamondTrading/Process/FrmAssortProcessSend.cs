@@ -207,31 +207,61 @@ namespace DiamondTrading.Process
             return true;
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-                string Id = Guid.NewGuid().ToString();
+                string AccountToAssortMasterId = Guid.NewGuid().ToString();
+                string AccountToAssortDetailsId = Guid.NewGuid().ToString();
+
+                List<AccountToAssortDetails> accountToAssortDetailsList = new List<AccountToAssortDetails>();
+                AccountToAssortDetails accountToAssortDetails = new AccountToAssortDetails();
+                for (int i = 0; i < grvParticularsDetails.RowCount; i++)
+                {
+                    accountToAssortDetails = new AccountToAssortDetails();
+                    accountToAssortDetails.Id = AccountToAssortDetailsId;
+                    accountToAssortDetails.AccountToAssortMasterId = AccountToAssortMasterId;
+                    accountToAssortDetails.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
+                    accountToAssortDetails.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
+                    accountToAssortDetails.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                    accountToAssortDetails.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                    //accountToAssortDetails.CharniProcessId = null;
+                    //accountToAssortDetails.GalaProcessId = null;
+                    //accountToAssortDetails.NumberProcessId = null;
+                    accountToAssortDetails.Weight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colACarat).ToString());
+                    accountToAssortDetails.AssignWeight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colAssignCarat).ToString());
+
+                    accountToAssortDetailsList.Insert(i, accountToAssortDetails);
+                }
 
                 AccountToAssortMaster accountToAssortMaster = new AccountToAssortMaster();
-                accountToAssortMaster.Id = Id;
+                accountToAssortMaster.Id = AccountToAssortMasterId;
                 accountToAssortMaster.CompanyId = Common.LoginCompany.ToString();
                 accountToAssortMaster.BranchId = Common.LoginBranch.ToString();
                 accountToAssortMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                //accountToAssortMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                //accountToAssortMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                accountToAssortMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                accountToAssortMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                 accountToAssortMaster.AccountToAssortType = Convert.ToInt32(ProcessType.Send);
                 accountToAssortMaster.FromParyId = lueReceiveFrom.EditValue.ToString();
                 accountToAssortMaster.ToPartyId = lueSendto.EditValue.ToString();
                 accountToAssortMaster.KapanId = lueKapan.EditValue.ToString();
                 accountToAssortMaster.Department = Convert.ToInt32(lueDepartment.EditValue);
                 accountToAssortMaster.Remarks = txtRemark.Text;
+                accountToAssortMaster.AccountToAssortDetails = accountToAssortDetailsList;
                 accountToAssortMaster.IsDelete = false;
                 accountToAssortMaster.CreatedDate = DateTime.Now;
                 accountToAssortMaster.CreatedBy = Common.LoginUserID;
                 accountToAssortMaster.UpdatedDate = DateTime.Now;
                 accountToAssortMaster.UpdatedBy = Common.LoginUserID;
+
+                var Result = await _accountToAssortMasterRepository.AddAccountToAssortAsync(accountToAssortMaster);
+
+                if (Result != null)
+                {
+                    Reset();
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
             catch(Exception Ex)
             {
@@ -241,6 +271,20 @@ namespace DiamondTrading.Process
             {
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private async void Reset()
+        {
+            grdParticularsDetails.DataSource = null;
+            dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
+
+            await GetMaxSrNo();
+            GetDepartmentList();
+            await GetEmployeeList();
+            await GetKapanDetail();
+            await GetAssortProcessSendDetail();
+            lueReceiveFrom.Focus();
         }
     }
 }
