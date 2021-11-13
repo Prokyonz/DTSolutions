@@ -191,6 +191,7 @@ namespace DiamondTrading.Process
                     {
                         boilProcessMaster = new BoilProcessMaster();
                         boilProcessMaster.Id = Guid.NewGuid().ToString();
+                        boilProcessMaster.PurchaseDetailsId = grvParticularsDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
                         boilProcessMaster.BoilNo = Convert.ToInt32(txtSerialNo.Text);
                         boilProcessMaster.JangadNo = Convert.ToInt32(txtSerialNo.Text);
                         boilProcessMaster.CompanyId = Common.LoginCompany;
@@ -248,11 +249,20 @@ namespace DiamondTrading.Process
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
+            lueReceiveFrom.EditValue = null;
+            lueSendto.EditValue = null;
             lueKapan.EditValue = null;
+            repoSlipNo.DataSource = null;
 
             await GetMaxSrNo();
             await GetEmployeeList();
+            lueReceiveFrom.Select();
             lueReceiveFrom.Focus();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Reset();
         }
     }
 }

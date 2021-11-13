@@ -300,5 +300,10 @@ namespace DiamondTrading.Process
         {
             await GetAssortProcessSendDetail();
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Reset();
+        }
     }
 }

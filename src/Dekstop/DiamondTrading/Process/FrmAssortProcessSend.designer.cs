@@ -116,6 +116,7 @@ namespace DiamondTrading.Process
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 2;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 

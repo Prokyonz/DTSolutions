@@ -63,7 +63,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.BoilNo);
                     return getCount + 1;
                 }
             }
