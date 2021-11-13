@@ -12,6 +12,7 @@ namespace Repository.Entities
         [Key]
         public string Id { get; set; }
         public string AccountToAssortMasterId { get; set; }
+        public string PurchaseDetailsId { get; set; }
         public string SlipNo { get; set; }
         public string ShapeId { get; set; }
         public string SizeId { get; set; }
