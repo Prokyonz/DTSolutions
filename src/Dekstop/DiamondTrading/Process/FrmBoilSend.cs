@@ -167,7 +167,7 @@ namespace DiamondTrading.Process
             }
             else if (grvParticularsDetails.RowCount == 0)
             {
-                MessageBox.Show("Please select Particulars Detailst", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select Particulars Details", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grvParticularsDetails.Focus();
                 return false;
             }

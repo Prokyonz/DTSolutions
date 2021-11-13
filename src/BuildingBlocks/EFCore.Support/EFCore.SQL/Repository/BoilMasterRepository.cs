@@ -63,7 +63,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.BoilNo);
+                    var getCount = await _databaseContext.BoilProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.BoilType == boilTpe).MaxAsync(m => m.JangadNo);
                     return getCount + 1;
                 }
             }
@@ -117,6 +117,23 @@ namespace EFCore.SQL.Repository
                 using (_databaseContext = new DatabaseContext())
                 {
                     var data = await _databaseContext.SPBoilProcessSend.FromSqlRaw($"GetBoilProcessSendToDetail '" + KapanId + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<BoilProcessReceive>> GetBoilReceiveToDetails(string ReceivedFromId, string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPBoilProcessReceive.FromSqlRaw($"GetBoilProcessReceiveDetail '" + ReceivedFromId + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }

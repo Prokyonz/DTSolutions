@@ -124,6 +124,26 @@ namespace Repository.Entities
         }
     }
 
+    public class ReceiveCategoryMaster
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int ReceivedCts = 0;
+        public static int LossCts = 1;
+        public static int ReturnRejCts = 2;
+
+        public static List<ReceiveCategoryMaster> GetAllCategory()
+        {
+            List<ReceiveCategoryMaster> categoryMasters = new List<ReceiveCategoryMaster>
+            {
+                new ReceiveCategoryMaster {Id = ReceivedCts, Name = "Received Cts" },
+                new ReceiveCategoryMaster {Id = LossCts, Name = "Loss Cts" },
+                new ReceiveCategoryMaster {Id = ReturnRejCts, Name = "Return Rej Cts" }
+            };
+            return categoryMasters;
+        }
+    }
+
     public class DesignationMaster
     {
         public int Id { get; set; }

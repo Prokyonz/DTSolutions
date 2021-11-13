@@ -14,5 +14,6 @@ namespace EFCore.SQL.Interface
         Task<bool> DeleteBoilAsync(string boilMasterId);
 
         Task<List<BoilProcessSend>> GetBoilSendToDetails(string KapanId, string companyId, string branchId, string financialYearId);
+        Task<List<BoilProcessReceive>> GetBoilReceiveToDetails(string ReceivedFromId, string companyId, string branchId, string financialYearId);
     }
 }
