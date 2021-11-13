@@ -45,7 +45,7 @@ namespace DiamondTrading.Process
             GetDepartmentList();
             await GetEmployeeList();
             await GetKapanDetail();
-            await GetAssortProcessSendDetail();
+            //await GetAssortProcessSendDetail();
         }
 
         private void GetDepartmentList()
@@ -216,6 +216,10 @@ namespace DiamondTrading.Process
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+
+                if (!CheckValidation())
+                    return;
+
                 string AccountToAssortMasterId = Guid.NewGuid().ToString();
 
                 List<AccountToAssortDetails> accountToAssortDetailsList = new List<AccountToAssortDetails>();
@@ -282,13 +286,19 @@ namespace DiamondTrading.Process
             grdParticularsDetails.DataSource = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
+            txtRemark.Text = "";
+            lueKapan.EditValue = null;
 
             await GetMaxSrNo();
             GetDepartmentList();
             await GetEmployeeList();
             await GetKapanDetail();
-            await GetAssortProcessSendDetail();
             lueReceiveFrom.Focus();
+        }
+
+        private async void lueDepartment_EditValueChanged(object sender, EventArgs e)
+        {
+            await GetAssortProcessSendDetail();
         }
     }
 }

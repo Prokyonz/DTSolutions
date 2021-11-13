@@ -204,6 +204,7 @@ namespace DiamondTrading.Process
             this.lueDepartment.Properties.NullText = "";
             this.lueDepartment.Size = new System.Drawing.Size(174, 22);
             this.lueDepartment.TabIndex = 14;
+            this.lueDepartment.EditValueChanged += new System.EventHandler(this.lueDepartment_EditValueChanged);
             // 
             // lueKapan
             // 

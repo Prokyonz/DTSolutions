@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +12,7 @@ namespace EFCore.SQL.Interface
         Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster);
         Task<BoilProcessMaster> UpdateBoilAsync(BoilProcessMaster boilMaster);
         Task<bool> DeleteBoilAsync(string boilMasterId);
+
+        Task<List<BoilProcessSend>> GetBoilSendToDetails(string KapanId, string companyId, string branchId, string financialYearId);
     }
 }

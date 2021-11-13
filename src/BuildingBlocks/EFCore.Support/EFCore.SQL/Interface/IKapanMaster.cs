@@ -12,5 +12,6 @@ namespace EFCore.SQL.Interface
         Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster);
         Task<KapanMaster> UpdateKapanAsync(KapanMaster kapanMaster);
         Task<bool> DeleteKapanAsync(string kapanId, bool isPermanantDetele = false);
+        Task<List<KapanMaster>> GetAssortProcessKapanDetails(string companyId, string branchId);
     }
 }
