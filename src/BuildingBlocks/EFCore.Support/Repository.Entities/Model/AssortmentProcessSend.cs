@@ -10,8 +10,8 @@ namespace Repository.Entities.Models
     {
         public string Id { get; set; }
         public Int64 SlipNo { get; set; }
-        public string KapanId { get; set; }
-        public string Kapan { get; set; }
+        //public string KapanId { get; set; }
+        //public string Kapan { get; set; }
         public string ShapeId { get; set; }
         public string Shape { get; set; }
         public string SizeId { get; set; }

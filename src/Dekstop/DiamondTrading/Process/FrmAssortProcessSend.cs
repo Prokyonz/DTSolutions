@@ -98,7 +98,7 @@ namespace DiamondTrading.Process
                 List<AssortmentProcessSend> ListAssortmentProcessSend = await _accountToAssortMasterRepository.GetAssortmentSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
                 repoSlipNo.DataSource = ListAssortmentProcessSend;
                 repoSlipNo.DisplayMember = "SlipNo";
-                repoSlipNo.ValueMember = "Id";
+                repoSlipNo.ValueMember = "SlipNo";
 
                 repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                 repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -120,6 +120,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("SizeId");
             dt.Columns.Add("ShapeId");
             dt.Columns.Add("PurityId");
+            dt.Columns.Add("PurchaseDetailsId");
             return dt;
         }
 
@@ -213,19 +214,19 @@ namespace DiamondTrading.Process
             {
                 this.Cursor = Cursors.WaitCursor;
                 string AccountToAssortMasterId = Guid.NewGuid().ToString();
-                string AccountToAssortDetailsId = Guid.NewGuid().ToString();
 
                 List<AccountToAssortDetails> accountToAssortDetailsList = new List<AccountToAssortDetails>();
                 AccountToAssortDetails accountToAssortDetails = new AccountToAssortDetails();
                 for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                 {
                     accountToAssortDetails = new AccountToAssortDetails();
-                    accountToAssortDetails.Id = AccountToAssortDetailsId;
+                    accountToAssortDetails.Id = Guid.NewGuid().ToString();
                     accountToAssortDetails.AccountToAssortMasterId = AccountToAssortMasterId;
                     accountToAssortDetails.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
                     accountToAssortDetails.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
                     accountToAssortDetails.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                     accountToAssortDetails.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                    accountToAssortDetails.PurchaseDetailsId = grvParticularsDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
                     //accountToAssortDetails.CharniProcessId = null;
                     //accountToAssortDetails.GalaProcessId = null;
                     //accountToAssortDetails.NumberProcessId = null;

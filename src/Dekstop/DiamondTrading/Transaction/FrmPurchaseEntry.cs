@@ -1055,14 +1055,14 @@ namespace DiamondTrading.Transaction
                     return;
 
                 string PurchaseId = Guid.NewGuid().ToString();
-                string PurchaseDetailsId = Guid.NewGuid().ToString();
+                //string PurchaseDetailsId = Guid.NewGuid().ToString();
 
                 List<PurchaseDetails> purchaseDetailsList = new List<PurchaseDetails>();
                 PurchaseDetails purchaseDetails = new PurchaseDetails();
                 for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                 {
                     purchaseDetails = new PurchaseDetails();
-                    purchaseDetails.Id = PurchaseDetailsId;
+                    purchaseDetails.Id = Guid.NewGuid().ToString();
                     purchaseDetails.PurchaseId = PurchaseId;
                     purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
                     purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
