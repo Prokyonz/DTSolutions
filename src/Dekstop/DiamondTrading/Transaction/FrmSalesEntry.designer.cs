@@ -245,6 +245,7 @@ namespace DiamondTrading.Transaction
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(190, 22);
             this.lueCompany.TabIndex = 1;
+            this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
             // 
             // txtSlipNo
             // 
