@@ -98,7 +98,7 @@ namespace DiamondTrading.Process
                 List<AssortmentProcessSend> ListAssortmentProcessSend = await _accountToAssortMasterRepository.GetAssortmentSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
                 repoSlipNo.DataSource = ListAssortmentProcessSend;
                 repoSlipNo.DisplayMember = "SlipNo";
-                repoSlipNo.ValueMember = "SlipNo";
+                repoSlipNo.ValueMember = "Id";
 
                 repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                 repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -121,6 +121,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("ShapeId");
             dt.Columns.Add("PurityId");
             dt.Columns.Add("PurchaseDetailsId");
+            dt.Columns.Add("SlipNo1");
             return dt;
         }
 
@@ -135,6 +136,8 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -222,7 +225,7 @@ namespace DiamondTrading.Process
                     accountToAssortDetails = new AccountToAssortDetails();
                     accountToAssortDetails.Id = Guid.NewGuid().ToString();
                     accountToAssortDetails.AccountToAssortMasterId = AccountToAssortMasterId;
-                    accountToAssortDetails.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
+                    accountToAssortDetails.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                     accountToAssortDetails.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
                     accountToAssortDetails.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                     accountToAssortDetails.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
