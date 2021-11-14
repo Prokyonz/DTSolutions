@@ -15,5 +15,6 @@ namespace EFCore.SQL.Interface
         Task<CharniProcessMaster> UpdateCharniProcessAsync(CharniProcessMaster charniProcessMaster);
         Task<bool> DeleteCharniProcessAsync(string charniProcessMasterId);
         Task<List<CharniProcessSend>> GetCharniSendToDetails(string companyId, string branchId, string financialYearId);
+        Task<List<CharniProcessReceive>> GetCharniReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId);
     }
 }

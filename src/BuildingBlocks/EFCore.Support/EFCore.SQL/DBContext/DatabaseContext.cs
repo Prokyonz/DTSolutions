@@ -66,6 +66,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<CharniProcessSend> SPCharniProcessSend { get; set; }
         public virtual DbSet<PaymentSPModel> SPPaymentModel { get; set; }
         public virtual DbSet<ContraSPModel> SPContraModel { get; set; }
+        public virtual DbSet<CharniProcessReceive> SPCharniProcessReceive { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -119,6 +120,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BoilProcessSend>().HasNoKey();
             modelBuilder.Entity<BoilProcessReceive>().HasNoKey();
             modelBuilder.Entity<CharniProcessSend>().HasNoKey();
+            modelBuilder.Entity<CharniProcessReceive>().HasNoKey();
         }
     }
 }
