@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,7 +55,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.NumberProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.NumberProcessType == numberProcessType).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.NumberProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.NumberProcessType == numberProcessType).MaxAsync(m => m.JangadNo);
                     return getCount + 1;
                 }
             }
@@ -106,6 +107,23 @@ namespace EFCore.SQL.Repository
                 }
 
                 return numberProcessMaste;
+            }
+        }
+
+        public async Task<List<NumberProcessSend>> GetNumberSendToDetails(string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPNumberProcessSend.FromSqlRaw($"GetNumberProcessSendToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }
