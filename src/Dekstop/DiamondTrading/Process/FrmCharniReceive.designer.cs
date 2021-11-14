@@ -544,6 +544,7 @@ namespace DiamondTrading.Process
             this.Controls.Add(this.btnSave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.IconOptions.ShowIcon = false;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCharniReceive";
@@ -551,6 +552,7 @@ namespace DiamondTrading.Process
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CHARNI RECEIVE";
             this.Load += new System.EventHandler(this.FrmCharniReceive_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCharniReceive_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();

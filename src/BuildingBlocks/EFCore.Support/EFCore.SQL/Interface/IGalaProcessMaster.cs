@@ -13,5 +13,6 @@ namespace EFCore.SQL.Interface
         Task<GalaProcessMaster> UpdateGalaProcessAsync(GalaProcessMaster galaProcessMaster);
         Task<bool> DeleteGalaProcessAsync(string galaProcessMasterId);
         Task<List<GalaProcessSend>> GetGalaSendToDetails(string companyId, string branchId, string financialYearId);
+        Task<List<GalaProcessReceive>> GetGalaReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId);
     }
 }

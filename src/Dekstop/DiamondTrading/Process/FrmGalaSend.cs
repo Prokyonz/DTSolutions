@@ -194,7 +194,7 @@ namespace DiamondTrading.Process
                         galaProcessMaster.RejectionWeight = 0;
                         galaProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
                         galaProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
-                        galaProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
+                        galaProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                         galaProcessMaster.GalaCategoy = 0;
                         galaProcessMaster.Remarks = txtRemark.Text;
                         galaProcessMaster.IsDelete = false;

@@ -68,6 +68,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<ContraSPModel> SPContraModel { get; set; }
         public virtual DbSet<CharniProcessReceive> SPCharniProcessReceive { get; set; }
         public virtual DbSet<GalaProcessSend> SPGalaProcessSend { get; set; }
+        public virtual DbSet<GalaProcessReceive> SPGalaProcessReceive { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -123,6 +124,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CharniProcessSend>().HasNoKey();
             modelBuilder.Entity<CharniProcessReceive>().HasNoKey();
             modelBuilder.Entity<GalaProcessSend>().HasNoKey();
+            modelBuilder.Entity<GalaProcessReceive>().HasNoKey();
         }
     }
 }
