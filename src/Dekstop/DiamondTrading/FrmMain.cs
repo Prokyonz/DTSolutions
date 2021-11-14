@@ -720,6 +720,7 @@ namespace DiamondTrading
 
             frmGalaSend.Location = new Point((w - frmGalaSend.Width - 200) / 3, (Height - frmGalaSend.Height) / 2);
 
+            
             frmGalaSend.ShowDialog();
         }
 

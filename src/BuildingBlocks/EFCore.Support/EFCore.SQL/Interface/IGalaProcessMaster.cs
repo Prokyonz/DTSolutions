@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +12,6 @@ namespace EFCore.SQL.Interface
         Task<GalaProcessMaster> AddGalaProcessAsync(GalaProcessMaster galaProcessMaster);
         Task<GalaProcessMaster> UpdateGalaProcessAsync(GalaProcessMaster galaProcessMaster);
         Task<bool> DeleteGalaProcessAsync(string galaProcessMasterId);
+        Task<List<GalaProcessSend>> GetGalaSendToDetails(string companyId, string branchId, string financialYearId);
     }
 }
