@@ -62,6 +62,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<AssortmentProcessSend> SPAssortmentProcessSend { get; set; }
         public virtual DbSet<BoilProcessSend> SPBoilProcessSend { get; set; }
         public virtual DbSet<BoilProcessReceive> SPBoilProcessReceive { get; set; }
+        public virtual DbSet<CharniProcessSend> SPCharniProcessSend { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -114,6 +115,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<AssortmentProcessSend>().HasNoKey();
             modelBuilder.Entity<BoilProcessSend>().HasNoKey();
             modelBuilder.Entity<BoilProcessReceive>().HasNoKey();
+            modelBuilder.Entity<CharniProcessSend>().HasNoKey();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,6 @@ namespace EFCore.SQL.Interface
         Task<CharniProcessMaster> AddCharniProcessAsync(CharniProcessMaster charniProcessMaster);
         Task<CharniProcessMaster> UpdateCharniProcessAsync(CharniProcessMaster charniProcessMaster);
         Task<bool> DeleteCharniProcessAsync(string charniProcessMasterId);
+        Task<List<CharniProcessSend>> GetCharniSendToDetails(string companyId, string branchId, string financialYearId);
     }
 }

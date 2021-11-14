@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,7 +62,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.CharniProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.CharniType == charniType).MaxAsync(m => m.Sr);
+                    var getCount = await _databaseContext.CharniProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.CharniType == charniType).MaxAsync(m => m.JangadNo);
                     return getCount + 1;
                 }
             }
@@ -105,6 +106,23 @@ namespace EFCore.SQL.Repository
                 }
 
                 return charniProcessMaster;
+            }
+        }
+
+        public async Task<List<CharniProcessSend>> GetCharniSendToDetails(string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPCharniProcessSend.FromSqlRaw($"GetCharniToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }
