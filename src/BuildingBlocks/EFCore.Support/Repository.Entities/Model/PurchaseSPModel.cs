@@ -5,7 +5,6 @@ using System.Text;
 
 namespace Repository.Entities.Model
 {
-  
     public class PurchaseSPModel
     {
         public string Id { get; set; }
@@ -41,6 +40,7 @@ namespace Repository.Entities.Model
         public double BuyingRate { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+        public string Remarks { get; set; }
 
     }
 }
