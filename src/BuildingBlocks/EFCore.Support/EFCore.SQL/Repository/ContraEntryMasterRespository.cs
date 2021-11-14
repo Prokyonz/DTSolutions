@@ -27,6 +27,19 @@ namespace EFCore.SQL.Repository
                     contraEntryMaster.Id = Guid.NewGuid().ToString();
                 await _databaseContext.ContraEntryMaster.AddAsync(contraEntryMaster);
                 await _databaseContext.SaveChangesAsync();
+
+                var getToPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == contraEntryMaster.ToPartyId).FirstOrDefaultAsync();
+
+                foreach (var item in contraEntryMaster.ContraEntryDetails)
+                {
+                    getToPartyRecord.OpeningBalance += item.Amount;
+                    var getFromPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == item.FromParty).FirstOrDefaultAsync();
+                    getFromPartyRecord.OpeningBalance -= item.Amount;
+
+                    await _databaseContext.SaveChangesAsync();
+                }
+
+
                 return contraEntryMaster;
             }
         }
