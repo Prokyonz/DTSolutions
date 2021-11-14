@@ -18,6 +18,8 @@ namespace DiamondTrading
     {
         private PurchaseMasterRepository _purchaseMasterRepository;
         private SalesMasterRepository _salesMasterRepository;
+        private PaymentMasterRepository _paymentMasterRepository;
+        private ContraEntryMasterRespository  _contraEntryMasterRespository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -36,17 +38,37 @@ namespace DiamondTrading
                 case "Purchase":
                     xtabPurchase.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabPurchase;
-                    this.Text = "PURCHASE DETAILS";
+                    this.Text = "Purchase Details";
                     break;
                 case "Sales":
                     xtabSales.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabSales;
-                    this.Text = "SALES DETAILS";
+                    this.Text = "Sales Details";
+                    break;
+                case "Payment":
+                    xtabPayment.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabPayment;
+                    this.Text = "Payment Details";
+                    break;
+                case "Receipt":
+                    xtabReceipt.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabReceipt;
+                    this.Text = "Receipt Details";
+                    break;
+                case "Contra":
+                    xtabContra.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabContra;
+                    this.Text = "Contra Details";
+                    break;
+                case "Expense":
+                    xtabExpense.PageVisible = true;
+                    xtabMasterDetails.SelectedTabPage = xtabExpense;
+                    this.Text = "Expense Details";
                     break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabMasterDetails.SelectedTabPage = xtabPurchase;
-                    this.Text = "PURCHASE DETAILS";
+                    this.Text = "Purchase Details";
                     break;
             }
         }
@@ -56,6 +78,10 @@ namespace DiamondTrading
         {
             xtabPurchase.PageVisible = false;
             xtabSales.PageVisible = false;
+            xtabPayment.PageVisible = false;
+            xtabReceipt.PageVisible = false;
+            xtabContra.PageVisible = false;
+            xtabExpense.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,6 +134,32 @@ namespace DiamondTrading
                 //    _branchMaster = await _branchMasterRepository.GetAllBranchAsync();
                 //    grdBranchMaster.DataSource = _branchMaster;
                 //}
+            } else if(xtabMasterDetails.SelectedTabPage == xtabPayment)
+            {
+                if(IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
+                    grdPaymentDetails.DataSource = data;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabReceipt)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    grdReceiptDetails.DataSource = data;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabContra)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _contraEntryMasterRespository = new ContraEntryMasterRespository();
+                    var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdContraDetails.DataSource = data;
+                }
             }
         }
 
@@ -146,14 +198,14 @@ namespace DiamondTrading
             }
         }
 
-        private async void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
+        private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            await LoadGridData();
+            _ = LoadGridData();
         } 
 
-        private async void accordionRefreshBtn_Click(object sender, EventArgs e)
+        private void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
-            await LoadGridData(true);
+            _ = LoadGridData(true);
         }
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
@@ -235,6 +287,11 @@ namespace DiamondTrading
         private void gridViewCompanyMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
         {
             e.RelationName = "Child";
+        }
+
+        private void gridControl1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

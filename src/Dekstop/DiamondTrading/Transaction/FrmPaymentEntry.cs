@@ -161,18 +161,40 @@ namespace DiamondTrading.Transaction
                 //Contra Entry
                 if (_paymentType == -1)
                 {
+                    string contraMasterId = Guid.NewGuid().ToString();
+                    List<ContraEntryDetails> contraEntryDetails = new List<ContraEntryDetails>();
+
+                    for (int i = 0; i < grvPaymentDetails.RowCount; i++)
+                    {
+                        ContraEntryDetails contraDetail = new ContraEntryDetails();
+                        string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                        string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
+
+                        contraDetail.Id = Guid.NewGuid().ToString();
+                        contraDetail.ContraEntryMasterId = contraMasterId;
+                        contraDetail.Amount = Convert.ToDecimal(amount);
+                        contraDetail.FromParty = fromPartyId;
+                        contraDetail.CreatedDate = DateTime.Now;
+                        contraDetail.UpdatedDate = DateTime.Now;
+                        contraDetail.CreatedBy = Common.LoginUserID;
+                        contraDetail.UpdatedBy = Common.LoginUserID;
+                        contraEntryDetails.Add(contraDetail);
+                    }
+
                     ContraEntryMaster contraEntryMaster = new ContraEntryMaster
                     {
-                        Id = Guid.NewGuid().ToString(),
+                        Id = contraMasterId,
                         BranchId = Common.LoginBranch,
                         CompanyId = lueCompany.EditValue.ToString(),
-                        FinancialYearId = Common.LoginFinancialYear,
-                        CreatedBy = Guid.NewGuid().ToString(),
-                        CreatedDate = DateTime.Now,
+                        FinancialYearId = Common.LoginFinancialYear,                        
                         IsDelete = false,
                         Remarks = txtRemark.Text,
                         ToPartyId = lueLeadger.EditValue.ToString(),
-                        ContraEntryDetails = null
+                        ContraEntryDetails = contraEntryDetails,
+                        CreatedBy = Common.LoginUserID,
+                        CreatedDate = DateTime.Now,
+                        UpdatedBy = Common.LoginUserID,
+                        UpdatedDate = DateTime.Now,
                     };
 
                     var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
@@ -185,20 +207,41 @@ namespace DiamondTrading.Transaction
                 }
                 else
                 {
+                    string groupId = Guid.NewGuid().ToString();
+                    List<PaymentMaster> paymentMasters = new List<PaymentMaster>();
+                    
+                    for (int i = 0; i < grvPaymentDetails.RowCount; i++)
+                    {
+                        PaymentMaster paymentMaster = new PaymentMaster();
+                        string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                        string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
+
+                        paymentMaster.GroupId = groupId;
+                        paymentMaster.Id = Guid.NewGuid().ToString();
+                        paymentMaster.Amount = Convert.ToDecimal(amount);
+                        paymentMaster.FromPartyId = fromPartyId;
+                        paymentMaster.CreatedDate = DateTime.Now;
+                        paymentMaster.UpdatedDate = DateTime.Now;
+                        paymentMaster.PaymentDetails = null;
+                        paymentMasters.Add(paymentMaster);
+                    }
+
                     GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
                     {
-                        Id = Guid.NewGuid().ToString(),
+                        Id = groupId,
                         BillNo = Convert.ToInt32(txtSerialNo.Text),
                         BranchId = Common.LoginBranch,
                         CompanyId = lueCompany.EditValue.ToString(),
                         FinancialYearId = Common.LoginFinancialYear,
-                        CreatedBy = Guid.NewGuid().ToString(),
-                        CreatedDate = DateTime.Now,
                         IsDelete = false,
                         Remarks = txtRemark.Text,
                         ToPartyId = lueLeadger.EditValue.ToString(),
                         CrDrType = _paymentType,
-                        PaymentMasters = null,
+                        PaymentMasters = paymentMasters,
+                        CreatedBy = Common.LoginUserID,
+                        UpdatedBy = Common.LoginUserID,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now,
                     };
 
                     var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);

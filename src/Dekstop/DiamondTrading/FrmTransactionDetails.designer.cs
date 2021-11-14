@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdTransactionMaster = new DevExpress.XtraGrid.GridControl();
@@ -70,6 +70,42 @@ namespace DiamondTrading
             this.xtabPurchase = new DevExpress.XtraTab.XtraTabPage();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.xtabMasterDetails = new DevExpress.XtraTab.XtraTabControl();
+            this.xtabPayment = new DevExpress.XtraTab.XtraTabPage();
+            this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
+            this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnGroupId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnFromPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnToPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnFromPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnToPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnChequeNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnChequeDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabReceipt = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabContra = new DevExpress.XtraTab.XtraTabPage();
+            this.grdContraDetails = new DevExpress.XtraGrid.GridControl();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnContraId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnCId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraFromPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraToPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraFromPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraToPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraChequeNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraChequeDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraRemakrs = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraUpdateDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnContraUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.xtabExpense = new DevExpress.XtraTab.XtraTabPage();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionEditBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -77,6 +113,22 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.grdReceiptDetails = new DevExpress.XtraGrid.GridControl();
+            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumnReId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptGroupId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptFromPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptToPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptFromParty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptToParty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptChequeNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptChequeDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnReceiptUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -87,8 +139,20 @@ namespace DiamondTrading
             this.xtabPurchase.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).BeginInit();
             this.xtabMasterDetails.SuspendLayout();
+            this.xtabPayment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            this.xtabReceipt.SuspendLayout();
+            this.xtabContra.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
             this.SuspendLayout();
             // 
             // grdChildTransMaster
@@ -109,10 +173,10 @@ namespace DiamondTrading
             // grdTransactionMaster
             // 
             this.grdTransactionMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.grdChildTransMaster;
-            gridLevelNode1.RelationName = "Child";
+            gridLevelNode3.LevelTemplate = this.grdChildTransMaster;
+            gridLevelNode3.RelationName = "Child";
             this.grdTransactionMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode3});
             this.grdTransactionMaster.Location = new System.Drawing.Point(0, 0);
             this.grdTransactionMaster.MainView = this.grvTransMaster;
             this.grdTransactionMaster.Name = "grdTransactionMaster";
@@ -339,10 +403,10 @@ namespace DiamondTrading
             // gridControl1
             // 
             this.gridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.gridView1;
-            gridLevelNode2.RelationName = "Child";
+            gridLevelNode1.LevelTemplate = this.gridView1;
+            gridLevelNode1.RelationName = "Child";
             this.gridControl1.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.gridControl1.Location = new System.Drawing.Point(0, 0);
             this.gridControl1.MainView = this.gridView2;
             this.gridControl1.Name = "gridControl1";
@@ -351,6 +415,7 @@ namespace DiamondTrading
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2,
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView2
             // 
@@ -438,9 +503,8 @@ namespace DiamondTrading
             // 
             this.xtabSales.Controls.Add(this.gridControl1);
             this.xtabSales.Name = "xtabSales";
-            this.xtabSales.PageVisible = false;
             this.xtabSales.Size = new System.Drawing.Size(764, 411);
-            this.xtabSales.Text = "SALES DETAILS";
+            this.xtabSales.Text = "Sales Details";
             // 
             // xtabPurchase
             // 
@@ -448,7 +512,7 @@ namespace DiamondTrading
             this.xtabPurchase.Name = "xtabPurchase";
             this.xtabPurchase.PageVisible = false;
             this.xtabPurchase.Size = new System.Drawing.Size(764, 411);
-            this.xtabPurchase.Text = "PURCHASE DETAILS";
+            this.xtabPurchase.Text = "Purchase Details";
             // 
             // btnCancel
             // 
@@ -470,8 +534,323 @@ namespace DiamondTrading
             this.xtabMasterDetails.TabIndex = 0;
             this.xtabMasterDetails.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtabPurchase,
-            this.xtabSales});
+            this.xtabSales,
+            this.xtabPayment,
+            this.xtabReceipt,
+            this.xtabContra,
+            this.xtabExpense});
             this.xtabMasterDetails.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
+            // 
+            // xtabPayment
+            // 
+            this.xtabPayment.Controls.Add(this.grdPaymentDetails);
+            this.xtabPayment.Name = "xtabPayment";
+            this.xtabPayment.Size = new System.Drawing.Size(764, 411);
+            this.xtabPayment.Text = "Payment Details";
+            // 
+            // grdPaymentDetails
+            // 
+            this.grdPaymentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPaymentDetails.Location = new System.Drawing.Point(0, 0);
+            this.grdPaymentDetails.MainView = this.gridView4;
+            this.grdPaymentDetails.Name = "grdPaymentDetails";
+            this.grdPaymentDetails.Size = new System.Drawing.Size(764, 411);
+            this.grdPaymentDetails.TabIndex = 3;
+            this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView4,
+            this.gridView3});
+            // 
+            // gridView4
+            // 
+            this.gridView4.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnId,
+            this.gridColumnGroupId,
+            this.gridColumnFromPartyId,
+            this.gridColumnToPartyId,
+            this.gridColumnFromPartyName,
+            this.gridColumnToPartyName,
+            this.gridColumnAmount,
+            this.gridColumnChequeNo,
+            this.gridColumnChequeDate,
+            this.gridColumnRemarks,
+            this.gridColumnUpdatedDate,
+            this.gridColumnUpdatedBy});
+            this.gridView4.GridControl = this.grdPaymentDetails;
+            this.gridView4.Name = "gridView4";
+            this.gridView4.OptionsBehavior.Editable = false;
+            this.gridView4.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumnId
+            // 
+            this.gridColumnId.Caption = "Id";
+            this.gridColumnId.FieldName = "Id";
+            this.gridColumnId.Name = "gridColumnId";
+            // 
+            // gridColumnGroupId
+            // 
+            this.gridColumnGroupId.Caption = "Group Id";
+            this.gridColumnGroupId.FieldName = "GroupId";
+            this.gridColumnGroupId.Name = "gridColumnGroupId";
+            // 
+            // gridColumnFromPartyId
+            // 
+            this.gridColumnFromPartyId.Caption = "From Party Id";
+            this.gridColumnFromPartyId.FieldName = "FromPartyId";
+            this.gridColumnFromPartyId.Name = "gridColumnFromPartyId";
+            // 
+            // gridColumnToPartyId
+            // 
+            this.gridColumnToPartyId.Caption = "To Party Id";
+            this.gridColumnToPartyId.FieldName = "ToPartyId";
+            this.gridColumnToPartyId.Name = "gridColumnToPartyId";
+            // 
+            // gridColumnFromPartyName
+            // 
+            this.gridColumnFromPartyName.Caption = "From Party";
+            this.gridColumnFromPartyName.FieldName = "FromName";
+            this.gridColumnFromPartyName.Name = "gridColumnFromPartyName";
+            this.gridColumnFromPartyName.Visible = true;
+            this.gridColumnFromPartyName.VisibleIndex = 0;
+            this.gridColumnFromPartyName.Width = 97;
+            // 
+            // gridColumnToPartyName
+            // 
+            this.gridColumnToPartyName.Caption = "To Party";
+            this.gridColumnToPartyName.FieldName = "ToName";
+            this.gridColumnToPartyName.Name = "gridColumnToPartyName";
+            this.gridColumnToPartyName.Visible = true;
+            this.gridColumnToPartyName.VisibleIndex = 1;
+            // 
+            // gridColumnAmount
+            // 
+            this.gridColumnAmount.Caption = "Amount";
+            this.gridColumnAmount.FieldName = "Amount";
+            this.gridColumnAmount.Name = "gridColumnAmount";
+            this.gridColumnAmount.Visible = true;
+            this.gridColumnAmount.VisibleIndex = 2;
+            this.gridColumnAmount.Width = 97;
+            // 
+            // gridColumnChequeNo
+            // 
+            this.gridColumnChequeNo.Caption = "Cheque No";
+            this.gridColumnChequeNo.FieldName = "ChequeNo";
+            this.gridColumnChequeNo.Name = "gridColumnChequeNo";
+            this.gridColumnChequeNo.Visible = true;
+            this.gridColumnChequeNo.VisibleIndex = 3;
+            this.gridColumnChequeNo.Width = 118;
+            // 
+            // gridColumnChequeDate
+            // 
+            this.gridColumnChequeDate.Caption = "Cheque Date";
+            this.gridColumnChequeDate.FieldName = "ChequeDate";
+            this.gridColumnChequeDate.Name = "gridColumnChequeDate";
+            this.gridColumnChequeDate.Visible = true;
+            this.gridColumnChequeDate.VisibleIndex = 4;
+            this.gridColumnChequeDate.Width = 91;
+            // 
+            // gridColumnRemarks
+            // 
+            this.gridColumnRemarks.Caption = "Remarks";
+            this.gridColumnRemarks.FieldName = "Remarks";
+            this.gridColumnRemarks.Name = "gridColumnRemarks";
+            this.gridColumnRemarks.Visible = true;
+            this.gridColumnRemarks.VisibleIndex = 5;
+            this.gridColumnRemarks.Width = 91;
+            // 
+            // gridColumnUpdatedDate
+            // 
+            this.gridColumnUpdatedDate.Caption = "Updated Date";
+            this.gridColumnUpdatedDate.FieldName = "UpdatedDate";
+            this.gridColumnUpdatedDate.Name = "gridColumnUpdatedDate";
+            this.gridColumnUpdatedDate.Visible = true;
+            this.gridColumnUpdatedDate.VisibleIndex = 6;
+            this.gridColumnUpdatedDate.Width = 91;
+            // 
+            // gridColumnUpdatedBy
+            // 
+            this.gridColumnUpdatedBy.Caption = "UpdatedBy";
+            this.gridColumnUpdatedBy.FieldName = "UpdatedBy";
+            this.gridColumnUpdatedBy.Name = "gridColumnUpdatedBy";
+            this.gridColumnUpdatedBy.Visible = true;
+            this.gridColumnUpdatedBy.VisibleIndex = 7;
+            this.gridColumnUpdatedBy.Width = 100;
+            // 
+            // gridView3
+            // 
+            this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn12});
+            this.gridView3.GridControl = this.grdPaymentDetails;
+            this.gridView3.Name = "gridView3";
+            this.gridView3.OptionsBehavior.Editable = false;
+            this.gridView3.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Id";
+            this.gridColumn12.FieldName = "Id";
+            this.gridColumn12.Name = "gridColumn12";
+            // 
+            // xtabReceipt
+            // 
+            this.xtabReceipt.Controls.Add(this.grdReceiptDetails);
+            this.xtabReceipt.Name = "xtabReceipt";
+            this.xtabReceipt.Size = new System.Drawing.Size(764, 411);
+            this.xtabReceipt.Text = "Receipt Details";
+            // 
+            // xtabContra
+            // 
+            this.xtabContra.Controls.Add(this.grdContraDetails);
+            this.xtabContra.Name = "xtabContra";
+            this.xtabContra.Size = new System.Drawing.Size(764, 411);
+            this.xtabContra.Text = "Contra Details";
+            // 
+            // grdContraDetails
+            // 
+            this.grdContraDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdContraDetails.Location = new System.Drawing.Point(0, 0);
+            this.grdContraDetails.MainView = this.gridView5;
+            this.grdContraDetails.Name = "grdContraDetails";
+            this.grdContraDetails.Size = new System.Drawing.Size(764, 411);
+            this.grdContraDetails.TabIndex = 4;
+            this.grdContraDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView5,
+            this.gridView6});
+            // 
+            // gridView5
+            // 
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnContraId,
+            this.gridColumnCId,
+            this.gridColumnContraFromPartyId,
+            this.gridColumnContraToPartyId,
+            this.gridColumnContraFromPartyName,
+            this.gridColumnContraToPartyName,
+            this.gridColumnContraAmount,
+            this.gridColumnContraChequeNo,
+            this.gridColumnContraChequeDate,
+            this.gridColumnContraRemakrs,
+            this.gridColumnContraUpdateDate,
+            this.gridColumnContraUpdatedBy});
+            this.gridView5.GridControl = this.grdContraDetails;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsBehavior.Editable = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumnContraId
+            // 
+            this.gridColumnContraId.Caption = "ContraId";
+            this.gridColumnContraId.FieldName = "ContraId";
+            this.gridColumnContraId.Name = "gridColumnContraId";
+            // 
+            // gridColumnCId
+            // 
+            this.gridColumnCId.Caption = "Id";
+            this.gridColumnCId.FieldName = "Id";
+            this.gridColumnCId.Name = "gridColumnCId";
+            // 
+            // gridColumnContraFromPartyId
+            // 
+            this.gridColumnContraFromPartyId.Caption = "From Party Id";
+            this.gridColumnContraFromPartyId.FieldName = "FromPartyId";
+            this.gridColumnContraFromPartyId.Name = "gridColumnContraFromPartyId";
+            // 
+            // gridColumnContraToPartyId
+            // 
+            this.gridColumnContraToPartyId.Caption = "To Party Id";
+            this.gridColumnContraToPartyId.FieldName = "ToPartyId";
+            this.gridColumnContraToPartyId.Name = "gridColumnContraToPartyId";
+            // 
+            // gridColumnContraFromPartyName
+            // 
+            this.gridColumnContraFromPartyName.Caption = "From Party";
+            this.gridColumnContraFromPartyName.FieldName = "FromPartyName";
+            this.gridColumnContraFromPartyName.Name = "gridColumnContraFromPartyName";
+            this.gridColumnContraFromPartyName.Visible = true;
+            this.gridColumnContraFromPartyName.VisibleIndex = 0;
+            this.gridColumnContraFromPartyName.Width = 97;
+            // 
+            // gridColumnContraToPartyName
+            // 
+            this.gridColumnContraToPartyName.Caption = "To Party";
+            this.gridColumnContraToPartyName.FieldName = "ToPartyName";
+            this.gridColumnContraToPartyName.Name = "gridColumnContraToPartyName";
+            this.gridColumnContraToPartyName.Visible = true;
+            this.gridColumnContraToPartyName.VisibleIndex = 1;
+            // 
+            // gridColumnContraAmount
+            // 
+            this.gridColumnContraAmount.Caption = "Amount";
+            this.gridColumnContraAmount.FieldName = "Amount";
+            this.gridColumnContraAmount.Name = "gridColumnContraAmount";
+            this.gridColumnContraAmount.Visible = true;
+            this.gridColumnContraAmount.VisibleIndex = 2;
+            this.gridColumnContraAmount.Width = 97;
+            // 
+            // gridColumnContraChequeNo
+            // 
+            this.gridColumnContraChequeNo.Caption = "Cheque No";
+            this.gridColumnContraChequeNo.FieldName = "ChequeNo";
+            this.gridColumnContraChequeNo.Name = "gridColumnContraChequeNo";
+            this.gridColumnContraChequeNo.Visible = true;
+            this.gridColumnContraChequeNo.VisibleIndex = 3;
+            this.gridColumnContraChequeNo.Width = 118;
+            // 
+            // gridColumnContraChequeDate
+            // 
+            this.gridColumnContraChequeDate.Caption = "Cheque Date";
+            this.gridColumnContraChequeDate.FieldName = "ChequeDate";
+            this.gridColumnContraChequeDate.Name = "gridColumnContraChequeDate";
+            this.gridColumnContraChequeDate.Visible = true;
+            this.gridColumnContraChequeDate.VisibleIndex = 4;
+            this.gridColumnContraChequeDate.Width = 91;
+            // 
+            // gridColumnContraRemakrs
+            // 
+            this.gridColumnContraRemakrs.Caption = "Remarks";
+            this.gridColumnContraRemakrs.FieldName = "Remarks";
+            this.gridColumnContraRemakrs.Name = "gridColumnContraRemakrs";
+            this.gridColumnContraRemakrs.Visible = true;
+            this.gridColumnContraRemakrs.VisibleIndex = 5;
+            this.gridColumnContraRemakrs.Width = 91;
+            // 
+            // gridColumnContraUpdateDate
+            // 
+            this.gridColumnContraUpdateDate.Caption = "Updated Date";
+            this.gridColumnContraUpdateDate.FieldName = "UpdatedDate";
+            this.gridColumnContraUpdateDate.Name = "gridColumnContraUpdateDate";
+            this.gridColumnContraUpdateDate.Visible = true;
+            this.gridColumnContraUpdateDate.VisibleIndex = 6;
+            this.gridColumnContraUpdateDate.Width = 91;
+            // 
+            // gridColumnContraUpdatedBy
+            // 
+            this.gridColumnContraUpdatedBy.Caption = "UpdatedBy";
+            this.gridColumnContraUpdatedBy.FieldName = "UpdatedBy";
+            this.gridColumnContraUpdatedBy.Name = "gridColumnContraUpdatedBy";
+            this.gridColumnContraUpdatedBy.Visible = true;
+            this.gridColumnContraUpdatedBy.VisibleIndex = 7;
+            this.gridColumnContraUpdatedBy.Width = 100;
+            // 
+            // gridView6
+            // 
+            this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn43});
+            this.gridView6.GridControl = this.grdContraDetails;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsBehavior.Editable = false;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn43
+            // 
+            this.gridColumn43.Caption = "Id";
+            this.gridColumn43.FieldName = "Id";
+            this.gridColumn43.Name = "gridColumn43";
+            // 
+            // xtabExpense
+            // 
+            this.xtabExpense.Name = "xtabExpense";
+            this.xtabExpense.Size = new System.Drawing.Size(764, 411);
+            this.xtabExpense.Text = "Expense Details";
             // 
             // accordionControl1
             // 
@@ -544,6 +923,148 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
+            // grdReceiptDetails
+            // 
+            this.grdReceiptDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdReceiptDetails.Location = new System.Drawing.Point(0, 0);
+            this.grdReceiptDetails.MainView = this.gridView7;
+            this.grdReceiptDetails.Name = "grdReceiptDetails";
+            this.grdReceiptDetails.Size = new System.Drawing.Size(764, 411);
+            this.grdReceiptDetails.TabIndex = 4;
+            this.grdReceiptDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView7,
+            this.gridView8});
+            // 
+            // gridView7
+            // 
+            this.gridView7.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumnReId,
+            this.gridColumnReceiptGroupId,
+            this.gridColumnReceiptFromPartyId,
+            this.gridColumnReceiptToPartyId,
+            this.gridColumnReceiptFromParty,
+            this.gridColumnReceiptToParty,
+            this.gridColumnReceiptAmount,
+            this.gridColumnReceiptChequeNo,
+            this.gridColumnReceiptChequeDate,
+            this.gridColumnReceiptRemarks,
+            this.gridColumnReceiptUpdatedDate,
+            this.gridColumnReceiptUpdatedBy});
+            this.gridView7.GridControl = this.grdReceiptDetails;
+            this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsBehavior.Editable = false;
+            this.gridView7.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumnReId
+            // 
+            this.gridColumnReId.Caption = "Id";
+            this.gridColumnReId.FieldName = "Id";
+            this.gridColumnReId.Name = "gridColumnReId";
+            // 
+            // gridColumnReceiptGroupId
+            // 
+            this.gridColumnReceiptGroupId.Caption = "Group Id";
+            this.gridColumnReceiptGroupId.FieldName = "GroupId";
+            this.gridColumnReceiptGroupId.Name = "gridColumnReceiptGroupId";
+            // 
+            // gridColumnReceiptFromPartyId
+            // 
+            this.gridColumnReceiptFromPartyId.Caption = "From Party Id";
+            this.gridColumnReceiptFromPartyId.FieldName = "FromPartyId";
+            this.gridColumnReceiptFromPartyId.Name = "gridColumnReceiptFromPartyId";
+            // 
+            // gridColumnReceiptToPartyId
+            // 
+            this.gridColumnReceiptToPartyId.Caption = "To Party Id";
+            this.gridColumnReceiptToPartyId.FieldName = "ToPartyId";
+            this.gridColumnReceiptToPartyId.Name = "gridColumnReceiptToPartyId";
+            // 
+            // gridColumnReceiptFromParty
+            // 
+            this.gridColumnReceiptFromParty.Caption = "From Party";
+            this.gridColumnReceiptFromParty.FieldName = "FromName";
+            this.gridColumnReceiptFromParty.Name = "gridColumnReceiptFromParty";
+            this.gridColumnReceiptFromParty.Visible = true;
+            this.gridColumnReceiptFromParty.VisibleIndex = 0;
+            this.gridColumnReceiptFromParty.Width = 97;
+            // 
+            // gridColumnReceiptToParty
+            // 
+            this.gridColumnReceiptToParty.Caption = "To Party";
+            this.gridColumnReceiptToParty.FieldName = "ToName";
+            this.gridColumnReceiptToParty.Name = "gridColumnReceiptToParty";
+            this.gridColumnReceiptToParty.Visible = true;
+            this.gridColumnReceiptToParty.VisibleIndex = 1;
+            // 
+            // gridColumnReceiptAmount
+            // 
+            this.gridColumnReceiptAmount.Caption = "Amount";
+            this.gridColumnReceiptAmount.FieldName = "Amount";
+            this.gridColumnReceiptAmount.Name = "gridColumnReceiptAmount";
+            this.gridColumnReceiptAmount.Visible = true;
+            this.gridColumnReceiptAmount.VisibleIndex = 2;
+            this.gridColumnReceiptAmount.Width = 97;
+            // 
+            // gridColumnReceiptChequeNo
+            // 
+            this.gridColumnReceiptChequeNo.Caption = "Cheque No";
+            this.gridColumnReceiptChequeNo.FieldName = "ChequeNo";
+            this.gridColumnReceiptChequeNo.Name = "gridColumnReceiptChequeNo";
+            this.gridColumnReceiptChequeNo.Visible = true;
+            this.gridColumnReceiptChequeNo.VisibleIndex = 3;
+            this.gridColumnReceiptChequeNo.Width = 118;
+            // 
+            // gridColumnReceiptChequeDate
+            // 
+            this.gridColumnReceiptChequeDate.Caption = "Cheque Date";
+            this.gridColumnReceiptChequeDate.FieldName = "ChequeDate";
+            this.gridColumnReceiptChequeDate.Name = "gridColumnReceiptChequeDate";
+            this.gridColumnReceiptChequeDate.Visible = true;
+            this.gridColumnReceiptChequeDate.VisibleIndex = 4;
+            this.gridColumnReceiptChequeDate.Width = 91;
+            // 
+            // gridColumnReceiptRemarks
+            // 
+            this.gridColumnReceiptRemarks.Caption = "Remarks";
+            this.gridColumnReceiptRemarks.FieldName = "Remarks";
+            this.gridColumnReceiptRemarks.Name = "gridColumnReceiptRemarks";
+            this.gridColumnReceiptRemarks.Visible = true;
+            this.gridColumnReceiptRemarks.VisibleIndex = 5;
+            this.gridColumnReceiptRemarks.Width = 91;
+            // 
+            // gridColumnReceiptUpdatedDate
+            // 
+            this.gridColumnReceiptUpdatedDate.Caption = "Updated Date";
+            this.gridColumnReceiptUpdatedDate.FieldName = "UpdatedDate";
+            this.gridColumnReceiptUpdatedDate.Name = "gridColumnReceiptUpdatedDate";
+            this.gridColumnReceiptUpdatedDate.Visible = true;
+            this.gridColumnReceiptUpdatedDate.VisibleIndex = 6;
+            this.gridColumnReceiptUpdatedDate.Width = 91;
+            // 
+            // gridColumnReceiptUpdatedBy
+            // 
+            this.gridColumnReceiptUpdatedBy.Caption = "UpdatedBy";
+            this.gridColumnReceiptUpdatedBy.FieldName = "UpdatedBy";
+            this.gridColumnReceiptUpdatedBy.Name = "gridColumnReceiptUpdatedBy";
+            this.gridColumnReceiptUpdatedBy.Visible = true;
+            this.gridColumnReceiptUpdatedBy.VisibleIndex = 7;
+            this.gridColumnReceiptUpdatedBy.Width = 100;
+            // 
+            // gridView8
+            // 
+            this.gridView8.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn44});
+            this.gridView8.GridControl = this.grdReceiptDetails;
+            this.gridView8.Name = "gridView8";
+            this.gridView8.OptionsBehavior.Editable = false;
+            this.gridView8.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn44
+            // 
+            this.gridColumn44.Caption = "Id";
+            this.gridColumn44.FieldName = "Id";
+            this.gridColumn44.Name = "gridColumn44";
+            // 
             // FrmTransactionDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -571,8 +1092,20 @@ namespace DiamondTrading
             this.xtabPurchase.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtabMasterDetails)).EndInit();
             this.xtabMasterDetails.ResumeLayout(false);
+            this.xtabPayment.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            this.xtabReceipt.ResumeLayout(false);
+            this.xtabContra.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -625,5 +1158,57 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn11;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn13;
+        private DevExpress.XtraTab.XtraTabPage xtabPayment;
+        private DevExpress.XtraTab.XtraTabPage xtabReceipt;
+        private DevExpress.XtraTab.XtraTabPage xtabContra;
+        private DevExpress.XtraTab.XtraTabPage xtabExpense;
+        private DevExpress.XtraGrid.GridControl grdPaymentDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnGroupId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFromPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnFromPartyName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnChequeNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnChequeDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRemarks;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnUpdatedBy;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnToPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnToPartyName;
+        private DevExpress.XtraGrid.GridControl grdContraDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraFromPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraToPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraFromPartyName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraToPartyName;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraChequeNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraChequeDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraRemakrs;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraUpdateDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraUpdatedBy;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.GridControl grdReceiptDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptGroupId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptFromPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptToPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptFromParty;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptToParty;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptChequeNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptChequeDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptRemarks;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptUpdatedBy;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
     }
 }

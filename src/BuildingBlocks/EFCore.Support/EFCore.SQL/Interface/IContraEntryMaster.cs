@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace EFCore.SQL.Interface
     public interface IContraEntryMaster
     {
         Task<List<ContraEntryMaster>> GetAllContraEntryAsync(string companyId, string financialYearId);
+        Task<List<ContraSPModel>> GetContraReport(string companyId, string financialYearId);
         Task<int> GetMaxNo(string companyId, string financialYearId);
         Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster);
         Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,8 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<BoilProcessSend> SPBoilProcessSend { get; set; }
         public virtual DbSet<BoilProcessReceive> SPBoilProcessReceive { get; set; }
         public virtual DbSet<CharniProcessSend> SPCharniProcessSend { get; set; }
+        public virtual DbSet<PaymentSPModel> SPPaymentModel { get; set; }
+        public virtual DbSet<ContraSPModel> SPContraModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

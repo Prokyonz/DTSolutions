@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMaster").Include("PaymentDetails").ToListAsync();
+                return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMasters").ToListAsync();
             }
         }
 
@@ -68,6 +69,15 @@ namespace EFCore.SQL.Repository
                 if (countResult == null)
                     return 1;
                 return countResult.BillNo + 1;
+            }
+        }
+
+        public async Task<List<PaymentSPModel>> GetPaymentReport(string companyId, string financialYearId, int paymentType)
+        {
+            using(_databaseContext = new DatabaseContext())
+            {
+                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','"+ paymentType +"'").ToListAsync();
+                return paymentRecords;
             }
         }
 
