@@ -122,8 +122,8 @@ namespace DiamondTrading
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    _purchaseMaster = await _purchaseMasterRepository.GetAllPurchaseAsync(Common.LoginCompany,Common.LoginFinancialYear);
-                    grdTransactionMaster.DataSource = _purchaseMaster.OrderBy(o=>o.SlipNo);
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany,Common.LoginFinancialYear);
+                    grdTransactionMaster.DataSource = purchaseData.OrderBy(o=>o.SlipNo);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSales)

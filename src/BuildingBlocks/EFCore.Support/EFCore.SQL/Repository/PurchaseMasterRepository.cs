@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,6 +112,15 @@ namespace EFCore.SQL.Repository
             catch (Exception ex)
             {
                 return 1;
+            }
+        }
+
+        public async Task<List<PurchaseSPModel>> GetPurchaseReport(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var purchaseReport = await _databaseContext.SPPurchaseModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return purchaseReport;
             }
         }
 

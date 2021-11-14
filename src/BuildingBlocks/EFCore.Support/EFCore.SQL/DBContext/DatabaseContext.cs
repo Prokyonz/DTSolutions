@@ -67,6 +67,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<PaymentSPModel> SPPaymentModel { get; set; }
         public virtual DbSet<ContraSPModel> SPContraModel { get; set; }
         public virtual DbSet<CharniProcessReceive> SPCharniProcessReceive { get; set; }
+        public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
