@@ -125,5 +125,22 @@ namespace EFCore.SQL.Repository
                 throw;
             }
         }
+
+        public async Task<List<CharniProcessReceive>> GetCharniReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPCharniProcessReceive.FromSqlRaw($"GetCharniProcessReceiveDetail '" + ReceiveFrom + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }
