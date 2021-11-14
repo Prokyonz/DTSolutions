@@ -70,6 +70,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<GalaProcessSend> SPGalaProcessSend { get; set; }
         public virtual DbSet<GalaProcessReceive> SPGalaProcessReceive { get; set; }
         public virtual DbSet<NumberProcessSend> SPNumberProcessSend { get; set; }
+        public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
