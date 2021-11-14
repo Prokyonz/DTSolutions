@@ -70,15 +70,6 @@ namespace DiamondTrading.Process
             lueSendto.Properties.ValueMember = "Id";
         }
 
-        private async Task GetKapanDetail()
-        {
-            KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
-            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync();
-            lueKapan.Properties.DataSource = kapanMaster;
-            lueKapan.Properties.DisplayMember = "Name";
-            lueKapan.Properties.ValueMember = "Id";
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -330,6 +321,11 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void FrmCharniReceive_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
         }
     }
 }
