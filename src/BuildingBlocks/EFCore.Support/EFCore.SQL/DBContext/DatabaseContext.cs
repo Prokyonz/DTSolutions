@@ -70,6 +70,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<GalaProcessSend> SPGalaProcessSend { get; set; }
         public virtual DbSet<GalaProcessReceive> SPGalaProcessReceive { get; set; }
         public virtual DbSet<NumberProcessSend> SPNumberProcessSend { get; set; }
+        public virtual DbSet<NumberProcessReceive> SPNumberProcessReceive { get; set; }
         public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -128,6 +129,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<GalaProcessSend>().HasNoKey();
             modelBuilder.Entity<GalaProcessReceive>().HasNoKey();
             modelBuilder.Entity<NumberProcessSend>().HasNoKey();
+            modelBuilder.Entity<NumberProcessReceive>().HasNoKey();
         }
     }
 }
