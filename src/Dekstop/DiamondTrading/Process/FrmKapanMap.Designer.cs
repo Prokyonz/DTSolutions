@@ -230,7 +230,7 @@ namespace DiamondTrading.Process
             this.colCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Cts", "{0:0.##}")});
             this.colCts.Visible = true;
-            this.colCts.VisibleIndex = 5;
+            this.colCts.VisibleIndex = 6;
             this.colCts.Width = 134;
             // 
             // repoParty
@@ -252,7 +252,7 @@ namespace DiamondTrading.Process
             this.colSlipNo.OptionsColumn.AllowEdit = false;
             this.colSlipNo.OptionsColumn.ReadOnly = true;
             this.colSlipNo.Visible = true;
-            this.colSlipNo.VisibleIndex = 1;
+            this.colSlipNo.VisibleIndex = 2;
             this.colSlipNo.Width = 148;
             // 
             // grvPendingKapanDetails
@@ -276,6 +276,8 @@ namespace DiamondTrading.Process
             this.grvPendingKapanDetails.GridControl = this.grdPendingKapanDetails;
             this.grvPendingKapanDetails.Name = "grvPendingKapanDetails";
             this.grvPendingKapanDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.grvPendingKapanDetails.OptionsSelection.MultiSelect = true;
+            this.grvPendingKapanDetails.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.grvPendingKapanDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvPendingKapanDetails.OptionsView.ShowFooter = true;
             this.grvPendingKapanDetails.OptionsView.ShowGroupPanel = false;
@@ -288,7 +290,7 @@ namespace DiamondTrading.Process
             this.colDate.OptionsColumn.AllowEdit = false;
             this.colDate.OptionsColumn.ReadOnly = true;
             this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 0;
+            this.colDate.VisibleIndex = 1;
             this.colDate.Width = 111;
             // 
             // colSizeId
@@ -307,7 +309,7 @@ namespace DiamondTrading.Process
             this.colSize.OptionsColumn.AllowEdit = false;
             this.colSize.OptionsColumn.ReadOnly = true;
             this.colSize.Visible = true;
-            this.colSize.VisibleIndex = 2;
+            this.colSize.VisibleIndex = 3;
             this.colSize.Width = 165;
             // 
             // colTotalCts
@@ -318,7 +320,7 @@ namespace DiamondTrading.Process
             this.colTotalCts.OptionsColumn.AllowEdit = false;
             this.colTotalCts.OptionsColumn.ReadOnly = true;
             this.colTotalCts.Visible = true;
-            this.colTotalCts.VisibleIndex = 3;
+            this.colTotalCts.VisibleIndex = 4;
             this.colTotalCts.Width = 116;
             // 
             // colAvailableCts
@@ -331,7 +333,7 @@ namespace DiamondTrading.Process
             this.colAvailableCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableCts", "{0:0.##}")});
             this.colAvailableCts.Visible = true;
-            this.colAvailableCts.VisibleIndex = 4;
+            this.colAvailableCts.VisibleIndex = 5;
             this.colAvailableCts.Width = 116;
             // 
             // colPurchaseID
@@ -485,6 +487,7 @@ namespace DiamondTrading.Process
             // 
             this.btnMap.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMap.Appearance.Options.UseFont = true;
+            this.btnMap.Enabled = false;
             this.btnMap.Location = new System.Drawing.Point(529, 140);
             this.btnMap.Name = "btnMap";
             this.btnMap.Size = new System.Drawing.Size(88, 21);
@@ -529,6 +532,7 @@ namespace DiamondTrading.Process
             // tglIsAutoAdjust
             // 
             this.tglIsAutoAdjust.EditValue = true;
+            this.tglIsAutoAdjust.Enabled = false;
             this.tglIsAutoAdjust.Location = new System.Drawing.Point(483, 111);
             this.tglIsAutoAdjust.Name = "tglIsAutoAdjust";
             this.tglIsAutoAdjust.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -544,6 +548,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Enabled = false;
             this.labelControl14.Location = new System.Drawing.Point(300, 112);
             this.labelControl14.Name = "labelControl14";
             this.labelControl14.Size = new System.Drawing.Size(81, 16);
@@ -552,6 +557,7 @@ namespace DiamondTrading.Process
             // 
             // txtCarat
             // 
+            this.txtCarat.Enabled = false;
             this.txtCarat.Location = new System.Drawing.Point(387, 109);
             this.txtCarat.Name = "txtCarat";
             this.txtCarat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

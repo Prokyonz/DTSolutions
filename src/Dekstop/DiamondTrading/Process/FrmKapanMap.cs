@@ -24,15 +24,15 @@ namespace DiamondTrading.Process
             _kapanMappingMasterRepository = new KapanMappingMasterRepository();
         }
 
-        private async void FrmKapanMap_Load(object sender, EventArgs e)
+        private void FrmKapanMap_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
-            await LoadCompany();
-            await GetKapanDetail();
-            await GetMaxSrNo();
-            await GetPendingKapanDetails();
+            _ = LoadCompany();
+            _ = GetKapanDetail();
+            _ = GetMaxSrNo(Common.LoginCompany);
+            _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch);
         }
 
         private async Task LoadCompany()
@@ -44,7 +44,7 @@ namespace DiamondTrading.Process
             lueCompany.Properties.ValueMember = "Id";
 
             lueCompany.EditValue = Common.LoginCompany;
-            await LoadBranch(Common.LoginCompany);
+            _ = LoadBranch(Common.LoginCompany);
         }  
 
         private async Task LoadBranch(string companyId)
@@ -66,15 +66,15 @@ namespace DiamondTrading.Process
             lueKapan.Properties.ValueMember = "Id";
         }
 
-        private async Task GetMaxSrNo()
+        private async Task GetMaxSrNo(string companyId)
         {
-            var SrNo = await _kapanMappingMasterRepository.GetMaxSrNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+            var SrNo = await _kapanMappingMasterRepository.GetMaxSrNo(companyId, Common.LoginFinancialYear);
             txtSerialNo.Text = SrNo.ToString();
         }
 
-        private async Task GetPendingKapanDetails()
+        private async Task GetPendingKapanDetails(string companyId, string branchId)
         {
-            _listKapanMapping = await _kapanMappingMasterRepository.GetPendingKapanMapping(lueCompany.EditValue.ToString(),lueBranch.EditValue.ToString(),Common.LoginFinancialYear.ToString());
+            _listKapanMapping = await _kapanMappingMasterRepository.GetPendingKapanMapping(companyId, branchId, Common.LoginFinancialYear.ToString());
             grdPendingKapanDetails.DataSource = _listKapanMapping;
         }
 
@@ -140,7 +140,7 @@ namespace DiamondTrading.Process
                 {
                     for (int i = 0; i < grvPendingKapanDetails.RowCount; i++)
                     {
-                        if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
+                        if(grvPendingKapanDetails.IsRowSelected(grvPendingKapanDetails.GetRowHandle(i)))
                         {
                             kapanMappingMaster = new KapanMappingMaster();
                             kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -152,7 +152,7 @@ namespace DiamondTrading.Process
                             kapanMappingMaster.PurityId = null;
                             kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
                             kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(i, colSlipNo).ToString();
-                            kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts));
+                            kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colTotalCts));
                             kapanMappingMaster.CreatedDate = DateTime.Now;
                             kapanMappingMaster.CreatedBy = Common.LoginUserID;
                             kapanMappingMaster.UpdatedDate = DateTime.Now;
@@ -161,6 +161,10 @@ namespace DiamondTrading.Process
                             var Result = await _kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
                             IsSuccess = true;
                         }
+                        //if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
+                        //{
+                            
+                        //}
                     }
                 }
                 catch
@@ -204,31 +208,36 @@ namespace DiamondTrading.Process
                 lueKapan.Focus();
                 return false;
             }
-            else if (txtCarat.Text.Trim().Length == 0)
+            //else if (txtCarat.Text.Trim().Length == 0)
+            //{
+            //    MessageBox.Show("Please enter Carat to Map", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txtCarat.Focus();
+            //    return false;
+            //}
+            //else if (!tglIsAutoAdjust.IsOn)
+            //{
+            //    var summaryValue = colCts.SummaryItem.SummaryValue;
+            //    if (Convert.ToDecimal(summaryValue) == 0)
+            //    {
+            //        MessageBox.Show("Please enter Carat details to Map", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        grdPendingKapanDetails.Focus();
+            //        return false;
+            //    }
+            //}
+
+            //var summaryValue1 = colCts.SummaryItem.SummaryValue;
+            //if (Convert.ToDecimal(summaryValue1) != Convert.ToDecimal(txtCarat.Text))
+            //{
+            //    MessageBox.Show("Summary Carat details '"+ Convert.ToDecimal(summaryValue1) + "' not equal with Total Carats '"+ Convert.ToDecimal(txtCarat.Text) + "'", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    txtCarat.Focus();
+            //    return false;
+            //}
+
+            if(grvPendingKapanDetails.GetSelectedRows().Count() == 0)
             {
-                MessageBox.Show("Please enter Carat to Map", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCarat.Focus();
+                MessageBox.Show("Please select any record to map with kapan.", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            else if (!tglIsAutoAdjust.IsOn)
-            {
-                var summaryValue = colCts.SummaryItem.SummaryValue;
-                if (Convert.ToDecimal(summaryValue) == 0)
-                {
-                    MessageBox.Show("Please enter Carat details to Map", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    grdPendingKapanDetails.Focus();
-                    return false;
-                }
-            }
-
-            var summaryValue1 = colCts.SummaryItem.SummaryValue;
-            if (Convert.ToDecimal(summaryValue1) != Convert.ToDecimal(txtCarat.Text))
-            {
-                MessageBox.Show("Summary Carat details '"+ Convert.ToDecimal(summaryValue1) + "' not equal with Total Carats '"+ Convert.ToDecimal(txtCarat.Text) + "'", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtCarat.Focus();
-                return false;
-            }
-
 
             return true;
         }
@@ -243,7 +252,7 @@ namespace DiamondTrading.Process
             Reset();
         }
 
-        private async void Reset()
+        private void Reset()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -252,10 +261,10 @@ namespace DiamondTrading.Process
             txtCarat.Text = "";
             tglIsAutoAdjust.IsOn = true;
 
-            await LoadCompany();
-            await GetKapanDetail();
-            await GetMaxSrNo();
-            await GetPendingKapanDetails();
+            _ = LoadCompany();
+            _ = GetKapanDetail();
+            _ = GetMaxSrNo(Common.LoginCompany);
+            _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch);
         }
     }
 }
