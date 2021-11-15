@@ -114,7 +114,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueKapan.Properties.NullText = "";
             this.lueKapan.Size = new System.Drawing.Size(230, 22);
-            this.lueKapan.TabIndex = 13;
+            this.lueKapan.TabIndex = 4;
             // 
             // labelControl8
             // 
@@ -160,7 +160,7 @@ namespace DiamondTrading.Process
             this.btnCancel.Location = new System.Drawing.Point(564, 539);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 4;
+            this.btnCancel.TabIndex = 8;
             this.btnCancel.Text = "&Cancel";
             // 
             // btnReset
@@ -170,7 +170,7 @@ namespace DiamondTrading.Process
             this.btnReset.Location = new System.Drawing.Point(483, 539);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
-            this.btnReset.TabIndex = 3;
+            this.btnReset.TabIndex = 7;
             this.btnReset.Text = "&Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
@@ -181,7 +181,7 @@ namespace DiamondTrading.Process
             this.btnSave.Location = new System.Drawing.Point(402, 539);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
-            this.btnSave.TabIndex = 2;
+            this.btnSave.TabIndex = 6;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -193,7 +193,7 @@ namespace DiamondTrading.Process
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
-            this.txtRemark.TabIndex = 0;
+            this.txtRemark.TabIndex = 5;
             // 
             // grpGroup2
             // 
@@ -229,8 +229,6 @@ namespace DiamondTrading.Process
             this.colCts.OptionsColumn.ReadOnly = true;
             this.colCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Cts", "{0:0.##}")});
-            this.colCts.Visible = true;
-            this.colCts.VisibleIndex = 6;
             this.colCts.Width = 134;
             // 
             // repoParty
@@ -379,7 +377,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(190, 22);
-            this.lueCompany.TabIndex = 7;
+            this.lueCompany.TabIndex = 2;
             // 
             // labelControl12
             // 
@@ -455,7 +453,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 4;
+            this.dtDate.TabIndex = 1;
             // 
             // panelControl1
             // 
@@ -509,7 +507,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(190, 22);
-            this.lueBranch.TabIndex = 9;
+            this.lueBranch.TabIndex = 3;
             // 
             // separatorControl1
             // 
