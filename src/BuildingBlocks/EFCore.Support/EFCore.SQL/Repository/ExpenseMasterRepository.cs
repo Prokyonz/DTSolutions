@@ -51,12 +51,12 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<ExpenseDetails>> GetAllExpenseAsync(string companyId, string branchId, string financialYearId)
         {
-            return await _databaseContext.ExpenseDetails.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+            return await _databaseContext.ExpenseDetails.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
         }
 
         public async Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId)
         {
-            var countResult = await _databaseContext.ExpenseDetails.CountAsync(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId);
+            var countResult = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync(m=>m.SrNo);
             return countResult + 1;
         }
 

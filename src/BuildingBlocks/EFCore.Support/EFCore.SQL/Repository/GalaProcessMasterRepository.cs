@@ -63,7 +63,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = await _databaseContext.GalaProcessMaster.Where(m => m.CompanyId == companyId && m.BranchId == branchId && m.FinancialYearId == financialYearId && m.GalaProcessType == galaProcessType).MaxAsync(m => m.JangadNo);
+                    var getCount = await _databaseContext.GalaProcessMaster.Where(m => m.CompanyId == companyId && m.FinancialYearId == financialYearId && m.GalaProcessType == galaProcessType).MaxAsync(m => m.JangadNo);
                     return getCount + 1;
                 }
             }
