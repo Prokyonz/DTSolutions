@@ -12,7 +12,7 @@ namespace EFCore.SQL.Repository
 {
     public class ExpenseMasterRepository : IExpenseMaster, IDisposable
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public ExpenseMasterRepository()
         {
@@ -56,8 +56,15 @@ namespace EFCore.SQL.Repository
 
         public async Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId)
         {
-            var countResult = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m=>m.SrNo);
-            return countResult + 1;
+            try
+            {
+                var getCount = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
+                return getCount + 1;
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }
         }
 
         public async Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails)

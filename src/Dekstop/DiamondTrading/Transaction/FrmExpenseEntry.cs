@@ -19,7 +19,6 @@ namespace DiamondTrading.Transaction
         private readonly BranchMasterRepository _branchMasterRepository;
         private readonly PartyMasterRepository _partyMasterRepository;
         private ExpenseMasterRepository _expenseMaterRepository;
-        int _paymentType = 0;
 
         public FrmExpenseEntry()
         {
@@ -168,8 +167,10 @@ namespace DiamondTrading.Transaction
             dtTime.EditValue = DateTime.Now;
             grdPaymentDetails.DataSource = null;
             txtRemark.Text = "";
+            lueCompany.EditValue = null;
             lueBranch.EditValue = null;
             await GetMaxSrNo();
+            await LoadCompany();
             LoadLedgers(lueCompany.EditValue.ToString());
             lueCompany.Focus();
         }
