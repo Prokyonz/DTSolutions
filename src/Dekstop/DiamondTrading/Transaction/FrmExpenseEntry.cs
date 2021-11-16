@@ -31,11 +31,6 @@ namespace DiamondTrading.Transaction
             _expenseMaterRepository = new ExpenseMasterRepository();
         }
 
-        private async void LoadSeries(int paymentType)
-        {
-            grdPaymentDetails.DataSource = GetDTColumnsForPaymentDetails();
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -51,8 +46,8 @@ namespace DiamondTrading.Transaction
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
+            await GetMaxSrNo();
             await LoadCompany();
-            LoadSeries(_paymentType);
             LoadLedgers(lueCompany.EditValue.ToString());
         }
 
@@ -62,6 +57,12 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("Party");
             dt.Columns.Add("Amount");
             return dt;
+        }
+
+        private async Task GetMaxSrNo()
+        {
+            var SrNo = await _expenseMaterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear);
+            txtSerialNo.Text = SrNo.ToString();
         }
 
         private void SetThemeColors(Color color)
@@ -97,6 +98,7 @@ namespace DiamondTrading.Transaction
 
         private async void LoadLedgers(string companyId)
         {
+            grdPaymentDetails.DataSource = GetDTColumnsForPaymentDetails();
             var result = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Expense);
 
             repoParty.DataSource = result;
@@ -114,10 +116,7 @@ namespace DiamondTrading.Transaction
             try
             {
                 this.Cursor = Cursors.WaitCursor;
-
-                List<ExpenseDetails> contraEntryDetails = new List<ExpenseDetails>();
                 bool IsSucess = false;
-
                 try
                 {
                     for (int i = 0; i < grvPaymentDetails.RowCount; i++)
@@ -125,6 +124,7 @@ namespace DiamondTrading.Transaction
                         ExpenseDetails expenseDetails = new ExpenseDetails
                         {
                             Id = Guid.NewGuid().ToString(),
+                            SrNo = Convert.ToInt32(txtSerialNo.Text),
                             BranchId = Common.LoginBranch,
                             CompanyId = lueCompany.EditValue.ToString(),
                             FinancialYearId = Common.LoginFinancialYear,
@@ -142,7 +142,7 @@ namespace DiamondTrading.Transaction
                         IsSucess = true;
                     }
                 }
-                catch
+                catch(Exception Ex)
                 {
                     IsSucess = false;
                 }
@@ -162,15 +162,15 @@ namespace DiamondTrading.Transaction
                 this.Cursor = Cursors.Default;
             }
         }
-        private void Reset()
+        private async void Reset()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             grdPaymentDetails.DataSource = null;
             txtRemark.Text = "";
             lueBranch.EditValue = null;
+            await GetMaxSrNo();
             LoadLedgers(lueCompany.EditValue.ToString());
-            LoadSeries(_paymentType);
             lueCompany.Focus();
         }
 
