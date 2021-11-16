@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    internal class ExpenseMasterRepository : IExpenseMaster, IDisposable
+    public class ExpenseMasterRepository : IExpenseMaster, IDisposable
     {
         private readonly DatabaseContext _databaseContext;
 
