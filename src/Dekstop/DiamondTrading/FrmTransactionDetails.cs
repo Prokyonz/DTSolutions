@@ -20,6 +20,7 @@ namespace DiamondTrading
         private SalesMasterRepository _salesMasterRepository;
         private PaymentMasterRepository _paymentMasterRepository;
         private ContraEntryMasterRespository  _contraEntryMasterRespository;
+        private ExpenseMasterRepository _expenseMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -159,6 +160,15 @@ namespace DiamondTrading
                     _contraEntryMasterRespository = new ContraEntryMasterRespository();
                     var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdContraDetails.DataSource = data;
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabExpense)
+            {
+                if (IsForceLoad || _expenseMasterRepository == null)
+                {
+                    _expenseMasterRepository = new ExpenseMasterRepository();
+                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                    grdExpenseControl.DataSource = data;
                 }
             }
         }

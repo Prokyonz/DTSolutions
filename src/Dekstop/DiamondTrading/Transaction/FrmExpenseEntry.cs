@@ -40,14 +40,14 @@ namespace DiamondTrading.Transaction
 
         }
 
-        private async void FrmPaymentEntry_Load(object sender, EventArgs e)
+        private void FrmPaymentEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
-            await GetMaxSrNo();
-            await LoadCompany();
-            LoadLedgers(lueCompany.EditValue.ToString());
+            _ = GetMaxSrNo();
+            _ = LoadCompany();
+            LoadLedgers(Common.LoginCompany);
         }
 
         private static DataTable GetDTColumnsForPaymentDetails()
@@ -83,7 +83,7 @@ namespace DiamondTrading.Transaction
             lueCompany.Properties.ValueMember = "Id";
             lueCompany.EditValue = Common.LoginCompany;
 
-            await LoadBranch(lueCompany.EditValue.ToString());
+            _ = LoadBranch(Common.LoginCompany);
         }
 
         private async Task LoadBranch(string CompanyId)
@@ -161,7 +161,7 @@ namespace DiamondTrading.Transaction
                 this.Cursor = Cursors.Default;
             }
         }
-        private async void Reset()
+        private void Reset()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -169,9 +169,9 @@ namespace DiamondTrading.Transaction
             txtRemark.Text = "";
             lueCompany.EditValue = null;
             lueBranch.EditValue = null;
-            await GetMaxSrNo();
-            await LoadCompany();
-            LoadLedgers(lueCompany.EditValue.ToString());
+            _= GetMaxSrNo();
+            _= LoadCompany();
+            LoadLedgers(Common.LoginCompany);
             lueCompany.Focus();
         }
 

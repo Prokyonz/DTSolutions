@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,89 +11,108 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class ExpenseMasterRepository : IExpenseMaster, IDisposable
+    public class ExpenseMasterRepository : IExpenseMaster
     {
         private DatabaseContext _databaseContext;
 
         public ExpenseMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
         public async Task<ExpenseDetails> AddExpenseAsync(ExpenseDetails expenseDetails)
         {
-            if (expenseDetails.Id == null)
-                expenseDetails.Id = Guid.NewGuid().ToString();
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (expenseDetails.Id == null)
+                    expenseDetails.Id = Guid.NewGuid().ToString();
 
-            await _databaseContext.ExpenseDetails.AddAsync(expenseDetails);
-            await _databaseContext.SaveChangesAsync();
-            return expenseDetails;
+                await _databaseContext.ExpenseDetails.AddAsync(expenseDetails);
+                await _databaseContext.SaveChangesAsync();
+                return expenseDetails;
+            }
         }
 
         public async Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false)
         {
-            var getExpense = await _databaseContext.ExpenseMaster.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
-            if (getExpense != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.ExpenseMaster.Remove(getExpense);
-                else
-                    getExpense.IsDelete = true;
+                var getExpense = await _databaseContext.ExpenseMaster.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
+                if (getExpense != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.ExpenseMaster.Remove(getExpense);
+                    else
+                        getExpense.IsDelete = true;
 
-                await _databaseContext.SaveChangesAsync();
-                return true;
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
             }
-            return false;
-        }
-
-        public void Dispose()
-        {
-            _databaseContext.DisposeAsync();
         }
 
         public async Task<List<ExpenseDetails>> GetAllExpenseAsync(string companyId, string branchId, string financialYearId)
         {
-            return await _databaseContext.ExpenseDetails.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.ExpenseDetails.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
+            }
+        }
+
+        public async Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string branchId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getExpenseReport = await _databaseContext.SPExpenseModel.FromSqlRaw($"GetExpenseReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                return getExpenseReport;
+            }
         }
 
         public async Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                var getCount = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
-                return getCount + 1;
-            }
-            catch (Exception ex)
-            {
-                return 1;
+                try
+                {
+                    var getCount = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
+                    return getCount + 1;
+                }
+                catch (Exception ex)
+                {
+                    return 1;
+                }
             }
         }
 
         public async Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseDetails.Id).FirstOrDefaultAsync();
-
-                if (getExpense != null)
+                try
                 {
-                    getExpense.PartyId = expenseDetails.PartyId;
-                    getExpense.CompanyId = expenseDetails.CompanyId;
-                    getExpense.BranchId = expenseDetails.BranchId;
-                    getExpense.FinancialYearId = expenseDetails.FinancialYearId;
-                    getExpense.Amount= expenseDetails.Amount;
-                    getExpense.Remarks = expenseDetails.Remarks;
-                    getExpense.UpdatedBy = expenseDetails.UpdatedBy;
-                    getExpense.UpdatedDate = expenseDetails.UpdatedDate;
-                    getExpense.IsDelete = false;
+                    var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseDetails.Id).FirstOrDefaultAsync();
 
-                    await _databaseContext.SaveChangesAsync();
+                    if (getExpense != null)
+                    {
+                        getExpense.PartyId = expenseDetails.PartyId;
+                        getExpense.CompanyId = expenseDetails.CompanyId;
+                        getExpense.BranchId = expenseDetails.BranchId;
+                        getExpense.FinancialYearId = expenseDetails.FinancialYearId;
+                        getExpense.Amount = expenseDetails.Amount;
+                        getExpense.Remarks = expenseDetails.Remarks;
+                        getExpense.UpdatedBy = expenseDetails.UpdatedBy;
+                        getExpense.UpdatedDate = expenseDetails.UpdatedDate;
+                        getExpense.IsDelete = false;
+
+                        await _databaseContext.SaveChangesAsync();
+                    }
+
+                    return expenseDetails;
                 }
-
-                return expenseDetails;
-            }
-            catch (Exception)
-            {
-                throw;
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
     }
