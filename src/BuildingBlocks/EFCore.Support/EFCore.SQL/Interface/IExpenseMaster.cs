@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,7 @@ namespace EFCore.SQL.Interface
     public interface IExpenseMaster
     {
         Task<List<ExpenseDetails>> GetAllExpenseAsync(string companyId, string branchId, string financialYearId);
+        Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string branchId, string financialYearId);
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId);
         Task<ExpenseDetails> AddExpenseAsync(ExpenseDetails expenseDetails);
         Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails);

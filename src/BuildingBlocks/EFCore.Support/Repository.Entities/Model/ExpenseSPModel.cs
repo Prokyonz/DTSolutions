@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Repository.Entities.Model
+{
+    public class ExpenseSPModel
+    {
+        public int Sr { get; set; }
+        public int SrNo { get; set; }
+        public string CompanyId { get; set; }
+        public string BranchId { get; set; }
+        public string PartyId { get; set; }
+        public string PartyName { get; set; }
+        public double Amount { get; set; }
+        public string Remarks { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public string UpdatedBy { get; set; }
+    }
+}
