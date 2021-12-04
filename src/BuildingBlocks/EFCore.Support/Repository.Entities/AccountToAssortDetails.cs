@@ -17,6 +17,7 @@ namespace Repository.Entities
         public string ShapeId { get; set; }
         public string SizeId { get; set; }
         public string PurityId { get; set; }
+        public string BoilProcessId { get; set; }
         public string CharniProcessId { get; set; }
         public string GalaProcessId { get; set; }
         public string NumberProcessId { get; set; }
