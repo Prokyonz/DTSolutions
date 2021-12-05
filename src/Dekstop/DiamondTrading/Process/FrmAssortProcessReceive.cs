@@ -21,6 +21,7 @@ namespace DiamondTrading.Process
         List<CharniProcessSend> ListCharniProcessSend;
         List<GalaProcessSend> ListGalaProcessSend;
         List<NumberProcessSend> ListNumberProcessSend;
+        List<NumberProcessReturn> ListNumberProcessReturn;
 
         public FrmAssortProcessReceive()
         {
@@ -81,8 +82,14 @@ namespace DiamondTrading.Process
                 }
                 else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Gala)
                 {
+                    GalaProcessMasterRepository galaProcessMasterRepository = new GalaProcessMasterRepository();
+                    var SrNo = await galaProcessMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear, 2);
+                    txtSerialNo.Text = SrNo.ToString();
+                }
+                else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Number)
+                {
                     NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
-                    var SrNo = await numberProcessMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear, 0);
+                    var SrNo = await numberProcessMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear, 2);
                     txtSerialNo.Text = SrNo.ToString();
                 }
             }
@@ -127,6 +134,7 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["BoilNo"].Visible = true;
                     repoSlipNo.Columns["CharniSize"].Visible = false;
                     repoSlipNo.Columns["GalaNumber"].Visible = false;
+                    repoSlipNo.Columns["Number"].Visible = false;
                     colCharniSize.Visible = false;
                     colGalaSize.Visible = false;
                 }
@@ -137,6 +145,7 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["BoilNo"].Visible = false;
                     repoSlipNo.Columns["CharniSize"].Visible = true;
                     repoSlipNo.Columns["GalaNumber"].Visible = false;
+                    repoSlipNo.Columns["Number"].Visible = false;
                     colCharniSize.Visible = true;
                     colGalaSize.Visible = false;
                 }
@@ -147,6 +156,18 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["BoilNo"].Visible = false;
                     repoSlipNo.Columns["CharniSize"].Visible = false;
                     repoSlipNo.Columns["GalaNumber"].Visible = true;
+                    repoSlipNo.Columns["Number"].Visible = false;
+                    colCharniSize.Visible = false;
+                    colGalaSize.Visible = true;
+                }
+                else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Number)
+                {
+                    await GetMaxSrNo();
+                    await GetNumberProcessReceiveDetail();
+                    repoSlipNo.Columns["BoilNo"].Visible = false;
+                    repoSlipNo.Columns["CharniSize"].Visible = false;
+                    repoSlipNo.Columns["GalaNumber"].Visible = false;
+                    repoSlipNo.Columns["Number"].Visible = true;
                     colCharniSize.Visible = false;
                     colGalaSize.Visible = true;
                 }
@@ -187,6 +208,17 @@ namespace DiamondTrading.Process
             lueKapan.Properties.ValueMember = "KapanId";
         }
 
+        private async Task GetNumberProcessReceiveDetail()
+        {
+            NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+            ListNumberProcessReturn = await numberProcessMasterRepository.GetNumberReturnDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
+
+            lueKapan.Properties.DataSource = ListNumberProcessReturn.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+            lueKapan.Properties.DisplayMember = "Kapan";
+            lueKapan.Properties.ValueMember = "KapanId";
+        }
+
         private static DataTable GetDTColumnsforParticularDetails()
         {
             DataTable dt = new DataTable();
@@ -206,6 +238,8 @@ namespace DiamondTrading.Process
             dt.Columns.Add("CharniSizeId");
             dt.Columns.Add("GalaSize");
             dt.Columns.Add("GalaNumberId");
+            dt.Columns.Add("Number");
+            dt.Columns.Add("NumberId");
             return dt;
         }
 
@@ -234,6 +268,15 @@ namespace DiamondTrading.Process
                 else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Gala && ListNumberProcessSend != null)
                 {
                     repoSlipNo.DataSource = ListNumberProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                    repoSlipNo.DisplayMember = "SlipNo";
+                    repoSlipNo.ValueMember = "Id";
+
+                    repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                    repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+                }
+                else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Number && ListNumberProcessReturn != null)
+                {
+                    repoSlipNo.DataSource = ListNumberProcessReturn.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
                     repoSlipNo.DisplayMember = "SlipNo";
                     repoSlipNo.ValueMember = "Id";
 
@@ -284,6 +327,18 @@ namespace DiamondTrading.Process
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colGalaNumberId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colGalaSize, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).GalaNumber);
+                        }
+                        else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Number)
+                        {
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Size);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colACarat, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Number);
                         }
                         //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                         //grvPurchaseItems.FocusedColumn = colBoilCarat;
@@ -466,6 +521,66 @@ namespace DiamondTrading.Process
                                 galaProcessMaster.UpdatedBy = Common.LoginUserID;
 
                                 var Result = await galaProcessMasterRepository.AddGalaProcessAsync(galaProcessMaster);
+                                IsSuccess = true;
+                            }
+                        }
+                        catch
+                        {
+                            IsSuccess = false;
+                        }
+
+                        if (IsSuccess)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        string Cts = "0";
+
+                        NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
+                        NumberProcessMaster numberProcessMaster = new NumberProcessMaster();
+                        bool IsSuccess = false;
+                        try
+                        {
+                            for (int i = 0; i < grvParticularsDetails.RowCount; i++)
+                            {
+                                Cts = "0";
+                                Cts = grvParticularsDetails.GetRowCellValue(i, colCharniCarat).ToString();
+                                numberProcessMaster = new NumberProcessMaster();
+                                numberProcessMaster.Id = Guid.NewGuid().ToString();
+                                //numberProcessMaster.NumberNo = Convert.ToInt32(lueKapan.GetColumnValue("NumberNo").ToString());
+                                numberProcessMaster.JangadNo = Convert.ToInt32(txtSerialNo.Text);
+                                //galaProcessMaster.BoilJangadNo = Convert.ToInt32(lueKapan.GetColumnValue("BoilJangadNo").ToString());
+                                numberProcessMaster.CompanyId = Common.LoginCompany;
+                                numberProcessMaster.BranchId = Common.LoginBranch;
+                                numberProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                                numberProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                                numberProcessMaster.FinancialYearId = Common.LoginFinancialYear;
+                                numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.Return);
+                                numberProcessMaster.KapanId = lueKapan.GetColumnValue("KapanId").ToString();
+                                numberProcessMaster.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
+                                numberProcessMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                                numberProcessMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                                numberProcessMaster.Weight = 0;// Convert.ToDecimal(txtACarat.Text);
+                                //numberProcessMaster.GalaNumberId = lueKapan.GetColumnValue("GalaNumberId").ToString(); //grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
+                                numberProcessMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
+                                numberProcessMaster.NumberWeight = Convert.ToDecimal(Cts);
+                                numberProcessMaster.LossWeight = 0;
+                                numberProcessMaster.RejectionWeight = 0;
+                                numberProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
+                                numberProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                numberProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
+                                //numberProcessMaster.NumberCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
+                                numberProcessMaster.Remarks = txtRemark.Text;
+                                numberProcessMaster.IsDelete = false;
+                                numberProcessMaster.CreatedDate = DateTime.Now;
+                                numberProcessMaster.CreatedBy = Common.LoginUserID;
+                                numberProcessMaster.UpdatedDate = DateTime.Now;
+                                numberProcessMaster.UpdatedBy = Common.LoginUserID;
+
+                                var Result = await numberProcessMasterRepository.AddNumberProcessAsync(numberProcessMaster);
                                 IsSuccess = true;
                             }
                         }
