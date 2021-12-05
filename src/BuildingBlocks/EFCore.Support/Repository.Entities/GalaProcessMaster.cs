@@ -22,6 +22,7 @@ namespace Repository.Entities
         public string SizeId { get; set; }
         public string PurityId { get; set; }
 
+        public string CharniSizeId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         public string GalaNumberId { get; set; }

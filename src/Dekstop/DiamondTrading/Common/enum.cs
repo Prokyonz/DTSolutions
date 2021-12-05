@@ -9,6 +9,8 @@ namespace DiamondTrading
     public enum ProcessType
     {
         Send = 0,
-        Receive = 1
+        Receive = 1,
+        Return = 2,
+        Transfer = 3
     }
 }

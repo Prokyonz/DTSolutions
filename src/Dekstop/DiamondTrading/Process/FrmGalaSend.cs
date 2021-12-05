@@ -91,12 +91,14 @@ namespace DiamondTrading.Process
             dt.Columns.Add("ShapeId");
             dt.Columns.Add("PurityId");
             dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("CharniSize");
+            dt.Columns.Add("CharniSizeId");
             return dt;
         }
 
         private void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueKapan.EditValue != null && ListGalaProcessSend != null)
+             if (lueKapan.EditValue != null && ListGalaProcessSend != null)
             {
                 repoSlipNo.DataSource = ListGalaProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
                 repoSlipNo.DisplayMember = "SlipNo";
@@ -119,6 +121,8 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.GalaProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.GalaProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.GalaProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Models.GalaProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSize);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Models.GalaProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
 
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
@@ -189,6 +193,7 @@ namespace DiamondTrading.Process
                         galaProcessMaster.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
                         galaProcessMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                         galaProcessMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                        galaProcessMaster.CharniSizeId = grvParticularsDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                         galaProcessMaster.Weight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colGalaCarat).ToString());
                         galaProcessMaster.LossWeight = 0;
                         galaProcessMaster.RejectionWeight = 0;
