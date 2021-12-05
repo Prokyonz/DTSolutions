@@ -59,14 +59,16 @@ namespace DiamondTrading.Process
             this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBoilNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCharniSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCharniSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGalaNumberId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colGalaSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
-            this.colCharniSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCharniSize = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
@@ -342,7 +344,9 @@ namespace DiamondTrading.Process
             this.colBoilNo1,
             this.colCharniSizeId,
             this.colCharniSize,
-            this.colSlipNo1});
+            this.colSlipNo1,
+            this.colGalaNumberId,
+            this.colGalaSize});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -359,7 +363,7 @@ namespace DiamondTrading.Process
             this.colSrNo.Name = "colSrNo";
             this.colSrNo.Visible = true;
             this.colSrNo.VisibleIndex = 0;
-            this.colSrNo.Width = 73;
+            this.colSrNo.Width = 66;
             // 
             // repoSlipNo
             // 
@@ -379,6 +383,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "Charni Size", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSizeId", "CharniSizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumber", "Gala Size", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumberId", "GalaNumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialYearId", "FinancialYearId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
@@ -393,7 +399,7 @@ namespace DiamondTrading.Process
             this.colSlipNo.OptionsColumn.AllowEdit = false;
             this.colSlipNo.Visible = true;
             this.colSlipNo.VisibleIndex = 1;
-            this.colSlipNo.Width = 222;
+            this.colSlipNo.Width = 202;
             // 
             // colSize
             // 
@@ -403,7 +409,7 @@ namespace DiamondTrading.Process
             this.colSize.OptionsColumn.AllowEdit = false;
             this.colSize.Visible = true;
             this.colSize.VisibleIndex = 2;
-            this.colSize.Width = 144;
+            this.colSize.Width = 131;
             // 
             // colACarat
             // 
@@ -412,8 +418,8 @@ namespace DiamondTrading.Process
             this.colACarat.Name = "colACarat";
             this.colACarat.OptionsColumn.AllowEdit = false;
             this.colACarat.Visible = true;
-            this.colACarat.VisibleIndex = 4;
-            this.colACarat.Width = 102;
+            this.colACarat.VisibleIndex = 5;
+            this.colACarat.Width = 94;
             // 
             // colCharniCarat
             // 
@@ -424,8 +430,8 @@ namespace DiamondTrading.Process
             this.colCharniCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CharniCarat", "{0:0.##}")});
             this.colCharniCarat.Visible = true;
-            this.colCharniCarat.VisibleIndex = 5;
-            this.colCharniCarat.Width = 134;
+            this.colCharniCarat.VisibleIndex = 6;
+            this.colCharniCarat.Width = 110;
             // 
             // repoTxtEdit
             // 
@@ -459,6 +465,43 @@ namespace DiamondTrading.Process
             this.colBoilNo1.Caption = "Boil No";
             this.colBoilNo1.FieldName = "BoilNo1";
             this.colBoilNo1.Name = "colBoilNo1";
+            // 
+            // colCharniSizeId
+            // 
+            this.colCharniSizeId.Caption = "CharniSizeId";
+            this.colCharniSizeId.FieldName = "CharniSizeId";
+            this.colCharniSizeId.Name = "colCharniSizeId";
+            // 
+            // colCharniSize
+            // 
+            this.colCharniSize.Caption = "Charni Size";
+            this.colCharniSize.FieldName = "CharniSize";
+            this.colCharniSize.Name = "colCharniSize";
+            this.colCharniSize.Visible = true;
+            this.colCharniSize.VisibleIndex = 3;
+            this.colCharniSize.Width = 93;
+            // 
+            // colSlipNo1
+            // 
+            this.colSlipNo1.Caption = "SlipNo1";
+            this.colSlipNo1.FieldName = "SlipNo1";
+            this.colSlipNo1.Name = "colSlipNo1";
+            // 
+            // colGalaNumberId
+            // 
+            this.colGalaNumberId.Caption = "GalaNumberId";
+            this.colGalaNumberId.FieldName = "GalaNumberId";
+            this.colGalaNumberId.Name = "colGalaNumberId";
+            // 
+            // colGalaSize
+            // 
+            this.colGalaSize.Caption = "Gala Size";
+            this.colGalaSize.FieldName = "GalaSize";
+            this.colGalaSize.Name = "colGalaSize";
+            this.colGalaSize.OptionsColumn.AllowEdit = false;
+            this.colGalaSize.Visible = true;
+            this.colGalaSize.VisibleIndex = 4;
+            this.colGalaSize.Width = 94;
             // 
             // labelControl12
             // 
@@ -533,27 +576,6 @@ namespace DiamondTrading.Process
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
             this.dtDate.TabIndex = 4;
-            // 
-            // colCharniSizeId
-            // 
-            this.colCharniSizeId.Caption = "CharniSizeId";
-            this.colCharniSizeId.FieldName = "CharniSizeId";
-            this.colCharniSizeId.Name = "colCharniSizeId";
-            // 
-            // colCharniSize
-            // 
-            this.colCharniSize.Caption = "Charni Size";
-            this.colCharniSize.FieldName = "CharniSize";
-            this.colCharniSize.Name = "colCharniSize";
-            this.colCharniSize.Visible = true;
-            this.colCharniSize.VisibleIndex = 3;
-            this.colCharniSize.Width = 115;
-            // 
-            // colSlipNo1
-            // 
-            this.colSlipNo1.Caption = "SlipNo1";
-            this.colSlipNo1.FieldName = "SlipNo1";
-            this.colSlipNo1.Name = "colSlipNo1";
             // 
             // FrmAssortProcessReceive
             // 
@@ -640,5 +662,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colCharniSizeId;
         private DevExpress.XtraGrid.Columns.GridColumn colCharniSize;
         private DevExpress.XtraGrid.Columns.GridColumn colSlipNo1;
+        private DevExpress.XtraGrid.Columns.GridColumn colGalaNumberId;
+        private DevExpress.XtraGrid.Columns.GridColumn colGalaSize;
     }
 }
