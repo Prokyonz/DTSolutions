@@ -74,6 +74,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<NumberProcessReceive> SPNumberProcessReceive { get; set; }
         public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
         public virtual DbSet<ExpenseSPModel> SPExpenseModel { get; set; }
+        public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -134,6 +135,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberProcessReturn>().HasNoKey();
             modelBuilder.Entity<NumberProcessReceive>().HasNoKey();
             modelBuilder.Entity<ExpenseSPModel>().HasNoKey();
+            modelBuilder.Entity<SalesItemDetails>().HasNoKey();
         }
     }
 }

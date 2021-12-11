@@ -177,6 +177,7 @@ namespace DiamondTrading.Process
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
+  
             {
                 this.Cursor = Cursors.WaitCursor;
 

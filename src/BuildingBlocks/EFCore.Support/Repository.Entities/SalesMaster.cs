@@ -35,7 +35,7 @@ namespace Repository.Entities
         public int DueDays { get; set; }
         public DateTime DueDate { get; set; }
         public int PaymentDays { get; set; }
-        public int PaymentDueDays { get; set; }
+        public DateTime PaymentDueDate { get; set; }
         public bool IsSlip { get; set; }
         public bool IsPF { get; set; }
         public string CommissionToPartyId { get; set; }
@@ -46,6 +46,8 @@ namespace Repository.Entities
         public byte[] Image2 { get; set; }
         public byte[] Image3 { get; set; }
         public bool AllowSlipPrint { get; set; }
+        public bool IsTransfer { get; set; }
+        public string TransferParentId { get; set; }
         public bool IsDelete { get; set; }
         public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }

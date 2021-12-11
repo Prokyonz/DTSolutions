@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20211211050034_AlterSalesMasterColumns")]
+    partial class AlterSalesMasterColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1380,12 +1382,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FinancialYearId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GalaSize")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("GalaSizeId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
@@ -2811,9 +2807,6 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<decimal>("CurrencyRate")
                         .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("GalaSizeId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsTransfer")
                         .HasColumnType("bit");

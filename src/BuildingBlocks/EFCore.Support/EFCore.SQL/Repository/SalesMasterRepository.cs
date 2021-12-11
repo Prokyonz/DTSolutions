@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -143,7 +144,7 @@ namespace EFCore.SQL.Repository
                     salesRecord.DueDays = salesRecord.DueDays;
                     salesRecord.DueDate = salesRecord.DueDate;
                     salesRecord.PaymentDays = salesRecord.PaymentDays;
-                    salesRecord.PaymentDueDays = salesRecord.PaymentDueDays;
+                    salesRecord.PaymentDueDate = salesRecord.PaymentDueDate;
                     salesRecord.IsSlip = salesRecord.IsSlip;
                     salesRecord.IsPF = salesRecord.IsPF;
 
@@ -168,6 +169,23 @@ namespace EFCore.SQL.Repository
             }
            
             return salesMaster;
+        }
+
+        public async Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SalesItemDetails.FromSqlRaw($"GetSalesItemDetails '" + ActionType + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
