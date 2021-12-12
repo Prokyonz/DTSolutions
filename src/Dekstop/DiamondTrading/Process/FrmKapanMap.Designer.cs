@@ -279,6 +279,7 @@ namespace DiamondTrading.Process
             this.grvPendingKapanDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvPendingKapanDetails.OptionsView.ShowFooter = true;
             this.grvPendingKapanDetails.OptionsView.ShowGroupPanel = false;
+            this.grvPendingKapanDetails.SelectionChanged += new DevExpress.Data.SelectionChangedEventHandler(this.grvPendingKapanDetails_SelectionChanged);
             // 
             // colDate
             // 

@@ -18,6 +18,8 @@ namespace DiamondTrading.Process
     {
         AccountToAssortMasterRepository _accountToAssortMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        List<AssortmentProcessSend> ListAssortmentProcessSend;
+
         public FrmAssortProcessSend()
         {
             InitializeComponent();
@@ -95,13 +97,17 @@ namespace DiamondTrading.Process
 
             if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Boil)
             {
-                List<AssortmentProcessSend> ListAssortmentProcessSend = await _accountToAssortMasterRepository.GetAssortmentSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-                repoSlipNo.DataSource = ListAssortmentProcessSend;
-                repoSlipNo.DisplayMember = "SlipNo";
-                repoSlipNo.ValueMember = "Id";
+                ListAssortmentProcessSend = await _accountToAssortMasterRepository.GetAssortmentSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
 
-                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+                if (lueKapan.EditValue != null && ListAssortmentProcessSend != null)
+                {
+                    repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                    repoSlipNo.DisplayMember = "SlipNo";
+                    repoSlipNo.ValueMember = "Id";
+
+                    repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                    repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+                }
             }
         }
 
@@ -293,6 +299,7 @@ namespace DiamondTrading.Process
             GetDepartmentList();
             await GetEmployeeList();
             await GetKapanDetail();
+            await GetAssortProcessSendDetail();
             lueReceiveFrom.Focus();
         }
 
@@ -304,6 +311,19 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void lueKapan_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueKapan.EditValue != null && ListAssortmentProcessSend != null)
+            {
+                repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                repoSlipNo.DisplayMember = "SlipNo";
+                repoSlipNo.ValueMember = "Id";
+
+                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            }
         }
     }
 }

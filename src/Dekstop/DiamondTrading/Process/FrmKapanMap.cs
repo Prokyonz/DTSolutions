@@ -45,7 +45,7 @@ namespace DiamondTrading.Process
 
             lueCompany.EditValue = Common.LoginCompany;
             _ = LoadBranch(Common.LoginCompany);
-        }  
+        }
 
         private async Task LoadBranch(string companyId)
         {
@@ -80,7 +80,7 @@ namespace DiamondTrading.Process
 
         private void btnMap_Click(object sender, EventArgs e)
         {
-            if(tglIsAutoAdjust.IsOn && _listKapanMapping!=null && txtCarat.Text.Length>0)
+            if (tglIsAutoAdjust.IsOn && _listKapanMapping != null && txtCarat.Text.Length > 0)
             {
                 DataTable dt = Common.ToDataTable(_listKapanMapping);
                 DataView dtView = new DataView(dt);
@@ -140,7 +140,7 @@ namespace DiamondTrading.Process
                 {
                     for (int i = 0; i < grvPendingKapanDetails.RowCount; i++)
                     {
-                        if(grvPendingKapanDetails.IsRowSelected(grvPendingKapanDetails.GetRowHandle(i)))
+                        if (grvPendingKapanDetails.IsRowSelected(grvPendingKapanDetails.GetRowHandle(i)))
                         {
                             kapanMappingMaster = new KapanMappingMaster();
                             kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -163,7 +163,7 @@ namespace DiamondTrading.Process
                         }
                         //if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
                         //{
-                            
+
                         //}
                     }
                 }
@@ -233,7 +233,7 @@ namespace DiamondTrading.Process
             //    return false;
             //}
 
-            if(grvPendingKapanDetails.GetSelectedRows().Count() == 0)
+            if (grvPendingKapanDetails.GetSelectedRows().Count() == 0)
             {
                 MessageBox.Show("Please select any record to map with kapan.", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -265,6 +265,21 @@ namespace DiamondTrading.Process
             _ = GetKapanDetail();
             _ = GetMaxSrNo(Common.LoginCompany);
             _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch);
+        }
+
+        private void grvPendingKapanDetails_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)
+        {
+            decimal TotalCts = 0;
+            Int32[] selectedRowHandles = grvPendingKapanDetails.GetSelectedRows();
+            for (int i = 0; i < selectedRowHandles.Length; i++)
+            {
+                int selectedRowHandle = selectedRowHandles[i];
+                if (selectedRowHandle >= 0)
+                {
+                    TotalCts += Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(selectedRowHandle, colTotalCts).ToString());
+                }
+            }
+            txtCarat.Text = TotalCts.ToString();
         }
     }
 }

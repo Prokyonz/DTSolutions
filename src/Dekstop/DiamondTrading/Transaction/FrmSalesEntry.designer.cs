@@ -818,7 +818,14 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repoShape.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Shape", "Shape", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShapeId", "ShapeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShapeId", "ShapeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Kapan"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "CharniSize"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaSize", "GalaSize"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSize", "NumberSize"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight")});
             this.repoShape.Name = "repoShape";
             this.repoShape.NullText = "";
             this.repoShape.ValueMember = "Guid";

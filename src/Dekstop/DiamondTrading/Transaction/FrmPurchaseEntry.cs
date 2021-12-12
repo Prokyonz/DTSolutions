@@ -1261,6 +1261,7 @@ namespace DiamondTrading.Transaction
             txtNetAmount.Text = "0";
             txtCurrencyAmount.Text = "0";
             tglSlip.IsOn = Common.PrintPurchaseSlip;
+            GetPurchaseNo();
             txtSlipNo.Focus();
         }
 

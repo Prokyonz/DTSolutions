@@ -497,9 +497,12 @@ namespace DiamondTrading.Transaction
                         if (_salesItemObj.CharniItemList == null)
                             _salesItemObj.CharniItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Charni, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
-                        repoShape.DataSource = _salesItemObj.CharniItemList.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DataSource = _salesItemObj.CharniItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "ShapeId";
+
+                        repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                        repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
 
                         repoSize.DataSource = _salesItemObj.CharniItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
                         repoSize.DisplayMember = "Size";
@@ -526,9 +529,12 @@ namespace DiamondTrading.Transaction
                         if (_salesItemObj.NumberItemList == null)
                             _salesItemObj.NumberItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
-                        repoShape.DataSource = _salesItemObj.NumberItemList.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DataSource = _salesItemObj.NumberItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "ShapeId";
+
+                        repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                        repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
 
                         repoSize.DataSource = _salesItemObj.NumberItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
                         repoSize.DisplayMember = "Size";
@@ -555,9 +561,12 @@ namespace DiamondTrading.Transaction
                         if (_salesItemObj.GalaItemList == null)
                             _salesItemObj.GalaItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Gala, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
-                        repoShape.DataSource = _salesItemObj.GalaItemList.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DataSource = _salesItemObj.GalaItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "ShapeId";
+
+                        repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                        repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
 
                         repoSize.DataSource = _salesItemObj.GalaItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
                         repoSize.DisplayMember = "Size";
@@ -584,9 +593,12 @@ namespace DiamondTrading.Transaction
                         if (_salesItemObj.BoilItemList == null)
                             _salesItemObj.BoilItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Boil, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
-                        repoShape.DataSource = _salesItemObj.BoilItemList.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DataSource = _salesItemObj.BoilItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "ShapeId";
+
+                        repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                        repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
 
                         repoSize.DataSource = _salesItemObj.BoilItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
                         repoSize.DisplayMember = "Size";
@@ -1221,6 +1233,8 @@ namespace DiamondTrading.Transaction
             txtNetAmount.Text = "0";
             txtCurrencyAmount.Text = "0";
             tglSlip.IsOn = Common.PrintPurchaseSlip;
+            _salesItemObj = null;
+            GetSalesNo();
             txtSlipNo.Focus();
         }
     }
