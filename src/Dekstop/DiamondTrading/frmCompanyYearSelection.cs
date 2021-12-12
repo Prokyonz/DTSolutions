@@ -156,5 +156,10 @@ namespace DiamondTrading
             if (lueCompany.EditValue != null)
                 await LoadBranch(lueCompany.EditValue.ToString());
         }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            btnOk_Click(sender, e);
+        }
     }
 }

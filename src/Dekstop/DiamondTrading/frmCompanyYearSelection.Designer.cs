@@ -40,6 +40,7 @@ namespace DiamondTrading
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
@@ -91,9 +92,9 @@ namespace DiamondTrading
             this.btnOk.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(385, 33);
+            this.btnOk.Size = new System.Drawing.Size(191, 33);
             this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "OK";
+            this.btnOk.Text = "Save";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // labelControl4
@@ -109,6 +110,7 @@ namespace DiamondTrading
             // panelControl1
             // 
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.chkRememberMe);
             this.panelControl1.Controls.Add(this.lueFinancialYear);
             this.panelControl1.Controls.Add(this.lueBranch);
@@ -201,10 +203,25 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
             this.pictureEdit1.TabIndex = 0;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.SlateGray;
+            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.simpleButton1.Location = new System.Drawing.Point(209, 232);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(188, 33);
+            this.simpleButton1.TabIndex = 10;
+            this.simpleButton1.Text = "Cancel";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // FrmCompanyYearSelection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.simpleButton1;
             this.ClientSize = new System.Drawing.Size(436, 301);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -244,5 +261,6 @@ namespace DiamondTrading
         public DevExpress.XtraEditors.LookUpEdit lueFinancialYear;
         public DevExpress.XtraEditors.LookUpEdit lueBranch;
         private DevExpress.XtraEditors.CheckEdit chkRememberMe;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }

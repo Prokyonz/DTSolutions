@@ -162,6 +162,8 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barButtonItem48 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem49 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -246,9 +248,11 @@ namespace DiamondTrading
             this.barButtonItem44,
             this.barButtonItem45,
             this.barButtonItem46,
-            this.barButtonItem47});
+            this.barButtonItem47,
+            this.barButtonItem48,
+            this.barButtonItem49});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 78;
+            this.barManager1.MaxItemId = 80;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -323,8 +327,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem4.Caption = "&Ledger Master";
             this.barButtonItem4.Id = 4;
-            this.barButtonItem4.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-                | System.Windows.Forms.Keys.L));
+            this.barButtonItem4.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L));
             this.barButtonItem4.Name = "barButtonItem4";
             this.barButtonItem4.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
             // 
@@ -332,8 +335,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem7.Caption = "&Kapan Master";
             this.barButtonItem7.Id = 7;
-            this.barButtonItem7.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-                | System.Windows.Forms.Keys.K));
+            this.barButtonItem7.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.K));
             this.barButtonItem7.Name = "barButtonItem7";
             this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick);
             // 
@@ -446,14 +448,16 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem25, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem26),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem20, true),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem22)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem22),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem48, true),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem49)});
             this.barSubItem2.Name = "barSubItem2";
             // 
             // barButtonItem18
             // 
             this.barButtonItem18.Caption = "&Purchase";
             this.barButtonItem18.Id = 22;
-            this.barButtonItem18.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F2);
+            this.barButtonItem18.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F9);
             this.barButtonItem18.Name = "barButtonItem18";
             this.barButtonItem18.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem18_ItemClick);
             // 
@@ -461,7 +465,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem19.Caption = "&Sales";
             this.barButtonItem19.Id = 23;
-            this.barButtonItem19.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F3);
+            this.barButtonItem19.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F8);
             this.barButtonItem19.Name = "barButtonItem19";
             this.barButtonItem19.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem19_ItemClick);
             // 
@@ -469,7 +473,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem25.Caption = "P&ayment";
             this.barButtonItem25.Id = 67;
-            this.barButtonItem25.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F4);
+            this.barButtonItem25.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F5);
             this.barButtonItem25.Name = "barButtonItem25";
             this.barButtonItem25.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem25_ItemClick);
             // 
@@ -477,7 +481,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem26.Caption = "&Receipt";
             this.barButtonItem26.Id = 68;
-            this.barButtonItem26.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F5);
+            this.barButtonItem26.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F6);
             this.barButtonItem26.Name = "barButtonItem26";
             this.barButtonItem26.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem26_ItemClick);
             // 
@@ -485,7 +489,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem20.Caption = "&Contra";
             this.barButtonItem20.Id = 24;
-            this.barButtonItem20.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F6);
+            this.barButtonItem20.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F4);
             this.barButtonItem20.Name = "barButtonItem20";
             this.barButtonItem20.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem20_ItemClick);
             // 
@@ -493,7 +497,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem22.Caption = "&Expense";
             this.barButtonItem22.Id = 26;
-            this.barButtonItem22.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F7);
+            this.barButtonItem22.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F3);
             this.barButtonItem22.Name = "barButtonItem22";
             this.barButtonItem22.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem22_ItemClick);
             // 
@@ -532,9 +536,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem34.Caption = "&Send";
             this.barButtonItem34.Id = 72;
-            this.barButtonItem34.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.A), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.S));
+            this.barButtonItem34.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S));
             this.barButtonItem34.Name = "barButtonItem34";
             this.barButtonItem34.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem34_ItemClick_1);
             // 
@@ -542,9 +544,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem43.Caption = "&Receive";
             this.barButtonItem43.Id = 73;
-            this.barButtonItem43.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.A), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.R));
+            this.barButtonItem43.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R));
             this.barButtonItem43.Name = "barButtonItem43";
             this.barButtonItem43.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem43_ItemClick);
             // 
@@ -561,9 +561,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem35.Caption = "&Send";
             this.barButtonItem35.Id = 52;
-            this.barButtonItem35.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.B), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.S));
+            this.barButtonItem35.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A));
             this.barButtonItem35.Name = "barButtonItem35";
             this.barButtonItem35.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem35_ItemClick);
             // 
@@ -571,9 +569,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem36.Caption = "&Receive";
             this.barButtonItem36.Id = 53;
-            this.barButtonItem36.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.B), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.R));
+            this.barButtonItem36.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.B));
             this.barButtonItem36.Name = "barButtonItem36";
             this.barButtonItem36.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem36_ItemClick);
             // 
@@ -590,9 +586,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem37.Caption = "&Send";
             this.barButtonItem37.Id = 55;
-            this.barButtonItem37.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.C), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.S));
+            this.barButtonItem37.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C));
             this.barButtonItem37.Name = "barButtonItem37";
             this.barButtonItem37.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem37_ItemClick);
             // 
@@ -600,9 +594,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem38.Caption = "&Receive";
             this.barButtonItem38.Id = 56;
-            this.barButtonItem38.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.C), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.R));
+            this.barButtonItem38.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D));
             this.barButtonItem38.Name = "barButtonItem38";
             this.barButtonItem38.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem38_ItemClick);
             // 
@@ -619,9 +611,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem39.Caption = "&Send";
             this.barButtonItem39.Id = 58;
-            this.barButtonItem39.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.G), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.S));
+            this.barButtonItem39.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.E));
             this.barButtonItem39.Name = "barButtonItem39";
             this.barButtonItem39.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem39_ItemClick);
             // 
@@ -629,9 +619,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem40.Caption = "&Receive";
             this.barButtonItem40.Id = 59;
-            this.barButtonItem40.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.G), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.R));
+            this.barButtonItem40.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
             this.barButtonItem40.Name = "barButtonItem40";
             this.barButtonItem40.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem40_ItemClick);
             // 
@@ -648,9 +636,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem41.Caption = "&Send";
             this.barButtonItem41.Id = 61;
-            this.barButtonItem41.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.N), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.S));
+            this.barButtonItem41.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.G));
             this.barButtonItem41.Name = "barButtonItem41";
             this.barButtonItem41.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem41_ItemClick);
             // 
@@ -658,9 +644,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem42.Caption = "&Receive";
             this.barButtonItem42.Id = 62;
-            this.barButtonItem42.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.N), ((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
-                | System.Windows.Forms.Keys.R));
+            this.barButtonItem42.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H));
             this.barButtonItem42.Name = "barButtonItem42";
             this.barButtonItem42.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem42_ItemClick);
             // 
@@ -806,6 +790,7 @@ namespace DiamondTrading
             this.barBtnLoginCompany.Caption = "Demo Company";
             this.barBtnLoginCompany.Id = 43;
             this.barBtnLoginCompany.ImageOptions.Image = global::DiamondTrading.Properties.Resources.company_16;
+            this.barBtnLoginCompany.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F1);
             this.barBtnLoginCompany.Name = "barBtnLoginCompany";
             this.barBtnLoginCompany.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph;
             this.barBtnLoginCompany.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barSubItem6_ItemClick);
@@ -1372,6 +1357,20 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
             // 
+            // barButtonItem48
+            // 
+            this.barButtonItem48.Caption = "Sala&ry";
+            this.barButtonItem48.Id = 78;
+            this.barButtonItem48.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F11);
+            this.barButtonItem48.Name = "barButtonItem48";
+            // 
+            // barButtonItem49
+            // 
+            this.barButtonItem49.Caption = "&Loan";
+            this.barButtonItem49.Id = 79;
+            this.barButtonItem49.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F12);
+            this.barButtonItem49.Name = "barButtonItem49";
+            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -1542,5 +1541,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem45;
         private DevExpress.XtraBars.BarButtonItem barButtonItem46;
         private DevExpress.XtraBars.BarButtonItem barButtonItem47;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem48;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem49;
     }
 }
