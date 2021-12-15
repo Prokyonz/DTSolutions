@@ -88,7 +88,7 @@ namespace DiamondTrading.Process
         {
             ShapeMasterRepository shapeMasterRepository = new ShapeMasterRepository();
             var shapeMaster = await shapeMasterRepository.GetAllShapeAsync();
-            repoShape.DataSource = shapeMaster.s;
+            repoShape.DataSource = shapeMaster;
             repoShape.DisplayMember = "Name";
             repoShape.ValueMember = "Id";
 
