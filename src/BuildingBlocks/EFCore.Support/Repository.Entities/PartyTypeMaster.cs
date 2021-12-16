@@ -177,7 +177,7 @@ namespace Repository.Entities
             List<CategoryMaster> categoryMaster = new List<CategoryMaster>
             {
                 new CategoryMaster {Id = Number, Name = "Number" },
-                new CategoryMaster {Id = Kapan, Name = "Kapan" },
+                //new CategoryMaster {Id = Kapan, Name = "Kapan" },
                 new CategoryMaster {Id = Boil, Name = "Boil" },
                 new CategoryMaster {Id = Charni, Name = "Charni" },
                 new CategoryMaster {Id = Gala, Name = "Gala" }
