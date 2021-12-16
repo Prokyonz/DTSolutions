@@ -368,6 +368,12 @@
     <Compile Include="Process\FrmNumberSend.designer.cs">
       <DependentUpon>FrmNumberSend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmTransferEntry.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmTransferEntry.Designer.cs">
+      <DependentUpon>FrmTransferEntry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SplashScreen1.cs">
@@ -504,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmNumberSend.resx">
       <DependentUpon>FrmNumberSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmTransferEntry.resx">
+      <DependentUpon>FrmTransferEntry.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
