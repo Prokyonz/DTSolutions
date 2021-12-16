@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,7 @@ namespace EFCore.SQL.Interface
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, DateTime startDate, DateTime endDate);
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, string financialYearId);
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, DateTime startDate, DateTime endDate);
+        Task<List<SalesSPModel>> GetSalesReport(string companyId, string financialYearId);
         Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster);
         Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster);
         Task<long> GetMaxSlipNo(string companyId, string financialYearId);

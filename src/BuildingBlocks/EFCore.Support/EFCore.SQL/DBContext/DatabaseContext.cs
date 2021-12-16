@@ -73,6 +73,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<NumberProcessReturn> SPNumberProcessReturn { get; set; }
         public virtual DbSet<NumberProcessReceive> SPNumberProcessReceive { get; set; }
         public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
+        public virtual DbSet<SalesSPModel> SPSalesModel { get; set; }
         public virtual DbSet<ExpenseSPModel> SPExpenseModel { get; set; }
         public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
 

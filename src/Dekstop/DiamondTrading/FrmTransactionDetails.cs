@@ -129,12 +129,12 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabSales)
             {
-                //if (IsForceLoad || _branchMaster == null)
-                //{
-                //    _branchMasterRepository = new BranchMasterRepository();
-                //    _branchMaster = await _branchMasterRepository.GetAllBranchAsync();
-                //    grdBranchMaster.DataSource = _branchMaster;
-                //}
+                if (IsForceLoad || _salesMasterRepository == null)
+                {
+                    _salesMasterRepository = new SalesMasterRepository();
+                    var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                }
             } else if(xtabMasterDetails.SelectedTabPage == xtabPayment)
             {
                 if(IsForceLoad || _paymentMasterRepository == null)
