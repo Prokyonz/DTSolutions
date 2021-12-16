@@ -74,6 +74,7 @@ namespace DiamondTrading
             this.barSubItem12 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem41 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem42 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem4 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem27 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem28 = new DevExpress.XtraBars.BarButtonItem();
@@ -164,7 +165,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -527,8 +527,7 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem9, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem10),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem11),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem12),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem50, true)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem12)});
             this.barSubItem3.Name = "barSubItem3";
             // 
             // barButtonItem21
@@ -665,6 +664,13 @@ namespace DiamondTrading
             this.barButtonItem42.Name = "barButtonItem42";
             this.barButtonItem42.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem42_ItemClick);
             // 
+            // barButtonItem50
+            // 
+            this.barButtonItem50.Caption = "Transfer Entry";
+            this.barButtonItem50.Id = 80;
+            this.barButtonItem50.Name = "barButtonItem50";
+            this.barButtonItem50.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem50_ItemClick);
+            // 
             // barSubItem4
             // 
             this.barSubItem4.Caption = "&Utility";
@@ -679,7 +685,7 @@ namespace DiamondTrading
             // 
             this.barButtonItem27.Caption = "&Transfer";
             this.barButtonItem27.Id = 31;
-            this.barButtonItem27.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F8);
+            this.barButtonItem27.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T));
             this.barButtonItem27.Name = "barButtonItem27";
             this.barButtonItem27.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem27_ItemClick);
             // 
@@ -687,14 +693,14 @@ namespace DiamondTrading
             // 
             this.barButtonItem28.Caption = "&Calculator";
             this.barButtonItem28.Id = 32;
-            this.barButtonItem28.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F9);
+            this.barButtonItem28.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F10);
             this.barButtonItem28.Name = "barButtonItem28";
             // 
             // barButtonItem33
             // 
             this.barButtonItem33.Caption = "&Options";
             this.barButtonItem33.Id = 47;
-            this.barButtonItem33.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F10);
+            this.barButtonItem33.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F7);
             this.barButtonItem33.Name = "barButtonItem33";
             this.barButtonItem33.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem33_ItemClick);
             // 
@@ -1373,13 +1379,6 @@ namespace DiamondTrading
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
-            // 
-            // barButtonItem50
-            // 
-            this.barButtonItem50.Caption = "Transfer Entry";
-            this.barButtonItem50.Id = 80;
-            this.barButtonItem50.Name = "barButtonItem50";
-            this.barButtonItem50.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem50_ItemClick);
             // 
             // FrmMain
             // 

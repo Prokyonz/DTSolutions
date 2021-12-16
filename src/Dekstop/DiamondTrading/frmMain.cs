@@ -1006,7 +1006,28 @@ namespace DiamondTrading
 
         private void barButtonItem27_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            Process.FrmTransferEntry page = Application.OpenForms["FrmTransferEntry"] as Process.FrmTransferEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
 
+            Process.FrmTransferEntry frmTransferEntry = new Process.FrmTransferEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmTransferEntry.StartPosition = FormStartPosition.Manual;
+
+            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 200) / 3, (Height - frmTransferEntry.Height) / 2);
+
+            frmTransferEntry.ShowDialog();
         }
 
         private void barButtonItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -1131,28 +1152,7 @@ namespace DiamondTrading
 
         private void barButtonItem50_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            accordionControl1.ExpandElement(accordionControlProcess);
-            Process.FrmTransferEntry page = Application.OpenForms["FrmTransferEntry"] as Process.FrmTransferEntry;
-            if (page != null)
-            {
-                page.Close();
-            }
-
-            Process.FrmTransferEntry frmTransferEntry = new Process.FrmTransferEntry();
-
-            Screen screen = Screen.FromControl(this);
-
-            int x = screen.Bounds.X;
-            int y = screen.Bounds.Y;
-            int w = screen.Bounds.Width;
-            int h = screen.Bounds.Height;
-
-
-            frmTransferEntry.StartPosition = FormStartPosition.Manual;
-
-            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 200) / 3, (Height - frmTransferEntry.Height) / 2);
-
-            frmTransferEntry.ShowDialog();
+            
         }
     }
 }
