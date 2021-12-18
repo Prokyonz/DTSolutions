@@ -220,15 +220,20 @@ namespace DiamondTrading.Process
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
-                            if (_salesItemObj.CharniItemList == null)
-                                _salesItemObj.CharniItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Charni, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
+                            GalaProcessMasterRepository galaProcessMasterRepository = new GalaProcessMasterRepository();
+                            var ListGalaProcessSend = await galaProcessMasterRepository.GetGalaSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
 
-                            repoShape.DataSource = _salesItemObj.CharniItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                            repoShape.DataSource = ListGalaProcessSend;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
                             repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                             repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                            repoShape.Columns["BoilNo"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = true;
+                            repoShape.Columns["GalaNumber"].Visible = false;
+                            repoShape.Columns["Number"].Visible = false;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
@@ -237,15 +242,20 @@ namespace DiamondTrading.Process
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
-                            if (_salesItemObj.NumberItemList == null)
-                                _salesItemObj.NumberItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
+                            NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
+                            var ListNumberProcessReturn = await numberProcessMasterRepository.GetNumberReturnDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
 
-                            repoShape.DataSource = _salesItemObj.NumberItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                            repoShape.DataSource = ListNumberProcessReturn;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
                             repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                             repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                            repoShape.Columns["BoilNo"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["GalaNumber"].Visible = false;
+                            repoShape.Columns["Number"].Visible = true;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
@@ -254,15 +264,20 @@ namespace DiamondTrading.Process
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
-                            if (_salesItemObj.GalaItemList == null)
-                                _salesItemObj.GalaItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Gala, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
+                            NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
+                            var ListNumberProcessSend = await numberProcessMasterRepository.GetNumberSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
 
-                            repoShape.DataSource = _salesItemObj.GalaItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                            repoShape.DataSource = ListNumberProcessSend;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
                             repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                             repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                            repoShape.Columns["BoilNo"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["GalaNumber"].Visible = true;
+                            repoShape.Columns["Number"].Visible = false;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Boil.ToString())
@@ -271,15 +286,20 @@ namespace DiamondTrading.Process
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
-                            if (_salesItemObj.BoilItemList == null)
-                                _salesItemObj.BoilItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Boil, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
+                            CharniProcessMasterRepository charniProcessMasterRepository = new CharniProcessMasterRepository();
+                            var ListCharniProcessSend = await charniProcessMasterRepository.GetCharniSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
 
-                            repoShape.DataSource = _salesItemObj.BoilItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                            repoShape.DataSource = ListCharniProcessSend;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
                             repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                             repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                            repoShape.Columns["BoilNo"].Visible = true;
+                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["GalaNumber"].Visible = false;
+                            repoShape.Columns["Number"].Visible = false;
                         }
                     }
                 }
@@ -328,6 +348,10 @@ namespace DiamondTrading.Process
                     //        repoTypeT.ValueMember = "Id";
                     //    }                        
                     //}
+                }
+                else if (e.Column == colShape)
+                {
+
                 }
                 else if (e.Column == colCarat)
                 {
