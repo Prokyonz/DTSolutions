@@ -185,4 +185,26 @@ namespace Repository.Entities
             return categoryMaster;
         }
     }
+
+    public class CaratCategoryMaster
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int None = 0;
+        public static int CharniCarat = 1;
+        public static int GalaCarat = 2;
+        public static int NumberCarat = 3;
+
+        public static List<CaratCategoryMaster> GetAllCaratCategory()
+        {
+            List<CaratCategoryMaster> caratCategoryMaster = new List<CaratCategoryMaster>
+            {
+                new CaratCategoryMaster {Id = None, Name = "None" },
+                new CaratCategoryMaster {Id = CharniCarat, Name = "Charni Ct" },
+                new CaratCategoryMaster {Id = GalaCarat, Name = "Gala Ct" },
+                new CaratCategoryMaster {Id = NumberCarat, Name = "Number Ct" }
+            };
+            return caratCategoryMaster;
+        }
+    }
 }
