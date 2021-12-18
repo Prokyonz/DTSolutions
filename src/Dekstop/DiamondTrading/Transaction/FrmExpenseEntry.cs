@@ -142,6 +142,7 @@ namespace DiamondTrading.Transaction
                             CompanyId = lueCompany.EditValue.ToString(),
                             FinancialYearId = Common.LoginFinancialYear,
                             PartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString(),
+                            fromPartyId = lueAccounts.EditValue.ToString(),
                             Amount = float.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString()),
                             IsDelete = false,
                             Remarks = txtRemark.Text,
@@ -151,7 +152,14 @@ namespace DiamondTrading.Transaction
                             UpdatedDate = DateTime.Now,
                         };
 
+                        string partyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                        string fromparty = lueAccounts.EditValue.ToString();
+                        decimal amt = decimal.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString());                        
+
                         var result = await _expenseMaterRepository.AddExpenseAsync(expenseDetails);
+
+                        await _expenseMaterRepository.UpdateBalanceAsync(partyId, fromparty, amt);
+
                         IsSucess = true;
                     }
                 }

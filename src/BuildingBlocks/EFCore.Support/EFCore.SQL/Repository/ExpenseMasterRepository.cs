@@ -84,6 +84,29 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> UpdateBalanceAsync(string partyId, string fromParty, decimal amount)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                try
+                {
+                    var mainParty = await _databaseContext.PartyMaster.Where(w => w.Id == partyId).FirstOrDefaultAsync();
+                    var localParty = await _databaseContext.PartyMaster.Where(w => w.Id == fromParty).FirstOrDefaultAsync();
+
+                    mainParty.OpeningBalance += amount;
+                    localParty.OpeningBalance -= amount;
+
+                    await _databaseContext.SaveChangesAsync();
+                    
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }            
+        }
+
         public async Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails)
         {
             using (_databaseContext = new DatabaseContext())

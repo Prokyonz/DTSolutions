@@ -797,7 +797,7 @@ namespace DiamondTrading
             // 
             // gridColumnFromPartyName
             // 
-            this.gridColumnFromPartyName.Caption = "From Party";
+            this.gridColumnFromPartyName.Caption = "To Party";
             this.gridColumnFromPartyName.FieldName = "FromName";
             this.gridColumnFromPartyName.Name = "gridColumnFromPartyName";
             this.gridColumnFromPartyName.Visible = true;
@@ -806,7 +806,7 @@ namespace DiamondTrading
             // 
             // gridColumnToPartyName
             // 
-            this.gridColumnToPartyName.Caption = "To Party";
+            this.gridColumnToPartyName.Caption = "From Party";
             this.gridColumnToPartyName.FieldName = "ToName";
             this.gridColumnToPartyName.Name = "gridColumnToPartyName";
             this.gridColumnToPartyName.Visible = true;
