@@ -195,5 +195,22 @@ namespace EFCore.SQL.Repository
                 throw;
             }
         }
+
+        public async Task<List<CaratCategoryType>> GetCaratCategoryDetails()
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.CaratCategoryType.FromSqlRaw($"GetTypeDetails").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

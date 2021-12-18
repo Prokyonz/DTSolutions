@@ -19,5 +19,8 @@ namespace EFCore.SQL.Interface
         Task<long> GetMaxSlipNo(string companyId, string financialYearId);
         Task<long> GetMaxSrNo(string branchId, string financialYearId);
         Task<bool> DeleteSalesAsync(string salesId, bool isPermanantDetele = false);
+
+        Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId);
+        Task<List<CaratCategoryType>> GetCaratCategoryDetails();
     }
 }
