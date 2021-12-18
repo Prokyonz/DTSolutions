@@ -59,22 +59,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string branchId, string financialYearId)
+        public async Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpenseReport = await _databaseContext.SPExpenseModel.FromSqlRaw($"GetExpenseReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                var getExpenseReport = await _databaseContext.SPExpenseModel.FromSqlRaw($"GetExpenseReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
                 return getExpenseReport;
             }
         }
 
-        public async Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId)
+        public async Task<int> GetMaxSrNoAsync(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 try
                 {
-                    var getCount = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
+                    var getCount = await _databaseContext.ExpenseDetails.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
                     return getCount + 1;
                 }
                 catch (Exception ex)

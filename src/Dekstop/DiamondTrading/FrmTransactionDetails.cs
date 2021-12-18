@@ -167,7 +167,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _expenseMasterRepository == null)
                 {
                     _expenseMasterRepository = new ExpenseMasterRepository();
-                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdExpenseControl.DataSource = data;
                 }
             }

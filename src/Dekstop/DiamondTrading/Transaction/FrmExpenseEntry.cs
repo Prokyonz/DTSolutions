@@ -48,11 +48,13 @@ namespace DiamondTrading.Transaction
             _ = GetMaxSrNo();
             _ = LoadCompany();
             LoadLedgers(Common.LoginCompany);
+            _ = LoadParties();
         }
 
         private static DataTable GetDTColumnsForPaymentDetails()
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("Branch");
             dt.Columns.Add("Party");
             dt.Columns.Add("Amount");
             return dt;
@@ -60,7 +62,7 @@ namespace DiamondTrading.Transaction
 
         private async Task GetMaxSrNo()
         {
-            var SrNo = await _expenseMaterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear);
+            var SrNo = await _expenseMaterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
             txtSerialNo.Text = SrNo.ToString();
         }
 
@@ -73,6 +75,14 @@ namespace DiamondTrading.Transaction
 
                 //txtLedgerBalance.BackColor = color;
             }
+        }
+
+        private async Task LoadParties()
+        {
+            var result = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
+            lueAccounts.Properties.DataSource = result;
+            lueAccounts.Properties.DisplayMember = "Name";
+            lueAccounts.Properties.ValueMember = "Id";
         }
 
         private async Task LoadCompany()
@@ -93,6 +103,10 @@ namespace DiamondTrading.Transaction
             lueBranch.Properties.DisplayMember = "Name";
             lueBranch.Properties.ValueMember = "Id";
             lueBranch.EditValue = Common.LoginBranch;
+
+            repoBranchList.DataSource = result;
+            repoBranchList.DisplayMember = "Name";
+            repoBranchList.ValueMember = "Id";
         }
 
         private async void LoadLedgers(string companyId)
@@ -124,7 +138,7 @@ namespace DiamondTrading.Transaction
                         {
                             Id = Guid.NewGuid().ToString(),
                             SrNo = Convert.ToInt32(txtSerialNo.Text),
-                            BranchId = Common.LoginBranch,
+                            BranchId = grvPaymentDetails.GetRowCellValue(i,colBranch).ToString(), //Common.LoginBranch,
                             CompanyId = lueCompany.EditValue.ToString(),
                             FinancialYearId = Common.LoginFinancialYear,
                             PartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString(),
@@ -189,6 +203,15 @@ namespace DiamondTrading.Transaction
         private void FrmPaymentEntry_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
+        }
+
+        private async void lueAccounts_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueAccounts.EditValue != null)
+            {
+                var result = await _partyMasterRepository.GetPartyBalance(lueAccounts.EditValue.ToString());
+                txtLedgerBalance.Text = result.ToString();
+            }
         }
     }
 }

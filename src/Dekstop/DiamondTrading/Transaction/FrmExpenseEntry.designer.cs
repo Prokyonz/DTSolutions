@@ -40,6 +40,8 @@ namespace DiamondTrading.Transaction
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colBranch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoBranchList = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -50,6 +52,9 @@ namespace DiamondTrading.Transaction
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtLedgerBalance = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.lueAccounts = new DevExpress.XtraEditors.LookUpEdit();
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -60,6 +65,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoBranchList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -69,6 +75,8 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLedgerBalance.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueAccounts.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,7 +101,7 @@ namespace DiamondTrading.Transaction
             // lueCompany
             // 
             this.lueCompany.Enabled = false;
-            this.lueCompany.Location = new System.Drawing.Point(86, 80);
+            this.lueCompany.Location = new System.Drawing.Point(178, 38);
             this.lueCompany.Name = "lueCompany";
             this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCompany.Properties.Appearance.Options.UseFont = true;
@@ -112,7 +120,7 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(11, 39);
+            this.labelControl12.Location = new System.Drawing.Point(8, 76);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(61, 16);
             this.labelControl12.TabIndex = 3;
@@ -122,7 +130,7 @@ namespace DiamondTrading.Transaction
             // 
             this.txtSerialNo.EditValue = "0";
             this.txtSerialNo.Enabled = false;
-            this.txtSerialNo.Location = new System.Drawing.Point(75, 37);
+            this.txtSerialNo.Location = new System.Drawing.Point(72, 74);
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
@@ -135,9 +143,9 @@ namespace DiamondTrading.Transaction
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
             this.grpGroup1.Controls.Add(this.grdPaymentDetails);
-            this.grpGroup1.Location = new System.Drawing.Point(11, 140);
+            this.grpGroup1.Location = new System.Drawing.Point(11, 158);
             this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(606, 285);
+            this.grpGroup1.Size = new System.Drawing.Size(606, 267);
             this.grpGroup1.TabIndex = 11;
             this.grpGroup1.Text = "Particulars Details";
             // 
@@ -150,8 +158,9 @@ namespace DiamondTrading.Transaction
             this.grdPaymentDetails.Name = "grdPaymentDetails";
             this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoTxtEdit,
-            this.repoParty});
-            this.grdPaymentDetails.Size = new System.Drawing.Size(602, 260);
+            this.repoParty,
+            this.repoBranchList});
+            this.grdPaymentDetails.Size = new System.Drawing.Size(602, 242);
             this.grdPaymentDetails.TabIndex = 0;
             this.grdPaymentDetails.UseEmbeddedNavigator = true;
             this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -167,7 +176,8 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
             this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colParty,
-            this.colAmount});
+            this.colAmount,
+            this.colBranch});
             this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
             this.grvPaymentDetails.Name = "grvPaymentDetails";
             this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -183,7 +193,7 @@ namespace DiamondTrading.Transaction
             this.colParty.FieldName = "Party";
             this.colParty.Name = "colParty";
             this.colParty.Visible = true;
-            this.colParty.VisibleIndex = 0;
+            this.colParty.VisibleIndex = 1;
             this.colParty.Width = 567;
             // 
             // repoParty
@@ -206,7 +216,7 @@ namespace DiamondTrading.Transaction
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 1;
+            this.colAmount.VisibleIndex = 2;
             this.colAmount.Width = 223;
             // 
             // repoTxtEdit
@@ -217,6 +227,25 @@ namespace DiamondTrading.Transaction
             this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.repoTxtEdit.MaskSettings.Set("mask", "f");
             this.repoTxtEdit.Name = "repoTxtEdit";
+            // 
+            // colBranch
+            // 
+            this.colBranch.Caption = "Branch";
+            this.colBranch.ColumnEdit = this.repoBranchList;
+            this.colBranch.FieldName = "Branch";
+            this.colBranch.Name = "colBranch";
+            this.colBranch.Visible = true;
+            this.colBranch.VisibleIndex = 0;
+            // 
+            // repoBranchList
+            // 
+            this.repoBranchList.AutoHeight = false;
+            this.repoBranchList.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoBranchList.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repoBranchList.Name = "repoBranchList";
             // 
             // grpGroup2
             // 
@@ -277,7 +306,7 @@ namespace DiamondTrading.Transaction
             // 
             this.dtTime.EditValue = null;
             this.dtTime.Enabled = false;
-            this.dtTime.Location = new System.Drawing.Point(529, 61);
+            this.dtTime.Location = new System.Drawing.Point(529, 92);
             this.dtTime.Name = "dtTime";
             this.dtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTime.Properties.Appearance.Options.UseFont = true;
@@ -303,7 +332,7 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(479, 41);
+            this.labelControl8.Location = new System.Drawing.Point(479, 72);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 16);
             this.labelControl8.TabIndex = 5;
@@ -312,7 +341,7 @@ namespace DiamondTrading.Transaction
             // dtDate
             // 
             this.dtDate.EditValue = null;
-            this.dtDate.Location = new System.Drawing.Point(529, 39);
+            this.dtDate.Location = new System.Drawing.Point(529, 70);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
@@ -329,7 +358,7 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(8, 83);
+            this.labelControl1.Location = new System.Drawing.Point(100, 41);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(70, 16);
             this.labelControl1.TabIndex = 1;
@@ -337,6 +366,9 @@ namespace DiamondTrading.Transaction
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtLedgerBalance);
+            this.panelControl1.Controls.Add(this.labelControl3);
+            this.panelControl1.Controls.Add(this.lueAccounts);
             this.panelControl1.Controls.Add(this.lueBranch);
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.lueCompany);
@@ -354,10 +386,53 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 0;
             // 
+            // txtLedgerBalance
+            // 
+            this.txtLedgerBalance.EditValue = "0";
+            this.txtLedgerBalance.Enabled = false;
+            this.txtLedgerBalance.Location = new System.Drawing.Point(76, 129);
+            this.txtLedgerBalance.Name = "txtLedgerBalance";
+            this.txtLedgerBalance.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.txtLedgerBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLedgerBalance.Properties.Appearance.Options.UseBackColor = true;
+            this.txtLedgerBalance.Properties.Appearance.Options.UseFont = true;
+            this.txtLedgerBalance.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtLedgerBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
+            this.txtLedgerBalance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.txtLedgerBalance.Size = new System.Drawing.Size(109, 20);
+            this.txtLedgerBalance.TabIndex = 17;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(8, 107);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(62, 16);
+            this.labelControl3.TabIndex = 16;
+            this.labelControl3.Text = "Account* :";
+            // 
+            // lueAccounts
+            // 
+            this.lueAccounts.Location = new System.Drawing.Point(76, 104);
+            this.lueAccounts.Name = "lueAccounts";
+            this.lueAccounts.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueAccounts.Properties.Appearance.Options.UseFont = true;
+            this.lueAccounts.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueAccounts.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueAccounts.Properties.NullText = "";
+            this.lueAccounts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
+            this.lueAccounts.Size = new System.Drawing.Size(224, 22);
+            this.lueAccounts.TabIndex = 15;
+            this.lueAccounts.EditValueChanged += new System.EventHandler(this.lueAccounts_EditValueChanged);
+            // 
             // lueBranch
             // 
             this.lueBranch.Enabled = false;
-            this.lueBranch.Location = new System.Drawing.Point(86, 109);
+            this.lueBranch.Location = new System.Drawing.Point(178, 69);
             this.lueBranch.Name = "lueBranch";
             this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBranch.Properties.Appearance.Options.UseFont = true;
@@ -370,16 +445,18 @@ namespace DiamondTrading.Transaction
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(298, 22);
             this.lueBranch.TabIndex = 14;
+            this.lueBranch.Visible = false;
             // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(8, 112);
+            this.labelControl2.Location = new System.Drawing.Point(100, 72);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(56, 16);
             this.labelControl2.TabIndex = 13;
             this.labelControl2.Text = "Branch* :";
+            this.labelControl2.Visible = false;
             // 
             // FrmExpenseEntry
             // 
@@ -409,6 +486,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoBranchList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
             this.grpGroup2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
@@ -419,6 +497,8 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtLedgerBalance.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueAccounts.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
             this.ResumeLayout(false);
 
@@ -449,5 +529,10 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.LookUpEdit lueBranch;
         private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LookUpEdit lueAccounts;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.TextEdit txtLedgerBalance;
+        private DevExpress.XtraGrid.Columns.GridColumn colBranch;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoBranchList;
     }
 }

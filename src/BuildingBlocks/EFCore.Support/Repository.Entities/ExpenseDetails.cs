@@ -16,6 +16,7 @@ namespace Repository.Entities
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
         public string PartyId { get; set; }
+        public string fromPartyId { get; set; } //Introduced just for managing the date issue. and referenced.
         public double Amount { get; set; }
         public string Remarks { get; set; }
         public bool IsDelete { get; set; }
