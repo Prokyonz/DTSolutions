@@ -1154,5 +1154,46 @@ namespace DiamondTrading
         {
             
         }
+
+        private void pictureEdit1_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void barButtonItem51_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenLoanForm();
+        }
+
+        private void OpenLoanForm()
+        {
+            accordionControl1.ExpandElement(accordionControlUtility);
+            Utility.FrmLoanEntry page = Application.OpenForms["FrmLoanEntry"] as Utility.FrmLoanEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Utility.FrmLoanEntry frmLoanEntry = new Utility.FrmLoanEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmLoanEntry.StartPosition = FormStartPosition.Manual;
+
+            frmLoanEntry.Location = new Point((w - frmLoanEntry.Width - 200) / 3, (Height - frmLoanEntry.Height) / 2);
+
+            frmLoanEntry.ShowDialog();
+        }
+
+        private void accordionControlElement1_Click(object sender, EventArgs e)
+        {
+            OpenLoanForm();
+        }
     }
 }
