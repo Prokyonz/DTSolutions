@@ -19,6 +19,7 @@ namespace Repository.Entities
         public static int Seller = 7;
         public static int Broker = 8;
         public static int Other = 9;
+        public static int Loan = 10;
 
         //public static List<PartyTypeMaster> GetAllPartyType()
         //{
@@ -39,6 +40,7 @@ namespace Repository.Entities
                 new PartyTypeMaster {Id = Party, Name = "Party" },
                 new PartyTypeMaster {Id = Employee, Name = "Employee" },
                 new PartyTypeMaster {Id = Expense, Name = "Expense" },
+                new PartyTypeMaster {Id = Loan, Name = "Loan" },
                 new PartyTypeMaster {Id = Bank, Name = "Bank" },
                 new PartyTypeMaster {Id = Cash, Name = "Cash" }
             };

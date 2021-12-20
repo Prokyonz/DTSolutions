@@ -9,6 +9,11 @@ using System.Windows.Forms;
 
 namespace DiamondTrading
 {
+    public class LoanType
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
     internal static class Common
     {
         public const string AppName = "Diamond Trading";
@@ -40,6 +45,29 @@ namespace DiamondTrading
         {
             get;
             set;
+        }
+
+        public static List<LoanType> GetLoanType()
+        {
+            List<LoanType> loanType = new List<LoanType>
+            {
+                new LoanType {Id = 1, Name = "Receive" },
+                new LoanType {Id = 2, Name = "Given" }
+            };
+            return loanType;
+        }
+
+        public static List<LoanType> GetLoanDuration()
+        {
+            List<LoanType> loanType = new List<LoanType>
+            {
+                new LoanType {Id = 1, Name = "Daily" },
+                new LoanType {Id = 2, Name = "Monthly" },
+                new LoanType {Id = 3, Name = "3 Month" },
+                new LoanType {Id = 4, Name = "6 Month" },
+                new LoanType {Id = 5, Name = "12 Monthly" }
+            };
+            return loanType;
         }
 
         internal static DataTable GetPaymentType
