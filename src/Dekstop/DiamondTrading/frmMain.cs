@@ -1162,7 +1162,7 @@ namespace DiamondTrading
 
         private void barButtonItem51_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            OpenLoanForm();
+            
         }
 
         private void OpenLoanForm()
@@ -1192,6 +1192,11 @@ namespace DiamondTrading
         }
 
         private void accordionControlElement1_Click(object sender, EventArgs e)
+        {
+            OpenLoanForm();
+        }
+
+        private void barButtonItem49_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             OpenLoanForm();
         }
