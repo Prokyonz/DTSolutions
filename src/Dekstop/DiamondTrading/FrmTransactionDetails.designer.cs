@@ -158,6 +158,7 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -1203,6 +1204,7 @@ namespace DiamondTrading
             this.grvExpenseMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnExpenseId,
             this.gridColumnExpenseSrNo,
+            this.gridColumn26,
             this.gridColumnExpensePartyId,
             this.gridColumnExpensePartyName,
             this.gridColumnExpenseAmount,
@@ -1255,7 +1257,7 @@ namespace DiamondTrading
             this.gridColumnExpenseAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
             this.gridColumnExpenseAmount.Visible = true;
-            this.gridColumnExpenseAmount.VisibleIndex = 1;
+            this.gridColumnExpenseAmount.VisibleIndex = 2;
             this.gridColumnExpenseAmount.Width = 97;
             // 
             // gridColumnExpenseRemarks
@@ -1264,7 +1266,7 @@ namespace DiamondTrading
             this.gridColumnExpenseRemarks.FieldName = "Remarks";
             this.gridColumnExpenseRemarks.Name = "gridColumnExpenseRemarks";
             this.gridColumnExpenseRemarks.Visible = true;
-            this.gridColumnExpenseRemarks.VisibleIndex = 2;
+            this.gridColumnExpenseRemarks.VisibleIndex = 3;
             this.gridColumnExpenseRemarks.Width = 91;
             // 
             // gridColumnExpenseUpdatedDate
@@ -1273,7 +1275,7 @@ namespace DiamondTrading
             this.gridColumnExpenseUpdatedDate.FieldName = "UpdatedDate";
             this.gridColumnExpenseUpdatedDate.Name = "gridColumnExpenseUpdatedDate";
             this.gridColumnExpenseUpdatedDate.Visible = true;
-            this.gridColumnExpenseUpdatedDate.VisibleIndex = 3;
+            this.gridColumnExpenseUpdatedDate.VisibleIndex = 4;
             this.gridColumnExpenseUpdatedDate.Width = 91;
             // 
             // gridColumnExpenseUpdatedBy
@@ -1282,7 +1284,7 @@ namespace DiamondTrading
             this.gridColumnExpenseUpdatedBy.FieldName = "UpdatedBy";
             this.gridColumnExpenseUpdatedBy.Name = "gridColumnExpenseUpdatedBy";
             this.gridColumnExpenseUpdatedBy.Visible = true;
-            this.gridColumnExpenseUpdatedBy.VisibleIndex = 4;
+            this.gridColumnExpenseUpdatedBy.VisibleIndex = 5;
             this.gridColumnExpenseUpdatedBy.Width = 100;
             // 
             // gridView10
@@ -1369,6 +1371,14 @@ namespace DiamondTrading
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Branch Name";
+            this.gridColumn26.FieldName = "BranchName";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 1;
             // 
             // FrmTransactionDetails
             // 
@@ -1550,5 +1560,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn25;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
     }
 }
