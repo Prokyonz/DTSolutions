@@ -234,15 +234,18 @@ namespace DiamondTrading.Transaction
             repoKapan.ValueMember = "Id";
         }
 
-        public async void GetPurchaseNo()
+        public async void GetPurchaseNo(bool updateSlip = true)
         {
             try
             {
                 var SrNo = await _purchaseMasterRepository.GetMaxSrNo(lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
                 txtSerialNo.Text = SrNo.ToString();
 
-                var SlipNo = await _purchaseMasterRepository.GetMaxSlipNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
-                txtSlipNo.Text = SlipNo.ToString();
+                if (updateSlip)
+                {
+                    var SlipNo = await _purchaseMasterRepository.GetMaxSlipNo(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+                    txtSlipNo.Text = SlipNo.ToString();
+                }
             }
             catch(Exception Ex)
             {
@@ -1287,7 +1290,7 @@ namespace DiamondTrading.Transaction
 
         private void lueBranch_EditValueChanged(object sender, EventArgs e)
         {
-            GetPurchaseNo();
+            GetPurchaseNo(false);
         }
 
         private void lueCompany_EditValueChanged(object sender, EventArgs e)
