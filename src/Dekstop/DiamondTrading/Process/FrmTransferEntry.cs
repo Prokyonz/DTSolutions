@@ -77,6 +77,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("PurityId");
             dt.Columns.Add("KapanId");
             dt.Columns.Add("TypeId");
+            dt.Columns.Add("TypeIdT");
             return dt;
         }
 
@@ -336,16 +337,10 @@ namespace DiamondTrading.Process
                 {
                     try
                     {
-                        //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, CaratCategoryMaster.GalaCarat);
-                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, ((Repository.Entities.Model.CaratCategoryType)repoTypeT.GetDataSourceRowByKeyValue(e.Value)).Name);
-                    }
-                    catch
-                    {
-
-                    }
-                    try
-                    {
-                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeIdT, ((Repository.Entities.Model.CaratCategoryType)repoTypeT.GetDataSourceRowByKeyValue(e.Value)).Id);
+                        string Id = e.Value.ToString();
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeIdT, Id);
+                        var result = _caratCategoryTypes.Where(x => x.Id.Equals(Id));
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, result.FirstOrDefault().Name);
                     }
                     catch
                     {
