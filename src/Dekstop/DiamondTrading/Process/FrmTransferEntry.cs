@@ -1062,6 +1062,7 @@ namespace DiamondTrading.Process
             Image1.Image = null;
             Image2.Image = null;
             Image3.Image = null;
+            _caratCategoryTypes = null;
 
             lueTransferBy.Focus();
             lueTransferBy.Select();
