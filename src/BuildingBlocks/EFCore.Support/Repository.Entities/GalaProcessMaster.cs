@@ -37,6 +37,10 @@ namespace Repository.Entities
         public string SlipNo { get; set; }
         public int GalaCategoy { get; set; } // 0 -> Received Carats, 1-> Loss Carets -> Rejection Carates
         public string Remarks { get; set; }
+        public string TransferId { get; set; }
+        public string TransferType { get; set; }
+        public string TransferEntryId { get; set; }
+        public double TransferCaratRate { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

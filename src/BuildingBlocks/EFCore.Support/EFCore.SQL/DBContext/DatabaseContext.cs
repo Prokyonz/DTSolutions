@@ -57,6 +57,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<CharniProcessMaster> CharniProcessMaster { get; set; }
         public DbSet<GalaProcessMaster> GalaProcessMaster { get; set; }
         public  DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
+        public DbSet<TransferMaster> TransferMaster { get; set; }
 
         public virtual DbSet<KapanMapping> SPKapanMapping { get; set; }
 
@@ -125,6 +126,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CharniProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<GalaProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<NumberProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<TransferMaster>().Property(c => c.Sr).UseIdentityColumn();
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
             modelBuilder.Entity<AssortmentProcessSend>().HasNoKey();
