@@ -11,6 +11,7 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
+        public string CompanyId { get; set; }
         public int LoanType { get; set; }
         public string PartyId { get; set; }
 
