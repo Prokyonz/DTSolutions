@@ -337,10 +337,12 @@ namespace DiamondTrading.Process
                 {
                     try
                     {
+                        this.grvTransferItemDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                         string Id = e.Value.ToString();
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeIdT, Id);
                         var result = _caratCategoryTypes.Where(x => x.Id.Equals(Id));
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, result.FirstOrDefault().Name);
+                        this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                     }
                     catch
                     {
