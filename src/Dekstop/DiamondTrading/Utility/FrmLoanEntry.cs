@@ -1,27 +1,24 @@
-﻿using DevExpress.XtraEditors;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Collections.Generic;
 using EFCore.SQL.Repository;
+using Repository.Entities;
 
 namespace DiamondTrading.Utility
 {
     public partial class FrmLoanEntry : DevExpress.XtraEditors.XtraForm
     {
         PartyMasterRepository _partyMasterRepository;
+        LoanMasterRepository _loanMasterRepository;
+        CompanyMasterRepository _companyMasterRepository;
 
 
         public FrmLoanEntry()
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
+            _loanMasterRepository = new LoanMasterRepository();
+            _companyMasterRepository = new CompanyMasterRepository();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -31,7 +28,12 @@ namespace DiamondTrading.Utility
 
         private void FrmLoanEntry_Load(object sender, EventArgs e)
         {
+            dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
+
             _ = LoadParty();
+
+            _ = LoadCompany();
 
             lueReceiveFrom.Properties.DataSource = Common.GetLoanType();
             lueReceiveFrom.Properties.DisplayMember = "Name";
@@ -43,12 +45,156 @@ namespace DiamondTrading.Utility
 
         }
 
+        private async Task LoadCompany()
+        {
+            var result = await _companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = result;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
+        }
+
         private async Task LoadParty()
         {
             var result = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, 10);
             lueParty.Properties.DataSource = result;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
+        }
+
+        private async void btnSave_Click(object sender, EventArgs e)
+        {
+            bool IsSucess = false;
+            try
+            {
+                LoanMaster loanMaster = new LoanMaster()
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    PartyId = lueParty.EditValue.ToString(),
+                    Amount = decimal.Parse(txtAmount.Text),
+                    CompanyId = lueCompany.EditValue.ToString(),
+                    CreatedBy = Common.LoginCompany.ToString(),
+                    CreatedDate = DateTime.Now,
+                    DuratonType = (int)lueDuration.EditValue,
+                    EndDate = dateEnd.DateTime,
+                    StartDate  = dateStart.DateTime,
+                    InterestRate = decimal.Parse(txtInterestRate.Text),
+                    IsDelete = false,
+                    LoanType = int.Parse(lueReceiveFrom.EditValue.ToString()),
+                    NetAmount = decimal.Parse(txtNetAmount.Text),
+                    Remarks = txtRemark.Text,
+                    TotalInterest = decimal.Parse(txtInterestRate.Text),
+                    UpdatedBy = Common.LoginUserID,
+                    UpdatedDate = DateTime.Now
+                };
+
+                await _loanMasterRepository.AddLoanAsync(loanMaster);
+                IsSucess = true;
+            }
+            catch (Exception Ex)
+            {
+                IsSucess = false;
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+            if (IsSucess)
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ResetForm();
+            }
+        }
+
+        private void ResetForm()
+        {
+            txtAmount.Text = "";
+            txtInterestRate.Text = "";
+            txtNetAmount.Text = "";
+            txtTotalInterest.Text = "";
+            txtRemark.Text = "";            
+        }
+
+        private void txtInterestRate_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateInterest();
+        }
+
+        private void CalculateInterest()
+        {
+            string amount = txtAmount.Text == "" ? "0" : txtAmount.Text;
+            string interestRate = txtInterestRate.Text == "" ? "0" : txtInterestRate.Text;
+
+            DateTime startDate = dateStart.DateTime;
+            DateTime endDate = dateEnd.DateTime;
+
+            TimeSpan difference = endDate - startDate;
+
+            decimal interestAmount = (Convert.ToDecimal(amount) * Convert.ToDecimal(interestRate)) / 100;
+
+            if (Convert.ToInt32(lueDuration.EditValue) == 1)
+            {
+                txtTotalInterest.Text = (Convert.ToDouble(interestAmount) * difference.TotalDays).ToString();
+                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + interestAmount).ToString();
+            }
+            else if (Convert.ToInt32(lueDuration.EditValue) == 2)
+            {
+                txtTotalInterest.Text = (Convert.ToDouble(interestAmount) * (difference.TotalDays / 30)).ToString();
+                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + interestAmount).ToString();
+            }
+        }
+
+        private void lueDuration_EditValueChanged(object sender, EventArgs e)
+        {
+            int lueDurations = Convert.ToInt32(lueDuration.EditValue.ToString());
+
+            if(lueDurations == 1) //Daily
+            {
+                dateStart.DateTime = DateTime.Now;
+                dateEnd.DateTime = DateTime.Now;
+            }
+            else if(lueDurations == 2) //Monthly
+            {
+                dateStart.DateTime = DateTime.Now;
+                dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(1);
+            } 
+            else if(lueDurations == 3) // 3 Month
+            {
+                dateStart.DateTime = DateTime.Now;
+                dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(3);
+            }
+            else if(lueDurations == 4) //6 Month 
+            {
+                dateStart.DateTime = DateTime.Now;
+                dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(6);
+            }
+            else if(lueDurations == 5) //12 Month
+            {
+                dateStart.DateTime = DateTime.Now;
+                dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(12);
+            }
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ResetForm();
+        }
+
+        private void dateStart_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateInterest();
+        }
+
+        private void dateEnd_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateInterest();
+        }
+
+        private void txtAmount_EditValueChanged(object sender, EventArgs e)
+        {
+            CalculateInterest();
         }
     }
 }
