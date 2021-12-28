@@ -21,6 +21,7 @@ namespace DiamondTrading
         private PaymentMasterRepository _paymentMasterRepository;
         private ContraEntryMasterRespository  _contraEntryMasterRespository;
         private ExpenseMasterRepository _expenseMasterRepository;
+        private LoanMasterRepository _loanMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -38,37 +39,42 @@ namespace DiamondTrading
             {
                 case "Purchase":
                     xtabPurchase.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabPurchase;
+                    xtabManager.SelectedTabPage = xtabPurchase;
                     this.Text = "Purchase Details";
                     break;
                 case "Sales":
                     xtabSales.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabSales;
+                    xtabManager.SelectedTabPage = xtabSales;
                     this.Text = "Sales Details";
                     break;
                 case "Payment":
                     xtabPayment.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabPayment;
+                    xtabManager.SelectedTabPage = xtabPayment;
                     this.Text = "Payment Details";
                     break;
                 case "Receipt":
                     xtabReceipt.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabReceipt;
+                    xtabManager.SelectedTabPage = xtabReceipt;
                     this.Text = "Receipt Details";
                     break;
                 case "Contra":
                     xtabContra.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabContra;
+                    xtabManager.SelectedTabPage = xtabContra;
                     this.Text = "Contra Details";
                     break;
                 case "Expense":
                     xtabExpense.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabExpense;
+                    xtabManager.SelectedTabPage = xtabExpense;
                     this.Text = "Expense Details";
+                    break;
+                case "Loan":
+                    xtabLoan.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabLoan;
+                    this.Text = "Loan Details";
                     break;
                 default:
                     xtabPurchase.PageVisible = true;
-                    xtabMasterDetails.SelectedTabPage = xtabPurchase;
+                    xtabManager.SelectedTabPage = xtabPurchase;
                     this.Text = "Purchase Details";
                     break;
             }
@@ -83,6 +89,7 @@ namespace DiamondTrading
             xtabReceipt.PageVisible = false;
             xtabContra.PageVisible = false;
             xtabExpense.PageVisible = false;
+            xtabLoan.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -92,7 +99,7 @@ namespace DiamondTrading
 
         private async void accordianAddBtn_Click(object sender, EventArgs e)
         {
-            if (xtabMasterDetails.SelectedTabPage == xtabPurchase)
+            if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry();
                 if (frmPurchaseEntry.ShowDialog() == DialogResult.OK)
@@ -100,7 +107,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabSales)
+            else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 Transaction.FrmSalesEntry frmSalesEntry= new Transaction.FrmSalesEntry();
                 if (frmSalesEntry.ShowDialog() == DialogResult.OK)
@@ -118,7 +125,7 @@ namespace DiamondTrading
 
         private async Task LoadGridData(bool IsForceLoad=false)
         {
-            if (xtabMasterDetails.SelectedTabPage == xtabPurchase)
+            if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
@@ -127,7 +134,7 @@ namespace DiamondTrading
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o=>o.SlipNo);
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabSales)
+            else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 if (IsForceLoad || _salesMasterRepository == null)
                 {
@@ -135,7 +142,7 @@ namespace DiamondTrading
                     var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
                 }
-            } else if(xtabMasterDetails.SelectedTabPage == xtabPayment)
+            } else if(xtabManager.SelectedTabPage == xtabPayment)
             {
                 if(IsForceLoad || _paymentMasterRepository == null)
                 {
@@ -144,7 +151,7 @@ namespace DiamondTrading
                     grdPaymentDetails.DataSource = data;
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabReceipt)
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
             {
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
@@ -153,7 +160,7 @@ namespace DiamondTrading
                     grdReceiptDetails.DataSource = data;
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabContra)
+            else if (xtabManager.SelectedTabPage == xtabContra)
             {
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
@@ -162,7 +169,7 @@ namespace DiamondTrading
                     grdContraDetails.DataSource = data;
                 }
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabExpense)
+            else if (xtabManager.SelectedTabPage == xtabExpense)
             {
                 if (IsForceLoad || _expenseMasterRepository == null)
                 {
@@ -171,11 +178,20 @@ namespace DiamondTrading
                     grdExpenseControl.DataSource = data;
                 }
             }
+            else if(xtabManager.SelectedTabPage == xtabLoan)
+            {
+                if (IsForceLoad || _expenseMasterRepository == null)
+                {
+                    _loanMasterRepository = new LoanMasterRepository();
+                    var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
+                    gridControlLoan .DataSource = data;
+                }
+            }            
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
         {
-            if (xtabMasterDetails.SelectedTabPage == xtabPurchase)
+            if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
@@ -197,7 +213,7 @@ namespace DiamondTrading
                 //    await LoadGridData(true);
                 //}
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabSales)
+            else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 //Master.FrmBranchMaster frmBranchMaster = new Master.FrmBranchMaster(_branchMaster, SelectedGuid);
@@ -220,7 +236,7 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
-            if (xtabMasterDetails.SelectedTabPage == xtabPurchase)
+            if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
@@ -246,7 +262,7 @@ namespace DiamondTrading
                 //    await LoadGridData(true);
                 //}
             }
-            else if (xtabMasterDetails.SelectedTabPage == xtabSales)
+            else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)

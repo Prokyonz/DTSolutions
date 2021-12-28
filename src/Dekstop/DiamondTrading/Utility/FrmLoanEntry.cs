@@ -84,7 +84,7 @@ namespace DiamondTrading.Utility
                     LoanType = int.Parse(lueReceiveFrom.EditValue.ToString()),
                     NetAmount = decimal.Parse(txtNetAmount.Text),
                     Remarks = txtRemark.Text,
-                    TotalInterest = decimal.Parse(txtInterestRate.Text),
+                    TotalInterest = decimal.Parse(txtTotalInterest.Text),
                     UpdatedBy = Common.LoginUserID,
                     UpdatedDate = DateTime.Now
                 };
@@ -114,7 +114,8 @@ namespace DiamondTrading.Utility
             txtInterestRate.Text = "";
             txtNetAmount.Text = "";
             txtTotalInterest.Text = "";
-            txtRemark.Text = "";            
+            txtRemark.Text = "";
+            lueReceiveFrom.Focus();
         }
 
         private void txtInterestRate_EditValueChanged(object sender, EventArgs e)
@@ -137,12 +138,12 @@ namespace DiamondTrading.Utility
             if (Convert.ToInt32(lueDuration.EditValue) == 1)
             {
                 txtTotalInterest.Text = (Convert.ToDouble(interestAmount) * difference.TotalDays).ToString();
-                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + interestAmount).ToString();
+                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + Convert.ToDecimal(txtTotalInterest.Text)).ToString();
             }
-            else if (Convert.ToInt32(lueDuration.EditValue) == 2)
+            else if (Convert.ToInt32(lueDuration.EditValue) == 2 || Convert.ToInt32(lueDuration.EditValue) == 3 || Convert.ToInt32(lueDuration.EditValue) == 4 || Convert.ToInt32(lueDuration.EditValue) == 5)
             {
-                txtTotalInterest.Text = (Convert.ToDouble(interestAmount) * (difference.TotalDays / 30)).ToString();
-                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + interestAmount).ToString();
+                txtTotalInterest.Text = (Convert.ToDouble(interestAmount) * (Math.Abs((startDate.Month - endDate.Month) + 12 * (startDate.Year - endDate.Year)))).ToString();
+                txtNetAmount.Text = Math.Round(Convert.ToDecimal(amount) + Convert.ToDecimal(txtTotalInterest.Text)).ToString();
             }
         }
 

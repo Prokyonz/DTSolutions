@@ -12,6 +12,8 @@ namespace Repository.Entities
         public string PaymentId { get; set; }
         public string GroupId { get; set; }
         public string PurchaseId { get; set; }
+        public string SlipNo { get; set; }
+        public decimal Amount { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }

@@ -77,6 +77,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
         public virtual DbSet<SalesSPModel> SPSalesModel { get; set; }
         public virtual DbSet<ExpenseSPModel> SPExpenseModel { get; set; }
+        public virtual DbSet<LoanSPModel> SPLoanReportModel { get; set; }
         public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
 
         public virtual DbSet<CaratCategoryType> CaratCategoryType { get; set; }
@@ -143,6 +144,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberProcessReceive>().HasNoKey();
             modelBuilder.Entity<ExpenseSPModel>().HasNoKey();
             modelBuilder.Entity<SalesItemDetails>().HasNoKey();
+            modelBuilder.Entity<LoanSPModel>().HasNoKey();
             modelBuilder.Entity<CaratCategoryType>().HasNoKey();
         }
     }

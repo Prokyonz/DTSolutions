@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,15 @@ namespace EFCore.SQL.Repository
                 if (loanMaster.Id == null)
                     loanMaster.Id = Guid.NewGuid().ToString();
                 await _databaseContext.LoanMaster.AddAsync(loanMaster);
+                
+                var partyLedger = await _databaseContext.PartyMaster.Where(w => w.Id == loanMaster.PartyId).FirstOrDefaultAsync();
+                if(partyLedger != null)
+                {
+                    partyLedger.OpeningBalance += loanMaster.Amount;
+                }
+
                 await _databaseContext.SaveChangesAsync();
+
                 return loanMaster;
             }
         }
@@ -61,6 +70,15 @@ namespace EFCore.SQL.Repository
             {
                 var result = await _databaseContext.LoanMaster.Where(w => w.CompanyId == CompanyId && w.LoanType == loanType).ToListAsync();
                 return result;
+            }
+        }
+
+        public async Task<List<LoanSPModel>> GetLoanReportAsync(string CompanyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getLoanReport = await _databaseContext.SPLoanReportModel.FromSqlRaw($"GetLoanReport '" + CompanyId + "'").ToListAsync();
+                return getLoanReport;
             }
         }
 

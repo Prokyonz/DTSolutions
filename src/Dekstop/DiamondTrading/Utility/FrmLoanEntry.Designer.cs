@@ -287,9 +287,12 @@ namespace DiamondTrading.Utility
             // txtTotalInterest
             // 
             this.txtTotalInterest.EditValue = "0";
+            this.txtTotalInterest.Enabled = false;
             this.txtTotalInterest.Location = new System.Drawing.Point(119, 324);
             this.txtTotalInterest.Name = "txtTotalInterest";
+            this.txtTotalInterest.Properties.Appearance.BackColor = System.Drawing.Color.LightGray;
             this.txtTotalInterest.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTotalInterest.Properties.Appearance.Options.UseBackColor = true;
             this.txtTotalInterest.Properties.Appearance.Options.UseFont = true;
             this.txtTotalInterest.Properties.Appearance.Options.UseTextOptions = true;
             this.txtTotalInterest.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
