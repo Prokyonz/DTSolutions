@@ -40,6 +40,7 @@ namespace DiamondTrading.Transaction
             this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
@@ -53,6 +54,7 @@ namespace DiamondTrading.Transaction
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
@@ -60,6 +62,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
@@ -162,7 +165,8 @@ namespace DiamondTrading.Transaction
             this.grdPaymentDetails.Name = "grdPaymentDetails";
             this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoTxtEdit,
-            this.repoParty});
+            this.repoParty,
+            this.repositoryItemButtonEdit1});
             this.grdPaymentDetails.Size = new System.Drawing.Size(602, 244);
             this.grdPaymentDetails.TabIndex = 0;
             this.grdPaymentDetails.UseEmbeddedNavigator = true;
@@ -179,7 +183,8 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
             this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colParty,
-            this.colAmount});
+            this.colAmount,
+            this.colAutoAdjustBillAmount});
             this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
             this.grvPaymentDetails.Name = "grvPaymentDetails";
             this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -187,6 +192,7 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails.OptionsView.ShowFooter = true;
             this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
             this.grvPaymentDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvPurchaseDetails_InitNewRow);
+            this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
             // 
             // colParty
             // 
@@ -212,7 +218,7 @@ namespace DiamondTrading.Transaction
             // colAmount
             // 
             this.colAmount.Caption = "Amount";
-            this.colAmount.ColumnEdit = this.repoTxtEdit;
+            this.colAmount.ColumnEdit = this.repositoryItemButtonEdit1;
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -220,6 +226,18 @@ namespace DiamondTrading.Transaction
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 1;
             this.colAmount.Width = 223;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.BeepOnError = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.repositoryItemButtonEdit1.MaskSettings.Set("mask", "f");
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
             // 
             // repoTxtEdit
             // 
@@ -400,6 +418,12 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 0;
             // 
+            // colAutoAdjustBillAmount
+            // 
+            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
+            // 
             // FrmPaymentEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -427,6 +451,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
             this.grpGroup2.ResumeLayout(false);
@@ -470,5 +495,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.DateEdit dtDate;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colAutoAdjustBillAmount;
     }
 }

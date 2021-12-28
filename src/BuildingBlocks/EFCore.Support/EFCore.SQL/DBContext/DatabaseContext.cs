@@ -81,7 +81,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
 
         public virtual DbSet<CaratCategoryType> CaratCategoryType { get; set; }
-
+        public virtual DbSet<PaymentPSSlipDetails> SPPaymentPSSlipDetails { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
@@ -146,6 +146,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalesItemDetails>().HasNoKey();
             modelBuilder.Entity<LoanSPModel>().HasNoKey();
             modelBuilder.Entity<CaratCategoryType>().HasNoKey();
+            modelBuilder.Entity<PaymentPSSlipDetails>().HasNoKey();
         }
     }
 }

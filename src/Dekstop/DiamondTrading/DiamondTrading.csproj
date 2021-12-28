@@ -400,6 +400,12 @@
     <Compile Include="Transaction\FrmPaymentEntry.Designer.cs">
       <DependentUpon>FrmPaymentEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transaction\FrmPaymentSlipSelect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\FrmPaymentSlipSelect.Designer.cs">
+      <DependentUpon>FrmPaymentSlipSelect.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmPurchaseEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmPaymentEntry.resx">
       <DependentUpon>FrmPaymentEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\FrmPaymentSlipSelect.resx">
+      <DependentUpon>FrmPaymentSlipSelect.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmPurchaseEntry.resx">
       <DependentUpon>FrmPurchaseEntry.cs</DependentUpon>

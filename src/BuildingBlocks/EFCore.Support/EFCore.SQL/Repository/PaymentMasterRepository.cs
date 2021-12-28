@@ -104,6 +104,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType)
+        {
+            using (_databaseContext = new DatabaseContext()) 
+            {
+                var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "'").ToListAsync();
+                return PaymentPSSlipDetails;
+            }
+        }
         public async Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster)
         {
             using (_databaseContext = new DatabaseContext())

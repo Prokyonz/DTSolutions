@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,7 @@ namespace DiamondTrading.Transaction
         private PaymentMasterRepository _paymentMaterRepository;
         private readonly ContraEntryMasterRespository _contraEntryRepository;
         int _paymentType = 0;
+        DataTable dtSlipDetail;
 
         public FrmPaymentEntry(string PaymentType)
         {
@@ -89,6 +91,7 @@ namespace DiamondTrading.Transaction
             DataTable dt = new DataTable();
             dt.Columns.Add("Party");
             dt.Columns.Add("Amount");
+            dt.Columns.Add("AutoAdjustBillAmount");
             return dt;
         }
 
@@ -128,14 +131,17 @@ namespace DiamondTrading.Transaction
             else
             {
                 var result = await _partyMasterRepository.GetAllPartyAsync(companyId);
-                lueLeadger.Properties.DataSource = result;
+                lueLeadger.Properties.DataSource = result.Where(x=>x.Type==PartyTypeMaster.Cash || x.Type == PartyTypeMaster.Bank);
                 lueLeadger.Properties.DisplayMember = "Name";
                 lueLeadger.Properties.ValueMember = "Id";
 
-                repoParty.DataSource = result;
+                repoParty.DataSource = result.Where(x => x.Type != PartyTypeMaster.Cash && x.Type != PartyTypeMaster.Bank);
                 repoParty.DisplayMember = "Name";
                 repoParty.ValueMember = "Id";
             }
+
+            List<PaymentPSSlipDetails> PaymentSlipDetails = await _paymentMaterRepository.GetPaymentPSSlipDetails(lueCompany.EditValue.ToString(), _paymentType.ToString());
+            dtSlipDetail = Common.ToDataTable<PaymentPSSlipDetails>(PaymentSlipDetails);
         }
 
         private async void lueLeadger_EditValueChanged(object sender, EventArgs e)
@@ -209,20 +215,49 @@ namespace DiamondTrading.Transaction
                 {
                     string groupId = Guid.NewGuid().ToString();
                     List<PaymentMaster> paymentMasters = new List<PaymentMaster>();
-                    
+                    List<PaymentDetails> listPaymentDetails = new List<PaymentDetails>();
+                    PaymentDetails paymentDetails;
                     for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                     {
+                        string paymentMasterId = Guid.NewGuid().ToString();
+
+                        if (dtSlipDetail.Columns.Contains("Amount"))
+                        {
+                            DataView dbView = new DataView(dtSlipDetail);
+                            dbView.RowFilter = "isnull(Amount,0)<>0 and PartyId='" + grvPaymentDetails.GetRowCellValue(i, colParty) + "'";
+                            if (dbView.Count > 0)
+                            {
+                                foreach (DataRowView row in dbView)
+                                {
+                                    paymentDetails = new PaymentDetails
+                                    {
+                                        Id = Guid.NewGuid().ToString(),
+                                        GroupId = groupId.ToString(),
+                                        PaymentId = paymentMasterId,
+                                        PurchaseId = row["PurchaseId"].ToString(),
+                                        SlipNo = row["SlipNo"].ToString(),
+                                        Amount = Convert.ToDecimal(row["Amount"]),
+                                        CreatedBy = Guid.NewGuid().ToString(),
+                                        CreatedDate = DateTime.Now,
+                                        UpdatedBy = Common.LoginUserID.ToString(),
+                                        UpdatedDate = DateTime.Now,
+                                    };
+                                    listPaymentDetails.Add(paymentDetails);
+                                }
+                            }
+                        }
+
                         PaymentMaster paymentMaster = new PaymentMaster();
                         string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
                         string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
 
                         paymentMaster.GroupId = groupId;
-                        paymentMaster.Id = Guid.NewGuid().ToString();
+                        paymentMaster.Id = paymentMasterId;
                         paymentMaster.Amount = Convert.ToDecimal(amount);
                         paymentMaster.FromPartyId = fromPartyId;
                         paymentMaster.CreatedDate = DateTime.Now;
                         paymentMaster.UpdatedDate = DateTime.Now;
-                        paymentMaster.PaymentDetails = null;
+                        paymentMaster.PaymentDetails = listPaymentDetails;
                         paymentMasters.Add(paymentMaster);
                     }
 
@@ -289,6 +324,121 @@ namespace DiamondTrading.Transaction
         private void FrmPaymentEntry_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
+        }
+
+        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataView dtView = new DataView(dtSlipDetail);
+                dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
+                FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
+                if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
+                    frmPaymentSlipSelect.IsAutoAdjustBillAmount = true;
+                else
+                    frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
+                if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
+                {
+                    decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
+                    DataView dtView1 = new DataView(frmPaymentSlipSelect.dtSlipDetail);
+                    //dtView1.RowFilter = "isnull(Amount,0)<>0";
+                    if (dtView1.Count > 0)
+                    {
+                        foreach (DataRowView row in dtView1)
+                        {
+                            if (!dtSlipDetail.Columns.Contains("Amount"))
+                                dtSlipDetail.Columns.Add("Amount", typeof(decimal));
+
+                            DataView dtView2 = new DataView(dtSlipDetail);
+                            dtView2.RowFilter = "PartyId='" + row["PartyId"] + "' and SlipNo='" + row["SlipNo"] + "'";
+                            if (dtView2.Count > 0)
+                            {
+                                foreach (DataRowView subRow in dtView2)
+                                {
+                                    subRow["Amount"] = 0;
+                                }
+                                dtView2[0].Row["Amount"] = row["Amount"];
+                            }
+                        }
+                    }
+                    this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                    grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount, a);
+                    grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount, frmPaymentSlipSelect.IsAutoAdjustBillAmount);
+                    this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                }
+            }
+            catch
+            {
+            }
+        }
+
+        private void grvPaymentDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column == colAmount)
+            {
+                if (grvPaymentDetails.GetRowCellValue(e.RowHandle, colParty).ToString() != "")
+                {
+                    DataView dtView = new DataView(dtSlipDetail);
+                    dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
+                    if (dtView.Count > 0)
+                    {
+                        decimal Value = Convert.ToDecimal(e.Value);
+                        if (Value > 0)
+                        {
+                            if (!dtSlipDetail.Columns.Contains("Amount"))
+                            {
+                                DataColumn column = new DataColumn();
+                                column.ColumnName = "Amount";
+                                column.DataType = System.Type.GetType("System.Decimal");
+                                column.DefaultValue = 0;
+                                column.ReadOnly = false;
+
+                                dtSlipDetail.Columns.Add(column);
+                            }
+
+                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
+                            if (Value > a)
+                            {
+                                MessageBox.Show("Max Amount allowed for available slip is '" + a.ToString("0.000") + "'.");
+                                grvPaymentDetails.FocusedRowHandle = e.RowHandle;
+                                grvPaymentDetails.FocusedColumn = colAmount;
+                                grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, 0);
+                                return;
+                            }
+                            decimal TotalValue = 0;
+                            decimal RemainValue = Value;
+                            decimal AvailableValue = 0;
+                            foreach (DataRowView row in dtView)
+                            {
+                                if (TotalValue != Value)
+                                {
+                                    AvailableValue = Convert.ToDecimal(row["RemainAmount"]);
+                                    decimal TempValue = AvailableValue - RemainValue;
+                                    if (TempValue <= 0)
+                                    {
+                                        row["Amount"] = AvailableValue;
+                                        TotalValue += AvailableValue;
+                                        RemainValue = TempValue * -1;
+                                    }
+                                    else
+                                    {
+                                        row["Amount"] = RemainValue;
+                                        TotalValue += RemainValue;
+                                        RemainValue = 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No slips found for selected party.");
+                        grvPaymentDetails.FocusedRowHandle = e.RowHandle;
+                        grvPaymentDetails.FocusedColumn = colParty;
+                        return;
+                    }
+                }
+            }
         }
     }
 }
