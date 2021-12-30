@@ -1191,6 +1191,32 @@ namespace DiamondTrading
             frmLoanEntry.ShowDialog();
         }
 
+        private void OpenSalaryForm()
+        {
+            accordionControl1.ExpandElement(accordionControlTransaction);
+            Transaction.FrmSalaryEntry page = Application.OpenForms["FrmSalaryEntry"] as Transaction.FrmSalaryEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmSalaryEntry frmSalaryEntry = new Transaction.FrmSalaryEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmSalaryEntry.StartPosition = FormStartPosition.Manual;
+
+            frmSalaryEntry.Location = new Point((w - frmSalaryEntry.Width - 200) / 3, (Height - frmSalaryEntry.Height) / 2);
+
+            frmSalaryEntry.ShowDialog();
+        }
+
         private void accordionControlElement1_Click(object sender, EventArgs e)
         {
             OpenLoanForm();
@@ -1221,6 +1247,11 @@ namespace DiamondTrading
             frmMasterDetails.BringToFront();
 
             accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem48_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenSalaryForm();
         }
     }
 }
