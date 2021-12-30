@@ -197,5 +197,10 @@ namespace DiamondTrading.Utility
         {
             CalculateInterest();
         }
+
+        private void FrmLoanEntry_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
     }
 }

@@ -467,7 +467,7 @@ namespace DiamondTrading.Utility
             this.lblFormTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
             this.lblFormTitle.Location = new System.Drawing.Point(0, 2);
             this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(404, 23);
+            this.lblFormTitle.Size = new System.Drawing.Size(439, 23);
             this.lblFormTitle.TabIndex = 0;
             this.lblFormTitle.Text = "|| શ્રીજી ||";
             this.lblFormTitle.UseMnemonic = false;
@@ -527,6 +527,7 @@ namespace DiamondTrading.Utility
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LOAN ENTRY";
             this.Load += new System.EventHandler(this.FrmLoanEntry_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmLoanEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).EndInit();
