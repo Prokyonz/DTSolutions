@@ -33,6 +33,7 @@ namespace DiamondTrading
 
         public static string FormTitle="|| શ્રીજી ||";
         public static bool PrintPurchaseSlip = false;
+        public static bool PrintPurchasePF = false;
         public static bool AllowToSelectPurchaseDueDate = false;
 
         #region "Default Values"
@@ -122,6 +123,7 @@ namespace DiamondTrading
                 FormTitle = RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.FormTitle, "|| શ્રીજી ||");
 
                 PrintPurchaseSlip = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchaseSlip, "false"));
+                PrintPurchasePF = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchasePF, "false"));
                 AllowToSelectPurchaseDueDate = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.AllowToSelectPurchaseDueDate, "false"));
                 #endregion "FrmOption"
             }

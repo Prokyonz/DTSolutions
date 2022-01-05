@@ -149,7 +149,12 @@ namespace DiamondTrading.Transaction
             if (lueLeadger.EditValue != null)
             {
                 var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString());
-                txtLedgerBalance.Text = result.ToString();
+                string CrDr = "Cr";
+                if(Convert.ToInt32(result)<0)
+                {
+                    CrDr = "Dr";
+                }
+                txtLedgerBalance.Text = result.ToString("0.00") + " " + CrDr;
             }
         }
 

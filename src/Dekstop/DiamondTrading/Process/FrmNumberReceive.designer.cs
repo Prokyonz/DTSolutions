@@ -393,7 +393,7 @@ namespace DiamondTrading.Process
             this.colNumberCarat.FieldName = "NumberCarat";
             this.colNumberCarat.Name = "colNumberCarat";
             this.colNumberCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CharniCarat", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NumberCarat", "{0:0.##}")});
             this.colNumberCarat.Visible = true;
             this.colNumberCarat.VisibleIndex = 2;
             this.colNumberCarat.Width = 127;
