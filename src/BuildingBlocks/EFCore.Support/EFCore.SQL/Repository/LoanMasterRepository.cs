@@ -82,6 +82,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<long> GetMaxSrNo(string companyId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var result = await _databaseContext.LoanMaster.Where(w=> w.CompanyId == companyId).MaxAsync(m => m.Sr);
+                    return result + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 1;
+            }
+        }
+
         public async Task<LoanMaster> UpdateLoanAsync(LoanMaster loanMaster)
         {
             using (_databaseContext = new DatabaseContext())

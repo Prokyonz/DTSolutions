@@ -13,6 +13,7 @@ namespace EFCore.SQL.Interface
         Task<List<LoanMaster>> GetAllLoanAsync(int loanType, string CompanyId);
         Task<LoanMaster> AddLoanAsync(LoanMaster loanMaster);
         Task<LoanMaster> UpdateLoanAsync(LoanMaster loanMaster);
+        Task<long> GetMaxSrNo(string companyId);
         Task<bool> DeleteLoanAsync(string loanId);
     }
 }

@@ -35,6 +35,8 @@ namespace DiamondTrading.Utility
 
             _ = LoadCompany();
 
+            _ = GetMaxSrNo();
+
             lueReceiveFrom.Properties.DataSource = Common.GetLoanType();
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
@@ -43,6 +45,12 @@ namespace DiamondTrading.Utility
             lueDuration.Properties.DisplayMember = "Name";
             lueDuration.Properties.ValueMember = "Id";
 
+        }
+
+        private async Task GetMaxSrNo()
+        {
+            var SrNo = await _loanMasterRepository.GetMaxSrNo(Common.LoginCompany.ToString());
+            txtSerialNo.Text = SrNo.ToString();
         }
 
         private async Task LoadCompany()
