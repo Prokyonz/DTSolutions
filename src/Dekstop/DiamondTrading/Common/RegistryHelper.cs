@@ -33,6 +33,7 @@ namespace DiamondTrading
         #region "FrmOther"
         public const string FormTitle = "FormTitle";
         public const string PrintPurchaseSlip = "PrintPurchaseSlip";
+        public const string PrintPurchasePF = "PrintPurchasePF";
         public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
         #endregion "FrmOther"
         

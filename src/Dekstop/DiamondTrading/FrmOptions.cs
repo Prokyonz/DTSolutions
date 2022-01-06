@@ -43,6 +43,9 @@ namespace DiamondTrading
         private void LoadRegistry()
         {
             txtFormTitle.Text = Common.FormTitle;
+            chkPrintSlip.Checked = Common.PrintPurchaseSlip;
+            chkPrintPF.Checked = Common.PrintPurchasePF;
+            chkAllowToSelectPaymentDueDate.Checked = Common.AllowToSelectPurchaseDueDate;
         }
 
         private void SaveSettings()
@@ -57,6 +60,9 @@ namespace DiamondTrading
                 #region "Advanced"
                 Common.PrintPurchaseSlip = chkPrintSlip.Checked;
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchaseSlip, chkPrintSlip.Checked.ToString());
+
+                Common.PrintPurchasePF = chkPrintPF.Checked;
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchasePF, chkPrintPF.Checked.ToString());
 
                 Common.AllowToSelectPurchaseDueDate = chkAllowToSelectPaymentDueDate.Checked;
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.AllowToSelectPurchaseDueDate, chkAllowToSelectPaymentDueDate.Checked.ToString());
@@ -80,6 +86,11 @@ namespace DiamondTrading
         }
 
         private void chkAllowToSelectPaymentDueDate_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void chkPrintPF_CheckedChanged(object sender, EventArgs e)
         {
             EnableDisableApplyButton(true);
         }

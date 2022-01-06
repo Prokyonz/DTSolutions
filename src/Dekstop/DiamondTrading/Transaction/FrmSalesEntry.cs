@@ -38,10 +38,10 @@ namespace DiamondTrading.Transaction
 
         private void FrmSaleEntry_Load(object sender, EventArgs e)
         {
-            
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
             tglSlip.IsOn = Common.PrintPurchaseSlip;
+            tglPF.IsOn = Common.PrintPurchasePF;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
 
             SetThemeColors(Color.FromArgb(215, 246, 214));
@@ -1236,6 +1236,7 @@ namespace DiamondTrading.Transaction
             txtNetAmount.Text = "0";
             txtCurrencyAmount.Text = "0";
             tglSlip.IsOn = Common.PrintPurchaseSlip;
+            tglPF.IsOn = Common.PrintPurchasePF;
             _salesItemObj = null;
             GetSalesNo();
             txtSlipNo.Focus();
