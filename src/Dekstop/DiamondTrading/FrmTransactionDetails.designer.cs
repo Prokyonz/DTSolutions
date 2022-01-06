@@ -67,6 +67,7 @@ namespace DiamondTrading
             this.gridColumnPurApprovalType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabSales = new DevExpress.XtraTab.XtraTabPage();
             this.grdSalesTransactonMaster = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -94,6 +95,7 @@ namespace DiamondTrading
             this.gridColumn25 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn28 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabPayment = new DevExpress.XtraTab.XtraTabPage();
             this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -111,6 +113,7 @@ namespace DiamondTrading
             this.gridColumnUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabReceipt = new DevExpress.XtraTab.XtraTabPage();
             this.grdReceiptDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -179,9 +182,21 @@ namespace DiamondTrading
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView11 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtabMixed = new DevExpress.XtraTab.XtraTabPage();
+            this.gridControlMixed = new DevExpress.XtraGrid.GridControl();
+            this.gridView15 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn48 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn47 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn58 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn53 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn52 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn55 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn57 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn59 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView16 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn61 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -190,14 +205,17 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
             this.xtabSales.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesTransactonMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).BeginInit();
             this.xtabPayment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             this.xtabReceipt.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
@@ -214,9 +232,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLoan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
+            this.xtabMixed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlMixed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView16)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -315,7 +334,8 @@ namespace DiamondTrading
             this.xtabReceipt,
             this.xtabContra,
             this.xtabExpense,
-            this.xtabLoan});
+            this.xtabLoan,
+            this.xtabMixed});
             this.xtabManager.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabPurchase
@@ -590,6 +610,11 @@ namespace DiamondTrading
             this.gridColumn8.FieldName = "Id";
             this.gridColumn8.Name = "gridColumn8";
             // 
+            // gridView14
+            // 
+            this.gridView14.GridControl = this.grdTransactionMaster;
+            this.gridView14.Name = "gridView14";
+            // 
             // xtabSales
             // 
             this.xtabSales.Controls.Add(this.grdSalesTransactonMaster);
@@ -837,6 +862,11 @@ namespace DiamondTrading
             this.gridColumn28.FieldName = "Id";
             this.gridColumn28.Name = "gridColumn28";
             // 
+            // gridView13
+            // 
+            this.gridView13.GridControl = this.grdSalesTransactonMaster;
+            this.gridView13.Name = "gridView13";
+            // 
             // xtabPayment
             // 
             this.xtabPayment.Controls.Add(this.grdPaymentDetails);
@@ -986,6 +1016,11 @@ namespace DiamondTrading
             this.gridColumn12.Caption = "Id";
             this.gridColumn12.FieldName = "Id";
             this.gridColumn12.Name = "gridColumn12";
+            // 
+            // gridView12
+            // 
+            this.gridView12.GridControl = this.grdPaymentDetails;
+            this.gridView12.Name = "gridView12";
             // 
             // xtabReceipt
             // 
@@ -1593,20 +1628,139 @@ namespace DiamondTrading
             this.gridColumn37.FieldName = "Id";
             this.gridColumn37.Name = "gridColumn37";
             // 
-            // gridView12
+            // xtabMixed
             // 
-            this.gridView12.GridControl = this.grdPaymentDetails;
-            this.gridView12.Name = "gridView12";
+            this.xtabMixed.Controls.Add(this.gridControlMixed);
+            this.xtabMixed.Name = "xtabMixed";
+            this.xtabMixed.Size = new System.Drawing.Size(764, 411);
+            this.xtabMixed.Text = "Mixed Report";
             // 
-            // gridView13
+            // gridControlMixed
             // 
-            this.gridView13.GridControl = this.grdSalesTransactonMaster;
-            this.gridView13.Name = "gridView13";
+            this.gridControlMixed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlMixed.Location = new System.Drawing.Point(0, 0);
+            this.gridControlMixed.MainView = this.gridView15;
+            this.gridControlMixed.Name = "gridControlMixed";
+            this.gridControlMixed.Size = new System.Drawing.Size(764, 411);
+            this.gridControlMixed.TabIndex = 6;
+            this.gridControlMixed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView15,
+            this.gridView16});
             // 
-            // gridView14
+            // gridView15
             // 
-            this.gridView14.GridControl = this.grdTransactionMaster;
-            this.gridView14.Name = "gridView14";
+            this.gridView15.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn46,
+            this.gridColumn48,
+            this.gridColumn47,
+            this.gridColumn58,
+            this.gridColumn53,
+            this.gridColumn52,
+            this.gridColumn55,
+            this.gridColumn57,
+            this.gridColumn51,
+            this.gridColumn59});
+            this.gridView15.GridControl = this.gridControlMixed;
+            this.gridView15.GroupCount = 1;
+            this.gridView15.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", this.gridColumn51, "(Amount: SUM={0:0.##})")});
+            this.gridView15.Name = "gridView15";
+            this.gridView15.OptionsBehavior.Editable = false;
+            this.gridView15.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn59, DevExpress.Data.ColumnSortOrder.Ascending)});
+            // 
+            // gridColumn46
+            // 
+            this.gridColumn46.Caption = "Id";
+            this.gridColumn46.FieldName = "Id";
+            this.gridColumn46.Name = "gridColumn46";
+            this.gridColumn46.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            // 
+            // gridColumn48
+            // 
+            this.gridColumn48.Caption = "Company Id";
+            this.gridColumn48.FieldName = "CompanyId";
+            this.gridColumn48.Name = "gridColumn48";
+            // 
+            // gridColumn47
+            // 
+            this.gridColumn47.Caption = "Finanial Year Id";
+            this.gridColumn47.FieldName = "FinancialYearId";
+            this.gridColumn47.Name = "gridColumn47";
+            // 
+            // gridColumn58
+            // 
+            this.gridColumn58.Caption = "Created Date";
+            this.gridColumn58.FieldName = "CreatedDate";
+            this.gridColumn58.Name = "gridColumn58";
+            this.gridColumn58.Visible = true;
+            this.gridColumn58.VisibleIndex = 0;
+            this.gridColumn58.Width = 112;
+            // 
+            // gridColumn53
+            // 
+            this.gridColumn53.Caption = "From Party Id";
+            this.gridColumn53.FieldName = "FromPartyId";
+            this.gridColumn53.Name = "gridColumn53";
+            this.gridColumn53.Width = 91;
+            // 
+            // gridColumn52
+            // 
+            this.gridColumn52.Caption = "From Party Name";
+            this.gridColumn52.FieldName = "FromName";
+            this.gridColumn52.Name = "gridColumn52";
+            this.gridColumn52.Visible = true;
+            this.gridColumn52.VisibleIndex = 1;
+            this.gridColumn52.Width = 324;
+            // 
+            // gridColumn55
+            // 
+            this.gridColumn55.Caption = "To Party Id";
+            this.gridColumn55.FieldName = "ToPartyId";
+            this.gridColumn55.Name = "gridColumn55";
+            // 
+            // gridColumn57
+            // 
+            this.gridColumn57.Caption = "To Name";
+            this.gridColumn57.FieldName = "ToName";
+            this.gridColumn57.Name = "gridColumn57";
+            this.gridColumn57.Visible = true;
+            this.gridColumn57.VisibleIndex = 2;
+            this.gridColumn57.Width = 266;
+            // 
+            // gridColumn51
+            // 
+            this.gridColumn51.Caption = "Amount";
+            this.gridColumn51.FieldName = "Amount";
+            this.gridColumn51.Name = "gridColumn51";
+            this.gridColumn51.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
+            this.gridColumn51.Visible = true;
+            this.gridColumn51.VisibleIndex = 3;
+            this.gridColumn51.Width = 259;
+            // 
+            // gridColumn59
+            // 
+            this.gridColumn59.Caption = "Transaction Type";
+            this.gridColumn59.FieldName = "TrType";
+            this.gridColumn59.Name = "gridColumn59";
+            this.gridColumn59.Visible = true;
+            this.gridColumn59.VisibleIndex = 1;
+            this.gridColumn59.Width = 100;
+            // 
+            // gridView16
+            // 
+            this.gridView16.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn61});
+            this.gridView16.GridControl = this.gridControlMixed;
+            this.gridView16.Name = "gridView16";
+            this.gridView16.OptionsBehavior.Editable = false;
+            // 
+            // gridColumn61
+            // 
+            this.gridColumn61.Caption = "Id";
+            this.gridColumn61.FieldName = "Id";
+            this.gridColumn61.Name = "gridColumn61";
             // 
             // FrmTransactionDetails
             // 
@@ -1633,14 +1787,17 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
             this.xtabSales.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesTransactonMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).EndInit();
             this.xtabPayment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             this.xtabReceipt.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
@@ -1657,9 +1814,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridControlLoan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView14)).EndInit();
+            this.xtabMixed.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlMixed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView16)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1818,5 +1976,20 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
+        private DevExpress.XtraTab.XtraTabPage xtabMixed;
+        private DevExpress.XtraGrid.GridControl gridControlMixed;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn46;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn48;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn51;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn52;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn53;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn55;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn57;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn58;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn59;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView16;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
     }
 }

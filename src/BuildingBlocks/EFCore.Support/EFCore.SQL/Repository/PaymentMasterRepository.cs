@@ -145,5 +145,14 @@ namespace EFCore.SQL.Repository
                 return groupPaymentMaster;
             }
         }
+
+        public async Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var PaymentPSSlipDetails = await _databaseContext.SPMixedReportModel.FromSqlRaw($"GetMixedRepot '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return PaymentPSSlipDetails;
+            }
+        }
     }
 }

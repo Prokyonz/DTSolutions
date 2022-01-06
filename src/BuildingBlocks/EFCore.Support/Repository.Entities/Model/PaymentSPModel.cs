@@ -20,4 +20,18 @@ namespace Repository.Entities.Model
         public string UpdatedBy { get; set; }
 
     }
+
+    public class MixedSPModel
+    {
+        public string Id { get; set; }
+        public string CompanyId { get; set; }
+        public string FinancialYearId { get; set; }
+        public string FromPartyId { get; set; }
+        public string ToPartyId { get; set; }
+        public string FromName { get; set; }
+        public string ToName { get; set; }
+        public double? Amount { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public string TrType { get; set; }
+    }
 }

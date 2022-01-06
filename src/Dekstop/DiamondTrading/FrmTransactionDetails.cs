@@ -72,6 +72,11 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtabLoan;
                     this.Text = "Loan Details";
                     break;
+                case "Mixed":
+                    xtabMixed.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabMixed;
+                    this.Text = "Mixed Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -90,6 +95,7 @@ namespace DiamondTrading
             xtabContra.PageVisible = false;
             xtabExpense.PageVisible = false;
             xtabLoan.PageVisible = false;
+            xtabMixed.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -185,8 +191,19 @@ namespace DiamondTrading
                     _loanMasterRepository = new LoanMasterRepository();
                     var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
                     gridControlLoan .DataSource = data;
+                    gridView9.ExpandAllGroups();
                 }
-            }            
+            }
+            else if (xtabManager.SelectedTabPage == xtabMixed)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlMixed.DataSource = data;
+                    gridView15.ExpandAllGroups();
+                }
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)

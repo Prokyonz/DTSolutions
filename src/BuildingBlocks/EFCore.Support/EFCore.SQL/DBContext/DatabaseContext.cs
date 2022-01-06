@@ -78,6 +78,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<SalesSPModel> SPSalesModel { get; set; }
         public virtual DbSet<ExpenseSPModel> SPExpenseModel { get; set; }
         public virtual DbSet<LoanSPModel> SPLoanReportModel { get; set; }
+        public virtual DbSet<MixedSPModel> SPMixedReportModel { get; set; }
         public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
 
         public virtual DbSet<CaratCategoryType> CaratCategoryType { get; set; }

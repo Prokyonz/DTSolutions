@@ -14,6 +14,8 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(int paymentType, string companyId, string financialYearId);
         Task<GroupPaymentMaster> AddPaymentAsync(GroupPaymentMaster groupPaymentMaster);
         Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster);
+
+        Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId);
         Task<bool> DeletePaymentAsync(string groupId);
 
     }
