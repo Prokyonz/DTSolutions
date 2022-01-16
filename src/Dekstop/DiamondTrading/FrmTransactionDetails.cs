@@ -336,5 +336,10 @@ namespace DiamondTrading
         {
 
         }
+
+        private void grdTransactionMaster_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

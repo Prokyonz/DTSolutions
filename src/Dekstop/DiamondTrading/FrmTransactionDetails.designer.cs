@@ -194,6 +194,7 @@ namespace DiamondTrading
             this.gridColumn55 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn57 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn51 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn49 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn59 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView16 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn61 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -358,6 +359,7 @@ namespace DiamondTrading
             this.grvTransMaster,
             this.grdChildTransMaster,
             this.gridView14});
+            this.grdTransactionMaster.Click += new System.EventHandler(this.grdTransactionMaster_Click);
             // 
             // grvTransMaster
             // 
@@ -1659,11 +1661,13 @@ namespace DiamondTrading
             this.gridColumn55,
             this.gridColumn57,
             this.gridColumn51,
+            this.gridColumn49,
             this.gridColumn59});
             this.gridView15.GridControl = this.gridControlMixed;
             this.gridView15.GroupCount = 1;
             this.gridView15.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", this.gridColumn51, "(Amount: SUM={0:0.##})")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", this.gridColumn51, "(Amount: SUM={0:0.##})"),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", this.gridColumn49, "(Amount: SUM={0:0.##})")});
             this.gridView15.Name = "gridView15";
             this.gridView15.OptionsBehavior.Editable = false;
             this.gridView15.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
@@ -1695,7 +1699,7 @@ namespace DiamondTrading
             this.gridColumn58.Name = "gridColumn58";
             this.gridColumn58.Visible = true;
             this.gridColumn58.VisibleIndex = 0;
-            this.gridColumn58.Width = 112;
+            this.gridColumn58.Width = 114;
             // 
             // gridColumn53
             // 
@@ -1711,7 +1715,7 @@ namespace DiamondTrading
             this.gridColumn52.Name = "gridColumn52";
             this.gridColumn52.Visible = true;
             this.gridColumn52.VisibleIndex = 1;
-            this.gridColumn52.Width = 324;
+            this.gridColumn52.Width = 331;
             // 
             // gridColumn55
             // 
@@ -1726,18 +1730,29 @@ namespace DiamondTrading
             this.gridColumn57.Name = "gridColumn57";
             this.gridColumn57.Visible = true;
             this.gridColumn57.VisibleIndex = 2;
-            this.gridColumn57.Width = 266;
+            this.gridColumn57.Width = 272;
             // 
             // gridColumn51
             // 
-            this.gridColumn51.Caption = "Amount";
-            this.gridColumn51.FieldName = "Amount";
+            this.gridColumn51.Caption = "Credit";
+            this.gridColumn51.FieldName = "Credit";
             this.gridColumn51.Name = "gridColumn51";
             this.gridColumn51.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "Sum={0:0.##}")});
             this.gridColumn51.Visible = true;
             this.gridColumn51.VisibleIndex = 3;
-            this.gridColumn51.Width = 259;
+            this.gridColumn51.Width = 172;
+            // 
+            // gridColumn49
+            // 
+            this.gridColumn49.Caption = "Debit";
+            this.gridColumn49.FieldName = "Debit";
+            this.gridColumn49.Name = "gridColumn49";
+            this.gridColumn49.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "Sum={0:0.##}")});
+            this.gridColumn49.Visible = true;
+            this.gridColumn49.VisibleIndex = 4;
+            this.gridColumn49.Width = 172;
             // 
             // gridColumn59
             // 
@@ -1991,5 +2006,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView gridView16;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn47;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn49;
     }
 }
