@@ -19,6 +19,8 @@ namespace DiamondTrading.Process
         NumberProcessMasterRepository _numberProcessMasterRepository;
         PartyMasterRepository _partyMasterRepository;
         List<NumberProcessReceive> ListNumberProcessReceive;
+        string SelectedKapanId = string.Empty;
+
         public FrmNumberReceive()
         {
             InitializeComponent();
@@ -131,10 +133,28 @@ namespace DiamondTrading.Process
             await GetNumberProcessReceiveDetail();
         }
 
-        private void lueKapan_EditValueChanged(object sender, EventArgs e)
+        private async void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
+            if (grvParticularsDetails.RowCount > 0)
+            {
+                if (MessageBox.Show("Are you sure you want to change Kapan No? Your existing data lost if you change Kapan No.", "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    grdParticularsDetails.DataSource = null;
+                    GetCategoryList();
+                    await GetNumberProcessReceiveDetail();
+                }
+                else
+                {
+                    this.lueKapan.EditValueChanged -= new System.EventHandler(this.lueKapan_EditValueChanged);
+                    lueKapan.EditValue = SelectedKapanId;
+                    this.lueKapan.EditValueChanged += new System.EventHandler(this.lueKapan_EditValueChanged);
+                    return;
+                }
+            }
+
             if (lueKapan.EditValue != null)
             {
+                SelectedKapanId = lueKapan.EditValue.ToString();
                 txtSlipNo.Text = lueKapan.GetColumnValue("SlipNo").ToString();
                 txtSize.Text = lueKapan.GetColumnValue("Size").ToString();
                 txtACarat.Text = lueKapan.GetColumnValue("AvailableWeight").ToString();
@@ -286,7 +306,7 @@ namespace DiamondTrading.Process
                 if (IsSuccess)
                 {
                     Reset();
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception Ex)
@@ -302,6 +322,7 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
+            SelectedKapanId = string.Empty;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";

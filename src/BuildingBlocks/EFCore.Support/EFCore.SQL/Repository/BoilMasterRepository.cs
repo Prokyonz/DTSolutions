@@ -110,13 +110,13 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<BoilProcessSend>> GetBoilSendToDetails(string KapanId, string companyId, string branchId, string financialYearId)
+        public async Task<List<BoilProcessSend>> GetBoilSendToDetails(string companyId, string branchId, string financialYearId)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPBoilProcessSend.FromSqlRaw($"GetBoilProcessSendToDetail '" + KapanId + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPBoilProcessSend.FromSqlRaw($"GetBoilProcessSendToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }

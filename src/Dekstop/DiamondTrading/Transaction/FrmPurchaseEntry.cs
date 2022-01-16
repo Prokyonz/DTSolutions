@@ -658,7 +658,7 @@ namespace DiamondTrading.Transaction
                     if (lessWeightDetails != null)
                     {
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, TipWeight.ToString());
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDWeight, CVDWeight.ToString());
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, CVDWeight.ToString());
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
                     }
                     else
@@ -820,7 +820,8 @@ namespace DiamondTrading.Transaction
                 {
                     int StartIndex = Total.ToString().IndexOf(".") - 1;
                     int EndIndex = Total.ToString().Length - StartIndex;
-                    LastDigit = Convert.ToDecimal(Total.ToString().Substring(StartIndex, EndIndex));
+                    if (StartIndex >= 0)
+                        LastDigit = Convert.ToDecimal(Total.ToString().Substring(StartIndex, EndIndex));
                 }
                 decimal RoundUpAmt = 0;
                 if (LastDigit >= 0 && LastDigit <= 5.50m)

@@ -144,8 +144,6 @@ namespace DiamondTrading.Transaction
             this.colDate.FieldName = "Date";
             this.colDate.Name = "colDate";
             this.colDate.OptionsColumn.AllowEdit = false;
-            this.colDate.Visible = true;
-            this.colDate.VisibleIndex = 0;
             this.colDate.Width = 84;
             // 
             // colSlipNo
@@ -155,7 +153,7 @@ namespace DiamondTrading.Transaction
             this.colSlipNo.Name = "colSlipNo";
             this.colSlipNo.OptionsColumn.AllowEdit = false;
             this.colSlipNo.Visible = true;
-            this.colSlipNo.VisibleIndex = 1;
+            this.colSlipNo.VisibleIndex = 0;
             this.colSlipNo.Width = 79;
             // 
             // colPartyId
@@ -170,8 +168,6 @@ namespace DiamondTrading.Transaction
             this.colParty.FieldName = "Party";
             this.colParty.Name = "colParty";
             this.colParty.OptionsColumn.AllowEdit = false;
-            this.colParty.Visible = true;
-            this.colParty.VisibleIndex = 2;
             this.colParty.Width = 256;
             // 
             // colCompanyId
@@ -198,8 +194,6 @@ namespace DiamondTrading.Transaction
             this.colYear.FieldName = "Year";
             this.colYear.Name = "colYear";
             this.colYear.OptionsColumn.AllowEdit = false;
-            this.colYear.Visible = true;
-            this.colYear.VisibleIndex = 3;
             this.colYear.Width = 89;
             // 
             // colTAmount
@@ -210,8 +204,6 @@ namespace DiamondTrading.Transaction
             this.colTAmount.OptionsColumn.AllowEdit = false;
             this.colTAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossTotal", "{0:0.##}")});
-            this.colTAmount.Visible = true;
-            this.colTAmount.VisibleIndex = 4;
             this.colTAmount.Width = 89;
             // 
             // colAAmount
@@ -223,7 +215,7 @@ namespace DiamondTrading.Transaction
             this.colAAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RemainAmount", "{0:0.##}")});
             this.colAAmount.Visible = true;
-            this.colAAmount.VisibleIndex = 5;
+            this.colAAmount.VisibleIndex = 1;
             this.colAAmount.Width = 89;
             // 
             // colAmount
@@ -235,7 +227,7 @@ namespace DiamondTrading.Transaction
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 6;
+            this.colAmount.VisibleIndex = 2;
             this.colAmount.Width = 104;
             // 
             // repoTxtEdit

@@ -249,7 +249,7 @@ namespace DiamondTrading.Master
                         if (!IsSilentEntry)
                         {
                             Reset();
-                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -283,18 +283,18 @@ namespace DiamondTrading.Master
                     {
                         CreatedLedgerID = Result.Id;
                         Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                //if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMorePartyConfirmation), "["+this.Text+"}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                //if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMorePartyConfirmation), "["+this.Text+"]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
             }
             catch(Exception Ex)
             {
-                MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
