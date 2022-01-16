@@ -30,7 +30,8 @@ namespace Repository.Entities.Model
         public string ToPartyId { get; set; }
         public string FromName { get; set; }
         public string ToName { get; set; }
-        public double? Amount { get; set; }
+        public double? Credit { get; set; }
+        public double? Debit { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string TrType { get; set; }
     }
