@@ -41,6 +41,7 @@ namespace DiamondTrading.Transaction
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
@@ -54,7 +55,6 @@ namespace DiamondTrading.Transaction
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
@@ -239,6 +239,12 @@ namespace DiamondTrading.Transaction
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.Click += new System.EventHandler(this.repositoryItemButtonEdit1_Click);
             // 
+            // colAutoAdjustBillAmount
+            // 
+            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
+            // 
             // repoTxtEdit
             // 
             this.repoTxtEdit.AutoHeight = false;
@@ -417,12 +423,6 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 0;
-            // 
-            // colAutoAdjustBillAmount
-            // 
-            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
             // 
             // FrmPaymentEntry
             // 
