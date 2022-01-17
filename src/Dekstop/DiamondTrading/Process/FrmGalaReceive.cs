@@ -19,6 +19,7 @@ namespace DiamondTrading.Process
         GalaProcessMasterRepository _galaProcessMasterRepository;
         PartyMasterRepository _partyMasterRepository;
         List<GalaProcessReceive> ListGalaProcessReceive;
+        string SelectedKapanId = string.Empty;
         public FrmGalaReceive()
         {
             InitializeComponent();
@@ -48,6 +49,7 @@ namespace DiamondTrading.Process
 
                 txtSlipNo.BackColor = color;
                 txtSize.BackColor = color;
+                txtCharniSize.BackColor = color;
                 txtACarat.BackColor = color;
             }
         }
@@ -131,18 +133,38 @@ namespace DiamondTrading.Process
             await GetGalaProcessReceiveDetail();
         }
 
-        private void lueKapan_EditValueChanged(object sender, EventArgs e)
+        private async void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
+            if (grvParticularsDetails.RowCount > 0)
+            {
+                if (MessageBox.Show("Are you sure you want to change Kapan No? Your existing data lost if you change Kapan No.", "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    grdParticularsDetails.DataSource = null;
+                    GetCategoryList();
+                    await GetGalaProcessReceiveDetail();
+                }
+                else
+                {
+                    this.lueKapan.EditValueChanged -= new System.EventHandler(this.lueKapan_EditValueChanged);
+                    lueKapan.EditValue = SelectedKapanId;
+                    this.lueKapan.EditValueChanged += new System.EventHandler(this.lueKapan_EditValueChanged);
+                    return;
+                }
+            }
+
             if (lueKapan.EditValue != null)
             {
+                SelectedKapanId = lueKapan.EditValue.ToString();
                 txtSlipNo.Text = lueKapan.GetColumnValue("SlipNo").ToString();
                 txtSize.Text = lueKapan.GetColumnValue("Size").ToString();
+                txtCharniSize.Text = lueKapan.GetColumnValue("CharniSize").ToString();
                 txtACarat.Text = lueKapan.GetColumnValue("AvailableWeight").ToString();
             }
             else
             {
                 txtSlipNo.Text = "";
                 txtSize.Text = "";
+                txtCharniSize.Text = "";
                 txtACarat.Text = "";
             }
         }
@@ -257,6 +279,7 @@ namespace DiamondTrading.Process
                         galaProcessMaster.ShapeId = lueKapan.GetColumnValue("ShapeId").ToString();
                         galaProcessMaster.SizeId = lueKapan.GetColumnValue("SizeId").ToString();
                         galaProcessMaster.PurityId = lueKapan.GetColumnValue("PurityId").ToString();
+                        galaProcessMaster.CharniSizeId = lueKapan.GetColumnValue("CharniSizeId").ToString();
                         galaProcessMaster.Weight = Convert.ToDecimal(txtACarat.Text);
                         galaProcessMaster.GalaNumberId = grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
                         galaProcessMaster.GalaWeight = Convert.ToDecimal(Cts);
@@ -285,7 +308,7 @@ namespace DiamondTrading.Process
                 if (IsSuccess)
                 {
                     Reset();
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception Ex)
@@ -303,6 +326,7 @@ namespace DiamondTrading.Process
             grdParticularsDetails.DataSource = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
+            SelectedKapanId = string.Empty;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
             lueSendto.EditValue = null;

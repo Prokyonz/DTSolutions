@@ -18,6 +18,8 @@ namespace DiamondTrading.Process
     {
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        List<BoilProcessSend> ListAssortmentProcessSend;
+
         public FrmBoilSend()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace DiamondTrading.Process
 
             await GetMaxSrNo();
             await GetEmployeeList();
-            await GetKapanDetail();
+            await GetBoilProcessSendDetail();
         }
 
         private async Task GetMaxSrNo()
@@ -69,32 +71,14 @@ namespace DiamondTrading.Process
             lueSendto.Properties.ValueMember = "Id";
         }
 
-        private async Task GetKapanDetail()
-        {
-            KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
-            var kapanMaster = await kapanMasterRepository.GetAssortProcessKapanDetails(Common.LoginCompany,Common.LoginBranch);
-            lueKapan.Properties.DataSource = kapanMaster;
-            lueKapan.Properties.DisplayMember = "Name";
-            lueKapan.Properties.ValueMember = "Id";
-        }
-
         private async Task GetBoilProcessSendDetail()
         {
-            if (lueKapan.EditValue != null)
-            {
-                grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-                List<BoilProcessSend> ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(lueKapan.EditValue.ToString(),Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-                repoSlipNo.DataSource = ListAssortmentProcessSend;
-                repoSlipNo.DisplayMember = "SlipNo";
-                repoSlipNo.ValueMember = "Id";
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+            ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
 
-                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-            }
-            else
-            {
-                grdParticularsDetails.DataSource = null;
-            }
+            lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+            lueKapan.Properties.DisplayMember = "Kapan";
+            lueKapan.Properties.ValueMember = "KapanId";
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
@@ -114,7 +98,15 @@ namespace DiamondTrading.Process
 
         private async void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
-            await GetBoilProcessSendDetail();
+            if (lueKapan.EditValue != null)
+            {
+                repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                repoSlipNo.DisplayMember = "SlipNo";
+                repoSlipNo.ValueMember = "Id";
+
+                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            }
         }
 
         private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -247,6 +239,7 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
+            ListAssortmentProcessSend = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
@@ -257,6 +250,8 @@ namespace DiamondTrading.Process
 
             await GetMaxSrNo();
             await GetEmployeeList();
+            await GetBoilProcessSendDetail();
+
             lueReceiveFrom.Select();
             lueReceiveFrom.Focus();
         }

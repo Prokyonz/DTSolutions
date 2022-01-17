@@ -996,7 +996,7 @@ namespace DiamondTrading.Transaction
             // 
             // colCVDCharge
             // 
-            this.colCVDCharge.Caption = "CVD";
+            this.colCVDCharge.Caption = "CVD A";
             this.colCVDCharge.ColumnEdit = this.repoTxtEdit;
             this.colCVDCharge.FieldName = "CVDCharge";
             this.colCVDCharge.Name = "colCVDCharge";

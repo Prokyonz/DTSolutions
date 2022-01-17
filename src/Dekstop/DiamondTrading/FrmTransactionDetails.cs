@@ -271,7 +271,7 @@ namespace DiamondTrading
                 //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();
                 //    tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
                 //}
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 //{
                 //    var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
 
@@ -282,7 +282,7 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 //{
                 //    var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
 

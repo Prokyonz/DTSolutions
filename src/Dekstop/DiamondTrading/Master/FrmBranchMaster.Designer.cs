@@ -453,9 +453,9 @@ namespace DiamondTrading.Master
             this.labelControl14.Appearance.Options.UseFont = true;
             this.labelControl14.Location = new System.Drawing.Point(7, 78);
             this.labelControl14.Name = "labelControl14";
-            this.labelControl14.Size = new System.Drawing.Size(67, 14);
+            this.labelControl14.Size = new System.Drawing.Size(71, 14);
             this.labelControl14.TabIndex = 2;
-            this.labelControl14.Text = "CVD Weight";
+            this.labelControl14.Text = "CVD Amount";
             // 
             // FrmBranchMaster
             // 

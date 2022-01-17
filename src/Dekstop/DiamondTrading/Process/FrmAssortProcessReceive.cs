@@ -414,7 +414,7 @@ namespace DiamondTrading.Process
                         if (IsSuccess)
                         {
                             Reset();
-                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Charni)
@@ -473,7 +473,7 @@ namespace DiamondTrading.Process
                         if (IsSuccess)
                         {
                             Reset();
-                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Gala)
@@ -532,7 +532,7 @@ namespace DiamondTrading.Process
                         if (IsSuccess)
                         {
                             Reset();
-                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                     else
@@ -592,7 +592,7 @@ namespace DiamondTrading.Process
                         if (IsSuccess)
                         {
                             Reset();
-                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "}", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }

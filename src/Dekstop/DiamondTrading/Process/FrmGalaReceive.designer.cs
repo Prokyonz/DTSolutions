@@ -63,6 +63,8 @@ namespace DiamondTrading.Process
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.txtCharniSize = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
@@ -87,6 +89,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCharniSize.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl2
@@ -111,6 +114,8 @@ namespace DiamondTrading.Process
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtCharniSize);
+            this.panelControl1.Controls.Add(this.labelControl7);
             this.panelControl1.Controls.Add(this.lueKapan);
             this.panelControl1.Controls.Add(this.lueSendto);
             this.panelControl1.Controls.Add(this.lueReceiveFrom);
@@ -156,12 +161,14 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurityId", "PurityId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSizeId", "CharniSizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "CharniSize"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialYearId", "FinancialYearId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueKapan.Properties.NullText = "";
-            this.lueKapan.Size = new System.Drawing.Size(258, 22);
+            this.lueKapan.Size = new System.Drawing.Size(189, 22);
             this.lueKapan.TabIndex = 11;
             this.lueKapan.EditValueChanged += new System.EventHandler(this.lueKapan_EditValueChanged);
             // 
@@ -177,7 +184,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueSendto.Properties.NullText = "";
-            this.lueSendto.Size = new System.Drawing.Size(258, 22);
+            this.lueSendto.Size = new System.Drawing.Size(189, 22);
             this.lueSendto.TabIndex = 9;
             // 
             // lueReceiveFrom
@@ -192,45 +199,45 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueReceiveFrom.Properties.NullText = "";
-            this.lueReceiveFrom.Size = new System.Drawing.Size(258, 22);
+            this.lueReceiveFrom.Size = new System.Drawing.Size(189, 22);
             this.lueReceiveFrom.TabIndex = 7;
             this.lueReceiveFrom.EditValueChanged += new System.EventHandler(this.lueReceiveFrom_EditValueChanged);
             // 
             // txtACarat
             // 
             this.txtACarat.Enabled = false;
-            this.txtACarat.Location = new System.Drawing.Point(454, 131);
+            this.txtACarat.Location = new System.Drawing.Point(379, 131);
             this.txtACarat.Name = "txtACarat";
             this.txtACarat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtACarat.Properties.Appearance.Options.UseFont = true;
-            this.txtACarat.Size = new System.Drawing.Size(163, 22);
+            this.txtACarat.Size = new System.Drawing.Size(238, 22);
             this.txtACarat.TabIndex = 18;
             // 
             // txtSize
             // 
             this.txtSize.Enabled = false;
-            this.txtSize.Location = new System.Drawing.Point(454, 102);
+            this.txtSize.Location = new System.Drawing.Point(379, 102);
             this.txtSize.Name = "txtSize";
             this.txtSize.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSize.Properties.Appearance.Options.UseFont = true;
-            this.txtSize.Size = new System.Drawing.Size(163, 22);
+            this.txtSize.Size = new System.Drawing.Size(87, 22);
             this.txtSize.TabIndex = 16;
             // 
             // txtSlipNo
             // 
             this.txtSlipNo.Enabled = false;
-            this.txtSlipNo.Location = new System.Drawing.Point(454, 73);
+            this.txtSlipNo.Location = new System.Drawing.Point(379, 73);
             this.txtSlipNo.Name = "txtSlipNo";
             this.txtSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlipNo.Properties.Appearance.Options.UseFont = true;
-            this.txtSlipNo.Size = new System.Drawing.Size(163, 22);
+            this.txtSlipNo.Size = new System.Drawing.Size(238, 22);
             this.txtSlipNo.TabIndex = 14;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(399, 134);
+            this.labelControl3.Location = new System.Drawing.Point(324, 134);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(52, 16);
             this.labelControl3.TabIndex = 17;
@@ -240,7 +247,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(399, 105);
+            this.labelControl4.Location = new System.Drawing.Point(324, 105);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(33, 16);
             this.labelControl4.TabIndex = 15;
@@ -250,7 +257,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(399, 76);
+            this.labelControl5.Location = new System.Drawing.Point(324, 76);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(49, 16);
             this.labelControl5.TabIndex = 13;
@@ -391,7 +398,7 @@ namespace DiamondTrading.Process
             this.colGalaCarat.FieldName = "GalaCarat";
             this.colGalaCarat.Name = "colGalaCarat";
             this.colGalaCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CharniCarat", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GalaCarat", "{0:0.##}")});
             this.colGalaCarat.Visible = true;
             this.colGalaCarat.VisibleIndex = 2;
             this.colGalaCarat.Width = 127;
@@ -493,7 +500,7 @@ namespace DiamondTrading.Process
             // separatorControl1
             // 
             this.separatorControl1.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl1.Location = new System.Drawing.Point(380, 64);
+            this.separatorControl1.Location = new System.Drawing.Point(305, 64);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(21, 99);
             this.separatorControl1.TabIndex = 12;
@@ -531,6 +538,26 @@ namespace DiamondTrading.Process
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // txtCharniSize
+            // 
+            this.txtCharniSize.Enabled = false;
+            this.txtCharniSize.Location = new System.Drawing.Point(530, 102);
+            this.txtCharniSize.Name = "txtCharniSize";
+            this.txtCharniSize.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCharniSize.Properties.Appearance.Options.UseFont = true;
+            this.txtCharniSize.Size = new System.Drawing.Size(87, 22);
+            this.txtCharniSize.TabIndex = 22;
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(475, 105);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(45, 16);
+            this.labelControl7.TabIndex = 21;
+            this.labelControl7.Text = "C Size :";
             // 
             // FrmGalaReceive
             // 
@@ -578,6 +605,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCharniSize.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -617,5 +645,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colGalaCarat;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
+        private DevExpress.XtraEditors.TextEdit txtCharniSize;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }

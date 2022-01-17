@@ -585,7 +585,7 @@ namespace DiamondTrading
                     SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();
                     tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
                 }
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
 
@@ -596,7 +596,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
             {
                 string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
 
@@ -607,7 +607,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
                 string SelectedGuid = grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupID).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _lessWeightMasterRepository.DeleteLessWeightMaster(SelectedGuid);
 
@@ -618,7 +618,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
             {
                 string SelectedGuid = grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteShapeConfirmation), grvShapeMaster.GetFocusedRowCellValue(colShapeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteShapeConfirmation), grvShapeMaster.GetFocusedRowCellValue(colShapeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _shapeMasterRepository.DeleteShapeAsync(SelectedGuid);
 
@@ -629,7 +629,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
             {
                 string SelectedGuid = grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _purityMasterRepository.DeletePurityAsync(SelectedGuid);
 
@@ -640,7 +640,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
             {
                 string SelectedGuid = grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
 
@@ -651,7 +651,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
             {
                 string SelectedGuid = grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _galaMasterRepository.DeleteGalaAsync(SelectedGuid);
 
@@ -662,7 +662,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
             {
                 string SelectedGuid = grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
 
@@ -673,7 +673,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
             {
                 string SelectedGuid = grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _financialYearMasterRepository.DeleteFinancialYearAsync(SelectedGuid);
 
@@ -684,7 +684,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
             {
                 string SelectedGuid = grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
 
@@ -695,7 +695,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
             {
                 string SelectedGuid = grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _currencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
 
@@ -706,7 +706,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
             {
                 string SelectedGuid = grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
 
@@ -717,7 +717,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
                 string SelectedGuid = grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
 
@@ -728,7 +728,7 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
                 string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _userMasterRepository.DeleteUserAsync(SelectedGuid);
 
