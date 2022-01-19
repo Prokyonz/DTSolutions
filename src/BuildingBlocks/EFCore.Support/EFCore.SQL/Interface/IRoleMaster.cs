@@ -8,9 +8,9 @@ namespace EFCore.SQL.Interface
 {
     public interface IRoleMaster
     {
-        Task<List<RoleMaster>> GetAllRoleAsync();
-        Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster);
-        Task<RoleMaster> UpdateRoleAsync(RoleMaster roleMaster);
-        Task<bool> DeleteRoleAsync(string roleId, bool isPermanantDetele = false);
+        //Task<List<RoleMaster>> GetAllRoleAsync();
+        //Task<RoleMaster> AddRoleAsync(RoleMaster roleMaster);
+        //Task<RoleMaster> UpdateRoleAsync(RoleMaster roleMaster);
+        //Task<bool> DeleteRoleAsync(string roleId, bool isPermanantDetele = false);
     }
 }

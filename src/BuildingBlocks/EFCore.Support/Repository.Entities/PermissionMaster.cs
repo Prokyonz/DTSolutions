@@ -9,12 +9,16 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
-        public string ModuleId { get; set; }
-        public string Name { get; set; }        
-        public string ClaimType { get; set; }
-        public string ClaimValue { get; set; }
+        public string DisplayName { get; set; }        
+        public int Category { get; set; }
+    }
 
-        [ForeignKey("ModuleId")]
-        public virtual ModuleMaster ModuleMaster { get; set; }
+    public class UserPermissionDetail
+    {
+        public int Sr { get; set; }
+        [Key]
+        public string Id { get; set; }
+        public string PermissionMasterId { get; set; }
+        public bool Status { get; set; } //Permission Status true/false
     }
 }

@@ -8,7 +8,7 @@ namespace EFCore.SQL.Models
     public class LoginResponse
     {
         public UserMaster UserMaster { get; set; }
-        public List<UserRoleMaster> UserRoleMasters { get; set; }
-        public List<RoleClaimMaster> RoleClaimMasters { get; set; } 
+        //public List<UserRoleMaster> UserRoleMasters { get; set; }
+        //public List<RoleClaimMaster> RoleClaimMasters { get; set; } 
     }
 }

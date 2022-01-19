@@ -10,7 +10,7 @@ namespace EFCore.SQL.Interface
     public interface IUserMaster
     {
         Task<LoginResponse> Login(string userId, string password);
-        Task<List<RoleClaimMaster>> GetAllClaims(string userId);
+        //Task<List<RoleClaimMaster>> GetAllClaims(string userId);
         Task<List<UserMaster>> GetAllUserAsync();
         Task<UserMaster> AddUserAsync(UserMaster userMaster);
         Task<UserMaster> UpdateUserAsync(UserMaster userMaster);

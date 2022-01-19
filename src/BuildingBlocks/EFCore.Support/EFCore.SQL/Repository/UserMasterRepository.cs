@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class UserMasterRepository: IUserMaster
+    public class UserMasterRepository : IUserMaster
     {
         private readonly DatabaseContext _databaseContext;
 
@@ -43,10 +43,10 @@ namespace EFCore.SQL.Repository
             return true;
         }
 
-        public async Task<List<RoleClaimMaster>> GetAllClaims(string userId)
-        {
-            return await _databaseContext.RoleClaimMaster.ToListAsync();
-        }
+        //public async Task<List<RoleClaimMaster>> GetAllClaims(string userId)
+        //{
+        //    return await _databaseContext.RoleClaimMaster.ToListAsync();
+        //}
 
         public async Task<List<UserMaster>> GetAllUserAsync()
         {
@@ -59,12 +59,12 @@ namespace EFCore.SQL.Repository
 
             loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.Name == userId && w.Password == password).FirstOrDefaultAsync();
             if(loginResponse.UserMaster != null) {
-                loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
+                //loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
 
-                if (loginResponse.UserRoleMasters.Count > 0) {
-                    string roleId = loginResponse.UserRoleMasters[0].RoleId;
-                    loginResponse.RoleClaimMasters = await _databaseContext.RoleClaimMaster.Where(w => w.RoleId == roleId).ToListAsync();
-                }
+                //if (loginResponse.UserRoleMasters.Count > 0) {
+                //    string roleId = loginResponse.UserRoleMasters[0].RoleId;
+                //    loginResponse.RoleClaimMasters = await _databaseContext.RoleClaimMaster.Where(w => w.RoleId == roleId).ToListAsync();
+                //}
             }
             return loginResponse;
         }

@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220119155744_RemoveRoleTables")]
+    partial class RemoveRoleTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2341,6 +2343,32 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPNumberProcessSend");
                 });
 
+            modelBuilder.Entity("Repository.Entities.ModuleMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDetele")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ModuleMaster");
+                });
+
             modelBuilder.Entity("Repository.Entities.NumberMaster", b =>
                 {
                     b.Property<string>("Id")
@@ -2671,10 +2699,16 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("DisplayName")
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ModuleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
@@ -2685,6 +2719,8 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ModuleId");
 
                     b.ToTable("PermissionMaster");
                 });
@@ -2962,6 +2998,84 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PurityMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.RoleClaimMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("RoleClaimMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.RoleMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<DateTime>("CratedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Isdelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
@@ -3576,23 +3690,43 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("UserMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserPermissionDetail", b =>
+            modelBuilder.Entity("Repository.Entities.UserRoleMaster", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PermissionMasterId")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Sr")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserPermissionDetail");
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoleMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
@@ -3662,11 +3796,25 @@ namespace EFCore.SQL.Migrations
                         .HasForeignKey("GroupId");
                 });
 
+            modelBuilder.Entity("Repository.Entities.PermissionMaster", b =>
+                {
+                    b.HasOne("Repository.Entities.ModuleMaster", "ModuleMaster")
+                        .WithMany()
+                        .HasForeignKey("ModuleId");
+                });
+
             modelBuilder.Entity("Repository.Entities.PurchaseDetails", b =>
                 {
                     b.HasOne("Repository.Entities.PurchaseMaster", "PurchaseMaster")
                         .WithMany("PurchaseDetails")
                         .HasForeignKey("PurchaseId");
+                });
+
+            modelBuilder.Entity("Repository.Entities.RoleClaimMaster", b =>
+                {
+                    b.HasOne("Repository.Entities.RoleMaster", "RoleMaster")
+                        .WithMany("RoleClaimMaster")
+                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
@@ -3699,6 +3847,17 @@ namespace EFCore.SQL.Migrations
                     b.HasOne("Repository.Entities.BranchMaster", null)
                         .WithMany("UserMasters")
                         .HasForeignKey("BranchMasterId");
+                });
+
+            modelBuilder.Entity("Repository.Entities.UserRoleMaster", b =>
+                {
+                    b.HasOne("Repository.Entities.RoleMaster", "RoleMaster")
+                        .WithMany()
+                        .HasForeignKey("RoleId");
+
+                    b.HasOne("Repository.Entities.UserMaster", "UserMaster")
+                        .WithMany("UserRoleMaster")
+                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }

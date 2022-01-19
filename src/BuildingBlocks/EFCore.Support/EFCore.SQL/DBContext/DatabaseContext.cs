@@ -20,11 +20,11 @@ namespace EFCore.SQL.DBContext
         public DbSet<BranchMaster> BranchMaster { get; set; }
         public DbSet<UserMaster> UserMaster { get; set; }
         public DbSet<PartyMaster> PartyMaster { get; set; }
-        public DbSet<ModuleMaster> ModuleMaster { get; set; }
-        public DbSet<RoleMaster> RoleMaster { get; set; }
-        public DbSet<PermissionMaster> PermissionMaster { get; set; }
-        public DbSet<RoleClaimMaster> RoleClaimMaster { get; set; }
-        public DbSet<UserRoleMaster> UserRoleMaster { get; set; }
+        //public DbSet<ModuleMaster> ModuleMaster { get; set; }
+        //public DbSet<RoleMaster> RoleMaster { get; set; }
+        //public DbSet<PermissionMaster> PermissionMaster { get; set; }
+        //public DbSet<RoleClaimMaster> RoleClaimMaster { get; set; }
+        //public DbSet<UserRoleMaster> UserRoleMaster { get; set; }
         public DbSet<KapanMaster> KapanMaster { get; set; }
         public DbSet<CurrencyMaster> CurrencyMaster{ get; set; }
         public DbSet<LessWeightMaster> LessWeightMasters { get; set; }
@@ -59,6 +59,13 @@ namespace EFCore.SQL.DBContext
         public  DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
         public DbSet<TransferMaster> TransferMaster { get; set; }
         public DbSet<LoanMaster> LoanMaster { get; set; }
+        public DbSet<PermissionMaster> PermissionMaster { get; set; }
+        public DbSet<UserPermissionDetail> UserPermissionDetail { get; set; }
+
+
+
+
+
 
         public virtual DbSet<KapanMapping> SPKapanMapping { get; set; }
 
@@ -93,11 +100,11 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BranchMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<UserMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PartyMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<ModuleMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<RoleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            //modelBuilder.Entity<ModuleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            //modelBuilder.Entity<RoleMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PermissionMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<RoleClaimMaster>().Property(c => c.Sr).UseIdentityColumn();
-            modelBuilder.Entity<UserRoleMaster>().Property(c => c.Sr).UseIdentityColumn();
+            //modelBuilder.Entity<RoleClaimMaster>().Property(c => c.Sr).UseIdentityColumn();
+            //modelBuilder.Entity<UserRoleMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<KapanMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CurrencyMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LessWeightMaster>().Property(c => c.Sr).UseIdentityColumn();
