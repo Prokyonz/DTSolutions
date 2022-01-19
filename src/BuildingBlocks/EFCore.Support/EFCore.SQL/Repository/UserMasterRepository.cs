@@ -25,6 +25,9 @@ namespace EFCore.SQL.Repository
             if (userMaster.Id == null)
                 userMaster.Id = Guid.NewGuid().ToString();
             await _databaseContext.UserMaster.AddAsync(userMaster);
+
+            await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
+
             await _databaseContext.SaveChangesAsync();
             return userMaster;
         }
@@ -93,6 +96,14 @@ namespace EFCore.SQL.Repository
                 getUser.AadharCardNo = userMaster.AadharCardNo;                
                 getUser.UpdatedDate = userMaster.UpdatedDate;
                 getUser.UpdatedBy = userMaster.UpdatedBy;
+
+                if(userMaster.UserPermissionDetails != null)
+                {
+                    var getAllPermisson = await _databaseContext.UserPermissionDetail.Where(w => w.UserId == userMaster.Id).ToListAsync();
+                    _databaseContext.UserPermissionDetail.RemoveRange(getAllPermisson);
+                }
+
+                await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
             }
             await _databaseContext.SaveChangesAsync();
             return userMaster;

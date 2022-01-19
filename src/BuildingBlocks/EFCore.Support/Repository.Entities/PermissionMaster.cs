@@ -18,6 +18,7 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
+        public string UserId { get; set; } //ref. col
         public string PermissionMasterId { get; set; }
         public bool Status { get; set; } //Permission Status true/false
     }
