@@ -8,6 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -45,22 +46,19 @@ namespace DiamondTrading.Master
                 if (_EditedUserMasterSet != null)
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
-                    tglIsActive.IsOn = _EditedUserMasterSet.IsActive;
-                    txtUserCode.Text = _EditedUserMasterSet.UserCode;
-                    lueUserType.EditValue = _EditedUserMasterSet.UserType;
-                    txtUserName.Text = _EditedUserMasterSet.Name;
-                    lueDepartment.EditValue = _EditedUserMasterSet.DepartmentName;
-                    lueDesignation.EditValue = _EditedUserMasterSet.Designation;
-                    lueBrokerage.EditValue = _EditedUserMasterSet.BrokerageId;
+                    txtName.Text = _EditedUserMasterSet.Name;
+                    //lueDepartment.EditValue = _EditedUserMasterSet.DepartmentName;
+                    //lueDesignation.EditValue = _EditedUserMasterSet.Designation;
+                    //lueBrokerage.EditValue = _EditedUserMasterSet.BrokerageId;
                     txtAddress.Text = _EditedUserMasterSet.Address;
                     txtAddress2.Text = _EditedUserMasterSet.Address2;
                     txtMobileNo.Text = _EditedUserMasterSet.MobileNo;
                     txtHomeNo.Text = _EditedUserMasterSet.HomeNo;
-                    txtRefrenceBy.Text = _EditedUserMasterSet.ReferenceBy;
-                    txtAadharcardNo.Text = _EditedUserMasterSet.AadharCardNo;
-                    dtDateOfBirth.EditValue = _EditedUserMasterSet.DateOfBirth;
-                    dtStartDate.EditValue = _EditedUserMasterSet.DateOfJoin;
-                    dtEndDate.EditValue = _EditedUserMasterSet.DateOfEnd;
+                    //txtRefrenceBy.Text = _EditedUserMasterSet.ReferenceBy;
+                    //txtAadharcardNo.Text = _EditedUserMasterSet.AadharCardNo;
+                    //dtDateOfBirth.EditValue = _EditedUserMasterSet.DateOfBirth;
+                    //dtStartDate.EditValue = _EditedUserMasterSet.DateOfJoin;
+                    //dtEndDate.EditValue = _EditedUserMasterSet.DateOfEnd;
                 }
             }
         }
@@ -69,56 +67,46 @@ namespace DiamondTrading.Master
         {
             try
             {
-                dtDateOfBirth.EditValue = DateTime.Now;
-                dtStartDate.EditValue = DateTime.Now;
-                dtEndDate.EditValue = DateTime.Now;
+                //dtDateOfBirth.EditValue = DateTime.Now;
+                //dtStartDate.EditValue = DateTime.Now;
+                //dtEndDate.EditValue = DateTime.Now;
 
-                txtUserCode.Text = "0";
                 FillLookUpEdits();
 
-                BrokerageMasterRepository brokerageMasterRepository = new BrokerageMasterRepository();
-                var Brokerage = await brokerageMasterRepository.GetAllBrokerageAsync();
-                if (Brokerage != null)
-                {
-                    lueBrokerage.Properties.DataSource = Brokerage;
-                    lueBrokerage.Properties.DisplayMember = "Name";
-                    lueBrokerage.Properties.ValueMember = "Id";
-                }
+                //BrokerageMasterRepository brokerageMasterRepository = new BrokerageMasterRepository();
+                //var Brokerage = await brokerageMasterRepository.GetAllBrokerageAsync();
+                //if (Brokerage != null)
+                //{
+                //    lueBrokerage.Properties.DataSource = Brokerage;
+                //    lueBrokerage.Properties.DisplayMember = "Name";
+                //    lueBrokerage.Properties.ValueMember = "Id";
+                //}
             }
             catch (Exception Ex)
             {
 
             }
         }
+            //var Department = DepartmentMaster.GetAllDepartment();
 
+            //if (Department != null)
+            //{
+            //    lueDepartment.Properties.DataSource = Department;
+            //    lueDepartment.Properties.DisplayMember = "Name";
+            //    lueDepartment.Properties.ValueMember = "Id";
+            //}
+
+            //var Designation = DesignationMaster.GetAllDesignation();
+
+            //if (Designation != null)
+            //{
+            //    lueDesignation.Properties.DataSource = Designation;
+            //    lueDesignation.Properties.DisplayMember = "Name";
+            //    lueDesignation.Properties.ValueMember = "Id";
+            //}
         private void FillLookUpEdits()
         {
-            var UserTypes = UserTypeMaster.GetAllUserType();
 
-            if (UserTypes != null)
-            {
-                lueUserType.Properties.DataSource = UserTypes;
-                lueUserType.Properties.DisplayMember = "Name";
-                lueUserType.Properties.ValueMember = "Id";
-            }
-
-            var Department = DepartmentMaster.GetAllDepartment();
-
-            if (Department != null)
-            {
-                lueDepartment.Properties.DataSource = Department;
-                lueDepartment.Properties.DisplayMember = "Name";
-                lueDepartment.Properties.ValueMember = "Id";
-            }
-
-            var Designation = DesignationMaster.GetAllDesignation();
-
-            if (Designation != null)
-            {
-                lueDesignation.Properties.DataSource = Designation;
-                lueDesignation.Properties.DisplayMember = "Name";
-                lueDesignation.Properties.ValueMember = "Id";
-            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -135,21 +123,18 @@ namespace DiamondTrading.Master
         private async void Reset()
         {
             _selectedUser = Guid.Empty.ToString();
-            tglIsActive.IsOn = true;
-            lueUserType.EditValue = 0;
+            txtName.Text = "";
             txtUserName.Text = "";
             txtAddress.Text = "";
             txtAddress2.Text = "";
             txtMobileNo.Text = "";
             txtHomeNo.Text = "";
-            txtRefrenceBy.Text = "";
-            lueUserType.EditValue = 0;
-            lueDepartment.EditValue = 0;
-            lueDesignation.EditValue = 0;
-            lueBrokerage.EditValue = 0;
+            //txtRefrenceBy.Text = "";
+            //lueDepartment.EditValue = 0;
+            //lueDesignation.EditValue = 0;
+            //lueBrokerage.EditValue = 0;
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             await GetListForDepedendeFields();
-            lueUserType.Focus();
         }
 
         private void frmUserMaster_KeyDown(object sender, KeyEventArgs e)
@@ -173,22 +158,24 @@ namespace DiamondTrading.Master
                     UserMaster UserMaster = new UserMaster
                     {
                         Id = tempId,
-                        IsActive = tglIsActive.IsOn,
-                        UserCode = txtUserCode.Text,
-                        UserType = Convert.ToInt32(lueUserType.EditValue),
-                        Name = txtUserName.Text,
-                        DepartmentName = lueDepartment.EditValue.ToString(),
-                        Designation = lueDesignation.EditValue.ToString(),
-                        BrokerageId = lueBrokerage.EditValue.ToString(),
+                        IsActive = true,
+                        UserCode = "",
+                        UserType = 1,
+                        Name = txtName.Text,
+                        UserName = txtUserName.Text,
+                        Password = txtPassword.Text,
+                        DepartmentName = "",// lueDepartment.EditValue.ToString(),
+                        Designation = "",//lueDesignation.EditValue.ToString(),
+                        BrokerageId = "",//lueBrokerage.EditValue.ToString(),
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
                         MobileNo = txtMobileNo.Text,
                         HomeNo = txtHomeNo.Text,
-                        ReferenceBy = txtRefrenceBy.Text,
-                        AadharCardNo = txtAadharcardNo.Text,
-                        DateOfBirth = Convert.ToDateTime(dtDateOfBirth.EditValue),
-                        DateOfJoin = Convert.ToDateTime(dtStartDate.EditValue),
-                        DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue),
+                        ReferenceBy = "", //txtRefrenceBy.Text,
+                        AadharCardNo = "",//txtAadharcardNo.Text,
+                        DateOfBirth = DateTime.Now,
+                        DateOfJoin = DateTime.Now,
+                        DateOfEnd = DateTime.Now,
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
@@ -206,23 +193,20 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    _EditedUserMasterSet.IsActive = tglIsActive.IsOn;
-                    _EditedUserMasterSet.UserCode = txtUserCode.Text;
-                    _EditedUserMasterSet.UserType = Convert.ToInt32(lueUserType.EditValue);
-                    _EditedUserMasterSet.Name = txtUserName.Text;
-                    _EditedUserMasterSet.DepartmentName = lueDepartment.EditValue.ToString();
-                    _EditedUserMasterSet.Designation = lueDesignation.EditValue.ToString();
-                    _EditedUserMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
-                    _EditedUserMasterSet.Address = txtAddress.Text;
+                    _EditedUserMasterSet.Name = txtName.Text;
+                    //_EditedUserMasterSet.DepartmentName = lueDepartment.EditValue.ToString();
+                    //_EditedUserMasterSet.Designation = lueDesignation.EditValue.ToString();
+                    //_EditedUserMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
+                    //_EditedUserMasterSet.Address = txtAddress.Text;
                     _EditedUserMasterSet.Address2 = txtAddress2.Text;
                     _EditedUserMasterSet.MobileNo = txtMobileNo.Text;
                     _EditedUserMasterSet.HomeNo = txtHomeNo.Text;
-                    _EditedUserMasterSet.ReferenceBy = txtRefrenceBy.Text;
-                    _EditedUserMasterSet.AadharCardNo = txtAadharcardNo.Text;
-                    _EditedUserMasterSet.DateOfBirth = Convert.ToDateTime(dtDateOfBirth.EditValue);
-                    _EditedUserMasterSet.DateOfJoin = Convert.ToDateTime(dtStartDate.EditValue);
-                    _EditedUserMasterSet.DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue);
-                    _EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
+                    //_EditedUserMasterSet.ReferenceBy = txtRefrenceBy.Text;
+                    //_EditedUserMasterSet.AadharCardNo = txtAadharcardNo.Text;
+                    //_EditedUserMasterSet.DateOfBirth = Convert.ToDateTime(dtDateOfBirth.EditValue);
+                    //_EditedUserMasterSet.DateOfJoin = Convert.ToDateTime(dtStartDate.EditValue);
+                    //_EditedUserMasterSet.DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue);
+                    //_EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedUserMasterSet.UpdatedDate = DateTime.Now;
 
 
@@ -252,18 +236,24 @@ namespace DiamondTrading.Master
 
         private bool CheckValidation()
         {
-            if (txtUserName.Text.Trim().Length == 0)
+            if(txtPassword.Text != txtConfrmPassword.Text)
+            {
+                MessageBox.Show(AppMessages.GetString(AppMessageID.PasswordNotMatched), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return false;
+            }
+            if (txtName.Text.Trim().Length == 0)
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyUserName),"["+this.Text+"]", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUserName.Focus();
+                txtName.Focus();
                 return false;
             }
 
-            UserMaster UserNameExist = _UserMasters.Where(c => c.Name == txtUserName.Text).FirstOrDefault();
+            UserMaster UserNameExist = _UserMasters.Where(c => c.Name == txtName.Text).FirstOrDefault();
             if((_EditedUserMasterSet == null && UserNameExist != null) || (UserNameExist != null && _EditedUserMasterSet != null && _EditedUserMasterSet.Name != UserNameExist.Name))
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.UserNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtUserName.Focus();
+                txtName.Focus();
                 return false;
             }
 
@@ -275,11 +265,16 @@ namespace DiamondTrading.Master
 
         }
 
-        private void tglIsActive_Toggled(object sender, EventArgs e)
+        private void txtUserName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            dtEndDate.Enabled = !tglIsActive.IsOn;
-            if (dtEndDate.Enabled && Convert.ToDateTime(dtEndDate.EditValue) == DateTime.Today)
-                dtEndDate.EditValue = DateTime.Now;
+            var regex = new Regex(@"[^a-zA-Z0-9]");
+            if (regex.IsMatch(e.KeyChar.ToString()))
+            {
+                e.Handled = true;
+            } else
+            {
+                e.Handled = false;
+            }
         }
     }
 }

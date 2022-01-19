@@ -57,7 +57,7 @@ namespace EFCore.SQL.Repository
         {
             LoginResponse loginResponse  = new LoginResponse();
 
-            loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.Name == userId && w.Password == password).FirstOrDefaultAsync();
+            loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.UserName == userId && w.Password == password).FirstOrDefaultAsync();
             if(loginResponse.UserMaster != null) {
                 //loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
 

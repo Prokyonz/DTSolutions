@@ -1293,8 +1293,6 @@ namespace DiamondTrading
             this.ColUserType.Caption = "User Type";
             this.ColUserType.FieldName = "UserType";
             this.ColUserType.Name = "ColUserType";
-            this.ColUserType.Visible = true;
-            this.ColUserType.VisibleIndex = 2;
             this.ColUserType.Width = 108;
             // 
             // colUserUpdatedDate
@@ -1303,7 +1301,7 @@ namespace DiamondTrading
             this.colUserUpdatedDate.FieldName = "UpdatedDate";
             this.colUserUpdatedDate.Name = "colUserUpdatedDate";
             this.colUserUpdatedDate.Visible = true;
-            this.colUserUpdatedDate.VisibleIndex = 3;
+            this.colUserUpdatedDate.VisibleIndex = 2;
             this.colUserUpdatedDate.Width = 92;
             // 
             // accordionControl1

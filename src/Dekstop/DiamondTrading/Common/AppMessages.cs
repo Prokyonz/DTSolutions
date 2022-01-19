@@ -123,7 +123,8 @@ namespace DiamondTrading
         BranchNotSelected,
         FinancialYearNotSelected,
         #endregion
-        AppMessageIDNotFound
+        AppMessageIDNotFound,
+        PasswordNotMatched
     }
 
     internal class AppMessages
@@ -430,6 +431,9 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.FinancialYearNotSelected:
                     ReturnMsg = "Please select Financial Year to login.";
+                    break;
+                case AppMessageID.PasswordNotMatched:
+                    ReturnMsg = "Password and confirm password not matched.";
                     break;
                 #endregion
                 #region "Others"
