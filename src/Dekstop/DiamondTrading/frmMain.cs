@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DiamondTrading.Master;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

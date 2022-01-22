@@ -309,6 +309,12 @@
     <Compile Include="Master\FrmSizeMaster.designer.cs">
       <DependentUpon>FrmSizeMaster.cs</DependentUpon>
     </Compile>
+    <Compile Include="Master\frmApprovalMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmApprovalMaster.designer.cs">
+      <DependentUpon>frmApprovalMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Master\frmUserMaster.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -514,6 +520,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Master\FrmSizeMaster.resx">
       <DependentUpon>FrmSizeMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmApprovalMaster.resx">
+      <DependentUpon>frmApprovalMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Master\frmUserMaster.resx">
       <DependentUpon>frmUserMaster.cs</DependentUpon>

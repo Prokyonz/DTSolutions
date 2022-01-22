@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DiamondTrading.Master;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -1278,6 +1279,7 @@ namespace DiamondTrading
 
         private void barButtonItem54_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+<<<<<<< HEAD
             panelControl1.SendToBack();
             FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
             if (page != null)
@@ -1318,6 +1320,21 @@ namespace DiamondTrading
             frmMasterDetails.BringToFront();
 
             accordionControlElementMaster.Expanded = true;
+=======
+            frmApprovalMaster page = new frmApprovalMaster();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+            page.StartPosition = FormStartPosition.Manual;
+
+            page.Location = new Point((w - page.Width - 200) / 3, (Height - page.Height) / 2);
+            page.ShowDialog();
+>>>>>>> 36d728720ef27995088d5ce8f8e1cb2944eefd2e
         }
     }
 }
