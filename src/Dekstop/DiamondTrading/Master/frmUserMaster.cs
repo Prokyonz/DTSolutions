@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid.Views.Grid;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
@@ -49,6 +50,7 @@ namespace DiamondTrading.Master
                 {
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     txtName.Text = _EditedUserMasterSet.Name;
+                    txtUserName.Text = _EditedUserMasterSet.UserName;
                     //lueDepartment.EditValue = _EditedUserMasterSet.DepartmentName;
                     //lueDesignation.EditValue = _EditedUserMasterSet.Designation;
                     //lueBrokerage.EditValue = _EditedUserMasterSet.BrokerageId;
@@ -56,6 +58,14 @@ namespace DiamondTrading.Master
                     txtAddress2.Text = _EditedUserMasterSet.Address2;
                     txtMobileNo.Text = _EditedUserMasterSet.MobileNo;
                     txtHomeNo.Text = _EditedUserMasterSet.HomeNo;
+
+                    if (_EditedUserMasterSet.UserPermissionDetails?.Count > 0)
+                    {
+                        for (int i = 0; i < _EditedUserMasterSet.UserPermissionDetails.Count; i++)
+                        {
+                            grvPermissionDetails.SelectRow(grvPermissionDetails.LocateByValue("Id", _EditedUserMasterSet.UserPermissionDetails[i].Id));
+                        }
+                    }
                     //txtRefrenceBy.Text = _EditedUserMasterSet.ReferenceBy;
                     //txtAadharcardNo.Text = _EditedUserMasterSet.AadharCardNo;
                     //dtDateOfBirth.EditValue = _EditedUserMasterSet.DateOfBirth;
@@ -182,8 +192,9 @@ namespace DiamondTrading.Master
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
-                        UpdatedDate = DateTime.Now
-                    };
+                        UpdatedDate = DateTime.Now,
+                        UserPermissionDetails = GetSelectedPermissions(tempId)
+                };
 
                     var Result = await _UserMasterRepository.AddUserAsync(UserMaster);
 
@@ -210,6 +221,7 @@ namespace DiamondTrading.Master
                     //_EditedUserMasterSet.DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue);
                     //_EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedUserMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedUserMasterSet.UserPermissionDetails = GetSelectedPermissions(_EditedUserMasterSet.Id);
 
 
                     var Result = await _UserMasterRepository.UpdateUserAsync(_EditedUserMasterSet);
@@ -221,12 +233,12 @@ namespace DiamondTrading.Master
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "["+this.Text+"]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -234,6 +246,28 @@ namespace DiamondTrading.Master
             {
                 this.Cursor = Cursors.Default;
             }
+        }
+
+        private List<UserPermissionDetail> GetSelectedPermissions(string UserId)
+        {
+            List<UserPermissionDetail> userPermissionDetails = new List<UserPermissionDetail>();
+            if (grvPermissionDetails.GetSelectedRows().Count() > 0)
+            {
+                string tempId = Guid.NewGuid().ToString();
+                Int32[] selectedRowHandles = grvPermissionDetails.GetSelectedRows();
+                UserPermissionDetail userPermission = null;
+                for (int i = 0; i < selectedRowHandles.Length; i++)
+                {
+                    userPermission = new UserPermissionDetail();
+                    userPermission.Id = tempId;
+                    userPermission.Sr = i + 1;
+                    userPermission.UserId = UserId;
+                    userPermission.PermissionMasterId = grvPermissionDetails.GetRowCellValue(selectedRowHandles[i], "Id").ToString();
+                    userPermission.Status = true;
+                    userPermissionDetails.Add(userPermission);
+                }
+            }
+            return userPermissionDetails;
         }
 
         private bool CheckValidation()

@@ -52,7 +52,7 @@ namespace DiamondTrading.Master
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.grdPermissionDetails = new DevExpress.XtraGrid.GridControl();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvPermissionDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -72,7 +72,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,6 +133,7 @@ namespace DiamondTrading.Master
             this.txtConfrmPassword.Properties.Appearance.Options.UseFont = true;
             this.txtConfrmPassword.Properties.BeepOnError = false;
             this.txtConfrmPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtConfrmPassword.Properties.PasswordChar = '*';
             this.txtConfrmPassword.Size = new System.Drawing.Size(343, 26);
             this.txtConfrmPassword.TabIndex = 4;
             // 
@@ -144,6 +145,7 @@ namespace DiamondTrading.Master
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
             this.txtPassword.Properties.BeepOnError = false;
             this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPassword.Properties.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(343, 26);
             this.txtPassword.TabIndex = 3;
             // 
@@ -307,31 +309,31 @@ namespace DiamondTrading.Master
             // 
             this.grdPermissionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdPermissionDetails.Location = new System.Drawing.Point(2, 23);
-            this.grdPermissionDetails.MainView = this.gridView5;
+            this.grdPermissionDetails.MainView = this.grvPermissionDetails;
             this.grdPermissionDetails.Name = "grdPermissionDetails";
             this.grdPermissionDetails.Size = new System.Drawing.Size(706, 173);
             this.grdPermissionDetails.TabIndex = 5;
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView5,
+            this.grvPermissionDetails,
             this.gridView6});
             // 
-            // gridView5
+            // grvPermissionDetails
             // 
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn1});
-            this.gridView5.GridControl = this.grdPermissionDetails;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.Editable = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
+            this.grvPermissionDetails.GridControl = this.grdPermissionDetails;
+            this.grvPermissionDetails.Name = "grvPermissionDetails";
+            this.grvPermissionDetails.OptionsBehavior.Editable = false;
+            this.grvPermissionDetails.OptionsSelection.MultiSelect = true;
+            this.grvPermissionDetails.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.grvPermissionDetails.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn3
             // 
             this.gridColumn3.Caption = "Id";
             this.gridColumn3.FieldName = "Id";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
             // 
             // gridColumn1
             // 
@@ -339,7 +341,7 @@ namespace DiamondTrading.Master
             this.gridColumn1.FieldName = "DisplayName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.VisibleIndex = 1;
             // 
             // gridView6
             // 
@@ -396,7 +398,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
 
@@ -427,7 +429,7 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.LabelControl labelControl7;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraGrid.GridControl grdPermissionDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvPermissionDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
