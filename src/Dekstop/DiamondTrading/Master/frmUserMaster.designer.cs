@@ -53,10 +53,10 @@ namespace DiamondTrading.Master
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.grdPermissionDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
@@ -90,7 +90,7 @@ namespace DiamondTrading.Master
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(710, 137);
             this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "User Type && Name ";
+            this.groupControl1.Text = "User Account Details";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // txtUserName
@@ -325,6 +325,14 @@ namespace DiamondTrading.Master
             this.gridView5.OptionsBehavior.Editable = false;
             this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Id";
+            this.gridColumn3.FieldName = "Id";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
+            // 
             // gridColumn1
             // 
             this.gridColumn1.Caption = "Permission Name";
@@ -347,14 +355,6 @@ namespace DiamondTrading.Master
             this.gridColumn43.Caption = "Id";
             this.gridColumn43.FieldName = "Id";
             this.gridColumn43.Name = "gridColumn43";
-            // 
-            // gridColumn3
-            // 
-            this.gridColumn3.Caption = "Id";
-            this.gridColumn3.FieldName = "Id";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
             // 
             // frmUserMaster
             // 
