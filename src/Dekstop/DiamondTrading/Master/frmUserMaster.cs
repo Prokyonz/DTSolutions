@@ -39,15 +39,19 @@ namespace DiamondTrading.Master
 
         private async void frmUserMaster_Load(object sender, EventArgs e)
         {
+            txtUserName.ReadOnly = false;
+
             await GetListForDepedendeFields();
 
-            GetPermissions();
+            await GetPermissions();
 
             if (string.IsNullOrEmpty(_selectedUser) == false)
             {
                 _EditedUserMasterSet = _UserMasters.Where(c => c.Id == _selectedUser).FirstOrDefault();
                 if (_EditedUserMasterSet != null)
                 {
+                    txtUserName.ReadOnly = true;
+
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     txtName.Text = _EditedUserMasterSet.Name;
                     txtUserName.Text = _EditedUserMasterSet.UserName;
@@ -59,11 +63,14 @@ namespace DiamondTrading.Master
                     txtMobileNo.Text = _EditedUserMasterSet.MobileNo;
                     txtHomeNo.Text = _EditedUserMasterSet.HomeNo;
 
-                    if (_EditedUserMasterSet.UserPermissionDetails?.Count > 0)
+                    var permissionList = await _UserMasterRepository.GetUserPermissions(_EditedUserMasterSet.Id);
+
+
+                    if (permissionList != null)
                     {
-                        for (int i = 0; i < _EditedUserMasterSet.UserPermissionDetails.Count; i++)
+                        for (int i = 0; i < permissionList.Count; i++)
                         {
-                            grvPermissionDetails.SelectRow(grvPermissionDetails.LocateByValue("Id", _EditedUserMasterSet.UserPermissionDetails[i].Id));
+                            grvPermissionDetails.SelectRow(grvPermissionDetails.LocateByValue("Id", permissionList[i].PermissionMasterId));
                         }
                     }
                     //txtRefrenceBy.Text = _EditedUserMasterSet.ReferenceBy;
@@ -72,7 +79,7 @@ namespace DiamondTrading.Master
                     //dtStartDate.EditValue = _EditedUserMasterSet.DateOfJoin;
                     //dtEndDate.EditValue = _EditedUserMasterSet.DateOfEnd;
                 }
-            }
+            }            
         }
 
         private async Task GetListForDepedendeFields()
@@ -193,8 +200,8 @@ namespace DiamondTrading.Master
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
-                        UserPermissionDetails = GetSelectedPermissions(tempId)
-                };
+                        UserPermissionChilds = GetSelectedPermissions(tempId)
+                    };
 
                     var Result = await _UserMasterRepository.AddUserAsync(UserMaster);
 
@@ -206,6 +213,19 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
+
+                    if (txtPassword.Text.Length > 0)
+                    {
+                        if(txtPassword.Text == txtConfrmPassword.Text)
+                        {
+                            _EditedUserMasterSet.Password = txtPassword.Text;
+                        } else
+                        {
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.PasswordNotMatched), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txtPassword.Focus();
+                        }
+                        
+                    }
                     _EditedUserMasterSet.Name = txtName.Text;
                     //_EditedUserMasterSet.DepartmentName = lueDepartment.EditValue.ToString();
                     //_EditedUserMasterSet.Designation = lueDesignation.EditValue.ToString();
@@ -214,6 +234,7 @@ namespace DiamondTrading.Master
                     _EditedUserMasterSet.Address2 = txtAddress2.Text;
                     _EditedUserMasterSet.MobileNo = txtMobileNo.Text;
                     _EditedUserMasterSet.HomeNo = txtHomeNo.Text;
+                    _EditedUserMasterSet.Address = txtAddress.Text;
                     //_EditedUserMasterSet.ReferenceBy = txtRefrenceBy.Text;
                     //_EditedUserMasterSet.AadharCardNo = txtAadharcardNo.Text;
                     //_EditedUserMasterSet.DateOfBirth = Convert.ToDateTime(dtDateOfBirth.EditValue);
@@ -221,7 +242,7 @@ namespace DiamondTrading.Master
                     //_EditedUserMasterSet.DateOfEnd = Convert.ToDateTime(dtEndDate.EditValue);
                     //_EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedUserMasterSet.UpdatedDate = DateTime.Now;
-                    _EditedUserMasterSet.UserPermissionDetails = GetSelectedPermissions(_EditedUserMasterSet.Id);
+                    _EditedUserMasterSet.UserPermissionChilds = GetSelectedPermissions(_EditedUserMasterSet.Id);
 
 
                     var Result = await _UserMasterRepository.UpdateUserAsync(_EditedUserMasterSet);
@@ -248,19 +269,17 @@ namespace DiamondTrading.Master
             }
         }
 
-        private List<UserPermissionDetail> GetSelectedPermissions(string UserId)
+        private List<UserPermissionChild> GetSelectedPermissions(string UserId)
         {
-            List<UserPermissionDetail> userPermissionDetails = new List<UserPermissionDetail>();
+            List<UserPermissionChild> userPermissionDetails = new List<UserPermissionChild>();
             if (grvPermissionDetails.GetSelectedRows().Count() > 0)
-            {
-                string tempId = Guid.NewGuid().ToString();
+            {                
                 Int32[] selectedRowHandles = grvPermissionDetails.GetSelectedRows();
-                UserPermissionDetail userPermission = null;
+                UserPermissionChild userPermission = null;
                 for (int i = 0; i < selectedRowHandles.Length; i++)
                 {
-                    userPermission = new UserPermissionDetail();
-                    userPermission.Id = tempId;
-                    userPermission.Sr = i + 1;
+                    userPermission = new UserPermissionChild();
+                    userPermission.Id = Guid.NewGuid().ToString();
                     userPermission.UserId = UserId;
                     userPermission.PermissionMasterId = grvPermissionDetails.GetRowCellValue(selectedRowHandles[i], "Id").ToString();
                     userPermission.Status = true;
@@ -313,7 +332,7 @@ namespace DiamondTrading.Master
             }
         }
 
-        private async void GetPermissions()
+        private async Task GetPermissions()
         {
             grdPermissionDetails.DataSource = await _UserMasterRepository.GetAllPermissions();
         }

@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220122111120_adduseridcolpermission")]
+    partial class adduseridcolpermission
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3678,7 +3680,7 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("UserMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
+            modelBuilder.Entity("Repository.Entities.UserPermissionDetail", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -3697,13 +3699,16 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserMasterId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserMasterId");
 
-                    b.ToTable("UserPermissionChild");
+                    b.ToTable("UserPermissionDetail");
                 });
 
             modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
@@ -3812,11 +3817,11 @@ namespace EFCore.SQL.Migrations
                         .HasForeignKey("BranchMasterId");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
+            modelBuilder.Entity("Repository.Entities.UserPermissionDetail", b =>
                 {
-                    b.HasOne("Repository.Entities.UserMaster", "UserMaster")
-                        .WithMany("UserPermissionChilds")
-                        .HasForeignKey("UserId");
+                    b.HasOne("Repository.Entities.UserMaster", null)
+                        .WithMany("UserPermissionDetails")
+                        .HasForeignKey("UserMasterId");
                 });
 #pragma warning restore 612, 618
         }

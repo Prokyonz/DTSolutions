@@ -60,7 +60,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<TransferMaster> TransferMaster { get; set; }
         public DbSet<LoanMaster> LoanMaster { get; set; }
         public DbSet<PermissionMaster> PermissionMaster { get; set; }
-        public DbSet<UserPermissionDetail> UserPermissionDetail { get; set; }
+        public DbSet<UserPermissionChild> UserPermissionChild { get; set; }
 
 
 
@@ -140,6 +140,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberProcessMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<TransferMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LoanMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<UserPermissionChild>().Property(c => c.Sr).UseIdentityColumn();
+            
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
             modelBuilder.Entity<AssortmentProcessSend>().HasNoKey();

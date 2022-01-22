@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220122111900_removeuserpermissiontable")]
+    partial class removeuserpermissiontable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3678,34 +3680,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("UserMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PermissionMasterId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserPermissionChild");
-                });
-
             modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
                 {
                     b.HasOne("Repository.Entities.AccountToAssortMaster", "AccountToAssortMaster")
@@ -3810,13 +3784,6 @@ namespace EFCore.SQL.Migrations
                     b.HasOne("Repository.Entities.BranchMaster", null)
                         .WithMany("UserMasters")
                         .HasForeignKey("BranchMasterId");
-                });
-
-            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
-                {
-                    b.HasOne("Repository.Entities.UserMaster", "UserMaster")
-                        .WithMany("UserPermissionChilds")
-                        .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
         }
