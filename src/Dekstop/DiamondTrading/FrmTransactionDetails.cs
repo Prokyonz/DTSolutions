@@ -77,6 +77,18 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtabMixed;
                     this.Text = "Mixed Report";
                     break;
+                case "PurchaseSlipPrint":
+                    xtabPurchaseSlipPrint.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabPurchaseSlipPrint;
+                    xtabPurchaseSlipPrint.Text = "Purchase Slip Details";
+                    this.Text = "Purchase Slips Details";
+                    break;
+                case "SalesSlipPrint":
+                    xtabPurchaseSlipPrint.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabPurchaseSlipPrint;
+                    xtabPurchaseSlipPrint.Text = "Sales Slip Details";
+                    this.Text = "Sales Slips Details";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -96,6 +108,7 @@ namespace DiamondTrading
             xtabExpense.PageVisible = false;
             xtabLoan.PageVisible = false;
             xtabMixed.PageVisible = false;
+            xtabPurchaseSlipPrint.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -202,6 +215,19 @@ namespace DiamondTrading
                     var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlMixed.DataSource = data;
                     gridView15.ExpandAllGroups();
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
+                {
+                    int ActionType = 1;
+                    if (SelectedTabPage.Equals("SalesSlipPrint"))
+                        ActionType = 2;
+
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType,Common.LoginCompany, Common.LoginFinancialYear);
+                    grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
                 }
             }
         }
@@ -339,6 +365,19 @@ namespace DiamondTrading
 
         private void grdTransactionMaster_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void repoPurchaseSlipPrintBtn_Click(object sender, EventArgs e)
+        {
+            int ActionType = 1;
+            if (SelectedTabPage.Equals("SalesSlipPrint"))
+                ActionType = 2;
+
+            string SlipNo = grvPurchaseSlipDetails.GetRowCellValue(grvPurchaseSlipDetails.FocusedRowHandle, "SlipNo").ToString();
+            string FinancialYear = grvPurchaseSlipDetails.GetRowCellValue(grvPurchaseSlipDetails.FocusedRowHandle, "FinancialYearId").ToString();
+            Transaction.FrmViewSlip fvs = new Transaction.FrmViewSlip(ActionType, SlipNo, FinancialYear);
+            fvs.ShowDialog();
 
         }
     }
