@@ -45,7 +45,6 @@ namespace DiamondTrading
                     txtPassword.Focus();
                     return;
                 }
-
                 
                 var data = await _userMasterRepository.Login(txtUsername.Text, txtPassword.Text);
                 if (data.UserMaster != null)
@@ -107,7 +106,7 @@ namespace DiamondTrading
             options.Title = "Diamond Trading";
             options.Subtitle = "Diamond Tranding & Account Management Software";
             options.RightFooter = "Starting...";
-            options.LeftFooter = "Copyright @ 2021" + Environment.NewLine + "All Rights reserved.";
+            options.LeftFooter = "Copyright @ " + DateTime.Now.Year + " "  + Environment.NewLine + "All Rights reserved.";
             options.LoadingIndicatorType = FluentLoadingIndicatorType.Dots;
             options.Opacity = 150;
             options.OpacityColor = Color.DodgerBlue;
