@@ -129,6 +129,24 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PurchaseSlipDetailsSPModel>> GetAvailableSlipDetailsReport(int ActionType, string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var purchaseSlipDetailsReport = await _databaseContext.SPPurchaseSlipDetailsModel.FromSqlRaw($"GetAvailableSlipsDetail '"+ ActionType + "','" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return purchaseSlipDetailsReport;
+            }
+        }
+
+        public async Task<List<SlipDetailPrintSPModel>> GetSlipDetails(int ActionType, string companyId, string SlipNo, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var slipDetails = await _databaseContext.SPSlipDetailPrintModel.FromSqlRaw($"GetSlipDetail '"+ ActionType + "','" + companyId + "','" + SlipNo + "','" + financialYearId + "'").ToListAsync();
+                return slipDetails;
+            }
+        }
+
         public async Task<PurchaseMaster> UpdatePurchaseAsync(PurchaseMaster purchaseMaster)
         {
             using (_databaseContext = new DatabaseContext())
