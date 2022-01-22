@@ -28,7 +28,7 @@ namespace EFCore.SQL.Repository
                     userMaster.Id = Guid.NewGuid().ToString();
                 await _databaseContext.UserMaster.AddAsync(userMaster);
 
-                await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
+                //await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
 
                 await _databaseContext.SaveChangesAsync();
 
@@ -75,15 +75,23 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<UserPermissionChild>> GetUserPermissions(string userId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.UserPermissionChild.Where(w => w.UserId == userId).ToListAsync();
+            }
+
+        }
+
         public async Task<LoginResponse> Login(string userId, string password)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 LoginResponse loginResponse = new LoginResponse();
-                loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.UserName == userId && w.Password == password).FirstOrDefaultAsync();
+                loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.UserName == userId && w.Password == password && w.IsDelete == false).Include("UserPermissionChilds").FirstOrDefaultAsync();
                 if (loginResponse.UserMaster != null)
                 {
-                    loginResponse.UserPermissionDetails = await _databaseContext.UserPermissionDetail.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
                     //loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();
 
                     //if (loginResponse.UserRoleMasters.Count > 0) {
@@ -123,13 +131,15 @@ namespace EFCore.SQL.Repository
                     getUser.UpdatedDate = userMaster.UpdatedDate;
                     getUser.UpdatedBy = userMaster.UpdatedBy;
 
-                    if (userMaster.UserPermissionDetails != null)
+                    if (userMaster.UserPermissionChilds != null)
                     {
-                        var getAllPermisson = await _databaseContext.UserPermissionDetail.Where(w => w.UserId == userMaster.Id).ToListAsync();
-                        _databaseContext.UserPermissionDetail.RemoveRange(getAllPermisson);
+                        var getAllPermisson = await _databaseContext.UserPermissionChild.Where(w => w.UserId == userMaster.Id).ToListAsync();
+                        _databaseContext.UserPermissionChild.RemoveRange(getAllPermisson);
                     }
 
-                    await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
+                    getUser.UserPermissionChilds = userMaster.UserPermissionChilds;
+
+                    //await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
                 }
                 await _databaseContext.SaveChangesAsync();
 

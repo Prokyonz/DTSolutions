@@ -36,6 +36,6 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
 
-        public virtual List<UserPermissionDetail> UserPermissionDetails { get; set; }
+        public virtual List<UserPermissionChild> UserPermissionChilds { get; set; }
     }
 }

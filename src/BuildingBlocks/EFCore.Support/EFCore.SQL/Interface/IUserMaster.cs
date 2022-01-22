@@ -11,6 +11,7 @@ namespace EFCore.SQL.Interface
     {
         Task<LoginResponse> Login(string userId, string password);
         Task<List<PermissionMaster>> GetAllPermissions();
+        Task<List<UserPermissionChild>> GetUserPermissions(string userId);
         Task<List<UserMaster>> GetAllUserAsync();
         Task<UserMaster> AddUserAsync(UserMaster userMaster);
         Task<UserMaster> UpdateUserAsync(UserMaster userMaster);

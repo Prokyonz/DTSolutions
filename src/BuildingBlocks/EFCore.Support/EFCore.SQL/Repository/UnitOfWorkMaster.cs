@@ -23,7 +23,6 @@ namespace EFCore.SQL.Repository
         private LessWeightMasterRepository _lessWeightMasterRepository;
         private PartyMasterRepository _partyMasterRepository;
         private SalesMasterRepository _salesMasterRepository;
-        private UserMasterRepository _userMasterRepository;
         private RoleMasterRepository _roleMasterRepository;
         private ExpenseMasterRepository _expenseMasterRepository;
 
@@ -41,17 +40,6 @@ namespace EFCore.SQL.Repository
                 return _roleMasterRepository;
             }
         }
-
-        public UserMasterRepository UserMaster
-        {
-            get
-            {
-                if (_userMasterRepository == null)
-                    _userMasterRepository = new UserMasterRepository();
-                return _userMasterRepository;
-            }
-        }
-
         public SalesMasterRepository SalesMaster
         {
             get
