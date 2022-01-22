@@ -1197,6 +1197,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup9.Size = new System.Drawing.Size(326, 121);
             this.grpGroup9.TabIndex = 9;
             this.grpGroup9.Text = "Final Amount Calculations";
+            this.grpGroup9.Paint += new System.Windows.Forms.PaintEventHandler(this.grpGroup9_Paint);
             // 
             // labelControl22
             // 

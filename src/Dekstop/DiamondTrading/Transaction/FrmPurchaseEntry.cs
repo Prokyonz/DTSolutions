@@ -1008,12 +1008,6 @@ namespace DiamondTrading.Transaction
             //CalculateBrokerageRate(false);
         }
 
-        private void Image1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            Image1.Image = LoadImage();
-            Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-        }
-
         private Image LoadImage()
         {
             Image newimage=null;
@@ -1039,16 +1033,44 @@ namespace DiamondTrading.Transaction
             return newimage;
         }
 
+        private void BrowseImage(int SelectedImage)
+        {
+            Transaction.FrmTakePicture fpc = new Transaction.FrmTakePicture();
+            fpc.Image1.Image = Image1.Image;
+            fpc.Image2.Image = Image2.Image;
+            fpc.Image3.Image = Image3.Image;
+            fpc.SelectedImage = SelectedImage;
+            if (fpc.ShowDialog() == DialogResult.OK)
+            {
+                Image1.Image = fpc.Image1.Image;
+                Image2.Image = fpc.Image2.Image;
+                Image3.Image = fpc.Image3.Image;
+
+                Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            }
+        }
+
+        private void Image1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            //Image1.Image = LoadImage();
+            //Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            BrowseImage(0);
+        }
+
         private void Image2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Image2.Image = LoadImage();
-            Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            //Image2.Image = LoadImage();
+            //Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            BrowseImage(1);
         }
 
         private void Image3_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            Image3.Image = LoadImage();
-            Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            //Image3.Image = LoadImage();
+            //Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            BrowseImage(2);
         }
 
         private async void btnSave_Click(object sender, EventArgs e)
@@ -1303,6 +1325,11 @@ namespace DiamondTrading.Transaction
             LoadBranch(lueCompany.EditValue.ToString());
 
             FillCombos();
+        }
+
+        private void grpGroup9_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
