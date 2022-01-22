@@ -55,6 +55,7 @@ namespace DiamondTrading.Master
             this.grvPermissionDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -321,7 +322,8 @@ namespace DiamondTrading.Master
             // 
             this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
-            this.gridColumn1});
+            this.gridColumn1,
+            this.gridColumn2});
             this.grvPermissionDetails.GridControl = this.grdPermissionDetails;
             this.grvPermissionDetails.Name = "grvPermissionDetails";
             this.grvPermissionDetails.OptionsBehavior.Editable = false;
@@ -340,8 +342,15 @@ namespace DiamondTrading.Master
             this.gridColumn1.Caption = "Permission Name";
             this.gridColumn1.FieldName = "DisplayName";
             this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.OptionsFilter.AllowInHeaderSearch = DevExpress.Utils.DefaultBoolean.True;
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 1;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "KeyName";
+            this.gridColumn2.FieldName = "KeyName";
+            this.gridColumn2.Name = "gridColumn2";
             // 
             // gridView6
             // 
@@ -434,5 +443,6 @@ namespace DiamondTrading.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
     }
 }

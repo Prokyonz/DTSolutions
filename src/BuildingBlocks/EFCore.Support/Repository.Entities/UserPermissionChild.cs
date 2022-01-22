@@ -13,6 +13,7 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string PermissionMasterId { get; set; }
         public string UserId { get; set; }
+        public string KeyName { get; set; }
         public bool Status { get; set; } //Permission Status true/false
 
         [ForeignKey("UserId")]
