@@ -39,11 +39,13 @@ namespace DiamondTrading.Master
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoUserName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
@@ -80,6 +82,8 @@ namespace DiamondTrading.Master
             this.grdPermissionDetails.Location = new System.Drawing.Point(2, 23);
             this.grdPermissionDetails.MainView = this.gridView5;
             this.grdPermissionDetails.Name = "grdPermissionDetails";
+            this.grdPermissionDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repoUserName});
             this.grdPermissionDetails.Size = new System.Drawing.Size(706, 311);
             this.grdPermissionDetails.TabIndex = 5;
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -102,9 +106,7 @@ namespace DiamondTrading.Master
             this.gridColumn3.Caption = "Id";
             this.gridColumn3.FieldName = "Id";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 0;
-            this.gridColumn3.Width = 214;
+            this.gridColumn3.Width = 148;
             // 
             // gridColumn1
             // 
@@ -112,15 +114,17 @@ namespace DiamondTrading.Master
             this.gridColumn1.FieldName = "DisplayName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
-            this.gridColumn1.Width = 847;
+            this.gridColumn1.VisibleIndex = 0;
+            this.gridColumn1.Width = 384;
             // 
             // gridColumn2
             // 
             this.gridColumn2.Caption = "Select Approvar Name";
+            this.gridColumn2.ColumnEdit = this.repoUserName;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 2;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 258;
             // 
             // gridView6
             // 
@@ -136,6 +140,17 @@ namespace DiamondTrading.Master
             this.gridColumn43.Caption = "Id";
             this.gridColumn43.FieldName = "Id";
             this.gridColumn43.Name = "gridColumn43";
+            // 
+            // repoUserName
+            // 
+            this.repoUserName.AutoHeight = false;
+            this.repoUserName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoUserName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name")});
+            this.repoUserName.Name = "repoUserName";
+            this.repoUserName.NullText = "";
             // 
             // frmApprovalMaster
             // 
@@ -162,6 +177,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -177,5 +193,6 @@ namespace DiamondTrading.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoUserName;
     }
 }
