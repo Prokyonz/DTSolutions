@@ -30,6 +30,12 @@ namespace DiamondTrading.Master
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
+            this.txtConfrmPassword = new DevExpress.XtraEditors.TextEdit();
+            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.txtName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
@@ -44,14 +50,18 @@ namespace DiamondTrading.Master
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtPassword = new DevExpress.XtraEditors.TextEdit();
-            this.txtConfrmPassword = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl10 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.txtUserName = new DevExpress.XtraEditors.TextEdit();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.grdPermissionDetails = new DevExpress.XtraGrid.GridControl();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtConfrmPassword.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
@@ -59,9 +69,11 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtConfrmPassword.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -80,6 +92,70 @@ namespace DiamondTrading.Master
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "User Type && Name ";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Location = new System.Drawing.Point(355, 47);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtUserName.Properties.Appearance.Options.UseFont = true;
+            this.txtUserName.Properties.BeepOnError = false;
+            this.txtUserName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtUserName.Size = new System.Drawing.Size(343, 26);
+            this.txtUserName.TabIndex = 2;
+            this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(355, 28);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(66, 14);
+            this.labelControl7.TabIndex = 11;
+            this.labelControl7.Text = "User Name*";
+            // 
+            // labelControl10
+            // 
+            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl10.Appearance.Options.UseFont = true;
+            this.labelControl10.Location = new System.Drawing.Point(355, 79);
+            this.labelControl10.Name = "labelControl10";
+            this.labelControl10.Size = new System.Drawing.Size(103, 14);
+            this.labelControl10.TabIndex = 10;
+            this.labelControl10.Text = "Confirm Password*";
+            // 
+            // txtConfrmPassword
+            // 
+            this.txtConfrmPassword.Location = new System.Drawing.Point(355, 99);
+            this.txtConfrmPassword.Name = "txtConfrmPassword";
+            this.txtConfrmPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtConfrmPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtConfrmPassword.Properties.BeepOnError = false;
+            this.txtConfrmPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtConfrmPassword.Size = new System.Drawing.Size(343, 26);
+            this.txtConfrmPassword.TabIndex = 4;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(6, 99);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtPassword.Properties.Appearance.Options.UseFont = true;
+            this.txtPassword.Properties.BeepOnError = false;
+            this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtPassword.Size = new System.Drawing.Size(343, 26);
+            this.txtPassword.TabIndex = 3;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(6, 79);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(58, 14);
+            this.labelControl1.TabIndex = 7;
+            this.labelControl1.Text = "Password*";
             // 
             // txtName
             // 
@@ -192,7 +268,7 @@ namespace DiamondTrading.Master
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(484, 312);
+            this.btnSave.Location = new System.Drawing.Point(484, 516);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
@@ -201,7 +277,7 @@ namespace DiamondTrading.Master
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(565, 312);
+            this.btnReset.Location = new System.Drawing.Point(565, 516);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 10;
@@ -211,76 +287,74 @@ namespace DiamondTrading.Master
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(646, 312);
+            this.btnCancel.Location = new System.Drawing.Point(646, 516);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // labelControl1
+            // groupControl3
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(6, 79);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(58, 14);
-            this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "Password*";
+            this.groupControl3.Controls.Add(this.grdPermissionDetails);
+            this.groupControl3.Location = new System.Drawing.Point(11, 312);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(710, 198);
+            this.groupControl3.TabIndex = 9;
+            this.groupControl3.Text = "Permissions";
             // 
-            // txtPassword
+            // grdPermissionDetails
             // 
-            this.txtPassword.Location = new System.Drawing.Point(6, 99);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtPassword.Properties.BeepOnError = false;
-            this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtPassword.Size = new System.Drawing.Size(343, 26);
-            this.txtPassword.TabIndex = 3;
+            this.grdPermissionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPermissionDetails.Location = new System.Drawing.Point(2, 23);
+            this.grdPermissionDetails.MainView = this.gridView5;
+            this.grdPermissionDetails.Name = "grdPermissionDetails";
+            this.grdPermissionDetails.Size = new System.Drawing.Size(706, 173);
+            this.grdPermissionDetails.TabIndex = 5;
+            this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView5,
+            this.gridView6});
             // 
-            // txtConfrmPassword
+            // gridView5
             // 
-            this.txtConfrmPassword.Location = new System.Drawing.Point(355, 99);
-            this.txtConfrmPassword.Name = "txtConfrmPassword";
-            this.txtConfrmPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtConfrmPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtConfrmPassword.Properties.BeepOnError = false;
-            this.txtConfrmPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtConfrmPassword.Size = new System.Drawing.Size(343, 26);
-            this.txtConfrmPassword.TabIndex = 4;
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn1});
+            this.gridView5.GridControl = this.grdPermissionDetails;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsBehavior.Editable = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
             // 
-            // labelControl10
+            // gridColumn1
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(355, 79);
-            this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(103, 14);
-            this.labelControl10.TabIndex = 10;
-            this.labelControl10.Text = "Confirm Password*";
+            this.gridColumn1.Caption = "Permission Name";
+            this.gridColumn1.FieldName = "DisplayName";
+            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumn1.Visible = true;
+            this.gridColumn1.VisibleIndex = 0;
             // 
-            // labelControl7
+            // gridView6
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(355, 28);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(66, 14);
-            this.labelControl7.TabIndex = 11;
-            this.labelControl7.Text = "User Name*";
+            this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn43});
+            this.gridView6.GridControl = this.grdPermissionDetails;
+            this.gridView6.Name = "gridView6";
+            this.gridView6.OptionsBehavior.Editable = false;
+            this.gridView6.OptionsView.ShowGroupPanel = false;
             // 
-            // txtUserName
+            // gridColumn43
             // 
-            this.txtUserName.Location = new System.Drawing.Point(355, 47);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.txtUserName.Properties.Appearance.Options.UseFont = true;
-            this.txtUserName.Properties.BeepOnError = false;
-            this.txtUserName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUserName.Size = new System.Drawing.Size(343, 26);
-            this.txtUserName.TabIndex = 2;
-            this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
+            this.gridColumn43.Caption = "Id";
+            this.gridColumn43.FieldName = "Id";
+            this.gridColumn43.Name = "gridColumn43";
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Id";
+            this.gridColumn3.FieldName = "Id";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 1;
             // 
             // frmUserMaster
             // 
@@ -288,7 +362,8 @@ namespace DiamondTrading.Master
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(735, 347);
+            this.ClientSize = new System.Drawing.Size(735, 551);
+            this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -307,6 +382,9 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtConfrmPassword.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtName.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
@@ -315,9 +393,11 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.txtMobileNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAddress.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtConfrmPassword.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -345,5 +425,12 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.TextEdit txtUserName;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private DevExpress.XtraGrid.GridControl grdPermissionDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

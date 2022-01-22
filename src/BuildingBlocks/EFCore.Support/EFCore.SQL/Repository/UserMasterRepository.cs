@@ -46,6 +46,11 @@ namespace EFCore.SQL.Repository
             return true;
         }
 
+        public async Task<List<PermissionMaster>> GetAllPermissions()
+        {
+            return await _databaseContext.PermissionMaster.ToListAsync();
+        }
+
         //public async Task<List<RoleClaimMaster>> GetAllClaims(string userId)
         //{
         //    return await _databaseContext.RoleClaimMaster.ToListAsync();

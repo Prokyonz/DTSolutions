@@ -39,7 +39,9 @@ namespace DiamondTrading.Master
         private async void frmUserMaster_Load(object sender, EventArgs e)
         {
             await GetListForDepedendeFields();
-            
+
+            GetPermissions();
+
             if (string.IsNullOrEmpty(_selectedUser) == false)
             {
                 _EditedUserMasterSet = _UserMasters.Where(c => c.Id == _selectedUser).FirstOrDefault();
@@ -180,7 +182,7 @@ namespace DiamondTrading.Master
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
-                        UpdatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now
                     };
 
                     var Result = await _UserMasterRepository.AddUserAsync(UserMaster);
@@ -275,6 +277,11 @@ namespace DiamondTrading.Master
             {
                 e.Handled = false;
             }
+        }
+
+        private async void GetPermissions()
+        {
+            grdPermissionDetails.DataSource = await _UserMasterRepository.GetAllPermissions();
         }
     }
 }
