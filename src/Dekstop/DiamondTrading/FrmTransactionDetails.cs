@@ -380,5 +380,41 @@ namespace DiamondTrading
             fvs.ShowDialog();
 
         }
+
+        private void grvTransMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
+            if (e.HitInfo.InRow)
+            {
+                view.FocusedRowHandle = e.HitInfo.RowHandle;
+                popupMenu1.ShowPopup(Control.MousePosition);
+            }
+        }
+
+        private void grvTransMaster_GridMenuItemClick(object sender, GridMenuItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnApprove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(1);
+            if(frmApproveReject.ShowDialog()==DialogResult.OK)
+            {
+                //frmApproveReject.Comment;
+                _ = LoadGridData(true);
+            }
+        }
+
+        private void btnReject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(2);
+            if (frmApproveReject.ShowDialog() == DialogResult.OK)
+            {
+                //frmApproveReject.Comment;
+                _ = LoadGridData(true);
+            }
+        }
     }
 }

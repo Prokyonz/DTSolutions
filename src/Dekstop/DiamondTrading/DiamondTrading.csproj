@@ -419,6 +419,12 @@
     <Compile Include="Process\FrmKapanMap.Designer.cs">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transaction\FrmApproveReject.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\FrmApproveReject.Designer.cs">
+      <DependentUpon>FrmApproveReject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmExpenseEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -598,6 +604,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmKapanMap.resx">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\FrmApproveReject.resx">
+      <DependentUpon>FrmApproveReject.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmExpenseEntry.resx">
       <DependentUpon>FrmExpenseEntry.cs</DependentUpon>
