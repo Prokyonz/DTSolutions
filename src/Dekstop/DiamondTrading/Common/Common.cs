@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -36,6 +37,11 @@ namespace DiamondTrading
         public static bool PrintPurchasePF = false;
         public static bool AllowToSelectPurchaseDueDate = false;
 
+        public static List<UserPermissionChild> UserPermissionChildren
+        {
+            get;
+            set;
+        }
         #region "Default Values"
         public static string DefaultShape = "00000000-0000-0000-0000-000000000000";
         public static string DefaultSize = "00000000-0000-0000-0000-000000000000";

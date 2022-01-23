@@ -39,7 +39,7 @@ namespace Repository.Entities.Model
         public decimal Weight { get; set; }
         public double BuyingRate { get; set; }
         public string Message { get; set; }
-        public int ApprovalType { get; set; }
+        public string ApprovalType { get; set; }
         public string Remarks { get; set; }
 
     }

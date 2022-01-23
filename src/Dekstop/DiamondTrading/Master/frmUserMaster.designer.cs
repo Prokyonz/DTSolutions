@@ -329,6 +329,7 @@ namespace DiamondTrading.Master
             this.grvPermissionDetails.OptionsBehavior.Editable = false;
             this.grvPermissionDetails.OptionsSelection.MultiSelect = true;
             this.grvPermissionDetails.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.grvPermissionDetails.OptionsView.ShowAutoFilterRow = true;
             this.grvPermissionDetails.OptionsView.ShowGroupPanel = false;
             // 
             // gridColumn3

@@ -383,12 +383,20 @@ namespace DiamondTrading
 
         private void grvTransMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
-            DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
-            DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
-            if (e.HitInfo.InRow)
+            string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
+            if (ApprovalType.Equals("Pending"))
             {
-                view.FocusedRowHandle = e.HitInfo.RowHandle;
-                popupMenu1.ShowPopup(Control.MousePosition);
+                var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+                if (IsHavingApprovalPermission.Any())
+                {
+                    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
+                    if (e.HitInfo.InRow)
+                    {
+                        view.FocusedRowHandle = e.HitInfo.RowHandle;
+                        popupMenu1.ShowPopup(Control.MousePosition);
+                    }
+                }
             }
         }
 
@@ -397,24 +405,66 @@ namespace DiamondTrading
 
         }
 
-        private void btnApprove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void btnApprove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(1);
             if(frmApproveReject.ShowDialog()==DialogResult.OK)
             {
-                //frmApproveReject.Comment;
+                string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 _ = LoadGridData(true);
             }
         }
 
-        private void btnReject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private async void btnReject_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(2);
             if (frmApproveReject.ShowDialog() == DialogResult.OK)
             {
-                //frmApproveReject.Comment;
+                string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 _ = LoadGridData(true);
             }
+        }
+
+        private void grvTransMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.Column == gridColumnPurApprovalType)
+            {
+                if (e.CellValue.ToString().Equals("0"))
+                {
+                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
+                }
+                else if (e.CellValue.ToString().Equals("1"))
+                {
+                    e.Appearance.ForeColor = Color.Black;
+                    grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
+                }
+                else if (e.CellValue.ToString().Equals("2"))
+                {
+                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
+                }
+            }
+            //if (e.RowHandle < 0)
+            //    return;
+            //string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
+            //if (Convert.ToInt32(ApprovalType) == 0)
+            //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+            //else if (Convert.ToInt32(ApprovalType) == 2)
+            //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+        }
+
+        private void grvTransMaster_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            //if (e.RowHandle < 0)
+            //    return;
+            //string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
+            //if (Convert.ToInt32(ApprovalType) == 0)
+            //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+            //else if (Convert.ToInt32(ApprovalType) == 2)
+            //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
         }
     }
 }

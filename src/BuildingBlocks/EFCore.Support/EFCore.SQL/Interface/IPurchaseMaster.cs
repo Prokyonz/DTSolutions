@@ -20,5 +20,7 @@ namespace EFCore.SQL.Interface
         Task<bool> DeletePurchaseAsync(string purchaseId, bool isPermanantDetele = false);
         Task<long> GetMaxSlipNo(string branchId, string financialYearId);
         Task<long> GetMaxSrNo(string companyId, string financialYearId);
+
+        Task<bool> UpdateApprovalStatus(string purchaseId, string message, int status);
     }
 }

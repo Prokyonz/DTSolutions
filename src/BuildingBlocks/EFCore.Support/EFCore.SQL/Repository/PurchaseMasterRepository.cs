@@ -204,5 +204,24 @@ namespace EFCore.SQL.Repository
                 return purchaseMaster;
             }
         }
+
+        public async Task<bool> UpdateApprovalStatus(string purchaseId, string message, int status)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseId).FirstOrDefaultAsync();
+
+                if (getPurchase != null)
+                {
+                    getPurchase.ApprovalType = status;
+                    getPurchase.Message = message;
+
+                    await _databaseContext.SaveChangesAsync();
+
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }
