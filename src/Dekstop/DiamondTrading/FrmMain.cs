@@ -1,5 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DiamondTrading.Master;
+using EFCore.SQL.Repository;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +16,13 @@ namespace DiamondTrading
 {
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
+        string[] permissionList = new string[] { "options","transfer","shape_master","receipt","contra_report","purchase","charni_process","gala_process","loan","payment_report","expense_report","receipt_report","kapan_master","size_master","financial_year_master","contra","gala_process","loan_report","less_weight_group_master","ledger_master","company_master","expense","number_master","purchase_report","assort_process","salary","boil_process","mixed_report","sales","currency_master","sales_report","kapan_map","purity_master","user_master","approval_master","payment","brokerage_master","calculator","number_master", "branch_master" };
+        UserMasterRepository userMasterRepository;
         #region "FormEvents"
 
         public FrmMain()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         private void accordionControlElement15_Click(object sender, EventArgs e)
@@ -32,8 +36,268 @@ namespace DiamondTrading
             OpenMasterDetailsForm("CompanyMaster");
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
+        private async Task CheckPermission()
         {
+            userMasterRepository = new UserMasterRepository();
+            List<UserPermissionChild> userPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
+
+            for (int i = 0; i < userPermissionChildren.Count; i++)
+            {
+                switch (userPermissionChildren[i].KeyName)
+                {
+                    //Master Menu
+                    case "company_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementCompanyMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "branch_master":                        
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementBranchMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "ledger_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementPartyMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "kapan_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementKapanMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barBtnKapan.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "shape_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementShapeMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barBtnShape.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "size_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementSizeMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "purity_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementPurityMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "gala_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementGalaMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem8.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "number_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementNumberMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "currency_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementCurrencyMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem13.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "financial_year_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementFinancialYearMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "brokerage_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementBrokerageMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem14.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "less_weight_group_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementLessWeightGroupMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem15.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "user_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementUserMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "approval_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementApprovalMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barbtnApproval.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Transaction Menu
+
+                    case "purchase":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlPurchase.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem18.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "sales":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlSales.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem19.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "payment":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlPayment.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem25.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "receipt":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlReceipt.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem26.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "contra":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlContra.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem20.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "expense":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlExpense.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem22.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "salary":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlSalary.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem48.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "loan":
+                        accordionControlTransaction.Visible = true;
+                        accordionControlLoan.Visible = true;
+                        barSubItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem49.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Process Menu
+
+                    case "kapan_map":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem21.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "assort_process":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "boil_process":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "charni_process":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "gala_process":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "number_process":
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Utility Menu
+                    case "transfer":
+                        accordionControlUtility.Visible = true;
+                        accordionControlTransfer.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem27.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "calculator":
+                        accordionControlUtility.Visible = true;
+                        accordionControlCalculator.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem28.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "options":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem33.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Reports Menu - Transaction
+
+                    case "purchase_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem23.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "sales_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem24.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "payment_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem44.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "receipt_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem45.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "contra_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem46.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "expense_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem47.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "loan_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem52.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "mixed_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem53.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Reports Menu - Slip Print
+                    case "purchase_slip_print":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem8.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem57.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "sales_slip_print":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem8.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem55.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                }
+            }
+
+        }
+
+        private async void frmMain_Load(object sender, EventArgs e)
+        {
+            await CheckPermission();
+
             DevExpress.XtraSplashScreen.FluentSplashScreenOptions options = new DevExpress.XtraSplashScreen.FluentSplashScreenOptions();
             options.LogoImageOptions.Image = Properties.Resources.user_64;
             options.Title = "Welcome " + Common.LoginUserName;

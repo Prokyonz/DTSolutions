@@ -282,6 +282,7 @@ namespace DiamondTrading.Master
                     userPermission.Id = Guid.NewGuid().ToString();
                     userPermission.UserId = UserId;
                     userPermission.PermissionMasterId = grvPermissionDetails.GetRowCellValue(selectedRowHandles[i], "Id").ToString();
+                    userPermission.KeyName = grvPermissionDetails.GetRowCellValue(selectedRowHandles[i], "KeyName").ToString();
                     userPermission.Status = true;
                     userPermissionDetails.Add(userPermission);
                 }
