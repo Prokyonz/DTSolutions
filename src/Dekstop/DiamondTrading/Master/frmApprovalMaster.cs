@@ -1,4 +1,5 @@
 ﻿using EFCore.SQL.Repository;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
@@ -7,6 +8,8 @@ namespace DiamondTrading.Master
 {
     public partial class frmApprovalMaster : DevExpress.XtraEditors.XtraForm
     {
+        ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
+
         List<ApprovalPermissionList> permissionlist = new List<ApprovalPermissionList>();
 
         PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
@@ -50,9 +53,11 @@ namespace DiamondTrading.Master
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-           
-        }
+            List<ApprovalPermissionMaster> approvalPermissionMasters = new List<ApprovalPermissionMaster>();
+            await approvalPermissionMasterRepository.UpdatePermission(approvalPermissionMasters);
 
+            MessageBox.Show("Permissions saved successfully.");
+        }
 
         private void groupControl1_Paint(object sender, PaintEventArgs e)
         {
