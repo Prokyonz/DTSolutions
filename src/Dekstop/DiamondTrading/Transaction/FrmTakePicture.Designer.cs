@@ -30,10 +30,15 @@ namespace DiamondTrading.Transaction
         private void InitializeComponent()
         {
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.lueDeviceDetails = new DevExpress.XtraEditors.LookUpEdit();
-            this.btnCapture = new DevExpress.XtraEditors.SimpleButton();
+            this.btnClick = new DevExpress.XtraEditors.SimpleButton();
+            this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.btnCapture = new DevExpress.XtraEditors.SimpleButton();
+            this.lueDeviceDetails = new DevExpress.XtraEditors.LookUpEdit();
+            this.picImage1 = new System.Windows.Forms.PictureBox();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.picImage3 = new System.Windows.Forms.PictureBox();
+            this.picImage2 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -41,16 +46,14 @@ namespace DiamondTrading.Transaction
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.picImage1 = new System.Windows.Forms.PictureBox();
-            this.picImage3 = new System.Windows.Forms.PictureBox();
-            this.picImage2 = new System.Windows.Forms.PictureBox();
-            this.btnBrowse = new DevExpress.XtraEditors.SimpleButton();
-            this.btnClick = new DevExpress.XtraEditors.SimpleButton();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDeviceDetails.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueDeviceDetails.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage2)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -58,9 +61,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -80,15 +80,55 @@ namespace DiamondTrading.Transaction
             this.groupControl1.TabIndex = 1;
             this.groupControl1.Text = "Camera Device Details";
             // 
-            // labelControl2
+            // btnClick
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(8, 28);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(95, 14);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Name Of Device*";
+            this.btnClick.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnClick.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClick.Appearance.Options.UseBackColor = true;
+            this.btnClick.Appearance.Options.UseFont = true;
+            this.btnClick.Enabled = false;
+            this.btnClick.Location = new System.Drawing.Point(109, 155);
+            this.btnClick.Name = "btnClick";
+            this.btnClick.Size = new System.Drawing.Size(80, 27);
+            this.btnClick.TabIndex = 151;
+            this.btnClick.Text = "Click";
+            this.btnClick.Click += new System.EventHandler(this.btnClick_Click);
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBrowse.Appearance.Options.UseFont = true;
+            this.btnBrowse.Location = new System.Drawing.Point(10, 155);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(93, 27);
+            this.btnBrowse.TabIndex = 150;
+            this.btnBrowse.Text = "Browse";
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(8, 113);
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Size = new System.Drawing.Size(179, 45);
+            this.trackBar1.TabIndex = 149;
+            this.trackBar1.Value = 1;
+            this.trackBar1.Visible = false;
+            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            // 
+            // btnCapture
+            // 
+            this.btnCapture.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnCapture.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCapture.Appearance.Options.UseBackColor = true;
+            this.btnCapture.Appearance.Options.UseFont = true;
+            this.btnCapture.Location = new System.Drawing.Point(8, 80);
+            this.btnCapture.Name = "btnCapture";
+            this.btnCapture.Size = new System.Drawing.Size(179, 27);
+            this.btnCapture.TabIndex = 15;
+            this.btnCapture.Text = "Start Capturing";
+            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
             // 
             // lueDeviceDetails
             // 
@@ -105,29 +145,51 @@ namespace DiamondTrading.Transaction
             this.lueDeviceDetails.Size = new System.Drawing.Size(179, 26);
             this.lueDeviceDetails.TabIndex = 7;
             // 
-            // btnCapture
+            // picImage1
             // 
-            this.btnCapture.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnCapture.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCapture.Appearance.Options.UseBackColor = true;
-            this.btnCapture.Appearance.Options.UseFont = true;
-            this.btnCapture.Location = new System.Drawing.Point(8, 80);
-            this.btnCapture.Name = "btnCapture";
-            this.btnCapture.Size = new System.Drawing.Size(179, 27);
-            this.btnCapture.TabIndex = 15;
-            this.btnCapture.Text = "Start Capturing";
-            this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
+            this.picImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picImage1.Image = global::DiamondTrading.Properties.Resources.background;
+            this.picImage1.Location = new System.Drawing.Point(17, 271);
+            this.picImage1.Name = "picImage1";
+            this.picImage1.Size = new System.Drawing.Size(50, 50);
+            this.picImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage1.TabIndex = 145;
+            this.picImage1.TabStop = false;
+            this.picImage1.Click += new System.EventHandler(this.picImage1_Click);
             // 
-            // trackBar1
+            // labelControl2
             // 
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(8, 113);
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(179, 45);
-            this.trackBar1.TabIndex = 149;
-            this.trackBar1.Value = 1;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(8, 28);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(95, 14);
+            this.labelControl2.TabIndex = 6;
+            this.labelControl2.Text = "Name Of Device*";
+            // 
+            // picImage3
+            // 
+            this.picImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picImage3.Image = global::DiamondTrading.Properties.Resources.background;
+            this.picImage3.Location = new System.Drawing.Point(127, 271);
+            this.picImage3.Name = "picImage3";
+            this.picImage3.Size = new System.Drawing.Size(50, 50);
+            this.picImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage3.TabIndex = 147;
+            this.picImage3.TabStop = false;
+            this.picImage3.Click += new System.EventHandler(this.picImage3_Click);
+            // 
+            // picImage2
+            // 
+            this.picImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picImage2.Image = global::DiamondTrading.Properties.Resources.background;
+            this.picImage2.Location = new System.Drawing.Point(72, 271);
+            this.picImage2.Name = "picImage2";
+            this.picImage2.Size = new System.Drawing.Size(50, 50);
+            this.picImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picImage2.TabIndex = 146;
+            this.picImage2.TabStop = false;
+            this.picImage2.Click += new System.EventHandler(this.picImage2_Click);
             // 
             // tabControl1
             // 
@@ -207,67 +269,6 @@ namespace DiamondTrading.Transaction
             this.pictureBox3.TabIndex = 140;
             this.pictureBox3.TabStop = false;
             // 
-            // picImage1
-            // 
-            this.picImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picImage1.Image = global::DiamondTrading.Properties.Resources.background;
-            this.picImage1.Location = new System.Drawing.Point(17, 271);
-            this.picImage1.Name = "picImage1";
-            this.picImage1.Size = new System.Drawing.Size(50, 50);
-            this.picImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage1.TabIndex = 145;
-            this.picImage1.TabStop = false;
-            this.picImage1.Click += new System.EventHandler(this.picImage1_Click);
-            // 
-            // picImage3
-            // 
-            this.picImage3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picImage3.Image = global::DiamondTrading.Properties.Resources.background;
-            this.picImage3.Location = new System.Drawing.Point(127, 271);
-            this.picImage3.Name = "picImage3";
-            this.picImage3.Size = new System.Drawing.Size(50, 50);
-            this.picImage3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage3.TabIndex = 147;
-            this.picImage3.TabStop = false;
-            this.picImage3.Click += new System.EventHandler(this.picImage3_Click);
-            // 
-            // picImage2
-            // 
-            this.picImage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.picImage2.Image = global::DiamondTrading.Properties.Resources.background;
-            this.picImage2.Location = new System.Drawing.Point(72, 271);
-            this.picImage2.Name = "picImage2";
-            this.picImage2.Size = new System.Drawing.Size(50, 50);
-            this.picImage2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picImage2.TabIndex = 146;
-            this.picImage2.TabStop = false;
-            this.picImage2.Click += new System.EventHandler(this.picImage2_Click);
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBrowse.Appearance.Options.UseFont = true;
-            this.btnBrowse.Location = new System.Drawing.Point(10, 155);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(93, 27);
-            this.btnBrowse.TabIndex = 150;
-            this.btnBrowse.Text = "Browse";
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
-            // 
-            // btnClick
-            // 
-            this.btnClick.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnClick.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClick.Appearance.Options.UseBackColor = true;
-            this.btnClick.Appearance.Options.UseFont = true;
-            this.btnClick.Enabled = false;
-            this.btnClick.Location = new System.Drawing.Point(109, 155);
-            this.btnClick.Name = "btnClick";
-            this.btnClick.Size = new System.Drawing.Size(80, 27);
-            this.btnClick.TabIndex = 151;
-            this.btnClick.Text = "Click";
-            this.btnClick.Click += new System.EventHandler(this.btnClick_Click);
-            // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
@@ -290,8 +291,11 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lueDeviceDetails.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueDeviceDetails.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picImage2)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -299,9 +303,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picImage2)).EndInit();
             this.ResumeLayout(false);
 
         }
