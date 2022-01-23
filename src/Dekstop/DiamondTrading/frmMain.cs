@@ -16,7 +16,6 @@ namespace DiamondTrading
 {
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
-        string[] permissionList = new string[] { "options","transfer","shape_master","receipt","contra_report","purchase","charni_process","gala_process","loan","payment_report","expense_report","receipt_report","kapan_master","size_master","financial_year_master","contra","gala_process","loan_report","less_weight_group_master","ledger_master","company_master","expense","number_master","purchase_report","assort_process","salary","boil_process","mixed_report","sales","currency_master","sales_report","kapan_map","purity_master","user_master","approval_master","payment","brokerage_master","calculator","number_master", "branch_master" };
         UserMasterRepository userMasterRepository;
         #region "FormEvents"
 
@@ -39,11 +38,11 @@ namespace DiamondTrading
         private async Task CheckPermission()
         {
             userMasterRepository = new UserMasterRepository();
-            List<UserPermissionChild> userPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
+            Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
 
-            for (int i = 0; i < userPermissionChildren.Count; i++)
+            for (int i = 0; i < Common.UserPermissionChildren.Count; i++)
             {
-                switch (userPermissionChildren[i].KeyName)
+                switch (Common.UserPermissionChildren[i].KeyName)
                 {
                     //Master Menu
                     case "company_master":
