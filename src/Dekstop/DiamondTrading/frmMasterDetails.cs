@@ -547,6 +547,8 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
                 string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
+                string userName = grvUserMaster.GetFocusedRowCellValue(colUserName).ToString();
+
                 Master.frmUserMaster frmUserMaster = new Master.frmUserMaster(_userMaster, SelectedGuid);
                 if (frmUserMaster.ShowDialog() == DialogResult.OK)
                 {
@@ -728,6 +730,12 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
                 string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
+                string username = grvUserMaster.GetFocusedRowCellValue(colUserName).ToString();
+                if (username.ToLower() == "administrator")
+                {
+                    MessageBox.Show("You can not delete the administrator user.");
+                    return;
+                }
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _userMasterRepository.DeleteUserAsync(SelectedGuid);

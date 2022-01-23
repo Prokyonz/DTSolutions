@@ -37,20 +37,20 @@ namespace DiamondTrading.Master
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoUserName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoUserName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(565, 354);
+            this.btnSave.Location = new System.Drawing.Point(565, 305);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 9;
@@ -60,7 +60,7 @@ namespace DiamondTrading.Master
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(646, 354);
+            this.btnCancel.Location = new System.Drawing.Point(646, 305);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 11;
@@ -72,7 +72,7 @@ namespace DiamondTrading.Master
             this.groupControl3.Controls.Add(this.grdPermissionDetails);
             this.groupControl3.Location = new System.Drawing.Point(11, 12);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(710, 336);
+            this.groupControl3.Size = new System.Drawing.Size(710, 287);
             this.groupControl3.TabIndex = 9;
             this.groupControl3.Text = "Permissions";
             // 
@@ -84,7 +84,7 @@ namespace DiamondTrading.Master
             this.grdPermissionDetails.Name = "grdPermissionDetails";
             this.grdPermissionDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoUserName});
-            this.grdPermissionDetails.Size = new System.Drawing.Size(706, 311);
+            this.grdPermissionDetails.Size = new System.Drawing.Size(706, 262);
             this.grdPermissionDetails.TabIndex = 5;
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView5,
@@ -121,10 +121,22 @@ namespace DiamondTrading.Master
             // 
             this.gridColumn2.Caption = "Select Approvar Name";
             this.gridColumn2.ColumnEdit = this.repoUserName;
+            this.gridColumn2.FieldName = "Name";
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
             this.gridColumn2.VisibleIndex = 1;
             this.gridColumn2.Width = 258;
+            // 
+            // repoUserName
+            // 
+            this.repoUserName.AutoHeight = false;
+            this.repoUserName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoUserName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name")});
+            this.repoUserName.Name = "repoUserName";
+            this.repoUserName.NullText = "";
             // 
             // gridView6
             // 
@@ -141,24 +153,13 @@ namespace DiamondTrading.Master
             this.gridColumn43.FieldName = "Id";
             this.gridColumn43.Name = "gridColumn43";
             // 
-            // repoUserName
-            // 
-            this.repoUserName.AutoHeight = false;
-            this.repoUserName.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoUserName.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name")});
-            this.repoUserName.Name = "repoUserName";
-            this.repoUserName.NullText = "";
-            // 
             // frmApprovalMaster
             // 
             this.Appearance.Options.UseFont = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(735, 388);
+            this.ClientSize = new System.Drawing.Size(735, 338);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSave);
@@ -176,8 +177,8 @@ namespace DiamondTrading.Master
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -153,6 +153,7 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -1251,6 +1252,7 @@ namespace DiamondTrading
             this.colUserID,
             this.colIsUserActive,
             this.colUserName,
+            this.gridColumn16,
             this.ColUserType,
             this.colUserUpdatedDate});
             this.grvUserMaster.GridControl = this.grdUserMaster;
@@ -1270,9 +1272,7 @@ namespace DiamondTrading
             this.colIsUserActive.ColumnEdit = this.repositoryItemCheckEdit3;
             this.colIsUserActive.FieldName = "Status";
             this.colIsUserActive.Name = "colIsUserActive";
-            this.colIsUserActive.Visible = true;
-            this.colIsUserActive.VisibleIndex = 0;
-            this.colIsUserActive.Width = 48;
+            this.colIsUserActive.Width = 73;
             // 
             // repositoryItemCheckEdit3
             // 
@@ -1281,12 +1281,12 @@ namespace DiamondTrading
             // 
             // colUserName
             // 
-            this.colUserName.Caption = "User Name";
+            this.colUserName.Caption = "Display Name";
             this.colUserName.FieldName = "Name";
             this.colUserName.Name = "colUserName";
             this.colUserName.Visible = true;
-            this.colUserName.VisibleIndex = 1;
-            this.colUserName.Width = 480;
+            this.colUserName.VisibleIndex = 0;
+            this.colUserName.Width = 637;
             // 
             // ColUserType
             // 
@@ -1302,7 +1302,7 @@ namespace DiamondTrading
             this.colUserUpdatedDate.Name = "colUserUpdatedDate";
             this.colUserUpdatedDate.Visible = true;
             this.colUserUpdatedDate.VisibleIndex = 2;
-            this.colUserUpdatedDate.Width = 92;
+            this.colUserUpdatedDate.Width = 151;
             // 
             // accordionControl1
             // 
@@ -1374,6 +1374,15 @@ namespace DiamondTrading
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "User Name";
+            this.gridColumn16.FieldName = "UserName";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 1;
+            this.gridColumn16.Width = 200;
             // 
             // FrmMasterDetails
             // 
@@ -1571,5 +1580,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colUserName;
         private DevExpress.XtraGrid.Columns.GridColumn ColUserType;
         private DevExpress.XtraGrid.Columns.GridColumn colUserUpdatedDate;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
     }
 }

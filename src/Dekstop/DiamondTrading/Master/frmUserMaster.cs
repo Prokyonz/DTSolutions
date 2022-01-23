@@ -48,23 +48,24 @@ namespace DiamondTrading.Master
             if (string.IsNullOrEmpty(_selectedUser) == false)
             {
                 _EditedUserMasterSet = _UserMasters.Where(c => c.Id == _selectedUser).FirstOrDefault();
+
                 if (_EditedUserMasterSet != null)
                 {
+                    if(_EditedUserMasterSet.UserName.ToLower() == "admin")
+                    {
+                        btnSave.Enabled = false;
+                    }
                     txtUserName.ReadOnly = true;
 
                     btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                     txtName.Text = _EditedUserMasterSet.Name;
                     txtUserName.Text = _EditedUserMasterSet.UserName;
-                    //lueDepartment.EditValue = _EditedUserMasterSet.DepartmentName;
-                    //lueDesignation.EditValue = _EditedUserMasterSet.Designation;
-                    //lueBrokerage.EditValue = _EditedUserMasterSet.BrokerageId;
                     txtAddress.Text = _EditedUserMasterSet.Address;
                     txtAddress2.Text = _EditedUserMasterSet.Address2;
                     txtMobileNo.Text = _EditedUserMasterSet.MobileNo;
                     txtHomeNo.Text = _EditedUserMasterSet.HomeNo;
 
                     var permissionList = await _UserMasterRepository.GetUserPermissions(_EditedUserMasterSet.Id);
-
 
                     if (permissionList != null)
                     {
@@ -73,11 +74,6 @@ namespace DiamondTrading.Master
                             grvPermissionDetails.SelectRow(grvPermissionDetails.LocateByValue("Id", permissionList[i].PermissionMasterId));
                         }
                     }
-                    //txtRefrenceBy.Text = _EditedUserMasterSet.ReferenceBy;
-                    //txtAadharcardNo.Text = _EditedUserMasterSet.AadharCardNo;
-                    //dtDateOfBirth.EditValue = _EditedUserMasterSet.DateOfBirth;
-                    //dtStartDate.EditValue = _EditedUserMasterSet.DateOfJoin;
-                    //dtEndDate.EditValue = _EditedUserMasterSet.DateOfEnd;
                 }
             }            
         }
@@ -86,43 +82,14 @@ namespace DiamondTrading.Master
         {
             try
             {
-                //dtDateOfBirth.EditValue = DateTime.Now;
-                //dtStartDate.EditValue = DateTime.Now;
-                //dtEndDate.EditValue = DateTime.Now;
-
                 FillLookUpEdits();
-
-                //BrokerageMasterRepository brokerageMasterRepository = new BrokerageMasterRepository();
-                //var Brokerage = await brokerageMasterRepository.GetAllBrokerageAsync();
-                //if (Brokerage != null)
-                //{
-                //    lueBrokerage.Properties.DataSource = Brokerage;
-                //    lueBrokerage.Properties.DisplayMember = "Name";
-                //    lueBrokerage.Properties.ValueMember = "Id";
-                //}
             }
             catch (Exception Ex)
             {
 
             }
         }
-            //var Department = DepartmentMaster.GetAllDepartment();
 
-            //if (Department != null)
-            //{
-            //    lueDepartment.Properties.DataSource = Department;
-            //    lueDepartment.Properties.DisplayMember = "Name";
-            //    lueDepartment.Properties.ValueMember = "Id";
-            //}
-
-            //var Designation = DesignationMaster.GetAllDesignation();
-
-            //if (Designation != null)
-            //{
-            //    lueDesignation.Properties.DataSource = Designation;
-            //    lueDesignation.Properties.DisplayMember = "Name";
-            //    lueDesignation.Properties.ValueMember = "Id";
-            //}
         private void FillLookUpEdits()
         {
 
