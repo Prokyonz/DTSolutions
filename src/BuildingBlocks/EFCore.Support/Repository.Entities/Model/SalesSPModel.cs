@@ -38,6 +38,6 @@ namespace Repository.Entities.Model
         public double SaleRate { get; set; }
         public string Remarks { get; set; }
         public string Message { get; set; }
-        public int ApprovalType { get; set; }
+        public string ApprovalType { get; set; }
     }
 }

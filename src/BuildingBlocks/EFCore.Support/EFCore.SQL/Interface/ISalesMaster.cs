@@ -22,5 +22,7 @@ namespace EFCore.SQL.Interface
 
         Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId);
         Task<List<CaratCategoryType>> GetCaratCategoryDetails();
+
+        Task<bool> UpdateApprovalStatus(string salesId, string message, int status);
     }
 }

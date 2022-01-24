@@ -410,8 +410,16 @@ namespace DiamondTrading
             Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(1);
             if(frmApproveReject.ShowDialog()==DialogResult.OK)
             {
-                string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
-                var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
+                if (xtabManager.SelectedTabPage == xtabPurchase)
+                {
+                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                    var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
+                }
+                else if(xtabManager.SelectedTabPage == xtabSales)
+                {
+                    string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
+                    var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
+                }
                 _ = LoadGridData(true);
             }
         }
@@ -421,8 +429,17 @@ namespace DiamondTrading
             Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(2);
             if (frmApproveReject.ShowDialog() == DialogResult.OK)
             {
-                string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
-                var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
+                if (xtabManager.SelectedTabPage == xtabPurchase)
+                {
+                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                    var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
+                }
+                else if (xtabManager.SelectedTabPage == xtabSales)
+                {
+                    string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
+                    var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
+                }
+
                 _ = LoadGridData(true);
             }
         }
@@ -465,6 +482,47 @@ namespace DiamondTrading
             //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
             //else if (Convert.ToInt32(ApprovalType) == 2)
             //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+        }
+
+        private void grvSalesTransactonMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            string ApprovalType = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "ApprovalType").ToString();
+            if (ApprovalType.Equals("Pending"))
+            {
+                var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+                if (IsHavingApprovalPermission.Any())
+                {
+                    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
+                    if (e.HitInfo.InRow)
+                    {
+                        view.FocusedRowHandle = e.HitInfo.RowHandle;
+                        popupMenu1.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
+        }
+
+        private void grvSalesTransactonMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            if (e.Column == colSalesApprovalType)
+            {
+                if (e.CellValue.ToString().Equals("0"))
+                {
+                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
+                }
+                else if (e.CellValue.ToString().Equals("1"))
+                {
+                    e.Appearance.ForeColor = Color.Black;
+                    grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
+                }
+                else if (e.CellValue.ToString().Equals("2"))
+                {
+                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
+                }
+            }
         }
     }
 }

@@ -216,5 +216,24 @@ namespace EFCore.SQL.Repository
                 throw;
             }
         }
+
+        public async Task<bool> UpdateApprovalStatus(string salesId, string message, int status)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getSale = await _databaseContext.SalesMaster.Where(s => s.Id == salesId).FirstOrDefaultAsync();
+
+                if (getSale != null)
+                {
+                    getSale.ApprovalType = status;
+                    getSale.Message = message;
+
+                    await _databaseContext.SaveChangesAsync();
+
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }
