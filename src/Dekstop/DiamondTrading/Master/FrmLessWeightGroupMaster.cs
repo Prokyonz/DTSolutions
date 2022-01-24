@@ -85,12 +85,20 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
-                    var tempLessWeightDetails = (List<LessWeightDetails>)grdLessGroupWeightDetails.DataSource;
-                    // remove the reff. of lessweightmaster from all details record before updating them.
-                    tempLessWeightDetails.ForEach(x => x.LessWeightMaster = null);
+                    LessWeightDetails lessWeightDetails;
+                    for (int i = 0; i < grvLessGroupWeightDetails.RowCount; i++)
+                    {
+                        lessWeightDetails = new LessWeightDetails();
+                        lessWeightDetails.Id = Guid.NewGuid().ToString();
+                        lessWeightDetails.LessWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colLessWeight).ToString());
+                        lessWeightDetails.LessWeightId = _EditedLessWeightMasterSet.Id;
+                        lessWeightDetails.MaxWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colMaxWeight).ToString());
+                        lessWeightDetails.MinWeight = decimal.Parse(grvLessGroupWeightDetails.GetRowCellValue(i, colMinWeight).ToString());
+                        _lessWeightDetails.Insert(i, lessWeightDetails);
+                    }
 
                     _EditedLessWeightMasterSet.Name = txtLessWeightGroupName.Text;
-                    _EditedLessWeightMasterSet.LessWeightDetails = tempLessWeightDetails;
+                    _EditedLessWeightMasterSet.LessWeightDetails = _lessWeightDetails;
                     _EditedLessWeightMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedLessWeightMasterSet.UpdatedDate = DateTime.Now;
 
@@ -183,7 +191,19 @@ namespace DiamondTrading.Master
                     //DataTable dtTemp = dtDefaultGridColumns();
                     //for(int i=0;i<)
 
-                    grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails.OrderBy(x=>x.MinWeight).ToList();
+                    var gridData = _EditedLessWeightMasterSet.LessWeightDetails.OrderBy(x => x.MinWeight).ToList();
+                    if (gridData.Count > 0)
+                    {
+                        for (int i = 0; i < gridData.Count; i++)
+                        {
+                            grvLessGroupWeightDetails.AddNewRow();
+                            grvLessGroupWeightDetails.SetFocusedRowCellValue("MinWeight", gridData[i].MinWeight);
+                            grvLessGroupWeightDetails.SetFocusedRowCellValue("MaxWeight", gridData[i].MaxWeight);
+                            grvLessGroupWeightDetails.SetFocusedRowCellValue("LessWeight", gridData[i].LessWeight);
+                            grvLessGroupWeightDetails.UpdateCurrentRow();
+                        }
+                    }
+                    //grdLessGroupWeightDetails.DataSource = _EditedLessWeightMasterSet.LessWeightDetails.OrderBy(x => x.MinWeight).ToList();
                 }
             }
         }
