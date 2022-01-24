@@ -658,7 +658,7 @@ namespace DiamondTrading.Transaction
                     if (lessWeightDetails != null)
                     {
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, TipWeight.ToString());
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, CVDWeight.ToString());
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight*CVDWeight).ToString("0.00"));
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
                     }
                     else
