@@ -22,6 +22,8 @@ namespace DiamondTrading.Master
         private async void frmUserMaster_Load(object sender, EventArgs e)
         {
             repoUserName.DataSource = await partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
+            repoUserName.DisplayMember = "Name";
+            repoUserName.ValueMember = "Id";
 
             permissionlist.Add(new ApprovalPermissionList { DisplayName = "Purchase Approval", Name ="" });
             permissionlist.Add(new ApprovalPermissionList { DisplayName = "Sales Approval", Name ="" });
@@ -53,8 +55,22 @@ namespace DiamondTrading.Master
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            List<ApprovalPermissionMaster> approvalPermissionMasters = new List<ApprovalPermissionMaster>();
-            await approvalPermissionMasterRepository.UpdatePermission(approvalPermissionMasters);
+            List<ApprovalPermissionMaster> listApprovalPermissionMasters = new List<ApprovalPermissionMaster>();
+            ApprovalPermissionMaster approvalPermissionMaster;
+            string TempId = Guid.NewGuid().ToString();
+            for (int i = 0; i < grvPermissionDetails.RowCount; i++)
+            {
+                if (!string.IsNullOrWhiteSpace(grvPermissionDetails.GetRowCellValue(i, colApproverName).ToString()))
+                {
+                    approvalPermissionMaster = new ApprovalPermissionMaster();
+                    approvalPermissionMaster.KeyName = grvPermissionDetails.GetRowCellValue(i, colApproverType).ToString();
+                    approvalPermissionMaster.DisplayName = grvPermissionDetails.GetRowCellValue(i, colApproverType).ToString();
+                    approvalPermissionMaster.UserId = grvPermissionDetails.GetRowCellValue(i, colApproverName).ToString();
+                    listApprovalPermissionMasters.Insert(i, approvalPermissionMaster);
+                }
+            }
+
+            await approvalPermissionMasterRepository.UpdatePermission(listApprovalPermissionMasters);
 
             MessageBox.Show("Permissions saved successfully.");
         }

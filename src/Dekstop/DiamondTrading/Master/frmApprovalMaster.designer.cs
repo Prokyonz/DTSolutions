@@ -33,17 +33,17 @@ namespace DiamondTrading.Master
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
             this.grdPermissionDetails = new DevExpress.XtraGrid.GridControl();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grvPermissionDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colApproverType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colApproverName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoUserName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.SuspendLayout();
@@ -80,52 +80,52 @@ namespace DiamondTrading.Master
             // 
             this.grdPermissionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdPermissionDetails.Location = new System.Drawing.Point(2, 23);
-            this.grdPermissionDetails.MainView = this.gridView5;
+            this.grdPermissionDetails.MainView = this.grvPermissionDetails;
             this.grdPermissionDetails.Name = "grdPermissionDetails";
             this.grdPermissionDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoUserName});
             this.grdPermissionDetails.Size = new System.Drawing.Size(706, 262);
             this.grdPermissionDetails.TabIndex = 5;
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView5,
+            this.grvPermissionDetails,
             this.gridView6});
             // 
-            // gridView5
+            // grvPermissionDetails
             // 
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn3,
-            this.gridColumn1,
-            this.gridColumn2});
-            this.gridView5.GridControl = this.grdPermissionDetails;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.Editable = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
+            this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colId,
+            this.colApproverType,
+            this.colApproverName});
+            this.grvPermissionDetails.GridControl = this.grdPermissionDetails;
+            this.grvPermissionDetails.Name = "grvPermissionDetails";
+            this.grvPermissionDetails.OptionsView.ShowGroupPanel = false;
             // 
-            // gridColumn3
+            // colId
             // 
-            this.gridColumn3.Caption = "Id";
-            this.gridColumn3.FieldName = "Id";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Width = 148;
+            this.colId.Caption = "Id";
+            this.colId.FieldName = "Id";
+            this.colId.Name = "colId";
+            this.colId.Width = 148;
             // 
-            // gridColumn1
+            // colApproverType
             // 
-            this.gridColumn1.Caption = "Approval Type";
-            this.gridColumn1.FieldName = "DisplayName";
-            this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 0;
-            this.gridColumn1.Width = 384;
+            this.colApproverType.Caption = "Approval Type";
+            this.colApproverType.FieldName = "DisplayName";
+            this.colApproverType.Name = "colApproverType";
+            this.colApproverType.OptionsColumn.AllowEdit = false;
+            this.colApproverType.Visible = true;
+            this.colApproverType.VisibleIndex = 0;
+            this.colApproverType.Width = 384;
             // 
-            // gridColumn2
+            // colApproverName
             // 
-            this.gridColumn2.Caption = "Select Approvar Name";
-            this.gridColumn2.ColumnEdit = this.repoUserName;
-            this.gridColumn2.FieldName = "Name";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            this.gridColumn2.Width = 258;
+            this.colApproverName.Caption = "Select Approvar Name";
+            this.colApproverName.ColumnEdit = this.repoUserName;
+            this.colApproverName.FieldName = "Name";
+            this.colApproverName.Name = "colApproverName";
+            this.colApproverName.Visible = true;
+            this.colApproverName.VisibleIndex = 1;
+            this.colApproverName.Width = 258;
             // 
             // repoUserName
             // 
@@ -176,7 +176,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoUserName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.ResumeLayout(false);
@@ -188,12 +188,12 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.GroupControl groupControl3;
         private DevExpress.XtraGrid.GridControl grdPermissionDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvPermissionDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraGrid.Columns.GridColumn colApproverType;
+        private DevExpress.XtraGrid.Columns.GridColumn colId;
+        private DevExpress.XtraGrid.Columns.GridColumn colApproverName;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoUserName;
     }
 }
