@@ -12,7 +12,7 @@ namespace DiamondTrading.Master
 
         List<ApprovalPermissionList> permissionlist = new List<ApprovalPermissionList>();
 
-        PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
+        UserMasterRepository userMasterRepository = new UserMasterRepository();
 
         public frmApprovalMaster()
         {
@@ -21,7 +21,7 @@ namespace DiamondTrading.Master
 
         private async void frmUserMaster_Load(object sender, EventArgs e)
         {
-            repoUserName.DataSource = await partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
+            repoUserName.DataSource = await userMasterRepository.GetAllUserAsync();
             repoUserName.DisplayMember = "Name";
             repoUserName.ValueMember = "Id";
 
