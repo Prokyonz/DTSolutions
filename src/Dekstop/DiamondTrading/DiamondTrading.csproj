@@ -461,6 +461,12 @@
     <Compile Include="Transaction\FrmSalesEntry.designer.cs">
       <DependentUpon>FrmSalesEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transaction\FrmSlipTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transaction\FrmSlipTransfer.Designer.cs">
+      <DependentUpon>FrmSlipTransfer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmTakePicture.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -625,6 +631,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmSalesEntry.resx">
       <DependentUpon>FrmSalesEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transaction\FrmSlipTransfer.resx">
+      <DependentUpon>FrmSlipTransfer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmTakePicture.resx">
       <DependentUpon>FrmTakePicture.cs</DependentUpon>

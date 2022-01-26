@@ -1600,5 +1600,31 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        private void barButtonItem7_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            Transaction.FrmSlipTransfer page = Application.OpenForms["FrmSlipTransfer"] as Transaction.FrmSlipTransfer;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Transaction.FrmSlipTransfer frmSlipTransfer = new Transaction.FrmSlipTransfer();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmSlipTransfer.StartPosition = FormStartPosition.Manual;
+
+            frmSlipTransfer.Location = new Point((w - frmSlipTransfer.Width - 200) / 3, (Height - frmSlipTransfer.Height) / 2);
+
+            frmSlipTransfer.ShowDialog();
+        }
     }
 }
