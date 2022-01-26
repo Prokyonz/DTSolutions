@@ -147,6 +147,9 @@ namespace DiamondTrading
             this.accordionControlSeparator8 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.accordionControlContra = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlExpense = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlSeparator14 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.accordionControlSalary = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionControlLoan = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlProcess = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlKapanMapping = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionControlSeparator9 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
@@ -172,9 +175,7 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.accordionControlSalary = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlLoan = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.accordionControlSeparator14 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
+            this.barButtonItem7 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -269,9 +270,10 @@ namespace DiamondTrading
             this.barSubItem8,
             this.barButtonItem55,
             this.barbtnApproval,
-            this.barButtonItem57});
+            this.barButtonItem57,
+            this.barButtonItem7});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 89;
+            this.barManager1.MaxItemId = 90;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -722,13 +724,14 @@ namespace DiamondTrading
             this.barSubItem4.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem27),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem28),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem33)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem33),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7)});
             this.barSubItem4.Name = "barSubItem4";
             this.barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonItem27
             // 
-            this.barButtonItem27.Caption = "&Transfer";
+            this.barButtonItem27.Caption = "&Transfer Stock";
             this.barButtonItem27.Id = 31;
             this.barButtonItem27.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.T));
             this.barButtonItem27.Name = "barButtonItem27";
@@ -1349,6 +1352,24 @@ namespace DiamondTrading
             this.accordionControlExpense.Text = "Expense";
             this.accordionControlExpense.Visible = false;
             // 
+            // accordionControlSeparator14
+            // 
+            this.accordionControlSeparator14.Name = "accordionControlSeparator14";
+            // 
+            // accordionControlSalary
+            // 
+            this.accordionControlSalary.Name = "accordionControlSalary";
+            this.accordionControlSalary.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlSalary.Text = "Salary";
+            this.accordionControlSalary.Visible = false;
+            // 
+            // accordionControlLoan
+            // 
+            this.accordionControlLoan.Name = "accordionControlLoan";
+            this.accordionControlLoan.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionControlLoan.Text = "Loan";
+            this.accordionControlLoan.Visible = false;
+            // 
             // accordionControlProcess
             // 
             this.accordionControlProcess.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
@@ -1551,23 +1572,12 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
-            // accordionControlSalary
+            // barButtonItem7
             // 
-            this.accordionControlSalary.Name = "accordionControlSalary";
-            this.accordionControlSalary.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlSalary.Text = "Salary";
-            this.accordionControlSalary.Visible = false;
-            // 
-            // accordionControlLoan
-            // 
-            this.accordionControlLoan.Name = "accordionControlLoan";
-            this.accordionControlLoan.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionControlLoan.Text = "Loan";
-            this.accordionControlLoan.Visible = false;
-            // 
-            // accordionControlSeparator14
-            // 
-            this.accordionControlSeparator14.Name = "accordionControlSeparator14";
+            this.barButtonItem7.Caption = "Transfer Slip";
+            this.barButtonItem7.Id = 89;
+            this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick_1);
             // 
             // FrmMain
             // 
@@ -1753,5 +1763,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator14;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlSalary;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlLoan;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem7;
     }
 }
