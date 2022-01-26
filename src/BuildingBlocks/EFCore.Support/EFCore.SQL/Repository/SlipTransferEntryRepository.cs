@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class SlipTransferEntryRepository : ISlipTransferEntry, IDisposable
+    public class SlipTransferEntryRepository : ISlipTransferEntry
     {
         private DatabaseContext _databaseContext;
 
