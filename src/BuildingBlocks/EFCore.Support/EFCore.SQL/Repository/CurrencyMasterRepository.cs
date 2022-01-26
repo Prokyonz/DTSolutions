@@ -12,57 +12,69 @@ namespace EFCore.SQL.Repository
 {
     public class CurrencyMasterRepository : ICurrencyMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public CurrencyMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<List<CurrencyMaster>> GetAllCurrencyAsync()
         {
-            return await _databaseContext.CurrencyMaster.Where(c => c.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.CurrencyMaster.Where(c => c.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<CurrencyMaster> AddCurrencyAsync(CurrencyMaster currencyMaster)
         {
-            if (currencyMaster.Id == null)
-                currencyMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.CurrencyMaster.AddAsync(currencyMaster);
-            await _databaseContext.SaveChangesAsync();
-            return currencyMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (currencyMaster.Id == null)
+                    currencyMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.CurrencyMaster.AddAsync(currencyMaster);
+                await _databaseContext.SaveChangesAsync();
+                return currencyMaster;
+            }
         }
 
         public async Task<bool> DeleteCurrencyAsync(string currencyId, bool isPermanantDetele = false)
         {
-            var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyId).FirstOrDefaultAsync();
-            if (getCurrency != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.CurrencyMaster.Remove(getCurrency);
-                else
-                    getCurrency.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
+                var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyId).FirstOrDefaultAsync();
+                if (getCurrency != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.CurrencyMaster.Remove(getCurrency);
+                    else
+                        getCurrency.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+
+                return false;
             }
-
-            return false;
         }
 
         public async Task<CurrencyMaster> UpdateCurrencyAsync(CurrencyMaster currencyMaster)
         {
-            var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyMaster.Id).FirstOrDefaultAsync();
-            if (getCurrency != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getCurrency.Name = currencyMaster.Name;
-                getCurrency.ShortName = currencyMaster.ShortName;
-                getCurrency.Value = currencyMaster.Value;
-                getCurrency.UpdatedDate = currencyMaster.UpdatedDate;
-                getCurrency.UpdatedBy = currencyMaster.UpdatedBy;
+                var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyMaster.Id).FirstOrDefaultAsync();
+                if (getCurrency != null)
+                {
+                    getCurrency.Name = currencyMaster.Name;
+                    getCurrency.ShortName = currencyMaster.ShortName;
+                    getCurrency.Value = currencyMaster.Value;
+                    getCurrency.UpdatedDate = currencyMaster.UpdatedDate;
+                    getCurrency.UpdatedBy = currencyMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return currencyMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return currencyMaster;
         }
     }
 }

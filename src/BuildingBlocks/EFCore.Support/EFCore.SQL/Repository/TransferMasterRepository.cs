@@ -15,25 +15,31 @@ namespace EFCore.SQL.Repository
 
         public TransferMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<List<TransferMaster>> GetAllTransferAsync()
         {
-            return await _databaseContext.TransferMaster.Where(s => s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.TransferMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<TransferMaster> AddTransferAsync(TransferMaster transferMaster)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                if (transferMaster.Id == null)
-                    transferMaster.Id = Guid.NewGuid().ToString();
+                using (_databaseContext = new DatabaseContext())
+                {
+                    if (transferMaster.Id == null)
+                        transferMaster.Id = Guid.NewGuid().ToString();
 
-                await _databaseContext.TransferMaster.AddAsync(transferMaster);
-                await _databaseContext.SaveChangesAsync();
+                    await _databaseContext.TransferMaster.AddAsync(transferMaster);
+                    await _databaseContext.SaveChangesAsync();
 
-                return transferMaster;
+                    return transferMaster;
+                }
             }
         }
 

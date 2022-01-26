@@ -11,55 +11,67 @@ namespace EFCore.SQL.Repository
 {
     public class SizeMasterRepository : ISizeMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public SizeMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+
         }
 
         public async Task<List<SizeMaster>> GetAllSizeAsync()
         {
-            return await _databaseContext.SizeMaster.Where(s => s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SizeMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<SizeMaster> AddSizeAsync(SizeMaster sizeMaster)
         {
-            if (sizeMaster.Id == null)
-                sizeMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.SizeMaster.AddAsync(sizeMaster);
-            await _databaseContext.SaveChangesAsync();
-            return sizeMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (sizeMaster.Id == null)
+                    sizeMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.SizeMaster.AddAsync(sizeMaster);
+                await _databaseContext.SaveChangesAsync();
+                return sizeMaster;
+            }
         }
 
         public async Task<bool> DeleteSizeAsync(string purityId, bool isPermanantDetele = false)
         {
-            var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
-            if (getSize != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.SizeMaster.Remove(getSize);
-                else
-                    getSize.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
+                var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
+                if (getSize != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.SizeMaster.Remove(getSize);
+                    else
+                        getSize.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+
+                return false;
             }
-            
-            return false;
         }
 
         public async Task<SizeMaster> UpdateSizeAsync(SizeMaster sizeMaster)
         {
-            var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == sizeMaster.Id).FirstOrDefaultAsync();
-            if (getSize  != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getSize.Name = sizeMaster.Name;
-                getSize.UpdatedDate = sizeMaster.UpdatedDate;
-                getSize.UpdatedBy = sizeMaster.UpdatedBy;
+                var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == sizeMaster.Id).FirstOrDefaultAsync();
+                if (getSize != null)
+                {
+                    getSize.Name = sizeMaster.Name;
+                    getSize.UpdatedDate = sizeMaster.UpdatedDate;
+                    getSize.UpdatedBy = sizeMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return sizeMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return sizeMaster;
         }
     }
 }
