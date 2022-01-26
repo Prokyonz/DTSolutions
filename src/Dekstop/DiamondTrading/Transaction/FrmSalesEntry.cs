@@ -622,6 +622,28 @@ namespace DiamondTrading.Transaction
                     decimal CVDWeight = Convert.ToDecimal(lueBranch.GetColumnValue("CVDWeight"));
                     GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat)), e.RowHandle, TipWeight, CVDWeight);
                 }
+                else if (e.Column == colShape)
+                {
+                    if (e.Value != Common.DefaultGuid)
+                    {
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
+                        {
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
+                        }
+                        else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
+                        {
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
+                        }
+                        else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
+                        {
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colGalaSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
+                        }
+                    }
+                }
                 else if (e.Column == colRejPer)
                 {
                     CalculateRejectionValue(true, e.RowHandle);
