@@ -11,61 +11,68 @@ namespace EFCore.SQL.Repository
 {
     public class SlipTransferEntryRepository : ISlipTransferEntry, IDisposable
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public SlipTransferEntryRepository()
         {
-            _databaseContext = new DatabaseContext();
+
         }
         public async Task<List<SlipTransferEntry>> AddSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries)
         {
-            foreach (var item in slipTransferEntries)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (item.Id != null)
+                foreach (var item in slipTransferEntries)
                 {
-                    item.Id = Guid.NewGuid().ToString();
+                    if (item.Id != null)
+                    {
+                        item.Id = Guid.NewGuid().ToString();
+                    }
                 }
-            }
 
-            await _databaseContext.SlipTransferEntry.AddRangeAsync(slipTransferEntries);
-            await _databaseContext.SaveChangesAsync();
-            return slipTransferEntries;
+                await _databaseContext.SlipTransferEntry.AddRangeAsync(slipTransferEntries);
+                await _databaseContext.SaveChangesAsync();
+                return slipTransferEntries;
+            }
         }
 
         public async Task<bool> DeleteSlipTransferEntryAsync(string purchaseId)
         {
-            var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
-            _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
-            await _databaseContext.SaveChangesAsync();
-            return true;
-        }
-
-        public void Dispose()
-        {
-            _databaseContext.DisposeAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
+                _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }
         }
 
         public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(string purchaseId)
         {
-            return await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
+            }
         }
 
         public async Task<bool> UpdateSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries)
         {
-            if (slipTransferEntries.Count > 0)
+            using (_databaseContext = new DatabaseContext())
             {
-                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == slipTransferEntries[0].PurchaseMasterId).ToListAsync();
-                _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
+                if (slipTransferEntries.Count > 0)
+                {
+                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == slipTransferEntries[0].PurchaseMasterId).ToListAsync();
+                    _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
 
-                //Add New updated records to the database
+                    //Add New updated records to the database
 
-                await _databaseContext.SlipTransferEntry.AddRangeAsync(slipEntry);
+                    await _databaseContext.SlipTransferEntry.AddRangeAsync(slipEntry);
 
-                await _databaseContext.SaveChangesAsync();
-                
-                return true;
+                    await _databaseContext.SaveChangesAsync();
+
+                    return true;
+                }
+                return false;
             }
-            return false;
         }
     }
 }

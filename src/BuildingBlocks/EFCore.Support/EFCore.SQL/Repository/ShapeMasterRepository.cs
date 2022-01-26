@@ -11,55 +11,67 @@ namespace EFCore.SQL.Repository
 {
     public class ShapeMasterRepository : IShapeMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public ShapeMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<List<ShapeMaster>> GetAllShapeAsync()
         {
-            return await _databaseContext.ShapeMaster.Where(s => s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.ShapeMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<ShapeMaster> AddShapeAsync(ShapeMaster shapeMaster)
         {
-            if (shapeMaster.Id == null)
-                shapeMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.ShapeMaster.AddAsync(shapeMaster);
-            await _databaseContext.SaveChangesAsync();
-            return shapeMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (shapeMaster.Id == null)
+                    shapeMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.ShapeMaster.AddAsync(shapeMaster);
+                await _databaseContext.SaveChangesAsync();
+                return shapeMaster;
+            }
         }
 
         public async Task<bool> DeleteShapeAsync(string purityId, bool isPermanantDetele = false)
         {
-            var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
-            if (getShape != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.ShapeMaster.Remove(getShape);
-                else
-                    getShape.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
+                var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
+                if (getShape != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.ShapeMaster.Remove(getShape);
+                    else
+                        getShape.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+
+                return false;
             }
-            
-            return false;
         }
 
         public async Task<ShapeMaster> UpdateShapeAsync(ShapeMaster shapeMaster)
         {
-            var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == shapeMaster.Id).FirstOrDefaultAsync();
-            if (getShape != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getShape.Name = shapeMaster.Name;
-                getShape.UpdatedDate = shapeMaster.UpdatedDate;
-                getShape.UpdatedBy = shapeMaster.UpdatedBy;
+                var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == shapeMaster.Id).FirstOrDefaultAsync();
+                if (getShape != null)
+                {
+                    getShape.Name = shapeMaster.Name;
+                    getShape.UpdatedDate = shapeMaster.UpdatedDate;
+                    getShape.UpdatedBy = shapeMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return shapeMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return shapeMaster;
         }
     }
 }

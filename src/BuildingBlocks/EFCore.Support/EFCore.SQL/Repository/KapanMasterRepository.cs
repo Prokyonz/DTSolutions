@@ -14,70 +14,85 @@ namespace EFCore.SQL.Repository
         private DatabaseContext _databaseContext;
         public KapanMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<KapanMaster> AddKapanAsync(KapanMaster kapanMaster)
         {
-            if (kapanMaster.Id == null)
-                kapanMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.KapanMaster.AddAsync(kapanMaster);
-            await _databaseContext.SaveChangesAsync();
-            return kapanMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (kapanMaster.Id == null)
+                    kapanMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.KapanMaster.AddAsync(kapanMaster);
+                await _databaseContext.SaveChangesAsync();
+                return kapanMaster;
+            }
         }
 
         public async Task<bool> DeleteKapanAsync(string kapanId, bool isPermanantDetele = false)
         {
-            var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
-            if (getKapan != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.KapanMaster.Remove(getKapan);
-                else
-                    getKapan.IsDelete = true;
+                var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
+                if (getKapan != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.KapanMaster.Remove(getKapan);
+                    else
+                        getKapan.IsDelete = true;
 
-                await _databaseContext.SaveChangesAsync();
-                return true;
-            }            
-            return false;
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
         }
 
         public async Task<List<KapanMaster>> GetAllKapanAsync()
         {
-            return await _databaseContext.KapanMaster.Where(s => s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.KapanMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<List<KapanMaster>> GetAssortProcessKapanDetails(string companyId, string branchId)
         {
-            try
+            using (_databaseContext = new DatabaseContext())
             {
-                using (_databaseContext = new DatabaseContext())
+                try
                 {
-                    var data = await _databaseContext.KapanMaster.FromSqlRaw($"GetAssortProcessKapanDetails '" + companyId + "', '" + branchId + "'").ToListAsync();
+                    using (_databaseContext = new DatabaseContext())
+                    {
+                        var data = await _databaseContext.KapanMaster.FromSqlRaw($"GetAssortProcessKapanDetails '" + companyId + "', '" + branchId + "'").ToListAsync();
 
-                    return data;
+                        return data;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                throw;
+                catch (Exception ex)
+                {
+                    throw;
+                }
             }
         }
 
         public async Task<KapanMaster> UpdateKapanAsync(KapanMaster kapanMaster)
         {
-            var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanMaster.Id).FirstOrDefaultAsync();
-            if (getKapan != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getKapan.Name = kapanMaster.Name;
-                getKapan.Details = kapanMaster.Details;
-                getKapan.CaratLimit = kapanMaster.CaratLimit;
-                getKapan.IsStatus = kapanMaster.IsStatus;
-                getKapan.StartDate = kapanMaster.StartDate;
-                getKapan.EndDate = kapanMaster.EndDate;
+                var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanMaster.Id).FirstOrDefaultAsync();
+                if (getKapan != null)
+                {
+                    getKapan.Name = kapanMaster.Name;
+                    getKapan.Details = kapanMaster.Details;
+                    getKapan.CaratLimit = kapanMaster.CaratLimit;
+                    getKapan.IsStatus = kapanMaster.IsStatus;
+                    getKapan.StartDate = kapanMaster.StartDate;
+                    getKapan.EndDate = kapanMaster.EndDate;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return kapanMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return kapanMaster;
         }
     }
 }

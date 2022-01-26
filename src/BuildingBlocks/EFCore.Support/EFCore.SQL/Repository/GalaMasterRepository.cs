@@ -11,55 +11,67 @@ namespace EFCore.SQL.Repository
 {
     public class GalaMasterRepository : IGalaMaster
     {
-        private readonly DatabaseContext _databaseContext;
+        private DatabaseContext _databaseContext;
 
         public GalaMasterRepository()
         {
-            _databaseContext = new DatabaseContext();
+            
         }
 
         public async Task<List<GalaMaster>> GetAllGalaAsync()
         {
-            return await _databaseContext.GalaMaster.Where(s => s.IsDelete == false).ToListAsync();
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.GalaMaster.Where(s => s.IsDelete == false).ToListAsync();
+            }
         }
 
         public async Task<GalaMaster> AddGalaAsync(GalaMaster galaMaster)
         {
-            if (galaMaster.Id == null)
-                galaMaster.Id = Guid.NewGuid().ToString();
-            await _databaseContext.GalaMaster.AddAsync(galaMaster);
-            await _databaseContext.SaveChangesAsync();
-            return galaMaster;
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (galaMaster.Id == null)
+                    galaMaster.Id = Guid.NewGuid().ToString();
+                await _databaseContext.GalaMaster.AddAsync(galaMaster);
+                await _databaseContext.SaveChangesAsync();
+                return galaMaster;
+            }
         }
 
         public async Task<bool> DeleteGalaAsync(string galaId, bool isPermanantDetele = false)
         {
-            var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
-            if (getGala != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                if (isPermanantDetele)
-                    _databaseContext.GalaMaster.Remove(getGala);
-                else
-                    getGala.IsDelete = true;
-                await _databaseContext.SaveChangesAsync();
+                var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
+                if (getGala != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.GalaMaster.Remove(getGala);
+                    else
+                        getGala.IsDelete = true;
+                    await _databaseContext.SaveChangesAsync();
 
-                return true;
+                    return true;
+                }
+
+                return false;
             }
-            
-            return false;
         }
 
         public async Task<GalaMaster> UpdateGalaAsync(GalaMaster galaMaster)
         {
-            var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaMaster.Id).FirstOrDefaultAsync();
-            if (getGala != null)
+            using (_databaseContext = new DatabaseContext())
             {
-                getGala.Name = galaMaster.Name;
-                getGala.UpdatedDate = galaMaster.UpdatedDate;
-                getGala.UpdatedBy = galaMaster.UpdatedBy;
+                var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaMaster.Id).FirstOrDefaultAsync();
+                if (getGala != null)
+                {
+                    getGala.Name = galaMaster.Name;
+                    getGala.UpdatedDate = galaMaster.UpdatedDate;
+                    getGala.UpdatedBy = galaMaster.UpdatedBy;
+                }
+                await _databaseContext.SaveChangesAsync();
+                return galaMaster;
             }
-            await _databaseContext.SaveChangesAsync();
-            return galaMaster;
         }
     }
 }
