@@ -778,7 +778,7 @@ namespace DiamondTrading.Transaction
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
                 {
                     decimal CVDCharge = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge));
-                    CVDCharge *= Carat;
+                    //CVDCharge *= Carat;
                     FinalAmount = FinalAmount - CVDCharge;
 
                     grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDAmount, CVDCharge);
