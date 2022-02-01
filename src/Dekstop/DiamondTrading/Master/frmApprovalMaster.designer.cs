@@ -38,6 +38,7 @@ namespace DiamondTrading.Master
             this.colApproverType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colApproverName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoUserName = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colKeyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
@@ -95,7 +96,8 @@ namespace DiamondTrading.Master
             this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colId,
             this.colApproverType,
-            this.colApproverName});
+            this.colApproverName,
+            this.colKeyName});
             this.grvPermissionDetails.GridControl = this.grdPermissionDetails;
             this.grvPermissionDetails.Name = "grvPermissionDetails";
             this.grvPermissionDetails.OptionsView.ShowGroupPanel = false;
@@ -137,6 +139,14 @@ namespace DiamondTrading.Master
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name")});
             this.repoUserName.Name = "repoUserName";
             this.repoUserName.NullText = "";
+            // 
+            // colKeyName
+            // 
+            this.colKeyName.Caption = "Key Name";
+            this.colKeyName.FieldName = "Name";
+            this.colKeyName.Name = "colKeyName";
+            this.colKeyName.Visible = true;
+            this.colKeyName.VisibleIndex = 2;
             // 
             // gridView6
             // 
@@ -195,5 +205,6 @@ namespace DiamondTrading.Master
         private DevExpress.XtraGrid.Columns.GridColumn colId;
         private DevExpress.XtraGrid.Columns.GridColumn colApproverName;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoUserName;
+        private DevExpress.XtraGrid.Columns.GridColumn colKeyName;
     }
 }
