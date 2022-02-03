@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -29,15 +30,20 @@ namespace EFCore.SQL.Repository
         {
             using (databaseContext = new DatabaseContext())
             {
-                var getRecords = await databaseContext.ApprovalPermissionMaster.ToListAsync();
-                if(getRecords != null)
+                foreach (var item in approvalPermissionMasters)
                 {
-                    databaseContext.ApprovalPermissionMaster.RemoveRange(getRecords);
+                    var getRecord = await databaseContext.ApprovalPermissionMaster.Where(w => w.Id == item.Id).FirstOrDefaultAsync();
+                    if(getRecord != null)
+                    {
+                        getRecord.UserId = item.UserId;
+                        getRecord.UpdatedDate = DateTime.Now;
+                        getRecord.UpdatedBy = item.UpdatedBy;
+                    }
+
+                    await databaseContext.SaveChangesAsync();
                 }
 
-                await databaseContext.ApprovalPermissionMaster.AddRangeAsync(approvalPermissionMasters);
-
-                await databaseContext.SaveChangesAsync();
+                
 
                 return approvalPermissionMasters;
             }

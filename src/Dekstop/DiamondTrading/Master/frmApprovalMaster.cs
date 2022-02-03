@@ -2,6 +2,7 @@
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace DiamondTrading.Master
@@ -21,28 +22,44 @@ namespace DiamondTrading.Master
 
         private async void frmUserMaster_Load(object sender, EventArgs e)
         {
-            repoUserName.DataSource = await userMasterRepository.GetAllUserAsync();
-            repoUserName.DisplayMember = "Name";
-            repoUserName.ValueMember = "Id";
 
-            permissionlist.Add(new ApprovalPermissionList { Id=1, DisplayName = "Purchase Approval", Name ="purchase_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=2,DisplayName = "Sales Approval", Name ="sales_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=3,DisplayName = "Payment Approval", Name = "payment_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=4,DisplayName = "Receipt Approval", Name = "receipt_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=5,DisplayName = "Expense Approval", Name = "expense_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=6,DisplayName = "Rejection In/Out Approval", Name = "rejection_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=7,DisplayName = "Stock Transfer Approval", Name = "stock_transfer_approval" });
-            permissionlist.Add(new ApprovalPermissionList { Id=8,DisplayName = "Slip Transfer Approval", Name = "slip_transfer_approval" });
+            grdPermissionDetails.DataSource = LoadTempData();
 
-            grdPermissionDetails.DataSource = permissionlist;
+            //repoUserName.DataSource = await userMasterRepository.GetAllUserAsync();
+            //repoUserName.DisplayMember = "Name";
+            //repoUserName.ValueMember = "Id";
+
+            repoCheckedUseBox.DataSource = await userMasterRepository.GetAllUserAsync();
+            repoCheckedUseBox.DisplayMember = "Name";
+            repoCheckedUseBox.ValueMember = "Id";
+
+            //permissionlist.Add(new ApprovalPermissionList { Id=1, DisplayName = "Purchase Approval", Name ="purchase_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=2,DisplayName = "Sales Approval", Name ="sales_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=3,DisplayName = "Payment Approval", Name = "payment_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=4,DisplayName = "Receipt Approval", Name = "receipt_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=5,DisplayName = "Expense Approval", Name = "expense_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=6,DisplayName = "Rejection In/Out Approval", Name = "rejection_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=7,DisplayName = "Stock Transfer Approval", Name = "stock_transfer_approval" });
+            //permissionlist.Add(new ApprovalPermissionList { Id=8,DisplayName = "Slip Transfer Approval", Name = "slip_transfer_approval" });
+
+            //grdPermissionDetails.DataSource = permissionlist;            
 
             LoadGridData();
         }
 
+        private DataTable LoadTempData()
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Id");
+            dt.Columns.Add("DisplayName");
+            dt.Columns.Add("UserId");
+            return dt;
+        }
+
         private async void LoadGridData()
         {
-            await approvalPermissionMasterRepository.GetPermission();
-
+            var result = await approvalPermissionMasterRepository.GetPermission();
+            grdPermissionDetails.DataSource = result;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -71,10 +88,11 @@ namespace DiamondTrading.Master
                 if (!string.IsNullOrWhiteSpace(grvPermissionDetails.GetRowCellValue(i, colApproverName).ToString()))
                 {
                     approvalPermissionMaster = new ApprovalPermissionMaster();
-                    approvalPermissionMaster.Id = Guid.NewGuid().ToString();
-                    approvalPermissionMaster.KeyName = grvPermissionDetails.GetRowCellValue(i, colKeyName).ToString();
-                    approvalPermissionMaster.DisplayName = grvPermissionDetails.GetRowCellValue(i, colApproverType).ToString();
+                    approvalPermissionMaster.Id = grvPermissionDetails.GetRowCellValue(i, colId).ToString();
+                    //approvalPermissionMaster.KeyName = grvPermissionDetails.GetRowCellValue(i, colKeyName).ToString();
+                    //approvalPermissionMaster.DisplayName = grvPermissionDetails.GetRowCellValue(i, colApproverType).ToString();
                     approvalPermissionMaster.UserId = grvPermissionDetails.GetRowCellValue(i, colApproverName).ToString();
+                    approvalPermissionMaster.UpdatedBy = Common.LoginUserID.ToString();
                     listApprovalPermissionMasters.Insert(i, approvalPermissionMaster);
                 }
             }
