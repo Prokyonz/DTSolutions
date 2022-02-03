@@ -381,13 +381,18 @@ namespace DiamondTrading
 
         }
 
-        private void grvTransMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        private async void grvTransMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
             if (ApprovalType.Equals("Pending"))
             {
-                var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
-                if (IsHavingApprovalPermission.Any())
+                //var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+                ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
+
+                var result = await approvalPermissionMasterRepository.GetPermission();
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "purchase_approval").FirstOrDefault() ;                
+                
+                if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
                 {
                     DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
                     DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
@@ -484,13 +489,19 @@ namespace DiamondTrading
             //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
         }
 
-        private void grvSalesTransactonMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        private async void grvSalesTransactonMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
         {
             string ApprovalType = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "ApprovalType").ToString();
             if (ApprovalType.Equals("Pending"))
             {
-                var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
-                if (IsHavingApprovalPermission.Any())
+                //var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+
+                ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
+
+                var result = await approvalPermissionMasterRepository.GetPermission();
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "sales_approval").FirstOrDefault();
+
+                if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
                 {
                     DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
                     DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
