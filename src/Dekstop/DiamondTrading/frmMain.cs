@@ -1168,7 +1168,30 @@ namespace DiamondTrading
             OpenContraPage();
         }
 
-        
+        private void OpenRejectionPage(int RejectionType)
+        {
+            Process.FrmRejectionSendReceive page = Application.OpenForms["FrmRejectionSendReceive"] as Process.FrmRejectionSendReceive;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmRejectionSendReceive frmRejectionSendReceive = new Process.FrmRejectionSendReceive(RejectionType);
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmRejectionSendReceive.StartPosition = FormStartPosition.Manual;
+
+            frmRejectionSendReceive.Location = new Point((w - frmRejectionSendReceive.Width - 200) / 3, (Height - frmRejectionSendReceive.Height) / 2);
+
+            frmRejectionSendReceive.ShowDialog();
+        }
 
         private void barButtonItem21_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
@@ -1625,6 +1648,16 @@ namespace DiamondTrading
             frmSlipTransfer.Location = new Point((w - frmSlipTransfer.Width - 200) / 3, (Height - frmSlipTransfer.Height) / 2);
 
             frmSlipTransfer.ShowDialog();
+        }
+
+        private void barButtonItem56_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenRejectionPage(2);
+        }
+
+        private void barButtonItem58_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenRejectionPage(1);
         }
     }
 }
