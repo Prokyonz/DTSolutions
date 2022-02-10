@@ -43,7 +43,8 @@ namespace DiamondTrading.Transaction
                 _paymentType = 1;
                 SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "RECEIPT";
-            } else
+            } 
+            else
             {
                 _paymentType = -1;
                 SetThemeColors(Color.FromArgb(217, 217, 217));
