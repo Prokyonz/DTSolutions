@@ -82,6 +82,9 @@ namespace DiamondTrading
             this.barSubItem13 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem56 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem58 = new DevExpress.XtraBars.BarButtonItem();
+            this.barSubItem14 = new DevExpress.XtraBars.BarSubItem();
+            this.barButtonItem59 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem60 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
@@ -179,9 +182,7 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barSubItem14 = new DevExpress.XtraBars.BarSubItem();
-            this.barButtonItem59 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem60 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem61 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -283,9 +284,10 @@ namespace DiamondTrading
             this.barButtonItem58,
             this.barSubItem14,
             this.barButtonItem59,
-            this.barButtonItem60});
+            this.barButtonItem60,
+            this.barButtonItem61});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 96;
+            this.barManager1.MaxItemId = 97;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -335,7 +337,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem14, true),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnApproval)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barbtnApproval),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem61)});
             this.barSubItem1.Name = "barSubItem1";
             this.barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -798,6 +801,29 @@ namespace DiamondTrading
             this.barButtonItem58.Id = 92;
             this.barButtonItem58.Name = "barButtonItem58";
             this.barButtonItem58.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem58_ItemClick);
+            // 
+            // barSubItem14
+            // 
+            this.barSubItem14.Caption = "Jangad";
+            this.barSubItem14.Id = 93;
+            this.barSubItem14.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem59),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem60)});
+            this.barSubItem14.Name = "barSubItem14";
+            // 
+            // barButtonItem59
+            // 
+            this.barButtonItem59.Caption = "Send";
+            this.barButtonItem59.Id = 94;
+            this.barButtonItem59.Name = "barButtonItem59";
+            this.barButtonItem59.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem59_ItemClick);
+            // 
+            // barButtonItem60
+            // 
+            this.barButtonItem60.Caption = "Receive";
+            this.barButtonItem60.Id = 95;
+            this.barButtonItem60.Name = "barButtonItem60";
+            this.barButtonItem60.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem60_ItemClick);
             // 
             // barSubItem5
             // 
@@ -1616,28 +1642,12 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
-            // barSubItem14
+            // barButtonItem61
             // 
-            this.barSubItem14.Caption = "Jangad";
-            this.barSubItem14.Id = 93;
-            this.barSubItem14.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem59),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem60)});
-            this.barSubItem14.Name = "barSubItem14";
-            // 
-            // barButtonItem59
-            // 
-            this.barButtonItem59.Caption = "Send";
-            this.barButtonItem59.Id = 94;
-            this.barButtonItem59.Name = "barButtonItem59";
-            this.barButtonItem59.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem59_ItemClick);
-            // 
-            // barButtonItem60
-            // 
-            this.barButtonItem60.Caption = "Receive";
-            this.barButtonItem60.Id = 95;
-            this.barButtonItem60.Name = "barButtonItem60";
-            this.barButtonItem60.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem60_ItemClick);
+            this.barButtonItem61.Caption = "Price Master";
+            this.barButtonItem61.Id = 96;
+            this.barButtonItem61.Name = "barButtonItem61";
+            this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
             // 
             // FrmMain
             // 
@@ -1830,5 +1840,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarSubItem barSubItem14;
         private DevExpress.XtraBars.BarButtonItem barButtonItem59;
         private DevExpress.XtraBars.BarButtonItem barButtonItem60;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem61;
     }
 }

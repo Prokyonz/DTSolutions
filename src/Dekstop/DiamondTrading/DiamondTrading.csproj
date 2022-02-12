@@ -399,6 +399,12 @@
     <Compile Include="Process\FrmNumberSend.designer.cs">
       <DependentUpon>FrmNumberSend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmPriceMaster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmPriceMaster.designer.cs">
+      <DependentUpon>FrmPriceMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmRejectionSendReceive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -601,6 +607,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmNumberSend.resx">
       <DependentUpon>FrmNumberSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmPriceMaster.resx">
+      <DependentUpon>FrmPriceMaster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmRejectionSendReceive.resx">
       <DependentUpon>FrmRejectionSendReceive.cs</DependentUpon>
