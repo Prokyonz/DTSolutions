@@ -1694,5 +1694,30 @@ namespace DiamondTrading
         {
             OpenJangadPage(1);
         }
+
+        private void barButtonItem61_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.FrmPriceMaster page = Application.OpenForms["FrmPriceMaster"] as Process.FrmPriceMaster;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmPriceMaster frmPriceMaster = new Process.FrmPriceMaster();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPriceMaster.StartPosition = FormStartPosition.Manual;
+
+            frmPriceMaster.Location = new Point((w - frmPriceMaster.Width - 200) / 3, (Height - frmPriceMaster.Height) / 2);
+
+            frmPriceMaster.ShowDialog();
+        }
     }
 }
