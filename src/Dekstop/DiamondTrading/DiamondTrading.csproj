@@ -381,6 +381,12 @@
     <Compile Include="Process\FrmGalaSend.designer.cs">
       <DependentUpon>FrmGalaSend.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmJangadSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmJangadSend.designer.cs">
+      <DependentUpon>FrmJangadSend.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmNumberReceive.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -586,6 +592,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmGalaSend.resx">
       <DependentUpon>FrmGalaSend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmJangadSend.resx">
+      <DependentUpon>FrmJangadSend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmNumberReceive.resx">
       <DependentUpon>FrmNumberReceive.cs</DependentUpon>

@@ -14,14 +14,14 @@ using System.Windows.Forms;
 
 namespace DiamondTrading.Process
 {
-    public partial class FrmRejectionSendReceive : DevExpress.XtraEditors.XtraForm
+    public partial class FrmJangadSend : DevExpress.XtraEditors.XtraForm
     {
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
         int _RejectionType = 0;
 
-        public FrmRejectionSendReceive(int RejectionType)
+        public FrmJangadSend(int RejectionType)
         {
             InitializeComponent();
             _boilMasterRepository = new BoilMasterRepository();
@@ -31,12 +31,12 @@ namespace DiamondTrading.Process
             if (RejectionType == 1)
             {
                 SetThemeColors(Color.FromArgb(250, 243, 197));
-                this.Text = "REJECTION RECEIVE";
+                this.Text = "JANGAD RECEIVE";
             }
             else if (RejectionType == 2)
             {
                 SetThemeColors(Color.FromArgb(215, 246, 214));
-                this.Text = "REJECTION SEND";
+                this.Text = "JANGAD SEND";
             }
         }
 
@@ -85,12 +85,12 @@ namespace DiamondTrading.Process
 
         private async Task GetBoilProcessSendDetail()
         {
-            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-            ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
+            //grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+            //ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
 
-            lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
-            lueKapan.Properties.DisplayMember = "Kapan";
-            lueKapan.Properties.ValueMember = "KapanId";
+            //lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+            //lueKapan.Properties.DisplayMember = "Kapan";
+            //lueKapan.Properties.ValueMember = "KapanId";
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
@@ -110,15 +110,15 @@ namespace DiamondTrading.Process
 
         private async void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueKapan.EditValue != null)
-            {
-                repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
-                repoSlipNo.DisplayMember = "SlipNo";
-                repoSlipNo.ValueMember = "Id";
+            //if (lueKapan.EditValue != null)
+            //{
+            //    repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+            //    repoSlipNo.DisplayMember = "SlipNo";
+            //    repoSlipNo.ValueMember = "Id";
 
-                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-            }
+            //    repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            //    repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            //}
         }
 
         private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -160,12 +160,6 @@ namespace DiamondTrading.Process
             {
                 MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lueSendto.Focus();
-                return false;
-            }
-            if (lueKapan.EditValue == null)
-            {
-                MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueKapan.Focus();
                 return false;
             }
             else if (grvParticularsDetails.RowCount == 0)
@@ -225,7 +219,7 @@ namespace DiamondTrading.Process
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
             lueSendto.EditValue = null;
-            lueKapan.EditValue = null;
+            //lueKapan.EditValue = null;
             repoSlipNo.DataSource = null;
 
             await GetMaxSrNo();

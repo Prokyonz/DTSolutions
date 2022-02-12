@@ -1,7 +1,7 @@
 ﻿
 namespace DiamondTrading.Process
 {
-    partial class FrmRejectionSendReceive
+    partial class FrmJangadSend
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,6 @@ namespace DiamondTrading.Process
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
@@ -44,7 +43,6 @@ namespace DiamondTrading.Process
             this.grvParticularsDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoSlipNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colACarat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCarat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,10 +61,8 @@ namespace DiamondTrading.Process
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.lueReceiveFrom = new DevExpress.XtraEditors.LookUpEdit();
             this.lueSendto = new DevExpress.XtraEditors.LookUpEdit();
-            this.lueKapan = new DevExpress.XtraEditors.LookUpEdit();
             this.grpDocuments = new DevExpress.XtraEditors.GroupControl();
             this.Image3 = new DevExpress.XtraEditors.PictureEdit();
             this.Image2 = new DevExpress.XtraEditors.PictureEdit();
@@ -74,7 +70,6 @@ namespace DiamondTrading.Process
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
@@ -96,7 +91,6 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpDocuments)).BeginInit();
             this.grpDocuments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).BeginInit();
@@ -140,14 +134,6 @@ namespace DiamondTrading.Process
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // separatorControl1
-            // 
-            this.separatorControl1.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl1.Location = new System.Drawing.Point(323, 93);
-            this.separatorControl1.Name = "separatorControl1";
-            this.separatorControl1.Size = new System.Drawing.Size(21, 71);
-            this.separatorControl1.TabIndex = 17;
             // 
             // dtDate
             // 
@@ -276,7 +262,6 @@ namespace DiamondTrading.Process
             this.grvParticularsDetails.Appearance.Row.Options.UseFont = true;
             this.grvParticularsDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSlipNo,
-            this.colACarat,
             this.colCarat,
             this.colSizeId,
             this.colShapeId,
@@ -324,16 +309,6 @@ namespace DiamondTrading.Process
             this.repoSlipNo.Name = "repoSlipNo";
             this.repoSlipNo.NullText = "";
             // 
-            // colACarat
-            // 
-            this.colACarat.Caption = "A Carat";
-            this.colACarat.FieldName = "AvailableWeight";
-            this.colACarat.Name = "colACarat";
-            this.colACarat.OptionsColumn.AllowEdit = false;
-            this.colACarat.Visible = true;
-            this.colACarat.VisibleIndex = 1;
-            this.colACarat.Width = 143;
-            // 
             // colCarat
             // 
             this.colCarat.Caption = "Cts";
@@ -343,7 +318,7 @@ namespace DiamondTrading.Process
             this.colCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCarat.Visible = true;
-            this.colCarat.VisibleIndex = 2;
+            this.colCarat.VisibleIndex = 1;
             this.colCarat.Width = 109;
             // 
             // repoTxtEdit
@@ -392,7 +367,7 @@ namespace DiamondTrading.Process
             this.colRate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")});
             this.colRate.Visible = true;
-            this.colRate.VisibleIndex = 3;
+            this.colRate.VisibleIndex = 2;
             this.colRate.Width = 106;
             // 
             // colAmount
@@ -402,7 +377,7 @@ namespace DiamondTrading.Process
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 4;
+            this.colAmount.VisibleIndex = 3;
             this.colAmount.Width = 112;
             // 
             // repoPayType
@@ -498,16 +473,6 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Party* :";
             // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 134);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(57, 16);
-            this.labelControl2.TabIndex = 10;
-            this.labelControl2.Text = "Slip No* :";
-            // 
             // lueReceiveFrom
             // 
             this.lueReceiveFrom.Location = new System.Drawing.Point(199, 31);
@@ -525,7 +490,7 @@ namespace DiamondTrading.Process
             // 
             // lueSendto
             // 
-            this.lueSendto.Location = new System.Drawing.Point(107, 102);
+            this.lueSendto.Location = new System.Drawing.Point(76, 102);
             this.lueSendto.Name = "lueSendto";
             this.lueSendto.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueSendto.Properties.Appearance.Options.UseFont = true;
@@ -537,22 +502,6 @@ namespace DiamondTrading.Process
             this.lueSendto.Properties.NullText = "";
             this.lueSendto.Size = new System.Drawing.Size(212, 22);
             this.lueSendto.TabIndex = 9;
-            // 
-            // lueKapan
-            // 
-            this.lueKapan.Location = new System.Drawing.Point(107, 131);
-            this.lueKapan.Name = "lueKapan";
-            this.lueKapan.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueKapan.Properties.Appearance.Options.UseFont = true;
-            this.lueKapan.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueKapan.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueKapan.Properties.NullText = "";
-            this.lueKapan.Size = new System.Drawing.Size(212, 22);
-            this.lueKapan.TabIndex = 11;
-            this.lueKapan.EditValueChanged += new System.EventHandler(this.lueKapan_EditValueChanged);
             // 
             // grpDocuments
             // 
@@ -596,7 +545,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(347, 134);
+            this.labelControl3.Location = new System.Drawing.Point(12, 134);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(54, 16);
             this.labelControl3.TabIndex = 15;
@@ -604,7 +553,7 @@ namespace DiamondTrading.Process
             // 
             // lookUpEdit1
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(405, 131);
+            this.lookUpEdit1.Location = new System.Drawing.Point(76, 131);
             this.lookUpEdit1.Name = "lookUpEdit1";
             this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
@@ -622,10 +571,8 @@ namespace DiamondTrading.Process
             this.panelControl1.Controls.Add(this.lookUpEdit1);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.grpDocuments);
-            this.panelControl1.Controls.Add(this.lueKapan);
             this.panelControl1.Controls.Add(this.lueSendto);
             this.panelControl1.Controls.Add(this.lueReceiveFrom);
-            this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl12);
             this.panelControl1.Controls.Add(this.labelControl6);
@@ -636,13 +583,12 @@ namespace DiamondTrading.Process
             this.panelControl1.Controls.Add(this.dtTime);
             this.panelControl1.Controls.Add(this.txtSerialNo);
             this.panelControl1.Controls.Add(this.dtDate);
-            this.panelControl1.Controls.Add(this.separatorControl1);
             this.panelControl1.Location = new System.Drawing.Point(11, 5);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(628, 562);
             this.panelControl1.TabIndex = 0;
             // 
-            // FrmRejectionSendReceive
+            // FrmJangadSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -657,13 +603,12 @@ namespace DiamondTrading.Process
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmRejectionSendReceive";
+            this.Name = "FrmJangadSend";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "REJECTION";
+            this.Text = "JANGAD";
             this.Load += new System.EventHandler(this.FrmBoilSend_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmBoilSend_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).EndInit();
@@ -685,7 +630,6 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpDocuments)).EndInit();
             this.grpDocuments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).EndInit();
@@ -703,7 +647,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnReset;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraEditors.DateEdit dtDate;
         private DevExpress.XtraEditors.TextEdit txtSerialNo;
         private DevExpress.XtraEditors.DateEdit dtTime;
@@ -715,7 +658,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Views.Grid.GridView grvParticularsDetails;
         private DevExpress.XtraGrid.Columns.GridColumn colSlipNo;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSlipNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colACarat;
         private DevExpress.XtraGrid.Columns.GridColumn colCarat;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colSizeId;
@@ -734,10 +676,8 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LookUpEdit lueReceiveFrom;
         private DevExpress.XtraEditors.LookUpEdit lueSendto;
-        private DevExpress.XtraEditors.LookUpEdit lueKapan;
         private DevExpress.XtraEditors.GroupControl grpDocuments;
         private DevExpress.XtraEditors.PictureEdit Image3;
         private DevExpress.XtraEditors.PictureEdit Image2;

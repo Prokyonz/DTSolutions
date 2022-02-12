@@ -1659,5 +1659,40 @@ namespace DiamondTrading
         {
             OpenRejectionPage(1);
         }
+
+        private void barButtonItem59_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenJangadPage(2);
+        }
+
+        private void OpenJangadPage(int JangadType)
+        {
+            Process.FrmRejectionSendReceive page = Application.OpenForms["FrmRejectionSendReceive"] as Process.FrmRejectionSendReceive;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmJangadSend frmJangadSend = new Process.FrmJangadSend(JangadType);
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmJangadSend.StartPosition = FormStartPosition.Manual;
+
+            frmJangadSend.Location = new Point((w - frmJangadSend.Width - 200) / 3, (Height - frmJangadSend.Height) / 2);
+
+            frmJangadSend.ShowDialog();
+        }
+
+        private void barButtonItem60_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            OpenJangadPage(1);
+        }
     }
 }
