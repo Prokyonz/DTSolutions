@@ -468,6 +468,7 @@ namespace DiamondTrading.Master
             this.lueBrokerage.Properties.NullText = "";
             this.lueBrokerage.Size = new System.Drawing.Size(238, 26);
             this.lueBrokerage.TabIndex = 1;
+            this.lueBrokerage.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // labelControl12
             // 

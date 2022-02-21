@@ -868,8 +868,6 @@ namespace DiamondTrading.Transaction
             this.colKapan.ColumnEdit = this.repoKapan;
             this.colKapan.FieldName = "Kapan";
             this.colKapan.Name = "colKapan";
-            this.colKapan.Visible = true;
-            this.colKapan.VisibleIndex = 3;
             this.colKapan.Width = 48;
             // 
             // repoKapan
@@ -891,7 +889,7 @@ namespace DiamondTrading.Transaction
             this.colCarat.FieldName = "Carat";
             this.colCarat.Name = "colCarat";
             this.colCarat.Visible = true;
-            this.colCarat.VisibleIndex = 4;
+            this.colCarat.VisibleIndex = 3;
             this.colCarat.Width = 48;
             // 
             // repoTxtEdit
@@ -910,7 +908,7 @@ namespace DiamondTrading.Transaction
             this.colTipWeight.FieldName = "Tip";
             this.colTipWeight.Name = "colTipWeight";
             this.colTipWeight.Visible = true;
-            this.colTipWeight.VisibleIndex = 5;
+            this.colTipWeight.VisibleIndex = 4;
             this.colTipWeight.Width = 47;
             // 
             // colCVDWeight
@@ -920,7 +918,7 @@ namespace DiamondTrading.Transaction
             this.colCVDWeight.FieldName = "CVD";
             this.colCVDWeight.Name = "colCVDWeight";
             this.colCVDWeight.Visible = true;
-            this.colCVDWeight.VisibleIndex = 6;
+            this.colCVDWeight.VisibleIndex = 5;
             this.colCVDWeight.Width = 42;
             // 
             // colRejPer
@@ -930,7 +928,7 @@ namespace DiamondTrading.Transaction
             this.colRejPer.FieldName = "RejPer";
             this.colRejPer.Name = "colRejPer";
             this.colRejPer.Visible = true;
-            this.colRejPer.VisibleIndex = 7;
+            this.colRejPer.VisibleIndex = 6;
             this.colRejPer.Width = 47;
             // 
             // colRejCts
@@ -940,7 +938,7 @@ namespace DiamondTrading.Transaction
             this.colRejCts.FieldName = "RejCts";
             this.colRejCts.Name = "colRejCts";
             this.colRejCts.Visible = true;
-            this.colRejCts.VisibleIndex = 8;
+            this.colRejCts.VisibleIndex = 7;
             this.colRejCts.Width = 45;
             // 
             // colLessCts
@@ -950,7 +948,7 @@ namespace DiamondTrading.Transaction
             this.colLessCts.FieldName = "LessCts";
             this.colLessCts.Name = "colLessCts";
             this.colLessCts.Visible = true;
-            this.colLessCts.VisibleIndex = 9;
+            this.colLessCts.VisibleIndex = 8;
             this.colLessCts.Width = 45;
             // 
             // colNetCts
@@ -962,7 +960,7 @@ namespace DiamondTrading.Transaction
             this.colNetCts.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetCts", "{0:0.##}")});
             this.colNetCts.Visible = true;
-            this.colNetCts.VisibleIndex = 10;
+            this.colNetCts.VisibleIndex = 9;
             this.colNetCts.Width = 55;
             // 
             // colRate
@@ -972,7 +970,7 @@ namespace DiamondTrading.Transaction
             this.colRate.FieldName = "Rate";
             this.colRate.Name = "colRate";
             this.colRate.Visible = true;
-            this.colRate.VisibleIndex = 11;
+            this.colRate.VisibleIndex = 10;
             this.colRate.Width = 53;
             // 
             // colDisPer
@@ -982,7 +980,7 @@ namespace DiamondTrading.Transaction
             this.colDisPer.FieldName = "DiscPer";
             this.colDisPer.Name = "colDisPer";
             this.colDisPer.Visible = true;
-            this.colDisPer.VisibleIndex = 12;
+            this.colDisPer.VisibleIndex = 11;
             this.colDisPer.Width = 49;
             // 
             // colCVDCharge
@@ -992,7 +990,7 @@ namespace DiamondTrading.Transaction
             this.colCVDCharge.FieldName = "CVDCharge";
             this.colCVDCharge.Name = "colCVDCharge";
             this.colCVDCharge.Visible = true;
-            this.colCVDCharge.VisibleIndex = 13;
+            this.colCVDCharge.VisibleIndex = 12;
             this.colCVDCharge.Width = 38;
             // 
             // colAmount
@@ -1004,7 +1002,7 @@ namespace DiamondTrading.Transaction
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 14;
+            this.colAmount.VisibleIndex = 13;
             this.colAmount.Width = 62;
             // 
             // colCurrRate
@@ -1024,7 +1022,7 @@ namespace DiamondTrading.Transaction
             this.colCurrAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CAmount", "{0:0.##}")});
             this.colCurrAmount.Visible = true;
-            this.colCurrAmount.VisibleIndex = 15;
+            this.colCurrAmount.VisibleIndex = 14;
             this.colCurrAmount.Width = 67;
             // 
             // colDisAmount

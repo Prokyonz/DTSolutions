@@ -16,9 +16,28 @@ namespace DiamondTrading.Master
     public partial class FrmBrokerageMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly BrokerageMasterRepository _brokerageMasterRepository;
-        private readonly List<BrokerageMaster> _brokerageMaster;
+        private List<BrokerageMaster> _brokerageMaster;
         private BrokerageMaster _EditedBrokerageMasterSet;
         private string _selectedBrokerageId;
+
+        public bool IsSilentEntry
+        {
+            get;
+            set;
+        }
+
+        public string CreatedBrokerageID
+        {
+            get;
+            private set;
+        }
+
+        public FrmBrokerageMaster()
+        {
+            InitializeComponent();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
+        }
+
         public FrmBrokerageMaster(List<BrokerageMaster> BrokerageMasters)
         {
             InitializeComponent();
@@ -34,8 +53,11 @@ namespace DiamondTrading.Master
             _selectedBrokerageId = SelectedBrokerageId;
         }
 
-        private void FrmBrokerageMaster_Load(object sender, EventArgs e)
+        private async void FrmBrokerageMaster_Load(object sender, EventArgs e)
         {
+            if (_brokerageMaster == null)
+                _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync();
+
             if (string.IsNullOrEmpty(_selectedBrokerageId) == false)
             {
                 _EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
@@ -97,8 +119,12 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
-                        Reset();
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CreatedBrokerageID = Result.Id;
+                        if (!IsSilentEntry)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
                     }
                 }
                 else
@@ -112,12 +138,13 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
+                        CreatedBrokerageID = Result.Id;
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
 
-                if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreBrokerageConfirmation), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                ////if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreBrokerageConfirmation), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
                     this.DialogResult = DialogResult.OK;
                 }

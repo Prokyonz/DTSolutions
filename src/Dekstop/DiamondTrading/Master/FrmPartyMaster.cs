@@ -19,17 +19,20 @@ namespace DiamondTrading.Master
         private List<PartyMaster> _partyMasters;
         private PartyMaster _EditedPartyMasterSet;
         private string _selectedParty;
+        private BrokerageMasterRepository _brokerageMasterRepository;
 
         public FrmPartyMaster()
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
         }
 
         public FrmPartyMaster(List<PartyMaster> PartyMasters)
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
             this._partyMasters = PartyMasters;
         }
 
@@ -37,6 +40,7 @@ namespace DiamondTrading.Master
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
             this._partyMasters = PartyMasters;
             _selectedParty = SelectedParty;
         }
@@ -394,14 +398,35 @@ namespace DiamondTrading.Master
                     || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller)
                 {
                     pnl2.Visible = true;
+                    await GetBrokerageList();
+                }
+            }
+        }
 
-                    BrokerageMasterRepository brokerageMasterRepository = new BrokerageMasterRepository();
-                    var Brokerage = await brokerageMasterRepository.GetAllBrokerageAsync();
-                    if (Brokerage != null)
+        private async Task GetBrokerageList()
+        {
+            var Brokerage = await _brokerageMasterRepository.GetAllBrokerageAsync();
+            if (Brokerage != null)
+            {
+                lueBrokerage.Properties.DataSource = Brokerage;
+                lueBrokerage.Properties.DisplayMember = "Name";
+                lueBrokerage.Properties.ValueMember = "Id";
+            }
+        }
+
+        private async void NewEntry(object sender, KeyEventArgs e)
+        {
+            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (ControlName == lueBrokerage.Name)
+                {
+                    Master.FrmBrokerageMaster frmBrokerageMaster = new Master.FrmBrokerageMaster();
+                    frmBrokerageMaster.IsSilentEntry = true;
+                    if (frmBrokerageMaster.ShowDialog() == DialogResult.OK)
                     {
-                        lueBrokerage.Properties.DataSource = Brokerage;
-                        lueBrokerage.Properties.DisplayMember = "Name";
-                        lueBrokerage.Properties.ValueMember = "Id";
+                        await GetBrokerageList();
+                        lueBrokerage.EditValue = frmBrokerageMaster.CreatedBrokerageID;
                     }
                 }
             }

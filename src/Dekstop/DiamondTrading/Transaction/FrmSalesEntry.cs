@@ -670,6 +670,12 @@ namespace DiamondTrading.Transaction
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
+
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
         }
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -700,12 +706,12 @@ namespace DiamondTrading.Transaction
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight*CVDWeight).ToString("0.00"));
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
                     }
-                    else
-                    {
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, "");
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDWeight, "");
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, "");
-                    }
+                    //else
+                    //{
+                    //    grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, "");
+                    //    grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, "");
+                    //    grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, "");
+                    //}
                 }
             }
             catch

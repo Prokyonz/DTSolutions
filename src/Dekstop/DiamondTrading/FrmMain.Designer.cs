@@ -48,6 +48,7 @@ namespace DiamondTrading
             this.barButtonItem15 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnApproval = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem61 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
@@ -182,7 +183,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem61 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -489,6 +489,13 @@ namespace DiamondTrading
             this.barbtnApproval.Name = "barbtnApproval";
             this.barbtnApproval.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barbtnApproval.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem56_ItemClick);
+            // 
+            // barButtonItem61
+            // 
+            this.barButtonItem61.Caption = "Price Master";
+            this.barButtonItem61.Id = 96;
+            this.barButtonItem61.Name = "barButtonItem61";
+            this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
             // 
             // barSubItem2
             // 
@@ -1189,6 +1196,7 @@ namespace DiamondTrading
             this.accordionControlSeparator6,
             this.accrdianElementUserMaster,
             this.accrdianElementApprovalMaster});
+            this.accordionControlElementMaster.Expanded = true;
             this.accordionControlElementMaster.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
             new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text),
@@ -1641,13 +1649,6 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
-            // 
-            // barButtonItem61
-            // 
-            this.barButtonItem61.Caption = "Price Master";
-            this.barButtonItem61.Id = 96;
-            this.barButtonItem61.Name = "barButtonItem61";
-            this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
             // 
             // FrmMain
             // 

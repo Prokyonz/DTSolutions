@@ -333,7 +333,7 @@ namespace DiamondTrading.Process
             this.colBoilCarat.FieldName = "BoilCarat";
             this.colBoilCarat.Name = "colBoilCarat";
             this.colBoilCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BoilCarat", "{0:0.##}")});
             this.colBoilCarat.Visible = true;
             this.colBoilCarat.VisibleIndex = 3;
             this.colBoilCarat.Width = 114;

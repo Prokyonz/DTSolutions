@@ -18,6 +18,7 @@ namespace DiamondTrading.Process
     {
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        List<BoilProcessReceive> ListAssortmentProcessReceive;
         public FrmBoilReceive()
         {
             InitializeComponent();
@@ -89,15 +90,9 @@ namespace DiamondTrading.Process
             if (lueReceiveFrom.EditValue != null)
             {
                 grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-                List<BoilProcessReceive> ListAssortmentProcessSend = await _boilMasterRepository.GetBoilReceiveToDetails(lueReceiveFrom.EditValue.ToString(), Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-                repoSlipNo.DataSource = ListAssortmentProcessSend;
-                repoSlipNo.DisplayMember = "BoilNo";
-                repoSlipNo.ValueMember = "Id";
+                ListAssortmentProcessReceive = await _boilMasterRepository.GetBoilReceiveToDetails(lueReceiveFrom.EditValue.ToString(), Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
 
-                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
-                lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan}).Distinct().ToList();
+                lueKapan.Properties.DataSource = ListAssortmentProcessReceive.Select(x => new { x.KapanId, x.Kapan}).Distinct().ToList();
                 lueKapan.Properties.DisplayMember = "Kapan";
                 lueKapan.Properties.ValueMember = "KapanId";
             }
@@ -247,6 +242,7 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
+            ListAssortmentProcessReceive = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
@@ -293,6 +289,19 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void lueKapan_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueKapan.EditValue != null)
+            {
+                repoSlipNo.DataSource = ListAssortmentProcessReceive.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                repoSlipNo.DisplayMember = "BoilNo";
+                repoSlipNo.ValueMember = "Id";
+
+                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+            }
         }
     }
 }
