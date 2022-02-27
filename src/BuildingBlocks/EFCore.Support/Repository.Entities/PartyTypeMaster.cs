@@ -33,17 +33,29 @@ namespace Repository.Entities
         //    return partyTypeMaster;
         //}
 
-        public static List<PartyTypeMaster> GetAllMainLedgerType()
+        public static List<PartyTypeMaster> GetAllMainLedgerType(bool IsCashBankAccount = false)
         {
-            List<PartyTypeMaster> partyTypeMaster = new List<PartyTypeMaster>
+            List<PartyTypeMaster> partyTypeMaster;
+            if (IsCashBankAccount)
             {
-                new PartyTypeMaster {Id = Party, Name = "Party" },
-                new PartyTypeMaster {Id = Employee, Name = "Employee" },
-                new PartyTypeMaster {Id = Expense, Name = "Expense" },
-                new PartyTypeMaster {Id = Loan, Name = "Loan" },
-                new PartyTypeMaster {Id = Bank, Name = "Bank" },
-                new PartyTypeMaster {Id = Cash, Name = "Cash" }
-            };
+                partyTypeMaster = new List<PartyTypeMaster>
+                {
+                    new PartyTypeMaster {Id = Bank, Name = "Bank" },
+                    new PartyTypeMaster {Id = Cash, Name = "Cash" }
+                };
+            }
+            else
+            {
+                partyTypeMaster = new List<PartyTypeMaster>
+                {
+                    new PartyTypeMaster { Id = Party, Name = "Party" },
+                    new PartyTypeMaster { Id = Employee, Name = "Employee" },
+                    new PartyTypeMaster { Id = Expense, Name = "Expense" },
+                    new PartyTypeMaster { Id = Loan, Name = "Loan" },
+                    new PartyTypeMaster {Id = Bank, Name = "Bank" },
+                    new PartyTypeMaster {Id = Cash, Name = "Cash" }
+                };
+            }
             return partyTypeMaster;
         }
 

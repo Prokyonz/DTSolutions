@@ -210,5 +210,24 @@ namespace DiamondTrading.Utility
         {
             Common.MoveToNextControl(sender, e, this);
         }
+
+        private async void NewEntry(object sender, KeyEventArgs e)
+        {
+            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (ControlName == lueParty.Name)
+                {
+                    Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                    frmPartyMaster.IsSilentEntry = true;
+                    frmPartyMaster.LedgerType = PartyTypeMaster.Loan;
+                    if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await LoadParty();
+                        lueParty.EditValue = frmPartyMaster.CreatedLedgerID;
+                    }
+                }
+            }
+        }
     }
 }

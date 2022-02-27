@@ -115,6 +115,7 @@ namespace DiamondTrading.Process
             this.lueKapan.Properties.NullText = "";
             this.lueKapan.Size = new System.Drawing.Size(230, 22);
             this.lueKapan.TabIndex = 4;
+            this.lueKapan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // labelControl8
             // 

@@ -40,14 +40,14 @@ namespace DiamondTrading.Transaction
 
         }
 
-        private void FrmPaymentEntry_Load(object sender, EventArgs e)
+        private async void FrmPaymentEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
             _ = GetMaxSrNo();
             _ = LoadCompany();
-            LoadLedgers(Common.LoginCompany);
+            await LoadLedgers(Common.LoginCompany);
             _ = LoadParties();
         }
 
@@ -109,7 +109,7 @@ namespace DiamondTrading.Transaction
             repoBranchList.ValueMember = "Id";
         }
 
-        private async void LoadLedgers(string companyId)
+        private async Task LoadLedgers(string companyId)
         {
             grdPaymentDetails.DataSource = GetDTColumnsForPaymentDetails();
             var result = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Expense);
@@ -183,7 +183,7 @@ namespace DiamondTrading.Transaction
                 this.Cursor = Cursors.Default;
             }
         }
-        private void Reset()
+        private async void Reset()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -193,7 +193,7 @@ namespace DiamondTrading.Transaction
             lueBranch.EditValue = null;
             _= GetMaxSrNo();
             _= LoadCompany();
-            LoadLedgers(Common.LoginCompany);
+            await LoadLedgers(Common.LoginCompany);
             lueCompany.Focus();
         }
 
@@ -202,10 +202,10 @@ namespace DiamondTrading.Transaction
             Reset();
         }
 
-        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        private async void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
             if (lueCompany.EditValue != null)
-                LoadLedgers(lueCompany.EditValue.ToString());
+                await LoadLedgers(lueCompany.EditValue.ToString());
         }
 
         private void FrmPaymentEntry_KeyDown(object sender, KeyEventArgs e)
@@ -219,6 +219,41 @@ namespace DiamondTrading.Transaction
             {
                 var result = await _partyMasterRepository.GetPartyBalance(lueAccounts.EditValue.ToString());
                 txtLedgerBalance.Text = result.ToString();
+            }
+        }
+
+        private async void NewEntry(object sender, KeyEventArgs e)
+        {
+            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (ControlName == lueAccounts.Name)
+                {
+                    Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                    frmPartyMaster.IsSilentEntry = true;
+                    frmPartyMaster.IsCashBankAccount = true;
+                    //frmPartyMaster.LedgerType = PartyTypeMaster.Buyer;
+                    if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await LoadParties();
+                        lueAccounts.EditValue = frmPartyMaster.CreatedLedgerID;
+                    }
+                }
+            }
+        }
+
+        private async void repoParty_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
+                frmPartyMaster.IsSilentEntry = true;
+                frmPartyMaster.LedgerType = PartyTypeMaster.Expense;
+                if (frmPartyMaster.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadLedgers(lueCompany.EditValue.ToString());
+                    grvPaymentDetails.SetFocusedRowCellValue(colParty, frmPartyMaster.CreatedLedgerID.ToString());
+                }
             }
         }
     }

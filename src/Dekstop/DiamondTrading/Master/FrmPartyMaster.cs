@@ -63,6 +63,12 @@ namespace DiamondTrading.Master
             set;
         }
 
+        public bool IsCashBankAccount
+        {
+            get;
+            set;
+        }
+
         private async void frmPartyMaster_Load(object sender, EventArgs e)
         {
             if(_partyMasters == null)
@@ -103,6 +109,22 @@ namespace DiamondTrading.Master
             else if (LedgerType == PartyTypeMaster.Party)
             {
                 luePartyType.EditValue = PartyTypeMaster.Party;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+            else if (LedgerType == PartyTypeMaster.Expense)
+            {
+                luePartyType.EditValue = PartyTypeMaster.Expense;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+            else if (LedgerType == PartyTypeMaster.Loan)
+            {
+                luePartyType.EditValue = PartyTypeMaster.Loan;
 
                 lueCompany.Enabled = false;
                 luePartyType.Enabled = false;
@@ -152,7 +174,7 @@ namespace DiamondTrading.Master
                     lueCompany.EditValue = Common.LoginCompany;
                 }
 
-                var PartyTypes = PartyTypeMaster.GetAllMainLedgerType();
+                var PartyTypes = PartyTypeMaster.GetAllMainLedgerType(IsCashBankAccount);
 
                 if (PartyTypes != null)
                 {

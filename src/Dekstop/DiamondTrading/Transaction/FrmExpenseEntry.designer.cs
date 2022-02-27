@@ -206,6 +206,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CategoryId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.repoParty.Name = "repoParty";
             this.repoParty.NullText = "";
+            this.repoParty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.repoParty_KeyDown);
             // 
             // colAmount
             // 
@@ -246,6 +247,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.repoBranchList.Name = "repoBranchList";
+            this.repoBranchList.NullText = "";
             // 
             // grpGroup2
             // 
@@ -428,6 +430,7 @@ namespace DiamondTrading.Transaction
             this.lueAccounts.Size = new System.Drawing.Size(224, 22);
             this.lueAccounts.TabIndex = 15;
             this.lueAccounts.EditValueChanged += new System.EventHandler(this.lueAccounts_EditValueChanged);
+            this.lueAccounts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // lueBranch
             // 

@@ -97,6 +97,7 @@ namespace DiamondTrading.Utility
             this.lueParty.Properties.NullText = "";
             this.lueParty.Size = new System.Drawing.Size(315, 26);
             this.lueParty.TabIndex = 4;
+            this.lueParty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // lueReceiveFrom
             // 

@@ -214,6 +214,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CategoryId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.repoParty.Name = "repoParty";
             this.repoParty.NullText = "";
+            this.repoParty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.repoParty_KeyDown);
             // 
             // colAmount
             // 
@@ -341,6 +342,7 @@ namespace DiamondTrading.Transaction
             this.lueLeadger.Size = new System.Drawing.Size(275, 22);
             this.lueLeadger.TabIndex = 9;
             this.lueLeadger.EditValueChanged += new System.EventHandler(this.lueLeadger_EditValueChanged);
+            this.lueLeadger.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
             // dtTime
             // 

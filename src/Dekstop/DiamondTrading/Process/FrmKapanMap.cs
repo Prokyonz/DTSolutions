@@ -281,5 +281,23 @@ namespace DiamondTrading.Process
             }
             txtCarat.Text = TotalCts.ToString();
         }
+
+        private async void NewEntry(object sender, KeyEventArgs e)
+        {
+            string ControlName = ((DevExpress.XtraEditors.LookUpEdit)sender).Name;
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                if (ControlName == lueKapan.Name)
+                {
+                    Master.FrmKapanMaster frmKapanMaster = new Master.FrmKapanMaster();
+                    frmKapanMaster.IsSilentEntry = true;
+                    if (frmKapanMaster.ShowDialog() == DialogResult.OK)
+                    {
+                        await GetKapanDetail();
+                        lueKapan.EditValue = frmKapanMaster.CreatedLedgerID;
+                    }
+                }
+            }
+        }
     }
 }
