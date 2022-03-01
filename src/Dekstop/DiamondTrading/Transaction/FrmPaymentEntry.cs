@@ -340,39 +340,49 @@ namespace DiamondTrading.Transaction
                 {
                     DataView dtView = new DataView(dtSlipDetail);
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
-                    FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
-                    if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
-                        frmPaymentSlipSelect.IsAutoAdjustBillAmount = true;
-                    else
-                        frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
-                    if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
+                    if (dtView.Count > 0)
                     {
-                        decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
-                        DataView dtView1 = new DataView(frmPaymentSlipSelect.dtSlipDetail);
-                        //dtView1.RowFilter = "isnull(Amount,0)<>0";
-                        if (dtView1.Count > 0)
+                        FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
+                        if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
+                            frmPaymentSlipSelect.IsAutoAdjustBillAmount = true;
+                        else
+                            frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
+                        if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
                         {
-                            foreach (DataRowView row in dtView1)
+                            decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
+                            DataView dtView1 = new DataView(frmPaymentSlipSelect.dtSlipDetail);
+                            //dtView1.RowFilter = "isnull(Amount,0)<>0";
+                            if (dtView1.Count > 0)
                             {
-                                if (!dtSlipDetail.Columns.Contains("Amount"))
-                                    dtSlipDetail.Columns.Add("Amount", typeof(decimal));
-
-                                DataView dtView2 = new DataView(dtSlipDetail);
-                                dtView2.RowFilter = "PartyId='" + row["PartyId"] + "' and SlipNo='" + row["SlipNo"] + "'";
-                                if (dtView2.Count > 0)
+                                foreach (DataRowView row in dtView1)
                                 {
-                                    foreach (DataRowView subRow in dtView2)
+                                    if (!dtSlipDetail.Columns.Contains("Amount"))
+                                        dtSlipDetail.Columns.Add("Amount", typeof(decimal));
+
+                                    DataView dtView2 = new DataView(dtSlipDetail);
+                                    dtView2.RowFilter = "PartyId='" + row["PartyId"] + "' and SlipNo='" + row["SlipNo"] + "'";
+                                    if (dtView2.Count > 0)
                                     {
-                                        subRow["Amount"] = 0;
+                                        foreach (DataRowView subRow in dtView2)
+                                        {
+                                            subRow["Amount"] = 0;
+                                        }
+                                        dtView2[0].Row["Amount"] = row["Amount"];
                                     }
-                                    dtView2[0].Row["Amount"] = row["Amount"];
                                 }
                             }
+                            this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                            grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount, a);
+                            grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount, frmPaymentSlipSelect.IsAutoAdjustBillAmount);
+                            this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
                         }
-                        this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
-                        grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount, a);
-                        grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount, frmPaymentSlipSelect.IsAutoAdjustBillAmount);
-                        this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No slips found for selected party.");
+                        //grvPaymentDetails.FocusedRowHandle = grvPaymentDetails.FocusedRowHandle;
+                        grvPaymentDetails.FocusedColumn = colParty;
+                        return;
                     }
                 }
             }
@@ -439,13 +449,6 @@ namespace DiamondTrading.Transaction
                             }
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("No slips found for selected party.");
-                        grvPaymentDetails.FocusedRowHandle = e.RowHandle;
-                        grvPaymentDetails.FocusedColumn = colParty;
-                        return;
-                    }
                 }
             }
         }
@@ -483,6 +486,14 @@ namespace DiamondTrading.Transaction
                     await LoadLedgers(lueCompany.EditValue.ToString());
                     grvPaymentDetails.SetFocusedRowCellValue(colParty, frmPartyMaster.CreatedLedgerID.ToString());
                 }
+            }
+        }
+
+        private void grvPaymentDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+            {
+                repositoryItemButtonEdit1_Click(null, null);
             }
         }
     }

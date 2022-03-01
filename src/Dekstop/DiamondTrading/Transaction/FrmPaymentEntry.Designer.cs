@@ -193,6 +193,7 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
             this.grvPaymentDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvPurchaseDetails_InitNewRow);
             this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+            this.grvPaymentDetails.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvPaymentDetails_ValidateRow);
             // 
             // colParty
             // 
