@@ -18,6 +18,7 @@ namespace DiamondTrading.Process
     {
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        BrokerageMasterRepository _brokerageMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
         int _RejectionType = 0;
 
@@ -26,8 +27,13 @@ namespace DiamondTrading.Process
             InitializeComponent();
             _boilMasterRepository = new BoilMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
 
             _RejectionType = RejectionType;
+
+            LoadCompany();
+            _ = GetSizeDetail();
+
             if (RejectionType == 1)
             {
                 SetThemeColors(Color.FromArgb(250, 243, 197));
@@ -38,6 +44,57 @@ namespace DiamondTrading.Process
                 SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "JANGAD SEND";
             }
+        }
+
+        private async Task GetPartyList()
+        {
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Party);
+            lueParty.Properties.DataSource = PartyDetailList;
+            lueParty.Properties.DisplayMember = "Name";
+            lueParty.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetBrokerList()
+        {
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
+            lueBroker.Properties.DataSource = BrokerDetailList;
+            lueBroker.Properties.DisplayMember = "Name";
+            lueBroker.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetSizeDetail()
+        {
+            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+            var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
+            repoSize.DataSource = sizeMaster;
+            repoSize.DisplayMember = "Name";
+            repoSize.ValueMember = "Id";
+        }
+
+        private async void LoadCompany()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companies = await companyMasterRepository.GetAllCompanyAsync();
+            lueCompany.Properties.DataSource = companies;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
+
+            await GetPartyList();
+            await GetBrokerList();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -74,13 +131,13 @@ namespace DiamondTrading.Process
         private async Task GetEmployeeList()
         {
             var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, PartyTypeMaster.Other);
-            lueReceiveFrom.Properties.DataSource = EmployeeDetailList;
-            lueReceiveFrom.Properties.DisplayMember = "Name";
-            lueReceiveFrom.Properties.ValueMember = "Id";
+            lueCompany.Properties.DataSource = EmployeeDetailList;
+            lueCompany.Properties.DisplayMember = "Name";
+            lueCompany.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            lueParty.Properties.DataSource = EmployeeDetailList;
+            lueParty.Properties.DisplayMember = "Name";
+            lueParty.Properties.ValueMember = "Id";
         }
 
         private async Task GetBoilProcessSendDetail()
@@ -150,16 +207,16 @@ namespace DiamondTrading.Process
 
         private bool CheckValidation()
         {
-            if (lueReceiveFrom.EditValue == null)
+            if (lueCompany.EditValue == null)
             {
                 MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueReceiveFrom.Focus();
+                lueCompany.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
+            else if (lueParty.EditValue == null)
             {
                 MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
+                lueParty.Focus();
                 return false;
             }
             else if (grvParticularsDetails.RowCount == 0)
@@ -217,8 +274,8 @@ namespace DiamondTrading.Process
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
-            lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            lueCompany.EditValue = null;
+            lueParty.EditValue = null;
             //lueKapan.EditValue = null;
             repoSlipNo.DataSource = null;
 
@@ -226,8 +283,8 @@ namespace DiamondTrading.Process
             await GetEmployeeList();
             await GetBoilProcessSendDetail();
 
-            lueReceiveFrom.Select();
-            lueReceiveFrom.Focus();
+            lueCompany.Select();
+            lueCompany.Focus();
         }
 
         private void btnReset_Click(object sender, EventArgs e)

@@ -61,14 +61,14 @@ namespace DiamondTrading.Process
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lueReceiveFrom = new DevExpress.XtraEditors.LookUpEdit();
-            this.lueSendto = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueParty = new DevExpress.XtraEditors.LookUpEdit();
             this.grpDocuments = new DevExpress.XtraEditors.GroupControl();
             this.Image3 = new DevExpress.XtraEditors.PictureEdit();
             this.Image2 = new DevExpress.XtraEditors.PictureEdit();
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lookUpEdit1 = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueBroker = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
@@ -89,14 +89,14 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpDocuments)).BeginInit();
             this.grpDocuments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.SuspendLayout();
@@ -473,35 +473,35 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Party* :";
             // 
-            // lueReceiveFrom
+            // lueCompany
             // 
-            this.lueReceiveFrom.Location = new System.Drawing.Point(199, 31);
-            this.lueReceiveFrom.Name = "lueReceiveFrom";
-            this.lueReceiveFrom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueReceiveFrom.Properties.Appearance.Options.UseFont = true;
-            this.lueReceiveFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueCompany.Location = new System.Drawing.Point(199, 31);
+            this.lueCompany.Name = "lueCompany";
+            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCompany.Properties.Appearance.Options.UseFont = true;
+            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueReceiveFrom.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueReceiveFrom.Properties.NullText = "";
-            this.lueReceiveFrom.Size = new System.Drawing.Size(274, 22);
-            this.lueReceiveFrom.TabIndex = 7;
+            this.lueCompany.Properties.NullText = "";
+            this.lueCompany.Size = new System.Drawing.Size(274, 22);
+            this.lueCompany.TabIndex = 7;
             // 
-            // lueSendto
+            // lueParty
             // 
-            this.lueSendto.Location = new System.Drawing.Point(76, 102);
-            this.lueSendto.Name = "lueSendto";
-            this.lueSendto.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueSendto.Properties.Appearance.Options.UseFont = true;
-            this.lueSendto.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueParty.Location = new System.Drawing.Point(76, 102);
+            this.lueParty.Name = "lueParty";
+            this.lueParty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueParty.Properties.Appearance.Options.UseFont = true;
+            this.lueParty.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueSendto.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueParty.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueSendto.Properties.NullText = "";
-            this.lueSendto.Size = new System.Drawing.Size(212, 22);
-            this.lueSendto.TabIndex = 9;
+            this.lueParty.Properties.NullText = "";
+            this.lueParty.Size = new System.Drawing.Size(212, 22);
+            this.lueParty.TabIndex = 9;
             // 
             // grpDocuments
             // 
@@ -551,28 +551,28 @@ namespace DiamondTrading.Process
             this.labelControl3.TabIndex = 15;
             this.labelControl3.Text = "Broker* :";
             // 
-            // lookUpEdit1
+            // lueBroker
             // 
-            this.lookUpEdit1.Location = new System.Drawing.Point(76, 131);
-            this.lookUpEdit1.Name = "lookUpEdit1";
-            this.lookUpEdit1.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lookUpEdit1.Properties.Appearance.Options.UseFont = true;
-            this.lookUpEdit1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueBroker.Location = new System.Drawing.Point(76, 131);
+            this.lueBroker.Name = "lueBroker";
+            this.lueBroker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueBroker.Properties.Appearance.Options.UseFont = true;
+            this.lueBroker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lookUpEdit1.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lookUpEdit1.Properties.NullText = "";
-            this.lookUpEdit1.Size = new System.Drawing.Size(212, 22);
-            this.lookUpEdit1.TabIndex = 16;
+            this.lueBroker.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueBroker.Properties.NullText = "";
+            this.lueBroker.Size = new System.Drawing.Size(212, 22);
+            this.lueBroker.TabIndex = 16;
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lookUpEdit1);
+            this.panelControl1.Controls.Add(this.lueBroker);
             this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.grpDocuments);
-            this.panelControl1.Controls.Add(this.lueSendto);
-            this.panelControl1.Controls.Add(this.lueReceiveFrom);
+            this.panelControl1.Controls.Add(this.lueParty);
+            this.panelControl1.Controls.Add(this.lueCompany);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl12);
             this.panelControl1.Controls.Add(this.labelControl6);
@@ -628,14 +628,14 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpDocuments)).EndInit();
             this.grpDocuments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lookUpEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -676,14 +676,14 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LookUpEdit lueReceiveFrom;
-        private DevExpress.XtraEditors.LookUpEdit lueSendto;
+        private DevExpress.XtraEditors.LookUpEdit lueCompany;
+        private DevExpress.XtraEditors.LookUpEdit lueParty;
         private DevExpress.XtraEditors.GroupControl grpDocuments;
         private DevExpress.XtraEditors.PictureEdit Image3;
         private DevExpress.XtraEditors.PictureEdit Image2;
         private DevExpress.XtraEditors.PictureEdit Image1;
         private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LookUpEdit lookUpEdit1;
+        private DevExpress.XtraEditors.LookUpEdit lueBroker;
         private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }

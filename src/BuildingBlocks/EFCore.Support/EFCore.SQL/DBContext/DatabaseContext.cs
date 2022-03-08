@@ -62,6 +62,8 @@ namespace EFCore.SQL.DBContext
         public DbSet<PermissionMaster> PermissionMaster { get; set; }
         public DbSet<UserPermissionChild> UserPermissionChild { get; set; }
         public DbSet<ApprovalPermissionMaster> ApprovalPermissionMaster { get; set; }
+        public DbSet<JangadMaster> JangadMaster { get; set; }
+
 
 
 
@@ -142,8 +144,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<LoanMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<UserPermissionChild>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ApprovalPermissionMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<JangadMaster>().Property(c => c.Sr).UseIdentityColumn();
 
-            
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
             modelBuilder.Entity<AssortmentProcessSend>().HasNoKey();
