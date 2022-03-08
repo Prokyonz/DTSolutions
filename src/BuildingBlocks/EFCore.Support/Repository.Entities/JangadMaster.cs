@@ -27,6 +27,7 @@ namespace Repository.Entities
         public byte[] Image2 { get; set; }
         public byte[] Image3 { get; set; }
         public string Remarks { get; set; }
+        public int EntryType { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

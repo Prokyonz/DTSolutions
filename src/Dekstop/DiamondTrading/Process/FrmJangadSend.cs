@@ -19,6 +19,7 @@ namespace DiamondTrading.Process
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
         BrokerageMasterRepository _brokerageMasterRepository;
+        JangadMasterRepository _JangadMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
         int _RejectionType = 0;
 
@@ -28,11 +29,13 @@ namespace DiamondTrading.Process
             _boilMasterRepository = new BoilMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _JangadMasterRepository = new JangadMasterRepository();
 
             _RejectionType = RejectionType;
 
             LoadCompany();
             _ = GetSizeDetail();
+            _ = GetMaxSrNo();
 
             if (RejectionType == 1)
             {
@@ -58,6 +61,12 @@ namespace DiamondTrading.Process
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
+        }
+
+        private async Task GetMaxSrNo()
+        {
+            var SrNo = await _JangadMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear, _RejectionType);
+            txtSerialNo.Text = SrNo.ToString();
         }
 
         private async Task GetBrokerList()
@@ -116,17 +125,8 @@ namespace DiamondTrading.Process
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
-
-            //SetThemeColors(Color.FromArgb(250, 243, 197));
-
-            await GetMaxSrNo();
         }
 
-        private async Task GetMaxSrNo()
-        {
-            var SrNo = await _boilMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear,0);
-            txtSerialNo.Text = SrNo.ToString();
-        }
 
         private async Task GetEmployeeList()
         {
