@@ -1210,6 +1210,7 @@ namespace DiamondTrading.Transaction
             // txtCurrencyAmount
             // 
             this.txtCurrencyAmount.EditValue = "0";
+            this.txtCurrencyAmount.Enabled = false;
             this.txtCurrencyAmount.Location = new System.Drawing.Point(168, 89);
             this.txtCurrencyAmount.Name = "txtCurrencyAmount";
             this.txtCurrencyAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1234,6 +1235,7 @@ namespace DiamondTrading.Transaction
             // txtNetAmount
             // 
             this.txtNetAmount.EditValue = "0";
+            this.txtNetAmount.Enabled = false;
             this.txtNetAmount.Location = new System.Drawing.Point(168, 45);
             this.txtNetAmount.Name = "txtNetAmount";
             this.txtNetAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1258,6 +1260,7 @@ namespace DiamondTrading.Transaction
             // txtRoundAmount
             // 
             this.txtRoundAmount.EditValue = "0";
+            this.txtRoundAmount.Enabled = false;
             this.txtRoundAmount.Location = new System.Drawing.Point(11, 89);
             this.txtRoundAmount.Name = "txtRoundAmount";
             this.txtRoundAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1282,6 +1285,7 @@ namespace DiamondTrading.Transaction
             // txtAmount
             // 
             this.txtAmount.EditValue = "0";
+            this.txtAmount.Enabled = false;
             this.txtAmount.Location = new System.Drawing.Point(11, 45);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

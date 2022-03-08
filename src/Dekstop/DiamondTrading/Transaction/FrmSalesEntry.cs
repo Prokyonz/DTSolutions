@@ -905,12 +905,14 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                if (Amt != 0)
-                {
-                    if (txtCurrencyType.Text.ToString().Length == 0)
-                        txtCurrencyType.Text = "0";
-                }
-                return (Amt / Convert.ToDecimal(txtCurrencyType.Text));
+                //if (Amt != 0)
+                //{
+                //    if (txtCurrencyType.Text.ToString().Length == 0)
+                //        txtCurrencyType.Text = "0";
+                //}
+                //return (Amt / Convert.ToDecimal(txtCurrencyType.Text));
+
+                return Convert.ToDecimal(colCurrAmount.SummaryItem.SummaryValue);
             }
             catch
             {

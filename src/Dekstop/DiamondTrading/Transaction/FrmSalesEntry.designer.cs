@@ -1301,6 +1301,7 @@ namespace DiamondTrading.Transaction
             // txtCurrencyAmount
             // 
             this.txtCurrencyAmount.EditValue = "1000";
+            this.txtCurrencyAmount.Enabled = false;
             this.txtCurrencyAmount.Location = new System.Drawing.Point(166, 89);
             this.txtCurrencyAmount.Name = "txtCurrencyAmount";
             this.txtCurrencyAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1325,6 +1326,7 @@ namespace DiamondTrading.Transaction
             // txtNetAmount
             // 
             this.txtNetAmount.EditValue = "1000";
+            this.txtNetAmount.Enabled = false;
             this.txtNetAmount.Location = new System.Drawing.Point(166, 45);
             this.txtNetAmount.Name = "txtNetAmount";
             this.txtNetAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1349,6 +1351,7 @@ namespace DiamondTrading.Transaction
             // txtRoundAmount
             // 
             this.txtRoundAmount.EditValue = "10";
+            this.txtRoundAmount.Enabled = false;
             this.txtRoundAmount.Location = new System.Drawing.Point(9, 89);
             this.txtRoundAmount.Name = "txtRoundAmount";
             this.txtRoundAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1373,6 +1376,7 @@ namespace DiamondTrading.Transaction
             // txtAmount
             // 
             this.txtAmount.EditValue = "1000";
+            this.txtAmount.Enabled = false;
             this.txtAmount.Location = new System.Drawing.Point(9, 45);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
