@@ -449,6 +449,9 @@ namespace DiamondTrading.Transaction
 
         private async void lueSaler_EditValueChanged(object sender, EventArgs e)
         {
+            if (lueSaler.EditValue == null || lueSaler.EditValue == "")
+                return;
+
             var selectedSaler = (PartyMaster)lueSaler.GetSelectedDataRow();
             var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedSaler.BrokerageId);
             txtSalerCommisionPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
@@ -456,12 +459,18 @@ namespace DiamondTrading.Transaction
 
         private void lueParty_EditValueChanged(object sender, EventArgs e)
         {
+            if (lueParty.EditValue == null || lueParty.EditValue == "")
+                return;
+
             var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
             txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
         }        
 
         private async void lueBroker_EditValueChanged(object sender, EventArgs e)
         {
+            if (lueBroker.EditValue == null || lueBroker.EditValue == "")
+                return;
+
             var selectedBoker = (PartyMaster)lueBroker.GetSelectedDataRow();
             var brokerageDetail = await _brokerageMasterRepository.GetBrokerageAsync(selectedBoker.BrokerageId);
             txtBrokerPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
@@ -1266,6 +1275,9 @@ namespace DiamondTrading.Transaction
         private void Reset()
         {
             grdPurchaseDetails.DataSource = null;
+            lueSaler.EditValue = "";
+            lueParty.EditValue = "";
+            lueBroker.EditValue = "";
             FillCombos();
             //FillBranches();
             FillCurrency();
