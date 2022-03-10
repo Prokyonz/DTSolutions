@@ -156,6 +156,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurityId", "PurityId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSizeId", "CharniSizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "Charni Size"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumberId", "GalaNumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumber", "Gala Number"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight"),
@@ -201,38 +203,38 @@ namespace DiamondTrading.Process
             // txtACarat
             // 
             this.txtACarat.Enabled = false;
-            this.txtACarat.Location = new System.Drawing.Point(454, 131);
+            this.txtACarat.Location = new System.Drawing.Point(472, 131);
             this.txtACarat.Name = "txtACarat";
             this.txtACarat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtACarat.Properties.Appearance.Options.UseFont = true;
-            this.txtACarat.Size = new System.Drawing.Size(163, 22);
+            this.txtACarat.Size = new System.Drawing.Size(145, 22);
             this.txtACarat.TabIndex = 18;
             // 
             // txtSize
             // 
             this.txtSize.Enabled = false;
-            this.txtSize.Location = new System.Drawing.Point(454, 102);
+            this.txtSize.Location = new System.Drawing.Point(472, 102);
             this.txtSize.Name = "txtSize";
             this.txtSize.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSize.Properties.Appearance.Options.UseFont = true;
-            this.txtSize.Size = new System.Drawing.Size(163, 22);
+            this.txtSize.Size = new System.Drawing.Size(145, 22);
             this.txtSize.TabIndex = 16;
             // 
             // txtSlipNo
             // 
             this.txtSlipNo.Enabled = false;
-            this.txtSlipNo.Location = new System.Drawing.Point(454, 73);
+            this.txtSlipNo.Location = new System.Drawing.Point(472, 73);
             this.txtSlipNo.Name = "txtSlipNo";
             this.txtSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlipNo.Properties.Appearance.Options.UseFont = true;
-            this.txtSlipNo.Size = new System.Drawing.Size(163, 22);
+            this.txtSlipNo.Size = new System.Drawing.Size(145, 22);
             this.txtSlipNo.TabIndex = 14;
             // 
             // labelControl3
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(399, 134);
+            this.labelControl3.Location = new System.Drawing.Point(395, 134);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(52, 16);
             this.labelControl3.TabIndex = 17;
@@ -242,17 +244,17 @@ namespace DiamondTrading.Process
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(399, 105);
+            this.labelControl4.Location = new System.Drawing.Point(395, 105);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(33, 16);
+            this.labelControl4.Size = new System.Drawing.Size(74, 16);
             this.labelControl4.TabIndex = 15;
-            this.labelControl4.Text = "Size :";
+            this.labelControl4.Text = "Charni Size :";
             // 
             // labelControl5
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(399, 76);
+            this.labelControl5.Location = new System.Drawing.Point(395, 76);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(49, 16);
             this.labelControl5.TabIndex = 13;
@@ -495,7 +497,7 @@ namespace DiamondTrading.Process
             // separatorControl1
             // 
             this.separatorControl1.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl1.Location = new System.Drawing.Point(380, 64);
+            this.separatorControl1.Location = new System.Drawing.Point(377, 64);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(21, 99);
             this.separatorControl1.TabIndex = 12;

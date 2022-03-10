@@ -535,7 +535,7 @@ namespace DiamondTrading.Transaction
                     else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
                     {
                         colNumberSize.Visible = true;
-                        colCharniSize.Visible = false;
+                        colCharniSize.Visible = true;
                         colGalaSize.Visible = false;
 
                         if (_salesItemObj.NumberItemList == null)

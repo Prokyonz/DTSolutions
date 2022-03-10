@@ -156,7 +156,7 @@ namespace DiamondTrading.Process
             {
                 SelectedKapanId = lueKapan.EditValue.ToString();
                 txtSlipNo.Text = lueKapan.GetColumnValue("SlipNo").ToString();
-                txtSize.Text = lueKapan.GetColumnValue("Size").ToString();
+                txtSize.Text = lueKapan.GetColumnValue("CharniSize").ToString();
                 txtACarat.Text = lueKapan.GetColumnValue("AvailableWeight").ToString();
             }
             else
@@ -279,6 +279,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.PurityId = lueKapan.GetColumnValue("PurityId").ToString();
                         numberProcessMaster.Weight = Convert.ToDecimal(txtACarat.Text);
                         numberProcessMaster.GalaNumberId = lueKapan.GetColumnValue("GalaNumberId").ToString(); //grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
+                        numberProcessMaster.CharniSizeId = lueKapan.GetColumnValue("CharniSizeId").ToString();
                         numberProcessMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
                         numberProcessMaster.NumberWeight = Convert.ToDecimal(Cts);
                         numberProcessMaster.LossWeight = Convert.ToDecimal(LossCts);

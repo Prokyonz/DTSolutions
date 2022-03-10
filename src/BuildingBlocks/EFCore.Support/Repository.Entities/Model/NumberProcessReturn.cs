@@ -17,6 +17,8 @@ namespace Repository.Entities.Models
         public string Size { get; set; }
         public string PurityId { get; set; }
         public string Purity { get; set; }
+        public string CharniSizeId { get; set; }
+        public string CharniSize { get; set; }
         public string NumberId { get; set; }
         public string Number { get; set; }
         public string FinancialYearId { get; set; }

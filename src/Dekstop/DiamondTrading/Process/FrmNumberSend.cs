@@ -92,6 +92,8 @@ namespace DiamondTrading.Process
             dt.Columns.Add("PurityId");
             dt.Columns.Add("SlipNo1");
             dt.Columns.Add("GalaNumberId");
+            dt.Columns.Add("CharniSizeId");
+            dt.Columns.Add("CharniSize");
             return dt;
         }
 
@@ -121,6 +123,8 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colGalaNumberId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSize);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -191,6 +195,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                         numberProcessMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
                         numberProcessMaster.GalaNumberId = grvParticularsDetails.GetRowCellValue(i, colGalaNumberId).ToString();
+                        numberProcessMaster.CharniSizeId = grvParticularsDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                         numberProcessMaster.Weight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colNumberCarat).ToString());
                         numberProcessMaster.LossWeight = 0;
                         numberProcessMaster.RejectionWeight = 0;

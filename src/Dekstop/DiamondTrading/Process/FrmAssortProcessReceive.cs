@@ -165,11 +165,11 @@ namespace DiamondTrading.Process
                     await GetMaxSrNo();
                     await GetNumberProcessReceiveDetail();
                     repoSlipNo.Columns["BoilNo"].Visible = false;
-                    repoSlipNo.Columns["CharniSize"].Visible = false;
+                    repoSlipNo.Columns["CharniSize"].Visible = true;
                     repoSlipNo.Columns["GalaNumber"].Visible = false;
                     repoSlipNo.Columns["Number"].Visible = true;
-                    colCharniSize.Visible = false;
-                    colGalaSize.Visible = true;
+                    colCharniSize.Visible = true;
+                    colGalaSize.Visible = false;
                 }
 
             }
@@ -337,6 +337,8 @@ namespace DiamondTrading.Process
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSize);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Number);
                         }
@@ -563,6 +565,7 @@ namespace DiamondTrading.Process
                                 numberProcessMaster.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
                                 numberProcessMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                                 numberProcessMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                                numberProcessMaster.CharniSizeId = grvParticularsDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                                 numberProcessMaster.Weight = 0;// Convert.ToDecimal(txtACarat.Text);
                                 //numberProcessMaster.GalaNumberId = lueKapan.GetColumnValue("GalaNumberId").ToString(); //grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
                                 numberProcessMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
