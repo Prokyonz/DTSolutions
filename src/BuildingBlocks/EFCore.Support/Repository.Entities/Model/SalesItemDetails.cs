@@ -11,7 +11,7 @@ namespace Repository.Entities.Model
     {
         public string Id { get; set; }
         public string CompanyId { get; set; }
-        public string BranchId { get; set; }
+        //public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
         public string KapanId { get; set; }
         public string Kapan { get; set; }

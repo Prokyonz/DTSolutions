@@ -365,6 +365,7 @@ namespace DiamondTrading.Transaction
             DataTable dt = new DataTable();
             dt.Columns.Add("Category");
             dt.Columns.Add("Shape");
+            dt.Columns.Add("ShapeId");
             dt.Columns.Add("Size");
             dt.Columns.Add("Purity");
             dt.Columns.Add("Kapan");
@@ -511,7 +512,7 @@ namespace DiamondTrading.Transaction
 
                         repoShape.DataSource = _salesItemObj.CharniItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
-                        repoShape.ValueMember = "ShapeId";
+                        repoShape.ValueMember = "Id";
 
                         repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                         repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -543,7 +544,7 @@ namespace DiamondTrading.Transaction
 
                         repoShape.DataSource = _salesItemObj.NumberItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
-                        repoShape.ValueMember = "ShapeId";
+                        repoShape.ValueMember = "Id";
 
                         repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                         repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -560,6 +561,10 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
 
+                        repoCharniSize.DataSource = _salesItemObj.NumberItemList.Where(x=>x.CharniSizeId!=null).Select(x => new { x.CharniSizeId, x.CharniSize }).Distinct().ToList();
+                        repoCharniSize.DisplayMember = "CharniSize";
+                        repoCharniSize.ValueMember = "CharniSizeId";
+
                         repoNumberSize.DataSource = _salesItemObj.NumberItemList.Select(x => new { x.NumberSizeId, x.NumberSize }).Distinct().ToList();
                         repoNumberSize.DisplayMember = "NumberSize";
                         repoNumberSize.ValueMember = "NumberSizeId";
@@ -575,7 +580,7 @@ namespace DiamondTrading.Transaction
 
                         repoShape.DataSource = _salesItemObj.GalaItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
-                        repoShape.ValueMember = "ShapeId";
+                        repoShape.ValueMember = "Id";
 
                         repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                         repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -607,7 +612,7 @@ namespace DiamondTrading.Transaction
 
                         repoShape.DataSource = _salesItemObj.BoilItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
-                        repoShape.ValueMember = "ShapeId";
+                        repoShape.ValueMember = "Id";
 
                         repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                         repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -635,6 +640,7 @@ namespace DiamondTrading.Transaction
                 {
                     if (e.Value != Common.DefaultGuid)
                     {
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
@@ -646,6 +652,7 @@ namespace DiamondTrading.Transaction
                         else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                         }
                         else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
                         {
@@ -1095,7 +1102,7 @@ namespace DiamondTrading.Transaction
                     salesDetails.SalesId = SalesId;
                     salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
                     salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                    salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
+                    salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
                     salesDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
                     salesDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
                     if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
@@ -1301,7 +1308,7 @@ namespace DiamondTrading.Transaction
             txtCurrencyAmount.Text = "0";
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             tglPF.IsOn = Common.PrintPurchasePF;
-            _salesItemObj = null;
+            _salesItemObj = new SalesItemObj();
             GetSalesNo();
             txtSlipNo.Focus();
         }

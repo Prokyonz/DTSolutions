@@ -134,6 +134,7 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -789,7 +790,8 @@ namespace DiamondTrading.Transaction
             this.colCategory,
             this.colCharniSize,
             this.colNumberSize,
-            this.colGalaSize});
+            this.colGalaSize,
+            this.colShapeId});
             this.grvPurchaseDetails.GridControl = this.grdPurchaseDetails;
             this.grvPurchaseDetails.Name = "grvPurchaseDetails";
             this.grvPurchaseDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -1501,6 +1503,12 @@ namespace DiamondTrading.Transaction
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // colShapeId
+            // 
+            this.colShapeId.Caption = "ShapeId";
+            this.colShapeId.FieldName = "ShapeId";
+            this.colShapeId.Name = "colShapeId";
+            // 
             // FrmSalesEntry
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1725,5 +1733,6 @@ namespace DiamondTrading.Transaction
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private DevExpress.XtraGrid.Columns.GridColumn colGalaSize;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoGalaSize;
+        private DevExpress.XtraGrid.Columns.GridColumn colShapeId;
     }
 }
