@@ -92,6 +92,7 @@ namespace DiamondTrading.Process
             this.colKapanId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBoilNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTypeIdT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoKapan = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -101,7 +102,6 @@ namespace DiamondTrading.Process
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colTypeIdT = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -556,8 +556,6 @@ namespace DiamondTrading.Process
             this.colSize.FieldName = "Size";
             this.colSize.Name = "colSize";
             this.colSize.OptionsColumn.AllowEdit = false;
-            this.colSize.Visible = true;
-            this.colSize.VisibleIndex = 3;
             this.colSize.Width = 44;
             // 
             // colPurity
@@ -570,8 +568,6 @@ namespace DiamondTrading.Process
             this.colPurity.FieldName = "Purity";
             this.colPurity.Name = "colPurity";
             this.colPurity.OptionsColumn.AllowEdit = false;
-            this.colPurity.Visible = true;
-            this.colPurity.VisibleIndex = 4;
             this.colPurity.Width = 44;
             // 
             // colKapan
@@ -584,8 +580,6 @@ namespace DiamondTrading.Process
             this.colKapan.FieldName = "Kapan";
             this.colKapan.Name = "colKapan";
             this.colKapan.OptionsColumn.AllowEdit = false;
-            this.colKapan.Visible = true;
-            this.colKapan.VisibleIndex = 7;
             this.colKapan.Width = 44;
             // 
             // colCarat
@@ -602,7 +596,7 @@ namespace DiamondTrading.Process
             this.colCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCarat.Visible = true;
-            this.colCarat.VisibleIndex = 8;
+            this.colCarat.VisibleIndex = 3;
             this.colCarat.Width = 44;
             // 
             // repoTxtEdit
@@ -621,7 +615,7 @@ namespace DiamondTrading.Process
             this.colCategoryT.FieldName = "CategoryT";
             this.colCategoryT.Name = "colCategoryT";
             this.colCategoryT.Visible = true;
-            this.colCategoryT.VisibleIndex = 11;
+            this.colCategoryT.VisibleIndex = 6;
             this.colCategoryT.Width = 47;
             // 
             // repoCategoryT
@@ -642,7 +636,7 @@ namespace DiamondTrading.Process
             this.colBranchT.FieldName = "BranchT";
             this.colBranchT.Name = "colBranchT";
             this.colBranchT.Visible = true;
-            this.colBranchT.VisibleIndex = 12;
+            this.colBranchT.VisibleIndex = 7;
             this.colBranchT.Width = 47;
             // 
             // repoBranchT
@@ -662,8 +656,6 @@ namespace DiamondTrading.Process
             this.colShapeT.ColumnEdit = this.repoShapeT;
             this.colShapeT.FieldName = "ShapeT";
             this.colShapeT.Name = "colShapeT";
-            this.colShapeT.Visible = true;
-            this.colShapeT.VisibleIndex = 13;
             this.colShapeT.Width = 47;
             // 
             // repoShapeT
@@ -683,8 +675,6 @@ namespace DiamondTrading.Process
             this.colSizeT.ColumnEdit = this.repoSizeT;
             this.colSizeT.FieldName = "SizeT";
             this.colSizeT.Name = "colSizeT";
-            this.colSizeT.Visible = true;
-            this.colSizeT.VisibleIndex = 14;
             this.colSizeT.Width = 47;
             // 
             // repoSizeT
@@ -704,8 +694,6 @@ namespace DiamondTrading.Process
             this.colPurityT.ColumnEdit = this.repoPurityT;
             this.colPurityT.FieldName = "PurityT";
             this.colPurityT.Name = "colPurityT";
-            this.colPurityT.Visible = true;
-            this.colPurityT.VisibleIndex = 15;
             this.colPurityT.Width = 47;
             // 
             // repoPurityT
@@ -726,7 +714,7 @@ namespace DiamondTrading.Process
             this.colKapanT.FieldName = "KapanT";
             this.colKapanT.Name = "colKapanT";
             this.colKapanT.Visible = true;
-            this.colKapanT.VisibleIndex = 16;
+            this.colKapanT.VisibleIndex = 8;
             this.colKapanT.Width = 40;
             // 
             // repoKapanT
@@ -746,7 +734,7 @@ namespace DiamondTrading.Process
             this.colTypeT.FieldName = "TypeT";
             this.colTypeT.Name = "colTypeT";
             this.colTypeT.Visible = true;
-            this.colTypeT.VisibleIndex = 18;
+            this.colTypeT.VisibleIndex = 9;
             this.colTypeT.Width = 50;
             // 
             // colCaratT
@@ -758,7 +746,7 @@ namespace DiamondTrading.Process
             this.colCaratT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCaratT.Visible = true;
-            this.colCaratT.VisibleIndex = 19;
+            this.colCaratT.VisibleIndex = 10;
             this.colCaratT.Width = 50;
             // 
             // repoTextEditCaratT
@@ -779,7 +767,7 @@ namespace DiamondTrading.Process
             this.colRateT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateT", "{0:0.##}")});
             this.colRateT.Visible = true;
-            this.colRateT.VisibleIndex = 20;
+            this.colRateT.VisibleIndex = 11;
             this.colRateT.Width = 50;
             // 
             // repoTextRate
@@ -803,7 +791,7 @@ namespace DiamondTrading.Process
             this.colAmountT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountT", "{0:0.##}")});
             this.colAmountT.Visible = true;
-            this.colAmountT.VisibleIndex = 21;
+            this.colAmountT.VisibleIndex = 12;
             this.colAmountT.Width = 66;
             // 
             // colCaratCategory
@@ -817,8 +805,6 @@ namespace DiamondTrading.Process
             this.colCaratCategory.FieldName = "CaratCategory";
             this.colCaratCategory.Name = "colCaratCategory";
             this.colCaratCategory.OptionsColumn.AllowEdit = false;
-            this.colCaratCategory.Visible = true;
-            this.colCaratCategory.VisibleIndex = 5;
             this.colCaratCategory.Width = 44;
             // 
             // repoCaratCategory
@@ -842,8 +828,6 @@ namespace DiamondTrading.Process
             this.colType.FieldName = "Type";
             this.colType.Name = "colType";
             this.colType.OptionsColumn.AllowEdit = false;
-            this.colType.Visible = true;
-            this.colType.VisibleIndex = 6;
             this.colType.Width = 44;
             // 
             // colCaratCategoryT
@@ -852,8 +836,6 @@ namespace DiamondTrading.Process
             this.colCaratCategoryT.ColumnEdit = this.repoCaratCategory;
             this.colCaratCategoryT.FieldName = "CaratCategoryT";
             this.colCaratCategoryT.Name = "colCaratCategoryT";
-            this.colCaratCategoryT.Visible = true;
-            this.colCaratCategoryT.VisibleIndex = 17;
             this.colCaratCategoryT.Width = 38;
             // 
             // colRate
@@ -865,7 +847,7 @@ namespace DiamondTrading.Process
             this.colRate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Rate", "{0:0.##}")});
             this.colRate.Visible = true;
-            this.colRate.VisibleIndex = 9;
+            this.colRate.VisibleIndex = 4;
             this.colRate.Width = 40;
             // 
             // colAmount
@@ -882,7 +864,7 @@ namespace DiamondTrading.Process
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 10;
+            this.colAmount.VisibleIndex = 5;
             this.colAmount.Width = 40;
             // 
             // colShapeId
@@ -926,6 +908,12 @@ namespace DiamondTrading.Process
             this.colBoilNo.Caption = "BoilNo";
             this.colBoilNo.FieldName = "BoilNo";
             this.colBoilNo.Name = "colBoilNo";
+            // 
+            // colTypeIdT
+            // 
+            this.colTypeIdT.Caption = "TypeIdT";
+            this.colTypeIdT.FieldName = "TypeIdT";
+            this.colTypeIdT.Name = "colTypeIdT";
             // 
             // repoSize
             // 
@@ -1024,12 +1012,6 @@ namespace DiamondTrading.Process
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // colTypeIdT
-            // 
-            this.colTypeIdT.Caption = "TypeIdT";
-            this.colTypeIdT.FieldName = "TypeIdT";
-            this.colTypeIdT.Name = "colTypeIdT";
             // 
             // FrmTransferEntry
             // 

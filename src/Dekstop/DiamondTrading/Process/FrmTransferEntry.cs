@@ -403,6 +403,10 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapanId, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeId, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeT, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.CharniProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                             //grvPurchaseItems.FocusedColumn = colBoilCarat;
                         }
@@ -421,6 +425,10 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapanId, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeId, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
+
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeT, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.GalaProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                             //grvPurchaseItems.FocusedColumn = colBoilCarat;
                         }
@@ -439,6 +447,10 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapanId, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeId, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
+
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeT, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                             //grvPurchaseItems.FocusedColumn = colBoilCarat;
                         }
@@ -457,6 +469,11 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapanId, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeId, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberId);
+
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeT, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.NumberProcessReturn)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+
                             //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                             //grvPurchaseItems.FocusedColumn = colBoilCarat;
                         }
@@ -477,7 +494,7 @@ namespace DiamondTrading.Process
                     decimal Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCarat).ToString());
                     decimal Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
 
-                    grvTransferItemDetails.SetRowCellValue(e.RowHandle, colAmount, (Carat*Rate).ToString());
+                    grvTransferItemDetails.SetRowCellValue(e.RowHandle, colAmount, (Carat * Rate).ToString());
                 }
                 else if (e.Column == colRateT)
                 {
@@ -490,6 +507,20 @@ namespace DiamondTrading.Process
                 {
                     //decimal Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCarat).ToString());
                     //decimal CaratT = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratT).ToString());
+                }
+                else if (e.Column == colCategoryT)
+                {
+                    this.grvTransferItemDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
+                    if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Boil.ToString())
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Charni.ToString())
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 1);
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Gala.ToString())
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 2);
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Number.ToString())
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 3);
+                    grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, "");
+                    this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                 }
             }
             catch (Exception Ex)
