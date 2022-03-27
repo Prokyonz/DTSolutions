@@ -221,4 +221,22 @@ namespace Repository.Entities
             return caratCategoryMaster;
         }
     }
+
+    public class OpeningStockCategoryMaster
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Number = 0;
+        public static int Kapan = 1;
+
+        public static List<OpeningStockCategoryMaster> GetAllCategory()
+        {
+            List<OpeningStockCategoryMaster> openingStockCategoryMasters = new List<OpeningStockCategoryMaster>
+            {
+                new OpeningStockCategoryMaster {Id = Number, Name = "Number" },
+                new OpeningStockCategoryMaster {Id = Kapan, Name = "Kapan" }
+            };
+            return openingStockCategoryMasters;
+        }
+    }
 }

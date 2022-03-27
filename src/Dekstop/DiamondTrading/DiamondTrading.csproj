@@ -503,6 +503,12 @@
     <Compile Include="Utility\FrmLoanEntry.Designer.cs">
       <DependentUpon>FrmLoanEntry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utility\FrmOpeningStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utility\FrmOpeningStock.Designer.cs">
+      <DependentUpon>FrmOpeningStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="WaitForm1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -670,6 +676,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Utility\FrmLoanEntry.resx">
       <DependentUpon>FrmLoanEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utility\FrmOpeningStock.resx">
+      <DependentUpon>FrmOpeningStock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
