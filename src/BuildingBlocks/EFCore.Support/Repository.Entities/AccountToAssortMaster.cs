@@ -27,6 +27,10 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public string TransferId { get; set; }
+        public string TransferEntryId { get; set; }
+        public string TransferType { get; set; }
+        public int EntryType { get; set; }
 
         [ForeignKey("CompanyId")]
         public virtual CompanyMaster CompanyMaster { get; set; }

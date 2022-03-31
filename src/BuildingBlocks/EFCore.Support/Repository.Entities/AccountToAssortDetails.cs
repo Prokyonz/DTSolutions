@@ -23,6 +23,12 @@ namespace Repository.Entities
         public string NumberProcessId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalAmount { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Price { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal AssignWeight { get; set; }
