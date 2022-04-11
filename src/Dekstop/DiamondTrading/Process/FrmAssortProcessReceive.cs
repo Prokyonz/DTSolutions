@@ -137,6 +137,7 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["Number"].Visible = false;
                     colCharniSize.Visible = false;
                     colGalaSize.Visible = false;
+                    colNumberSize.Visible = false;
                 }
                 else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Charni)
                 {
@@ -148,17 +149,19 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["Number"].Visible = false;
                     colCharniSize.Visible = true;
                     colGalaSize.Visible = false;
+                    colNumberSize.Visible = false;
                 }
                 else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Gala)
                 {
                     await GetMaxSrNo();
                     await GetGalaProcessReceiveDetail();
                     repoSlipNo.Columns["BoilNo"].Visible = false;
-                    repoSlipNo.Columns["CharniSize"].Visible = false;
+                    repoSlipNo.Columns["CharniSize"].Visible = true;
                     repoSlipNo.Columns["GalaNumber"].Visible = true;
                     repoSlipNo.Columns["Number"].Visible = false;
-                    colCharniSize.Visible = false;
+                    colCharniSize.Visible = true;
                     colGalaSize.Visible = true;
+                    colNumberSize.Visible = false;
                 }
                 else if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Number)
                 {
@@ -171,7 +174,8 @@ namespace DiamondTrading.Process
                     colCharniSize.Visible = true;
                     colGalaSize.Visible = false;
                 }
-
+                repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             }
         }
 
@@ -325,6 +329,8 @@ namespace DiamondTrading.Process
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSize);
+                            grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colGalaNumberId, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colGalaSize, ((Repository.Entities.Models.NumberProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).GalaNumber);
                         }
@@ -506,6 +512,7 @@ namespace DiamondTrading.Process
                                 galaProcessMaster.ShapeId = grvParticularsDetails.GetRowCellValue(i, colShapeId).ToString();
                                 galaProcessMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                                 galaProcessMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                                galaProcessMaster.CharniSizeId = grvParticularsDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                                 galaProcessMaster.Weight = 0;// Convert.ToDecimal(txtACarat.Text);
                                 galaProcessMaster.GalaNumberId = grvParticularsDetails.GetRowCellValue(i, colGalaNumberId).ToString();
                                 galaProcessMaster.GalaWeight = Convert.ToDecimal(Cts);
