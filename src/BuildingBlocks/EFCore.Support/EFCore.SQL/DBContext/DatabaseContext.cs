@@ -64,7 +64,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<ApprovalPermissionMaster> ApprovalPermissionMaster { get; set; }
         public DbSet<JangadMaster> JangadMaster { get; set; }
         public DbSet<PriceMaster> PriceMaster { get; set; }
-
+        public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
 
 
 
@@ -147,6 +147,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<ApprovalPermissionMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<JangadMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PriceMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<RejectionInOutMaster>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
