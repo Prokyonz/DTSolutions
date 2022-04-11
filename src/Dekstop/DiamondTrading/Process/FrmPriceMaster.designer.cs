@@ -47,6 +47,7 @@ namespace DiamondTrading.Process
             this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurchaseDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -55,10 +56,9 @@ namespace DiamondTrading.Process
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.lueReceiveFrom = new DevExpress.XtraEditors.LookUpEdit();
+            this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.lueSendto = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.colSize = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
@@ -74,7 +74,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -307,6 +307,14 @@ namespace DiamondTrading.Process
             this.colSlipNo1.FieldName = "SlipNo1";
             this.colSlipNo1.Name = "colSlipNo1";
             // 
+            // colSize
+            // 
+            this.colSize.Caption = "Size";
+            this.colSize.Name = "colSize";
+            this.colSize.Visible = true;
+            this.colSize.VisibleIndex = 0;
+            this.colSize.Width = 161;
+            // 
             // repoPayType
             // 
             this.repoPayType.AutoHeight = false;
@@ -390,20 +398,20 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Category* :";
             // 
-            // lueReceiveFrom
+            // lueCompany
             // 
-            this.lueReceiveFrom.Location = new System.Drawing.Point(107, 41);
-            this.lueReceiveFrom.Name = "lueReceiveFrom";
-            this.lueReceiveFrom.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueReceiveFrom.Properties.Appearance.Options.UseFont = true;
-            this.lueReceiveFrom.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.lueCompany.Location = new System.Drawing.Point(107, 41);
+            this.lueCompany.Name = "lueCompany";
+            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCompany.Properties.Appearance.Options.UseFont = true;
+            this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueReceiveFrom.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueReceiveFrom.Properties.NullText = "";
-            this.lueReceiveFrom.Size = new System.Drawing.Size(233, 22);
-            this.lueReceiveFrom.TabIndex = 7;
+            this.lueCompany.Properties.NullText = "";
+            this.lueCompany.Size = new System.Drawing.Size(233, 22);
+            this.lueCompany.TabIndex = 7;
             // 
             // lueSendto
             // 
@@ -423,7 +431,7 @@ namespace DiamondTrading.Process
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.lueSendto);
-            this.panelControl1.Controls.Add(this.lueReceiveFrom);
+            this.panelControl1.Controls.Add(this.lueCompany);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl6);
             this.panelControl1.Controls.Add(this.lblFormTitle);
@@ -435,14 +443,6 @@ namespace DiamondTrading.Process
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(560, 448);
             this.panelControl1.TabIndex = 0;
-            // 
-            // colSize
-            // 
-            this.colSize.Caption = "Size";
-            this.colSize.Name = "colSize";
-            this.colSize.Visible = true;
-            this.colSize.VisibleIndex = 0;
-            this.colSize.Width = 161;
             // 
             // FrmPriceMaster
             // 
@@ -480,7 +480,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
@@ -516,7 +516,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl lblFormTitle;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private DevExpress.XtraEditors.LookUpEdit lueReceiveFrom;
+        private DevExpress.XtraEditors.LookUpEdit lueCompany;
         private DevExpress.XtraEditors.LookUpEdit lueSendto;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn colSize;

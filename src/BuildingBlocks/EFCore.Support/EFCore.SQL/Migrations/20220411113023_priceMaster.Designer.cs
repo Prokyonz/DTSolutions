@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220411113023_priceMaster")]
+    partial class priceMaster
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3280,86 +3282,6 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PurityMaster");
-                });
-
-            modelBuilder.Entity("Repository.Entities.RejectionInOutMaster", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BrokerageId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EntryDate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FinancialYearId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<byte[]>("Image1")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("Image2")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<byte[]>("Image3")
-                        .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("PartyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SizeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SlipNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SrNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalCarat")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<int>("TransType")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RejectionInOutMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
