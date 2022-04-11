@@ -53,6 +53,11 @@ namespace DiamondTrading.Process
         private void GetDepartmentList()
         {
             var Department = DepartmentMaster1.GetAllDepartment();
+            List<DepartmentMaster> departmentMaster = new List<DepartmentMaster>
+            {
+                new DepartmentMaster {Id = 1, Name = "Boil" },
+            };
+            Department = departmentMaster;            
 
             if (Department != null)
             {
