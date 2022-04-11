@@ -257,13 +257,13 @@ namespace DiamondTrading.Process
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
-                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
                             repoShape.Columns["BoilNo"].Visible = false;
                             repoShape.Columns["CharniSize"].Visible = true;
                             repoShape.Columns["GalaNumber"].Visible = false;
                             repoShape.Columns["Number"].Visible = false;
+
+                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
@@ -279,13 +279,13 @@ namespace DiamondTrading.Process
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
-                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
                             repoShape.Columns["BoilNo"].Visible = false;
-                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = true;
                             repoShape.Columns["GalaNumber"].Visible = false;
                             repoShape.Columns["Number"].Visible = true;
+
+                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
@@ -301,13 +301,13 @@ namespace DiamondTrading.Process
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
-                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
                             repoShape.Columns["BoilNo"].Visible = false;
-                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = true;
                             repoShape.Columns["GalaNumber"].Visible = true;
                             repoShape.Columns["Number"].Visible = false;
+
+                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
                         }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Boil.ToString())
@@ -323,13 +323,13 @@ namespace DiamondTrading.Process
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "ShapeId";
 
-                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
                             repoShape.Columns["BoilNo"].Visible = true;
                             repoShape.Columns["CharniSize"].Visible = false;
                             repoShape.Columns["GalaNumber"].Visible = false;
                             repoShape.Columns["Number"].Visible = false;
+
+                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
                         }
                     }
                 }
