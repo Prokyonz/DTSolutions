@@ -503,6 +503,10 @@ namespace DiamondTrading.Transaction
                 {
                     if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
                     {
+                        repoShape.Columns["CharniSize"].Visible = true;
+                        repoShape.Columns["GalaSize"].Visible = false;
+                        repoShape.Columns["NumberSize"].Visible = false;
+
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = false;
@@ -535,6 +539,10 @@ namespace DiamondTrading.Transaction
                     }
                     else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
                     {
+                        repoShape.Columns["CharniSize"].Visible = true;
+                        repoShape.Columns["GalaSize"].Visible = false;
+                        repoShape.Columns["NumberSize"].Visible = true;
+
                         colNumberSize.Visible = true;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = false;
@@ -571,8 +579,11 @@ namespace DiamondTrading.Transaction
                     }
                     else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
                     {
+                        repoShape.Columns["CharniSize"].Visible = true;
+                        repoShape.Columns["GalaSize"].Visible = true;
+                        repoShape.Columns["NumberSize"].Visible = false;
                         colNumberSize.Visible = false;
-                        colCharniSize.Visible = false;
+                        colCharniSize.Visible = true;
                         colGalaSize.Visible = true;
 
                         if (_salesItemObj.GalaItemList == null)
@@ -597,12 +608,20 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
 
+                        repoCharniSize.DataSource = _salesItemObj.GalaItemList.Where(x => x.CharniSizeId != null).Select(x => new { x.CharniSizeId, x.CharniSize }).Distinct().ToList();
+                        repoCharniSize.DisplayMember = "CharniSize";
+                        repoCharniSize.ValueMember = "CharniSizeId";
+
                         repoGalaSize.DataSource = _salesItemObj.GalaItemList.Select(x => new { x.GalaNumberId, x.GalaSize }).Distinct().ToList();
                         repoGalaSize.DisplayMember = "GalaSize";
                         repoGalaSize.ValueMember = "GalaNumberId";
                     }
                     else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Boil.ToString())
                     {
+                        repoShape.Columns["CharniSize"].Visible = false;
+                        repoShape.Columns["GalaSize"].Visible = false;
+                        repoShape.Columns["NumberSize"].Visible = false;
+
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = false;
                         colGalaSize.Visible = false;
@@ -645,14 +664,14 @@ namespace DiamondTrading.Transaction
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
 
-                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Boil.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                         }
-                        else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
-                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
+                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                         }
                         else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
                         {
@@ -1108,7 +1127,7 @@ namespace DiamondTrading.Transaction
                     if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
                         salesDetails.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
                     if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
-                        salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
+                        salesDetails.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
                     if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
                         salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
 
