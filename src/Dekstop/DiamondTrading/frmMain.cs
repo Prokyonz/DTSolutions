@@ -1847,5 +1847,113 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        private void barButtonItem64_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "CharniSend";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem65_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "CharniReceive";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem66_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "GalaSend";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem67_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "GalaReceive";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem68_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "NumberSend";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonItem69_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "NumberReceive";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
     }
 }
