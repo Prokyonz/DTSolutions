@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,14 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 return await _databaseContext.KapanMappingMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
+            }
+        }
+
+        public async Task<List<KapanMappingReportModel>> GetKapanMappingReport(string companyId, string branchId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SPKapanMappingReportModel.FromSqlRaw($"GetKapanReport '" + companyId + "','" + branchId + "','" + financialYearId + "'").ToListAsync();
             }
         }
 
