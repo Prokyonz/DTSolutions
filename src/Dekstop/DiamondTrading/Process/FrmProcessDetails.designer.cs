@@ -30,12 +30,12 @@ namespace DiamondTrading
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SimpleContextButton simpleContextButton19 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton20 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton21 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton22 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton23 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton24 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton1 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton2 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton3 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton4 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton5 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton6 = new DevExpress.Utils.SimpleContextButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -121,62 +121,6 @@ namespace DiamondTrading
             this.gridColumn36 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView11 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabBoilSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.xtabCjharniSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.grdReceiptDetails = new DevExpress.XtraGrid.GridControl();
-            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnReId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptGroupId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptFromPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptToPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptFromParty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptToParty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptChequeNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptChequeDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnReceiptUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.grdContraDetails = new DevExpress.XtraGrid.GridControl();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnContraId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnCId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraFromPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraToPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraFromPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraToPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraChequeNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraChequeDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraRemakrs = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraUpdateDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnContraUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.grdExpenseControl = new DevExpress.XtraGrid.GridControl();
-            this.grvExpenseMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumnExpenseId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpenseSrNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpensePartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpensePartyName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpenseAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpenseRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpenseUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnExpenseUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReject = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.gridControlBoilSendReceiveMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewBoilSendReceiveMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -205,6 +149,101 @@ namespace DiamondTrading
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtabCjharniSendReceive = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
+            this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReject = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridControlCharniReportMaster = new DevExpress.XtraGrid.GridControl();
+            this.gridViewCharniReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn66 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn67 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn68 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn69 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn70 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn71 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn72 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn73 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn74 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn75 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn76 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn77 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn78 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn79 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn80 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn81 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn82 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn83 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn84 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn85 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn86 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn87 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControlGalaReportMaster = new DevExpress.XtraGrid.GridControl();
+            this.gridViewGalaReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn88 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn89 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn90 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn91 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn92 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn93 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn94 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn95 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn96 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn97 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn98 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn99 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn100 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn101 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn102 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn103 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn104 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn105 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn106 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn107 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn108 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn109 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridControlNumerReportMaster = new DevExpress.XtraGrid.GridControl();
+            this.gridViewNumberReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn111 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn112 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn113 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn114 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn115 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn116 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn117 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn118 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn119 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn120 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn121 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn122 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn123 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn124 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn125 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn126 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn127 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn128 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn129 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn130 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn131 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn132 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -227,24 +266,27 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).BeginInit();
             this.xtabBoilSendReceive.SuspendLayout();
-            this.xtabCjharniSendReceive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
-            this.xtabGalaSendReceive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
-            this.xtabNumberSendReceive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdExpenseControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvExpenseMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView10)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBoilSendReceiveMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBoilSendReceiveMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
+            this.xtabCjharniSendReceive.SuspendLayout();
+            this.xtabGalaSendReceive.SuspendLayout();
+            this.xtabNumberSendReceive.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlCharniReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCharniReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlGalaReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewGalaReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlNumerReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNumberReportMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -390,7 +432,7 @@ namespace DiamondTrading
             this.grvKapanMapping.OptionsBehavior.Editable = false;
             this.grvKapanMapping.OptionsView.ShowGroupPanel = false;
             this.grvKapanMapping.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnKapanMappingSrNo, DevExpress.Data.ColumnSortOrder.Ascending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnKapanMappingSrNo, DevExpress.Data.ColumnSortOrder.Descending)});
             this.grvKapanMapping.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvTransMaster_RowCellStyle);
             this.grvKapanMapping.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvTransMaster_RowStyle);
             this.grvKapanMapping.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.gridViewCompanyMaster_MasterRowEmpty);
@@ -485,24 +527,24 @@ namespace DiamondTrading
             this.repositoryItemComboBox1.AutoHeight = false;
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton19.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton19.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton19.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton19.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton19.Name = "Pending";
-            simpleContextButton20.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton20.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton20.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton20.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton20.Name = "Approved";
-            simpleContextButton21.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton21.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton21.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton21.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton21.Name = "Reject";
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton19);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton20);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton21);
+            simpleContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton1.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton1.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton1.Name = "Pending";
+            simpleContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton2.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton2.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton2.Name = "Approved";
+            simpleContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton3.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton3.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton3.Name = "Reject";
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton1);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton2);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton3);
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -511,24 +553,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox1.AutoHeight = false;
             this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton22.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton22.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton22.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton22.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton22.Name = "Pending";
-            simpleContextButton23.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton23.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton23.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton23.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton23.Name = "Approved";
-            simpleContextButton24.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton24.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton24.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton24.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton24.Name = "Reject";
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton22);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton23);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton24);
+            simpleContextButton4.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton4.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton4.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton4.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton4.Name = "Pending";
+            simpleContextButton5.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton5.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton5.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton5.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton5.Name = "Approved";
+            simpleContextButton6.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton6.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton6.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton6.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton6.Name = "Reject";
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton4);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton5);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton6);
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // grdChildTransMaster
@@ -599,6 +641,8 @@ namespace DiamondTrading
             this.grvAssortSendReceiveMaster.Name = "grvAssortSendReceiveMaster";
             this.grvAssortSendReceiveMaster.OptionsBehavior.Editable = false;
             this.grvAssortSendReceiveMaster.OptionsView.ShowGroupPanel = false;
+            this.grvAssortSendReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnSr, DevExpress.Data.ColumnSortOrder.Descending)});
             this.grvAssortSendReceiveMaster.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvSalesTransactonMaster_RowCellStyle);
             this.grvAssortSendReceiveMaster.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.grvSalesTransactonMaster_PopupMenuShowing);
             // 
@@ -1059,499 +1103,6 @@ namespace DiamondTrading
             this.xtabBoilSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabBoilSendReceive.Text = "Boil Send";
             // 
-            // xtabCjharniSendReceive
-            // 
-            this.xtabCjharniSendReceive.Controls.Add(this.grdReceiptDetails);
-            this.xtabCjharniSendReceive.Name = "xtabCjharniSendReceive";
-            this.xtabCjharniSendReceive.Size = new System.Drawing.Size(764, 411);
-            this.xtabCjharniSendReceive.Text = "Receipt Details";
-            // 
-            // grdReceiptDetails
-            // 
-            this.grdReceiptDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdReceiptDetails.Location = new System.Drawing.Point(0, 0);
-            this.grdReceiptDetails.MainView = this.gridView7;
-            this.grdReceiptDetails.Name = "grdReceiptDetails";
-            this.grdReceiptDetails.Size = new System.Drawing.Size(764, 411);
-            this.grdReceiptDetails.TabIndex = 4;
-            this.grdReceiptDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView7,
-            this.gridView8});
-            // 
-            // gridView7
-            // 
-            this.gridView7.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnReId,
-            this.gridColumnReceiptGroupId,
-            this.gridColumnReceiptFromPartyId,
-            this.gridColumnReceiptToPartyId,
-            this.gridColumnReceiptFromParty,
-            this.gridColumnReceiptToParty,
-            this.gridColumnReceiptAmount,
-            this.gridColumnReceiptChequeNo,
-            this.gridColumnReceiptChequeDate,
-            this.gridColumnReceiptRemarks,
-            this.gridColumnReceiptUpdatedDate,
-            this.gridColumnReceiptUpdatedBy});
-            this.gridView7.GridControl = this.grdReceiptDetails;
-            this.gridView7.Name = "gridView7";
-            this.gridView7.OptionsBehavior.Editable = false;
-            this.gridView7.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumnReId
-            // 
-            this.gridColumnReId.Caption = "Id";
-            this.gridColumnReId.FieldName = "Id";
-            this.gridColumnReId.Name = "gridColumnReId";
-            // 
-            // gridColumnReceiptGroupId
-            // 
-            this.gridColumnReceiptGroupId.Caption = "Group Id";
-            this.gridColumnReceiptGroupId.FieldName = "GroupId";
-            this.gridColumnReceiptGroupId.Name = "gridColumnReceiptGroupId";
-            // 
-            // gridColumnReceiptFromPartyId
-            // 
-            this.gridColumnReceiptFromPartyId.Caption = "From Party Id";
-            this.gridColumnReceiptFromPartyId.FieldName = "FromPartyId";
-            this.gridColumnReceiptFromPartyId.Name = "gridColumnReceiptFromPartyId";
-            // 
-            // gridColumnReceiptToPartyId
-            // 
-            this.gridColumnReceiptToPartyId.Caption = "To Party Id";
-            this.gridColumnReceiptToPartyId.FieldName = "ToPartyId";
-            this.gridColumnReceiptToPartyId.Name = "gridColumnReceiptToPartyId";
-            // 
-            // gridColumnReceiptFromParty
-            // 
-            this.gridColumnReceiptFromParty.Caption = "From Party";
-            this.gridColumnReceiptFromParty.FieldName = "FromName";
-            this.gridColumnReceiptFromParty.Name = "gridColumnReceiptFromParty";
-            this.gridColumnReceiptFromParty.Visible = true;
-            this.gridColumnReceiptFromParty.VisibleIndex = 0;
-            this.gridColumnReceiptFromParty.Width = 97;
-            // 
-            // gridColumnReceiptToParty
-            // 
-            this.gridColumnReceiptToParty.Caption = "To Party";
-            this.gridColumnReceiptToParty.FieldName = "ToName";
-            this.gridColumnReceiptToParty.Name = "gridColumnReceiptToParty";
-            this.gridColumnReceiptToParty.Visible = true;
-            this.gridColumnReceiptToParty.VisibleIndex = 1;
-            // 
-            // gridColumnReceiptAmount
-            // 
-            this.gridColumnReceiptAmount.Caption = "Amount";
-            this.gridColumnReceiptAmount.FieldName = "Amount";
-            this.gridColumnReceiptAmount.Name = "gridColumnReceiptAmount";
-            this.gridColumnReceiptAmount.Visible = true;
-            this.gridColumnReceiptAmount.VisibleIndex = 2;
-            this.gridColumnReceiptAmount.Width = 97;
-            // 
-            // gridColumnReceiptChequeNo
-            // 
-            this.gridColumnReceiptChequeNo.Caption = "Cheque No";
-            this.gridColumnReceiptChequeNo.FieldName = "ChequeNo";
-            this.gridColumnReceiptChequeNo.Name = "gridColumnReceiptChequeNo";
-            this.gridColumnReceiptChequeNo.Visible = true;
-            this.gridColumnReceiptChequeNo.VisibleIndex = 3;
-            this.gridColumnReceiptChequeNo.Width = 118;
-            // 
-            // gridColumnReceiptChequeDate
-            // 
-            this.gridColumnReceiptChequeDate.Caption = "Cheque Date";
-            this.gridColumnReceiptChequeDate.FieldName = "ChequeDate";
-            this.gridColumnReceiptChequeDate.Name = "gridColumnReceiptChequeDate";
-            this.gridColumnReceiptChequeDate.Visible = true;
-            this.gridColumnReceiptChequeDate.VisibleIndex = 4;
-            this.gridColumnReceiptChequeDate.Width = 91;
-            // 
-            // gridColumnReceiptRemarks
-            // 
-            this.gridColumnReceiptRemarks.Caption = "Remarks";
-            this.gridColumnReceiptRemarks.FieldName = "Remarks";
-            this.gridColumnReceiptRemarks.Name = "gridColumnReceiptRemarks";
-            this.gridColumnReceiptRemarks.Visible = true;
-            this.gridColumnReceiptRemarks.VisibleIndex = 5;
-            this.gridColumnReceiptRemarks.Width = 91;
-            // 
-            // gridColumnReceiptUpdatedDate
-            // 
-            this.gridColumnReceiptUpdatedDate.Caption = "Updated Date";
-            this.gridColumnReceiptUpdatedDate.FieldName = "UpdatedDate";
-            this.gridColumnReceiptUpdatedDate.Name = "gridColumnReceiptUpdatedDate";
-            this.gridColumnReceiptUpdatedDate.Visible = true;
-            this.gridColumnReceiptUpdatedDate.VisibleIndex = 6;
-            this.gridColumnReceiptUpdatedDate.Width = 91;
-            // 
-            // gridColumnReceiptUpdatedBy
-            // 
-            this.gridColumnReceiptUpdatedBy.Caption = "UpdatedBy";
-            this.gridColumnReceiptUpdatedBy.FieldName = "UpdatedBy";
-            this.gridColumnReceiptUpdatedBy.Name = "gridColumnReceiptUpdatedBy";
-            this.gridColumnReceiptUpdatedBy.Visible = true;
-            this.gridColumnReceiptUpdatedBy.VisibleIndex = 7;
-            this.gridColumnReceiptUpdatedBy.Width = 100;
-            // 
-            // gridView8
-            // 
-            this.gridView8.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn44});
-            this.gridView8.GridControl = this.grdReceiptDetails;
-            this.gridView8.Name = "gridView8";
-            this.gridView8.OptionsBehavior.Editable = false;
-            this.gridView8.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn44
-            // 
-            this.gridColumn44.Caption = "Id";
-            this.gridColumn44.FieldName = "Id";
-            this.gridColumn44.Name = "gridColumn44";
-            // 
-            // xtabGalaSendReceive
-            // 
-            this.xtabGalaSendReceive.Controls.Add(this.grdContraDetails);
-            this.xtabGalaSendReceive.Name = "xtabGalaSendReceive";
-            this.xtabGalaSendReceive.Size = new System.Drawing.Size(764, 411);
-            this.xtabGalaSendReceive.Text = "Contra Details";
-            // 
-            // grdContraDetails
-            // 
-            this.grdContraDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdContraDetails.Location = new System.Drawing.Point(0, 0);
-            this.grdContraDetails.MainView = this.gridView5;
-            this.grdContraDetails.Name = "grdContraDetails";
-            this.grdContraDetails.Size = new System.Drawing.Size(764, 411);
-            this.grdContraDetails.TabIndex = 4;
-            this.grdContraDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView5,
-            this.gridView6});
-            // 
-            // gridView5
-            // 
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnContraId,
-            this.gridColumnCId,
-            this.gridColumnContraFromPartyId,
-            this.gridColumnContraToPartyId,
-            this.gridColumnContraFromPartyName,
-            this.gridColumnContraToPartyName,
-            this.gridColumnContraAmount,
-            this.gridColumnContraChequeNo,
-            this.gridColumnContraChequeDate,
-            this.gridColumnContraRemakrs,
-            this.gridColumnContraUpdateDate,
-            this.gridColumnContraUpdatedBy});
-            this.gridView5.GridControl = this.grdContraDetails;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.Editable = false;
-            this.gridView5.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumnContraId
-            // 
-            this.gridColumnContraId.Caption = "ContraId";
-            this.gridColumnContraId.FieldName = "ContraId";
-            this.gridColumnContraId.Name = "gridColumnContraId";
-            // 
-            // gridColumnCId
-            // 
-            this.gridColumnCId.Caption = "Id";
-            this.gridColumnCId.FieldName = "Id";
-            this.gridColumnCId.Name = "gridColumnCId";
-            // 
-            // gridColumnContraFromPartyId
-            // 
-            this.gridColumnContraFromPartyId.Caption = "From Party Id";
-            this.gridColumnContraFromPartyId.FieldName = "FromPartyId";
-            this.gridColumnContraFromPartyId.Name = "gridColumnContraFromPartyId";
-            // 
-            // gridColumnContraToPartyId
-            // 
-            this.gridColumnContraToPartyId.Caption = "To Party Id";
-            this.gridColumnContraToPartyId.FieldName = "ToPartyId";
-            this.gridColumnContraToPartyId.Name = "gridColumnContraToPartyId";
-            // 
-            // gridColumnContraFromPartyName
-            // 
-            this.gridColumnContraFromPartyName.Caption = "From Party";
-            this.gridColumnContraFromPartyName.FieldName = "FromPartyName";
-            this.gridColumnContraFromPartyName.Name = "gridColumnContraFromPartyName";
-            this.gridColumnContraFromPartyName.Visible = true;
-            this.gridColumnContraFromPartyName.VisibleIndex = 0;
-            this.gridColumnContraFromPartyName.Width = 97;
-            // 
-            // gridColumnContraToPartyName
-            // 
-            this.gridColumnContraToPartyName.Caption = "To Party";
-            this.gridColumnContraToPartyName.FieldName = "ToPartyName";
-            this.gridColumnContraToPartyName.Name = "gridColumnContraToPartyName";
-            this.gridColumnContraToPartyName.Visible = true;
-            this.gridColumnContraToPartyName.VisibleIndex = 1;
-            // 
-            // gridColumnContraAmount
-            // 
-            this.gridColumnContraAmount.Caption = "Amount";
-            this.gridColumnContraAmount.FieldName = "Amount";
-            this.gridColumnContraAmount.Name = "gridColumnContraAmount";
-            this.gridColumnContraAmount.Visible = true;
-            this.gridColumnContraAmount.VisibleIndex = 2;
-            this.gridColumnContraAmount.Width = 97;
-            // 
-            // gridColumnContraChequeNo
-            // 
-            this.gridColumnContraChequeNo.Caption = "Cheque No";
-            this.gridColumnContraChequeNo.FieldName = "ChequeNo";
-            this.gridColumnContraChequeNo.Name = "gridColumnContraChequeNo";
-            this.gridColumnContraChequeNo.Visible = true;
-            this.gridColumnContraChequeNo.VisibleIndex = 3;
-            this.gridColumnContraChequeNo.Width = 118;
-            // 
-            // gridColumnContraChequeDate
-            // 
-            this.gridColumnContraChequeDate.Caption = "Cheque Date";
-            this.gridColumnContraChequeDate.FieldName = "ChequeDate";
-            this.gridColumnContraChequeDate.Name = "gridColumnContraChequeDate";
-            this.gridColumnContraChequeDate.Visible = true;
-            this.gridColumnContraChequeDate.VisibleIndex = 4;
-            this.gridColumnContraChequeDate.Width = 91;
-            // 
-            // gridColumnContraRemakrs
-            // 
-            this.gridColumnContraRemakrs.Caption = "Remarks";
-            this.gridColumnContraRemakrs.FieldName = "Remarks";
-            this.gridColumnContraRemakrs.Name = "gridColumnContraRemakrs";
-            this.gridColumnContraRemakrs.Visible = true;
-            this.gridColumnContraRemakrs.VisibleIndex = 5;
-            this.gridColumnContraRemakrs.Width = 91;
-            // 
-            // gridColumnContraUpdateDate
-            // 
-            this.gridColumnContraUpdateDate.Caption = "Updated Date";
-            this.gridColumnContraUpdateDate.FieldName = "UpdatedDate";
-            this.gridColumnContraUpdateDate.Name = "gridColumnContraUpdateDate";
-            this.gridColumnContraUpdateDate.Visible = true;
-            this.gridColumnContraUpdateDate.VisibleIndex = 6;
-            this.gridColumnContraUpdateDate.Width = 91;
-            // 
-            // gridColumnContraUpdatedBy
-            // 
-            this.gridColumnContraUpdatedBy.Caption = "UpdatedBy";
-            this.gridColumnContraUpdatedBy.FieldName = "UpdatedBy";
-            this.gridColumnContraUpdatedBy.Name = "gridColumnContraUpdatedBy";
-            this.gridColumnContraUpdatedBy.Visible = true;
-            this.gridColumnContraUpdatedBy.VisibleIndex = 7;
-            this.gridColumnContraUpdatedBy.Width = 100;
-            // 
-            // gridView6
-            // 
-            this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn43});
-            this.gridView6.GridControl = this.grdContraDetails;
-            this.gridView6.Name = "gridView6";
-            this.gridView6.OptionsBehavior.Editable = false;
-            this.gridView6.OptionsView.ShowGroupPanel = false;
-            // 
-            // gridColumn43
-            // 
-            this.gridColumn43.Caption = "Id";
-            this.gridColumn43.FieldName = "Id";
-            this.gridColumn43.Name = "gridColumn43";
-            // 
-            // xtabNumberSendReceive
-            // 
-            this.xtabNumberSendReceive.Controls.Add(this.grdExpenseControl);
-            this.xtabNumberSendReceive.Name = "xtabNumberSendReceive";
-            this.xtabNumberSendReceive.Size = new System.Drawing.Size(764, 411);
-            this.xtabNumberSendReceive.Text = "Expense Details";
-            // 
-            // grdExpenseControl
-            // 
-            this.grdExpenseControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdExpenseControl.Location = new System.Drawing.Point(0, 0);
-            this.grdExpenseControl.MainView = this.grvExpenseMaster;
-            this.grdExpenseControl.Name = "grdExpenseControl";
-            this.grdExpenseControl.Size = new System.Drawing.Size(764, 411);
-            this.grdExpenseControl.TabIndex = 4;
-            this.grdExpenseControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvExpenseMaster,
-            this.gridView10});
-            // 
-            // grvExpenseMaster
-            // 
-            this.grvExpenseMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumnExpenseId,
-            this.gridColumnExpenseSrNo,
-            this.gridColumn26,
-            this.gridColumnExpensePartyId,
-            this.gridColumnExpensePartyName,
-            this.gridColumnExpenseAmount,
-            this.gridColumnExpenseRemarks,
-            this.gridColumnExpenseUpdatedDate,
-            this.gridColumnExpenseUpdatedBy});
-            this.grvExpenseMaster.GridControl = this.grdExpenseControl;
-            this.grvExpenseMaster.GroupCount = 1;
-            this.grvExpenseMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", this.gridColumnExpenseAmount, "(Amount: SUM={0:0.##})")});
-            this.grvExpenseMaster.Name = "grvExpenseMaster";
-            this.grvExpenseMaster.OptionsBehavior.Editable = false;
-            this.grvExpenseMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnExpensePartyName, DevExpress.Data.ColumnSortOrder.Ascending)});
-            // 
-            // gridColumnExpenseId
-            // 
-            this.gridColumnExpenseId.Caption = "Sr";
-            this.gridColumnExpenseId.FieldName = "Sr";
-            this.gridColumnExpenseId.Name = "gridColumnExpenseId";
-            this.gridColumnExpenseId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
-            // 
-            // gridColumnExpenseSrNo
-            // 
-            this.gridColumnExpenseSrNo.Caption = "SrNo";
-            this.gridColumnExpenseSrNo.FieldName = "SrNo";
-            this.gridColumnExpenseSrNo.Name = "gridColumnExpenseSrNo";
-            this.gridColumnExpenseSrNo.Visible = true;
-            this.gridColumnExpenseSrNo.VisibleIndex = 0;
-            // 
-            // gridColumn26
-            // 
-            this.gridColumn26.Caption = "Branch Name";
-            this.gridColumn26.FieldName = "BranchName";
-            this.gridColumn26.Name = "gridColumn26";
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 1;
-            // 
-            // gridColumnExpensePartyId
-            // 
-            this.gridColumnExpensePartyId.Caption = "PartyId";
-            this.gridColumnExpensePartyId.FieldName = "PartyId";
-            this.gridColumnExpensePartyId.Name = "gridColumnExpensePartyId";
-            // 
-            // gridColumnExpensePartyName
-            // 
-            this.gridColumnExpensePartyName.Caption = "Party Name";
-            this.gridColumnExpensePartyName.FieldName = "PartyName";
-            this.gridColumnExpensePartyName.Name = "gridColumnExpensePartyName";
-            this.gridColumnExpensePartyName.Visible = true;
-            this.gridColumnExpensePartyName.VisibleIndex = 1;
-            // 
-            // gridColumnExpenseAmount
-            // 
-            this.gridColumnExpenseAmount.Caption = "Amount";
-            this.gridColumnExpenseAmount.FieldName = "Amount";
-            this.gridColumnExpenseAmount.Name = "gridColumnExpenseAmount";
-            this.gridColumnExpenseAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "SUM={0:0.##}")});
-            this.gridColumnExpenseAmount.Visible = true;
-            this.gridColumnExpenseAmount.VisibleIndex = 2;
-            this.gridColumnExpenseAmount.Width = 97;
-            // 
-            // gridColumnExpenseRemarks
-            // 
-            this.gridColumnExpenseRemarks.Caption = "Remarks";
-            this.gridColumnExpenseRemarks.FieldName = "Remarks";
-            this.gridColumnExpenseRemarks.Name = "gridColumnExpenseRemarks";
-            this.gridColumnExpenseRemarks.Visible = true;
-            this.gridColumnExpenseRemarks.VisibleIndex = 3;
-            this.gridColumnExpenseRemarks.Width = 91;
-            // 
-            // gridColumnExpenseUpdatedDate
-            // 
-            this.gridColumnExpenseUpdatedDate.Caption = "Updated Date";
-            this.gridColumnExpenseUpdatedDate.FieldName = "UpdatedDate";
-            this.gridColumnExpenseUpdatedDate.Name = "gridColumnExpenseUpdatedDate";
-            this.gridColumnExpenseUpdatedDate.Visible = true;
-            this.gridColumnExpenseUpdatedDate.VisibleIndex = 4;
-            this.gridColumnExpenseUpdatedDate.Width = 91;
-            // 
-            // gridColumnExpenseUpdatedBy
-            // 
-            this.gridColumnExpenseUpdatedBy.Caption = "UpdatedBy";
-            this.gridColumnExpenseUpdatedBy.FieldName = "UpdatedBy";
-            this.gridColumnExpenseUpdatedBy.Name = "gridColumnExpenseUpdatedBy";
-            this.gridColumnExpenseUpdatedBy.Visible = true;
-            this.gridColumnExpenseUpdatedBy.VisibleIndex = 5;
-            this.gridColumnExpenseUpdatedBy.Width = 100;
-            // 
-            // gridView10
-            // 
-            this.gridView10.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn15});
-            this.gridView10.GridControl = this.grdExpenseControl;
-            this.gridView10.Name = "gridView10";
-            this.gridView10.OptionsBehavior.Editable = false;
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Id";
-            this.gridColumn15.FieldName = "Id";
-            this.gridColumn15.Name = "gridColumn15";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnApprove,
-            this.btnReject});
-            this.barManager1.MaxItemId = 2;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(826, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(826, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 440);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(826, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 440);
-            // 
-            // btnApprove
-            // 
-            this.btnApprove.Caption = "Approve";
-            this.btnApprove.Id = 0;
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnApprove_ItemClick);
-            // 
-            // btnReject
-            // 
-            this.btnReject.Caption = "Reject";
-            this.btnReject.Id = 1;
-            this.btnReject.Name = "btnReject";
-            this.btnReject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReject_ItemClick);
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnApprove),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
             // gridControlBoilSendReceiveMaster
             // 
             this.gridControlBoilSendReceiveMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1597,6 +1148,8 @@ namespace DiamondTrading
             this.gridViewBoilSendReceiveMaster.Name = "gridViewBoilSendReceiveMaster";
             this.gridViewBoilSendReceiveMaster.OptionsBehavior.Editable = false;
             this.gridViewBoilSendReceiveMaster.OptionsView.ShowGroupPanel = false;
+            this.gridViewBoilSendReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn41, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
             // gridColumn12
             // 
@@ -1797,6 +1350,834 @@ namespace DiamondTrading
             this.gridView4.GridControl = this.gridControlBoilSendReceiveMaster;
             this.gridView4.Name = "gridView4";
             // 
+            // xtabCjharniSendReceive
+            // 
+            this.xtabCjharniSendReceive.Controls.Add(this.gridControlCharniReportMaster);
+            this.xtabCjharniSendReceive.Name = "xtabCjharniSendReceive";
+            this.xtabCjharniSendReceive.Size = new System.Drawing.Size(764, 411);
+            this.xtabCjharniSendReceive.Text = "Charni Send";
+            // 
+            // xtabGalaSendReceive
+            // 
+            this.xtabGalaSendReceive.Controls.Add(this.gridControlGalaReportMaster);
+            this.xtabGalaSendReceive.Name = "xtabGalaSendReceive";
+            this.xtabGalaSendReceive.Size = new System.Drawing.Size(764, 411);
+            this.xtabGalaSendReceive.Text = "Gala Send";
+            // 
+            // xtabNumberSendReceive
+            // 
+            this.xtabNumberSendReceive.Controls.Add(this.gridControlNumerReportMaster);
+            this.xtabNumberSendReceive.Name = "xtabNumberSendReceive";
+            this.xtabNumberSendReceive.Size = new System.Drawing.Size(764, 411);
+            this.xtabNumberSendReceive.Text = "Number Send";
+            // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnApprove,
+            this.btnReject});
+            this.barManager1.MaxItemId = 2;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(826, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(826, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 440);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(826, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 440);
+            // 
+            // btnApprove
+            // 
+            this.btnApprove.Caption = "Approve";
+            this.btnApprove.Id = 0;
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnApprove_ItemClick);
+            // 
+            // btnReject
+            // 
+            this.btnReject.Caption = "Reject";
+            this.btnReject.Id = 1;
+            this.btnReject.Name = "btnReject";
+            this.btnReject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReject_ItemClick);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnApprove),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
+            // gridControlCharniReportMaster
+            // 
+            this.gridControlCharniReportMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlCharniReportMaster.Location = new System.Drawing.Point(0, 0);
+            this.gridControlCharniReportMaster.MainView = this.gridViewCharniReportMaster;
+            this.gridControlCharniReportMaster.Name = "gridControlCharniReportMaster";
+            this.gridControlCharniReportMaster.Size = new System.Drawing.Size(764, 411);
+            this.gridControlCharniReportMaster.TabIndex = 6;
+            this.gridControlCharniReportMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewCharniReportMaster,
+            this.gridView7,
+            this.gridView8});
+            // 
+            // gridViewCharniReportMaster
+            // 
+            this.gridViewCharniReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn40,
+            this.gridColumn44,
+            this.gridColumn66,
+            this.gridColumn67,
+            this.gridColumn68,
+            this.gridColumn69,
+            this.gridColumn70,
+            this.gridColumn71,
+            this.gridColumn72,
+            this.gridColumn73,
+            this.gridColumn74,
+            this.gridColumn75,
+            this.gridColumn76,
+            this.gridColumn77,
+            this.gridColumn78,
+            this.gridColumn79,
+            this.gridColumn80,
+            this.gridColumn81,
+            this.gridColumn82,
+            this.gridColumn83,
+            this.gridColumn84,
+            this.gridColumn85,
+            this.gridColumn86});
+            this.gridViewCharniReportMaster.GridControl = this.gridControlCharniReportMaster;
+            this.gridViewCharniReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            this.gridViewCharniReportMaster.Name = "gridViewCharniReportMaster";
+            this.gridViewCharniReportMaster.OptionsBehavior.Editable = false;
+            this.gridViewCharniReportMaster.OptionsView.ShowGroupPanel = false;
+            this.gridViewCharniReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn44, DevExpress.Data.ColumnSortOrder.Descending)});
+            // 
+            // gridColumn40
+            // 
+            this.gridColumn40.Caption = "Id";
+            this.gridColumn40.FieldName = "Id";
+            this.gridColumn40.Name = "gridColumn40";
+            // 
+            // gridColumn44
+            // 
+            this.gridColumn44.Caption = "Sr No";
+            this.gridColumn44.FieldName = "Sr";
+            this.gridColumn44.Name = "gridColumn44";
+            this.gridColumn44.Visible = true;
+            this.gridColumn44.VisibleIndex = 0;
+            this.gridColumn44.Width = 46;
+            // 
+            // gridColumn66
+            // 
+            this.gridColumn66.Caption = "Company Id";
+            this.gridColumn66.FieldName = "CompanyId";
+            this.gridColumn66.Name = "gridColumn66";
+            // 
+            // gridColumn67
+            // 
+            this.gridColumn67.Caption = "Branch Id";
+            this.gridColumn67.FieldName = "BranchId";
+            this.gridColumn67.Name = "gridColumn67";
+            // 
+            // gridColumn68
+            // 
+            this.gridColumn68.Caption = "Financial Year Id";
+            this.gridColumn68.FieldName = "FinancialYearId";
+            this.gridColumn68.Name = "gridColumn68";
+            // 
+            // gridColumn69
+            // 
+            this.gridColumn69.Caption = "Entry Date";
+            this.gridColumn69.FieldName = "EntryDate";
+            this.gridColumn69.Name = "gridColumn69";
+            this.gridColumn69.Visible = true;
+            this.gridColumn69.VisibleIndex = 1;
+            this.gridColumn69.Width = 62;
+            // 
+            // gridColumn70
+            // 
+            this.gridColumn70.Caption = "From Party Id";
+            this.gridColumn70.FieldName = "HandOverById";
+            this.gridColumn70.Name = "gridColumn70";
+            this.gridColumn70.Width = 46;
+            // 
+            // gridColumn71
+            // 
+            this.gridColumn71.Caption = "From Party Name";
+            this.gridColumn71.FieldName = "HandOverByName";
+            this.gridColumn71.Name = "gridColumn71";
+            this.gridColumn71.Visible = true;
+            this.gridColumn71.VisibleIndex = 7;
+            this.gridColumn71.Width = 171;
+            // 
+            // gridColumn72
+            // 
+            this.gridColumn72.Caption = "To Party Id";
+            this.gridColumn72.FieldName = "HandOverToId";
+            this.gridColumn72.Name = "gridColumn72";
+            this.gridColumn72.Width = 69;
+            // 
+            // gridColumn73
+            // 
+            this.gridColumn73.Caption = "To Party Name";
+            this.gridColumn73.FieldName = "HandOverToName";
+            this.gridColumn73.Name = "gridColumn73";
+            this.gridColumn73.Visible = true;
+            this.gridColumn73.VisibleIndex = 8;
+            this.gridColumn73.Width = 161;
+            // 
+            // gridColumn74
+            // 
+            this.gridColumn74.Caption = "Kapan Id";
+            this.gridColumn74.FieldName = "KapanId";
+            this.gridColumn74.Name = "gridColumn74";
+            this.gridColumn74.Width = 60;
+            // 
+            // gridColumn75
+            // 
+            this.gridColumn75.Caption = "Kapan";
+            this.gridColumn75.FieldName = "KapanName";
+            this.gridColumn75.Name = "gridColumn75";
+            this.gridColumn75.Visible = true;
+            this.gridColumn75.VisibleIndex = 3;
+            this.gridColumn75.Width = 50;
+            // 
+            // gridColumn76
+            // 
+            this.gridColumn76.Caption = "ShapeId";
+            this.gridColumn76.FieldName = "ShapeId";
+            this.gridColumn76.Name = "gridColumn76";
+            // 
+            // gridColumn77
+            // 
+            this.gridColumn77.Caption = "Shape";
+            this.gridColumn77.FieldName = "ShapeName";
+            this.gridColumn77.Name = "gridColumn77";
+            this.gridColumn77.Visible = true;
+            this.gridColumn77.VisibleIndex = 4;
+            this.gridColumn77.Width = 50;
+            // 
+            // gridColumn78
+            // 
+            this.gridColumn78.Caption = "Slip No";
+            this.gridColumn78.FieldName = "SlipNo";
+            this.gridColumn78.Name = "gridColumn78";
+            this.gridColumn78.Visible = true;
+            this.gridColumn78.VisibleIndex = 2;
+            this.gridColumn78.Width = 69;
+            // 
+            // gridColumn79
+            // 
+            this.gridColumn79.Caption = "Size Id";
+            this.gridColumn79.FieldName = "SizeId";
+            this.gridColumn79.Name = "gridColumn79";
+            this.gridColumn79.Width = 108;
+            // 
+            // gridColumn80
+            // 
+            this.gridColumn80.Caption = "Size";
+            this.gridColumn80.FieldName = "SizeName";
+            this.gridColumn80.Name = "gridColumn80";
+            this.gridColumn80.Visible = true;
+            this.gridColumn80.VisibleIndex = 5;
+            this.gridColumn80.Width = 59;
+            // 
+            // gridColumn81
+            // 
+            this.gridColumn81.Caption = "Purity Id";
+            this.gridColumn81.FieldName = "PurityId";
+            this.gridColumn81.Name = "gridColumn81";
+            // 
+            // gridColumn82
+            // 
+            this.gridColumn82.Caption = "Purity";
+            this.gridColumn82.FieldName = "PurityName";
+            this.gridColumn82.Name = "gridColumn82";
+            this.gridColumn82.Visible = true;
+            this.gridColumn82.VisibleIndex = 6;
+            this.gridColumn82.Width = 58;
+            // 
+            // gridColumn83
+            // 
+            this.gridColumn83.Caption = "Weight";
+            this.gridColumn83.FieldName = "Weight";
+            this.gridColumn83.Name = "gridColumn83";
+            this.gridColumn83.UnboundDataType = typeof(decimal);
+            this.gridColumn83.Visible = true;
+            this.gridColumn83.VisibleIndex = 9;
+            this.gridColumn83.Width = 55;
+            // 
+            // gridColumn84
+            // 
+            this.gridColumn84.Caption = "Remarks";
+            this.gridColumn84.FieldName = "Remarks";
+            this.gridColumn84.Name = "gridColumn84";
+            this.gridColumn84.Visible = true;
+            this.gridColumn84.VisibleIndex = 10;
+            this.gridColumn84.Width = 122;
+            // 
+            // gridColumn85
+            // 
+            this.gridColumn85.Caption = "Created Date";
+            this.gridColumn85.FieldName = "CreatedDate";
+            this.gridColumn85.Name = "gridColumn85";
+            this.gridColumn85.Width = 48;
+            // 
+            // gridColumn86
+            // 
+            this.gridColumn86.Caption = "Updated Date";
+            this.gridColumn86.FieldName = "UpdatedDate";
+            this.gridColumn86.Name = "gridColumn86";
+            this.gridColumn86.Visible = true;
+            this.gridColumn86.VisibleIndex = 11;
+            // 
+            // gridView7
+            // 
+            this.gridView7.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn87});
+            this.gridView7.GridControl = this.gridControlCharniReportMaster;
+            this.gridView7.Name = "gridView7";
+            this.gridView7.OptionsBehavior.Editable = false;
+            this.gridView7.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn87
+            // 
+            this.gridColumn87.Caption = "Id";
+            this.gridColumn87.FieldName = "Id";
+            this.gridColumn87.Name = "gridColumn87";
+            // 
+            // gridView8
+            // 
+            this.gridView8.GridControl = this.gridControlCharniReportMaster;
+            this.gridView8.Name = "gridView8";
+            // 
+            // gridControlGalaReportMaster
+            // 
+            this.gridControlGalaReportMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlGalaReportMaster.Location = new System.Drawing.Point(0, 0);
+            this.gridControlGalaReportMaster.MainView = this.gridViewGalaReportMaster;
+            this.gridControlGalaReportMaster.Name = "gridControlGalaReportMaster";
+            this.gridControlGalaReportMaster.Size = new System.Drawing.Size(764, 411);
+            this.gridControlGalaReportMaster.TabIndex = 7;
+            this.gridControlGalaReportMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewGalaReportMaster,
+            this.gridView5,
+            this.gridView6});
+            // 
+            // gridViewGalaReportMaster
+            // 
+            this.gridViewGalaReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn43,
+            this.gridColumn88,
+            this.gridColumn89,
+            this.gridColumn90,
+            this.gridColumn91,
+            this.gridColumn92,
+            this.gridColumn93,
+            this.gridColumn94,
+            this.gridColumn95,
+            this.gridColumn96,
+            this.gridColumn97,
+            this.gridColumn98,
+            this.gridColumn99,
+            this.gridColumn100,
+            this.gridColumn101,
+            this.gridColumn102,
+            this.gridColumn103,
+            this.gridColumn104,
+            this.gridColumn105,
+            this.gridColumn106,
+            this.gridColumn107,
+            this.gridColumn108,
+            this.gridColumn109});
+            this.gridViewGalaReportMaster.GridControl = this.gridControlGalaReportMaster;
+            this.gridViewGalaReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            this.gridViewGalaReportMaster.Name = "gridViewGalaReportMaster";
+            this.gridViewGalaReportMaster.OptionsBehavior.Editable = false;
+            this.gridViewGalaReportMaster.OptionsView.ShowGroupPanel = false;
+            this.gridViewGalaReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn88, DevExpress.Data.ColumnSortOrder.Descending)});
+            // 
+            // gridColumn43
+            // 
+            this.gridColumn43.Caption = "Id";
+            this.gridColumn43.FieldName = "Id";
+            this.gridColumn43.Name = "gridColumn43";
+            // 
+            // gridColumn88
+            // 
+            this.gridColumn88.Caption = "Sr No";
+            this.gridColumn88.FieldName = "Sr";
+            this.gridColumn88.Name = "gridColumn88";
+            this.gridColumn88.Visible = true;
+            this.gridColumn88.VisibleIndex = 0;
+            this.gridColumn88.Width = 46;
+            // 
+            // gridColumn89
+            // 
+            this.gridColumn89.Caption = "Company Id";
+            this.gridColumn89.FieldName = "CompanyId";
+            this.gridColumn89.Name = "gridColumn89";
+            // 
+            // gridColumn90
+            // 
+            this.gridColumn90.Caption = "Branch Id";
+            this.gridColumn90.FieldName = "BranchId";
+            this.gridColumn90.Name = "gridColumn90";
+            // 
+            // gridColumn91
+            // 
+            this.gridColumn91.Caption = "Financial Year Id";
+            this.gridColumn91.FieldName = "FinancialYearId";
+            this.gridColumn91.Name = "gridColumn91";
+            // 
+            // gridColumn92
+            // 
+            this.gridColumn92.Caption = "Entry Date";
+            this.gridColumn92.FieldName = "EntryDate";
+            this.gridColumn92.Name = "gridColumn92";
+            this.gridColumn92.Visible = true;
+            this.gridColumn92.VisibleIndex = 1;
+            this.gridColumn92.Width = 62;
+            // 
+            // gridColumn93
+            // 
+            this.gridColumn93.Caption = "From Party Id";
+            this.gridColumn93.FieldName = "HandOverById";
+            this.gridColumn93.Name = "gridColumn93";
+            this.gridColumn93.Width = 46;
+            // 
+            // gridColumn94
+            // 
+            this.gridColumn94.Caption = "From Party Name";
+            this.gridColumn94.FieldName = "HandOverByName";
+            this.gridColumn94.Name = "gridColumn94";
+            this.gridColumn94.Visible = true;
+            this.gridColumn94.VisibleIndex = 7;
+            this.gridColumn94.Width = 171;
+            // 
+            // gridColumn95
+            // 
+            this.gridColumn95.Caption = "To Party Id";
+            this.gridColumn95.FieldName = "HandOverToId";
+            this.gridColumn95.Name = "gridColumn95";
+            this.gridColumn95.Width = 69;
+            // 
+            // gridColumn96
+            // 
+            this.gridColumn96.Caption = "To Party Name";
+            this.gridColumn96.FieldName = "HandOverToName";
+            this.gridColumn96.Name = "gridColumn96";
+            this.gridColumn96.Visible = true;
+            this.gridColumn96.VisibleIndex = 8;
+            this.gridColumn96.Width = 161;
+            // 
+            // gridColumn97
+            // 
+            this.gridColumn97.Caption = "Kapan Id";
+            this.gridColumn97.FieldName = "KapanId";
+            this.gridColumn97.Name = "gridColumn97";
+            this.gridColumn97.Width = 60;
+            // 
+            // gridColumn98
+            // 
+            this.gridColumn98.Caption = "Kapan";
+            this.gridColumn98.FieldName = "KapanName";
+            this.gridColumn98.Name = "gridColumn98";
+            this.gridColumn98.Visible = true;
+            this.gridColumn98.VisibleIndex = 3;
+            this.gridColumn98.Width = 50;
+            // 
+            // gridColumn99
+            // 
+            this.gridColumn99.Caption = "ShapeId";
+            this.gridColumn99.FieldName = "ShapeId";
+            this.gridColumn99.Name = "gridColumn99";
+            // 
+            // gridColumn100
+            // 
+            this.gridColumn100.Caption = "Shape";
+            this.gridColumn100.FieldName = "ShapeName";
+            this.gridColumn100.Name = "gridColumn100";
+            this.gridColumn100.Visible = true;
+            this.gridColumn100.VisibleIndex = 4;
+            this.gridColumn100.Width = 50;
+            // 
+            // gridColumn101
+            // 
+            this.gridColumn101.Caption = "Slip No";
+            this.gridColumn101.FieldName = "SlipNo";
+            this.gridColumn101.Name = "gridColumn101";
+            this.gridColumn101.Visible = true;
+            this.gridColumn101.VisibleIndex = 2;
+            this.gridColumn101.Width = 69;
+            // 
+            // gridColumn102
+            // 
+            this.gridColumn102.Caption = "Size Id";
+            this.gridColumn102.FieldName = "SizeId";
+            this.gridColumn102.Name = "gridColumn102";
+            this.gridColumn102.Width = 108;
+            // 
+            // gridColumn103
+            // 
+            this.gridColumn103.Caption = "Size";
+            this.gridColumn103.FieldName = "SizeName";
+            this.gridColumn103.Name = "gridColumn103";
+            this.gridColumn103.Visible = true;
+            this.gridColumn103.VisibleIndex = 5;
+            this.gridColumn103.Width = 59;
+            // 
+            // gridColumn104
+            // 
+            this.gridColumn104.Caption = "Purity Id";
+            this.gridColumn104.FieldName = "PurityId";
+            this.gridColumn104.Name = "gridColumn104";
+            // 
+            // gridColumn105
+            // 
+            this.gridColumn105.Caption = "Purity";
+            this.gridColumn105.FieldName = "PurityName";
+            this.gridColumn105.Name = "gridColumn105";
+            this.gridColumn105.Visible = true;
+            this.gridColumn105.VisibleIndex = 6;
+            this.gridColumn105.Width = 58;
+            // 
+            // gridColumn106
+            // 
+            this.gridColumn106.Caption = "Weight";
+            this.gridColumn106.FieldName = "Weight";
+            this.gridColumn106.Name = "gridColumn106";
+            this.gridColumn106.UnboundDataType = typeof(decimal);
+            this.gridColumn106.Visible = true;
+            this.gridColumn106.VisibleIndex = 9;
+            this.gridColumn106.Width = 55;
+            // 
+            // gridColumn107
+            // 
+            this.gridColumn107.Caption = "Remarks";
+            this.gridColumn107.FieldName = "Remarks";
+            this.gridColumn107.Name = "gridColumn107";
+            this.gridColumn107.Visible = true;
+            this.gridColumn107.VisibleIndex = 10;
+            this.gridColumn107.Width = 122;
+            // 
+            // gridColumn108
+            // 
+            this.gridColumn108.Caption = "Created Date";
+            this.gridColumn108.FieldName = "CreatedDate";
+            this.gridColumn108.Name = "gridColumn108";
+            this.gridColumn108.Width = 48;
+            // 
+            // gridColumn109
+            // 
+            this.gridColumn109.Caption = "Updated Date";
+            this.gridColumn109.FieldName = "UpdatedDate";
+            this.gridColumn109.Name = "gridColumn109";
+            this.gridColumn109.Visible = true;
+            this.gridColumn109.VisibleIndex = 11;
+            // 
+            // gridView5
+            // 
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn110});
+            this.gridView5.GridControl = this.gridControlGalaReportMaster;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsBehavior.Editable = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn110
+            // 
+            this.gridColumn110.Caption = "Id";
+            this.gridColumn110.FieldName = "Id";
+            this.gridColumn110.Name = "gridColumn110";
+            // 
+            // gridView6
+            // 
+            this.gridView6.GridControl = this.gridControlGalaReportMaster;
+            this.gridView6.Name = "gridView6";
+            // 
+            // gridControlNumerReportMaster
+            // 
+            this.gridControlNumerReportMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridControlNumerReportMaster.Location = new System.Drawing.Point(0, 0);
+            this.gridControlNumerReportMaster.MainView = this.gridViewNumberReportMaster;
+            this.gridControlNumerReportMaster.Name = "gridControlNumerReportMaster";
+            this.gridControlNumerReportMaster.Size = new System.Drawing.Size(764, 411);
+            this.gridControlNumerReportMaster.TabIndex = 8;
+            this.gridControlNumerReportMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewNumberReportMaster,
+            this.gridView10,
+            this.gridView12});
+            // 
+            // gridViewNumberReportMaster
+            // 
+            this.gridViewNumberReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn15,
+            this.gridColumn26,
+            this.gridColumn111,
+            this.gridColumn112,
+            this.gridColumn113,
+            this.gridColumn114,
+            this.gridColumn115,
+            this.gridColumn116,
+            this.gridColumn117,
+            this.gridColumn118,
+            this.gridColumn119,
+            this.gridColumn120,
+            this.gridColumn121,
+            this.gridColumn122,
+            this.gridColumn123,
+            this.gridColumn124,
+            this.gridColumn125,
+            this.gridColumn126,
+            this.gridColumn127,
+            this.gridColumn128,
+            this.gridColumn129,
+            this.gridColumn130,
+            this.gridColumn131});
+            this.gridViewNumberReportMaster.GridControl = this.gridControlNumerReportMaster;
+            this.gridViewNumberReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            this.gridViewNumberReportMaster.Name = "gridViewNumberReportMaster";
+            this.gridViewNumberReportMaster.OptionsBehavior.Editable = false;
+            this.gridViewNumberReportMaster.OptionsView.ShowGroupPanel = false;
+            this.gridViewNumberReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn26, DevExpress.Data.ColumnSortOrder.Descending)});
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Id";
+            this.gridColumn15.FieldName = "Id";
+            this.gridColumn15.Name = "gridColumn15";
+            // 
+            // gridColumn26
+            // 
+            this.gridColumn26.Caption = "Sr No";
+            this.gridColumn26.FieldName = "Sr";
+            this.gridColumn26.Name = "gridColumn26";
+            this.gridColumn26.Visible = true;
+            this.gridColumn26.VisibleIndex = 0;
+            this.gridColumn26.Width = 46;
+            // 
+            // gridColumn111
+            // 
+            this.gridColumn111.Caption = "Company Id";
+            this.gridColumn111.FieldName = "CompanyId";
+            this.gridColumn111.Name = "gridColumn111";
+            // 
+            // gridColumn112
+            // 
+            this.gridColumn112.Caption = "Branch Id";
+            this.gridColumn112.FieldName = "BranchId";
+            this.gridColumn112.Name = "gridColumn112";
+            // 
+            // gridColumn113
+            // 
+            this.gridColumn113.Caption = "Financial Year Id";
+            this.gridColumn113.FieldName = "FinancialYearId";
+            this.gridColumn113.Name = "gridColumn113";
+            // 
+            // gridColumn114
+            // 
+            this.gridColumn114.Caption = "Entry Date";
+            this.gridColumn114.FieldName = "EntryDate";
+            this.gridColumn114.Name = "gridColumn114";
+            this.gridColumn114.Visible = true;
+            this.gridColumn114.VisibleIndex = 1;
+            this.gridColumn114.Width = 62;
+            // 
+            // gridColumn115
+            // 
+            this.gridColumn115.Caption = "From Party Id";
+            this.gridColumn115.FieldName = "HandOverById";
+            this.gridColumn115.Name = "gridColumn115";
+            this.gridColumn115.Width = 46;
+            // 
+            // gridColumn116
+            // 
+            this.gridColumn116.Caption = "From Party Name";
+            this.gridColumn116.FieldName = "HandOverByName";
+            this.gridColumn116.Name = "gridColumn116";
+            this.gridColumn116.Visible = true;
+            this.gridColumn116.VisibleIndex = 7;
+            this.gridColumn116.Width = 171;
+            // 
+            // gridColumn117
+            // 
+            this.gridColumn117.Caption = "To Party Id";
+            this.gridColumn117.FieldName = "HandOverToId";
+            this.gridColumn117.Name = "gridColumn117";
+            this.gridColumn117.Width = 69;
+            // 
+            // gridColumn118
+            // 
+            this.gridColumn118.Caption = "To Party Name";
+            this.gridColumn118.FieldName = "HandOverToName";
+            this.gridColumn118.Name = "gridColumn118";
+            this.gridColumn118.Visible = true;
+            this.gridColumn118.VisibleIndex = 8;
+            this.gridColumn118.Width = 161;
+            // 
+            // gridColumn119
+            // 
+            this.gridColumn119.Caption = "Kapan Id";
+            this.gridColumn119.FieldName = "KapanId";
+            this.gridColumn119.Name = "gridColumn119";
+            this.gridColumn119.Width = 60;
+            // 
+            // gridColumn120
+            // 
+            this.gridColumn120.Caption = "Kapan";
+            this.gridColumn120.FieldName = "KapanName";
+            this.gridColumn120.Name = "gridColumn120";
+            this.gridColumn120.Visible = true;
+            this.gridColumn120.VisibleIndex = 3;
+            this.gridColumn120.Width = 50;
+            // 
+            // gridColumn121
+            // 
+            this.gridColumn121.Caption = "ShapeId";
+            this.gridColumn121.FieldName = "ShapeId";
+            this.gridColumn121.Name = "gridColumn121";
+            // 
+            // gridColumn122
+            // 
+            this.gridColumn122.Caption = "Shape";
+            this.gridColumn122.FieldName = "ShapeName";
+            this.gridColumn122.Name = "gridColumn122";
+            this.gridColumn122.Visible = true;
+            this.gridColumn122.VisibleIndex = 4;
+            this.gridColumn122.Width = 50;
+            // 
+            // gridColumn123
+            // 
+            this.gridColumn123.Caption = "Slip No";
+            this.gridColumn123.FieldName = "SlipNo";
+            this.gridColumn123.Name = "gridColumn123";
+            this.gridColumn123.Visible = true;
+            this.gridColumn123.VisibleIndex = 2;
+            this.gridColumn123.Width = 69;
+            // 
+            // gridColumn124
+            // 
+            this.gridColumn124.Caption = "Size Id";
+            this.gridColumn124.FieldName = "SizeId";
+            this.gridColumn124.Name = "gridColumn124";
+            this.gridColumn124.Width = 108;
+            // 
+            // gridColumn125
+            // 
+            this.gridColumn125.Caption = "Size";
+            this.gridColumn125.FieldName = "SizeName";
+            this.gridColumn125.Name = "gridColumn125";
+            this.gridColumn125.Visible = true;
+            this.gridColumn125.VisibleIndex = 5;
+            this.gridColumn125.Width = 59;
+            // 
+            // gridColumn126
+            // 
+            this.gridColumn126.Caption = "Purity Id";
+            this.gridColumn126.FieldName = "PurityId";
+            this.gridColumn126.Name = "gridColumn126";
+            // 
+            // gridColumn127
+            // 
+            this.gridColumn127.Caption = "Purity";
+            this.gridColumn127.FieldName = "PurityName";
+            this.gridColumn127.Name = "gridColumn127";
+            this.gridColumn127.Visible = true;
+            this.gridColumn127.VisibleIndex = 6;
+            this.gridColumn127.Width = 58;
+            // 
+            // gridColumn128
+            // 
+            this.gridColumn128.Caption = "Weight";
+            this.gridColumn128.FieldName = "Weight";
+            this.gridColumn128.Name = "gridColumn128";
+            this.gridColumn128.UnboundDataType = typeof(decimal);
+            this.gridColumn128.Visible = true;
+            this.gridColumn128.VisibleIndex = 9;
+            this.gridColumn128.Width = 55;
+            // 
+            // gridColumn129
+            // 
+            this.gridColumn129.Caption = "Remarks";
+            this.gridColumn129.FieldName = "Remarks";
+            this.gridColumn129.Name = "gridColumn129";
+            this.gridColumn129.Visible = true;
+            this.gridColumn129.VisibleIndex = 10;
+            this.gridColumn129.Width = 122;
+            // 
+            // gridColumn130
+            // 
+            this.gridColumn130.Caption = "Created Date";
+            this.gridColumn130.FieldName = "CreatedDate";
+            this.gridColumn130.Name = "gridColumn130";
+            this.gridColumn130.Width = 48;
+            // 
+            // gridColumn131
+            // 
+            this.gridColumn131.Caption = "Updated Date";
+            this.gridColumn131.FieldName = "UpdatedDate";
+            this.gridColumn131.Name = "gridColumn131";
+            this.gridColumn131.Visible = true;
+            this.gridColumn131.VisibleIndex = 11;
+            // 
+            // gridView10
+            // 
+            this.gridView10.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn132});
+            this.gridView10.GridControl = this.gridControlNumerReportMaster;
+            this.gridView10.Name = "gridView10";
+            this.gridView10.OptionsBehavior.Editable = false;
+            this.gridView10.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn132
+            // 
+            this.gridColumn132.Caption = "Id";
+            this.gridColumn132.FieldName = "Id";
+            this.gridColumn132.Name = "gridColumn132";
+            // 
+            // gridView12
+            // 
+            this.gridView12.GridControl = this.gridControlNumerReportMaster;
+            this.gridView12.Name = "gridView12";
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1840,24 +2221,27 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).EndInit();
             this.xtabBoilSendReceive.ResumeLayout(false);
-            this.xtabCjharniSendReceive.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
-            this.xtabGalaSendReceive.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
-            this.xtabNumberSendReceive.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdExpenseControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvExpenseMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlBoilSendReceiveMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewBoilSendReceiveMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
+            this.xtabCjharniSendReceive.ResumeLayout(false);
+            this.xtabGalaSendReceive.ResumeLayout(false);
+            this.xtabNumberSendReceive.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlCharniReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewCharniReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlGalaReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewGalaReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridControlNumerReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewNumberReportMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1896,53 +2280,8 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn28;
         private DevExpress.XtraTab.XtraTabPage xtabBoilSendReceive;
         private DevExpress.XtraTab.XtraTabPage xtabCjharniSendReceive;
-        private DevExpress.XtraGrid.GridControl grdReceiptDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView7;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptGroupId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptFromPartyId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptToPartyId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptFromParty;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptToParty;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptChequeNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptChequeDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptRemarks;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptUpdatedDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnReceiptUpdatedBy;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
         private DevExpress.XtraTab.XtraTabPage xtabGalaSendReceive;
-        private DevExpress.XtraGrid.GridControl grdContraDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraFromPartyId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraToPartyId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraFromPartyName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraToPartyName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraChequeNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraChequeDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraRemakrs;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraUpdateDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraUpdatedBy;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
         private DevExpress.XtraTab.XtraTabPage xtabNumberSendReceive;
-        private DevExpress.XtraGrid.GridControl grdExpenseControl;
-        private DevExpress.XtraGrid.Views.Grid.GridView grvExpenseMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseSrNo;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpensePartyId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpensePartyName;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseRemarks;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseUpdatedDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseUpdatedBy;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView10;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView13;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView14;
         private DevExpress.XtraBars.PopupMenu popupMenu1;
@@ -2033,5 +2372,89 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn65;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
+        private DevExpress.XtraGrid.GridControl gridControlCharniReportMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewCharniReportMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn66;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn67;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn68;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn69;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn70;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn71;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn72;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn73;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn74;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn75;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn76;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn77;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn78;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn79;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn80;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn81;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn82;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn83;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn84;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn85;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn86;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView7;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn87;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
+        private DevExpress.XtraGrid.GridControl gridControlGalaReportMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewGalaReportMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn88;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn89;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn90;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn91;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn92;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn93;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn94;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn95;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn96;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn97;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn98;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn99;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn100;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn101;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn102;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn103;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn104;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn105;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn106;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn107;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn108;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn109;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
+        private DevExpress.XtraGrid.GridControl gridControlNumerReportMaster;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewNumberReportMaster;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn111;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn112;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn113;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn114;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn115;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn116;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn117;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn118;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn119;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn120;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn121;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn122;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn123;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn124;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn125;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn126;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn127;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn128;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn129;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn130;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn131;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView10;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn132;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView12;
     }
 }

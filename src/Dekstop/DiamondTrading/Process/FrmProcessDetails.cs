@@ -184,15 +184,15 @@ namespace DiamondTrading
             //        grdContraDetails.DataSource = data;
             //    }
             //}
-            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
-            {
-                if (IsForceLoad || _expenseMasterRepository == null)
-                {
-                    _expenseMasterRepository = new ExpenseMasterRepository();
-                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
-                    grdExpenseControl.DataSource = data;
-                }
-            }
+            //else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
+            //{
+            //    if (IsForceLoad || _expenseMasterRepository == null)
+            //    {
+            //        _expenseMasterRepository = new ExpenseMasterRepository();
+            //        var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
+            //        grdExpenseControl.DataSource = data;
+            //    }
+            //}
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
