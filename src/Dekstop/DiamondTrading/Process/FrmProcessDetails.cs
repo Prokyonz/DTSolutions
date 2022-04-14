@@ -19,7 +19,7 @@ namespace DiamondTrading
         private KapanMappingMasterRepository _kapanMappingMasterRepository ;
         private AccountToAssortMasterRepository _accountToAssortMasterRepository ;
         private BoilMasterRepository _boilMasterRepository;
-        private ContraEntryMasterRespository  _contraEntryMasterRespository;
+        private CharniProcessMasterRepository  _charniProcessMasterRepository;
         private ExpenseMasterRepository _expenseMasterRepository;
         private LoanMasterRepository _loanMasterRepository;
 
@@ -62,21 +62,39 @@ namespace DiamondTrading
                     this.Text = "Boil Receive";
                     break;
 
-                case "Charni":
+                case "CharniSend":
                     xtabCjharniSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabCjharniSendReceive;
-                    this.Text = "Charni Details";
+                    this.Text = "Charni Send";
                     break;
-                case "Gala":
+                case "CharniReceive":
+                    xtabCjharniSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabCjharniSendReceive;
+                    this.Text = "Charni Receive";
+                    break;
+
+                case "GalaSend":
                     xtabGalaSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabGalaSendReceive;
-                    this.Text = "Gala Details";
+                    this.Text = "Gala Send";
                     break;
-                case "Number":
+                case "GalaReceive":
+                    xtabGalaSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabGalaSendReceive;
+                    this.Text = "Gala Receive";
+                    break;
+
+                case "NumberSend":
                     xtabNumberSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabNumberSendReceive;
-                    this.Text = "Number Details";
+                    this.Text = "Number Send";
                     break;
+                case "NumberReceive":
+                    xtabNumberSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabNumberSendReceive;
+                    this.Text = "Number Receive";
+                    break;
+
                 default:
                     xtabKapanMapping.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabKapanMapping;
@@ -166,15 +184,15 @@ namespace DiamondTrading
                     gridControlBoilSendReceiveMaster.DataSource = data;
                 }
             }
-            //else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
-            //{
-            //    if (IsForceLoad || _paymentMasterRepository == null)
-            //    {
-            //        _paymentMasterRepository = new PaymentMasterRepository();
-            //        var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
-            //        grdReceiptDetails.DataSource = data;
-            //    }
-            //}
+            else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
+            {
+                if (IsForceLoad || _charniProcessMasterRepository == null)
+                {
+                    _charniProcessMasterRepository = new CharniProcessMasterRepository();
+                    var data = await _charniProcessMasterRepository.GetCharniSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "CharniSend" ? 0 : 1);
+                    gridControlCharniReportMaster.DataSource = data;
+                }
+            }
             //else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
             //{
             //    if (IsForceLoad || _paymentMasterRepository == null)
