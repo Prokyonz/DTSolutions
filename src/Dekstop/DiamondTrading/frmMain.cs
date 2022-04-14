@@ -1811,5 +1811,41 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        private void barCheckBoilSend_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "BoilSend";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void barButtonBoilReceive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "BoilReceive";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
     }
 }
