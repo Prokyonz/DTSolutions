@@ -12,7 +12,7 @@ namespace EFCore.SQL.Interface
     {
         Task<List<AccountToAssortMaster>> GetAccountToAssortAsync(string companyId, string branchId, string financialYearId);
         Task<List<AccountToAssortSendReceiveReportModel>> GetAccountToAssortSendReportAsync(string companyId, string branchId, string financialYearId, int AccountToAssortType=0);
-        Task<List<AccountToAssortSendReceiveReportModel>> GetAccountToAssortReceiveReportAsync(string companyId, string branchId, string financialYearId);
+        Task<List<AccountToAssoftReceiveReportModel>> GetAccountToAssortReceiveReportAsync(string companyId, string branchId, string financialYearId);
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId);
         Task<AccountToAssortMaster> AddAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);
         Task<AccountToAssortMaster> UpdateAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);

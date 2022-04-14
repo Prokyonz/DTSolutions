@@ -144,13 +144,13 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<AccountToAssortSendReceiveReportModel>> GetAccountToAssortReceiveReportAsync(string companyId, string branchId, string financialYearId)
+        public async Task<List<AccountToAssoftReceiveReportModel>> GetAccountToAssortReceiveReportAsync(string companyId, string branchId, string financialYearId)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPAccountToAssortSendReceiveReportModels.FromSqlRaw($"GetAssortReceiveReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPAccountToAssoftReceiveReportModel.FromSqlRaw($"GetAssortReceiveReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }

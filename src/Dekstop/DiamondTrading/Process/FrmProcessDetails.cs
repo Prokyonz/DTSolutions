@@ -28,8 +28,7 @@ namespace DiamondTrading
 
         public FrmProcessDetails()
         {
-            InitializeComponent();
-            //LoadGridData();
+            InitializeComponent();            
         }
 
         public void ActiveTab()
@@ -124,7 +123,7 @@ namespace DiamondTrading
         }
 
         private async Task LoadGridData(bool IsForceLoad=false)
-        {
+        {            
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
                 if (IsForceLoad || _kapanMappingMasterRepository == null)
@@ -148,8 +147,8 @@ namespace DiamondTrading
                 if (IsForceLoad || _accountToAssortMasterRepository == null)
                 {
                     _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    var salesData = await _accountToAssortMasterRepository.GetAccountToAssortReceiveReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
-                    gridControlAssortReceiveMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                    var assortReceiveData = await _accountToAssortMasterRepository.GetAccountToAssortReceiveReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                    gridControlAssortReceiveMaster.DataSource = assortReceiveData.OrderBy(o => o.SlipNo);
                 }
             }
             else if(xtabManager.SelectedTabPage == xtabBoilSendReceive)
@@ -227,12 +226,12 @@ namespace DiamondTrading
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            _ = LoadGridData();
+            //_ = LoadGridData();
         } 
 
         private void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
-            _ = LoadGridData(true);
+            //_ = LoadGridData(true);
         }
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)

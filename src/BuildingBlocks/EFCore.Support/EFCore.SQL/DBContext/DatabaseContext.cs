@@ -95,6 +95,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<PaymentPSSlipDetails> SPPaymentPSSlipDetails { get; set; }
         public virtual DbSet<KapanMappingReportModel> SPKapanMappingReportModel { get; set; }
         public virtual DbSet<AccountToAssortSendReceiveReportModel> SPAccountToAssortSendReceiveReportModels  { get; set; }
+        public virtual DbSet<AccountToAssoftReceiveReportModel> SPAccountToAssoftReceiveReportModel { get; set; }
 
 
 
@@ -173,6 +174,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PaymentPSSlipDetails>().HasNoKey();
             modelBuilder.Entity<KapanMappingReportModel>().HasNoKey();
             modelBuilder.Entity<AccountToAssortSendReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<AccountToAssoftReceiveReportModel>().HasNoKey();
         }
     }
 }
