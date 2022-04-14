@@ -18,7 +18,7 @@ namespace DiamondTrading
     {
         private KapanMappingMasterRepository _kapanMappingMasterRepository ;
         private AccountToAssortMasterRepository _accountToAssortMasterRepository ;
-        private PaymentMasterRepository _paymentMasterRepository;
+        private BoilMasterRepository _boilMasterRepository;
         private ContraEntryMasterRespository  _contraEntryMasterRespository;
         private ExpenseMasterRepository _expenseMasterRepository;
         private LoanMasterRepository _loanMasterRepository;
@@ -51,11 +51,17 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtabAssortReceive;
                     this.Text = "Assort Receive";
                     break;
-                case "Boil":
+                case "BoilSend":
                     xtabBoilSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabBoilSendReceive;
-                    this.Text = "Boil Details";
+                    this.Text = "Boil Send";
                     break;
+                case "BoilReceive":
+                    xtabBoilSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabBoilSendReceive;
+                    this.Text = "Boil Receive";
+                    break;
+
                 case "Charni":
                     xtabCjharniSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabCjharniSendReceive;
@@ -153,31 +159,31 @@ namespace DiamondTrading
             }
             else if(xtabManager.SelectedTabPage == xtabBoilSendReceive)
             {
-                if(IsForceLoad || _paymentMasterRepository == null)
+                if(IsForceLoad || _boilMasterRepository == null)
                 {
-                    _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
-                    grdPaymentDetails.DataSource = data;
+                    _boilMasterRepository = new BoilMasterRepository();
+                    var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
+                    gridControlBoilSendReceiveMaster.DataSource = data;
                 }
             }
-            else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
-            {
-                if (IsForceLoad || _paymentMasterRepository == null)
-                {
-                    _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
-                    grdReceiptDetails.DataSource = data;
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
-            {
-                if (IsForceLoad || _paymentMasterRepository == null)
-                {
-                    _contraEntryMasterRespository = new ContraEntryMasterRespository();
-                    var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
-                    grdContraDetails.DataSource = data;
-                }
-            }
+            //else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
+            //{
+            //    if (IsForceLoad || _paymentMasterRepository == null)
+            //    {
+            //        _paymentMasterRepository = new PaymentMasterRepository();
+            //        var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+            //        grdReceiptDetails.DataSource = data;
+            //    }
+            //}
+            //else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
+            //{
+            //    if (IsForceLoad || _paymentMasterRepository == null)
+            //    {
+            //        _contraEntryMasterRespository = new ContraEntryMasterRespository();
+            //        var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
+            //        grdContraDetails.DataSource = data;
+            //    }
+            //}
             else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
             {
                 if (IsForceLoad || _expenseMasterRepository == null)
