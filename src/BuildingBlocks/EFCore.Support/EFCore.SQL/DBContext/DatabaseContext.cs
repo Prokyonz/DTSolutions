@@ -65,7 +65,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<JangadMaster> JangadMaster { get; set; }
         public DbSet<PriceMaster> PriceMaster { get; set; }
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
-
+        public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
 
 
 
@@ -179,6 +179,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<AccountToAssoftReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<BoilSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<CharniSendReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<PriceSPModel>().HasNoKey();
         }
     }
 }
