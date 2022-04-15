@@ -17,16 +17,14 @@ namespace DiamondTrading.Process
     public partial class FrmPriceMaster : DevExpress.XtraEditors.XtraForm
     {
         CompanyMasterRepository _companyMasterRepository;
-        SizeMasterRepository _sizeMasterRepository;
-        NumberMasterRepository _numberMasterRepository;
-        PartyMasterRepository _partyMasterRepository;
+        PriceMasterRepository _priceMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
 
         public FrmPriceMaster()
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
-            _partyMasterRepository = new PartyMasterRepository();
+            _priceMasterRepository = new PriceMasterRepository();
 
             LoadCompany();
 
@@ -51,24 +49,6 @@ namespace DiamondTrading.Process
             lueCompany.Properties.ValueMember = "Id";
         }
 
-        private async void LoadSize()
-        {
-            var data = await _sizeMasterRepository.GetAllSizeAsync();
-
-            lueCompany.Properties.DataSource = data;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-        }
-
-        private async void LoadNumber()
-        {
-            var data = await _numberMasterRepository.GetAllNumberAsync();
-
-            lueCompany.Properties.DataSource = data;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-        }
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -82,48 +62,20 @@ namespace DiamondTrading.Process
             }
         }
 
-        private async void FrmBoilSend_Load(object sender, EventArgs e)
+        private void FrmPriceMaster_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
-
-            //SetThemeColors(Color.FromArgb(250, 243, 197));
-        }
-
-        private async Task GetEmployeeList()
-        {
-            var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, PartyTypeMaster.Other);
-            lueCompany.Properties.DataSource = EmployeeDetailList;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
-        }
-
-        private async Task GetBoilProcessSendDetail()
-        {
-            //grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-            //ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-
-            //lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
-            //lueKapan.Properties.DisplayMember = "Kapan";
-            //lueKapan.Properties.ValueMember = "KapanId";
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("SlipNo");
-            dt.Columns.Add("Size");
-            dt.Columns.Add("AvailableWeight");
-            dt.Columns.Add("BoilCarat");
             dt.Columns.Add("SizeId");
-            dt.Columns.Add("ShapeId");
-            dt.Columns.Add("PurityId");
-            dt.Columns.Add("PurchaseDetailsId");
-            dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("Size");
+            dt.Columns.Add("NumberId");
+            dt.Columns.Add("Number");
+            dt.Columns.Add("Rate");
             return dt;
         }
 
@@ -149,23 +101,12 @@ namespace DiamondTrading.Process
             }
         }
 
-        private void FrmBoilSend_KeyDown(object sender, KeyEventArgs e)
-        {
-            Common.MoveToNextControl(sender, e, this);
-        }
-
         private bool CheckValidation()
         {
             if (lueCompany.EditValue == null)
             {
-                MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please select Company name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lueCompany.Focus();
-                return false;
-            }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
                 return false;
             }
             else if (grvParticularsDetails.RowCount == 0)
@@ -180,7 +121,6 @@ namespace DiamondTrading.Process
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
-  
             {
                 this.Cursor = Cursors.WaitCursor;
 
@@ -190,12 +130,30 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
+                    await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString());
+                    PriceMaster priceMaster;
+                    grvParticularsDetails.ExpandAllGroups();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
-                        IsSuccess = true;
+                        if (grvParticularsDetails.GetRowCellValue(i, colSizeId) != null)
+                        {
+                            priceMaster = new PriceMaster();
+                            priceMaster.Id = Guid.NewGuid().ToString();
+                            priceMaster.CompanyId = lueCompany.EditValue.ToString();
+                            priceMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                            priceMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
+                            priceMaster.Price = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPrice).ToString());
+                            priceMaster.CreatedBy = Common.LoginUserID;
+                            priceMaster.CreatedDate = DateTime.Now;
+                            priceMaster.UpdatedBy = Common.LoginUserID;
+                            priceMaster.UpdatedDate = DateTime.Now;
+
+                            await _priceMasterRepository.AddPriceAsync(priceMaster);
+                            IsSuccess = true;
+                        }
                     }
                 }
-                catch
+                catch(Exception Ex)
                 {
                     IsSuccess = false;
                 }
@@ -222,15 +180,8 @@ namespace DiamondTrading.Process
             ListAssortmentProcessSend = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
-            //txtRemark.Text = "";
             lueCompany.EditValue = null;
-            lueSendto.EditValue = null;
-            //lueKapan.EditValue = null;
-            repoSlipNo.DataSource = null;
-
-            //await GetMaxSrNo();
-            await GetEmployeeList();
-            await GetBoilProcessSendDetail();
+            repoSlipNo.DataSource = null;;
 
             lueCompany.Select();
             lueCompany.Focus();
@@ -239,6 +190,40 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void FrmPriceMaster_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
+
+        private async void lueCompany_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueCompany.EditValue != null)
+            {
+                var defaultPriceList = await _priceMasterRepository.GetDefaultPriceList();
+                DataTable dtDefaultList = Common.ToDataTable(defaultPriceList);
+                grdParticularsDetails.DataSource = dtDefaultList;
+
+                var priceList = await _priceMasterRepository.GetAllPricesAsync(lueCompany.EditValue.ToString());
+                if (priceList != null)
+                {
+                    var priceDetail = priceList.Where(x => x.Price > 0).ToList();
+                    DataView dtView = new DataView(dtDefaultList);
+                    if (dtView.Count > 0)
+                    {
+                        for (int i = 0; i < priceDetail.Count; i++)
+                        {
+                            dtView.RowFilter = "SizeId='" + priceDetail[i].SizeId + "' and NumberId='" + priceDetail[i].NumberId + "'";
+                            if (dtView.Count > 0)
+                            {
+                                dtView[0].Row["Price"] = priceDetail[i].Price;
+                            }
+                            dtView.RowFilter = string.Empty;
+                        }
+                    }
+                }
+            }
         }
     }
 }

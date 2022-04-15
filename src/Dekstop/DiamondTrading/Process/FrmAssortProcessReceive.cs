@@ -244,6 +244,9 @@ namespace DiamondTrading.Process
             dt.Columns.Add("GalaNumberId");
             dt.Columns.Add("Number");
             dt.Columns.Add("NumberId");
+
+            dt.Columns.Add("Rate");
+            dt.Columns.Add("Amount");
             return dt;
         }
 
@@ -295,6 +298,7 @@ namespace DiamondTrading.Process
             try
             {
                 if (e.Column == colSrNo)
+
                 {
                     if (lueDepartment.EditValue != null)
                     {
@@ -351,6 +355,22 @@ namespace DiamondTrading.Process
                         //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                         //grvPurchaseItems.FocusedColumn = colBoilCarat;
                     }
+                }
+                else if (e.Column == colCharniCarat || e.Column == colRate)
+                {
+                    decimal Receivedcts = 0;
+                    decimal Rate = 0;
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colCharniCarat).ToString().Trim().Length > 0)
+                    {
+                        Receivedcts = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCharniCarat).ToString());
+                    }
+
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString().Trim().Length > 0)
+                    {
+                        Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
+                    }
+
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, Receivedcts * Rate);
                 }
             }
             catch
@@ -410,6 +430,7 @@ namespace DiamondTrading.Process
                                 boilProcessMaster.UpdatedDate = DateTime.Now;
                                 boilProcessMaster.UpdatedBy = Common.LoginUserID;
 
+                                boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
                                 var Result = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
                                 IsSuccess = true;
                             }
@@ -468,6 +489,7 @@ namespace DiamondTrading.Process
                                 charniProcessMaster.CreatedBy = Common.LoginUserID;
                                 charniProcessMaster.UpdatedDate = DateTime.Now;
                                 charniProcessMaster.UpdatedBy = Common.LoginUserID;
+                                charniProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
 
                                 var Result = await charniProcessMasterRepository.AddCharniProcessAsync(charniProcessMaster);
                                 IsSuccess = true;
@@ -529,6 +551,8 @@ namespace DiamondTrading.Process
                                 galaProcessMaster.UpdatedDate = DateTime.Now;
                                 galaProcessMaster.UpdatedBy = Common.LoginUserID;
 
+                                galaProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+
                                 var Result = await galaProcessMasterRepository.AddGalaProcessAsync(galaProcessMaster);
                                 IsSuccess = true;
                             }
@@ -589,6 +613,7 @@ namespace DiamondTrading.Process
                                 numberProcessMaster.CreatedBy = Common.LoginUserID;
                                 numberProcessMaster.UpdatedDate = DateTime.Now;
                                 numberProcessMaster.UpdatedBy = Common.LoginUserID;
+                                numberProcessMaster.TransferCaratRate= Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
 
                                 var Result = await numberProcessMasterRepository.AddNumberProcessAsync(numberProcessMaster);
                                 IsSuccess = true;

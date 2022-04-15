@@ -66,6 +66,8 @@ namespace DiamondTrading.Process
             this.colGalaSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNumberSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colNumberId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
@@ -350,7 +352,9 @@ namespace DiamondTrading.Process
             this.colGalaNumberId,
             this.colGalaSize,
             this.colNumberSize,
-            this.colNumberId});
+            this.colNumberId,
+            this.colRate,
+            this.colAmount});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -524,6 +528,25 @@ namespace DiamondTrading.Process
             this.colNumberId.FieldName = "NumberId";
             this.colNumberId.Name = "colNumberId";
             // 
+            // colRate
+            // 
+            this.colRate.Caption = "Rate";
+            this.colRate.ColumnEdit = this.repoTxtEdit;
+            this.colRate.FieldName = "Rate";
+            this.colRate.Name = "colRate";
+            this.colRate.Visible = true;
+            this.colRate.VisibleIndex = 8;
+            // 
+            // colAmount
+            // 
+            this.colAmount.Caption = "Amount";
+            this.colAmount.ColumnEdit = this.repoTxtEdit;
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.OptionsColumn.AllowEdit = false;
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 9;
+            // 
             // labelControl12
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
@@ -687,5 +710,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colGalaSize;
         private DevExpress.XtraGrid.Columns.GridColumn colNumberSize;
         private DevExpress.XtraGrid.Columns.GridColumn colNumberId;
+        private DevExpress.XtraGrid.Columns.GridColumn colRate;
+        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
     }
 }
