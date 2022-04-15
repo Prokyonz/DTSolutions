@@ -1812,7 +1812,7 @@ namespace DiamondTrading
             accordionControlElementMaster.Expanded = true;
         }
 
-        private void barCheckBoilSend_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonBoilSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
             FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
@@ -1955,5 +1955,7 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        
     }
 }
