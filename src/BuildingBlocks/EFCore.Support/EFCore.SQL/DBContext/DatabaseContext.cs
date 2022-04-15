@@ -71,7 +71,6 @@ namespace EFCore.SQL.DBContext
 
 
         public virtual DbSet<KapanMapping> SPKapanMapping { get; set; }
-
         public virtual DbSet<AssortmentProcessSend> SPAssortmentProcessSend { get; set; }
         public virtual DbSet<BoilProcessSend> SPBoilProcessSend { get; set; }
         public virtual DbSet<BoilProcessReceive> SPBoilProcessReceive { get; set; }
@@ -92,11 +91,18 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<LoanSPModel> SPLoanReportModel { get; set; }
         public virtual DbSet<MixedSPModel> SPMixedReportModel { get; set; }
         public virtual DbSet<SalesItemDetails> SalesItemDetails { get; set; }
-
         public virtual DbSet<CaratCategoryType> CaratCategoryType { get; set; }
         public virtual DbSet<PaymentPSSlipDetails> SPPaymentPSSlipDetails { get; set; }
+        public virtual DbSet<KapanMappingReportModel> SPKapanMappingReportModel { get; set; }
+        public virtual DbSet<AccountToAssortSendReceiveReportModel> SPAccountToAssortSendReceiveReportModels  { get; set; }
+        public virtual DbSet<AccountToAssoftReceiveReportModel> SPAccountToAssoftReceiveReportModel { get; set; }
+        public virtual DbSet<BoilSendReceiveReportModel> SPBoilSendReceiveReportModels { get; set; }
+        public virtual DbSet<CharniSendReceiveReportModel> SPCharniSendReceiveReportModels { get; set; }
 
-        public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
+
+
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
@@ -168,7 +174,11 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<LoanSPModel>().HasNoKey();
             modelBuilder.Entity<CaratCategoryType>().HasNoKey();
             modelBuilder.Entity<PaymentPSSlipDetails>().HasNoKey();
-            modelBuilder.Entity<PriceSPModel>().HasNoKey();
+            modelBuilder.Entity<KapanMappingReportModel>().HasNoKey();
+            modelBuilder.Entity<AccountToAssortSendReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<AccountToAssoftReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<BoilSendReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<CharniSendReceiveReportModel>().HasNoKey();
         }
     }
 }
