@@ -10,7 +10,7 @@ namespace Repository.Entities
     {
         public int Sr { get; set; }
         [Key]
-        public string Id { get; set; }
+        public string Id { get; set; } 
         public int NumberNo { get; set; }
         public int JangadNo { get; set; }
         public string CompanyId { get; set; }
