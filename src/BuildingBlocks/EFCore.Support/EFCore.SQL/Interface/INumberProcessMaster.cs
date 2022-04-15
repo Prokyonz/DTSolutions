@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,5 +15,7 @@ namespace EFCore.SQL.Interface
         Task<bool> DeleteNumberProcessAsync(string numberProcessMasterId);
         Task<List<NumberProcessSend>> GetNumberSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<NumberProcessReceive>> GetNumberReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId);
+        Task<List<NumberProcessSendReceiveReportModel>> GetNumberSendReceiveReports(string companyId, string branchId, string financialYearId, int numberProcessType);
+
     }
 }
