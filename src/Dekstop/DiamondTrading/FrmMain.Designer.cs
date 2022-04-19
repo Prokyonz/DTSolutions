@@ -104,7 +104,7 @@ namespace DiamondTrading
             this.barButtonKapanDetails = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonAssortSend = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonIAssortReceive = new DevExpress.XtraBars.BarButtonItem();
-            this.barCheckBoilSend = new DevExpress.XtraBars.BarCheckItem();
+            this.barButtonBoilSend = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonBoilReceive = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem64 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem65 = new DevExpress.XtraBars.BarButtonItem();
@@ -136,6 +136,7 @@ namespace DiamondTrading
             this.barButtonItem50 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem51 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem63 = new DevExpress.XtraBars.BarButtonItem();
+            this.barCheckBoilSend = new DevExpress.XtraBars.BarCheckItem();
             this.bar1 = new DevExpress.XtraBars.Bar();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionControlElementMaster = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -197,7 +198,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonBoilSend = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -317,7 +317,7 @@ namespace DiamondTrading
             this.barButtonItem69,
             this.barButtonBoilSend});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 112;
+            this.barManager1.MaxItemId = 113;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -1004,6 +1004,7 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem68),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem69)});
             this.barSubItem15.Name = "barSubItem15";
+            this.barSubItem15.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonKapanDetails
             // 
@@ -1025,6 +1026,13 @@ namespace DiamondTrading
             this.barButtonIAssortReceive.Id = 102;
             this.barButtonIAssortReceive.Name = "barButtonIAssortReceive";
             this.barButtonIAssortReceive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonIAssortReceive_ItemClick);
+            // 
+            // barButtonBoilSend
+            // 
+            this.barButtonBoilSend.Caption = "Boil Send";
+            this.barButtonBoilSend.Id = 111;
+            this.barButtonBoilSend.Name = "barButtonBoilSend";
+            this.barButtonBoilSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonBoilSend_ItemClick);
             // 
             // barButtonBoilReceive
             // 
@@ -1268,6 +1276,11 @@ namespace DiamondTrading
             this.barButtonItem63.Caption = "Process";
             this.barButtonItem63.Id = 98;
             this.barButtonItem63.Name = "barButtonItem63";
+            // 
+            // barCheckBoilSend
+            // 
+            this.barCheckBoilSend.Id = 112;
+            this.barCheckBoilSend.Name = "barCheckBoilSend";
             // 
             // bar1
             // 
@@ -1782,13 +1795,6 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
-            // 
-            // barButtonBoilSend
-            // 
-            this.barButtonBoilSend.Caption = "Boil Send";
-            this.barButtonBoilSend.Id = 111;
-            this.barButtonBoilSend.Name = "barButtonBoilSend";
-            this.barButtonBoilSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonBoilSend_ItemClick);
             // 
             // FrmMain
             // 
