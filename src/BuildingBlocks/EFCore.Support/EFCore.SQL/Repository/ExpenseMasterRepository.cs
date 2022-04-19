@@ -36,11 +36,11 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseMaster.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
                 if (getExpense != null)
                 {
                     if (isPermanantDetele)
-                        _databaseContext.ExpenseMaster.Remove(getExpense);
+                        _databaseContext.ExpenseDetails.Remove(getExpense);
                     else
                         getExpense.IsDelete = true;
 

@@ -176,6 +176,7 @@ namespace DiamondTrading
             this.gridColumnExpenseRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnExpenseIdCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabLoan = new DevExpress.XtraTab.XtraTabPage();
@@ -321,6 +322,7 @@ namespace DiamondTrading
             this.accordianAddBtn.Name = "accordianAddBtn";
             this.accordianAddBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianAddBtn.Text = "Add";
+            this.accordianAddBtn.Visible = false;
             this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
             // 
             // accordionEditBtn
@@ -1482,7 +1484,8 @@ namespace DiamondTrading
             this.gridColumnExpenseAmount,
             this.gridColumnExpenseRemarks,
             this.gridColumnExpenseUpdatedDate,
-            this.gridColumnExpenseUpdatedBy});
+            this.gridColumnExpenseUpdatedBy,
+            this.gridColumnExpenseIdCol});
             this.grvExpenseMaster.GridControl = this.grdExpenseControl;
             this.grvExpenseMaster.GroupCount = 1;
             this.grvExpenseMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -1566,6 +1569,12 @@ namespace DiamondTrading
             this.gridColumnExpenseUpdatedBy.Visible = true;
             this.gridColumnExpenseUpdatedBy.VisibleIndex = 5;
             this.gridColumnExpenseUpdatedBy.Width = 100;
+            // 
+            // gridColumnExpenseIdCol
+            // 
+            this.gridColumnExpenseIdCol.Caption = "Id";
+            this.gridColumnExpenseIdCol.FieldName = "Id";
+            this.gridColumnExpenseIdCol.Name = "gridColumnExpenseIdCol";
             // 
             // gridView10
             // 
@@ -2390,5 +2399,6 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn54;
         private DevExpress.XtraGrid.Columns.GridColumn colSalesApprovalType;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseIdCol;
     }
 }

@@ -279,43 +279,51 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
-            if (xtabManager.SelectedTabPage == xtabPurchase)
+            if (xtabManager.SelectedTabPage == xtabExpense)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = grvExpenseMaster.GetFocusedRowCellValue(gridColumnExpenseIdCol).ToString();
 
-                //string SelectedGuid;
-                //string tempCompanyName = "";
+                    bool result = await _expenseMasterRepository.DeleteExpenseAsync(id, true);
 
-                //if (grdCompanyMaster.FocusedView.DetailLevel > 0)
-                //{
-                //    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                //    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
-                //    tempCompanyName = tempChild.GetFocusedRowCellValue("Name").ToString();
-                //}
-                //else
-                //{
-                //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();
-                //    tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
-                //}
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                //{
-                //    var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
-
-                //    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                //    await LoadGridData(true);
-                //}
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                }
             }
-            else if (xtabManager.SelectedTabPage == xtabSales)
+            else if (xtabManager.SelectedTabPage == xtabContra)
             {
-                //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                //{
-                //    var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = gridView5.GetFocusedRowCellValue(gridColumnContraId).ToString();
 
-                //    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                //    await LoadGridData(true);
-                //}
+                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(id);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                }
             }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = gridView7.GetFocusedRowCellValue(gridColumnReceiptGroupId).ToString();
+
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = gridView4.GetFocusedRowCellValue(gridColumnGroupId).ToString();
+
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));                    
+                }
+            }
+            await LoadGridData(true);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

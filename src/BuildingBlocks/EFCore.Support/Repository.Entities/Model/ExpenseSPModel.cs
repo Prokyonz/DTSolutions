@@ -6,6 +6,7 @@ namespace Repository.Entities.Model
 {
     public class ExpenseSPModel
     {
+        public string Id { get; set; }
         public int Sr { get; set; }
         public int SrNo { get; set; }
         public string CompanyId { get; set; }
