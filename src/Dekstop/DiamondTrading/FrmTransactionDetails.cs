@@ -73,6 +73,8 @@ namespace DiamondTrading
                     this.Text = "Loan Details";
                     break;
                 case "Mixed":
+                    accordionDeleteBtn.Visible = false;
+                    accordionEditBtn.Visible = false;
                     xtabMixed.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabMixed;
                     this.Text = "Mixed Report";
@@ -321,6 +323,17 @@ namespace DiamondTrading
                     bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));                    
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = gridView9.GetFocusedRowCellValue(gridColumnLoanId).ToString();
+
+                    bool result = await _loanMasterRepository.DeleteLoanAsync(id);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
             await LoadGridData(true);
