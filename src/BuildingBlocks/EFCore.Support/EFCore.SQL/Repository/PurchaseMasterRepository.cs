@@ -86,6 +86,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<PurchaseMaster> GetPurchaseAsync(string purchaseId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.Id == purchaseId).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
         {
             try
@@ -154,11 +162,12 @@ namespace EFCore.SQL.Repository
                 var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).FirstOrDefaultAsync();
                 if (getPurchase != null)
                 {
+                    getPurchase.CompanyId = purchaseMaster.CompanyId;
                     getPurchase.BranchId = purchaseMaster.BranchId;
                     getPurchase.PartyId = purchaseMaster.PartyId;
                     getPurchase.ByuerId = purchaseMaster.ByuerId;
                     getPurchase.CurrencyId = purchaseMaster.CurrencyId;
-                    getPurchase.FinancialYearId = purchaseMaster.FinancialYearId;
+                    //getPurchase.FinancialYearId = purchaseMaster.FinancialYearId;
                     getPurchase.BrokerageId = purchaseMaster.BrokerageId;
 
                     getPurchase.CurrencyRate = purchaseMaster.CurrencyRate;
@@ -168,7 +177,7 @@ namespace EFCore.SQL.Repository
                     getPurchase.Date = purchaseMaster.Date;
                     getPurchase.Time = purchaseMaster.Time;
                     getPurchase.DayName = purchaseMaster.DayName;
-                    getPurchase.PartyLastBalanceWhilePurchase = purchaseMaster.PartyLastBalanceWhilePurchase;
+                    //getPurchase.PartyLastBalanceWhilePurchase = purchaseMaster.PartyLastBalanceWhilePurchase;
                     getPurchase.BrokerPercentage = purchaseMaster.BrokerPercentage;
 
                     getPurchase.BrokerAmount = purchaseMaster.BrokerAmount;
@@ -195,9 +204,12 @@ namespace EFCore.SQL.Repository
                     getPurchase.UpdatedDate = purchaseMaster.UpdatedDate;
                     getPurchase.UpdatedBy = purchaseMaster.UpdatedBy;
 
-                    _databaseContext.PurchaseDetails.RemoveRange(getPurchase.PurchaseDetails);
+                    if (getPurchase.PurchaseDetails != null)
+                    {
+                        _databaseContext.PurchaseDetails.RemoveRange(getPurchase.PurchaseDetails);
 
-                    await _databaseContext.PurchaseDetails.AddRangeAsync(purchaseMaster.PurchaseDetails);
+                        await _databaseContext.PurchaseDetails.AddRangeAsync(purchaseMaster.PurchaseDetails);
+                    }
 
                     await _databaseContext.SaveChangesAsync();
                 }

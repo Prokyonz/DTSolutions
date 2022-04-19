@@ -238,23 +238,14 @@ namespace DiamondTrading
             {
                 ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
-                //string SelectedGuid;
+                string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("Id").ToString();                
 
-                //if (grdCompanyMaster.FocusedView.DetailLevel > 0)
-                //{
-                //    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                //    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
-                //} 
-                //else                 
-                //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();                
+                Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry(SelectedGuid);
 
-
-                //Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-
-                //if (frmcompanymaster.ShowDialog() == DialogResult.OK)
-                //{
-                //    await LoadGridData(true);
-                //}
+                if (frmPurchaseEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
             {
