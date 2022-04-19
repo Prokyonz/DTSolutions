@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -134,6 +135,23 @@ namespace EFCore.SQL.Repository
                 using (_databaseContext = new DatabaseContext())
                 {
                     var data = await _databaseContext.SPGalaProcessReceive.FromSqlRaw($"GetGalaProcessReceiveDetail '" + ReceiveFrom + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<List<GalaProcessSendReceiveReportModel>> GetGalaSendReceiveReports(string companyId, string branchId, string financialYearId, int galaProcessType)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPGalaProcessSendReceiveReportModels.FromSqlRaw($"GetGalaSendReceiveReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'," + galaProcessType).ToListAsync();
 
                     return data;
                 }

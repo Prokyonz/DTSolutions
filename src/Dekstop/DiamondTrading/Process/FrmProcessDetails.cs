@@ -20,8 +20,8 @@ namespace DiamondTrading
         private AccountToAssortMasterRepository _accountToAssortMasterRepository ;
         private BoilMasterRepository _boilMasterRepository;
         private CharniProcessMasterRepository  _charniProcessMasterRepository;
-        private ExpenseMasterRepository _expenseMasterRepository;
-        private LoanMasterRepository _loanMasterRepository;
+        private GalaProcessMasterRepository _galaProcessMasterRepository;
+        private NumberProcessMasterRepository _numberProcessMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -193,24 +193,24 @@ namespace DiamondTrading
                     gridControlCharniReportMaster.DataSource = data;
                 }
             }
-            //else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
-            //{
-            //    if (IsForceLoad || _paymentMasterRepository == null)
-            //    {
-            //        _contraEntryMasterRespository = new ContraEntryMasterRespository();
-            //        var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
-            //        grdContraDetails.DataSource = data;
-            //    }
-            //}
-            //else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
-            //{
-            //    if (IsForceLoad || _expenseMasterRepository == null)
-            //    {
-            //        _expenseMasterRepository = new ExpenseMasterRepository();
-            //        var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
-            //        grdExpenseControl.DataSource = data;
-            //    }
-            //}
+            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
+            {
+                if (IsForceLoad || _galaProcessMasterRepository == null)
+                {
+                    _galaProcessMasterRepository = new GalaProcessMasterRepository();
+                    var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "GalaSend" ? 0 : 1);
+                    gridControlGalaReportMaster.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
+            {
+                if (IsForceLoad || _numberProcessMasterRepository == null)
+                {
+                    _numberProcessMasterRepository = new NumberProcessMasterRepository();
+                    var data = await _numberProcessMasterRepository.GetNumberSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "NumberSend" ? 0 : 1);
+                    gridControlNumerReportMaster.DataSource = data;
+                }
+            }
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)

@@ -534,8 +534,6 @@ namespace DiamondTrading.Process
             this.colRate.ColumnEdit = this.repoTxtEdit;
             this.colRate.FieldName = "Rate";
             this.colRate.Name = "colRate";
-            this.colRate.Visible = true;
-            this.colRate.VisibleIndex = 8;
             // 
             // colAmount
             // 
@@ -544,8 +542,6 @@ namespace DiamondTrading.Process
             this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
             this.colAmount.OptionsColumn.AllowEdit = false;
-            this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 9;
             // 
             // labelControl12
             // 

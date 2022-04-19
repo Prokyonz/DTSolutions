@@ -27,6 +27,7 @@ namespace DiamondTrading
         CompanyNameExist,
         AddMoreCompaniesConfirmation,
         DeleteCompanyCofirmation,
+        DleteExpenseConfirmation,
         #endregion
         #region "BranchMaster"
         EmptyParentCompanySelection,
@@ -434,6 +435,9 @@ namespace DiamondTrading
                     break;
                 case AppMessageID.PasswordNotMatched:
                     ReturnMsg = "Password and confirm password not matched.";
+                    break;
+                case AppMessageID.DleteExpenseConfirmation:
+                    ReturnMsg = "Do you want to delete the record?";
                     break;
                 #endregion
                 #region "Others"

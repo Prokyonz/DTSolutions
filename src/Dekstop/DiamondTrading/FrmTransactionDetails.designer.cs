@@ -176,12 +176,13 @@ namespace DiamondTrading
             this.gridColumnExpenseRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnExpenseIdCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabLoan = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlLoan = new DevExpress.XtraGrid.GridControl();
             this.gridView9 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn27 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnLoanId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn29 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn30 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn31 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -321,6 +322,7 @@ namespace DiamondTrading
             this.accordianAddBtn.Name = "accordianAddBtn";
             this.accordianAddBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordianAddBtn.Text = "Add";
+            this.accordianAddBtn.Visible = false;
             this.accordianAddBtn.Click += new System.EventHandler(this.accordianAddBtn_Click);
             // 
             // accordionEditBtn
@@ -1482,7 +1484,8 @@ namespace DiamondTrading
             this.gridColumnExpenseAmount,
             this.gridColumnExpenseRemarks,
             this.gridColumnExpenseUpdatedDate,
-            this.gridColumnExpenseUpdatedBy});
+            this.gridColumnExpenseUpdatedBy,
+            this.gridColumnExpenseIdCol});
             this.grvExpenseMaster.GridControl = this.grdExpenseControl;
             this.grvExpenseMaster.GroupCount = 1;
             this.grvExpenseMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -1567,6 +1570,12 @@ namespace DiamondTrading
             this.gridColumnExpenseUpdatedBy.VisibleIndex = 5;
             this.gridColumnExpenseUpdatedBy.Width = 100;
             // 
+            // gridColumnExpenseIdCol
+            // 
+            this.gridColumnExpenseIdCol.Caption = "Id";
+            this.gridColumnExpenseIdCol.FieldName = "Id";
+            this.gridColumnExpenseIdCol.Name = "gridColumnExpenseIdCol";
+            // 
             // gridView10
             // 
             this.gridView10.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -1603,7 +1612,7 @@ namespace DiamondTrading
             // gridView9
             // 
             this.gridView9.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn27,
+            this.gridColumnLoanId,
             this.gridColumn29,
             this.gridColumn30,
             this.gridColumn31,
@@ -1627,12 +1636,12 @@ namespace DiamondTrading
             this.gridView9.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn32, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
-            // gridColumn27
+            // gridColumnLoanId
             // 
-            this.gridColumn27.Caption = "Id";
-            this.gridColumn27.FieldName = "Id";
-            this.gridColumn27.Name = "gridColumn27";
-            this.gridColumn27.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            this.gridColumnLoanId.Caption = "Id";
+            this.gridColumnLoanId.FieldName = "Id";
+            this.gridColumnLoanId.Name = "gridColumnLoanId";
+            this.gridColumnLoanId.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
             // 
             // gridColumn29
             // 
@@ -2329,7 +2338,7 @@ namespace DiamondTrading
         private DevExpress.XtraTab.XtraTabPage xtabLoan;
         private DevExpress.XtraGrid.GridControl gridControlLoan;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView9;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn27;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnLoanId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn29;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn30;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn31;
@@ -2390,5 +2399,6 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn54;
         private DevExpress.XtraGrid.Columns.GridColumn colSalesApprovalType;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseIdCol;
     }
 }

@@ -98,6 +98,8 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<AccountToAssoftReceiveReportModel> SPAccountToAssoftReceiveReportModel { get; set; }
         public virtual DbSet<BoilSendReceiveReportModel> SPBoilSendReceiveReportModels { get; set; }
         public virtual DbSet<CharniSendReceiveReportModel> SPCharniSendReceiveReportModels { get; set; }
+        public virtual DbSet<GalaProcessSendReceiveReportModel> SPGalaProcessSendReceiveReportModels { get; set; }
+        public virtual DbSet<NumberProcessSendReceiveReportModel> SPNumberProcessSendReceiveReportModels { get; set; }
 
 
 
@@ -180,6 +182,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BoilSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<CharniSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<PriceSPModel>().HasNoKey();
+            modelBuilder.Entity<GalaProcessSendReceiveReportModel>().HasNoKey();
+            modelBuilder.Entity<NumberProcessSendReceiveReportModel>().HasNoKey();
         }
     }
 }

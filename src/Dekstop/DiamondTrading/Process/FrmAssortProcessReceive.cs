@@ -127,6 +127,9 @@ namespace DiamondTrading.Process
         {
             if (lueDepartment.EditValue != null)
             {
+                colRate.Visible = false;
+                colAmount.Visible = false;
+
                 if (Convert.ToInt32(lueDepartment.EditValue) == DepartmentMaster1.Boil)
                 {
                     await GetMaxSrNo();
@@ -173,6 +176,8 @@ namespace DiamondTrading.Process
                     repoSlipNo.Columns["Number"].Visible = true;
                     colCharniSize.Visible = true;
                     colGalaSize.Visible = false;
+                    colRate.Visible = true;
+                    colAmount.Visible = true;
                 }
                 repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                 repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
@@ -430,7 +435,7 @@ namespace DiamondTrading.Process
                                 boilProcessMaster.UpdatedDate = DateTime.Now;
                                 boilProcessMaster.UpdatedBy = Common.LoginUserID;
 
-                                boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+                                //boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
                                 var Result = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
                                 IsSuccess = true;
                             }
@@ -489,7 +494,7 @@ namespace DiamondTrading.Process
                                 charniProcessMaster.CreatedBy = Common.LoginUserID;
                                 charniProcessMaster.UpdatedDate = DateTime.Now;
                                 charniProcessMaster.UpdatedBy = Common.LoginUserID;
-                                charniProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+                                //charniProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
 
                                 var Result = await charniProcessMasterRepository.AddCharniProcessAsync(charniProcessMaster);
                                 IsSuccess = true;
@@ -551,7 +556,7 @@ namespace DiamondTrading.Process
                                 galaProcessMaster.UpdatedDate = DateTime.Now;
                                 galaProcessMaster.UpdatedBy = Common.LoginUserID;
 
-                                galaProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+                                //galaProcessMaster.TransferCaratRate = Convert.ToDouble(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
 
                                 var Result = await galaProcessMasterRepository.AddGalaProcessAsync(galaProcessMaster);
                                 IsSuccess = true;

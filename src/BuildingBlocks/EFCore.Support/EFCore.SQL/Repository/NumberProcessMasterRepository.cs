@@ -161,5 +161,22 @@ namespace EFCore.SQL.Repository
                 throw;
             }
         }
+
+        public async Task<List<NumberProcessSendReceiveReportModel>> GetNumberSendReceiveReports(string companyId, string branchId, string financialYearId, int numberProcessType)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPNumberProcessSendReceiveReportModels.FromSqlRaw($"GetNumberSendReceiveReport '" + companyId + "', '" + branchId + "','" + financialYearId + "'," + numberProcessType).ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

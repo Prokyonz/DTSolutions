@@ -135,6 +135,12 @@ namespace DiamondTrading
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barbtnApproval.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "price_master":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementApprovalMaster.Visible = true;
+                        barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem61.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
 
                     //Transaction Menu
 
@@ -233,6 +239,31 @@ namespace DiamondTrading
                         barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem33.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "transfer_slip":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "rejection":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem13.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "jangad":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem14.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "opening_stock":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem62.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
 
                     //Reports Menu - Transaction
 
@@ -287,6 +318,12 @@ namespace DiamondTrading
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barSubItem8.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem55.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+
+                    //Reports Menu - Process Report
+                    case "process_reports":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem15.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                 }
             }
@@ -1812,7 +1849,7 @@ namespace DiamondTrading
             accordionControlElementMaster.Expanded = true;
         }
 
-        private void barCheckBoilSend_CheckedChanged(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void barButtonBoilSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
             FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
@@ -1955,5 +1992,7 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        
     }
 }
