@@ -525,6 +525,7 @@ namespace DiamondTrading
             this.barButtonItem61.Caption = "Price Master";
             this.barButtonItem61.Id = 96;
             this.barButtonItem61.Name = "barButtonItem61";
+            this.barButtonItem61.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
             // 
             // barSubItem2
@@ -815,6 +816,7 @@ namespace DiamondTrading
             this.barButtonItem7.Caption = "Transfer Slip";
             this.barButtonItem7.Id = 89;
             this.barButtonItem7.Name = "barButtonItem7";
+            this.barButtonItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick_1);
             // 
             // barSubItem13
@@ -825,6 +827,7 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem56),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem58)});
             this.barSubItem13.Name = "barSubItem13";
+            this.barSubItem13.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonItem56
             // 
@@ -848,6 +851,7 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem59),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem60)});
             this.barSubItem14.Name = "barSubItem14";
+            this.barSubItem14.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // barButtonItem59
             // 
@@ -868,6 +872,7 @@ namespace DiamondTrading
             this.barButtonItem62.Caption = "Opening Stock";
             this.barButtonItem62.Id = 97;
             this.barButtonItem62.Name = "barButtonItem62";
+            this.barButtonItem62.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem62.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem62_ItemClick);
             // 
             // barSubItem5
