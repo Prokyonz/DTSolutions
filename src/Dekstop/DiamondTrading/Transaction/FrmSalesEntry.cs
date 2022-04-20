@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,6 +25,9 @@ namespace DiamondTrading.Transaction
         SalesItemObj _salesItemObj;
         decimal ItemRunningWeight = 0;
         decimal ItemFinalAmount = 0;
+        private string _selectedSalesId;
+        private SalesMaster _editedSalesMaster;
+        private SalesDetails _editedSalesDetails;
 
         public FrmSalesEntry()
         {
@@ -36,7 +40,17 @@ namespace DiamondTrading.Transaction
             this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
         }
 
-        private void FrmSaleEntry_Load(object sender, EventArgs e)
+        public FrmSalesEntry(string SelectedSalesId)
+        {
+            InitializeComponent();
+            _salesMasterRepository = new SalesMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository();
+            _brokerageMasterRepository = new BrokerageMasterRepository();
+            this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
+            _selectedSalesId = SelectedSalesId;
+        }
+
+        private async void FrmSaleEntry_Load(object sender, EventArgs e)
         {
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
@@ -48,9 +62,130 @@ namespace DiamondTrading.Transaction
 
             FillCombos();
 
-            LoadCompany();
+            await LoadCompany();
 
-            FillCurrency();
+            await FillCurrency();
+
+            if (string.IsNullOrEmpty(_selectedSalesId) == false)
+            {
+                _editedSalesMaster = await _salesMasterRepository.GetSalesAsync(_selectedSalesId);
+                //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
+                if (_editedSalesMaster != null)
+                {
+                    try
+                    {
+                        this.lueCompany.EditValueChanged -= new System.EventHandler(this.lueCompany_EditValueChanged);
+                        this.lueBranch.EditValueChanged -= new System.EventHandler(this.lueBranch_EditValueChanged);
+                        this.lueSaler.EditValueChanged -= new System.EventHandler(this.lueSaler_EditValueChanged);
+                        this.lueParty.EditValueChanged -= new System.EventHandler(this.lueParty_EditValueChanged);
+                        this.lueBroker.EditValueChanged -= new System.EventHandler(this.lueBroker_EditValueChanged);
+
+                        btnSave.Text = AppMessages.GetString(AppMessageID.Update);
+                        grdPurchaseDetails.Enabled = false;
+
+                        lueCompany.EditValue = _editedSalesMaster.CompanyId;
+                        lueBranch.EditValue = _editedSalesMaster.BranchId;
+                        lueParty.EditValue = _editedSalesMaster.PartyId;
+                        lueSaler.EditValue = _editedSalesMaster.SalerId;
+                        lueCurrencyType.EditValue = _editedSalesMaster.CurrencyId;
+                        //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
+                        lueBroker.EditValue = _editedSalesMaster.BrokerageId;
+                        txtCurrencyType.Text = _editedSalesMaster.CurrencyRate.ToString();
+                        txtSerialNo.Text = _editedSalesMaster.SaleBillNo.ToString();
+                        txtSlipNo.Text = _editedSalesMaster.SlipNo.ToString();
+                        luePaymentMode.EditValue = _editedSalesMaster.TransactionType + 1;
+                        dtDate.EditValue = DateTime.ParseExact(_editedSalesMaster.Date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                        dtTime.EditValue = DateTime.ParseExact(_editedSalesMaster.Time, "hh:mm:ss ttt", CultureInfo.InvariantCulture);
+                        //purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                        txtPartyBalance.Text = _editedSalesMaster.PartyLastBalanceWhileSale.ToString();
+                        txtBrokerPercentage.Text = _editedSalesMaster.BrokerPercentage.ToString();
+                        txtBrokerageAmount.Text = _editedSalesMaster.BrokerAmount.ToString();
+                        txtRoundAmount.Text = _editedSalesMaster.RoundUpAmount.ToString();
+                        txtAmount.Text = _editedSalesMaster.Total.ToString();
+                        txtNetAmount.Text = _editedSalesMaster.GrossTotal.ToString();
+                        txtDays.Text = _editedSalesMaster.DueDays.ToString();
+                        //purchaseMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                        txtPaymentDays.Text = _editedSalesMaster.PaymentDays.ToString();
+                        //purchaseMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                        tglSlip.IsOn = _editedSalesMaster.IsSlip;
+                        tglPF.IsOn = _editedSalesMaster.IsPF;
+                        txtSalerCommisionPercentage.Text = _editedSalesMaster.CommissionPercentage.ToString();
+                        txtCommisionAmount.Text = _editedSalesMaster.CommissionAmount.ToString();
+                        //if (Image1.Image != null)
+                        //    purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
+                        //if (Image2.Image != null)
+                        //    purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
+                        //if (Image3.Image != null)
+                        //    purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
+                        //purchaseMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+
+                        txtRemark.Text = _editedSalesMaster.Remarks;
+
+
+                        byte[] Logo = null;
+                        MemoryStream ms = null;
+                        try
+                        {
+                            Logo = new byte[0];
+                            if (_editedSalesMaster.Image1 != null)
+                            {
+                                Logo = (byte[])(_editedSalesMaster.Image1);
+                                ms = new MemoryStream(Logo);
+                                //ms.Write(Logo, 0, Logo.Length);
+                                Image1.Image = new Bitmap(ms);
+                                Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                //Image1.Size = PictureBoxSizeMode.StretchImage;
+
+                                Logo = null;
+                                ms = null;
+                            }
+
+                            if (_editedSalesMaster.Image2 != null)
+                            {
+                                Logo = (Byte[])(_editedSalesMaster.Image2);
+                                ms = new MemoryStream(Logo);
+                                ms.Write(Logo, 0, Logo.Length);
+                                Image2.Image = Image.FromStream(ms);
+                                Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                                Logo = null;
+                                ms = null;
+                            }
+
+                            if (_editedSalesMaster.Image3 != null)
+                            {
+                                Logo = (Byte[])(_editedSalesMaster.Image3);
+                                ms = new MemoryStream(Logo);
+                                ms.Write(Logo, 0, Logo.Length);
+                                Image3.Image = Image.FromStream(ms);
+                                Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                                Logo = null;
+                                ms = null;
+                            }
+                        }
+                        catch
+                        {
+                            Logo = null;
+                            ms = null;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
+                        this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
+                        this.lueSaler.EditValueChanged += new System.EventHandler(this.lueSaler_EditValueChanged);
+                        this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
+                        this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
+                    }
+                }
+            }
         }
 
         private void SetThemeColors(Color color)
@@ -146,7 +281,7 @@ namespace DiamondTrading.Transaction
             lueSaler.Properties.ValueMember = "Id";
         }
 
-        private async void LoadCompany()
+        private async Task LoadCompany()
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
             var companies = await companyMasterRepository.GetAllCompanyAsync();
@@ -156,10 +291,10 @@ namespace DiamondTrading.Transaction
 
             lueCompany.EditValue = Common.LoginCompany;
 
-            LoadBranch(Common.LoginCompany);
+            await LoadBranch(Common.LoginCompany);
         }
 
-        private async void LoadBranch(string companyId)
+        private async Task LoadBranch(string companyId)
         {
             BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
             var branches = await branchMasterRepository.GetAllBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
@@ -168,10 +303,10 @@ namespace DiamondTrading.Transaction
             lueBranch.Properties.ValueMember = "Id";
             lueBranch.EditValue = Common.LoginBranch;
 
-            GetSalesNo(); //Serial No/Slip No
+            await GetSalesNo(); //Serial No/Slip No
         }
 
-        private async void FillCurrency()
+        private async Task FillCurrency()
         {
             //Currency
             CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
@@ -251,7 +386,7 @@ namespace DiamondTrading.Transaction
             repoKapan.ValueMember = "Id";
         }
 
-        public async void GetSalesNo(bool updateSlipNo = true)
+        public async Task GetSalesNo(bool updateSlipNo = true)
         {
             try
             {
@@ -477,22 +612,20 @@ namespace DiamondTrading.Transaction
             txtBrokerPercentage.Text = brokerageDetail != null ? brokerageDetail.Percentage.ToString() : "0";
         }
 
-        private void lueBranch_EditValueChanged(object sender, EventArgs e)
+        private async void lueBranch_EditValueChanged(object sender, EventArgs e)
         {
-            GetSalesNo(false);
+            await GetSalesNo(false);
         }
 
         #endregion
 
-        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        private async void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
             this.Text = "SALES - " + lueCompany.Text + " - [" + Common.LoginFinancialYearName + "]";
 
-            LoadBranch(lueCompany.EditValue.ToString());
+            await LoadBranch(lueCompany.EditValue.ToString());
 
             FillCombos();
-
-
         }
 
         private async void grvPurchaseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -1110,106 +1243,167 @@ namespace DiamondTrading.Transaction
                 if (!CheckValidation())
                     return;
 
-                string SalesId = Guid.NewGuid().ToString();
-
-                List<SalesDetails> salesDetailsList = new List<SalesDetails>();
-                SalesDetails salesDetails = new SalesDetails();
-                for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+                if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    salesDetails = new SalesDetails();
-                    salesDetails.Id = Guid.NewGuid().ToString();
-                    salesDetails.SalesId = SalesId;
-                    salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
-                    salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                    salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
-                    salesDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
-                    salesDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
-                    if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
-                        salesDetails.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
-                    if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
-                        salesDetails.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
-                    if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
-                        salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
+                    string SalesId = Guid.NewGuid().ToString();
 
-                    salesDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
-                    salesDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
-                    salesDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
-                    salesDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
-                    salesDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
-                    salesDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
-                    salesDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
-                    salesDetails.LessWeightDiscount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisAmount).ToString());
-                    salesDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
-                    salesDetails.SaleRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
-                    salesDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                    salesDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDAmount).ToString());
-                    salesDetails.Amount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colAmount).ToString());
-                    salesDetails.CurrencyRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrRate).ToString());
-                    salesDetails.CurrencyAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrAmount).ToString());
-                    salesDetails.IsTransfer = false;
-                    salesDetails.TransferParentId = null;
-                    salesDetails.CreatedDate = DateTime.Now;
-                    salesDetails.CreatedBy = Common.LoginUserID;
-                    salesDetails.UpdatedDate = DateTime.Now;
-                    salesDetails.UpdatedBy = Common.LoginUserID;
+                    List<SalesDetails> salesDetailsList = new List<SalesDetails>();
+                    SalesDetails salesDetails = new SalesDetails();
+                    for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+                    {
+                        salesDetails = new SalesDetails();
+                        salesDetails.Id = Guid.NewGuid().ToString();
+                        salesDetails.SalesId = SalesId;
+                        salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
+                        salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                        salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
+                        salesDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
+                        salesDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                        if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
+                            salesDetails.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
+                        if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
+                            salesDetails.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
+                        if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
+                            salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
 
-                    salesDetailsList.Insert(i, salesDetails);
+                        salesDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+                        salesDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
+                        salesDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
+                        salesDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
+                        salesDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
+                        salesDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
+                        salesDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
+                        salesDetails.LessWeightDiscount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisAmount).ToString());
+                        salesDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
+                        salesDetails.SaleRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
+                        salesDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
+                        salesDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDAmount).ToString());
+                        salesDetails.Amount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colAmount).ToString());
+                        salesDetails.CurrencyRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrRate).ToString());
+                        salesDetails.CurrencyAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrAmount).ToString());
+                        salesDetails.IsTransfer = false;
+                        salesDetails.TransferParentId = null;
+                        salesDetails.CreatedDate = DateTime.Now;
+                        salesDetails.CreatedBy = Common.LoginUserID;
+                        salesDetails.UpdatedDate = DateTime.Now;
+                        salesDetails.UpdatedBy = Common.LoginUserID;
+
+                        salesDetailsList.Insert(i, salesDetails);
+                    }
+
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.Id = SalesId;
+                    salesMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
+                    salesMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
+                    salesMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
+                    salesMaster.SalerId = lueSaler.GetColumnValue("Id").ToString();
+                    salesMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
+                    salesMaster.FinancialYearId = Common.LoginFinancialYear;
+                    salesMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
+                    salesMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
+                    salesMaster.SaleBillNo = Convert.ToInt32(txtSerialNo.Text);
+                    salesMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
+                    salesMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
+                    salesMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                    salesMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                    salesMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                    salesMaster.PartyLastBalanceWhileSale = float.Parse(txtPartyBalance.Text);
+                    salesMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPercentage.Text);
+                    salesMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
+                    salesMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
+                    salesMaster.Total = float.Parse(txtAmount.Text);
+                    salesMaster.GrossTotal = float.Parse(txtNetAmount.Text);
+                    salesMaster.DueDays = Convert.ToInt32(txtDays.Text);
+                    salesMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                    salesMaster.PaymentDays = Convert.ToInt32(txtPaymentDays.Text);
+                    salesMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                    salesMaster.IsSlip = tglSlip.IsOn;
+                    salesMaster.IsPF = tglPF.IsOn;
+                    salesMaster.CommissionPercentage = Convert.ToDecimal(txtSalerCommisionPercentage.Text);
+                    salesMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
+                    if (Image1.Image != null)
+                        salesMaster.Image1 = ImageToByteArray(Image1.Image);
+                    if (Image2.Image != null)
+                        salesMaster.Image2 = ImageToByteArray(Image2.Image);
+                    if (Image3.Image != null)
+                        salesMaster.Image3 = ImageToByteArray(Image3.Image);
+                    salesMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+                    salesMaster.IsTransfer = false;
+                    salesMaster.TransferParentId = null;
+                    salesMaster.IsDelete = false;
+                    salesMaster.Remarks = txtRemark.Text;
+                    salesMaster.CreatedDate = DateTime.Now;
+                    salesMaster.CreatedBy = Common.LoginUserID;
+                    salesMaster.UpdatedDate = DateTime.Now;
+                    salesMaster.UpdatedBy = Common.LoginUserID;
+                    salesMaster.SalesDetails = salesDetailsList;
+
+                    SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
+                    var Result = await salesMasterRepository.AddSalesAsync(salesMaster);
+
+                    if (Result != null)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
-
-                SalesMaster salesMaster = new SalesMaster();
-                salesMaster.Id = SalesId;
-                salesMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
-                salesMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
-                salesMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
-                salesMaster.SalerId = lueSaler.GetColumnValue("Id").ToString();
-                salesMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
-                salesMaster.FinancialYearId = Common.LoginFinancialYear;
-                salesMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
-                salesMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
-                salesMaster.SaleBillNo = Convert.ToInt32(txtSerialNo.Text);
-                salesMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
-                salesMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
-                salesMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                salesMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                salesMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
-                salesMaster.PartyLastBalanceWhileSale = float.Parse(txtPartyBalance.Text);
-                salesMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPercentage.Text);
-                salesMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
-                salesMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
-                salesMaster.Total = float.Parse(txtAmount.Text);
-                salesMaster.GrossTotal = float.Parse(txtNetAmount.Text);
-                salesMaster.DueDays = Convert.ToInt32(txtDays.Text);
-                salesMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
-                salesMaster.PaymentDays = Convert.ToInt32(txtDays.Text);
-                salesMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
-                salesMaster.IsSlip = tglSlip.IsOn;
-                salesMaster.IsPF = tglPF.IsOn;
-                salesMaster.CommissionPercentage = Convert.ToDecimal(txtSalerCommisionPercentage.Text);
-                salesMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
-                if (Image1.Image != null)
-                    salesMaster.Image1 = ImageToByteArray(Image1.Image);
-                if (Image2.Image != null)
-                    salesMaster.Image2 = ImageToByteArray(Image2.Image);
-                if (Image3.Image != null)
-                    salesMaster.Image3 = ImageToByteArray(Image3.Image);
-                salesMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
-                salesMaster.IsTransfer = false;
-                salesMaster.TransferParentId = null;
-                salesMaster.IsDelete = false;
-                salesMaster.Remarks = txtRemark.Text;
-                salesMaster.CreatedDate = DateTime.Now;
-                salesMaster.CreatedBy = Common.LoginUserID;
-                salesMaster.UpdatedDate = DateTime.Now;
-                salesMaster.UpdatedBy = Common.LoginUserID;
-                salesMaster.SalesDetails = salesDetailsList;
-
-                SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
-                var Result = await salesMasterRepository.AddSalesAsync(salesMaster);
-
-                if (Result != null)
+                else
                 {
-                    Reset();
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    SalesMaster salesMaster = new SalesMaster();
+                    salesMaster.Id = _editedSalesMaster.Id;
+                    salesMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
+                    salesMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
+                    salesMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
+                    salesMaster.SalerId = lueSaler.GetColumnValue("Id").ToString();
+                    salesMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
+                    //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
+                    salesMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
+                    salesMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
+                    salesMaster.SaleBillNo = Convert.ToInt32(txtSerialNo.Text);
+                    salesMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
+                    salesMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
+                    salesMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                    salesMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                    salesMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                    //purchaseMaster.PartyLastBalanceWhilePurchase = float.Parse(txtPartyBalance.Text);
+                    salesMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPercentage.Text);
+                    salesMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
+                    salesMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
+                    salesMaster.Total = float.Parse(txtAmount.Text);
+                    salesMaster.GrossTotal = float.Parse(txtNetAmount.Text);
+                    salesMaster.DueDays = Convert.ToInt32(txtDays.Text);
+                    salesMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                    salesMaster.PaymentDays = Convert.ToInt32(txtPaymentDays.Text);
+                    salesMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                    salesMaster.IsSlip = tglSlip.IsOn;
+                    salesMaster.IsPF = tglPF.IsOn;
+                    salesMaster.CommissionPercentage = Convert.ToDecimal(txtSalerCommisionPercentage.Text);
+                    salesMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
+                    if (Image1.Image != null)
+                        salesMaster.Image1 = ImageToByteArray(Image1.Image);
+                    if (Image2.Image != null)
+                        salesMaster.Image2 = ImageToByteArray(Image2.Image);
+                    if (Image3.Image != null)
+                        salesMaster.Image3 = ImageToByteArray(Image3.Image);
+                    salesMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+                    salesMaster.IsTransfer = false;
+                    salesMaster.TransferParentId = null;
+                    salesMaster.IsDelete = false;
+                    salesMaster.Remarks = txtRemark.Text;
+                    //purchaseMaster.CreatedDate = DateTime.Now;
+                    //purchaseMaster.CreatedBy = Common.LoginUserID;
+                    salesMaster.UpdatedDate = DateTime.Now;
+                    salesMaster.UpdatedBy = Common.LoginUserID;
+                    //purchaseMaster.PurchaseDetails = purchaseDetailsList;
+
+                    SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
+                    var Result = await salesMasterRepository.UpdateSalesAsync(salesMaster);
+
+                    if (Result != null)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             catch (Exception Ex)
@@ -1300,7 +1494,7 @@ namespace DiamondTrading.Transaction
             return true;
         }
 
-        private void Reset()
+        private async void Reset()
         {
             grdPurchaseDetails.DataSource = null;
             lueSaler.EditValue = "";
@@ -1308,7 +1502,7 @@ namespace DiamondTrading.Transaction
             lueBroker.EditValue = "";
             FillCombos();
             //FillBranches();
-            FillCurrency();
+            await FillCurrency();
             txtRemark.Text = "";
             txtDays.Text = "";
             txtPaymentDays.Text = "";
@@ -1328,7 +1522,10 @@ namespace DiamondTrading.Transaction
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             tglPF.IsOn = Common.PrintPurchasePF;
             _salesItemObj = new SalesItemObj();
-            GetSalesNo();
+            btnSave.Text = AppMessages.GetString(AppMessageID.Save);
+            grdPurchaseDetails.Enabled = true;
+            _editedSalesMaster = null;
+            await GetSalesNo();
             txtSlipNo.Focus();
         }
     }

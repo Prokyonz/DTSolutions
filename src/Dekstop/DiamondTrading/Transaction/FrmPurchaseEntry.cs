@@ -196,7 +196,7 @@ namespace DiamondTrading.Transaction
             lueCompany.Properties.ValueMember = "Id";
 
             lueCompany.EditValue = Common.LoginCompany;
-            LoadBranch(Common.LoginCompany);
+            await LoadBranch(Common.LoginCompany);
         }
 
         private void SetThemeColors(Color color)
@@ -323,7 +323,7 @@ namespace DiamondTrading.Transaction
             lueBroker.Properties.ValueMember = "Id";
         }
         
-        private async void LoadBranch(string companyId)
+        private async Task LoadBranch(string companyId)
         {
             BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
             var branches = await branchMasterRepository.GetAllBranchAsync(companyId); //_branchMasterRepository.GetAllBranchAsync();
@@ -1538,11 +1538,11 @@ namespace DiamondTrading.Transaction
             await GetPurchaseNo(false);
         }
 
-        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        private async void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
             this.Text = "PURCHASE - " + lueCompany.Text + " - [" + Common.LoginFinancialYearName + "]";
 
-            LoadBranch(lueCompany.EditValue.ToString());
+            await LoadBranch(lueCompany.EditValue.ToString());
 
             FillCombos();
         }

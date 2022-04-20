@@ -251,12 +251,14 @@ namespace DiamondTrading
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
             {
-                //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
-                //Master.FrmBranchMaster frmBranchMaster = new Master.FrmBranchMaster(_branchMaster, SelectedGuid);
-                //if (frmBranchMaster.ShowDialog() == DialogResult.OK)
-                //{
-                //    await LoadGridData(true);
-                //}
+                string SelectedGuid = grvSalesTransactonMaster.GetFocusedRowCellValue("Id").ToString();
+
+                Transaction.FrmSalesEntry frmSalesEntry = new Transaction.FrmSalesEntry(SelectedGuid);
+
+                if (frmSalesEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
         }
 

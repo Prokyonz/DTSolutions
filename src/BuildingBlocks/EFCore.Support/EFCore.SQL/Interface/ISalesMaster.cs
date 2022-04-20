@@ -13,6 +13,7 @@ namespace EFCore.SQL.Interface
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, DateTime startDate, DateTime endDate);
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, string financialYearId);
         Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string branchId, DateTime startDate, DateTime endDate);
+        Task<SalesMaster> GetSalesAsync(string salesId);
         Task<List<SalesSPModel>> GetSalesReport(string companyId, string financialYearId);
         Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster);
         Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster);

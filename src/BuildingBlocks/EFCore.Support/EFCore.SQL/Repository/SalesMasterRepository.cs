@@ -84,6 +84,14 @@ namespace EFCore.SQL.Repository
             return await _databaseContext.SalesMaster.Where(w => w.IsDelete == false && w.BranchId == branchId && w.CreatedDate >= startDate && w.CreatedDate <= endDate).ToListAsync();
         }
 
+        public async Task<SalesMaster> GetSalesAsync(string salesId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SalesMaster.Where(s => s.IsDelete == false && s.Id == salesId).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
         {
             try
@@ -129,14 +137,15 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id).FirstOrDefaultAsync();
+                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {
+                    salesRecord.CompanyId = salesRecord.CompanyId;
                     salesRecord.BranchId = salesRecord.BranchId;
                     salesRecord.PartyId = salesRecord.PartyId;
                     salesRecord.SalerId = salesRecord.SalerId;
                     salesRecord.CurrencyId = salesRecord.CurrencyId;
-                    salesRecord.FinancialYearId = salesRecord.FinancialYearId;
+                    //salesRecord.FinancialYearId = salesRecord.FinancialYearId;
                     salesRecord.BrokerageId = salesRecord.BrokerageId;
 
                     salesRecord.CurrencyRate = salesRecord.CurrencyRate;
@@ -172,15 +181,17 @@ namespace EFCore.SQL.Repository
                     salesRecord.UpdatedDate = salesRecord.UpdatedDate;
                     salesRecord.UpdatedBy = salesRecord.UpdatedBy;
 
-                    _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
+                    if (salesMaster.SalesDetails != null)
+                    {
+                        _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
 
-                    await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+                        await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+                    }
 
                     await _databaseContext.SaveChangesAsync();
                 }
+                return salesMaster;
             }
-           
-            return salesMaster;
         }
 
         public async Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId)
