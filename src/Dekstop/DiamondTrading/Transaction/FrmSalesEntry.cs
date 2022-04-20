@@ -83,6 +83,13 @@ namespace DiamondTrading.Transaction
                         btnSave.Text = AppMessages.GetString(AppMessageID.Update);
                         grdPurchaseDetails.Enabled = false;
 
+                        if(_editedSalesMaster.ApprovalType == 1)
+                            pnlStatus.Appearance.BackColor = Color.FromArgb(154, 205, 50);
+                        else if (_editedSalesMaster.ApprovalType == 2)
+                            pnlStatus.Appearance.BackColor = Color.FromArgb(255, 0, 0);
+                        else
+                            pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
+
                         lueCompany.EditValue = _editedSalesMaster.CompanyId;
                         lueBranch.EditValue = _editedSalesMaster.BranchId;
                         lueParty.EditValue = _editedSalesMaster.PartyId;
@@ -1525,6 +1532,7 @@ namespace DiamondTrading.Transaction
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             grdPurchaseDetails.Enabled = true;
             _editedSalesMaster = null;
+            pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
             await GetSalesNo();
             txtSlipNo.Focus();
         }
