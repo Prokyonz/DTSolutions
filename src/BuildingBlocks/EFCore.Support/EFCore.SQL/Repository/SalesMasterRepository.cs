@@ -140,52 +140,52 @@ namespace EFCore.SQL.Repository
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {
-                    salesRecord.CompanyId = salesRecord.CompanyId;
-                    salesRecord.BranchId = salesRecord.BranchId;
-                    salesRecord.PartyId = salesRecord.PartyId;
-                    salesRecord.SalerId = salesRecord.SalerId;
-                    salesRecord.CurrencyId = salesRecord.CurrencyId;
+                    salesRecord.CompanyId = salesMaster.CompanyId;
+                    salesRecord.BranchId = salesMaster.BranchId;
+                    salesRecord.PartyId = salesMaster.PartyId;
+                    salesRecord.SalerId = salesMaster.SalerId;
+                    salesRecord.CurrencyId = salesMaster.CurrencyId;
                     //salesRecord.FinancialYearId = salesRecord.FinancialYearId;
-                    salesRecord.BrokerageId = salesRecord.BrokerageId;
+                    salesRecord.BrokerageId = salesMaster.BrokerageId;
 
-                    salesRecord.CurrencyRate = salesRecord.CurrencyRate;
-                    salesRecord.SaleBillNo = salesRecord.SaleBillNo;
-                    salesRecord.SlipNo = salesRecord.SlipNo;
-                    salesRecord.TransactionType = salesRecord.TransactionType;
-                    salesRecord.Date = salesRecord.Date;
-                    salesRecord.Time = salesRecord.Time;
-                    salesRecord.DayName = salesRecord.DayName;
-                    salesRecord.PartyLastBalanceWhileSale = salesRecord.PartyLastBalanceWhileSale;
-                    salesRecord.BrokerPercentage = salesRecord.BrokerPercentage;
+                    salesRecord.CurrencyRate = salesMaster.CurrencyRate;
+                    salesRecord.SaleBillNo = salesMaster.SaleBillNo;
+                    salesRecord.SlipNo = salesMaster.SlipNo;
+                    salesRecord.TransactionType = salesMaster.TransactionType;
+                    salesRecord.Date = salesMaster.Date;
+                    salesRecord.Time = salesMaster.Time;
+                    salesRecord.DayName = salesMaster.DayName;
+                    salesRecord.PartyLastBalanceWhileSale = salesMaster.PartyLastBalanceWhileSale;
+                    salesRecord.BrokerPercentage = salesMaster.BrokerPercentage;
 
-                    salesRecord.BrokerAmount = salesRecord.BrokerAmount;
-                    salesRecord.RoundUpAmount = salesRecord.RoundUpAmount;
-                    salesRecord.Total = salesRecord.Total;
-                    salesRecord.GrossTotal = salesRecord.GrossTotal;
-                    salesRecord.DueDays = salesRecord.DueDays;
-                    salesRecord.DueDate = salesRecord.DueDate;
-                    salesRecord.PaymentDays = salesRecord.PaymentDays;
-                    salesRecord.PaymentDueDate = salesRecord.PaymentDueDate;
-                    salesRecord.IsSlip = salesRecord.IsSlip;
-                    salesRecord.IsPF = salesRecord.IsPF;
+                    salesRecord.BrokerAmount = salesMaster.BrokerAmount;
+                    salesRecord.RoundUpAmount = salesMaster.RoundUpAmount;
+                    salesRecord.Total = salesMaster.Total;
+                    salesRecord.GrossTotal = salesMaster.GrossTotal;
+                    salesRecord.DueDays = salesMaster.DueDays;
+                    salesRecord.DueDate = salesMaster.DueDate;
+                    salesRecord.PaymentDays = salesMaster.PaymentDays;
+                    salesRecord.PaymentDueDate = salesMaster.PaymentDueDate;
+                    salesRecord.IsSlip = salesMaster.IsSlip;
+                    salesRecord.IsPF = salesMaster.IsPF;
 
-                    salesRecord.CommissionToPartyId = salesRecord.CommissionToPartyId;
-                    salesRecord.CommissionPercentage = salesRecord.CommissionPercentage;
-                    salesRecord.CommissionAmount = salesRecord.CommissionAmount;
-                    salesRecord.Image1 = salesRecord.Image1;
-                    salesRecord.Image2 = salesRecord.Image2;
-                    salesRecord.Image3 = salesRecord.Image3;
-                    salesRecord.AllowSlipPrint = salesRecord.AllowSlipPrint;
-                    salesRecord.IsDelete = salesRecord.IsDelete;
-                    salesRecord.Remarks = salesRecord.Remarks;
-                    salesRecord.UpdatedDate = salesRecord.UpdatedDate;
-                    salesRecord.UpdatedBy = salesRecord.UpdatedBy;
+                    salesRecord.CommissionToPartyId = salesMaster.CommissionToPartyId;
+                    salesRecord.CommissionPercentage = salesMaster.CommissionPercentage;
+                    salesRecord.CommissionAmount = salesMaster.CommissionAmount;
+                    salesRecord.Image1 = salesMaster.Image1;
+                    salesRecord.Image2 = salesMaster.Image2;
+                    salesRecord.Image3 = salesMaster.Image3;
+                    salesRecord.AllowSlipPrint = salesMaster.AllowSlipPrint;
+                    salesRecord.IsDelete = salesMaster.IsDelete;
+                    salesRecord.Remarks = salesMaster.Remarks;
+                    salesRecord.UpdatedDate = salesMaster.UpdatedDate;
+                    salesRecord.UpdatedBy = salesMaster.UpdatedBy;
 
                     if (salesMaster.SalesDetails != null)
                     {
-                        _databaseContext.SalesDetails.RemoveRange(salesMaster.SalesDetails);
+                        _databaseContext.SalesDetails.RemoveRange(salesRecord.SalesDetails);
 
-                        await _databaseContext.SalesDetails.AddRangeAsync(salesRecord.SalesDetails);
+                        await _databaseContext.SalesDetails.AddRangeAsync(salesMaster.SalesDetails);
                     }
 
                     await _databaseContext.SaveChangesAsync();

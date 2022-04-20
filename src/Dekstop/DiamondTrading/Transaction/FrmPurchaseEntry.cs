@@ -92,7 +92,7 @@ namespace DiamondTrading.Transaction
                         txtCurrencyType.Text = _editedPurchaseMaster.CurrencyRate.ToString();
                         txtSerialNo.Text = _editedPurchaseMaster.PurchaseBillNo.ToString();
                         txtSlipNo.Text = _editedPurchaseMaster.SlipNo.ToString();
-                        luePaymentMode.EditValue = _editedPurchaseMaster.TransactionType+1;
+                        luePaymentMode.EditValue = _editedPurchaseMaster.TransactionType;
                         dtDate.EditValue = DateTime.ParseExact(_editedPurchaseMaster.Date, "yyyyMMdd", CultureInfo.InvariantCulture);
                         dtTime.EditValue = DateTime.ParseExact(_editedPurchaseMaster.Time, "hh:mm:ss ttt", CultureInfo.InvariantCulture);
                         //purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
@@ -1279,7 +1279,7 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
                     purchaseMaster.PurchaseBillNo = Convert.ToInt32(txtSerialNo.Text);
                     purchaseMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
-                    purchaseMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
+                    purchaseMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("PTypeID"));
                     purchaseMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                     purchaseMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                     purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
@@ -1337,7 +1337,7 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
                     purchaseMaster.PurchaseBillNo = Convert.ToInt32(txtSerialNo.Text);
                     purchaseMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
-                    purchaseMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("Id"));
+                    purchaseMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("PTypeID"));
                     purchaseMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                     purchaseMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                     purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();

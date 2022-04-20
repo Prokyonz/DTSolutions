@@ -82,8 +82,8 @@ namespace DiamondTrading
             get
             {
                 DataTable dt = new DataTable();
-                dt.Columns.Add("PTypeID");
-                dt.Columns.Add("PTypeName");
+                dt.Columns.Add("PTypeID",typeof(int));
+                dt.Columns.Add("PTypeName", typeof(string));
 
                 dt.Rows.Add(1,"CASH");
                 dt.Rows.Add(2, "BANK");
