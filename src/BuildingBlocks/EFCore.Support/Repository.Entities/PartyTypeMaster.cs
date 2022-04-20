@@ -239,4 +239,24 @@ namespace Repository.Entities
             return openingStockCategoryMasters;
         }
     }
+
+    public class PriceMasterCategory
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Number = 0;
+        public static int PF = 1;
+        public static int Export = 2;
+
+        public static List<PriceMasterCategory> GetAllCategory()
+        {
+            List<PriceMasterCategory> openingStockCategoryMasters = new List<PriceMasterCategory>
+            {
+                new PriceMasterCategory {Id = Number, Name = "Number" },
+                new PriceMasterCategory {Id = PF, Name = "PF" },
+                new PriceMasterCategory {Id = Export, Name = "Export" }
+            };
+            return openingStockCategoryMasters;
+        }
+    }
 }
