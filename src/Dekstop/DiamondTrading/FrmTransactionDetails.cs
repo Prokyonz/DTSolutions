@@ -274,7 +274,18 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
-            if (xtabManager.SelectedTabPage == xtabExpense)
+            if(xtabManager.SelectedTabPage == xtabSales)
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = grvSalesTransactonMaster.GetFocusedRowCellValue(gridColumnSalesId).ToString();
+
+                    bool result = await _salesMasterRepository.DeleteSalesAsync(id,false);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {

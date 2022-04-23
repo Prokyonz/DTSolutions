@@ -85,7 +85,7 @@ namespace DiamondTrading
             this.xtabSales = new DevExpress.XtraTab.XtraTabPage();
             this.grdSalesTransactonMaster = new DevExpress.XtraGrid.GridControl();
             this.grvSalesTransactonMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnSalesId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -751,7 +751,7 @@ namespace DiamondTrading
             // grvSalesTransactonMaster
             // 
             this.grvSalesTransactonMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
+            this.gridColumnSalesId,
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn4,
@@ -782,11 +782,11 @@ namespace DiamondTrading
             this.grvSalesTransactonMaster.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvSalesTransactonMaster_RowCellStyle);
             this.grvSalesTransactonMaster.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.grvSalesTransactonMaster_PopupMenuShowing);
             // 
-            // gridColumn1
+            // gridColumnSalesId
             // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumnSalesId.Caption = "Id";
+            this.gridColumnSalesId.FieldName = "Id";
+            this.gridColumnSalesId.Name = "gridColumnSalesId";
             // 
             // gridColumn2
             // 
@@ -2243,7 +2243,7 @@ namespace DiamondTrading
         private DevExpress.XtraTab.XtraTabPage xtabSales;
         private DevExpress.XtraGrid.GridControl grdSalesTransactonMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView grvSalesTransactonMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalesId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
