@@ -274,7 +274,25 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
-            if(xtabManager.SelectedTabPage == xtabSales)
+            if (xtabManager.SelectedTabPage == xtabPurchase)
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurId).ToString();
+                    string kapanId = grvTransMaster.GetFocusedRowCellValue(gridColumnPurKapanId).ToString();
+
+                    if (string.IsNullOrEmpty(kapanId))
+                    {
+                        bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
+
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    } else
+                    {
+                        MessageBox.Show("You can not delete this record because it is mapped with kapan.");
+                    }
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {

@@ -522,8 +522,10 @@ namespace DiamondTrading
             // 
             // barButtonItem61
             // 
-            this.barButtonItem61.Caption = "Price Master";
+            this.barButtonItem61.Caption = "Pr&ice Master";
             this.barButtonItem61.Id = 96;
+            this.barButtonItem61.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+                | System.Windows.Forms.Keys.I));
             this.barButtonItem61.Name = "barButtonItem61";
             this.barButtonItem61.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
@@ -813,8 +815,9 @@ namespace DiamondTrading
             // 
             // barButtonItem7
             // 
-            this.barButtonItem7.Caption = "Transfer Slip";
+            this.barButtonItem7.Caption = "Trans&fer Slip";
             this.barButtonItem7.Id = 89;
+            this.barButtonItem7.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F));
             this.barButtonItem7.Name = "barButtonItem7";
             this.barButtonItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem7.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem7_ItemClick_1);
@@ -869,8 +872,9 @@ namespace DiamondTrading
             // 
             // barButtonItem62
             // 
-            this.barButtonItem62.Caption = "Opening Stock";
+            this.barButtonItem62.Caption = "&Opening Stock";
             this.barButtonItem62.Id = 97;
+            this.barButtonItem62.ItemShortcut = new DevExpress.XtraBars.BarShortcut((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O));
             this.barButtonItem62.Name = "barButtonItem62";
             this.barButtonItem62.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem62.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem62_ItemClick);

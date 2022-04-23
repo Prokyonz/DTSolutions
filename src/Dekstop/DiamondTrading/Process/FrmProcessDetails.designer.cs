@@ -150,16 +150,6 @@ namespace DiamondTrading
             this.gridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabCjharniSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
-            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
-            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
-            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
-            this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
-            this.btnReject = new DevExpress.XtraBars.BarButtonItem();
-            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.gridControlCharniReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewCharniReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -188,6 +178,7 @@ namespace DiamondTrading
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn87 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlGalaReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewGalaReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -216,6 +207,7 @@ namespace DiamondTrading
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlNumerReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewNumberReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -244,6 +236,14 @@ namespace DiamondTrading
             this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn132 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
+            this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlLeft = new DevExpress.XtraBars.BarDockControl();
+            this.barDockControlRight = new DevExpress.XtraBars.BarDockControl();
+            this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
+            this.btnReject = new DevExpress.XtraBars.BarButtonItem();
+            this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -271,22 +271,22 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             this.xtabCjharniSendReceive.SuspendLayout();
-            this.xtabGalaSendReceive.SuspendLayout();
-            this.xtabNumberSendReceive.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCharniReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCharniReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
+            this.xtabGalaSendReceive.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlGalaReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewGalaReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            this.xtabNumberSendReceive.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNumerReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewNumberReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -330,6 +330,7 @@ namespace DiamondTrading
             this.accordionEditBtn.Name = "accordionEditBtn";
             this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionEditBtn.Text = "Edit";
+            this.accordionEditBtn.Visible = false;
             this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
             // 
             // accordionDeleteBtn
@@ -338,6 +339,7 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
+            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
@@ -1357,86 +1359,6 @@ namespace DiamondTrading
             this.xtabCjharniSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabCjharniSendReceive.Text = "Charni Send";
             // 
-            // xtabGalaSendReceive
-            // 
-            this.xtabGalaSendReceive.Controls.Add(this.gridControlGalaReportMaster);
-            this.xtabGalaSendReceive.Name = "xtabGalaSendReceive";
-            this.xtabGalaSendReceive.Size = new System.Drawing.Size(764, 411);
-            this.xtabGalaSendReceive.Text = "Gala Send";
-            // 
-            // xtabNumberSendReceive
-            // 
-            this.xtabNumberSendReceive.Controls.Add(this.gridControlNumerReportMaster);
-            this.xtabNumberSendReceive.Name = "xtabNumberSendReceive";
-            this.xtabNumberSendReceive.Size = new System.Drawing.Size(764, 411);
-            this.xtabNumberSendReceive.Text = "Number Send";
-            // 
-            // barManager1
-            // 
-            this.barManager1.DockControls.Add(this.barDockControlTop);
-            this.barManager1.DockControls.Add(this.barDockControlBottom);
-            this.barManager1.DockControls.Add(this.barDockControlLeft);
-            this.barManager1.DockControls.Add(this.barDockControlRight);
-            this.barManager1.Form = this;
-            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.btnApprove,
-            this.btnReject});
-            this.barManager1.MaxItemId = 2;
-            // 
-            // barDockControlTop
-            // 
-            this.barDockControlTop.CausesValidation = false;
-            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(826, 0);
-            // 
-            // barDockControlBottom
-            // 
-            this.barDockControlBottom.CausesValidation = false;
-            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
-            this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(826, 0);
-            // 
-            // barDockControlLeft
-            // 
-            this.barDockControlLeft.CausesValidation = false;
-            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
-            this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 440);
-            // 
-            // barDockControlRight
-            // 
-            this.barDockControlRight.CausesValidation = false;
-            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(826, 0);
-            this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 440);
-            // 
-            // btnApprove
-            // 
-            this.btnApprove.Caption = "Approve";
-            this.btnApprove.Id = 0;
-            this.btnApprove.Name = "btnApprove";
-            this.btnApprove.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnApprove_ItemClick);
-            // 
-            // btnReject
-            // 
-            this.btnReject.Caption = "Reject";
-            this.btnReject.Id = 1;
-            this.btnReject.Name = "btnReject";
-            this.btnReject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReject_ItemClick);
-            // 
-            // popupMenu1
-            // 
-            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnApprove),
-            new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
-            this.popupMenu1.Manager = this.barManager1;
-            this.popupMenu1.Name = "popupMenu1";
-            // 
             // gridControlCharniReportMaster
             // 
             this.gridControlCharniReportMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -1683,6 +1605,13 @@ namespace DiamondTrading
             // 
             this.gridView8.GridControl = this.gridControlCharniReportMaster;
             this.gridView8.Name = "gridView8";
+            // 
+            // xtabGalaSendReceive
+            // 
+            this.xtabGalaSendReceive.Controls.Add(this.gridControlGalaReportMaster);
+            this.xtabGalaSendReceive.Name = "xtabGalaSendReceive";
+            this.xtabGalaSendReceive.Size = new System.Drawing.Size(764, 411);
+            this.xtabGalaSendReceive.Text = "Gala Send";
             // 
             // gridControlGalaReportMaster
             // 
@@ -1931,6 +1860,13 @@ namespace DiamondTrading
             this.gridView6.GridControl = this.gridControlGalaReportMaster;
             this.gridView6.Name = "gridView6";
             // 
+            // xtabNumberSendReceive
+            // 
+            this.xtabNumberSendReceive.Controls.Add(this.gridControlNumerReportMaster);
+            this.xtabNumberSendReceive.Name = "xtabNumberSendReceive";
+            this.xtabNumberSendReceive.Size = new System.Drawing.Size(764, 411);
+            this.xtabNumberSendReceive.Text = "Number Send";
+            // 
             // gridControlNumerReportMaster
             // 
             this.gridControlNumerReportMaster.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2178,6 +2114,72 @@ namespace DiamondTrading
             this.gridView12.GridControl = this.gridControlNumerReportMaster;
             this.gridView12.Name = "gridView12";
             // 
+            // barManager1
+            // 
+            this.barManager1.DockControls.Add(this.barDockControlTop);
+            this.barManager1.DockControls.Add(this.barDockControlBottom);
+            this.barManager1.DockControls.Add(this.barDockControlLeft);
+            this.barManager1.DockControls.Add(this.barDockControlRight);
+            this.barManager1.Form = this;
+            this.barManager1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.btnApprove,
+            this.btnReject});
+            this.barManager1.MaxItemId = 2;
+            // 
+            // barDockControlTop
+            // 
+            this.barDockControlTop.CausesValidation = false;
+            this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlTop.Manager = this.barManager1;
+            this.barDockControlTop.Size = new System.Drawing.Size(826, 0);
+            // 
+            // barDockControlBottom
+            // 
+            this.barDockControlBottom.CausesValidation = false;
+            this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 440);
+            this.barDockControlBottom.Manager = this.barManager1;
+            this.barDockControlBottom.Size = new System.Drawing.Size(826, 0);
+            // 
+            // barDockControlLeft
+            // 
+            this.barDockControlLeft.CausesValidation = false;
+            this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
+            this.barDockControlLeft.Manager = this.barManager1;
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 440);
+            // 
+            // barDockControlRight
+            // 
+            this.barDockControlRight.CausesValidation = false;
+            this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.barDockControlRight.Location = new System.Drawing.Point(826, 0);
+            this.barDockControlRight.Manager = this.barManager1;
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 440);
+            // 
+            // btnApprove
+            // 
+            this.btnApprove.Caption = "Approve";
+            this.btnApprove.Id = 0;
+            this.btnApprove.Name = "btnApprove";
+            this.btnApprove.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnApprove_ItemClick);
+            // 
+            // btnReject
+            // 
+            this.btnReject.Caption = "Reject";
+            this.btnReject.Id = 1;
+            this.btnReject.Name = "btnReject";
+            this.btnReject.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReject_ItemClick);
+            // 
+            // popupMenu1
+            // 
+            this.popupMenu1.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnApprove),
+            new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
+            this.popupMenu1.Manager = this.barManager1;
+            this.popupMenu1.Name = "popupMenu1";
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2226,22 +2228,22 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             this.xtabCjharniSendReceive.ResumeLayout(false);
-            this.xtabGalaSendReceive.ResumeLayout(false);
-            this.xtabNumberSendReceive.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCharniReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewCharniReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
+            this.xtabGalaSendReceive.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlGalaReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewGalaReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            this.xtabNumberSendReceive.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlNumerReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridViewNumberReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
