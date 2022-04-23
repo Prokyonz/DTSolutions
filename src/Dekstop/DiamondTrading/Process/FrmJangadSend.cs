@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,7 +21,6 @@ namespace DiamondTrading.Process
         PartyMasterRepository _partyMasterRepository;
         BrokerageMasterRepository _brokerageMasterRepository;
         JangadMasterRepository _JangadMasterRepository;
-        List<BoilProcessSend> ListAssortmentProcessSend;
         int _RejectionType = 0;
 
         public FrmJangadSend(int RejectionType)
@@ -41,11 +41,19 @@ namespace DiamondTrading.Process
             {
                 SetThemeColors(Color.FromArgb(250, 243, 197));
                 this.Text = "JANGAD RECEIVE";
+
+                grvParticularsDetails.Columns["Size"].Visible = false;
+                grvParticularsDetails.Columns["SizeR"].Visible = true;
+                grvParticularsDetails.Columns["SizeR"].Width = 355;
             }
             else if (RejectionType == 2)
             {
                 SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "JANGAD SEND";
+
+                grvParticularsDetails.Columns["Size"].Visible = true;
+                grvParticularsDetails.Columns["SizeR"].Visible = false;
+                grvParticularsDetails.Columns["Size"].Width = 355;
             }
         }
 
@@ -85,11 +93,28 @@ namespace DiamondTrading.Process
 
         private async Task GetSizeDetail()
         {
-            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
-            var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
-            repoSize.DataSource = sizeMaster;
-            repoSize.DisplayMember = "Name";
-            repoSize.ValueMember = "Id";
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+            if (_RejectionType == 1)
+            {
+                if (lueCompany.EditValue != null && lueBroker.EditValue != null)
+                {
+                    var JangadReceiveDetails = await _JangadMasterRepository.GetJangadReceiveDetails(lueCompany.EditValue.ToString(), Common.LoginFinancialYear, lueBroker.EditValue.ToString());
+                    repoSizeR.DataSource = JangadReceiveDetails;
+                    repoSizeR.DisplayMember = "Size";
+                    repoSizeR.ValueMember = "Id";
+                }
+            }
+            else
+            {
+                SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+                var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
+                repoSize.DataSource = sizeMaster;
+                repoSize.DisplayMember = "Name";
+                repoSize.ValueMember = "Id";
+            }
+
+            repoSizeR.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            repoSizeR.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
         }
 
         private async void LoadCompany()
@@ -127,71 +152,58 @@ namespace DiamondTrading.Process
             dtTime.EditValue = DateTime.Now;
         }
 
-
-        private async Task GetEmployeeList()
-        {
-            var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, PartyTypeMaster.Other);
-            lueCompany.Properties.DataSource = EmployeeDetailList;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-
-            lueParty.Properties.DataSource = EmployeeDetailList;
-            lueParty.Properties.DisplayMember = "Name";
-            lueParty.Properties.ValueMember = "Id";
-        }
-
-        private async Task GetBoilProcessSendDetail()
-        {
-            //grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-            //ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-
-            //lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
-            //lueKapan.Properties.DisplayMember = "Kapan";
-            //lueKapan.Properties.ValueMember = "KapanId";
-        }
-
         private static DataTable GetDTColumnsforParticularDetails()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("SlipNo");
             dt.Columns.Add("Size");
-            dt.Columns.Add("AvailableWeight");
-            dt.Columns.Add("BoilCarat");
+            dt.Columns.Add("SizeR");
             dt.Columns.Add("SizeId");
-            dt.Columns.Add("ShapeId");
-            dt.Columns.Add("PurityId");
-            dt.Columns.Add("PurchaseDetailsId");
-            dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("Carat");
+            dt.Columns.Add("Rate");
+            dt.Columns.Add("Amount");
+            dt.Columns.Add("ReceiveSrNo");
             return dt;
-        }
-
-        private async void lueKapan_EditValueChanged(object sender, EventArgs e)
-        {
-            //if (lueKapan.EditValue != null)
-            //{
-            //    repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
-            //    repoSlipNo.DisplayMember = "SlipNo";
-            //    repoSlipNo.ValueMember = "Id";
-
-            //    repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            //    repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-            //}
         }
 
         private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
             {
-                if (e.Column == colSlipNo)
+                if (e.Column == colSize)
                 {
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colACarat, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
-                    //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
-                    //grvPurchaseItems.FocusedColumn = colBoilCarat;
+                    if (_RejectionType == 2)
+                    {
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((SizeMaster)repoSize.GetDataSourceRowByKeyValue(e.Value)).Id);
+                    }
+                }
+                else if(e.Column == colSizeR)
+                {
+                    if (_RejectionType == 1)
+                    {
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).Rate);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).Amount);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colReceiveSrNo, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).SrNo);
+                    }
+                }
+                else if (e.Column == colCarat || e.Column == colRate)
+                {
+                    decimal Carats = 0;
+                    decimal Rate = 0;
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat) != null &&
+                        grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString().Trim().Length > 0)
+                    {
+                        Carats = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString());
+                    }
+
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate) != null &&
+                        grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString().Trim().Length > 0)
+                    {
+                        Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
+                    }
+
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, Carats * Rate);
                 }
             }
             catch
@@ -231,7 +243,6 @@ namespace DiamondTrading.Process
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
-  
             {
                 this.Cursor = Cursors.WaitCursor;
 
@@ -241,8 +252,43 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
+                    string tempId = Guid.NewGuid().ToString();
+                    JangadMaster jangadMaster = new JangadMaster();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
+                        jangadMaster = new JangadMaster();
+                        jangadMaster.Id = tempId;
+                        jangadMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
+                        jangadMaster.CompanyId = lueCompany.EditValue.ToString();
+                        jangadMaster.BranchId = Common.LoginBranch;
+                        jangadMaster.FinancialYearId = Common.LoginFinancialYear;
+                        jangadMaster.PartyId = lueParty.EditValue.ToString();
+                        jangadMaster.BrokerId = lueBroker.EditValue.ToString();
+
+                        jangadMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                        jangadMaster.Totalcts = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colCarat).ToString());
+                        jangadMaster.Rate = float.Parse(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+                        jangadMaster.Amount = float.Parse(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());
+
+                        if (Image1.Image != null)
+                            jangadMaster.Image1 = ImageToByteArray(Image1.Image);
+                        if (Image2.Image != null)
+                            jangadMaster.Image2 = ImageToByteArray(Image2.Image);
+                        if (Image3.Image != null)
+                            jangadMaster.Image3 = ImageToByteArray(Image3.Image);
+
+                        if(_RejectionType == 1)
+                            jangadMaster.ReceivedSrNo = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colReceiveSrNo).ToString());
+
+                        jangadMaster.Remarks = txtRemark.Text;
+                        jangadMaster.EntryType = _RejectionType;
+                        jangadMaster.IsDelete = false;
+                        jangadMaster.CreatedDate = DateTime.Now;
+                        jangadMaster.CreatedBy = Common.LoginUserID;
+                        jangadMaster.UpdatedDate = DateTime.Now;
+                        jangadMaster.UpdatedBy = Common.LoginUserID;
+                        
+                        var result = _JangadMasterRepository.AddJangadAsync(jangadMaster);
                         IsSuccess = true;
                     }
                 }
@@ -267,21 +313,32 @@ namespace DiamondTrading.Process
             }
         }
 
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
-            ListAssortmentProcessSend = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
             lueCompany.EditValue = null;
             lueParty.EditValue = null;
-            //lueKapan.EditValue = null;
-            repoSlipNo.DataSource = null;
+            lueBroker.EditValue = null;
+            repoSizeR.DataSource = null;
+
+            Image1.Image = null;
+            Image2.Image = null;
+            Image3.Image = null;
 
             await GetMaxSrNo();
-            await GetEmployeeList();
-            await GetBoilProcessSendDetail();
+            LoadCompany();
 
             lueCompany.Select();
             lueCompany.Focus();
@@ -290,6 +347,50 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void BrowseImage(int SelectedImage)
+        {
+            Transaction.FrmTakePicture fpc = new Transaction.FrmTakePicture();
+            fpc.Image1.Image = Image1.Image;
+            fpc.Image2.Image = Image2.Image;
+            fpc.Image3.Image = Image3.Image;
+            fpc.SelectedImage = SelectedImage;
+            if (fpc.ShowDialog() == DialogResult.OK)
+            {
+                Image1.Image = fpc.Image1.Image;
+                Image2.Image = fpc.Image2.Image;
+                Image3.Image = fpc.Image3.Image;
+
+                Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+            }
+        }
+
+        private void Image1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            BrowseImage(0);
+        }
+
+        private void Image2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            BrowseImage(1);
+        }
+
+        private void Image3_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            BrowseImage(2);
+        }
+
+        private void lueBroker_EditValueChanged(object sender, EventArgs e)
+        {
+            _ = GetSizeDetail();
+        }
+
+        private void lueCompany_EditValueChanged(object sender, EventArgs e)
+        {
+            _ = GetSizeDetail();
         }
     }
 }

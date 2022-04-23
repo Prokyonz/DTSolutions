@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,6 +92,15 @@ namespace EFCore.SQL.Repository
                 {
                     return jangadMaster;
                 }
+            }
+        }
+
+        public async Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId, string BrokerId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var defaultPriceList = await _databaseContext.JangadSPReceiveModel.FromSqlRaw($"GetJangadReceiveDetail '"+CompanyId+"','"+BrokerId+"','"+FinancialYearId+"'").ToListAsync();
+                return defaultPriceList;
             }
         }
     }

@@ -41,21 +41,16 @@ namespace DiamondTrading.Process
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
             this.grdParticularsDetails = new DevExpress.XtraGrid.GridControl();
             this.grvParticularsDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoSlipNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colSizeR = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoSizeR = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colCarat = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPurchaseDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.repoKapan = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colReceiveSrNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
@@ -82,12 +77,9 @@ namespace DiamondTrading.Process
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdParticularsDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvParticularsDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSlipNo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPayType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSizeR)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoSize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).BeginInit();
@@ -207,7 +199,7 @@ namespace DiamondTrading.Process
             this.grpGroup2.Location = new System.Drawing.Point(291, 433);
             this.grpGroup2.Name = "grpGroup2";
             this.grpGroup2.Size = new System.Drawing.Size(326, 121);
-            this.grpGroup2.TabIndex = 13;
+            this.grpGroup2.TabIndex = 12;
             this.grpGroup2.Text = "Remark";
             // 
             // txtRemark
@@ -228,7 +220,7 @@ namespace DiamondTrading.Process
             this.grpGroup1.Location = new System.Drawing.Point(11, 161);
             this.grpGroup1.Name = "grpGroup1";
             this.grpGroup1.Size = new System.Drawing.Size(606, 266);
-            this.grpGroup1.TabIndex = 12;
+            this.grpGroup1.TabIndex = 10;
             this.grpGroup1.Text = "Particulars Details";
             // 
             // grdParticularsDetails
@@ -239,14 +231,11 @@ namespace DiamondTrading.Process
             this.grdParticularsDetails.MainView = this.grvParticularsDetails;
             this.grdParticularsDetails.Name = "grdParticularsDetails";
             this.grdParticularsDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repoPayType,
-            this.repoSize,
-            this.repoPurity,
-            this.repoKapan,
+            this.repoSizeR,
             this.repoTxtEdit,
-            this.repoSlipNo});
+            this.repoSize});
             this.grdParticularsDetails.Size = new System.Drawing.Size(602, 241);
-            this.grdParticularsDetails.TabIndex = 1;
+            this.grdParticularsDetails.TabIndex = 0;
             this.grdParticularsDetails.UseEmbeddedNavigator = true;
             this.grdParticularsDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvParticularsDetails,
@@ -261,15 +250,13 @@ namespace DiamondTrading.Process
             this.grvParticularsDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
             this.grvParticularsDetails.Appearance.Row.Options.UseFont = true;
             this.grvParticularsDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colSlipNo,
+            this.colSizeR,
+            this.colSize,
             this.colCarat,
             this.colSizeId,
-            this.colShapeId,
-            this.colPurityId,
-            this.colPurchaseDetailsId,
-            this.colSlipNo1,
             this.colRate,
-            this.colAmount});
+            this.colAmount,
+            this.colReceiveSrNo});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -278,36 +265,56 @@ namespace DiamondTrading.Process
             this.grvParticularsDetails.OptionsView.ShowGroupPanel = false;
             this.grvParticularsDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvParticularsDetails_CellValueChanged);
             // 
-            // colSlipNo
+            // colSizeR
             // 
-            this.colSlipNo.Caption = "Size";
-            this.colSlipNo.ColumnEdit = this.repoSlipNo;
-            this.colSlipNo.FieldName = "SlipNo";
-            this.colSlipNo.Name = "colSlipNo";
-            this.colSlipNo.Visible = true;
-            this.colSlipNo.VisibleIndex = 0;
-            this.colSlipNo.Width = 320;
+            this.colSizeR.Caption = "Size";
+            this.colSizeR.ColumnEdit = this.repoSizeR;
+            this.colSizeR.FieldName = "SizeR";
+            this.colSizeR.Name = "colSizeR";
+            this.colSizeR.Visible = true;
+            this.colSizeR.VisibleIndex = 1;
+            this.colSizeR.Width = 146;
             // 
-            // repoSlipNo
+            // repoSizeR
             // 
-            this.repoSlipNo.AutoHeight = false;
-            this.repoSlipNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.repoSizeR.AutoHeight = false;
+            this.repoSizeR.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoSlipNo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SlipNo", "SlipNo", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Kapan", 60, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShapeId", "ShapeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Shape", "Shape", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            this.repoSizeR.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SrNo", "SrNo"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SizeId", "SizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurityId", "PurityId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("FinancialYearId", "FinancialYearId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight", 80, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoSlipNo.Name = "repoSlipNo";
-            this.repoSlipNo.NullText = "";
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Rate", "Rate"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Amount", "Amount"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "AvailableWeight"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TotalWeight", "TotalWeight"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PartyId", "PartyId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PartyName", "PartyName"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BrokerId", "BrokerId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BrokerName", "BrokerName")});
+            this.repoSizeR.Name = "repoSizeR";
+            this.repoSizeR.NullText = "";
+            // 
+            // colSize
+            // 
+            this.colSize.Caption = "Size";
+            this.colSize.ColumnEdit = this.repoSize;
+            this.colSize.FieldName = "Size";
+            this.colSize.Name = "colSize";
+            this.colSize.Visible = true;
+            this.colSize.VisibleIndex = 0;
+            this.colSize.Width = 215;
+            // 
+            // repoSize
+            // 
+            this.repoSize.AutoHeight = false;
+            this.repoSize.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoSize.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Size"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "SizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repoSize.Name = "repoSize";
+            this.repoSize.NullText = "";
             // 
             // colCarat
             // 
@@ -318,8 +325,8 @@ namespace DiamondTrading.Process
             this.colCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCarat.Visible = true;
-            this.colCarat.VisibleIndex = 1;
-            this.colCarat.Width = 109;
+            this.colCarat.VisibleIndex = 2;
+            this.colCarat.Width = 141;
             // 
             // repoTxtEdit
             // 
@@ -336,90 +343,35 @@ namespace DiamondTrading.Process
             this.colSizeId.FieldName = "SizeId";
             this.colSizeId.Name = "colSizeId";
             // 
-            // colShapeId
-            // 
-            this.colShapeId.Caption = "ShapeId";
-            this.colShapeId.FieldName = "ShapeId";
-            this.colShapeId.Name = "colShapeId";
-            // 
-            // colPurityId
-            // 
-            this.colPurityId.Caption = "PurityId";
-            this.colPurityId.FieldName = "PurityId";
-            this.colPurityId.Name = "colPurityId";
-            // 
-            // colPurchaseDetailsId
-            // 
-            this.colPurchaseDetailsId.Caption = "PurchaseDetailsId";
-            this.colPurchaseDetailsId.FieldName = "PurchaseDetailsId";
-            this.colPurchaseDetailsId.Name = "colPurchaseDetailsId";
-            // 
-            // colSlipNo1
-            // 
-            this.colSlipNo1.Caption = "SlipNo";
-            this.colSlipNo1.FieldName = "SlipNo1";
-            this.colSlipNo1.Name = "colSlipNo1";
-            // 
             // colRate
             // 
             this.colRate.Caption = "Rate";
+            this.colRate.ColumnEdit = this.repoTxtEdit;
+            this.colRate.FieldName = "Rate";
             this.colRate.Name = "colRate";
             this.colRate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Rate", "{0:0.##}")});
             this.colRate.Visible = true;
-            this.colRate.VisibleIndex = 2;
-            this.colRate.Width = 106;
+            this.colRate.VisibleIndex = 3;
+            this.colRate.Width = 141;
             // 
             // colAmount
             // 
             this.colAmount.Caption = "Amount";
+            this.colAmount.FieldName = "Amount";
             this.colAmount.Name = "colAmount";
+            this.colAmount.OptionsColumn.AllowEdit = false;
             this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 3;
-            this.colAmount.Width = 112;
+            this.colAmount.VisibleIndex = 4;
+            this.colAmount.Width = 147;
             // 
-            // repoPayType
+            // colReceiveSrNo
             // 
-            this.repoPayType.AutoHeight = false;
-            this.repoPayType.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoPayType.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Shape", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "ShapeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoPayType.Name = "repoPayType";
-            this.repoPayType.ValueMember = "Guid";
-            // 
-            // repoSize
-            // 
-            this.repoSize.AutoHeight = false;
-            this.repoSize.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoSize.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Size", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "SizeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoSize.Name = "repoSize";
-            // 
-            // repoPurity
-            // 
-            this.repoPurity.AutoHeight = false;
-            this.repoPurity.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoPurity.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Purity", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PurityID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoPurity.Name = "repoPurity";
-            // 
-            // repoKapan
-            // 
-            this.repoKapan.AutoHeight = false;
-            this.repoKapan.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoKapan.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Kapan", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoKapan.Name = "repoKapan";
+            this.colReceiveSrNo.Caption = "ReceiveSrNo";
+            this.colReceiveSrNo.FieldName = "ReceiveSrNo";
+            this.colReceiveSrNo.Name = "colReceiveSrNo";
             // 
             // gridView1
             // 
@@ -450,7 +402,7 @@ namespace DiamondTrading.Process
             this.labelControl6.Location = new System.Drawing.Point(91, 34);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(70, 16);
-            this.labelControl6.TabIndex = 6;
+            this.labelControl6.TabIndex = 1;
             this.labelControl6.Text = "Company* :";
             // 
             // labelControl12
@@ -470,7 +422,7 @@ namespace DiamondTrading.Process
             this.labelControl1.Location = new System.Drawing.Point(12, 105);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(46, 16);
-            this.labelControl1.TabIndex = 8;
+            this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Party* :";
             // 
             // lueCompany
@@ -486,7 +438,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(274, 22);
-            this.lueCompany.TabIndex = 7;
+            this.lueCompany.TabIndex = 2;
+            this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
             // 
             // lueParty
             // 
@@ -501,7 +454,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueParty.Properties.NullText = "";
             this.lueParty.Size = new System.Drawing.Size(212, 22);
-            this.lueParty.TabIndex = 9;
+            this.lueParty.TabIndex = 7;
             // 
             // grpDocuments
             // 
@@ -513,33 +466,36 @@ namespace DiamondTrading.Process
             this.grpDocuments.Location = new System.Drawing.Point(12, 433);
             this.grpDocuments.Name = "grpDocuments";
             this.grpDocuments.Size = new System.Drawing.Size(274, 121);
-            this.grpDocuments.TabIndex = 14;
+            this.grpDocuments.TabIndex = 11;
             this.grpDocuments.Text = "Documents";
             // 
             // Image3
             // 
-            this.Image3.Location = new System.Drawing.Point(187, 29);
+            this.Image3.Location = new System.Drawing.Point(184, 29);
             this.Image3.Name = "Image3";
             this.Image3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image3.Size = new System.Drawing.Size(85, 85);
             this.Image3.TabIndex = 2;
+            this.Image3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image3_MouseDoubleClick);
             // 
             // Image2
             // 
-            this.Image2.Location = new System.Drawing.Point(98, 29);
+            this.Image2.Location = new System.Drawing.Point(95, 29);
             this.Image2.Name = "Image2";
             this.Image2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image2.Size = new System.Drawing.Size(85, 85);
             this.Image2.TabIndex = 1;
+            this.Image2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image2_MouseDoubleClick);
             // 
             // Image1
             // 
-            this.Image1.Location = new System.Drawing.Point(9, 29);
+            this.Image1.Location = new System.Drawing.Point(6, 29);
             this.Image1.Name = "Image1";
             this.Image1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.Image1.Size = new System.Drawing.Size(85, 85);
             this.Image1.TabIndex = 0;
+            this.Image1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image1_MouseDoubleClick);
             // 
             // labelControl3
             // 
@@ -548,7 +504,7 @@ namespace DiamondTrading.Process
             this.labelControl3.Location = new System.Drawing.Point(12, 134);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(54, 16);
-            this.labelControl3.TabIndex = 15;
+            this.labelControl3.TabIndex = 8;
             this.labelControl3.Text = "Broker* :";
             // 
             // lueBroker
@@ -564,7 +520,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBroker.Properties.NullText = "";
             this.lueBroker.Size = new System.Drawing.Size(212, 22);
-            this.lueBroker.TabIndex = 16;
+            this.lueBroker.TabIndex = 9;
+            this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
             // 
             // panelControl1
             // 
@@ -621,12 +578,9 @@ namespace DiamondTrading.Process
             this.grpGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdParticularsDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvParticularsDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoSlipNo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPayType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSizeR)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoSize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoPurity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoKapan)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).EndInit();
@@ -656,21 +610,13 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.GroupControl grpGroup1;
         private DevExpress.XtraGrid.GridControl grdParticularsDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView grvParticularsDetails;
-        private DevExpress.XtraGrid.Columns.GridColumn colSlipNo;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSlipNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colSize;
         private DevExpress.XtraGrid.Columns.GridColumn colCarat;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
         private DevExpress.XtraGrid.Columns.GridColumn colSizeId;
-        private DevExpress.XtraGrid.Columns.GridColumn colShapeId;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurityId;
-        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailsId;
-        private DevExpress.XtraGrid.Columns.GridColumn colSlipNo1;
         private DevExpress.XtraGrid.Columns.GridColumn colRate;
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoPayType;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSize;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoPurity;
-        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoKapan;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSizeR;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.LabelControl lblFormTitle;
         private DevExpress.XtraEditors.LabelControl labelControl6;
@@ -685,5 +631,8 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.LookUpEdit lueBroker;
         private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraGrid.Columns.GridColumn colReceiveSrNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colSizeR;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSize;
     }
 }
