@@ -299,8 +299,11 @@ namespace DiamondTrading.Process
 
                 if (IsSuccess)
                 {
-                    Reset();
                     MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(txtSerialNo.Text, Common.LoginFinancialYear, lueCompany.EditValue.ToString());
+                    fvj.ShowDialog();
+                    Reset();
                 }
             }
             catch (Exception Ex)
