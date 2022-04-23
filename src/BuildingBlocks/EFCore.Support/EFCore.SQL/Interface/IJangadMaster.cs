@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,6 @@ namespace EFCore.SQL.Interface
         Task<JangadMaster> AddJangadAsync(JangadMaster jangadMaster);
         Task<JangadMaster[]> UpdateJangadAsync(JangadMaster[] jangadMaster);
         Task<bool> DeleteJangadAsync(string jangadId);
+        Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId, string BrokerId);
     }
 }
