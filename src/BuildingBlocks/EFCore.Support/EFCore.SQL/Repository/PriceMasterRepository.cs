@@ -56,6 +56,16 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<PriceMaster> GetPricesAsync(string companyId, string categoryId, string SizeId, string NumberId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getRecords = await _databaseContext.PriceMaster.Where(s => s.CompanyId == companyId && s.CategoryId == categoryId
+                                    && s.SizeId == SizeId && s.NumberId == NumberId).FirstOrDefaultAsync();
+                return getRecords;
+            }
+        }
+
         public async Task<PriceMaster> UpdatePriceAsync(PriceMaster priceMaster)
         {
             using (_databaseContext = new DatabaseContext())
