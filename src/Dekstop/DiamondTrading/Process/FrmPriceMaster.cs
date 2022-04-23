@@ -59,6 +59,7 @@ namespace DiamondTrading.Process
             lueCompany.Properties.DataSource = data;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
+            lueCompany.EditValue = Common.LoginCompany;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
