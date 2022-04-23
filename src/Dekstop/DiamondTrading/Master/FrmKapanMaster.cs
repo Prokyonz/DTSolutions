@@ -72,13 +72,11 @@ namespace DiamondTrading.Master
                     txtDetails.Text = _EditedKapanMasterSet.Details;
                     if (_EditedKapanMasterSet.CaratLimit > 0)
                     {
-                        chkCaratLimit.Checked = true;
-                        txtCaratLimit.Text = _EditedKapanMasterSet.CaratLimit.ToString();
+                        txtKapanExpense.Text = _EditedKapanMasterSet.CaratLimit.ToString();
                     }
                     else
                     {
-                        chkCaratLimit.Checked = false;
-                        txtCaratLimit.Text = "";
+                        txtKapanExpense.Text = "0";
                     }
                 }
             }
@@ -101,8 +99,7 @@ namespace DiamondTrading.Master
             _selectedKapanId = Guid.Empty.ToString();
             txtKapanName.Text = "";
             txtDetails.Text = "";
-            chkCaratLimit.Checked = false;
-            txtCaratLimit.Text = "";
+            txtKapanExpense.Text = "";
             tglIsActive.Capture = true;
             btnSave.Text = AppMessages.GetString(AppMessageID.Save);
             txtKapanName.Focus();
@@ -117,9 +114,9 @@ namespace DiamondTrading.Master
                 if (!CheckValidation())
                     return;
 
-                decimal caratLimit = 0;
-                if (txtCaratLimit.Text.Trim().Length > 0 && Convert.ToDecimal(txtCaratLimit.Text) > 0)
-                    caratLimit = Convert.ToDecimal(txtCaratLimit.Text);
+                decimal KapanExpense = 0;
+                if (txtKapanExpense.Text.Trim().Length > 0 && Convert.ToDecimal(txtKapanExpense.Text) > 0)
+                    KapanExpense = Convert.ToDecimal(txtKapanExpense.Text);
 
                 if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
@@ -131,7 +128,7 @@ namespace DiamondTrading.Master
                         IsStatus = tglIsActive.IsOn,
                         Name = txtKapanName.Text,
                         Details = txtDetails.Text,
-                        CaratLimit = caratLimit,
+                        CaratLimit = KapanExpense,
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
@@ -156,7 +153,7 @@ namespace DiamondTrading.Master
                     _EditedKapanMasterSet.IsStatus = tglIsActive.IsOn;
                     _EditedKapanMasterSet.Name = txtKapanName.Text;
                     _EditedKapanMasterSet.Details = txtDetails.Text;
-                    _EditedKapanMasterSet.CaratLimit = caratLimit;
+                    _EditedKapanMasterSet.CaratLimit = KapanExpense;
                     _EditedKapanMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedKapanMasterSet.UpdatedDate = DateTime.Now;
 
@@ -208,13 +205,6 @@ namespace DiamondTrading.Master
         private void FrmKapanMaster_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
-        }
-
-        private void chkCaratLimit_CheckedChanged(object sender, EventArgs e)
-        {
-            grpCaratLimit.Enabled = chkCaratLimit.Enabled;
-            if (!chkCaratLimit.Checked)
-                txtCaratLimit.Text = "";
         }
     }
 }

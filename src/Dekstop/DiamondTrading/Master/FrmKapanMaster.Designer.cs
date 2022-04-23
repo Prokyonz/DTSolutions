@@ -35,26 +35,25 @@ namespace DiamondTrading.Master
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.txtKapanName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtCaratLimit = new DevExpress.XtraEditors.TextEdit();
+            this.txtKapanExpense = new DevExpress.XtraEditors.TextEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.grpCaratLimit = new DevExpress.XtraEditors.GroupControl();
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
-            this.chkCaratLimit = new DevExpress.XtraEditors.CheckEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtDetails.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKapanName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCaratLimit.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpCaratLimit)).BeginInit();
-            this.grpCaratLimit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkCaratLimit.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKapanExpense.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
+            this.groupControl1.Controls.Add(this.labelControl1);
+            this.groupControl1.Controls.Add(this.labelControl6);
+            this.groupControl1.Controls.Add(this.txtKapanExpense);
             this.groupControl1.Controls.Add(this.txtDetails);
             this.groupControl1.Controls.Add(this.tglIsActive);
             this.groupControl1.Controls.Add(this.labelControl4);
@@ -62,7 +61,7 @@ namespace DiamondTrading.Master
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Location = new System.Drawing.Point(9, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(345, 157);
+            this.groupControl1.Size = new System.Drawing.Size(345, 202);
             this.groupControl1.TabIndex = 0;
             this.groupControl1.Text = "Kapan Details";
             // 
@@ -117,19 +116,23 @@ namespace DiamondTrading.Master
             this.labelControl2.TabIndex = 1;
             this.labelControl2.Text = "Name*";
             // 
-            // txtCaratLimit
+            // txtKapanExpense
             // 
-            this.txtCaratLimit.Location = new System.Drawing.Point(10, 43);
-            this.txtCaratLimit.Name = "txtCaratLimit";
-            this.txtCaratLimit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.txtCaratLimit.Properties.Appearance.Options.UseFont = true;
-            this.txtCaratLimit.Size = new System.Drawing.Size(97, 22);
-            this.txtCaratLimit.TabIndex = 1;
+            this.txtKapanExpense.Location = new System.Drawing.Point(10, 168);
+            this.txtKapanExpense.Name = "txtKapanExpense";
+            this.txtKapanExpense.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtKapanExpense.Properties.Appearance.Options.UseFont = true;
+            this.txtKapanExpense.Properties.BeepOnError = false;
+            this.txtKapanExpense.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtKapanExpense.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.txtKapanExpense.Properties.MaskSettings.Set("mask", "f");
+            this.txtKapanExpense.Size = new System.Drawing.Size(97, 22);
+            this.txtKapanExpense.TabIndex = 1;
             // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(279, 248);
+            this.btnCancel.Location = new System.Drawing.Point(279, 215);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -138,7 +141,7 @@ namespace DiamondTrading.Master
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(198, 248);
+            this.btnReset.Location = new System.Drawing.Point(198, 215);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 4;
@@ -147,52 +150,39 @@ namespace DiamondTrading.Master
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(117, 248);
+            this.btnSave.Location = new System.Drawing.Point(117, 215);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 3;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // grpCaratLimit
-            // 
-            this.grpCaratLimit.Controls.Add(this.labelControl6);
-            this.grpCaratLimit.Controls.Add(this.txtCaratLimit);
-            this.grpCaratLimit.Enabled = false;
-            this.grpCaratLimit.Location = new System.Drawing.Point(9, 167);
-            this.grpCaratLimit.Name = "grpCaratLimit";
-            this.grpCaratLimit.Size = new System.Drawing.Size(345, 73);
-            this.grpCaratLimit.TabIndex = 2;
-            // 
             // labelControl6
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(10, 26);
+            this.labelControl6.Location = new System.Drawing.Point(10, 151);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(64, 14);
+            this.labelControl6.Size = new System.Drawing.Size(83, 14);
             this.labelControl6.TabIndex = 0;
-            this.labelControl6.Text = "Carate Limit";
+            this.labelControl6.Text = "Kapan Expense";
             // 
-            // chkCaratLimit
+            // labelControl1
             // 
-            this.chkCaratLimit.Location = new System.Drawing.Point(19, 169);
-            this.chkCaratLimit.Name = "chkCaratLimit";
-            this.chkCaratLimit.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkCaratLimit.Properties.Appearance.Options.UseFont = true;
-            this.chkCaratLimit.Properties.Caption = "Set Carat Limit";
-            this.chkCaratLimit.Size = new System.Drawing.Size(128, 18);
-            this.chkCaratLimit.TabIndex = 1;
-            this.chkCaratLimit.CheckedChanged += new System.EventHandler(this.chkCaratLimit_CheckedChanged);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(113, 171);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(88, 14);
+            this.labelControl1.TabIndex = 5;
+            this.labelControl1.Text = "(In Percentage)";
             // 
             // FrmKapanMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(368, 281);
-            this.Controls.Add(this.chkCaratLimit);
-            this.Controls.Add(this.grpCaratLimit);
+            this.ClientSize = new System.Drawing.Size(368, 247);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -212,11 +202,7 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.txtDetails.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsActive.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtKapanName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCaratLimit.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpCaratLimit)).EndInit();
-            this.grpCaratLimit.ResumeLayout(false);
-            this.grpCaratLimit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chkCaratLimit.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtKapanExpense.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -229,12 +215,11 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.SimpleButton btnReset;
         private DevExpress.XtraEditors.SimpleButton btnSave;
-        private DevExpress.XtraEditors.TextEdit txtCaratLimit;
+        private DevExpress.XtraEditors.TextEdit txtKapanExpense;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.ToggleSwitch tglIsActive;
         private DevExpress.XtraEditors.MemoEdit txtDetails;
-        private DevExpress.XtraEditors.GroupControl grpCaratLimit;
-        private DevExpress.XtraEditors.CheckEdit chkCaratLimit;
         private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
     }
 }
