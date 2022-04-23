@@ -27,7 +27,7 @@ namespace DiamondTrading.Process
             _priceMasterRepository = new PriceMasterRepository();
 
             LoadCompany();
-
+            LoadCategory();
             //if (RejectionType == 1)
             //{
             //    SetThemeColors(Color.FromArgb(250, 243, 197));
@@ -38,6 +38,18 @@ namespace DiamondTrading.Process
             //    SetThemeColors(Color.FromArgb(215, 246, 214));
             //    this.Text = "REJECTION SEND";
             //}
+        }
+
+        private void LoadCategory()
+        {
+            var Category = PriceMasterCategory.GetAllCategory();
+
+            if (Category != null)
+            {
+                lueCategory.Properties.DataSource = Category;
+                lueCategory.Properties.DisplayMember = "Name";
+                lueCategory.Properties.ValueMember = "Id";
+            }
         }
 
         private async void LoadCompany()
@@ -130,8 +142,9 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
-                    await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString());
+                    await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString(),lueCategory.EditValue.ToString());
                     PriceMaster priceMaster;
+                    List<PriceMaster> priceMasterList = new List<PriceMaster>();
                     grvParticularsDetails.ExpandAllGroups();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
@@ -140,6 +153,7 @@ namespace DiamondTrading.Process
                             priceMaster = new PriceMaster();
                             priceMaster.Id = Guid.NewGuid().ToString();
                             priceMaster.CompanyId = lueCompany.EditValue.ToString();
+                            priceMaster.CategoryId = lueCategory.EditValue.ToString();
                             priceMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                             priceMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
                             priceMaster.Price = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPrice).ToString());
@@ -148,9 +162,14 @@ namespace DiamondTrading.Process
                             priceMaster.UpdatedBy = Common.LoginUserID;
                             priceMaster.UpdatedDate = DateTime.Now;
 
-                            await _priceMasterRepository.AddPriceAsync(priceMaster);
-                            IsSuccess = true;
+                            priceMasterList.Insert(i,priceMaster);
                         }
+                    }
+
+                    if (priceMasterList.Count > 0)
+                    {
+                        await _priceMasterRepository.AddPriceAsync(priceMasterList);
+                        IsSuccess = true;
                     }
                 }
                 catch(Exception Ex)
@@ -174,8 +193,10 @@ namespace DiamondTrading.Process
             }
         }
 
-        private async void Reset()
+        private void Reset()
         {
+            LoadCompany();
+            LoadCategory();
             grdParticularsDetails.DataSource = null;
             ListAssortmentProcessSend = null;
             dtDate.EditValue = DateTime.Now;
@@ -199,13 +220,18 @@ namespace DiamondTrading.Process
 
         private async void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueCompany.EditValue != null)
+            await GetPriceDetails();
+        }
+
+        private async Task GetPriceDetails()
+        {
+            if (lueCompany.EditValue != null && lueCategory.EditValue != null)
             {
                 var defaultPriceList = await _priceMasterRepository.GetDefaultPriceList();
                 DataTable dtDefaultList = Common.ToDataTable(defaultPriceList);
                 grdParticularsDetails.DataSource = dtDefaultList;
 
-                var priceList = await _priceMasterRepository.GetAllPricesAsync(lueCompany.EditValue.ToString());
+                var priceList = await _priceMasterRepository.GetAllPricesAsync(lueCompany.EditValue.ToString(), lueCategory.EditValue.ToString());
                 if (priceList != null)
                 {
                     var priceDetail = priceList.Where(x => x.Price > 0).ToList();
@@ -224,6 +250,11 @@ namespace DiamondTrading.Process
                     }
                 }
             }
+        }
+
+        private async void lueCategory_EditValueChanged(object sender, EventArgs e)
+        {
+            await GetPriceDetails();
         }
     }
 }

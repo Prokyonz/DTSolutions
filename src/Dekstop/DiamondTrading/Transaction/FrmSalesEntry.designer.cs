@@ -102,6 +102,7 @@ namespace DiamondTrading.Transaction
             this.repoNumberSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colGalaSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoGalaSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpGroup6 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -134,7 +135,6 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -1133,6 +1133,12 @@ namespace DiamondTrading.Transaction
             this.repoGalaSize.Name = "repoGalaSize";
             this.repoGalaSize.NullText = "";
             // 
+            // colShapeId
+            // 
+            this.colShapeId.Caption = "ShapeId";
+            this.colShapeId.FieldName = "ShapeId";
+            this.colShapeId.Name = "colShapeId";
+            // 
             // grpGroup6
             // 
             this.grpGroup6.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1496,18 +1502,12 @@ namespace DiamondTrading.Transaction
             this.pnlStatus.LookAndFeel.Style = DevExpress.LookAndFeel.LookAndFeelStyle.Flat;
             this.pnlStatus.LookAndFeel.UseDefaultLookAndFeel = false;
             this.pnlStatus.Name = "pnlStatus";
-            this.pnlStatus.Size = new System.Drawing.Size(7, 534);
+            this.pnlStatus.Size = new System.Drawing.Size(12, 534);
             this.pnlStatus.TabIndex = 9;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // colShapeId
-            // 
-            this.colShapeId.Caption = "ShapeId";
-            this.colShapeId.FieldName = "ShapeId";
-            this.colShapeId.Name = "colShapeId";
             // 
             // FrmSalesEntry
             // 
