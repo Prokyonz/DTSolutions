@@ -67,10 +67,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
         public virtual DbSet<JangadSPReceiveModel> JangadSPReceiveModel { get; set; }
-
-
-
-
+        public virtual DbSet<JangadPrintDetailModel> JangadPrintDetailModel { get; set; }
         public virtual DbSet<KapanMapping> SPKapanMapping { get; set; }
         public virtual DbSet<AssortmentProcessSend> SPAssortmentProcessSend { get; set; }
         public virtual DbSet<BoilProcessSend> SPBoilProcessSend { get; set; }
@@ -184,6 +181,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CharniSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<PriceSPModel>().HasNoKey();
             modelBuilder.Entity<JangadSPReceiveModel>().HasNoKey();
+            modelBuilder.Entity<JangadPrintDetailModel>().HasNoKey();
             modelBuilder.Entity<GalaProcessSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<NumberProcessSendReceiveReportModel>().HasNoKey();
         }

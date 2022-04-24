@@ -144,6 +144,7 @@ namespace DiamondTrading
             this.colIsUserActive = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemCheckEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colUserName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ColUserType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colUserUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
@@ -153,7 +154,6 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.gridColumn16 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -1124,7 +1124,7 @@ namespace DiamondTrading
             // 
             // colKapanCaratLimit
             // 
-            this.colKapanCaratLimit.Caption = "Carat Limit";
+            this.colKapanCaratLimit.Caption = "Kapan Expense";
             this.colKapanCaratLimit.FieldName = "CaratLimit";
             this.colKapanCaratLimit.Name = "colKapanCaratLimit";
             this.colKapanCaratLimit.Visible = true;
@@ -1288,6 +1288,15 @@ namespace DiamondTrading
             this.colUserName.VisibleIndex = 0;
             this.colUserName.Width = 637;
             // 
+            // gridColumn16
+            // 
+            this.gridColumn16.Caption = "User Name";
+            this.gridColumn16.FieldName = "UserName";
+            this.gridColumn16.Name = "gridColumn16";
+            this.gridColumn16.Visible = true;
+            this.gridColumn16.VisibleIndex = 1;
+            this.gridColumn16.Width = 200;
+            // 
             // ColUserType
             // 
             this.ColUserType.Caption = "User Type";
@@ -1374,15 +1383,6 @@ namespace DiamondTrading
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // gridColumn16
-            // 
-            this.gridColumn16.Caption = "User Name";
-            this.gridColumn16.FieldName = "UserName";
-            this.gridColumn16.Name = "gridColumn16";
-            this.gridColumn16.Visible = true;
-            this.gridColumn16.VisibleIndex = 1;
-            this.gridColumn16.Width = 200;
             // 
             // FrmMasterDetails
             // 

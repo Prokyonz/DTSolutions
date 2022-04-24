@@ -298,7 +298,7 @@ namespace DiamondTrading.Process
             }
         }
 
-        private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private async void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
             {
@@ -356,6 +356,16 @@ namespace DiamondTrading.Process
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
                             grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Number);
+
+                            PriceMasterRepository priceMasterRepository = new PriceMasterRepository();
+                            PriceMaster PriceRate = await priceMasterRepository.GetPricesAsync(Common.LoginCompany, PriceMasterCategory.Number.ToString(),
+                                ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId,
+                                ((Repository.Entities.Models.NumberProcessReturn)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
+
+                            if (PriceRate != null)
+                            {
+                                grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, PriceRate.Price);
+                            }
                         }
                         //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                         //grvPurchaseItems.FocusedColumn = colBoilCarat;
