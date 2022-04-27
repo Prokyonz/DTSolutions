@@ -112,5 +112,14 @@ namespace EFCore.SQL.Repository
                 return defaultPriceList;
             }
         }
+
+        public async Task<List<JangadSPReportModel>> GetJangadReport(string CompanyId, string FinancialYearId, int jangadType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var JangadReports = await _databaseContext.SPJangadSendReceiveReportModel.FromSqlRaw($"GetJangadReport '" + CompanyId + "','" + FinancialYearId + "', " + jangadType + "").ToListAsync();
+                return JangadReports;
+            }
+        }
     }
 }

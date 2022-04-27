@@ -22,6 +22,7 @@ namespace DiamondTrading
         private ContraEntryMasterRespository  _contraEntryMasterRespository;
         private ExpenseMasterRepository _expenseMasterRepository;
         private LoanMasterRepository _loanMasterRepository;
+        private JangadMasterRepository _JangadMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -91,6 +92,18 @@ namespace DiamondTrading
                     xtabPurchaseSlipPrint.Text = "Sales Slip Details";
                     this.Text = "Sales Slips Details";
                     break;
+                case "JangadSend":
+                    xtabJangadSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabJangadSendReceive;
+                    xtabJangadSendReceive.Text = "Jangad Send";
+                    this.Text = "Jangad Send";
+                    break;
+                case "JangadReceive":
+                    xtabJangadSendReceive.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabJangadSendReceive;
+                    xtabJangadSendReceive.Text = "Jangad Receive";
+                    this.Text = "Jangad Receive";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -111,6 +124,7 @@ namespace DiamondTrading
             xtabLoan.PageVisible = false;
             xtabMixed.PageVisible = false;
             xtabPurchaseSlipPrint.PageVisible = false;
+            xtabJangadSendReceive.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -230,6 +244,19 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType,Common.LoginCompany, Common.LoginFinancialYear);
                     grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                if (IsForceLoad || _JangadMasterRepository == null)
+                {
+                    int ActionType = 1;
+                    if (SelectedTabPage.Equals("JangadSend"))
+                        ActionType = 2;
+
+                    _JangadMasterRepository = new JangadMasterRepository();
+                    var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
+                    gridControlJangadSendReceive.DataSource = data;
                 }
             }
         }
@@ -577,6 +604,21 @@ namespace DiamondTrading
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
                 }
             }
+        }
+
+        private void repositoryJangadPrintReport_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void repositoryJangadPrintReport_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
+        {
+            string sr = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "Sr").ToString();
+            string srNo = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "SrNo").ToString();
+            string FinancialYear = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "FinancialYearId").ToString();
+
+            Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany);
+            fvj.ShowDialog();
         }
     }
 }
