@@ -1065,6 +1065,7 @@ namespace DiamondTrading.Transaction
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(264, 43);
             this.txtRemark.TabIndex = 0;
+            this.txtRemark.EditValueChanged += new System.EventHandler(this.txtRemark_EditValueChanged);
             // 
             // btnCancel
             // 

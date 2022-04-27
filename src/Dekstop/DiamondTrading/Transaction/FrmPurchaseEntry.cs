@@ -672,12 +672,10 @@ namespace DiamondTrading.Transaction
         {
             if (MessageBox.Show("Do you want add more Items...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
             {
+                txtRemark.Focus();
                 //IsFocusMoveToOutsideGrid = true;
-                //grvPurchaseItems.CloseEditor();
-                //this.SelectNextControl(grdPurchaseItems, true, true, true, true);
-
-
-                //this.SelectNextControl(grdPurchaseItems, true, true, true, true);
+                grvPurchaseDetails.CloseEditor();
+                this.SelectNextControl(txtRemark, true, true, true, true);
             }
         }
 
@@ -1556,6 +1554,11 @@ namespace DiamondTrading.Transaction
         }
 
         private void grpGroup9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void txtRemark_EditValueChanged(object sender, EventArgs e)
         {
 
         }

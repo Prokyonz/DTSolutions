@@ -1308,7 +1308,7 @@ namespace DiamondTrading.Transaction
             // 
             // txtCurrencyAmount
             // 
-            this.txtCurrencyAmount.EditValue = "1000";
+            this.txtCurrencyAmount.EditValue = "0";
             this.txtCurrencyAmount.Enabled = false;
             this.txtCurrencyAmount.Location = new System.Drawing.Point(166, 89);
             this.txtCurrencyAmount.Name = "txtCurrencyAmount";
@@ -1333,7 +1333,7 @@ namespace DiamondTrading.Transaction
             // 
             // txtNetAmount
             // 
-            this.txtNetAmount.EditValue = "1000";
+            this.txtNetAmount.EditValue = "0";
             this.txtNetAmount.Enabled = false;
             this.txtNetAmount.Location = new System.Drawing.Point(166, 45);
             this.txtNetAmount.Name = "txtNetAmount";
@@ -1358,7 +1358,7 @@ namespace DiamondTrading.Transaction
             // 
             // txtRoundAmount
             // 
-            this.txtRoundAmount.EditValue = "10";
+            this.txtRoundAmount.EditValue = "0";
             this.txtRoundAmount.Enabled = false;
             this.txtRoundAmount.Location = new System.Drawing.Point(9, 89);
             this.txtRoundAmount.Name = "txtRoundAmount";
@@ -1383,7 +1383,7 @@ namespace DiamondTrading.Transaction
             // 
             // txtAmount
             // 
-            this.txtAmount.EditValue = "1000";
+            this.txtAmount.EditValue = "0";
             this.txtAmount.Enabled = false;
             this.txtAmount.Location = new System.Drawing.Point(9, 45);
             this.txtAmount.Name = "txtAmount";

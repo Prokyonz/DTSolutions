@@ -14,6 +14,8 @@ namespace Repository.Entities
         public static int Expense = 3;
         public static int Bank = 4;
         public static int Cash = 5;
+        public static int DirectIncome = 6;
+        public static int InDirectIncome = 7;
 
         public static int Buyer = 6;
         public static int Seller = 7;
@@ -50,6 +52,9 @@ namespace Repository.Entities
                 {
                     new PartyTypeMaster { Id = Party, Name = "Party" },
                     new PartyTypeMaster { Id = Employee, Name = "Employee" },
+                    new PartyTypeMaster { Id = Expense, Name = "Expense" },
+                    new PartyTypeMaster { Id = DirectIncome, Name = "Direct Income" },
+                    new PartyTypeMaster { Id = InDirectIncome, Name = "In-Direct Income" },
                     new PartyTypeMaster { Id = Expense, Name = "Expense" },
                     new PartyTypeMaster { Id = Loan, Name = "Loan" },
                     new PartyTypeMaster {Id = Bank, Name = "Bank" },
