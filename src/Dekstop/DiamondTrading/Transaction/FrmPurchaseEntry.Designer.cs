@@ -256,7 +256,7 @@ namespace DiamondTrading.Transaction
             this.txtSlipNo.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSlipNo.Properties.MaskSettings.Set("mask", "d");
             this.txtSlipNo.Size = new System.Drawing.Size(88, 26);
-            this.txtSlipNo.TabIndex = 5;
+            this.txtSlipNo.TabIndex = 3;
             // 
             // labelControl2
             // 
@@ -297,7 +297,7 @@ namespace DiamondTrading.Transaction
             this.dtTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtTime.Properties.MaskSettings.Set("mask", "t");
             this.dtTime.Size = new System.Drawing.Size(88, 22);
-            this.dtTime.TabIndex = 8;
+            this.dtTime.TabIndex = 5;
             // 
             // txtSerialNo
             // 
@@ -307,7 +307,7 @@ namespace DiamondTrading.Transaction
             this.txtSerialNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
             this.txtSerialNo.Size = new System.Drawing.Size(88, 26);
-            this.txtSerialNo.TabIndex = 3;
+            this.txtSerialNo.TabIndex = 2;
             // 
             // labelControl1
             // 
@@ -333,7 +333,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 7;
+            this.dtDate.TabIndex = 4;
             // 
             // lueBranch
             // 
@@ -348,7 +348,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "BranchID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(267, 22);
-            this.lueBranch.TabIndex = 6;
+            this.lueBranch.TabIndex = 9;
             this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
             // 
             // luePaymentMode
@@ -364,7 +364,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PTypeID", "PaymentModeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.luePaymentMode.Properties.NullText = "";
             this.luePaymentMode.Size = new System.Drawing.Size(267, 22);
-            this.luePaymentMode.TabIndex = 1;
+            this.luePaymentMode.TabIndex = 6;
             // 
             // labelControl5
             // 
@@ -416,7 +416,7 @@ namespace DiamondTrading.Transaction
             this.txtCurrencyType.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCurrencyType.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtCurrencyType.Size = new System.Drawing.Size(76, 22);
-            this.txtCurrencyType.TabIndex = 4;
+            this.txtCurrencyType.TabIndex = 8;
             // 
             // labelControl9
             // 
@@ -443,7 +443,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Value", "Rate", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCurrencyType.Properties.NullText = "";
             this.lueCurrencyType.Size = new System.Drawing.Size(193, 22);
-            this.lueCurrencyType.TabIndex = 3;
+            this.lueCurrencyType.TabIndex = 7;
             this.lueCurrencyType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lueCurrencyType_KeyDown);
             this.lueCurrencyType.Leave += new System.EventHandler(this.lueCurrencyType_Leave);
             // 
@@ -473,7 +473,7 @@ namespace DiamondTrading.Transaction
             this.txtBuyerCommisionPer.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtBuyerCommisionPer.Properties.MaskSettings.Set("mask", "f");
             this.txtBuyerCommisionPer.Size = new System.Drawing.Size(76, 22);
-            this.txtBuyerCommisionPer.TabIndex = 2;
+            this.txtBuyerCommisionPer.TabIndex = 11;
             this.txtBuyerCommisionPer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuyerCommisionPer_KeyDown);
             this.txtBuyerCommisionPer.Leave += new System.EventHandler(this.txtBuyerCommisionPer_Leave);
             // 
@@ -491,7 +491,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBuyer.Properties.NullText = "";
             this.lueBuyer.Size = new System.Drawing.Size(193, 22);
-            this.lueBuyer.TabIndex = 1;
+            this.lueBuyer.TabIndex = 10;
             this.lueBuyer.EditValueChanged += new System.EventHandler(this.lueBuyer_EditValueChanged);
             this.lueBuyer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
@@ -508,7 +508,7 @@ namespace DiamondTrading.Transaction
             this.txtPartyBalance.Properties.Appearance.Options.UseTextOptions = true;
             this.txtPartyBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtPartyBalance.Size = new System.Drawing.Size(76, 22);
-            this.txtPartyBalance.TabIndex = 5;
+            this.txtPartyBalance.TabIndex = 13;
             // 
             // lueParty
             // 
@@ -524,7 +524,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueParty.Properties.NullText = "";
             this.lueParty.Size = new System.Drawing.Size(193, 22);
-            this.lueParty.TabIndex = 4;
+            this.lueParty.TabIndex = 12;
             this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
             this.lueParty.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
@@ -554,7 +554,7 @@ namespace DiamondTrading.Transaction
             this.txtBrokerPer.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtBrokerPer.Properties.MaskSettings.Set("mask", "f");
             this.txtBrokerPer.Size = new System.Drawing.Size(76, 22);
-            this.txtBrokerPer.TabIndex = 8;
+            this.txtBrokerPer.TabIndex = 15;
             this.txtBrokerPer.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrokerPer_KeyDown);
             this.txtBrokerPer.Leave += new System.EventHandler(this.txtBrokerPer_Leave);
             // 
@@ -573,7 +573,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BrokerageId", "BrokerageId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBroker.Properties.NullText = "";
             this.lueBroker.Size = new System.Drawing.Size(193, 22);
-            this.lueBroker.TabIndex = 7;
+            this.lueBroker.TabIndex = 14;
             this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
             this.lueBroker.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
@@ -674,7 +674,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtPayDate.Properties.MaskSettings.Set("mask", "d");
             this.dtPayDate.Size = new System.Drawing.Size(100, 22);
-            this.dtPayDate.TabIndex = 6;
+            this.dtPayDate.TabIndex = 21;
             this.dtPayDate.Validated += new System.EventHandler(this.dtPayDate_Validated);
             // 
             // txtPaymentDays
@@ -688,7 +688,7 @@ namespace DiamondTrading.Transaction
             this.txtPaymentDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtPaymentDays.Properties.MaskSettings.Set("mask", "d");
             this.txtPaymentDays.Size = new System.Drawing.Size(77, 22);
-            this.txtPaymentDays.TabIndex = 4;
+            this.txtPaymentDays.TabIndex = 20;
             this.txtPaymentDays.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPaymentDays_KeyDown);
             this.txtPaymentDays.Leave += new System.EventHandler(this.txtPaymentDays_Leave);
             // 
@@ -723,7 +723,7 @@ namespace DiamondTrading.Transaction
             this.txtDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtDays.Properties.MaskSettings.Set("mask", "d");
             this.txtDays.Size = new System.Drawing.Size(77, 22);
-            this.txtDays.TabIndex = 2;
+            this.txtDays.TabIndex = 19;
             // 
             // grpGroup5
             // 
@@ -750,7 +750,7 @@ namespace DiamondTrading.Transaction
             this.repoKapan,
             this.repoTxtEdit});
             this.grdPurchaseDetails.Size = new System.Drawing.Size(1061, 161);
-            this.grdPurchaseDetails.TabIndex = 0;
+            this.grdPurchaseDetails.TabIndex = 17;
             this.grdPurchaseDetails.UseEmbeddedNavigator = true;
             this.grdPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPurchaseDetails});
@@ -1064,7 +1064,7 @@ namespace DiamondTrading.Transaction
             this.txtRemark.Location = new System.Drawing.Point(12, 29);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(264, 43);
-            this.txtRemark.TabIndex = 0;
+            this.txtRemark.TabIndex = 18;
             this.txtRemark.EditValueChanged += new System.EventHandler(this.txtRemark_EditValueChanged);
             // 
             // btnCancel
@@ -1075,7 +1075,7 @@ namespace DiamondTrading.Transaction
             this.btnCancel.Location = new System.Drawing.Point(1011, 530);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 16;
+            this.btnCancel.TabIndex = 35;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -1086,8 +1086,9 @@ namespace DiamondTrading.Transaction
             this.btnReset.Location = new System.Drawing.Point(930, 530);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 15;
+            this.btnReset.TabIndex = 34;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
@@ -1096,7 +1097,7 @@ namespace DiamondTrading.Transaction
             this.btnSave.Location = new System.Drawing.Point(849, 530);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 33;
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -1127,7 +1128,8 @@ namespace DiamondTrading.Transaction
             this.tlSlipTransfer.Location = new System.Drawing.Point(9, 45);
             this.tlSlipTransfer.Name = "tlSlipTransfer";
             this.tlSlipTransfer.Size = new System.Drawing.Size(245, 113);
-            this.tlSlipTransfer.TabIndex = 1;
+            this.tlSlipTransfer.TabIndex = 16;
+            this.tlSlipTransfer.TabStop = false;
             // 
             // labelControl18
             // 
@@ -1151,7 +1153,7 @@ namespace DiamondTrading.Transaction
             this.tglPF.Properties.OnText = "";
             this.tglPF.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tglPF.Size = new System.Drawing.Size(56, 19);
-            this.tglPF.TabIndex = 13;
+            this.tglPF.TabIndex = 32;
             // 
             // labelControl15
             // 
@@ -1177,7 +1179,7 @@ namespace DiamondTrading.Transaction
             this.tglSlip.Properties.OnText = "";
             this.tglSlip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tglSlip.Size = new System.Drawing.Size(56, 19);
-            this.tglSlip.TabIndex = 11;
+            this.tglSlip.TabIndex = 31;
             // 
             // grpGroup9
             // 
@@ -1221,7 +1223,7 @@ namespace DiamondTrading.Transaction
             this.txtCurrencyAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCurrencyAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtCurrencyAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtCurrencyAmount.TabIndex = 7;
+            this.txtCurrencyAmount.TabIndex = 30;
             // 
             // labelControl23
             // 
@@ -1246,7 +1248,7 @@ namespace DiamondTrading.Transaction
             this.txtNetAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtNetAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtNetAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtNetAmount.TabIndex = 5;
+            this.txtNetAmount.TabIndex = 28;
             // 
             // labelControl21
             // 
@@ -1271,7 +1273,7 @@ namespace DiamondTrading.Transaction
             this.txtRoundAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtRoundAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtRoundAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtRoundAmount.TabIndex = 3;
+            this.txtRoundAmount.TabIndex = 29;
             // 
             // labelControl20
             // 
@@ -1294,7 +1296,7 @@ namespace DiamondTrading.Transaction
             this.txtAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtAmount.TabIndex = 1;
+            this.txtAmount.TabIndex = 27;
             // 
             // grpGroup8
             // 
@@ -1333,7 +1335,7 @@ namespace DiamondTrading.Transaction
             this.txtCommisionAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCommisionAmount.Properties.MaskSettings.Set("mask", "f");
             this.txtCommisionAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtCommisionAmount.TabIndex = 3;
+            this.txtCommisionAmount.TabIndex = 26;
             this.txtCommisionAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCommisionAmount_KeyDown);
             this.txtCommisionAmount.Leave += new System.EventHandler(this.txtCommisionAmount_Leave);
             // 
@@ -1360,7 +1362,7 @@ namespace DiamondTrading.Transaction
             this.txtBrokerageAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtBrokerageAmount.Properties.MaskSettings.Set("mask", "f");
             this.txtBrokerageAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtBrokerageAmount.TabIndex = 1;
+            this.txtBrokerageAmount.TabIndex = 25;
             this.txtBrokerageAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBrokerageAmount_KeyDown);
             this.txtBrokerageAmount.Leave += new System.EventHandler(this.txtBrokerageAmount_Leave);
             // 
@@ -1383,7 +1385,7 @@ namespace DiamondTrading.Transaction
             this.Image3.Name = "Image3";
             this.Image3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image3.Size = new System.Drawing.Size(85, 85);
-            this.Image3.TabIndex = 2;
+            this.Image3.TabIndex = 24;
             this.Image3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image3_MouseDoubleClick);
             // 
             // Image2
@@ -1392,7 +1394,7 @@ namespace DiamondTrading.Transaction
             this.Image2.Name = "Image2";
             this.Image2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image2.Size = new System.Drawing.Size(85, 85);
-            this.Image2.TabIndex = 1;
+            this.Image2.TabIndex = 23;
             this.Image2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image2_MouseDoubleClick);
             // 
             // Image1
@@ -1402,7 +1404,7 @@ namespace DiamondTrading.Transaction
             this.Image1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.Image1.Size = new System.Drawing.Size(85, 85);
-            this.Image1.TabIndex = 0;
+            this.Image1.TabIndex = 22;
             this.Image1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image1_MouseDoubleClick);
             // 
             // pnlStatus

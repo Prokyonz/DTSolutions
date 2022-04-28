@@ -1187,6 +1187,7 @@ namespace DiamondTrading.Transaction
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 15;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
@@ -1227,6 +1228,7 @@ namespace DiamondTrading.Transaction
             this.tlSlipTransfer.Name = "tlSlipTransfer";
             this.tlSlipTransfer.Size = new System.Drawing.Size(245, 113);
             this.tlSlipTransfer.TabIndex = 1;
+            this.tlSlipTransfer.TabStop = false;
             // 
             // labelControl18
             // 

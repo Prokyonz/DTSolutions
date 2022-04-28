@@ -646,6 +646,9 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["CharniSize"].Visible = true;
                         repoShape.Columns["GalaSize"].Visible = false;
                         repoShape.Columns["NumberSize"].Visible = false;
+                        repoShape.Columns["Kapan"].Visible = true;
+                        repoShape.Columns["Size"].Visible = true;
+                        repoShape.Columns["Purity"].Visible = true;
 
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = true;
@@ -682,6 +685,9 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["CharniSize"].Visible = true;
                         repoShape.Columns["GalaSize"].Visible = false;
                         repoShape.Columns["NumberSize"].Visible = true;
+                        repoShape.Columns["Kapan"].Visible = false;
+                        repoShape.Columns["Size"].Visible = false;
+                        repoShape.Columns["Purity"].Visible = false;
 
                         colNumberSize.Visible = true;
                         colCharniSize.Visible = true;
@@ -722,6 +728,9 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["CharniSize"].Visible = true;
                         repoShape.Columns["GalaSize"].Visible = true;
                         repoShape.Columns["NumberSize"].Visible = false;
+                        repoShape.Columns["Kapan"].Visible = true;
+                        repoShape.Columns["Size"].Visible = true;
+                        repoShape.Columns["Purity"].Visible = true;
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = true;
@@ -761,6 +770,9 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["CharniSize"].Visible = false;
                         repoShape.Columns["GalaSize"].Visible = false;
                         repoShape.Columns["NumberSize"].Visible = false;
+                        repoShape.Columns["Kapan"].Visible = true;
+                        repoShape.Columns["Size"].Visible = true;
+                        repoShape.Columns["Purity"].Visible = true;
 
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = false;
@@ -812,6 +824,16 @@ namespace DiamondTrading.Transaction
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
                             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
+
+                            PriceMasterRepository priceMasterRepository = new PriceMasterRepository();
+                            PriceMaster PriceRate = await priceMasterRepository.GetPricesAsync(lueCompany.EditValue.ToString(), PriceMasterCategory.Number.ToString(),
+                                ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId,
+                                ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
+
+                            if (PriceRate != null)
+                            {
+                                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRate, PriceRate.Price);
+                            }
                         }
                         else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
                         {
@@ -837,7 +859,7 @@ namespace DiamondTrading.Transaction
 
         private void grvPurchaseDetails_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GetTotal();
+            //GetTotal();
         }
 
         private void grvPurchaseDetails_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
@@ -855,15 +877,20 @@ namespace DiamondTrading.Transaction
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
-            if (MessageBox.Show("Do you want add more Items...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+            BeginInvoke(new Action(() =>
             {
-                //IsFocusMoveToOutsideGrid = true;
-                //grvPurchaseItems.CloseEditor();
-                //this.SelectNextControl(grdPurchaseItems, true, true, true, true);
-
-
-                //this.SelectNextControl(grdPurchaseItems, true, true, true, true);
-            }
+                GetTotal();
+                if (MessageBox.Show("Do you want add more Items...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                {
+                    //grvPurchaseDetails.CloseEditor();
+                    grvPurchaseDetails.HideEditor();
+                    grvPurchaseDetails.CancelUpdateCurrentRow();
+                    txtRemark.Select();
+                    txtRemark.Focus();
+                    //IsFocusMoveToOutsideGrid = true;
+                    //this.SelectNextControl(txtRemark, true, true, true, true);
+                }
+            }));
         }
 
         private async void GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
@@ -1350,8 +1377,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await Reset();
                     }
                 }
                 else
@@ -1408,8 +1435,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await Reset();
                     }
                 }
             }
@@ -1422,7 +1449,7 @@ namespace DiamondTrading.Transaction
                 this.Cursor = Cursors.Default;
             }
         }
-
+         
         public byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -1501,7 +1528,7 @@ namespace DiamondTrading.Transaction
             return true;
         }
 
-        private async void Reset()
+        private async Task Reset()
         {
             grdPurchaseDetails.DataSource = null;
             lueSaler.EditValue = "";
@@ -1534,7 +1561,14 @@ namespace DiamondTrading.Transaction
             _editedSalesMaster = null;
             pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
             await GetSalesNo();
+            
+            txtSlipNo.Select();
             txtSlipNo.Focus();
+        }
+
+        private async void btnReset_Click(object sender, EventArgs e)
+        {
+            await Reset();
         }
     }
 }
