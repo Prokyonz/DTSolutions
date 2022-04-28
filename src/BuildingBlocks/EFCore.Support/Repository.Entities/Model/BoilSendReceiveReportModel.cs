@@ -7,9 +7,10 @@ namespace Repository.Entities.Model
 {
     public class BoilSendReceiveReportModel
     {
-        public string Id { get; set; }
+        //public string Id { get; set; }
         public int BoilType { get; set; }
-        public int Sr { get; set; }
+        public int BoilNo { get; set; }
+        //public int Sr { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
@@ -31,9 +32,20 @@ namespace Repository.Entities.Model
         public string SlipNo { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public string UpdatedBy { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LossWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal RejectionWeight { get; set; }
+
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalWeight { get; set; }
+
+        //public string CreatedBy { get; set; }
+        //public DateTime? CreatedDate { get; set; }
+        //public string UpdatedBy { get; set; }
+        //public DateTime? UpdatedDate { get; set; }
     }
 }

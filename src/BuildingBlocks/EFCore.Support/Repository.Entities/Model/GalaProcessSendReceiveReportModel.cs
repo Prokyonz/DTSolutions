@@ -7,9 +7,10 @@ namespace Repository.Entities.Model
 {
     public class GalaProcessSendReceiveReportModel
     {
-        public string Id { get; set; }
+        //public string Id { get; set; }
         public int GalaProcessType { get; set; }
-        public int Sr { get; set; }
+        public int GalaNo { get; set; }
+        //public int Sr { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
@@ -25,15 +26,29 @@ namespace Repository.Entities.Model
         public string ShapeName { get; set; }
         public string SizeId { get; set; }
         public string SizeName { get; set; }
+        public string GalaNumberId { get; set; }
+        public string GalaName { get; set; }
         public string PurityId { get; set; }
         public string PurityName { get; set; }
         public string Remarks { get; set; }
         public string SlipNo { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
-        public string CreatedBy { get; set; }
-        public DateTime? CreatedDate { get; set; }
-        public string UpdatedBy { get; set; }
-        public DateTime? UpdatedDate { get; set; }
+
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LossWeight { get; set; }
+
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal RejectionWeight { get; set; }
+
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalWeight { get; set; }
+        //public string CreatedBy { get; set; }
+        //public DateTime? CreatedDate { get; set; }
+        //public string UpdatedBy { get; set; }
+        //public DateTime? UpdatedDate { get; set; }
     }
 }

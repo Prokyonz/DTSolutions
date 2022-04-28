@@ -188,9 +188,14 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _charniProcessMasterRepository == null)
                 {
+                    int type = SelectedTabPage == "CharniSend" ? 0 : 1;
                     _charniProcessMasterRepository = new CharniProcessMasterRepository();
-                    var data = await _charniProcessMasterRepository.GetCharniSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "CharniSend" ? 0 : 1);
+                    var data = await _charniProcessMasterRepository.GetCharniSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
                     gridControlCharniReportMaster.DataSource = data;
+                    if (type == 0)
+                        gridColumn80.Visible = false;
+                    else
+                        gridColumn80.Visible = true;
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
@@ -198,17 +203,33 @@ namespace DiamondTrading
                 if (IsForceLoad || _galaProcessMasterRepository == null)
                 {
                     _galaProcessMasterRepository = new GalaProcessMasterRepository();
-                    var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "GalaSend" ? 0 : 1);
+                    int type =  SelectedTabPage == "GalaSend" ? 0 : 1;
+                    var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
                     gridControlGalaReportMaster.DataSource = data;
+                    if (type == 0)
+                        gridColumn108.Visible = false;
+                    else
+                        gridColumn108.Visible = true;
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
             {
                 if (IsForceLoad || _numberProcessMasterRepository == null)
                 {
+                    int type = SelectedTabPage == "NumberSend" ? 0 : 1;
                     _numberProcessMasterRepository = new NumberProcessMasterRepository();
-                    var data = await _numberProcessMasterRepository.GetNumberSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "NumberSend" ? 0 : 1);
+                    var data = await _numberProcessMasterRepository.GetNumberSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
                     gridControlNumerReportMaster.DataSource = data;
+                    if (type == 0)
+                    {
+                        gridColumn135.Visible = false;
+                        gridColumn137.Visible = false;
+                    }
+                    else
+                    {
+                        gridColumn135.Visible = true;
+                        gridColumn137.Visible = true;
+                    }
                 }
             }
         }

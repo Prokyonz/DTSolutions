@@ -123,7 +123,6 @@ namespace DiamondTrading
             this.xtabBoilSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlBoilSendReceiveMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewBoilSendReceiveMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn41 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn42 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn45 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -143,16 +142,16 @@ namespace DiamondTrading
             this.gridColumn59 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn60 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn61 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn134 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn133 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn62 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn63 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn64 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn65 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabCjharniSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlCharniReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewCharniReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn66 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn67 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -172,16 +171,16 @@ namespace DiamondTrading
             this.gridColumn81 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn82 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn83 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn64 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn63 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn40 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn84 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn85 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn86 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn87 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlGalaReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewGalaReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn88 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn89 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn90 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -201,16 +200,18 @@ namespace DiamondTrading
             this.gridColumn104 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn105 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn106 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn107 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn108 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn86 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn85 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn109 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn108 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn107 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlNumerReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewNumberReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn111 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn112 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -227,12 +228,17 @@ namespace DiamondTrading
             this.gridColumn123 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn124 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn125 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn136 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn135 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn138 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn137 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn126 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn127 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn128 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn129 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn130 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn131 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn130 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn15 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn129 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView10 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn132 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -1121,7 +1127,6 @@ namespace DiamondTrading
             // gridViewBoilSendReceiveMaster
             // 
             this.gridViewBoilSendReceiveMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn12,
             this.gridColumn41,
             this.gridColumn42,
             this.gridColumn45,
@@ -1141,9 +1146,10 @@ namespace DiamondTrading
             this.gridColumn59,
             this.gridColumn60,
             this.gridColumn61,
-            this.gridColumn62,
-            this.gridColumn63,
-            this.gridColumn64});
+            this.gridColumn134,
+            this.gridColumn133,
+            this.gridColumn12,
+            this.gridColumn62});
             this.gridViewBoilSendReceiveMaster.GridControl = this.gridControlBoilSendReceiveMaster;
             this.gridViewBoilSendReceiveMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
@@ -1153,20 +1159,14 @@ namespace DiamondTrading
             this.gridViewBoilSendReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn41, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
-            // gridColumn12
-            // 
-            this.gridColumn12.Caption = "Id";
-            this.gridColumn12.FieldName = "Id";
-            this.gridColumn12.Name = "gridColumn12";
-            // 
             // gridColumn41
             // 
             this.gridColumn41.Caption = "Sr No";
-            this.gridColumn41.FieldName = "Sr";
+            this.gridColumn41.FieldName = "BoilNo";
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
             this.gridColumn41.VisibleIndex = 0;
-            this.gridColumn41.Width = 46;
+            this.gridColumn41.Width = 57;
             // 
             // gridColumn42
             // 
@@ -1189,11 +1189,13 @@ namespace DiamondTrading
             // gridColumn47
             // 
             this.gridColumn47.Caption = "Entry Date";
+            this.gridColumn47.DisplayFormat.FormatString = "yyyy-MM-dd";
+            this.gridColumn47.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.gridColumn47.FieldName = "EntryDate";
             this.gridColumn47.Name = "gridColumn47";
             this.gridColumn47.Visible = true;
             this.gridColumn47.VisibleIndex = 1;
-            this.gridColumn47.Width = 62;
+            this.gridColumn47.Width = 59;
             // 
             // gridColumn48
             // 
@@ -1209,7 +1211,7 @@ namespace DiamondTrading
             this.gridColumn49.Name = "gridColumn49";
             this.gridColumn49.Visible = true;
             this.gridColumn49.VisibleIndex = 7;
-            this.gridColumn49.Width = 171;
+            this.gridColumn49.Width = 159;
             // 
             // gridColumn50
             // 
@@ -1225,7 +1227,7 @@ namespace DiamondTrading
             this.gridColumn51.Name = "gridColumn51";
             this.gridColumn51.Visible = true;
             this.gridColumn51.VisibleIndex = 8;
-            this.gridColumn51.Width = 161;
+            this.gridColumn51.Width = 132;
             // 
             // gridColumn52
             // 
@@ -1241,7 +1243,7 @@ namespace DiamondTrading
             this.gridColumn53.Name = "gridColumn53";
             this.gridColumn53.Visible = true;
             this.gridColumn53.VisibleIndex = 3;
-            this.gridColumn53.Width = 50;
+            this.gridColumn53.Width = 45;
             // 
             // gridColumn54
             // 
@@ -1256,7 +1258,7 @@ namespace DiamondTrading
             this.gridColumn55.Name = "gridColumn55";
             this.gridColumn55.Visible = true;
             this.gridColumn55.VisibleIndex = 4;
-            this.gridColumn55.Width = 50;
+            this.gridColumn55.Width = 45;
             // 
             // gridColumn56
             // 
@@ -1265,7 +1267,7 @@ namespace DiamondTrading
             this.gridColumn56.Name = "gridColumn56";
             this.gridColumn56.Visible = true;
             this.gridColumn56.VisibleIndex = 2;
-            this.gridColumn56.Width = 69;
+            this.gridColumn56.Width = 62;
             // 
             // gridColumn57
             // 
@@ -1281,7 +1283,7 @@ namespace DiamondTrading
             this.gridColumn58.Name = "gridColumn58";
             this.gridColumn58.Visible = true;
             this.gridColumn58.VisibleIndex = 5;
-            this.gridColumn58.Width = 59;
+            this.gridColumn58.Width = 53;
             // 
             // gridColumn59
             // 
@@ -1296,7 +1298,7 @@ namespace DiamondTrading
             this.gridColumn60.Name = "gridColumn60";
             this.gridColumn60.Visible = true;
             this.gridColumn60.VisibleIndex = 6;
-            this.gridColumn60.Width = 58;
+            this.gridColumn60.Width = 52;
             // 
             // gridColumn61
             // 
@@ -1306,7 +1308,34 @@ namespace DiamondTrading
             this.gridColumn61.UnboundDataType = typeof(decimal);
             this.gridColumn61.Visible = true;
             this.gridColumn61.VisibleIndex = 9;
-            this.gridColumn61.Width = 55;
+            this.gridColumn61.Width = 59;
+            // 
+            // gridColumn134
+            // 
+            this.gridColumn134.Caption = "Loss Weight";
+            this.gridColumn134.FieldName = "LossWeight";
+            this.gridColumn134.Name = "gridColumn134";
+            this.gridColumn134.Visible = true;
+            this.gridColumn134.VisibleIndex = 10;
+            this.gridColumn134.Width = 69;
+            // 
+            // gridColumn133
+            // 
+            this.gridColumn133.Caption = "Rej. Weight";
+            this.gridColumn133.FieldName = "RejectionWeight";
+            this.gridColumn133.Name = "gridColumn133";
+            this.gridColumn133.Visible = true;
+            this.gridColumn133.VisibleIndex = 11;
+            this.gridColumn133.Width = 69;
+            // 
+            // gridColumn12
+            // 
+            this.gridColumn12.Caption = "Total";
+            this.gridColumn12.FieldName = "TotalWeight";
+            this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Visible = true;
+            this.gridColumn12.VisibleIndex = 12;
+            this.gridColumn12.Width = 77;
             // 
             // gridColumn62
             // 
@@ -1314,23 +1343,8 @@ namespace DiamondTrading
             this.gridColumn62.FieldName = "Remarks";
             this.gridColumn62.Name = "gridColumn62";
             this.gridColumn62.Visible = true;
-            this.gridColumn62.VisibleIndex = 10;
-            this.gridColumn62.Width = 122;
-            // 
-            // gridColumn63
-            // 
-            this.gridColumn63.Caption = "Created Date";
-            this.gridColumn63.FieldName = "CreatedDate";
-            this.gridColumn63.Name = "gridColumn63";
-            this.gridColumn63.Width = 48;
-            // 
-            // gridColumn64
-            // 
-            this.gridColumn64.Caption = "Updated Date";
-            this.gridColumn64.FieldName = "UpdatedDate";
-            this.gridColumn64.Name = "gridColumn64";
-            this.gridColumn64.Visible = true;
-            this.gridColumn64.VisibleIndex = 11;
+            this.gridColumn62.VisibleIndex = 13;
+            this.gridColumn62.Width = 123;
             // 
             // gridView3
             // 
@@ -1375,7 +1389,6 @@ namespace DiamondTrading
             // gridViewCharniReportMaster
             // 
             this.gridViewCharniReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn40,
             this.gridColumn44,
             this.gridColumn66,
             this.gridColumn67,
@@ -1395,32 +1408,29 @@ namespace DiamondTrading
             this.gridColumn81,
             this.gridColumn82,
             this.gridColumn83,
-            this.gridColumn84,
-            this.gridColumn85,
-            this.gridColumn86});
+            this.gridColumn64,
+            this.gridColumn63,
+            this.gridColumn40,
+            this.gridColumn84});
             this.gridViewCharniReportMaster.GridControl = this.gridControlCharniReportMaster;
             this.gridViewCharniReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", this.gridColumn83, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LossWeight", this.gridColumn64, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RejectionWeight", this.gridColumn63, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn40, "")});
             this.gridViewCharniReportMaster.Name = "gridViewCharniReportMaster";
             this.gridViewCharniReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewCharniReportMaster.OptionsView.ShowGroupPanel = false;
             this.gridViewCharniReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn44, DevExpress.Data.ColumnSortOrder.Descending)});
-            // 
-            // gridColumn40
-            // 
-            this.gridColumn40.Caption = "Id";
-            this.gridColumn40.FieldName = "Id";
-            this.gridColumn40.Name = "gridColumn40";
             // 
             // gridColumn44
             // 
             this.gridColumn44.Caption = "Sr No";
-            this.gridColumn44.FieldName = "Sr";
+            this.gridColumn44.FieldName = "CharniNo";
             this.gridColumn44.Name = "gridColumn44";
             this.gridColumn44.Visible = true;
             this.gridColumn44.VisibleIndex = 0;
-            this.gridColumn44.Width = 46;
+            this.gridColumn44.Width = 55;
             // 
             // gridColumn66
             // 
@@ -1447,7 +1457,7 @@ namespace DiamondTrading
             this.gridColumn69.Name = "gridColumn69";
             this.gridColumn69.Visible = true;
             this.gridColumn69.VisibleIndex = 1;
-            this.gridColumn69.Width = 62;
+            this.gridColumn69.Width = 56;
             // 
             // gridColumn70
             // 
@@ -1463,7 +1473,7 @@ namespace DiamondTrading
             this.gridColumn71.Name = "gridColumn71";
             this.gridColumn71.Visible = true;
             this.gridColumn71.VisibleIndex = 7;
-            this.gridColumn71.Width = 171;
+            this.gridColumn71.Width = 131;
             // 
             // gridColumn72
             // 
@@ -1479,7 +1489,7 @@ namespace DiamondTrading
             this.gridColumn73.Name = "gridColumn73";
             this.gridColumn73.Visible = true;
             this.gridColumn73.VisibleIndex = 8;
-            this.gridColumn73.Width = 161;
+            this.gridColumn73.Width = 132;
             // 
             // gridColumn74
             // 
@@ -1495,7 +1505,7 @@ namespace DiamondTrading
             this.gridColumn75.Name = "gridColumn75";
             this.gridColumn75.Visible = true;
             this.gridColumn75.VisibleIndex = 3;
-            this.gridColumn75.Width = 50;
+            this.gridColumn75.Width = 45;
             // 
             // gridColumn76
             // 
@@ -1510,7 +1520,7 @@ namespace DiamondTrading
             this.gridColumn77.Name = "gridColumn77";
             this.gridColumn77.Visible = true;
             this.gridColumn77.VisibleIndex = 4;
-            this.gridColumn77.Width = 50;
+            this.gridColumn77.Width = 45;
             // 
             // gridColumn78
             // 
@@ -1519,7 +1529,7 @@ namespace DiamondTrading
             this.gridColumn78.Name = "gridColumn78";
             this.gridColumn78.Visible = true;
             this.gridColumn78.VisibleIndex = 2;
-            this.gridColumn78.Width = 69;
+            this.gridColumn78.Width = 62;
             // 
             // gridColumn79
             // 
@@ -1535,7 +1545,7 @@ namespace DiamondTrading
             this.gridColumn80.Name = "gridColumn80";
             this.gridColumn80.Visible = true;
             this.gridColumn80.VisibleIndex = 5;
-            this.gridColumn80.Width = 59;
+            this.gridColumn80.Width = 53;
             // 
             // gridColumn81
             // 
@@ -1550,17 +1560,44 @@ namespace DiamondTrading
             this.gridColumn82.Name = "gridColumn82";
             this.gridColumn82.Visible = true;
             this.gridColumn82.VisibleIndex = 6;
-            this.gridColumn82.Width = 58;
+            this.gridColumn82.Width = 52;
             // 
             // gridColumn83
             // 
-            this.gridColumn83.Caption = "Weight";
+            this.gridColumn83.Caption = "Rec. Weight";
             this.gridColumn83.FieldName = "Weight";
             this.gridColumn83.Name = "gridColumn83";
             this.gridColumn83.UnboundDataType = typeof(decimal);
             this.gridColumn83.Visible = true;
             this.gridColumn83.VisibleIndex = 9;
-            this.gridColumn83.Width = 55;
+            this.gridColumn83.Width = 72;
+            // 
+            // gridColumn64
+            // 
+            this.gridColumn64.Caption = "Loss Weight";
+            this.gridColumn64.FieldName = "LossWeight";
+            this.gridColumn64.Name = "gridColumn64";
+            this.gridColumn64.Visible = true;
+            this.gridColumn64.VisibleIndex = 11;
+            this.gridColumn64.Width = 69;
+            // 
+            // gridColumn63
+            // 
+            this.gridColumn63.Caption = "Rej Weight";
+            this.gridColumn63.FieldName = "RejectionWeight";
+            this.gridColumn63.Name = "gridColumn63";
+            this.gridColumn63.Visible = true;
+            this.gridColumn63.VisibleIndex = 10;
+            this.gridColumn63.Width = 71;
+            // 
+            // gridColumn40
+            // 
+            this.gridColumn40.Caption = "Total";
+            this.gridColumn40.FieldName = "TotalWeight";
+            this.gridColumn40.Name = "gridColumn40";
+            this.gridColumn40.Visible = true;
+            this.gridColumn40.VisibleIndex = 12;
+            this.gridColumn40.Width = 69;
             // 
             // gridColumn84
             // 
@@ -1568,23 +1605,8 @@ namespace DiamondTrading
             this.gridColumn84.FieldName = "Remarks";
             this.gridColumn84.Name = "gridColumn84";
             this.gridColumn84.Visible = true;
-            this.gridColumn84.VisibleIndex = 10;
-            this.gridColumn84.Width = 122;
-            // 
-            // gridColumn85
-            // 
-            this.gridColumn85.Caption = "Created Date";
-            this.gridColumn85.FieldName = "CreatedDate";
-            this.gridColumn85.Name = "gridColumn85";
-            this.gridColumn85.Width = 48;
-            // 
-            // gridColumn86
-            // 
-            this.gridColumn86.Caption = "Updated Date";
-            this.gridColumn86.FieldName = "UpdatedDate";
-            this.gridColumn86.Name = "gridColumn86";
-            this.gridColumn86.Visible = true;
-            this.gridColumn86.VisibleIndex = 11;
+            this.gridColumn84.VisibleIndex = 13;
+            this.gridColumn84.Width = 149;
             // 
             // gridView7
             // 
@@ -1629,7 +1651,6 @@ namespace DiamondTrading
             // gridViewGalaReportMaster
             // 
             this.gridViewGalaReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn43,
             this.gridColumn88,
             this.gridColumn89,
             this.gridColumn90,
@@ -1649,32 +1670,31 @@ namespace DiamondTrading
             this.gridColumn104,
             this.gridColumn105,
             this.gridColumn106,
-            this.gridColumn107,
+            this.gridColumn86,
+            this.gridColumn85,
+            this.gridColumn43,
+            this.gridColumn109,
             this.gridColumn108,
-            this.gridColumn109});
+            this.gridColumn107});
             this.gridViewGalaReportMaster.GridControl = this.gridControlGalaReportMaster;
             this.gridViewGalaReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", this.gridColumn106, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LossWeight", this.gridColumn86, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RejectionWeight", this.gridColumn85, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn43, "")});
             this.gridViewGalaReportMaster.Name = "gridViewGalaReportMaster";
             this.gridViewGalaReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewGalaReportMaster.OptionsView.ShowGroupPanel = false;
             this.gridViewGalaReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn88, DevExpress.Data.ColumnSortOrder.Descending)});
-            // 
-            // gridColumn43
-            // 
-            this.gridColumn43.Caption = "Id";
-            this.gridColumn43.FieldName = "Id";
-            this.gridColumn43.Name = "gridColumn43";
             // 
             // gridColumn88
             // 
             this.gridColumn88.Caption = "Sr No";
-            this.gridColumn88.FieldName = "Sr";
+            this.gridColumn88.FieldName = "GalaNo";
             this.gridColumn88.Name = "gridColumn88";
             this.gridColumn88.Visible = true;
             this.gridColumn88.VisibleIndex = 0;
-            this.gridColumn88.Width = 46;
+            this.gridColumn88.Width = 51;
             // 
             // gridColumn89
             // 
@@ -1701,7 +1721,7 @@ namespace DiamondTrading
             this.gridColumn92.Name = "gridColumn92";
             this.gridColumn92.Visible = true;
             this.gridColumn92.VisibleIndex = 1;
-            this.gridColumn92.Width = 62;
+            this.gridColumn92.Width = 51;
             // 
             // gridColumn93
             // 
@@ -1716,8 +1736,8 @@ namespace DiamondTrading
             this.gridColumn94.FieldName = "HandOverByName";
             this.gridColumn94.Name = "gridColumn94";
             this.gridColumn94.Visible = true;
-            this.gridColumn94.VisibleIndex = 7;
-            this.gridColumn94.Width = 171;
+            this.gridColumn94.VisibleIndex = 8;
+            this.gridColumn94.Width = 124;
             // 
             // gridColumn95
             // 
@@ -1732,8 +1752,8 @@ namespace DiamondTrading
             this.gridColumn96.FieldName = "HandOverToName";
             this.gridColumn96.Name = "gridColumn96";
             this.gridColumn96.Visible = true;
-            this.gridColumn96.VisibleIndex = 8;
-            this.gridColumn96.Width = 161;
+            this.gridColumn96.VisibleIndex = 9;
+            this.gridColumn96.Width = 127;
             // 
             // gridColumn97
             // 
@@ -1749,7 +1769,7 @@ namespace DiamondTrading
             this.gridColumn98.Name = "gridColumn98";
             this.gridColumn98.Visible = true;
             this.gridColumn98.VisibleIndex = 3;
-            this.gridColumn98.Width = 50;
+            this.gridColumn98.Width = 41;
             // 
             // gridColumn99
             // 
@@ -1764,7 +1784,7 @@ namespace DiamondTrading
             this.gridColumn100.Name = "gridColumn100";
             this.gridColumn100.Visible = true;
             this.gridColumn100.VisibleIndex = 4;
-            this.gridColumn100.Width = 50;
+            this.gridColumn100.Width = 41;
             // 
             // gridColumn101
             // 
@@ -1773,7 +1793,7 @@ namespace DiamondTrading
             this.gridColumn101.Name = "gridColumn101";
             this.gridColumn101.Visible = true;
             this.gridColumn101.VisibleIndex = 2;
-            this.gridColumn101.Width = 69;
+            this.gridColumn101.Width = 56;
             // 
             // gridColumn102
             // 
@@ -1789,7 +1809,7 @@ namespace DiamondTrading
             this.gridColumn103.Name = "gridColumn103";
             this.gridColumn103.Visible = true;
             this.gridColumn103.VisibleIndex = 5;
-            this.gridColumn103.Width = 59;
+            this.gridColumn103.Width = 48;
             // 
             // gridColumn104
             // 
@@ -1803,18 +1823,60 @@ namespace DiamondTrading
             this.gridColumn105.FieldName = "PurityName";
             this.gridColumn105.Name = "gridColumn105";
             this.gridColumn105.Visible = true;
-            this.gridColumn105.VisibleIndex = 6;
-            this.gridColumn105.Width = 58;
+            this.gridColumn105.VisibleIndex = 7;
+            this.gridColumn105.Width = 47;
             // 
             // gridColumn106
             // 
-            this.gridColumn106.Caption = "Weight";
+            this.gridColumn106.Caption = "Rec. Weight";
             this.gridColumn106.FieldName = "Weight";
             this.gridColumn106.Name = "gridColumn106";
             this.gridColumn106.UnboundDataType = typeof(decimal);
             this.gridColumn106.Visible = true;
-            this.gridColumn106.VisibleIndex = 9;
-            this.gridColumn106.Width = 55;
+            this.gridColumn106.VisibleIndex = 10;
+            this.gridColumn106.Width = 48;
+            // 
+            // gridColumn86
+            // 
+            this.gridColumn86.Caption = "Loss Weight";
+            this.gridColumn86.FieldName = "LossWeight";
+            this.gridColumn86.Name = "gridColumn86";
+            this.gridColumn86.Visible = true;
+            this.gridColumn86.VisibleIndex = 12;
+            this.gridColumn86.Width = 72;
+            // 
+            // gridColumn85
+            // 
+            this.gridColumn85.Caption = "Rej Weight";
+            this.gridColumn85.FieldName = "RejectionWeight";
+            this.gridColumn85.Name = "gridColumn85";
+            this.gridColumn85.Visible = true;
+            this.gridColumn85.VisibleIndex = 11;
+            this.gridColumn85.Width = 70;
+            // 
+            // gridColumn43
+            // 
+            this.gridColumn43.Caption = "Total";
+            this.gridColumn43.FieldName = "TotalWeight";
+            this.gridColumn43.Name = "gridColumn43";
+            this.gridColumn43.Visible = true;
+            this.gridColumn43.VisibleIndex = 13;
+            this.gridColumn43.Width = 62;
+            // 
+            // gridColumn109
+            // 
+            this.gridColumn109.Caption = "GalaNumberId";
+            this.gridColumn109.FieldName = "GalaNumberId";
+            this.gridColumn109.Name = "gridColumn109";
+            // 
+            // gridColumn108
+            // 
+            this.gridColumn108.Caption = "Gala Name";
+            this.gridColumn108.FieldName = "GalaName";
+            this.gridColumn108.Name = "gridColumn108";
+            this.gridColumn108.Visible = true;
+            this.gridColumn108.VisibleIndex = 6;
+            this.gridColumn108.Width = 70;
             // 
             // gridColumn107
             // 
@@ -1822,23 +1884,8 @@ namespace DiamondTrading
             this.gridColumn107.FieldName = "Remarks";
             this.gridColumn107.Name = "gridColumn107";
             this.gridColumn107.Visible = true;
-            this.gridColumn107.VisibleIndex = 10;
-            this.gridColumn107.Width = 122;
-            // 
-            // gridColumn108
-            // 
-            this.gridColumn108.Caption = "Created Date";
-            this.gridColumn108.FieldName = "CreatedDate";
-            this.gridColumn108.Name = "gridColumn108";
-            this.gridColumn108.Width = 48;
-            // 
-            // gridColumn109
-            // 
-            this.gridColumn109.Caption = "Updated Date";
-            this.gridColumn109.FieldName = "UpdatedDate";
-            this.gridColumn109.Name = "gridColumn109";
-            this.gridColumn109.Visible = true;
-            this.gridColumn109.VisibleIndex = 11;
+            this.gridColumn107.VisibleIndex = 14;
+            this.gridColumn107.Width = 153;
             // 
             // gridView5
             // 
@@ -1883,7 +1930,6 @@ namespace DiamondTrading
             // gridViewNumberReportMaster
             // 
             this.gridViewNumberReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn15,
             this.gridColumn26,
             this.gridColumn111,
             this.gridColumn112,
@@ -1900,35 +1946,36 @@ namespace DiamondTrading
             this.gridColumn123,
             this.gridColumn124,
             this.gridColumn125,
+            this.gridColumn136,
+            this.gridColumn135,
+            this.gridColumn138,
+            this.gridColumn137,
             this.gridColumn126,
             this.gridColumn127,
             this.gridColumn128,
-            this.gridColumn129,
+            this.gridColumn131,
             this.gridColumn130,
-            this.gridColumn131});
+            this.gridColumn15,
+            this.gridColumn129});
             this.gridViewNumberReportMaster.GridControl = this.gridControlNumerReportMaster;
             this.gridViewNumberReportMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn15, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", this.gridColumn128, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LossWeight", this.gridColumn131, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RejectionWeight", this.gridColumn130, "")});
             this.gridViewNumberReportMaster.Name = "gridViewNumberReportMaster";
             this.gridViewNumberReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewNumberReportMaster.OptionsView.ShowGroupPanel = false;
             this.gridViewNumberReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn26, DevExpress.Data.ColumnSortOrder.Descending)});
-            // 
-            // gridColumn15
-            // 
-            this.gridColumn15.Caption = "Id";
-            this.gridColumn15.FieldName = "Id";
-            this.gridColumn15.Name = "gridColumn15";
             // 
             // gridColumn26
             // 
             this.gridColumn26.Caption = "Sr No";
-            this.gridColumn26.FieldName = "Sr";
+            this.gridColumn26.FieldName = "NumberNo";
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 0;
-            this.gridColumn26.Width = 46;
+            this.gridColumn26.Width = 57;
             // 
             // gridColumn111
             // 
@@ -1955,7 +2002,7 @@ namespace DiamondTrading
             this.gridColumn114.Name = "gridColumn114";
             this.gridColumn114.Visible = true;
             this.gridColumn114.VisibleIndex = 1;
-            this.gridColumn114.Width = 62;
+            this.gridColumn114.Width = 64;
             // 
             // gridColumn115
             // 
@@ -1970,8 +2017,8 @@ namespace DiamondTrading
             this.gridColumn116.FieldName = "HandOverByName";
             this.gridColumn116.Name = "gridColumn116";
             this.gridColumn116.Visible = true;
-            this.gridColumn116.VisibleIndex = 7;
-            this.gridColumn116.Width = 171;
+            this.gridColumn116.VisibleIndex = 9;
+            this.gridColumn116.Width = 110;
             // 
             // gridColumn117
             // 
@@ -1986,8 +2033,8 @@ namespace DiamondTrading
             this.gridColumn118.FieldName = "HandOverToName";
             this.gridColumn118.Name = "gridColumn118";
             this.gridColumn118.Visible = true;
-            this.gridColumn118.VisibleIndex = 8;
-            this.gridColumn118.Width = 161;
+            this.gridColumn118.VisibleIndex = 10;
+            this.gridColumn118.Width = 104;
             // 
             // gridColumn119
             // 
@@ -2003,7 +2050,7 @@ namespace DiamondTrading
             this.gridColumn120.Name = "gridColumn120";
             this.gridColumn120.Visible = true;
             this.gridColumn120.VisibleIndex = 3;
-            this.gridColumn120.Width = 50;
+            this.gridColumn120.Width = 45;
             // 
             // gridColumn121
             // 
@@ -2018,7 +2065,7 @@ namespace DiamondTrading
             this.gridColumn122.Name = "gridColumn122";
             this.gridColumn122.Visible = true;
             this.gridColumn122.VisibleIndex = 4;
-            this.gridColumn122.Width = 50;
+            this.gridColumn122.Width = 45;
             // 
             // gridColumn123
             // 
@@ -2027,7 +2074,7 @@ namespace DiamondTrading
             this.gridColumn123.Name = "gridColumn123";
             this.gridColumn123.Visible = true;
             this.gridColumn123.VisibleIndex = 2;
-            this.gridColumn123.Width = 69;
+            this.gridColumn123.Width = 53;
             // 
             // gridColumn124
             // 
@@ -2043,7 +2090,37 @@ namespace DiamondTrading
             this.gridColumn125.Name = "gridColumn125";
             this.gridColumn125.Visible = true;
             this.gridColumn125.VisibleIndex = 5;
-            this.gridColumn125.Width = 59;
+            this.gridColumn125.Width = 42;
+            // 
+            // gridColumn136
+            // 
+            this.gridColumn136.Caption = "GalaNumberId";
+            this.gridColumn136.FieldName = "GalaNumberId";
+            this.gridColumn136.Name = "gridColumn136";
+            // 
+            // gridColumn135
+            // 
+            this.gridColumn135.Caption = "Gala Name";
+            this.gridColumn135.FieldName = "GalaName";
+            this.gridColumn135.Name = "gridColumn135";
+            this.gridColumn135.Visible = true;
+            this.gridColumn135.VisibleIndex = 6;
+            this.gridColumn135.Width = 66;
+            // 
+            // gridColumn138
+            // 
+            this.gridColumn138.Caption = "NumberId";
+            this.gridColumn138.FieldName = "NumberId";
+            this.gridColumn138.Name = "gridColumn138";
+            // 
+            // gridColumn137
+            // 
+            this.gridColumn137.Caption = "Number Name";
+            this.gridColumn137.FieldName = "NumberName";
+            this.gridColumn137.Name = "gridColumn137";
+            this.gridColumn137.Visible = true;
+            this.gridColumn137.VisibleIndex = 7;
+            this.gridColumn137.Width = 81;
             // 
             // gridColumn126
             // 
@@ -2057,18 +2134,45 @@ namespace DiamondTrading
             this.gridColumn127.FieldName = "PurityName";
             this.gridColumn127.Name = "gridColumn127";
             this.gridColumn127.Visible = true;
-            this.gridColumn127.VisibleIndex = 6;
-            this.gridColumn127.Width = 58;
+            this.gridColumn127.VisibleIndex = 8;
+            this.gridColumn127.Width = 49;
             // 
             // gridColumn128
             // 
-            this.gridColumn128.Caption = "Weight";
+            this.gridColumn128.Caption = "Rec. Weight";
             this.gridColumn128.FieldName = "Weight";
             this.gridColumn128.Name = "gridColumn128";
             this.gridColumn128.UnboundDataType = typeof(decimal);
             this.gridColumn128.Visible = true;
-            this.gridColumn128.VisibleIndex = 9;
-            this.gridColumn128.Width = 55;
+            this.gridColumn128.VisibleIndex = 11;
+            this.gridColumn128.Width = 57;
+            // 
+            // gridColumn131
+            // 
+            this.gridColumn131.Caption = "Loss Weight";
+            this.gridColumn131.FieldName = "LossWeight";
+            this.gridColumn131.Name = "gridColumn131";
+            this.gridColumn131.Visible = true;
+            this.gridColumn131.VisibleIndex = 13;
+            this.gridColumn131.Width = 77;
+            // 
+            // gridColumn130
+            // 
+            this.gridColumn130.Caption = "Rej Weight";
+            this.gridColumn130.FieldName = "RejectionWeight";
+            this.gridColumn130.Name = "gridColumn130";
+            this.gridColumn130.Visible = true;
+            this.gridColumn130.VisibleIndex = 12;
+            this.gridColumn130.Width = 72;
+            // 
+            // gridColumn15
+            // 
+            this.gridColumn15.Caption = "Total";
+            this.gridColumn15.FieldName = "TotalWeight";
+            this.gridColumn15.Name = "gridColumn15";
+            this.gridColumn15.Visible = true;
+            this.gridColumn15.VisibleIndex = 14;
+            this.gridColumn15.Width = 48;
             // 
             // gridColumn129
             // 
@@ -2076,23 +2180,8 @@ namespace DiamondTrading
             this.gridColumn129.FieldName = "Remarks";
             this.gridColumn129.Name = "gridColumn129";
             this.gridColumn129.Visible = true;
-            this.gridColumn129.VisibleIndex = 10;
-            this.gridColumn129.Width = 122;
-            // 
-            // gridColumn130
-            // 
-            this.gridColumn130.Caption = "Created Date";
-            this.gridColumn130.FieldName = "CreatedDate";
-            this.gridColumn130.Name = "gridColumn130";
-            this.gridColumn130.Width = 48;
-            // 
-            // gridColumn131
-            // 
-            this.gridColumn131.Caption = "Updated Date";
-            this.gridColumn131.FieldName = "UpdatedDate";
-            this.gridColumn131.Name = "gridColumn131";
-            this.gridColumn131.Visible = true;
-            this.gridColumn131.VisibleIndex = 11;
+            this.gridColumn129.VisibleIndex = 15;
+            this.gridColumn129.Width = 91;
             // 
             // gridView10
             // 
@@ -2348,7 +2437,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn38;
         private DevExpress.XtraGrid.GridControl gridControlBoilSendReceiveMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewBoilSendReceiveMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn41;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn42;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn45;
@@ -2369,14 +2457,11 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn60;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn61;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn62;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn63;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn64;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn65;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView4;
         private DevExpress.XtraGrid.GridControl gridControlCharniReportMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewCharniReportMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn66;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn67;
@@ -2397,14 +2482,11 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn82;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn83;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn84;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn85;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn86;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView7;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn87;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
         private DevExpress.XtraGrid.GridControl gridControlGalaReportMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewGalaReportMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn88;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn89;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn90;
@@ -2425,14 +2507,11 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn105;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn106;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn107;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn108;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn109;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView6;
         private DevExpress.XtraGrid.GridControl gridControlNumerReportMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewNumberReportMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn111;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn112;
@@ -2453,10 +2532,26 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn127;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn128;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn129;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn130;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn131;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView10;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn132;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn134;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn133;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn12;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn64;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn63;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn40;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn86;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn85;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn43;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn109;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn108;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn136;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn135;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn138;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn137;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn131;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn130;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
     }
 }
