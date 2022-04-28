@@ -60,7 +60,7 @@ namespace DiamondTrading.Transaction
             //SetThemeColors(Color.FromArgb(0));
 
             await LoadCompany();
-            FillCombos();
+            await FillCombos();
             //FillBranches();
             await FillCurrency();
             //FillCurrency();
@@ -247,13 +247,13 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.ValueMember = "Id";
         }
 
-        private void FillCombos()
+        private async Task FillCombos()
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             dtPayDate.EditValue = DateTime.Now;
 
-            LoadPurchaseItemDetails();
+            await LoadPurchaseItemDetails();
 
             //Payment Mode
             luePaymentMode.Properties.DataSource = Common.GetPaymentType;
@@ -271,21 +271,21 @@ namespace DiamondTrading.Transaction
             GetBrokerList();
         }
 
-        private void LoadPurchaseItemDetails()
+        private async Task LoadPurchaseItemDetails()
         {
             grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();            
 
             //Shape
-            GetShapeDetail();
+            await GetShapeDetail();
 
             //Size
-            GetSizeDetail();
+            await GetSizeDetail();
 
             //Purity
-            GetPurityDetail();
+            await GetPurityDetail();
 
             //Kapan
-            GetKapanDetail ();
+            await GetKapanDetail();
         }
 
         private async Task GetBuyerList()
@@ -652,31 +652,41 @@ namespace DiamondTrading.Transaction
 
         private void grvPurchaseDetails_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
         {
-            GetTotal();
+            //GetTotal();
         }
 
         private void grvPurchaseDetails_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
         {
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
+            BeginInvoke(new Action(() =>
+            {
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
 
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
-            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+            }));
         }
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
         {
-            if (MessageBox.Show("Do you want add more Items...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+            BeginInvoke(new Action(() =>
             {
-                txtRemark.Focus();
-                //IsFocusMoveToOutsideGrid = true;
-                grvPurchaseDetails.CloseEditor();
-                this.SelectNextControl(txtRemark, true, true, true, true);
-            }
+                GetTotal();
+                if (MessageBox.Show("Do you want add more Items...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No)
+                {
+                    //grvPurchaseDetails.CloseEditor();
+                    grvPurchaseDetails.HideEditor();
+                    grvPurchaseDetails.CancelUpdateCurrentRow();
+                    txtRemark.Select();
+                    txtRemark.Focus();
+                    //IsFocusMoveToOutsideGrid = true;
+                    //this.SelectNextControl(txtRemark, true, true, true, true);
+                }
+            }));
         }
 
         private void grvPurchaseDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
@@ -890,7 +900,14 @@ namespace DiamondTrading.Transaction
 
                 decimal CVDCts = 0;
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
+                {
                     CVDCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight));
+                    if (CVDCts <= 0)
+                    {
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, 0);
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDAmount, 0);
+                    }
+                }
 
                 decimal RejCts = 0;
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)
@@ -1324,8 +1341,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await Reset();
                     }
                 }
                 else
@@ -1382,8 +1399,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await Reset();
                     }
                 }
             }
@@ -1475,13 +1492,13 @@ namespace DiamondTrading.Transaction
             return true;
         }
 
-        private async void Reset()
+        private async Task Reset()
         {
             grdPurchaseDetails.DataSource = null;
             lueBuyer.EditValue = "";
             lueParty.EditValue = "";
             lueBroker.EditValue = "";
-            FillCombos();
+            await FillCombos();
             //FillBranches();
             await FillCurrency();
             txtRemark.Text = "";
@@ -1507,6 +1524,7 @@ namespace DiamondTrading.Transaction
             _editedPurchaseMaster = null;
             pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
             await GetPurchaseNo();
+            txtSlipNo.Select();
             txtSlipNo.Focus();
         }
 
@@ -1550,7 +1568,7 @@ namespace DiamondTrading.Transaction
 
             await LoadBranch(lueCompany.EditValue.ToString());
 
-            FillCombos();
+            await FillCombos();
         }
 
         private void grpGroup9_Paint(object sender, PaintEventArgs e)
@@ -1561,6 +1579,11 @@ namespace DiamondTrading.Transaction
         private void txtRemark_EditValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private async void btnReset_Click(object sender, EventArgs e)
+        {
+            await Reset();
         }
     }
 }
