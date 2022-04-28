@@ -250,6 +250,9 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumn139 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn140 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn141 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -642,13 +645,13 @@ namespace DiamondTrading
             this.gridColumn2,
             this.gridColumn19,
             this.gridColumn20,
+            this.gridColumn139,
             this.gridColumn23,
             this.gridColumn5,
             this.gridColumn24});
             this.grvAssortSendReceiveMaster.GridControl = this.grdAssortSendReceiveMaster;
             this.grvAssortSendReceiveMaster.Name = "grvAssortSendReceiveMaster";
             this.grvAssortSendReceiveMaster.OptionsBehavior.Editable = false;
-            this.grvAssortSendReceiveMaster.OptionsView.ShowGroupPanel = false;
             this.grvAssortSendReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnSr, DevExpress.Data.ColumnSortOrder.Descending)});
             this.grvAssortSendReceiveMaster.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvSalesTransactonMaster_RowCellStyle);
@@ -816,7 +819,7 @@ namespace DiamondTrading
             this.gridColumn24.FieldName = "UpdatedDate";
             this.gridColumn24.Name = "gridColumn24";
             this.gridColumn24.Visible = true;
-            this.gridColumn24.VisibleIndex = 10;
+            this.gridColumn24.VisibleIndex = 11;
             this.gridColumn24.Width = 82;
             // 
             // gridView2
@@ -880,6 +883,8 @@ namespace DiamondTrading
             this.gridColumn27,
             this.gridColumn29,
             this.gridColumn30,
+            this.gridColumn141,
+            this.gridColumn140,
             this.gridColumn39,
             this.gridColumn38,
             this.gridColumn31,
@@ -960,8 +965,8 @@ namespace DiamondTrading
             this.gridColumn17.FieldName = "HandOverByName";
             this.gridColumn17.Name = "gridColumn17";
             this.gridColumn17.Visible = true;
-            this.gridColumn17.VisibleIndex = 7;
-            this.gridColumn17.Width = 171;
+            this.gridColumn17.VisibleIndex = 8;
+            this.gridColumn17.Width = 169;
             // 
             // gridColumn18
             // 
@@ -976,8 +981,8 @@ namespace DiamondTrading
             this.gridColumn21.FieldName = "HandOverToName";
             this.gridColumn21.Name = "gridColumn21";
             this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 8;
-            this.gridColumn21.Width = 161;
+            this.gridColumn21.VisibleIndex = 9;
+            this.gridColumn21.Width = 140;
             // 
             // gridColumn22
             // 
@@ -1047,8 +1052,8 @@ namespace DiamondTrading
             this.gridColumn38.FieldName = "PurityName";
             this.gridColumn38.Name = "gridColumn38";
             this.gridColumn38.Visible = true;
-            this.gridColumn38.VisibleIndex = 6;
-            this.gridColumn38.Width = 58;
+            this.gridColumn38.VisibleIndex = 7;
+            this.gridColumn38.Width = 56;
             // 
             // gridColumn31
             // 
@@ -1057,8 +1062,8 @@ namespace DiamondTrading
             this.gridColumn31.Name = "gridColumn31";
             this.gridColumn31.UnboundDataType = typeof(decimal);
             this.gridColumn31.Visible = true;
-            this.gridColumn31.VisibleIndex = 9;
-            this.gridColumn31.Width = 55;
+            this.gridColumn31.VisibleIndex = 10;
+            this.gridColumn31.Width = 64;
             // 
             // gridColumn33
             // 
@@ -1066,7 +1071,7 @@ namespace DiamondTrading
             this.gridColumn33.FieldName = "Remarks";
             this.gridColumn33.Name = "gridColumn33";
             this.gridColumn33.Visible = true;
-            this.gridColumn33.VisibleIndex = 10;
+            this.gridColumn33.VisibleIndex = 11;
             this.gridColumn33.Width = 122;
             // 
             // gridColumn34
@@ -1082,7 +1087,8 @@ namespace DiamondTrading
             this.gridColumn35.FieldName = "UpdatedDate";
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.Visible = true;
-            this.gridColumn35.VisibleIndex = 11;
+            this.gridColumn35.VisibleIndex = 12;
+            this.gridColumn35.Width = 91;
             // 
             // gridView9
             // 
@@ -2269,6 +2275,29 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // gridColumn139
+            // 
+            this.gridColumn139.Caption = "Department";
+            this.gridColumn139.FieldName = "Department";
+            this.gridColumn139.Name = "gridColumn139";
+            this.gridColumn139.Visible = true;
+            this.gridColumn139.VisibleIndex = 10;
+            // 
+            // gridColumn140
+            // 
+            this.gridColumn140.Caption = "Number Name";
+            this.gridColumn140.FieldName = "NumberName";
+            this.gridColumn140.Name = "gridColumn140";
+            this.gridColumn140.Visible = true;
+            this.gridColumn140.VisibleIndex = 6;
+            this.gridColumn140.Width = 83;
+            // 
+            // gridColumn141
+            // 
+            this.gridColumn141.Caption = "NumberId";
+            this.gridColumn141.FieldName = "NumberId";
+            this.gridColumn141.Name = "gridColumn141";
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2553,5 +2582,8 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn131;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn130;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn15;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn139;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn141;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn140;
     }
 }

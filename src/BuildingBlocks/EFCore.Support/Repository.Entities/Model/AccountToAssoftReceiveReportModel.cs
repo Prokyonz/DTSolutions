@@ -25,6 +25,8 @@ namespace Repository.Entities.Model
         public string ShapeName { get; set; }
         public string SizeId { get; set; }
         public string SizeName { get; set; }
+        public string NumberId { get; set; }
+        public string NumberName { get; set; }
         public string PurityId { get; set; }
         public string PurityName { get; set; }
         public string Remarks { get; set; }
