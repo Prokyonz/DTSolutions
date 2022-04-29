@@ -537,5 +537,17 @@ namespace DiamondTrading
             //    }
             //}
         }
+
+        private void gridViewCharniReportMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["CharniNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["CharniNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
     }
 }
