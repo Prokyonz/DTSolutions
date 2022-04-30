@@ -235,12 +235,11 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
-                    string tempId = Guid.NewGuid().ToString();
                     JangadMaster jangadMaster = new JangadMaster();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
                         jangadMaster = new JangadMaster();
-                        jangadMaster.Id = tempId;
+                        jangadMaster.Id = Guid.NewGuid().ToString();
                         jangadMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
                         jangadMaster.CompanyId = lueCompany.EditValue.ToString();
                         jangadMaster.BranchId = Common.LoginBranch;

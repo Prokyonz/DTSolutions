@@ -613,7 +613,7 @@ namespace DiamondTrading
 
         private void repositoryJangadPrintReport_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
         {
-            string sr = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "Sr").ToString();
+            //string sr = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "Sr").ToString();
             string srNo = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "SrNo").ToString();
             string FinancialYear = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "FinancialYearId").ToString();
             
@@ -623,6 +623,18 @@ namespace DiamondTrading
 
             Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany,ActionType);
             fvj.ShowDialog();
+        }
+
+        private void grvJangadSendReceive_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["SrNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["SrNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
         }
     }
 }
