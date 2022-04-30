@@ -19,7 +19,6 @@ namespace DiamondTrading.Process
     {
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
-        BrokerageMasterRepository _brokerageMasterRepository;
         JangadMasterRepository _JangadMasterRepository;
         int _RejectionType = 0;
 
@@ -28,7 +27,6 @@ namespace DiamondTrading.Process
             InitializeComponent();
             _boilMasterRepository = new BoilMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
-            _brokerageMasterRepository = new BrokerageMasterRepository();
             _JangadMasterRepository = new JangadMasterRepository();
 
             _RejectionType = RejectionType;
@@ -65,7 +63,7 @@ namespace DiamondTrading.Process
                 if (lueCompany.EditValue.ToString() != Common.LoginCompany)
                     companyId = lueCompany.EditValue.ToString();
             }
-            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Party);
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, new int[] { PartyTypeMaster.Party, PartyTypeMaster.Broker } );
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
@@ -77,28 +75,14 @@ namespace DiamondTrading.Process
             txtSerialNo.Text = SrNo.ToString();
         }
 
-        private async Task GetBrokerList()
-        {
-            string companyId = Common.LoginCompany;
-            if (lueCompany.EditValue != null)
-            {
-                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
-                    companyId = lueCompany.EditValue.ToString();
-            }
-            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Employee, PartyTypeMaster.Broker);
-            lueBroker.Properties.DataSource = BrokerDetailList;
-            lueBroker.Properties.DisplayMember = "Name";
-            lueBroker.Properties.ValueMember = "Id";
-        }
-
         private async Task GetSizeDetail()
         {
             grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
             if (_RejectionType == 1)
             {
-                if (lueCompany.EditValue != null && lueBroker.EditValue != null)
+                if (lueCompany.EditValue != null)
                 {
-                    var JangadReceiveDetails = await _JangadMasterRepository.GetJangadReceiveDetails(lueCompany.EditValue.ToString(), Common.LoginFinancialYear, lueBroker.EditValue.ToString());
+                    var JangadReceiveDetails = await _JangadMasterRepository.GetJangadReceiveDetails(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
                     repoSizeR.DataSource = JangadReceiveDetails;
                     repoSizeR.DisplayMember = "Size";
                     repoSizeR.ValueMember = "Id";
@@ -128,7 +112,6 @@ namespace DiamondTrading.Process
             lueCompany.EditValue = Common.LoginCompany;
 
             await GetPartyList();
-            await GetBrokerList();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -146,7 +129,7 @@ namespace DiamondTrading.Process
             }
         }
 
-        private async void FrmBoilSend_Load(object sender, EventArgs e)
+        private void FrmBoilSend_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -252,18 +235,17 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
-                    string tempId = Guid.NewGuid().ToString();
                     JangadMaster jangadMaster = new JangadMaster();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
                         jangadMaster = new JangadMaster();
-                        jangadMaster.Id = tempId;
+                        jangadMaster.Id = Guid.NewGuid().ToString();
                         jangadMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
                         jangadMaster.CompanyId = lueCompany.EditValue.ToString();
                         jangadMaster.BranchId = Common.LoginBranch;
                         jangadMaster.FinancialYearId = Common.LoginFinancialYear;
                         jangadMaster.PartyId = lueParty.EditValue.ToString();
-                        jangadMaster.BrokerId = lueBroker.EditValue.ToString();
+                        jangadMaster.BrokerId = lueParty.EditValue.ToString();
 
                         jangadMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                         jangadMaster.Totalcts = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colCarat).ToString());
@@ -333,7 +315,6 @@ namespace DiamondTrading.Process
             txtRemark.Text = "";
             lueCompany.EditValue = null;
             lueParty.EditValue = null;
-            lueBroker.EditValue = null;
             repoSizeR.DataSource = null;
 
             Image1.Image = null;

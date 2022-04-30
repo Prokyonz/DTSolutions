@@ -1708,7 +1708,7 @@ namespace DiamondTrading
 
         private void OpenJangadPage(int JangadType)
         {
-            Process.FrmRejectionSendReceive page = Application.OpenForms["FrmRejectionSendReceive"] as Process.FrmRejectionSendReceive;
+            Process.FrmJangadSend page = Application.OpenForms["FrmJangadSend"] as Process.FrmJangadSend;
             if (page != null)
             {
                 page.Close();

@@ -62,8 +62,6 @@ namespace DiamondTrading.Process
             this.Image3 = new DevExpress.XtraEditors.PictureEdit();
             this.Image2 = new DevExpress.XtraEditors.PictureEdit();
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.lueBroker = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
@@ -88,7 +86,6 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             this.SuspendLayout();
@@ -217,9 +214,9 @@ namespace DiamondTrading.Process
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
             this.grpGroup1.Controls.Add(this.grdParticularsDetails);
-            this.grpGroup1.Location = new System.Drawing.Point(11, 161);
+            this.grpGroup1.Location = new System.Drawing.Point(11, 132);
             this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(606, 266);
+            this.grpGroup1.Size = new System.Drawing.Size(606, 295);
             this.grpGroup1.TabIndex = 10;
             this.grpGroup1.Text = "Particulars Details";
             // 
@@ -234,7 +231,7 @@ namespace DiamondTrading.Process
             this.repoSizeR,
             this.repoTxtEdit,
             this.repoSize});
-            this.grdParticularsDetails.Size = new System.Drawing.Size(602, 241);
+            this.grdParticularsDetails.Size = new System.Drawing.Size(602, 270);
             this.grdParticularsDetails.TabIndex = 0;
             this.grdParticularsDetails.UseEmbeddedNavigator = true;
             this.grdParticularsDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -497,36 +494,8 @@ namespace DiamondTrading.Process
             this.Image1.TabIndex = 0;
             this.Image1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image1_MouseDoubleClick);
             // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(12, 134);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(54, 16);
-            this.labelControl3.TabIndex = 8;
-            this.labelControl3.Text = "Broker* :";
-            // 
-            // lueBroker
-            // 
-            this.lueBroker.Location = new System.Drawing.Point(76, 131);
-            this.lueBroker.Name = "lueBroker";
-            this.lueBroker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lueBroker.Properties.Appearance.Options.UseFont = true;
-            this.lueBroker.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.lueBroker.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.lueBroker.Properties.NullText = "";
-            this.lueBroker.Size = new System.Drawing.Size(212, 22);
-            this.lueBroker.TabIndex = 9;
-            this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
-            // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.lueBroker);
-            this.panelControl1.Controls.Add(this.labelControl3);
             this.panelControl1.Controls.Add(this.grpDocuments);
             this.panelControl1.Controls.Add(this.lueParty);
             this.panelControl1.Controls.Add(this.lueCompany);
@@ -589,7 +558,6 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.Image3.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lueBroker.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
@@ -628,8 +596,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.PictureEdit Image3;
         private DevExpress.XtraEditors.PictureEdit Image2;
         private DevExpress.XtraEditors.PictureEdit Image1;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.LookUpEdit lueBroker;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraGrid.Columns.GridColumn colReceiveSrNo;
         private DevExpress.XtraGrid.Columns.GridColumn colSizeR;
