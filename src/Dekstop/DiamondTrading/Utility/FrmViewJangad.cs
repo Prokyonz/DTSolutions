@@ -18,18 +18,20 @@ namespace DiamondTrading.Utility
         private string _SrNo = string.Empty;
         private string _CompanyId = string.Empty;
         private string _FinancialYearId = string.Empty;
-        public FrmViewJangad(string SrNo, string FinancialYearId, string CompanyId)
+        private int _JangadType = 1;
+        public FrmViewJangad(string SrNo, string FinancialYearId, string CompanyId, int JangadType)
         {
             InitializeComponent();
             _jangadMasterRepository = new JangadMasterRepository();
             _SrNo = SrNo;
             _CompanyId = CompanyId;
             _FinancialYearId = FinancialYearId;
+            _JangadType = JangadType;
         }
 
         private async void FrmViewJangad_Load(object sender, EventArgs e)
         {
-            var slipDetails = await _jangadMasterRepository.GetJangadPrintDetails(_CompanyId, _FinancialYearId, _SrNo); ;
+            var slipDetails = await _jangadMasterRepository.GetJangadPrintDetails(_CompanyId, _FinancialYearId, _SrNo, _JangadType);
             DataTable dt = Common.ToDataTable(slipDetails);
             if (dt.Rows.Count > 0)
             {

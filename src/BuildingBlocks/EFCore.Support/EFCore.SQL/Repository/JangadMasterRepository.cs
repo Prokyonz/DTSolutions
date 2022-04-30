@@ -95,20 +95,20 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId, string BrokerId)
+        public async Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var defaultPriceList = await _databaseContext.JangadSPReceiveModel.FromSqlRaw($"GetJangadReceiveDetail '"+CompanyId+"','"+BrokerId+"','"+FinancialYearId+"'").ToListAsync();
+                var defaultPriceList = await _databaseContext.JangadSPReceiveModel.FromSqlRaw($"GetJangadReceiveDetail '"+CompanyId+"','"+FinancialYearId+"'").ToListAsync();
                 return defaultPriceList;
             }
         }
 
-        public async Task<List<JangadPrintDetailModel>> GetJangadPrintDetails(string CompanyId, string FinancialYearId, string SrNo)
+        public async Task<List<JangadPrintDetailModel>> GetJangadPrintDetails(string CompanyId, string FinancialYearId, string SrNo, int JangadType)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var defaultPriceList = await _databaseContext.JangadPrintDetailModel.FromSqlRaw($"GetJangadPrintDetails '" + SrNo + "','" + CompanyId + "','" + FinancialYearId + "'").ToListAsync();
+                var defaultPriceList = await _databaseContext.JangadPrintDetailModel.FromSqlRaw($"GetJangadPrintDetails '" + SrNo + "','" + CompanyId + "','" + FinancialYearId + "','"+JangadType+"'").ToListAsync();
                 return defaultPriceList;
             }
         }

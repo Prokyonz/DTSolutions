@@ -616,8 +616,12 @@ namespace DiamondTrading
             string sr = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "Sr").ToString();
             string srNo = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "SrNo").ToString();
             string FinancialYear = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "FinancialYearId").ToString();
+            
+            int ActionType = 1;
+            if (SelectedTabPage.Equals("JangadSend"))
+                ActionType = 2;
 
-            Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany);
+            Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany,ActionType);
             fvj.ShowDialog();
         }
     }

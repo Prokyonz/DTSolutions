@@ -14,8 +14,8 @@ namespace EFCore.SQL.Interface
         Task<JangadMaster> AddJangadAsync(JangadMaster jangadMaster);
         Task<JangadMaster[]> UpdateJangadAsync(JangadMaster[] jangadMaster);
         Task<bool> DeleteJangadAsync(string jangadId);
-        Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId, string BrokerId);
-        Task<List<JangadPrintDetailModel>> GetJangadPrintDetails(string CompanyId, string FinancialYearId, string SrNo);
+        Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId);
+        Task<List<JangadPrintDetailModel>> GetJangadPrintDetails(string CompanyId, string FinancialYearId, string SrNo, int JangadType);
         Task<List<JangadSPReportModel>> GetJangadReport(string CompanyId, string FinancialYearId, int jangadType);
 
     }
