@@ -801,11 +801,11 @@ namespace DiamondTrading.Transaction
                         repoKapan.ValueMember = "KapanId";
                     }
                 }
-                else if (e.Column == colCarat)
+                else if (e.Column == colCarat || e.Column == colCVDWeight)
                 {
                     decimal TipWeight = Convert.ToDecimal(lueBranch.GetColumnValue("TipWeight"));
                     decimal CVDWeight = Convert.ToDecimal(lueBranch.GetColumnValue("CVDWeight"));
-                    GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat)), e.RowHandle, TipWeight, CVDWeight);
+                    await GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat)), e.RowHandle, TipWeight, CVDWeight);
                 }
                 else if (e.Column == colShape)
                 {
@@ -893,7 +893,7 @@ namespace DiamondTrading.Transaction
             }));
         }
 
-        private async void GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
+        private async Task GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
         {
             try
             {
@@ -990,7 +990,14 @@ namespace DiamondTrading.Transaction
 
                 decimal CVDCts = 0;
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
+                {
                     CVDCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight));
+                    if (CVDCts <= 0)
+                    {
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, 0);
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDAmount, 0);
+                    }
+                }
 
                 decimal RejCts = 0;
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)

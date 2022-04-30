@@ -624,15 +624,15 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        private void grvPurchaseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private async void grvPurchaseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             try
             {
-                if (e.Column == colCarat)
+                if (e.Column == colCarat || e.Column == colCVDWeight)
                 {
                     decimal TipWeight = Convert.ToDecimal(lueBranch.GetColumnValue("TipWeight"));
                     decimal CVDWeight = Convert.ToDecimal(lueBranch.GetColumnValue("CVDWeight"));
-                    GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat)), e.RowHandle, TipWeight, CVDWeight);
+                    await GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat)), e.RowHandle, TipWeight, CVDWeight);
                 }
                 else if (e.Column == colRejPer)
                 {
@@ -803,7 +803,7 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        private async void GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
+        private async Task GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
         {
             try
             {
