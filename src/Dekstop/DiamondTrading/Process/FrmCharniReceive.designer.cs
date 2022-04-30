@@ -63,6 +63,8 @@ namespace DiamondTrading.Process
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
+            this.lblRemainingWeight = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
@@ -297,6 +299,8 @@ namespace DiamondTrading.Process
             // 
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
+            this.grpGroup1.Controls.Add(this.lblRemainingWeight);
+            this.grpGroup1.Controls.Add(this.labelControl7);
             this.grpGroup1.Controls.Add(this.grdParticularsDetails);
             this.grpGroup1.Location = new System.Drawing.Point(11, 161);
             this.grpGroup1.Name = "grpGroup1";
@@ -341,6 +345,7 @@ namespace DiamondTrading.Process
             this.grvParticularsDetails.OptionsView.ShowGroupPanel = false;
             this.grvParticularsDetails.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.grvParticularsDetails_InitNewRow);
             this.grvParticularsDetails.ValidateRow += new DevExpress.XtraGrid.Views.Base.ValidateRowEventHandler(this.grvParticularsDetails_ValidateRow);
+            this.grvParticularsDetails.RowUpdated += new DevExpress.XtraGrid.Views.Base.RowObjectEventHandler(this.grvParticularsDetails_RowUpdated);
             // 
             // colSize
             // 
@@ -532,6 +537,26 @@ namespace DiamondTrading.Process
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(10, 219);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(113, 16);
+            this.labelControl7.TabIndex = 11;
+            this.labelControl7.Text = "Remaining Weight :";
+            // 
+            // lblRemainingWeight
+            // 
+            this.lblRemainingWeight.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblRemainingWeight.Appearance.Options.UseFont = true;
+            this.lblRemainingWeight.Location = new System.Drawing.Point(129, 219);
+            this.lblRemainingWeight.Name = "lblRemainingWeight";
+            this.lblRemainingWeight.Size = new System.Drawing.Size(7, 16);
+            this.lblRemainingWeight.TabIndex = 12;
+            this.lblRemainingWeight.Text = "0";
+            // 
             // FrmCharniReceive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -564,6 +589,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
+            this.grpGroup1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdParticularsDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvParticularsDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoSize)).EndInit();
@@ -617,5 +643,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoCategory;
         private DevExpress.XtraGrid.Columns.GridColumn colCharniCarat;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
+        private DevExpress.XtraEditors.LabelControl lblRemainingWeight;
+        private DevExpress.XtraEditors.LabelControl labelControl7;
     }
 }
