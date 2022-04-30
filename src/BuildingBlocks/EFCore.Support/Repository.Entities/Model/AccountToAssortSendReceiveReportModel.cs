@@ -14,7 +14,7 @@ namespace Repository.Entities.Model
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
-        public string EntryDate { get; set; }
+        public DateTime? EntryDate { get; set; }
         public string FromPartyId { get; set; }
         public string FromPartyName { get; set; }
         public string ToPartyId { get; set; }

@@ -14,7 +14,7 @@ namespace Repository.Entities.Model
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
         public int JangadNo { get; set; }
-        public string EntryDate { get; set; }
+        public DateTime? EntryDate { get; set; }
         public string HandOverById { get; set; }
         public string HandOverByName { get; set; }
         public string HandOverToId { get; set; }

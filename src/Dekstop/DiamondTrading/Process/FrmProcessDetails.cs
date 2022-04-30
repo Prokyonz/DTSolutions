@@ -39,66 +39,65 @@ namespace DiamondTrading
                 case "Kapan":
                     xtabKapanMapping.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabKapanMapping;
-                    this.Text = "Kapan Details";
+                    xtabKapanMapping.Text = this.Text = "Kapan Details";                    
                     break;
                 case "AssortSend":
                     xtabAssortSend.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabAssortSend;
-                    this.Text = "Assort Send";
+                    xtabAssortSend.Text = this.Text = "Assort Send";
                     break;
                 case "AssortReceive":
                     xtabAssortReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabAssortReceive;
-                    this.Text = "Assort Receive";
+                    xtabAssortReceive.Text = this.Text = "Assort Receive";
                     break;
                 case "BoilSend":
                     xtabBoilSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabBoilSendReceive;
-                    this.Text = "Boil Send";
+                    xtabBoilSendReceive.Text = this.Text = "Boil Send";
                     break;
                 case "BoilReceive":
                     xtabBoilSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabBoilSendReceive;
-                    this.Text = "Boil Receive";
+                    xtabBoilSendReceive.Text= this.Text = "Boil Receive";
                     break;
-
                 case "CharniSend":
                     xtabCjharniSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabCjharniSendReceive;
-                    this.Text = "Charni Send";
+                    xtabCjharniSendReceive.Text = this.Text = "Charni Send";
                     break;
                 case "CharniReceive":
                     xtabCjharniSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabCjharniSendReceive;
-                    this.Text = "Charni Receive";
+                    xtabCjharniSendReceive.Text = this.Text = "Charni Receive";
                     break;
 
                 case "GalaSend":
                     xtabGalaSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabGalaSendReceive;
-                    this.Text = "Gala Send";
+                    xtabGalaSendReceive.Text = this.Text = "Gala Send";
                     break;
                 case "GalaReceive":
                     xtabGalaSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabGalaSendReceive;
-                    this.Text = "Gala Receive";
+                    xtabGalaSendReceive.Text = this.Text = "Gala Receive";
                     break;
 
                 case "NumberSend":
                     xtabNumberSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabNumberSendReceive;
-                    this.Text = "Number Send";
+                    xtabNumberSendReceive.Text = this.Text = "Number Send";
                     break;
                 case "NumberReceive":
                     xtabNumberSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabNumberSendReceive;
-                    this.Text = "Number Receive";
+                    xtabNumberSendReceive.Text = this.Text = "Number Receive";
                     break;
 
                 default:
                     xtabKapanMapping.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabKapanMapping;
-                    this.Text = "Kapan Mapping";
+                    xtabKapanMapping.Text = this.Text = "Kapan Mapping";
                     break;
             }
         }
@@ -543,6 +542,54 @@ namespace DiamondTrading
             GridView view = sender as GridView;
             int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["CharniNo"]));
             int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["CharniNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void gridViewNumberReportMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["NumberNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["NumberNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void gridViewGalaReportMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["GalaNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["GalaNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void gridViewBoilSendReceiveMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["BoilNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["BoilNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void grvAssortReceiveMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["JangadNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["JangadNo"]));
             if (id1 != id2)
             {
                 e.Merge = false;
