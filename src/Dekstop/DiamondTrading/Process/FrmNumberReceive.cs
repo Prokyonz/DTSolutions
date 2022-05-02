@@ -158,6 +158,7 @@ namespace DiamondTrading.Process
                 txtSlipNo.Text = lueKapan.GetColumnValue("SlipNo").ToString();
                 txtSize.Text = lueKapan.GetColumnValue("CharniSize").ToString();
                 txtACarat.Text = lueKapan.GetColumnValue("AvailableWeight").ToString();
+                lblRemainingWeight.Text = txtACarat.Text;
             }
             else
             {
@@ -332,6 +333,7 @@ namespace DiamondTrading.Process
             lueKapan.EditValue = null;
             repoSize.DataSource = null;
             repoCategory.DataSource = null;
+            lblRemainingWeight.Text = "0";
 
             await GetMaxSrNo();
             await GetEmployeeList();
@@ -349,6 +351,28 @@ namespace DiamondTrading.Process
         private void FrmNumberReceive_KeyDown(object sender, KeyEventArgs e)
         {
             Common.MoveToNextControl(sender, e, this);
+        }
+
+        private void grvParticularsDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
+        {
+            BeginInvoke(new Action(() =>
+            {
+                GetRemainingWeight();
+            }));
+        }
+
+        private void GetRemainingWeight()
+        {
+            try
+            {
+                decimal TotalCts = Convert.ToDecimal(colNumberCarat.SummaryItem.SummaryValue);
+                decimal RemainingWeight = Convert.ToDecimal(txtACarat.Text) - TotalCts;
+                lblRemainingWeight.Text = RemainingWeight.ToString("0.00");
+            }
+            catch
+            {
+                lblRemainingWeight.Text = "0";
+            }
         }
     }
 }
