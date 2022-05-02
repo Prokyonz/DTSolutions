@@ -2175,7 +2175,7 @@ namespace DiamondTrading
             this.gridColumn67.Name = "gridColumn67";
             this.gridColumn67.OptionsColumn.AllowEdit = false;
             this.gridColumn67.Visible = true;
-            this.gridColumn67.VisibleIndex = 8;
+            this.gridColumn67.VisibleIndex = 7;
             this.gridColumn67.Width = 128;
             // 
             // gridColumn68
@@ -2207,8 +2207,6 @@ namespace DiamondTrading
             this.gridColumn71.FieldName = "BrokerName";
             this.gridColumn71.Name = "gridColumn71";
             this.gridColumn71.OptionsColumn.AllowEdit = false;
-            this.gridColumn71.Visible = true;
-            this.gridColumn71.VisibleIndex = 2;
             this.gridColumn71.Width = 140;
             // 
             // gridColumn75
@@ -2223,7 +2221,7 @@ namespace DiamondTrading
             this.gridColumn76.FieldName = "SizeName";
             this.gridColumn76.Name = "gridColumn76";
             this.gridColumn76.Visible = true;
-            this.gridColumn76.VisibleIndex = 3;
+            this.gridColumn76.VisibleIndex = 2;
             this.gridColumn76.Width = 68;
             // 
             // gridColumn77
@@ -2232,7 +2230,7 @@ namespace DiamondTrading
             this.gridColumn77.FieldName = "Totalcts";
             this.gridColumn77.Name = "gridColumn77";
             this.gridColumn77.Visible = true;
-            this.gridColumn77.VisibleIndex = 4;
+            this.gridColumn77.VisibleIndex = 3;
             this.gridColumn77.Width = 71;
             // 
             // gridColumn78
@@ -2241,7 +2239,7 @@ namespace DiamondTrading
             this.gridColumn78.FieldName = "Rate";
             this.gridColumn78.Name = "gridColumn78";
             this.gridColumn78.Visible = true;
-            this.gridColumn78.VisibleIndex = 5;
+            this.gridColumn78.VisibleIndex = 4;
             this.gridColumn78.Width = 111;
             // 
             // gridColumn79
@@ -2250,7 +2248,7 @@ namespace DiamondTrading
             this.gridColumn79.FieldName = "Amount";
             this.gridColumn79.Name = "gridColumn79";
             this.gridColumn79.Visible = true;
-            this.gridColumn79.VisibleIndex = 6;
+            this.gridColumn79.VisibleIndex = 5;
             this.gridColumn79.Width = 111;
             // 
             // gridColumn72
@@ -2266,7 +2264,7 @@ namespace DiamondTrading
             this.gridColumn80.FieldName = "Remarks";
             this.gridColumn80.Name = "gridColumn80";
             this.gridColumn80.Visible = true;
-            this.gridColumn80.VisibleIndex = 7;
+            this.gridColumn80.VisibleIndex = 6;
             this.gridColumn80.Width = 150;
             // 
             // gridColumn73
@@ -2276,7 +2274,7 @@ namespace DiamondTrading
             this.gridColumn73.FieldName = "Sr";
             this.gridColumn73.Name = "gridColumn73";
             this.gridColumn73.Visible = true;
-            this.gridColumn73.VisibleIndex = 9;
+            this.gridColumn73.VisibleIndex = 8;
             this.gridColumn73.Width = 55;
             // 
             // repositoryJangadPrintReport
