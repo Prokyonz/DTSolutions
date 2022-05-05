@@ -160,5 +160,21 @@ namespace EFCore.SQL.Repository
                 throw;
             }
         }
+        public async Task<List<StockReportModelReport>> GetStockReportAsync(string companyId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetStockReport '" + companyId + "', '" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
     }
 }

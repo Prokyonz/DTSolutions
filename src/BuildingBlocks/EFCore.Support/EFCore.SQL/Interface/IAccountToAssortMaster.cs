@@ -19,6 +19,6 @@ namespace EFCore.SQL.Interface
         Task<bool> DeleteAccountToAssortAsync(string expenseId);
 
         Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId);
-
+        Task<List<StockReportModelReport>> GetStockReportAsync(string companyId, string financialYearId);
     }
 }

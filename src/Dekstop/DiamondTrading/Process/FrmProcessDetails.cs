@@ -94,6 +94,12 @@ namespace DiamondTrading
                     xtabNumberSendReceive.Text = this.Text = "Number Receive";
                     break;
 
+                case "StockReport":
+                    xtraTabStockReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabStockReport;
+                    xtraTabStockReport.Text = this.Text = "Stock Report";
+                    break;
+
                 default:
                     xtabKapanMapping.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabKapanMapping;
@@ -112,6 +118,7 @@ namespace DiamondTrading
             xtabCjharniSendReceive.PageVisible = false;
             xtabGalaSendReceive.PageVisible = false;
             xtabNumberSendReceive.PageVisible = false;
+            xtraTabStockReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -145,15 +152,15 @@ namespace DiamondTrading
             await LoadGridData(true);
         }
 
-        private async Task LoadGridData(bool IsForceLoad=false)
-        {            
+        private async Task LoadGridData(bool IsForceLoad = false)
+        {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
                 if (IsForceLoad || _kapanMappingMasterRepository == null)
                 {
                     _kapanMappingMasterRepository = new KapanMappingMasterRepository();
-                    var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany,Common.LoginBranch, Common.LoginFinancialYear);
-                    grdProcessMaster.DataSource = kapanData.OrderBy(o=>o.SlipNo);
+                    var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                    grdProcessMaster.DataSource = kapanData.OrderBy(o => o.SlipNo);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
@@ -174,9 +181,9 @@ namespace DiamondTrading
                     gridControlAssortReceiveMaster.DataSource = assortReceiveData.OrderBy(o => o.SlipNo);
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabBoilSendReceive)
+            else if (xtabManager.SelectedTabPage == xtabBoilSendReceive)
             {
-                if(IsForceLoad || _boilMasterRepository == null)
+                if (IsForceLoad || _boilMasterRepository == null)
                 {
                     _boilMasterRepository = new BoilMasterRepository();
                     var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
@@ -202,7 +209,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _galaProcessMasterRepository == null)
                 {
                     _galaProcessMasterRepository = new GalaProcessMasterRepository();
-                    int type =  SelectedTabPage == "GalaSend" ? 0 : 1;
+                    int type = SelectedTabPage == "GalaSend" ? 0 : 1;
                     var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
                     gridControlGalaReportMaster.DataSource = data;
                     if (type == 0)
@@ -229,6 +236,15 @@ namespace DiamondTrading
                         gridColumn135.Visible = true;
                         gridColumn137.Visible = true;
                     }
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabStockReport)
+            {
+                if (IsForceLoad || _accountToAssortMasterRepository == null)
+                {
+                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                    var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany,  Common.LoginFinancialYear);
+                    grdStockReportMaster.DataSource = salesData.OrderBy(o => o.Kapan);
                 }
             }
         }
@@ -590,6 +606,18 @@ namespace DiamondTrading
             GridView view = sender as GridView;
             int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["JangadNo"]));
             int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["JangadNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void gvStockReport_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            string id1 = Convert.ToString(view.GetRowCellValue(e.RowHandle1, view.Columns["KapanId"]));
+            string id2 = Convert.ToString(view.GetRowCellValue(e.RowHandle2, view.Columns["KapanId"]));
             if (id1 != id2)
             {
                 e.Merge = false;
