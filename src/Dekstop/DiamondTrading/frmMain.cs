@@ -2032,5 +2032,23 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        private void barButtonItem73_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "StockReport";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
     }
 }
