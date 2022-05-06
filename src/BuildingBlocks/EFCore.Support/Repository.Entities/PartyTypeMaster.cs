@@ -205,6 +205,24 @@ namespace Repository.Entities
         }
     }
 
+    public class TransferCategoryMaster
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Number = 0;
+        public static int Kapan = 1;
+
+        public static List<TransferCategoryMaster> GetAllTransferCategory()
+        {
+            List<TransferCategoryMaster> transferCategoryMaster = new List<TransferCategoryMaster>
+            {
+                new TransferCategoryMaster {Id = Number, Name = "Number" },
+                new TransferCategoryMaster {Id = Kapan, Name = "Kapan" }
+            };
+            return transferCategoryMaster;
+        }
+    }
+
     public class CaratCategoryMaster
     {
         public int Id { get; set; }

@@ -91,7 +91,7 @@ namespace DiamondTrading.Process
             this.colTypeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colKapanId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBoilNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCharniSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTypeIdT = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -453,7 +453,7 @@ namespace DiamondTrading.Process
             this.colTypeId,
             this.colKapanId,
             this.colSlipNo,
-            this.colBoilNo,
+            this.colCharniSizeId,
             this.colTypeIdT});
             this.grvTransferItemDetails.GridControl = this.grdTransferItemDetails;
             this.grvTransferItemDetails.Name = "grvTransferItemDetails";
@@ -524,7 +524,6 @@ namespace DiamondTrading.Process
             this.repoShape.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repoShape.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("BoilNo", "Sr No"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SlipNo", "Slip No"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Shape", "Shape", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShapeId", "ShapeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
@@ -532,16 +531,15 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SizeId", "SizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Purity", "Purity"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PurityId", "PurityId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Kapan"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "Charni"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSizeId", "CharniId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumber", "Gala"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumberId", "GalaNumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Number", "Number"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberId", "NumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Kapan"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSize", "Number"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSizeId", "NumberSizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight")});
             this.repoShape.Name = "repoShape";
             this.repoShape.NullText = "";
             this.repoShape.ValueMember = "Guid";
@@ -903,11 +901,11 @@ namespace DiamondTrading.Process
             this.colSlipNo.FieldName = "SlipNo";
             this.colSlipNo.Name = "colSlipNo";
             // 
-            // colBoilNo
+            // colCharniSizeId
             // 
-            this.colBoilNo.Caption = "BoilNo";
-            this.colBoilNo.FieldName = "BoilNo";
-            this.colBoilNo.Name = "colBoilNo";
+            this.colCharniSizeId.Caption = "CharniSizeId";
+            this.colCharniSizeId.FieldName = "CharniSizeId";
+            this.colCharniSizeId.Name = "colCharniSizeId";
             // 
             // colTypeIdT
             // 
@@ -1150,7 +1148,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LookUpEdit lueTransferBy;
         private DevExpress.XtraEditors.LabelControl labelControl6;
         private DevExpress.XtraGrid.Columns.GridColumn colSlipNo;
-        private DevExpress.XtraGrid.Columns.GridColumn colBoilNo;
+        private DevExpress.XtraGrid.Columns.GridColumn colCharniSizeId;
         private DevExpress.XtraGrid.Columns.GridColumn colTypeIdT;
     }
 }
