@@ -329,6 +329,10 @@ namespace DiamondTrading
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barSubItem16.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "stock_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItemStockReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
                 }
             }
 
