@@ -711,8 +711,6 @@ namespace DiamondTrading.Process
             this.colKapanT.ColumnEdit = this.repoKapanT;
             this.colKapanT.FieldName = "KapanT";
             this.colKapanT.Name = "colKapanT";
-            this.colKapanT.Visible = true;
-            this.colKapanT.VisibleIndex = 8;
             this.colKapanT.Width = 40;
             // 
             // repoKapanT
@@ -732,7 +730,7 @@ namespace DiamondTrading.Process
             this.colTypeT.FieldName = "TypeT";
             this.colTypeT.Name = "colTypeT";
             this.colTypeT.Visible = true;
-            this.colTypeT.VisibleIndex = 9;
+            this.colTypeT.VisibleIndex = 8;
             this.colTypeT.Width = 50;
             // 
             // colCaratT
@@ -744,7 +742,7 @@ namespace DiamondTrading.Process
             this.colCaratT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCaratT.Visible = true;
-            this.colCaratT.VisibleIndex = 10;
+            this.colCaratT.VisibleIndex = 9;
             this.colCaratT.Width = 50;
             // 
             // repoTextEditCaratT
@@ -765,7 +763,7 @@ namespace DiamondTrading.Process
             this.colRateT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RateT", "{0:0.##}")});
             this.colRateT.Visible = true;
-            this.colRateT.VisibleIndex = 11;
+            this.colRateT.VisibleIndex = 10;
             this.colRateT.Width = 50;
             // 
             // repoTextRate
@@ -789,7 +787,7 @@ namespace DiamondTrading.Process
             this.colAmountT.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AmountT", "{0:0.##}")});
             this.colAmountT.Visible = true;
-            this.colAmountT.VisibleIndex = 12;
+            this.colAmountT.VisibleIndex = 11;
             this.colAmountT.Width = 66;
             // 
             // colCaratCategory
