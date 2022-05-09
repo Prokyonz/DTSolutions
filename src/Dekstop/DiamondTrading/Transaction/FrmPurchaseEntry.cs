@@ -245,6 +245,7 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
+            lueCurrencyType.EditValue = "8cb0a7f4-5a1b-4cd1-a03f-9ba4dd79ad90";
         }
 
         private async Task FillCombos()
