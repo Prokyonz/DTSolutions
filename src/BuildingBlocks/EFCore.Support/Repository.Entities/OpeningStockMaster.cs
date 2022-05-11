@@ -19,7 +19,7 @@ namespace Repository.Entities
         public string ShapeId { get; set; }
         public string SizeId { get; set; }
         public string PurityId { get; set; }
-        public string NmberId { get; set; }
+        public string NumberId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalCts { get; set; }
