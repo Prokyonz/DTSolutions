@@ -12,6 +12,9 @@ namespace Repository.Entities
         public int SrNo { get; set; }
         [Key]
         public string Id { get; set; }
+        public string EntryDate { get; set; }
+        public string EntryTime { get; set; }
+        public int Category { get; set; }
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }

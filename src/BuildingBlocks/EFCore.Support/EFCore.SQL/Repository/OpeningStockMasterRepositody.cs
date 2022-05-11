@@ -91,6 +91,9 @@ namespace EFCore.SQL.Repository
                     getReccord.KapanId = openingStockMaster.PurityId;
                     getReccord.BranchId = openingStockMaster.BranchId;
                     getReccord.Rate = openingStockMaster.Rate;
+                    getReccord.EntryDate = openingStockMaster.EntryDate;
+                    getReccord.EntryTime = openingStockMaster.EntryTime;
+                    getReccord.UpdatedDate = DateTime.Now;
 
                     await _databaseContext.SaveChangesAsync();
 
