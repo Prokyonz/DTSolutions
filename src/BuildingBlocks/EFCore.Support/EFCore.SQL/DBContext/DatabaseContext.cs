@@ -65,6 +65,11 @@ namespace EFCore.SQL.DBContext
         public DbSet<JangadMaster> JangadMaster { get; set; }
         public DbSet<PriceMaster> PriceMaster { get; set; }
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
+        public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
+
+
+
+
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
         public virtual DbSet<JangadSPReceiveModel> JangadSPReceiveModel { get; set; }
         public virtual DbSet<JangadPrintDetailModel> JangadPrintDetailModel { get; set; }
@@ -159,6 +164,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<JangadMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PriceMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<RejectionInOutMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<OpeningStockMaster>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();

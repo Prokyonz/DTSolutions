@@ -12,6 +12,8 @@ namespace Repository.Entities.Model
         public string Kapan { get; set; }
         public string Size { get; set; }
         public string GalaNumber { get; set; }
+        public string NumberId { get; set; }
+        public string Number { get; set; }
 
         //[Column(TypeName = "decimal(18, 4)")]
         //public decimal NotMapped { get; set; }

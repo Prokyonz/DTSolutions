@@ -259,9 +259,11 @@ namespace DiamondTrading
             this.gridColumn150 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn151 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn144 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn148 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn143 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn145 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn146 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn147 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.gridView15 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -2295,9 +2297,11 @@ namespace DiamondTrading
             this.gridColumn150,
             this.gridColumn151,
             this.gridColumn144,
+            this.gridColumn148,
             this.gridColumn143,
             this.gridColumn145,
-            this.gridColumn146});
+            this.gridColumn146,
+            this.gridColumn147});
             this.gvStockReport.GridControl = this.grdStockReportMaster;
             this.gvStockReport.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", this.gridColumn146, "")});
@@ -2320,7 +2324,7 @@ namespace DiamondTrading
             this.gridColumn149.Name = "gridColumn149";
             this.gridColumn149.Visible = true;
             this.gridColumn149.VisibleIndex = 0;
-            this.gridColumn149.Width = 164;
+            this.gridColumn149.Width = 195;
             // 
             // gridColumn150
             // 
@@ -2329,7 +2333,7 @@ namespace DiamondTrading
             this.gridColumn150.Name = "gridColumn150";
             this.gridColumn150.Visible = true;
             this.gridColumn150.VisibleIndex = 1;
-            this.gridColumn150.Width = 186;
+            this.gridColumn150.Width = 221;
             // 
             // gridColumn151
             // 
@@ -2345,7 +2349,16 @@ namespace DiamondTrading
             this.gridColumn144.Name = "gridColumn144";
             this.gridColumn144.Visible = true;
             this.gridColumn144.VisibleIndex = 4;
-            this.gridColumn144.Width = 158;
+            this.gridColumn144.Width = 144;
+            // 
+            // gridColumn148
+            // 
+            this.gridColumn148.Caption = "Number";
+            this.gridColumn148.FieldName = "Number";
+            this.gridColumn148.Name = "gridColumn148";
+            this.gridColumn148.Visible = true;
+            this.gridColumn148.VisibleIndex = 5;
+            this.gridColumn148.Width = 138;
             // 
             // gridColumn143
             // 
@@ -2354,7 +2367,7 @@ namespace DiamondTrading
             this.gridColumn143.Name = "gridColumn143";
             this.gridColumn143.Visible = true;
             this.gridColumn143.VisibleIndex = 3;
-            this.gridColumn143.Width = 70;
+            this.gridColumn143.Width = 83;
             // 
             // gridColumn145
             // 
@@ -2363,7 +2376,7 @@ namespace DiamondTrading
             this.gridColumn145.Name = "gridColumn145";
             this.gridColumn145.Visible = true;
             this.gridColumn145.VisibleIndex = 2;
-            this.gridColumn145.Width = 97;
+            this.gridColumn145.Width = 115;
             // 
             // gridColumn146
             // 
@@ -2371,8 +2384,14 @@ namespace DiamondTrading
             this.gridColumn146.FieldName = "AvailableWeight";
             this.gridColumn146.Name = "gridColumn146";
             this.gridColumn146.Visible = true;
-            this.gridColumn146.VisibleIndex = 5;
-            this.gridColumn146.Width = 139;
+            this.gridColumn146.VisibleIndex = 6;
+            this.gridColumn146.Width = 165;
+            // 
+            // gridColumn147
+            // 
+            this.gridColumn147.Caption = "NumberId";
+            this.gridColumn147.FieldName = "NumberId";
+            this.gridColumn147.Name = "gridColumn147";
             // 
             // repositoryItemComboBox2
             // 
@@ -2821,5 +2840,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn143;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn145;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn146;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn148;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn147;
     }
 }
