@@ -11,6 +11,7 @@ namespace DiamondTrading
         Send = 0,
         Receive = 1,
         Return = 2,
-        Transfer = 3
+        Transfer = 3,
+        OpeningStock = 4
     }
 }
