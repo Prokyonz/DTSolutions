@@ -723,7 +723,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                         numberProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                         numberProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                        numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.Return);
+                        numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.Transfer);
                         numberProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
                         numberProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
                         numberProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
@@ -900,7 +900,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                         numberProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                         numberProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                        numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.Return);
+                        numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.Transfer);
                         numberProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanT).ToString();
                         numberProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
                         numberProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
