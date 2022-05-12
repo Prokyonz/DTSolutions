@@ -227,6 +227,7 @@ namespace DiamondTrading.Utility
             this.grvTransferItemDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvTransferItemDetails.OptionsView.ShowFooter = true;
             this.grvTransferItemDetails.OptionsView.ShowGroupPanel = false;
+            this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
             // 
             // colCategory
             // 
@@ -278,7 +279,7 @@ namespace DiamondTrading.Utility
             this.colKapan.Name = "colKapan";
             this.colKapan.Visible = true;
             this.colKapan.VisibleIndex = 2;
-            this.colKapan.Width = 91;
+            this.colKapan.Width = 106;
             // 
             // repoKapan
             // 
@@ -299,7 +300,7 @@ namespace DiamondTrading.Utility
             this.colSize.Name = "colSize";
             this.colSize.Visible = true;
             this.colSize.VisibleIndex = 3;
-            this.colSize.Width = 91;
+            this.colSize.Width = 88;
             // 
             // repoSize
             // 
@@ -319,8 +320,8 @@ namespace DiamondTrading.Utility
             this.colNumber.FieldName = "Number";
             this.colNumber.Name = "colNumber";
             this.colNumber.Visible = true;
-            this.colNumber.VisibleIndex = 5;
-            this.colNumber.Width = 107;
+            this.colNumber.VisibleIndex = 4;
+            this.colNumber.Width = 103;
             // 
             // repoNumber
             // 
@@ -342,8 +343,8 @@ namespace DiamondTrading.Utility
             this.colCarat.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Carat", "{0:0.##}")});
             this.colCarat.Visible = true;
-            this.colCarat.VisibleIndex = 4;
-            this.colCarat.Width = 91;
+            this.colCarat.VisibleIndex = 5;
+            this.colCarat.Width = 88;
             // 
             // repoTxtEdit
             // 
@@ -364,7 +365,7 @@ namespace DiamondTrading.Utility
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Rate", "{0:0.##}")});
             this.colRate.Visible = true;
             this.colRate.VisibleIndex = 6;
-            this.colRate.Width = 88;
+            this.colRate.Width = 104;
             // 
             // repoTextRate
             // 
@@ -389,7 +390,7 @@ namespace DiamondTrading.Utility
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 7;
-            this.colAmount.Width = 130;
+            this.colAmount.Width = 109;
             // 
             // repoShape
             // 
@@ -542,6 +543,7 @@ namespace DiamondTrading.Utility
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 5;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
@@ -552,6 +554,7 @@ namespace DiamondTrading.Utility
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmOpeningStock
             // 

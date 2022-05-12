@@ -12,6 +12,7 @@ namespace Repository.Entities
         public int SrNo { get; set; }
         [Key]
         public string Id { get; set; }
+        public string TransferId { get; set; }
         public string EntryDate { get; set; }
         public string EntryTime { get; set; }
         public int Category { get; set; }
@@ -31,6 +32,7 @@ namespace Repository.Entities
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Amount { get; set; }
+        public string Remarks { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
