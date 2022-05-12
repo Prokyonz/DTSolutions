@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20211211173627_AddGalaColumnInSalesDetailsTable")]
-    partial class AddGalaColumnInSalesDetailsTable
+    [Migration("20220512102120_Init")]
+    partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,6 +44,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("NumberProcessId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 4)");
+
                     b.Property<string>("PurchaseDetailsId")
                         .HasColumnType("nvarchar(max)");
 
@@ -65,6 +68,9 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("TotalAmount")
+                        .HasColumnType("decimal(18, 4)");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18, 4)");
@@ -105,6 +111,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("EntryTime")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("EntryType")
+                        .HasColumnType("int");
+
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
@@ -130,6 +139,15 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("ToPartyId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("TransferEntryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -141,6 +159,44 @@ namespace EFCore.SQL.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("AccountToAssortMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.ApprovalPermissionMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KeyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ApprovalPermissionMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.BoilProcessMaster", b =>
@@ -223,6 +279,18 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("TransferCaratRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TransferEntryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -439,6 +507,18 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("TransferCaratRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TransferEntryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -654,6 +734,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("float");
 
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
+
                     b.Property<string>("BranchId")
                         .HasColumnType("nvarchar(max)");
 
@@ -674,6 +757,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(450)");
@@ -696,6 +782,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("fromPartyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -907,6 +996,18 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("TransferCaratRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TransferEntryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -925,6 +1026,9 @@ namespace EFCore.SQL.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
 
                     b.Property<int>("BillNo")
                         .HasColumnType("int");
@@ -950,6 +1054,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
 
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
@@ -972,6 +1079,86 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("GroupPaymentMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.JangadMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EntryType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image1")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image2")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image3")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<int>("ReceivedSrNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Totalcts")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JangadMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.KapanMappingMaster", b =>
@@ -1146,6 +1333,417 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("LessWeightMasters");
                 });
 
+            modelBuilder.Entity("Repository.Entities.LoanMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DuratonType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("InterestRate")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LoanType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("NetAmount")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalInterest")
+                        .HasColumnType("decimal(18, 2)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LoanMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.AccountToAssoftReceiveReportModel", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Dept")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverByName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPAccountToAssoftReceiveReportModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.AccountToAssortSendReceiveReportModel", b =>
+                {
+                    b.Property<int>("AccountToAssortType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("AssignWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ChildId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromPartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromPartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ToPartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToPartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPAccountToAssortSendReceiveReportModels");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.BoilSendReceiveReportModel", b =>
+                {
+                    b.Property<int>("BoilNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BoilType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverByName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LossWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RejectionWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPBoilSendReceiveReportModels");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.CaratCategoryType", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.ToTable("CaratCategoryType");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.CharniSendReceiveReportModel", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CharniNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CharniType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverByName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LossWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RejectionWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPCharniSendReceiveReportModels");
+                });
+
             modelBuilder.Entity("Repository.Entities.Model.ContraSPModel", b =>
                 {
                     b.Property<string>("Id")
@@ -1191,7 +1789,13 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("BranchId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BranchName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartyId")
@@ -1216,6 +1820,506 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("datetime2");
 
                     b.ToTable("SPExpenseModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.GalaProcessSendReceiveReportModel", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GalaName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GalaNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("GalaNumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GalaProcessType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("HandOverById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverByName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LossWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RejectionWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPGalaProcessSendReceiveReportModels");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.JangadPrintDetailModel", b =>
+                {
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BrokerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GSTNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCts")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("JangadPrintDetailModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.JangadSPReceiveModel", b =>
+                {
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<decimal>("AvailableWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("BrokerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("JangadSPReceiveModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.JangadSPReportModel", b =>
+                {
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BrokerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Totalcts")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.ToTable("SPJangadSendReceiveReportModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.KapanMappingReportModel", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPKapanMappingReportModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.LoanSPModel", b =>
+                {
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DuratonType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("InterestRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("LoanType")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("NetAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("TotalInterest")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.ToTable("SPLoanReportModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.MixedSPModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("Credit")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Debit")
+                        .HasColumnType("float");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FromPartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ToPartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SPMixedReportModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.NumberProcessSendReceiveReportModel", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("EntryDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GalaName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("GalaNumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverByName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HandOverToName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("LossWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("NumberNo")
+                        .HasColumnType("int");
+
+                    b.Property<int>("NumberProcessType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RejectionWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ShapeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.ToTable("SPNumberProcessSendReceiveReportModels");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.PaymentPSSlipDetails", b =>
+                {
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("GrossTotal")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Party")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurchaseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("RemainAmount")
+                        .HasColumnType("float");
+
+                    b.Property<long>("SlipNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Year")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("SPPaymentPSSlipDetails");
                 });
 
             modelBuilder.Entity("Repository.Entities.Model.PaymentSPModel", b =>
@@ -1261,13 +2365,36 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPPaymentModel");
                 });
 
+            modelBuilder.Entity("Repository.Entities.Model.PriceSPModel", b =>
+                {
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("PriceSPModel");
+                });
+
             modelBuilder.Entity("Repository.Entities.Model.PurchaseSPModel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("ApprovalType")
-                        .HasColumnType("int");
+                    b.Property<string>("ApprovalType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("BrokerMobileNo")
                         .HasColumnType("nvarchar(max)");
@@ -1367,11 +2494,41 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPPurchaseModel");
                 });
 
-            modelBuilder.Entity("Repository.Entities.Model.SalesItemDetails", b =>
+            modelBuilder.Entity("Repository.Entities.Model.PurchaseSlipDetailsSPModel", b =>
                 {
-                    b.Property<string>("BranchId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Broker")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BrokerageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Party")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SlipNo")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SPPurchaseSlipDetailsModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.SalesItemDetails", b =>
+                {
                     b.Property<string>("CharniSize")
                         .HasColumnType("nvarchar(max)");
 
@@ -1384,10 +2541,10 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GalaSize")
+                    b.Property<string>("GalaNumberId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("GalaSizeId")
+                    b.Property<string>("GalaSize")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
@@ -1429,6 +2586,213 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SalesItemDetails");
                 });
 
+            modelBuilder.Entity("Repository.Entities.Model.SalesSPModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ApprovalType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerMobileNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DueDays")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("GrossTotal")
+                        .HasColumnType("float");
+
+                    b.Property<bool>("IsPF")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSlip")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MobileNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentDays")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("PaymentDueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SaleBillNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<double>("SaleRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("SalerId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SalerMobileNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SalerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SlipNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SPSalesModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.SlipDetailPrintSPModel", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Broker")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BrokerageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("CRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CVDCharge")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("CVDWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Disc")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("DueDays")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Final")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LessDiscountPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("LessWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("NetWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Party")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PaymentDays")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("RejectedWeight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<long>("SlipNo")
+                        .HasColumnType("bigint");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SPSlipDetailPrintModel");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.StockReportModelReport", b =>
+                {
+                    b.Property<decimal>("AvailableWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("GalaNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Kapan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Size")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("SPStockReportModelReport");
+                });
+
             modelBuilder.Entity("Repository.Entities.Models.AssortmentProcessSend", b =>
                 {
                     b.Property<decimal>("AvailableWeight")
@@ -1438,6 +2802,12 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Id")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Kapan")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("LessWeight")
@@ -1690,6 +3060,12 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("AvailableWeight")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("CharniSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1819,6 +3195,12 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("AvailableWeight")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("CharniSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1872,6 +3254,12 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("AvailableWeight")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("CharniSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1922,6 +3310,12 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("AvailableWeight")
                         .HasColumnType("decimal(18,2)");
 
+                    b.Property<string>("CharniSize")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
@@ -1967,32 +3361,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPNumberProcessSend");
                 });
 
-            modelBuilder.Entity("Repository.Entities.ModuleMaster", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDetele")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ModuleMaster");
-                });
-
             modelBuilder.Entity("Repository.Entities.NumberMaster", b =>
                 {
                     b.Property<string>("Id")
@@ -2034,6 +3402,9 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CharniSizeId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CompanyId")
@@ -2115,6 +3486,18 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<double>("TransferCaratRate")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TransferEntryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferType")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -2127,6 +3510,80 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NumberProcessMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.OpeningStockMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EntryDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EntryTime")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PurityId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCts")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OpeningStockMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.PartyMaster", b =>
@@ -2216,6 +3673,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -2229,6 +3689,9 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PurchaseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
@@ -2305,16 +3768,13 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ClaimType")
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ModuleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
+                    b.Property<string>("KeyName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
@@ -2326,9 +3786,51 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ModuleId");
-
                     b.ToTable("PermissionMaster");
+                });
+
+            modelBuilder.Entity("Repository.Entities.PriceMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CategoryId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NumberId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PriceMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.PurchaseDetails", b =>
@@ -2606,15 +4108,21 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("PurityMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.RoleClaimMaster", b =>
+            modelBuilder.Entity("Repository.Entities.RejectionInOutMaster", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("ClaimType")
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("BranchId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClaimValue")
+                    b.Property<string>("BrokerageId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
@@ -2623,47 +4131,34 @@ namespace EFCore.SQL.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("Sr")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
-                        .HasAnnotation("SqlServer:IdentitySeed", 1)
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("UpdatedBy")
+                    b.Property<string>("EntryDate")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoleId");
-
-                    b.ToTable("RoleClaimMaster");
-                });
-
-            modelBuilder.Entity("Repository.Entities.RoleMaster", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CratedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("FinancialYearId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<byte[]>("Image1")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image2")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image3")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Isdelete")
-                        .HasColumnType("bit");
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SlipNo")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
@@ -2673,6 +4168,15 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCarat")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<int>("TransType")
+                        .HasColumnType("int");
+
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -2681,7 +4185,7 @@ namespace EFCore.SQL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("RoleMaster");
+                    b.ToTable("RejectionInOutMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
@@ -2899,6 +4403,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<bool>("AllowSlipPrint")
                         .HasColumnType("bit");
 
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
+
                     b.Property<string>("BranchId")
                         .HasColumnType("nvarchar(max)");
 
@@ -2973,6 +4480,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<bool>("IsTransfer")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
@@ -3102,11 +4612,20 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("decimal(18, 4)");
 
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PurchaseMasterId")
                         .HasColumnType("nvarchar(450)");
@@ -3132,6 +4651,77 @@ namespace EFCore.SQL.Migrations
                     b.HasIndex("PurchaseMasterId");
 
                     b.ToTable("SlipTransferEntry");
+                });
+
+            modelBuilder.Entity("Repository.Entities.TransferMaster", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("ApprovalType")
+                        .HasColumnType("int");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Image1")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image2")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<byte[]>("Image3")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<bool>("IsDelete")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Remark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("TRansferById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TransferMaster");
                 });
 
             modelBuilder.Entity("Repository.Entities.UserMaster", b =>
@@ -3234,19 +4824,16 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("UserMaster");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserRoleMaster", b =>
+            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("CreatedBy")
+                    b.Property<string>("KeyName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("RoleId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("PermissionMasterId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
                         .ValueGeneratedOnAdd()
@@ -3255,22 +4842,17 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
+                    b.Property<bool>("Status")
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
-
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRoleMaster");
+                    b.ToTable("UserPermissionChild");
                 });
 
             modelBuilder.Entity("Repository.Entities.AccountToAssortDetails", b =>
@@ -3340,25 +4922,11 @@ namespace EFCore.SQL.Migrations
                         .HasForeignKey("GroupId");
                 });
 
-            modelBuilder.Entity("Repository.Entities.PermissionMaster", b =>
-                {
-                    b.HasOne("Repository.Entities.ModuleMaster", "ModuleMaster")
-                        .WithMany()
-                        .HasForeignKey("ModuleId");
-                });
-
             modelBuilder.Entity("Repository.Entities.PurchaseDetails", b =>
                 {
                     b.HasOne("Repository.Entities.PurchaseMaster", "PurchaseMaster")
                         .WithMany("PurchaseDetails")
                         .HasForeignKey("PurchaseId");
-                });
-
-            modelBuilder.Entity("Repository.Entities.RoleClaimMaster", b =>
-                {
-                    b.HasOne("Repository.Entities.RoleMaster", "RoleMaster")
-                        .WithMany("RoleClaimMaster")
-                        .HasForeignKey("RoleId");
                 });
 
             modelBuilder.Entity("Repository.Entities.SalaryDetail", b =>
@@ -3393,14 +4961,10 @@ namespace EFCore.SQL.Migrations
                         .HasForeignKey("BranchMasterId");
                 });
 
-            modelBuilder.Entity("Repository.Entities.UserRoleMaster", b =>
+            modelBuilder.Entity("Repository.Entities.UserPermissionChild", b =>
                 {
-                    b.HasOne("Repository.Entities.RoleMaster", "RoleMaster")
-                        .WithMany()
-                        .HasForeignKey("RoleId");
-
                     b.HasOne("Repository.Entities.UserMaster", "UserMaster")
-                        .WithMany("UserRoleMaster")
+                        .WithMany("UserPermissionChilds")
                         .HasForeignKey("UserId");
                 });
 #pragma warning restore 612, 618
