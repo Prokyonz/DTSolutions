@@ -226,6 +226,7 @@ namespace DiamondTrading.Utility
         {
             try
             {
+                
                 this.Cursor = Cursors.WaitCursor;
 
                 if (!CheckValidation())
