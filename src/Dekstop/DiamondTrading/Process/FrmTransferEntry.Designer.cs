@@ -102,6 +102,8 @@ namespace DiamondTrading.Process
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colPurchaseDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurchaseMasterId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -454,7 +456,9 @@ namespace DiamondTrading.Process
             this.colKapanId,
             this.colSlipNo,
             this.colCharniSizeId,
-            this.colTypeIdT});
+            this.colTypeIdT,
+            this.colPurchaseDetailsId,
+            this.colPurchaseMasterId});
             this.grvTransferItemDetails.GridControl = this.grdTransferItemDetails;
             this.grvTransferItemDetails.Name = "grvTransferItemDetails";
             this.grvTransferItemDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -1009,6 +1013,18 @@ namespace DiamondTrading.Process
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // colPurchaseDetailsId
+            // 
+            this.colPurchaseDetailsId.Caption = "PurchaseDetailsId";
+            this.colPurchaseDetailsId.FieldName = "PurchaseDetailsId";
+            this.colPurchaseDetailsId.Name = "colPurchaseDetailsId";
+            // 
+            // colPurchaseMasterId
+            // 
+            this.colPurchaseMasterId.Caption = "PurchaseMasterId";
+            this.colPurchaseMasterId.FieldName = "PurchaseMasterId";
+            this.colPurchaseMasterId.Name = "colPurchaseMasterId";
+            // 
             // FrmTransferEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1148,5 +1164,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn colCharniSizeId;
         private DevExpress.XtraGrid.Columns.GridColumn colTypeIdT;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailsId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseMasterId;
     }
 }

@@ -13,6 +13,7 @@ namespace Repository.Entities.Models
         //public string KapanId { get; set; }
         //public string Kapan { get; set; }
         public string PurchaseDetailsId { get; set; }
+        public string PurchaseMasterId { get; set; }
         public string KapanId { get; set; }
         public string Kapan { get; set; }
         public string ShapeId { get; set; }

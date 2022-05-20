@@ -78,6 +78,9 @@ namespace DiamondTrading.Process
             dt.Columns.Add("KapanId");
             dt.Columns.Add("TypeId");
             dt.Columns.Add("TypeIdT");
+
+            dt.Columns.Add("PurchaseDetailsId");
+            dt.Columns.Add("PurchaseMasterId");
             return dt;
         }
 
@@ -246,30 +249,35 @@ namespace DiamondTrading.Process
                 {
                     if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
-                        //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, CaratCategoryMaster.CharniCarat);
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, TransferCategoryMaster.Kapan);
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, TransferCategoryMaster.Kapan);
 
-                        //if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
-                        //{
-                        //    GalaProcessMasterRepository galaProcessMasterRepository = new GalaProcessMasterRepository();
-                        //    var ListGalaProcessSend = await galaProcessMasterRepository.GetGalaSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
+                        if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
+                        {
+                            AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                            var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
 
-                        //    repoShape.DataSource = ListGalaProcessSend;
-                        //    repoShape.DisplayMember = "Shape";
-                        //    repoShape.ValueMember = "ShapeId";
+                            repoShape.DataSource = ListKapanProcessSend;
+                            repoShape.DisplayMember = "Shape";
+                            repoShape.ValueMember = "Id";
 
-                        //    repoShape.Columns["BoilNo"].Visible = false;
-                        //    repoShape.Columns["CharniSize"].Visible = true;
-                        //    repoShape.Columns["GalaNumber"].Visible = false;
-                        //    repoShape.Columns["Number"].Visible = false;
+                            repoShape.Columns["SlipNo"].Visible = true;
+                            repoShape.Columns["Size"].Visible = true;
+                            repoShape.Columns["Kapan"].Visible = true;
 
-                        //    repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                        //    repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-                        //}
-                        repoShape.DataSource = null;
+                            repoShape.Columns["Purity"].Visible = false;
+                            repoShape.Columns["CharniSize"].Visible = false;
+                            repoShape.Columns["GalaNumber"].Visible = false;
+                            repoShape.Columns["NumberSize"].Visible = false;
+
+                            repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+                        }
                     }
-                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
                     {
-                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, CaratCategoryMaster.NumberCarat);
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, TransferCategoryMaster.Number);
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, TransferCategoryMaster.Number);
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
@@ -368,6 +376,23 @@ namespace DiamondTrading.Process
                             //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                             ////grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                             ////grvPurchaseItems.FocusedColumn = colBoilCarat;
+                            ///
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Size);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Purity);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Kapan);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Weight);
+
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSlipNo, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapanId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+                            
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeT, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurityT, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurchaseMasterId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurchaseMasterId);
                         }
                         else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
                         {
@@ -427,14 +452,10 @@ namespace DiamondTrading.Process
                 else if (e.Column == colCategoryT)
                 {
                     this.grvTransferItemDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
-                    if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Boil.ToString())
-                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
-                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Charni.ToString())
+                    if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Kapan.ToString())
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 1);
-                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Gala.ToString())
-                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 2);
-                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == CategoryMaster.Number.ToString())
-                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 3);
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
                     grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, "");
                     this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                 }
@@ -465,45 +486,23 @@ namespace DiamondTrading.Process
             {
                 if (e.Column == colTypeT)
                 {
-                    if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == CaratCategoryMaster.None)
+                    if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == TransferCategoryMaster.Kapan)
                     {
                         if (_caratCategoryTypes == null)
                             _caratCategoryTypes = await _salesMasterRepository.GetCaratCategoryDetails();
 
-                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(CaratCategoryMaster.CharniCarat));
+                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(TransferCategoryMaster.Kapan));
                         repoTypeT.DisplayMember = "Name";
                         repoTypeT.ValueMember = "Id";
 
                         e.RepositoryItem = repoTypeT;
                     }
-                    else if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == CaratCategoryMaster.CharniCarat)
+                    else if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == TransferCategoryMaster.Number)
                     {
                         if (_caratCategoryTypes == null)
                             _caratCategoryTypes = await _salesMasterRepository.GetCaratCategoryDetails();
 
-                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(CaratCategoryMaster.CharniCarat));
-                        repoTypeT.DisplayMember = "Name";
-                        repoTypeT.ValueMember = "Id";
-
-                        e.RepositoryItem = repoTypeT;
-                    }
-                    else if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == CaratCategoryMaster.GalaCarat)
-                    {
-                        if (_caratCategoryTypes == null)
-                            _caratCategoryTypes = await _salesMasterRepository.GetCaratCategoryDetails();
-
-                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(CaratCategoryMaster.GalaCarat));
-                        repoTypeT.DisplayMember = "Name";
-                        repoTypeT.ValueMember = "Id";
-
-                        e.RepositoryItem = repoTypeT;
-                    }
-                    else if (Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCaratCategoryT)) == CaratCategoryMaster.NumberCarat)
-                    {
-                        if (_caratCategoryTypes == null)
-                            _caratCategoryTypes = await _salesMasterRepository.GetCaratCategoryDetails();
-
-                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(CaratCategoryMaster.NumberCarat));
+                        repoTypeT.DataSource = _caratCategoryTypes.Where(x => x.Type.Equals(TransferCategoryMaster.Number));
                         repoTypeT.DisplayMember = "Name";
                         repoTypeT.ValueMember = "Id";
 
@@ -571,13 +570,13 @@ namespace DiamondTrading.Process
 
                 string TransferId = Guid.NewGuid().ToString();
 
-                BoilMasterRepository boilMasterRepository;
+                KapanMappingMasterRepository kapanMappingMasterRepository;
                 CharniProcessMasterRepository charniProcessMasterRepository;
                 GalaProcessMasterRepository galaProcessMasterRepository;
                 NumberProcessMasterRepository numberProcessMasterRepository;
                 BoilProcessMaster boilProcessMaster;
                 CharniProcessMaster charniProcessMaster;
-                GalaProcessMaster galaProcessMaster;
+                KapanMappingMaster kapanMappingMaster;
                 NumberProcessMaster numberProcessMaster;
 
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
@@ -585,133 +584,29 @@ namespace DiamondTrading.Process
                     string TransferEntryId = Guid.NewGuid().ToString();
                     string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
                     //Transfer From
-                    //if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Boil.ToString())
-                    //{
-                    //    boilProcessMaster = new BoilProcessMaster();
-                    //    boilProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    boilProcessMaster.BoilNo = Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(i, colCharniSizeId).ToString());
-                    //    boilProcessMaster.JangadNo = 0;
-                    //    boilProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    boilProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                    //    boilProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    boilProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    boilProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    boilProcessMaster.BoilType = Convert.ToInt32(ProcessType.Receive);
-                    //    boilProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                    //    boilProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
-                    //    boilProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
-                    //    boilProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                    //    boilProcessMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
-                    //    boilProcessMaster.LossWeight = 0;
-                    //    boilProcessMaster.RejectionWeight = 0;
-                    //    boilProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    boilProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    boilProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString(); ;
-                    //    boilProcessMaster.BoilCategoy = 0;
-                    //    boilProcessMaster.Remarks = txtRemark.Text;
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    {
+                        kapanMappingMaster = new KapanMappingMaster();
+                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                        kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                        kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
+                        kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
+                        kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
+                        kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
+                        kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
+                        kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
+                        kapanMappingMaster.CreatedDate = DateTime.Now;
+                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                        kapanMappingMaster.UpdatedDate = DateTime.Now;
+                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                    //    boilProcessMaster.TransferId = TransferId;
-                    //    boilProcessMaster.TransferType = TransferType;
-                    //    boilProcessMaster.TransferEntryId = TransferEntryId;
-                    //    boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-
-                    //    boilProcessMaster.IsDelete = false;
-                    //    boilProcessMaster.CreatedDate = DateTime.Now;
-                    //    boilProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    boilProcessMaster.UpdatedDate = DateTime.Now;
-                    //    boilProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    boilMasterRepository = new BoilMasterRepository();
-                    //    var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
-                    //    boilMasterRepository = null;
-                    //}
-                    //else if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Charni.ToString())
-                    //{
-                    //    charniProcessMaster = new CharniProcessMaster();
-                    //    charniProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    charniProcessMaster.CharniNo = 0;
-                    //    charniProcessMaster.JangadNo = 0;
-                    //    charniProcessMaster.BoilJangadNo = 0;
-                    //    charniProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    charniProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                    //    charniProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    charniProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    charniProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    charniProcessMaster.CharniType = Convert.ToInt32(ProcessType.Receive);
-                    //    charniProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                    //    charniProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
-                    //    charniProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
-                    //    charniProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                    //    charniProcessMaster.Weight = 0;
-                    //    charniProcessMaster.CharniSizeId = grvTransferItemDetails.GetRowCellValue(i, colTypeId).ToString();
-                    //    charniProcessMaster.CharniWeight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
-                    //    charniProcessMaster.LossWeight = 0;
-                    //    charniProcessMaster.RejectionWeight = 0;
-                    //    charniProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    charniProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    charniProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                    //    charniProcessMaster.CharniCategoy = 0;
-                    //    charniProcessMaster.Remarks = txtRemark.Text;
-
-                    //    charniProcessMaster.TransferId = TransferId;
-                    //    charniProcessMaster.TransferType = TransferType;
-                    //    charniProcessMaster.TransferEntryId = TransferEntryId;
-                    //    charniProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-
-                    //    charniProcessMaster.IsDelete = false;
-                    //    charniProcessMaster.CreatedDate = DateTime.Now;
-                    //    charniProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    charniProcessMaster.UpdatedDate = DateTime.Now;
-                    //    charniProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    charniProcessMasterRepository = new CharniProcessMasterRepository();
-                    //    var Result1 = await charniProcessMasterRepository.AddCharniProcessAsync(charniProcessMaster);
-                    //    charniProcessMasterRepository = null;
-                    //}
-                    //else if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Gala.ToString())
-                    //{
-                    //    galaProcessMaster = new GalaProcessMaster();
-                    //    galaProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    galaProcessMaster.GalaNo = 0;
-                    //    galaProcessMaster.JangadNo = 0;
-                    //    //galaProcessMaster.BoilJangadNo = Convert.ToInt32(lueKapan.GetColumnValue("BoilJangadNo").ToString());
-                    //    galaProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    galaProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                    //    galaProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    galaProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    galaProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    galaProcessMaster.GalaProcessType = Convert.ToInt32(ProcessType.Receive);
-                    //    galaProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                    //    galaProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
-                    //    galaProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
-                    //    galaProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                    //    galaProcessMaster.Weight = 0;
-                    //    galaProcessMaster.GalaNumberId = grvTransferItemDetails.GetRowCellValue(i, colTypeId).ToString();
-                    //    galaProcessMaster.GalaWeight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
-                    //    galaProcessMaster.LossWeight = 0;
-                    //    galaProcessMaster.RejectionWeight = 0;
-                    //    galaProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    galaProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    galaProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                    //    galaProcessMaster.GalaCategoy = 0;
-                    //    galaProcessMaster.Remarks = txtRemark.Text;
-
-                    //    galaProcessMaster.TransferId = TransferId;
-                    //    galaProcessMaster.TransferType = TransferType;
-                    //    galaProcessMaster.TransferEntryId = TransferEntryId;
-                    //    galaProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-
-                    //    galaProcessMaster.IsDelete = false;
-                    //    galaProcessMaster.CreatedDate = DateTime.Now;
-                    //    galaProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    galaProcessMaster.UpdatedDate = DateTime.Now;
-                    //    galaProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    galaProcessMasterRepository = new GalaProcessMasterRepository();
-                    //    var Result1 = await galaProcessMasterRepository.AddGalaProcessAsync(galaProcessMaster);
-                    //    galaProcessMasterRepository = null;
-                    //}
-                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
+                        kapanMappingMasterRepository = new KapanMappingMasterRepository();
+                        var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                        kapanMappingMasterRepository = null;
+                    }
+                    else if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         numberProcessMaster = new NumberProcessMaster();
                         numberProcessMaster.Id = Guid.NewGuid().ToString();
@@ -758,137 +653,29 @@ namespace DiamondTrading.Process
                     }
 
                     //Transfer To
-                    //if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == CategoryMaster.Boil.ToString())
-                    //{
-                    //    boilProcessMaster = new BoilProcessMaster();
-                    //    boilProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    //boilProcessMaster.PurchaseDetailsId = grvParticularsDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
-                    //    if(!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(i, colCharniSizeId).ToString()))
-                    //        boilProcessMaster.BoilNo = Convert.ToInt32(grvTransferItemDetails.GetRowCellValue(i, colCharniSizeId).ToString());
-                    //    else
-                    //        boilProcessMaster.BoilNo = 0;
-                    //    boilProcessMaster.JangadNo = 0;
-                    //    boilProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    boilProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString();
-                    //    boilProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    boilProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    boilProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    boilProcessMaster.BoilType = Convert.ToInt32(ProcessType.Receive);
-                    //    boilProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanT).ToString();
-                    //    boilProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
-                    //    boilProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
-                    //    boilProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
-                    //    boilProcessMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
-                    //    boilProcessMaster.LossWeight = 0;
-                    //    boilProcessMaster.RejectionWeight = 0;
-                    //    boilProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    boilProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    boilProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString(); ;
-                    //    boilProcessMaster.BoilCategoy = 0;
-                    //    boilProcessMaster.Remarks = txtRemark.Text;
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    {
+                        kapanMappingMaster = new KapanMappingMaster();
+                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                        kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                        kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
+                        kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
+                        kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
+                        kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
+                        kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
+                        kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
+                        kapanMappingMaster.CreatedDate = DateTime.Now;
+                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                        kapanMappingMaster.UpdatedDate = DateTime.Now;
+                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                    //    boilProcessMaster.TransferId = TransferId;
-                    //    boilProcessMaster.TransferType = TransferType;
-                    //    boilProcessMaster.TransferEntryId = TransferEntryId;
-                    //    boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
-
-                    //    boilProcessMaster.IsDelete = false;
-                    //    boilProcessMaster.CreatedDate = DateTime.Now;
-                    //    boilProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    boilProcessMaster.UpdatedDate = DateTime.Now;
-                    //    boilProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    boilMasterRepository = new BoilMasterRepository();
-                    //    var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
-                    //    boilMasterRepository = null;
-                    //}
-                    //else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == CategoryMaster.Charni.ToString())
-                    //{
-                    //    charniProcessMaster = new CharniProcessMaster();
-                    //    charniProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    charniProcessMaster.CharniNo = 0;
-                    //    charniProcessMaster.JangadNo = 0;
-                    //    charniProcessMaster.BoilJangadNo = 0;
-                    //    charniProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    charniProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString();
-                    //    charniProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    charniProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    charniProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    charniProcessMaster.CharniType = Convert.ToInt32(ProcessType.Receive);
-                    //    charniProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanT).ToString();
-                    //    charniProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
-                    //    charniProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
-                    //    charniProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
-                    //    charniProcessMaster.Weight = 0;
-                    //    charniProcessMaster.CharniSizeId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
-                    //    charniProcessMaster.CharniWeight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
-                    //    charniProcessMaster.LossWeight = 0;
-                    //    charniProcessMaster.RejectionWeight = 0;
-                    //    charniProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    charniProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    charniProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                    //    charniProcessMaster.CharniCategoy = 0;
-                    //    charniProcessMaster.Remarks = txtRemark.Text;
-
-                    //    charniProcessMaster.TransferId = TransferId;
-                    //    charniProcessMaster.TransferType = TransferType;
-                    //    charniProcessMaster.TransferEntryId = TransferEntryId;
-                    //    charniProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
-
-                    //    charniProcessMaster.IsDelete = false;
-                    //    charniProcessMaster.CreatedDate = DateTime.Now;
-                    //    charniProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    charniProcessMaster.UpdatedDate = DateTime.Now;
-                    //    charniProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    charniProcessMasterRepository = new CharniProcessMasterRepository();
-                    //    var Result1 = await charniProcessMasterRepository.AddCharniProcessAsync(charniProcessMaster);
-                    //    charniProcessMasterRepository = null;
-                    //}
-                    //else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == CategoryMaster.Gala.ToString())
-                    //{
-                    //    galaProcessMaster = new GalaProcessMaster();
-                    //    galaProcessMaster.Id = Guid.NewGuid().ToString();
-                    //    galaProcessMaster.GalaNo = 0;
-                    //    galaProcessMaster.JangadNo = 0;
-                    //    //galaProcessMaster.BoilJangadNo = Convert.ToInt32(lueKapan.GetColumnValue("BoilJangadNo").ToString());
-                    //    galaProcessMaster.CompanyId = lueCompany.EditValue.ToString();
-                    //    galaProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString();
-                    //    galaProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    //    galaProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    //    galaProcessMaster.FinancialYearId = Common.LoginFinancialYear;
-                    //    galaProcessMaster.GalaProcessType = Convert.ToInt32(ProcessType.Receive);
-                    //    galaProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanT).ToString();
-                    //    galaProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
-                    //    galaProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
-                    //    galaProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
-                    //    galaProcessMaster.Weight = 0;
-                    //    galaProcessMaster.GalaNumberId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
-                    //    galaProcessMaster.GalaWeight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
-                    //    galaProcessMaster.LossWeight = 0;
-                    //    galaProcessMaster.RejectionWeight = 0;
-                    //    galaProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
-                    //    galaProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
-                    //    galaProcessMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                    //    galaProcessMaster.GalaCategoy = 0;
-                    //    galaProcessMaster.Remarks = txtRemark.Text;
-
-                    //    galaProcessMaster.TransferId = TransferId;
-                    //    galaProcessMaster.TransferType = TransferType;
-                    //    galaProcessMaster.TransferEntryId = TransferEntryId;
-                    //    galaProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
-
-                    //    galaProcessMaster.IsDelete = false;
-                    //    galaProcessMaster.CreatedDate = DateTime.Now;
-                    //    galaProcessMaster.CreatedBy = Common.LoginUserID;
-                    //    galaProcessMaster.UpdatedDate = DateTime.Now;
-                    //    galaProcessMaster.UpdatedBy = Common.LoginUserID;
-
-                    //    galaProcessMasterRepository = new GalaProcessMasterRepository();
-                    //    var Result1 = await galaProcessMasterRepository.AddGalaProcessAsync(galaProcessMaster);
-                    //    galaProcessMasterRepository = null;
-                    //}
-                    if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
+                        kapanMappingMasterRepository = new KapanMappingMasterRepository();
+                        var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                        kapanMappingMasterRepository = null;
+                    }
+                    else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         numberProcessMaster = new NumberProcessMaster();
                         numberProcessMaster.Id = Guid.NewGuid().ToString();
