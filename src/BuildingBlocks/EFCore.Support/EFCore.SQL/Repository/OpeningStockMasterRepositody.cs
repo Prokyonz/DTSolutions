@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,11 +51,12 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<OpeningStockMaster>> GetAllOpeningStockAsync(string companyId, string financialYearId)
+        public async Task<List<OpeningStockSPModel>> GetAllOpeningStockAsync(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.OpeningStockMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
+                var getReccord = await _databaseContext.SPOpeningStockSPModel.FromSqlRaw($"GetOpeningStockReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+
                 return getReccord;
             }
         }
