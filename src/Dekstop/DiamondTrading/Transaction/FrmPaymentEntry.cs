@@ -79,7 +79,12 @@ namespace DiamondTrading.Transaction
 
         private async void FrmPaymentEntry_Load(object sender, EventArgs e)
         {
-            dtDate.EditValue = DateTime.Now;
+            string lastselectedDate = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.TranscationDateSelection, "");
+
+            if (string.IsNullOrEmpty(lastselectedDate))
+                dtDate.EditValue = DateTime.Now;
+            else
+                dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
             dtTime.EditValue = DateTime.Now;
 
             await LoadCompany();
@@ -168,6 +173,8 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.TranscationDateSelection, dtDate.DateTime.ToString());
+
                 this.Cursor = Cursors.WaitCursor;
 
                 //Contra Entry
@@ -305,7 +312,6 @@ namespace DiamondTrading.Transaction
         }
         private async void Reset()
         {
-            dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             grdPaymentDetails.DataSource = null;
             txtRemark.Text = "";
