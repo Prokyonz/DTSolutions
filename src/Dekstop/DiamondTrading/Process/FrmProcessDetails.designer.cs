@@ -2581,7 +2581,7 @@ namespace DiamondTrading
             // gridColumn165
             // 
             this.gridColumn165.Caption = "Size";
-            this.gridColumn165.FieldName = "SizeNme";
+            this.gridColumn165.FieldName = "SizeName";
             this.gridColumn165.Name = "gridColumn165";
             this.gridColumn165.Visible = true;
             this.gridColumn165.VisibleIndex = 2;
