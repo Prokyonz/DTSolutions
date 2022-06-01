@@ -96,7 +96,7 @@ namespace DiamondTrading.Transaction
             this.labelControl13.Location = new System.Drawing.Point(198, 34);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(70, 16);
-            this.labelControl13.TabIndex = 29;
+            this.labelControl13.TabIndex = 1;
             this.labelControl13.Text = "Company* :";
             // 
             // lueCompany
@@ -112,7 +112,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(363, 26);
-            this.lueCompany.TabIndex = 1;
+            this.lueCompany.TabIndex = 2;
             // 
             // labelControl12
             // 
@@ -121,7 +121,7 @@ namespace DiamondTrading.Transaction
             this.labelControl12.Location = new System.Drawing.Point(11, 62);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(61, 16);
-            this.labelControl12.TabIndex = 1;
+            this.labelControl12.TabIndex = 3;
             this.labelControl12.Text = "Serial No :";
             // 
             // labelControl6
@@ -131,7 +131,7 @@ namespace DiamondTrading.Transaction
             this.labelControl6.Location = new System.Drawing.Point(11, 108);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(62, 16);
-            this.labelControl6.TabIndex = 6;
+            this.labelControl6.TabIndex = 8;
             this.labelControl6.Text = "Account* :";
             // 
             // lblFormTitle
@@ -158,7 +158,7 @@ namespace DiamondTrading.Transaction
             this.labelControl8.Location = new System.Drawing.Point(733, 62);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 16);
-            this.labelControl8.TabIndex = 3;
+            this.labelControl8.TabIndex = 5;
             this.labelControl8.Text = "Date* :";
             // 
             // dtTime
@@ -173,7 +173,6 @@ namespace DiamondTrading.Transaction
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -185,7 +184,7 @@ namespace DiamondTrading.Transaction
             this.dtTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtTime.Properties.MaskSettings.Set("mask", "t");
             this.dtTime.Size = new System.Drawing.Size(88, 20);
-            this.dtTime.TabIndex = 5;
+            this.dtTime.TabIndex = 7;
             // 
             // btnCancel
             // 
@@ -195,7 +194,7 @@ namespace DiamondTrading.Transaction
             this.btnCancel.Location = new System.Drawing.Point(819, 524);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 3;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -206,8 +205,9 @@ namespace DiamondTrading.Transaction
             this.btnReset.Location = new System.Drawing.Point(738, 524);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
-            this.btnReset.TabIndex = 18;
+            this.btnReset.TabIndex = 2;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // txtSerialNo
             // 
@@ -219,7 +219,7 @@ namespace DiamondTrading.Transaction
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
             this.txtSerialNo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtSerialNo.Size = new System.Drawing.Size(97, 24);
-            this.txtSerialNo.TabIndex = 2;
+            this.txtSerialNo.TabIndex = 4;
             // 
             // dtDate
             // 
@@ -228,14 +228,13 @@ namespace DiamondTrading.Transaction
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 2;
+            this.dtDate.TabIndex = 6;
             // 
             // btnSave
             // 
@@ -244,7 +243,7 @@ namespace DiamondTrading.Transaction
             this.btnSave.Location = new System.Drawing.Point(657, 524);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
-            this.btnSave.TabIndex = 17;
+            this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
             // 
             // panelControl1
@@ -270,7 +269,7 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Location = new System.Drawing.Point(10, 1);
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(884, 516);
-            this.panelControl1.TabIndex = 16;
+            this.panelControl1.TabIndex = 0;
             // 
             // txtWorkingDays
             // 
@@ -282,7 +281,7 @@ namespace DiamondTrading.Transaction
             this.txtWorkingDays.Properties.Appearance.Options.UseTextOptions = true;
             this.txtWorkingDays.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtWorkingDays.Size = new System.Drawing.Size(138, 22);
-            this.txtWorkingDays.TabIndex = 38;
+            this.txtWorkingDays.TabIndex = 15;
             // 
             // lueMonth
             // 
@@ -297,7 +296,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueMonth.Properties.NullText = "";
             this.lueMonth.Size = new System.Drawing.Size(138, 22);
-            this.lueMonth.TabIndex = 36;
+            this.lueMonth.TabIndex = 13;
             // 
             // labelControl4
             // 
@@ -306,7 +305,7 @@ namespace DiamondTrading.Transaction
             this.labelControl4.Location = new System.Drawing.Point(633, 137);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(95, 16);
-            this.labelControl4.TabIndex = 37;
+            this.labelControl4.TabIndex = 14;
             this.labelControl4.Text = "Working Days* :";
             // 
             // labelControl5
@@ -316,7 +315,7 @@ namespace DiamondTrading.Transaction
             this.labelControl5.Location = new System.Drawing.Point(633, 108);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(52, 16);
-            this.labelControl5.TabIndex = 35;
+            this.labelControl5.TabIndex = 12;
             this.labelControl5.Text = "Month* :";
             // 
             // separatorControl1
@@ -325,7 +324,7 @@ namespace DiamondTrading.Transaction
             this.separatorControl1.Location = new System.Drawing.Point(614, 92);
             this.separatorControl1.Name = "separatorControl1";
             this.separatorControl1.Size = new System.Drawing.Size(21, 70);
-            this.separatorControl1.TabIndex = 34;
+            this.separatorControl1.TabIndex = 11;
             // 
             // grpGroup1
             // 
@@ -335,7 +334,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup1.Location = new System.Drawing.Point(11, 168);
             this.grpGroup1.Name = "grpGroup1";
             this.grpGroup1.Size = new System.Drawing.Size(860, 248);
-            this.grpGroup1.TabIndex = 32;
+            this.grpGroup1.TabIndex = 16;
             this.grpGroup1.Text = "Particulars Details";
             // 
             // grdParticularsDetails
@@ -515,7 +514,7 @@ namespace DiamondTrading.Transaction
             this.grpGroup2.Location = new System.Drawing.Point(11, 422);
             this.grpGroup2.Name = "grpGroup2";
             this.grpGroup2.Size = new System.Drawing.Size(860, 83);
-            this.grpGroup2.TabIndex = 33;
+            this.grpGroup2.TabIndex = 17;
             this.grpGroup2.Text = "Remark";
             // 
             // txtRemark
@@ -542,7 +541,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueLeadger.Properties.NullText = "";
             this.lueLeadger.Size = new System.Drawing.Size(532, 22);
-            this.lueLeadger.TabIndex = 30;
+            this.lueLeadger.TabIndex = 9;
             // 
             // txtLedgerBalance
             // 
@@ -558,7 +557,7 @@ namespace DiamondTrading.Transaction
             this.txtLedgerBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.txtLedgerBalance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtLedgerBalance.Size = new System.Drawing.Size(147, 20);
-            this.txtLedgerBalance.TabIndex = 31;
+            this.txtLedgerBalance.TabIndex = 10;
             // 
             // FrmSalaryEntry
             // 

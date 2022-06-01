@@ -316,7 +316,6 @@ namespace DiamondTrading.Transaction
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -347,7 +346,6 @@ namespace DiamondTrading.Transaction
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -402,7 +400,7 @@ namespace DiamondTrading.Transaction
             this.txtLedgerBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.txtLedgerBalance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtLedgerBalance.Size = new System.Drawing.Size(109, 20);
-            this.txtLedgerBalance.TabIndex = 17;
+            this.txtLedgerBalance.TabIndex = 10;
             // 
             // labelControl3
             // 
@@ -411,7 +409,7 @@ namespace DiamondTrading.Transaction
             this.labelControl3.Location = new System.Drawing.Point(8, 107);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(62, 16);
-            this.labelControl3.TabIndex = 16;
+            this.labelControl3.TabIndex = 8;
             this.labelControl3.Text = "Account* :";
             // 
             // lueAccounts
@@ -428,7 +426,7 @@ namespace DiamondTrading.Transaction
             this.lueAccounts.Properties.NullText = "";
             this.lueAccounts.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard;
             this.lueAccounts.Size = new System.Drawing.Size(224, 22);
-            this.lueAccounts.TabIndex = 15;
+            this.lueAccounts.TabIndex = 9;
             this.lueAccounts.EditValueChanged += new System.EventHandler(this.lueAccounts_EditValueChanged);
             this.lueAccounts.KeyDown += new System.Windows.Forms.KeyEventHandler(this.NewEntry);
             // 
@@ -447,7 +445,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShortName", "Short Name", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueBranch.Properties.NullText = "";
             this.lueBranch.Size = new System.Drawing.Size(298, 22);
-            this.lueBranch.TabIndex = 14;
+            this.lueBranch.TabIndex = 4;
             this.lueBranch.Visible = false;
             // 
             // labelControl2
@@ -457,7 +455,7 @@ namespace DiamondTrading.Transaction
             this.labelControl2.Location = new System.Drawing.Point(100, 72);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(56, 16);
-            this.labelControl2.TabIndex = 13;
+            this.labelControl2.TabIndex = 3;
             this.labelControl2.Text = "Branch* :";
             this.labelControl2.Visible = false;
             // 
