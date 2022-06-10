@@ -106,6 +106,8 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<JangadSPReportModel> SPJangadSendReceiveReportModel { get; set; }
         public virtual DbSet<StockReportModelReport> SPStockReportModelReport  { get; set; }
         public virtual DbSet<OpeningStockSPModel> SPOpeningStockSPModel { get; set; }
+        public virtual DbSet<PFReportSPModel> SPPFReportModels { get; set; }
+        public virtual DbSet<LedgerBalanceSPModel> SPLedgerBalanceReport { get; set; }
 
 
 
@@ -196,6 +198,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberProcessSendReceiveReportModel>().HasNoKey();
             modelBuilder.Entity<JangadSPReportModel>().HasNoKey();
             modelBuilder.Entity<StockReportModelReport>().HasNoKey();
+            modelBuilder.Entity<PFReportSPModel>().HasNoKey();
+            modelBuilder.Entity<LedgerBalanceSPModel>().HasNoKey();
         }
     }
 }

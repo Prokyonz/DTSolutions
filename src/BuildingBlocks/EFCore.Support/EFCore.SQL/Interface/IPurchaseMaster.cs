@@ -23,5 +23,7 @@ namespace EFCore.SQL.Interface
         Task<long> GetMaxSrNo(string companyId, string financialYearId);
 
         Task<bool> UpdateApprovalStatus(string purchaseId, string message, int status);
+
+        Task<List<PFReportSPModel>> GetPFReportAsync(string companyId, string financialYearId, int PFType);
     }
 }

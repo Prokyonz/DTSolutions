@@ -141,7 +141,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var purchaseSlipDetailsReport = await _databaseContext.SPPurchaseSlipDetailsModel.FromSqlRaw($"GetAvailableSlipsDetail '"+ ActionType + "','" + companyId + "','" + financialYearId + "'").ToListAsync();
+                var purchaseSlipDetailsReport = await _databaseContext.SPPurchaseSlipDetailsModel.FromSqlRaw($"GetAvailableSlipsDetail '" + ActionType + "','" + companyId + "','" + financialYearId + "'").ToListAsync();
                 return purchaseSlipDetailsReport;
             }
         }
@@ -150,7 +150,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var slipDetails = await _databaseContext.SPSlipDetailPrintModel.FromSqlRaw($"GetSlipDetail '"+ ActionType + "','" + companyId + "','" + SlipNo + "','" + financialYearId + "'").ToListAsync();
+                var slipDetails = await _databaseContext.SPSlipDetailPrintModel.FromSqlRaw($"GetSlipDetail '" + ActionType + "','" + companyId + "','" + SlipNo + "','" + financialYearId + "'").ToListAsync();
                 return slipDetails;
             }
         }
@@ -233,6 +233,15 @@ namespace EFCore.SQL.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public async Task<List<PFReportSPModel>> GetPFReportAsync(string companyId, string financialYearId, int PFType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPFRecord = await _databaseContext.SPPFReportModels.FromSqlRaw($"GetPFReport '" + companyId + "', '" + financialYearId + "', '"+ PFType +"'").ToListAsync();
+                return getPFRecord;
             }
         }
     }

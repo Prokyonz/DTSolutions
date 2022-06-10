@@ -23,6 +23,7 @@ namespace DiamondTrading
         private ExpenseMasterRepository _expenseMasterRepository;
         private LoanMasterRepository _loanMasterRepository;
         private JangadMasterRepository _JangadMasterRepository;
+        private PartyMasterRepository _partyMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -104,6 +105,18 @@ namespace DiamondTrading
                     xtabJangadSendReceive.Text = "Jangad Receive";
                     this.Text = "Jangad Receive";
                     break;
+                case "PFReport":
+                    xtraTabPFReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabPFReport;
+                    xtraTabPFReport.Text = "PF Report";
+                    this.Text = "PF Report";
+                    break;
+                case "LedgerReport":
+                    xtraTabLedgerBalance.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabLedgerBalance;
+                    xtraTabLedgerBalance.Text = "Ledger Report";
+                    this.Text = "Ledger Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -125,6 +138,8 @@ namespace DiamondTrading
             xtabMixed.PageVisible = false;
             xtabPurchaseSlipPrint.PageVisible = false;
             xtabJangadSendReceive.PageVisible = false;
+            xtraTabPFReport.PageVisible = false;
+            xtraTabLedgerBalance.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -258,6 +273,23 @@ namespace DiamondTrading
                     var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
                     gridControlJangadSendReceive.DataSource = data;
                 }
+            } else if(xtabManager.SelectedTabPage == xtraTabPFReport)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
+                {
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var data = await _purchaseMasterRepository.GetPFReportAsync(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    gridControlPFReport.DataSource = data;
+                }
+            }
+            else if(xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            {
+                if (IsForceLoad || _partyMasterRepository == null)
+                {
+                    _partyMasterRepository = new PartyMasterRepository();
+                    var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany);
+                    gridControlLedgerReport.DataSource = data;
+                }
             }
         }
 
@@ -265,7 +297,6 @@ namespace DiamondTrading
         {
             if (xtabManager.SelectedTabPage == xtabPurchase)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
 
                 string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("Id").ToString();                
 

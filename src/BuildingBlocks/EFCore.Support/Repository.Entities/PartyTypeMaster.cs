@@ -21,13 +21,12 @@ namespace Repository.Entities
         public static int Uchina = 10;
         public static int CapitalAccount = 11;
         public static int Investment = 12;
-
+        public static int Loan = 13;
 
         public static int Buyer = 6;
         public static int Seller = 7;
         public static int Broker = 8;
-        public static int Other = 9;
-        public static int Loan = 10;
+        public static int Other = 9;        
 
         //public static List<PartyTypeMaster> GetAllPartyType()
         //{
@@ -58,7 +57,6 @@ namespace Repository.Entities
                 {
                     new PartyTypeMaster { Id = Party, Name = "Party" },
                     new PartyTypeMaster { Id = Employee, Name = "Employee" },
-                    new PartyTypeMaster { Id = Expense, Name = "Expense" },
                     new PartyTypeMaster { Id = DirectIncome, Name = "Direct Income" },
                     new PartyTypeMaster { Id = InDirectIncome, Name = "In-Direct Income" },
                     new PartyTypeMaster { Id = Asset, Name = "Asset" },

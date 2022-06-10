@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace EFCore.SQL.Repository
 
         public PartyMasterRepository()
         {
-            
+
         }
 
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
@@ -79,14 +80,14 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(w=>w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
+                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
             }
         }
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int subType)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType ).ToListAsync();
+                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType).ToListAsync();
             }
         }
 
@@ -138,6 +139,15 @@ namespace EFCore.SQL.Repository
                     return result.OpeningBalance;
                 return 0;
             }
-        }        
+        }
+
+        public async Task<List<LedgerBalanceSPModel>> GetLedgerReport(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReport '" + companyId + "'").ToListAsync();
+                return result;
+            }
+        }
     }
 }
