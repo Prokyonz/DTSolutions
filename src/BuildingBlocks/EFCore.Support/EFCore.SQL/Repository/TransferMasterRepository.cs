@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -93,6 +94,24 @@ namespace EFCore.SQL.Repository
             {
                 return 1;
             }
+        }
+
+        public async Task<List<TransferCategoryList>> GetTransferCategoryList(string companyId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.SPTransferCategoryList.FromSqlRaw($"GetTransferCategoryList '" + companyId + "', '" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
         }
     }
 }

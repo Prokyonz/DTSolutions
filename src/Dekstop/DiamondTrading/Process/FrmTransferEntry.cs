@@ -81,6 +81,7 @@ namespace DiamondTrading.Process
 
             dt.Columns.Add("PurchaseDetailsId");
             dt.Columns.Add("PurchaseMasterId");
+            dt.Columns.Add("CategoryType");
             return dt;
         }
 
@@ -97,7 +98,7 @@ namespace DiamondTrading.Process
             grdTransferItemDetails.DataSource = GetDTColumnsforPurchaseDetails();
 
             //Company
-            LoadCompany();
+            await LoadCompany();
 
             //Branch
             GetBrancheDetail();
@@ -125,7 +126,7 @@ namespace DiamondTrading.Process
             grvTransferItemDetails.BestFitColumns();
         }
 
-        private async void LoadCompany()
+        private async Task LoadCompany()
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
             var result = await companyMasterRepository.GetAllCompanyAsync();
@@ -170,13 +171,24 @@ namespace DiamondTrading.Process
 
             if (Category != null)
             {
-                repoCategory.DataSource = Category;
-                repoCategory.DisplayMember = "Name";
-                repoCategory.ValueMember = "Id";
+                //repoCategory.DataSource = Category;
+                //repoCategory.DisplayMember = "Name";
+                //repoCategory.ValueMember = "Id";
 
                 repoCategoryT.DataSource = Category;
                 repoCategoryT.DisplayMember = "Name";
                 repoCategoryT.ValueMember = "Id";
+            }
+
+            if (lueCompany.EditValue == null)
+                return;
+            var ListTransferCategoryList = await _transferMasterRepository.GetTransferCategoryList(lueCompany.EditValue.ToString(), Common.LoginFinancialYear.ToString());
+
+            if (ListTransferCategoryList != null)
+            {
+                repoCategory.DataSource = ListTransferCategoryList;
+                repoCategory.DisplayMember = "Name";
+                repoCategory.ValueMember = "Id";
             }
         }
 
@@ -247,7 +259,9 @@ namespace DiamondTrading.Process
             {
                 if (e.Column == colCategory || e.Column == colBranch)
                 {
-                    if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    if (e.Column == colCategory)
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCategoryType, ((Repository.Entities.Model.TransferCategoryList)repoCategory.GetDataSourceRowByKeyValue(e.Value)).CategoryID);
+                    if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, TransferCategoryMaster.Kapan);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, TransferCategoryMaster.Kapan);
@@ -256,8 +270,9 @@ namespace DiamondTrading.Process
                         {
                             AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                             var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear.ToString());
+                            var listKapanProcess = ListKapanProcessSend.Where(x => x.KapanId == grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString()).ToList();
 
-                            repoShape.DataSource = ListKapanProcessSend;
+                            repoShape.DataSource = listKapanProcess;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "Id";
 
@@ -274,7 +289,7 @@ namespace DiamondTrading.Process
                             repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
                         }
                     }
-                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
+                    else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryType).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, TransferCategoryMaster.Number);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, TransferCategoryMaster.Number);
@@ -282,8 +297,9 @@ namespace DiamondTrading.Process
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
                         {
                             var ListNumberProcessReturn = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
+                            var listNumberProcess = ListNumberProcessReturn.Where(x => x.CharniSizeId == grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString()).ToList();
 
-                            repoShape.DataSource = ListNumberProcessReturn;
+                            repoShape.DataSource = listNumberProcess;
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "Id";
 
