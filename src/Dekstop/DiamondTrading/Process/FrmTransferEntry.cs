@@ -371,7 +371,7 @@ namespace DiamondTrading.Process
                 {
                     try
                     {
-                        if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                        if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                         {
                             //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Size);
                             //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Models.NumberProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Purity);
@@ -410,7 +410,7 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurchaseMasterId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurchaseMasterId);
                         }
-                        else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
+                        else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryType).ToString() == TransferCategoryMaster.Number.ToString())
                         {
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).Size);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).Purity);
@@ -598,9 +598,9 @@ namespace DiamondTrading.Process
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
                     string TransferEntryId = Guid.NewGuid().ToString();
-                    string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
+                    string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
                     //Transfer From
-                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         kapanMappingMaster = new KapanMappingMaster();
                         kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -622,7 +622,7 @@ namespace DiamondTrading.Process
                         var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
                         kapanMappingMasterRepository = null;
                     }
-                    else if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Number.ToString())
+                    else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         numberProcessMaster = new NumberProcessMaster();
                         numberProcessMaster.Id = Guid.NewGuid().ToString();
@@ -669,7 +669,7 @@ namespace DiamondTrading.Process
                     }
 
                     //Transfer To
-                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         kapanMappingMaster = new KapanMappingMaster();
                         kapanMappingMaster.Id = Guid.NewGuid().ToString();
