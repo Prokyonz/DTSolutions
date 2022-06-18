@@ -25,5 +25,6 @@ namespace EFCore.SQL.Interface
         Task<bool> UpdateApprovalStatus(string purchaseId, string message, int status);
 
         Task<List<PFReportSPModel>> GetPFReportAsync(string companyId, string financialYearId, int PFType);
+        Task<List<WeeklyPurchaseReport>> GetWeeklyPurchaseReportAsync(string companyId, string financialYearId);
     }
 }

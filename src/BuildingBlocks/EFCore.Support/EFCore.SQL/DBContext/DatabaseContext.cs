@@ -107,6 +107,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<StockReportModelReport> SPStockReportModelReport  { get; set; }
         public virtual DbSet<OpeningStockSPModel> SPOpeningStockSPModel { get; set; }
         public virtual DbSet<PFReportSPModel> SPPFReportModels { get; set; }
+        public virtual DbSet<WeeklyPurchaseReport> SPWeeklyPurchaseReport { get; set; }
         public virtual DbSet<LedgerBalanceSPModel> SPLedgerBalanceReport { get; set; }
 
         public virtual DbSet<TransferCategoryList> SPTransferCategoryList { get; set; }
@@ -202,6 +203,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PFReportSPModel>().HasNoKey();
             modelBuilder.Entity<LedgerBalanceSPModel>().HasNoKey();
             modelBuilder.Entity<TransferCategoryList>().HasNoKey();
+            modelBuilder.Entity<WeeklyPurchaseReport>().HasNoKey();
             modelBuilder.Entity<PayableReceivableSPModel>().HasNoKey();
         }
     }

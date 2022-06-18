@@ -117,6 +117,12 @@ namespace DiamondTrading
                     xtraTabLedgerBalance.Text = "Ledger Report";
                     this.Text = "Ledger Report";
                     break;
+                case "WeeklyPurchaseReport":
+                    xtabWeeklyPurchaseReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabWeeklyPurchaseReport;
+                    xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
+                    this.Text = "Weekly Purchase Report";
+                    break;
                 case "Payable":
                     xtraTabPayableReceivalbe.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabPayableReceivalbe;
@@ -152,7 +158,6 @@ namespace DiamondTrading
             xtabJangadSendReceive.PageVisible = false;
             xtraTabPFReport.PageVisible = false;
             xtraTabLedgerBalance.PageVisible = false;
-            xtraTabPayableReceivalbe.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -304,16 +309,6 @@ namespace DiamondTrading
                     gridControlLedgerReport.DataSource = data;
                 }
             }
-            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivalbe)
-            {
-                if (IsForceLoad || _paymentMasterRepository == null)
-                {
-                    _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable" ? 0 : 1);
-                    gridControlPayableReceivable.DataSource = data;
-                }
-            }
-
         }
 
         private async void accordionEditBtn_Click(object sender, EventArgs e)
