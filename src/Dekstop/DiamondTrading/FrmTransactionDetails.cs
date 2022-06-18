@@ -123,18 +123,6 @@ namespace DiamondTrading
                     xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
                     this.Text = "Weekly Purchase Report";
                     break;
-                case "Payable":
-                    xtraTabPayableReceivalbe.PageVisible = true;
-                    xtabManager.SelectedTabPage = xtraTabPayableReceivalbe;
-                    xtraTabPayableReceivalbe.Text = "Payable Report";
-                    this.Text = "Payable Report";
-                    break;
-                case "Receivable":
-                    xtraTabPayableReceivalbe.PageVisible = true;
-                    xtabManager.SelectedTabPage = xtraTabPayableReceivalbe;
-                    xtraTabPayableReceivalbe.Text = "Receivable Report";
-                    this.Text = "Receivable Report";
-                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -158,6 +146,7 @@ namespace DiamondTrading
             xtabJangadSendReceive.PageVisible = false;
             xtraTabPFReport.PageVisible = false;
             xtraTabLedgerBalance.PageVisible = false;
+            xtabWeeklyPurchaseReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -307,6 +296,15 @@ namespace DiamondTrading
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany);
                     gridControlLedgerReport.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
+                {
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdWeeklyPurchaseReport.DataSource = data;
                 }
             }
         }
