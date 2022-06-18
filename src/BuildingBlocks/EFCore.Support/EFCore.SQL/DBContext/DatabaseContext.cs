@@ -107,6 +107,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<StockReportModelReport> SPStockReportModelReport  { get; set; }
         public virtual DbSet<OpeningStockSPModel> SPOpeningStockSPModel { get; set; }
         public virtual DbSet<PFReportSPModel> SPPFReportModels { get; set; }
+        public virtual DbSet<WeeklyPurchaseReport> SPWeeklyPurchaseReport { get; set; }
         public virtual DbSet<LedgerBalanceSPModel> SPLedgerBalanceReport { get; set; }
 
         public virtual DbSet<TransferCategoryList> SPTransferCategoryList { get; set; }
@@ -115,8 +116,8 @@ namespace EFCore.SQL.DBContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
-            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
+            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
@@ -202,6 +203,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<LedgerBalanceSPModel>().HasNoKey();
 
             modelBuilder.Entity<TransferCategoryList>().HasNoKey();
+            modelBuilder.Entity<WeeklyPurchaseReport>().HasNoKey();
         }
     }
 }

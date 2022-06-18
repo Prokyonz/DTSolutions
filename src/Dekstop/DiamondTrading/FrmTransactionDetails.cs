@@ -117,6 +117,12 @@ namespace DiamondTrading
                     xtraTabLedgerBalance.Text = "Ledger Report";
                     this.Text = "Ledger Report";
                     break;
+                case "WeeklyPurchaseReport":
+                    xtabWeeklyPurchaseReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabWeeklyPurchaseReport;
+                    xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
+                    this.Text = "Weekly Purchase Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -140,6 +146,7 @@ namespace DiamondTrading
             xtabJangadSendReceive.PageVisible = false;
             xtraTabPFReport.PageVisible = false;
             xtraTabLedgerBalance.PageVisible = false;
+            xtabWeeklyPurchaseReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -289,6 +296,15 @@ namespace DiamondTrading
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany);
                     gridControlLedgerReport.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
+                {
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdWeeklyPurchaseReport.DataSource = data;
                 }
             }
         }

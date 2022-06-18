@@ -244,5 +244,14 @@ namespace EFCore.SQL.Repository
                 return getPFRecord;
             }
         }
+
+        public async Task<List<WeeklyPurchaseReport>> GetWeeklyPurchaseReportAsync(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getWeeklyPurchaseRecord = await _databaseContext.SPWeeklyPurchaseReport.FromSqlRaw($"GetWeeklyPurchaseReport 0,'" + companyId + "', '" + financialYearId + "'").ToListAsync();
+                return getWeeklyPurchaseRecord;
+            }
+        }
     }
 }
