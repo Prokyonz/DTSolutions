@@ -154,5 +154,14 @@ namespace EFCore.SQL.Repository
                 return PaymentPSSlipDetails;
             }
         }
+
+        public async Task<List<PayableReceivableSPModel>> GetPayableReceivalbeReport(string companyId, string financialYearId, int type)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var PayableReceivableDetails = await _databaseContext.SPPayableReceivableReport.FromSqlRaw($"GetReceivablePayableReport '" + companyId + "','" + financialYearId + "', " + type).ToListAsync();
+                return PayableReceivableDetails;
+            }
+        }
     }
 }
