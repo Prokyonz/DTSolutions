@@ -123,6 +123,18 @@ namespace DiamondTrading
                     xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
                     this.Text = "Weekly Purchase Report";
                     break;
+                case "Payable":
+                    xtraTabPayableReceivable.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabPayableReceivable;
+                    xtraTabPayableReceivable.Text = "Payable Report";
+                    this.Text = "Payable Report";
+                    break;
+                case "Receivable":
+                    xtraTabPayableReceivable.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabPayableReceivable;
+                    xtraTabPayableReceivable.Text = "Receivable Report";
+                    this.Text = "Receivable Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -147,6 +159,7 @@ namespace DiamondTrading
             xtraTabPFReport.PageVisible = false;
             xtraTabLedgerBalance.PageVisible = false;
             xtabWeeklyPurchaseReport.PageVisible = false;
+            xtraTabPayableReceivable.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -305,6 +318,15 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     grdWeeklyPurchaseReport.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable"? 0: 1);
+                    gridControlPayableReceivable.DataSource = data;
                 }
             }
         }
