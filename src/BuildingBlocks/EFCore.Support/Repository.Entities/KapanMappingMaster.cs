@@ -25,5 +25,9 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+        public string TransferId { get; set; }
+        public string TransferType { get; set; }
+        public string TransferEntryId { get; set; }
+        public double TransferCaratRate { get; set; }
     }
 }
