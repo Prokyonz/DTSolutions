@@ -587,18 +587,14 @@ namespace DiamondTrading.Process
                 string TransferId = Guid.NewGuid().ToString();
 
                 KapanMappingMasterRepository kapanMappingMasterRepository;
-                CharniProcessMasterRepository charniProcessMasterRepository;
-                GalaProcessMasterRepository galaProcessMasterRepository;
                 NumberProcessMasterRepository numberProcessMasterRepository;
-                BoilProcessMaster boilProcessMaster;
-                CharniProcessMaster charniProcessMaster;
                 KapanMappingMaster kapanMappingMaster;
                 NumberProcessMaster numberProcessMaster;
 
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
                     string TransferEntryId = Guid.NewGuid().ToString();
-                    string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
+                    //string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
                     //Transfer From
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
@@ -613,6 +609,12 @@ namespace DiamondTrading.Process
                         kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
                         kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
                         kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
+
+                        kapanMappingMaster.TransferId = TransferId;
+                        kapanMappingMaster.TransferType = "TransferedFrom";
+                        kapanMappingMaster.TransferEntryId = TransferEntryId;
+                        kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+
                         kapanMappingMaster.CreatedDate = DateTime.Now;
                         kapanMappingMaster.CreatedBy = Common.LoginUserID;
                         kapanMappingMaster.UpdatedDate = DateTime.Now;
@@ -653,7 +655,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.Remarks = txtRemark.Text;
 
                         numberProcessMaster.TransferId = TransferId;
-                        numberProcessMaster.TransferType = TransferType;
+                        numberProcessMaster.TransferType = "TransferedFrom";
                         numberProcessMaster.TransferEntryId = TransferEntryId;
                         numberProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
 
@@ -682,6 +684,12 @@ namespace DiamondTrading.Process
                         kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
                         kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
                         kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
+
+                        kapanMappingMaster.TransferId = TransferId;
+                        kapanMappingMaster.TransferType = "TransferedTo";
+                        kapanMappingMaster.TransferEntryId = TransferEntryId;
+                        kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+
                         kapanMappingMaster.CreatedDate = DateTime.Now;
                         kapanMappingMaster.CreatedBy = Common.LoginUserID;
                         kapanMappingMaster.UpdatedDate = DateTime.Now;
@@ -722,7 +730,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.Remarks = txtRemark.Text;
 
                         numberProcessMaster.TransferId = TransferId;
-                        numberProcessMaster.TransferType = TransferType;
+                        numberProcessMaster.TransferType = "TransferedTo";
                         numberProcessMaster.TransferEntryId = TransferEntryId;
                         numberProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
