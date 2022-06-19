@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220619053521_AddLedgerManager")]
+    partial class AddLedgerManager
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1200,18 +1202,6 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("TransferCaratRate")
-                        .HasColumnType("float");
-
-                    b.Property<string>("TransferEntryId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransferId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TransferType")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -2619,14 +2609,11 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("BuyingRate")
                         .HasColumnType("float");
 
-                    b.Property<double>("CVDAmount")
-                        .HasColumnType("float");
-
                     b.Property<string>("CompanyId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Date")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
@@ -2652,17 +2639,11 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("KapanName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("LessWeight")
-                        .HasColumnType("decimal(18, 4)");
-
                     b.Property<string>("Message")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MobileNo")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("NetWeight")
-                        .HasColumnType("decimal(18, 4)");
 
                     b.Property<string>("PartyId")
                         .HasColumnType("nvarchar(max)");
@@ -2682,9 +2663,6 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("RoundUpAmount")
-                        .HasColumnType("float");
-
                     b.Property<long>("SlipNo")
                         .HasColumnType("bigint");
 
@@ -2696,6 +2674,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("Weight")
                         .HasColumnType("decimal(18, 4)");
