@@ -46,57 +46,157 @@ namespace EFCore.SQL.Repository
 
                     await _databaseContext.SaveChangesAsync();
                     return true;
-                }
-                return false;
+                }                
             }
-
+            return false;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync()
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters =  await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if(getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    } else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId)
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if (getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    }
+                    else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partyTypeMaster)
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(s => s.CompanyId == companyId && s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters = await _databaseContext.PartyMaster.Where(s => s.CompanyId == companyId && s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if (getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    }
+                    else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int[] partyTypeMaster)
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters = await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if (getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    }
+                    else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int subType)
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters = await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if (getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    }
+                    else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
 
         public async Task<List<PartyMaster>> GetPartyAsync()
         {
+            List<PartyMaster> partyMasters;
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Party).ToListAsync();
+                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
+
+                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Party).ToListAsync();
+                foreach (var item in partyMasters)
+                {
+                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                    if (getBalance != null)
+                    {
+                        item.OpeningBalance = getBalance.Balance;
+                    }
+                    else
+                    {
+                        item.OpeningBalance = 0;
+                    }
+                }                
             }
+            return partyMasters;
         }
 
         public async Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster)
@@ -134,9 +234,9 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.PartyMaster.Where(w => w.Id == partyId).FirstOrDefaultAsync();
+                var result = await _databaseContext.LedgerBalanceManager.Where(w => w.LedgerId == partyId).FirstOrDefaultAsync();
                 if (result != null)
-                    return result.OpeningBalance;
+                    return result.Balance;
                 return 0;
             }
         }

@@ -165,7 +165,7 @@ namespace DiamondTrading.Transaction
 
                         var result = await _expenseMaterRepository.AddExpenseAsync(expenseDetails);
 
-                        await _expenseMaterRepository.UpdateBalanceAsync(partyId, fromparty, amt);
+                        //await _expenseMaterRepository.UpdateBalanceAsync(partyId, fromparty, amt);
 
                         IsSucess = true;
                     }

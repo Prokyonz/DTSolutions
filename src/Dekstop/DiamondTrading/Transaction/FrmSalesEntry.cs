@@ -223,7 +223,7 @@ namespace DiamondTrading.Transaction
 
             //GetPurchaseNo(); //Serial No/Slip No
 
-            LoadPurchaseItemDetails();
+            await LoadPurchaseItemDetails();
 
             //Payment Mode
             luePaymentMode.Properties.DataSource = Common.GetPaymentType;
@@ -231,7 +231,7 @@ namespace DiamondTrading.Transaction
             luePaymentMode.Properties.ValueMember = "PTypeID";
             luePaymentMode.EditValue = 1;
 
-            GetSalerList();
+            await GetSalerList ();
 
             //Commision
             //partyMaster = await partyMasterRepository.GetAllPartyAsync();
@@ -239,9 +239,9 @@ namespace DiamondTrading.Transaction
             //lueCompany.Properties.DisplayMember = "Name";
             //lueCompany.Properties.ValueMember = "Id";
 
-            GetPartyList();
+            await GetPartyList();
 
-            GetBrokerList();
+            await GetBrokerList();
         }
 
 
@@ -327,27 +327,27 @@ namespace DiamondTrading.Transaction
 
         #endregion
 
-        private void LoadPurchaseItemDetails()
+        private async Task LoadPurchaseItemDetails()
         {
             grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();
 
             //Category
-            GetCategoryDetail(false);
+            await GetCategoryDetail(false);
 
             //Shape
-            GetShapeDetail(false);
+            await GetShapeDetail(false);
 
             //Size
-            GetSizeDetail(false);
+            await GetSizeDetail(false);
 
             //Purity
-            GetPurityDetail(false);
+            await GetPurityDetail(false);
 
             //Kapan
-            GetKapanDetail(false);
+            await  GetKapanDetail(false);
         }
 
-        private async void GetCategoryDetail(bool IsNew)
+        private async Task GetCategoryDetail(bool IsNew)
         {
             var Category = CategoryMaster.GetAllCategory();
 
@@ -359,7 +359,7 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        private async void GetShapeDetail(bool IsNew)
+        private async Task GetShapeDetail(bool IsNew)
         {
             ShapeMasterRepository shapeMasterRepository = new ShapeMasterRepository();
             var shapeMaster = await shapeMasterRepository.GetAllShapeAsync();
@@ -368,7 +368,7 @@ namespace DiamondTrading.Transaction
             repoShape.ValueMember = "Id";
         }
 
-        private async void GetSizeDetail(bool IsNew)
+        private async Task GetSizeDetail(bool IsNew)
         {
             SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
             var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
@@ -377,7 +377,7 @@ namespace DiamondTrading.Transaction
             repoSize.ValueMember = "Id";
         }
 
-        private async void GetPurityDetail(bool IsNew)
+        private async Task GetPurityDetail(bool IsNew)
         {
             PurityMasterRepository purityMasterRepository = new PurityMasterRepository();
             var purityMaster = await purityMasterRepository.GetAllPurityAsync();
@@ -386,7 +386,7 @@ namespace DiamondTrading.Transaction
             repoPurity.ValueMember = "Id";
         }
 
-        private async void GetKapanDetail(bool IsNew)
+        private async Task GetKapanDetail(bool IsNew)
         {
             KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
             var kapanMaster = await kapanMasterRepository.GetAllKapanAsync();
@@ -634,7 +634,7 @@ namespace DiamondTrading.Transaction
 
             await LoadBranch(lueCompany.EditValue.ToString());
 
-            FillCombos();
+            //await FillCombos();
         }
 
         private async void grvPurchaseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)

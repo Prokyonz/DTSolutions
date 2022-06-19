@@ -263,13 +263,13 @@ namespace DiamondTrading.Transaction
             luePaymentMode.EditValue = 1;
 
             //Buyer
-            GetBuyerList();
+            await GetBuyerList();
 
             //Party
-            GetPartyList();
+            await GetPartyList();
 
             //Broker
-            GetBrokerList();
+            await GetBrokerList();
         }
 
         private async Task LoadPurchaseItemDetails()
@@ -1569,7 +1569,7 @@ namespace DiamondTrading.Transaction
 
             await LoadBranch(lueCompany.EditValue.ToString());
 
-            await FillCombos();
+            //await FillCombos();
         }
 
         private void grpGroup9_Paint(object sender, PaintEventArgs e)

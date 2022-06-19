@@ -329,8 +329,8 @@ namespace DiamondTrading.Transaction
 
         private async void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueCompany.EditValue != null)
-                await LoadLedgers(lueCompany.EditValue.ToString());
+            //if (lueCompany.EditValue != null)
+            //    await LoadLedgers(lueCompany.EditValue.ToString());
         }
 
         private void FrmPaymentEntry_KeyDown(object sender, KeyEventArgs e)

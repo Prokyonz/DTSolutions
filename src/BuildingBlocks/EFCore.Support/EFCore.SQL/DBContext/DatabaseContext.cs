@@ -66,6 +66,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<PriceMaster> PriceMaster { get; set; }
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
         public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
+        public DbSet<LedgerBalanceManager> LedgerBalanceManager { get; set; }
 
 
 
@@ -170,6 +171,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PriceMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<RejectionInOutMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<OpeningStockMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<LedgerBalanceManager>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();

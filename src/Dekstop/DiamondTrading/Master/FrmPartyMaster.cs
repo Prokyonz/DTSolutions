@@ -20,12 +20,14 @@ namespace DiamondTrading.Master
         private PartyMaster _EditedPartyMasterSet;
         private string _selectedParty;
         private BrokerageMasterRepository _brokerageMasterRepository;
+        private readonly LedgerBalanceManagerRepository _ledgerBalanceManagerRepository;
 
         public FrmPartyMaster()
         {
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _ledgerBalanceManagerRepository = new LedgerBalanceManagerRepository();
         }
 
         public FrmPartyMaster(List<PartyMaster> PartyMasters)
@@ -33,6 +35,7 @@ namespace DiamondTrading.Master
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _ledgerBalanceManagerRepository = new LedgerBalanceManagerRepository();
             this._partyMasters = PartyMasters;
         }
 
@@ -41,6 +44,7 @@ namespace DiamondTrading.Master
             InitializeComponent();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _ledgerBalanceManagerRepository = new LedgerBalanceManagerRepository();
             this._partyMasters = PartyMasters;
             _selectedParty = SelectedParty;
         }
@@ -71,7 +75,7 @@ namespace DiamondTrading.Master
 
         private async void frmPartyMaster_Load(object sender, EventArgs e)
         {
-            if(_partyMasters == null)
+            if (_partyMasters == null)
                 _partyMasters = await _partyMasterRepository.GetAllPartyAsync();
 
             await GetListForDepedendeFields();
@@ -141,7 +145,7 @@ namespace DiamondTrading.Master
                     lueCompany.EditValue = _EditedPartyMasterSet.CompanyId;
                     luePartyType.EditValue = _EditedPartyMasterSet.Type;
                     lueSubType.EditValue = _EditedPartyMasterSet.SubType;
-                    if(_EditedPartyMasterSet.BrokerageId != null)
+                    if (_EditedPartyMasterSet.BrokerageId != null)
                         lueBrokerage.EditValue = _EditedPartyMasterSet.BrokerageId;
                     txtOpeningBalance.Text = _EditedPartyMasterSet.OpeningBalance.ToString();
                     txtPartyName.Text = _EditedPartyMasterSet.Name;
@@ -240,10 +244,10 @@ namespace DiamondTrading.Master
                     PartyMaster PartyMaster = new PartyMaster
                     {
                         Id = tempId,
-                        Status=tglIsActive.IsOn,
+                        Status = tglIsActive.IsOn,
                         CompanyId = lueCompany.EditValue.ToString(),
                         Type = Convert.ToInt32(luePartyType.EditValue),
-                        OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text),
+                        OpeningBalance = 0,
                         Name = txtPartyName.Text,
                         Address = txtAddress.Text,
                         Address2 = txtAddress2.Text,
@@ -269,7 +273,23 @@ namespace DiamondTrading.Master
 
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
 
-                    if (Result != null)
+
+                    LedgerBalanceManager ledgerBalanceManager = new LedgerBalanceManager
+                    {
+                        CompanyId = PartyMaster.CompanyId,
+                        FinancialYearId = Common.LoginFinancialYear,
+                        CreatedBy = PartyMaster.CreatedBy,
+                        LedgerId = tempId,
+                        Balance = Convert.ToDecimal(txtOpeningBalance.Text),
+                        TypeOfBalance = (int)TypeOfBalance.OpeningBalance,
+                        CreatedDate = PartyMaster.CreatedDate,
+                        UpdatedBy = PartyMaster.UpdatedBy,
+                        UpdatedDate = PartyMaster.UpdatedDate,
+                    };
+
+                    var LedgerBalanceResult = await _ledgerBalanceManagerRepository.AddLedgerBalanceAsync(ledgerBalanceManager);
+
+                    if (Result != null && LedgerBalanceResult != null)
                     {
                         CreatedLedgerID = Result.Id;
                         if (!IsSilentEntry)
@@ -291,7 +311,7 @@ namespace DiamondTrading.Master
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker ||
                         Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller))
                         _EditedPartyMasterSet.BrokerageId = lueBrokerage.EditValue.ToString();
-                    _EditedPartyMasterSet.OpeningBalance = Convert.ToDecimal(txtOpeningBalance.Text);
+                    _EditedPartyMasterSet.OpeningBalance = 0;// Convert.ToDecimal(txtOpeningBalance.Text);
                     _EditedPartyMasterSet.Name = txtPartyName.Text;
                     _EditedPartyMasterSet.Address = txtAddress.Text;
                     _EditedPartyMasterSet.Address2 = txtAddress2.Text;
@@ -305,7 +325,18 @@ namespace DiamondTrading.Master
 
                     var Result = await _partyMasterRepository.UpdatePartyAsync(_EditedPartyMasterSet);
 
-                    if (Result != null)
+                    LedgerBalanceManager ledgerBalanceManager = new LedgerBalanceManager
+                    {
+                        LedgerId = _selectedParty,
+                        Balance = Convert.ToDecimal(txtOpeningBalance.Text),
+                        TypeOfBalance = (int)TypeOfBalance.OpeningBalance,
+                        UpdatedBy = _EditedPartyMasterSet.UpdatedBy,
+                        UpdatedDate = _EditedPartyMasterSet.UpdatedDate,
+                    };
+
+                    var LedgerBalanceResult = await _ledgerBalanceManagerRepository.UpdateLedgerBalanceAsync(ledgerBalanceManager);
+
+                    if (Result != null && LedgerBalanceResult != null)
                     {
                         CreatedLedgerID = Result.Id;
                         Reset();
@@ -318,9 +349,9 @@ namespace DiamondTrading.Master
                     this.DialogResult = DialogResult.OK;
                 }
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
-                MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -330,7 +361,7 @@ namespace DiamondTrading.Master
 
         private bool CheckValidation()
         {
-            if(lueCompany.EditValue == null)
+            if (lueCompany.EditValue == null)
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyPartyCompanySelection), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lueCompany.Focus();
@@ -356,13 +387,13 @@ namespace DiamondTrading.Master
             }
             else if (txtPartyName.Text.Trim().Length == 0)
             {
-                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyPartyName),"["+this.Text+"]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(AppMessages.GetString(AppMessageID.EmptyPartyName), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPartyName.Focus();
                 return false;
             }
 
             PartyMaster PartyNameExist = _partyMasters.Where(c => c.Name == txtPartyName.Text).FirstOrDefault();
-            if((_EditedPartyMasterSet == null && PartyNameExist != null) || (PartyNameExist != null && _EditedPartyMasterSet != null && _EditedPartyMasterSet.Name != PartyNameExist.Name))
+            if ((_EditedPartyMasterSet == null && PartyNameExist != null) || (PartyNameExist != null && _EditedPartyMasterSet != null && _EditedPartyMasterSet.Name != PartyNameExist.Name))
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.PartyNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtPartyName.Focus();
@@ -397,7 +428,7 @@ namespace DiamondTrading.Master
 
                     if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker)
                     {
-                        lueSubType_EditValueChanged(sender,e);
+                        lueSubType_EditValueChanged(sender, e);
                     }
                 }
                 else

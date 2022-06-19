@@ -29,27 +29,27 @@ namespace EFCore.SQL.Repository
                 await _databaseContext.GroupPaymentMaster.AddAsync(groupPaymentMaster);
                 await _databaseContext.SaveChangesAsync();
 
-                var getToPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == groupPaymentMaster.ToPartyId).FirstOrDefaultAsync();
+                //var getToPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == groupPaymentMaster.ToPartyId).FirstOrDefaultAsync();
                 
-                foreach (var item in groupPaymentMaster.PaymentMasters)
-                {
-                    if (groupPaymentMaster.CrDrType == 0)      
-                        getToPartyRecord.OpeningBalance -= item.Amount;                    
-                    else
-                        getToPartyRecord.OpeningBalance += item.Amount;
+                //foreach (var item in groupPaymentMaster.PaymentMasters)
+                //{
+                //    if (groupPaymentMaster.CrDrType == 0)      
+                //        getToPartyRecord.OpeningBalance -= item.Amount;                    
+                //    else
+                //        getToPartyRecord.OpeningBalance += item.Amount;
 
-                    var getFromPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == item.FromPartyId).FirstOrDefaultAsync();
+                //    var getFromPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == item.FromPartyId).FirstOrDefaultAsync();
                     
-                    if(getFromPartyRecord != null)
-                    {
-                        if (groupPaymentMaster.CrDrType == 0)
-                            getFromPartyRecord.OpeningBalance += item.Amount;
-                        else
-                            getFromPartyRecord.OpeningBalance -= item.Amount;
-                    }
+                //    if(getFromPartyRecord != null)
+                //    {
+                //        if (groupPaymentMaster.CrDrType == 0)
+                //            getFromPartyRecord.OpeningBalance += item.Amount;
+                //        else
+                //            getFromPartyRecord.OpeningBalance -= item.Amount;
+                //    }
 
-                    await _databaseContext.SaveChangesAsync();
-                }
+                //    await _databaseContext.SaveChangesAsync();
+                //}
 
 
                 return groupPaymentMaster;

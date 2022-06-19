@@ -1175,6 +1175,8 @@ namespace DiamondTrading
             this.grvPartyMaster.Name = "grvPartyMaster";
             this.grvPartyMaster.OptionsBehavior.Editable = false;
             this.grvPartyMaster.OptionsView.ShowGroupPanel = false;
+            this.grvPartyMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colPartyName, DevExpress.Data.ColumnSortOrder.Ascending)});
             // 
             // colPartyId
             // 
