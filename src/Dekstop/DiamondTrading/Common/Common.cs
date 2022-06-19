@@ -15,6 +15,12 @@ namespace DiamondTrading
         public int Id { get; set; }
         public string Name { get; set; }
     }
+
+    public enum TypeOfBalance
+    {
+        OpeningBalance = 0,
+        ClosingBalance = 1
+    }
     internal static class Common
     {
         public const string AppName = "Diamond Trading";

@@ -705,5 +705,29 @@ namespace DiamondTrading
                 e.Handled = true;
             }
         }
+
+        private void grvTransMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["SlipNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["SlipNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
+
+        private void grvSalesTransactonMaster_CellMerge(object sender, CellMergeEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["SlipNo"]));
+            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["SlipNo"]));
+            if (id1 != id2)
+            {
+                e.Merge = false;
+                e.Handled = true;
+            }
+        }
     }
 }

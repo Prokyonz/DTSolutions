@@ -26,9 +26,9 @@ namespace EFCore.SQL.Repository
                 if (salesMaster.Id == null)
                     salesMaster.Id = Guid.NewGuid().ToString();
 
-                var ledgerRecord = await _databaseContext.PartyMaster.Where(w => w.Id == salesMaster.PartyId).FirstOrDefaultAsync();
+                //var ledgerRecord = await _databaseContext.PartyMaster.Where(w => w.Id == salesMaster.PartyId).FirstOrDefaultAsync();
 
-                ledgerRecord.OpeningBalance = ledgerRecord.OpeningBalance + (decimal)salesMaster.Total;
+                //ledgerRecord.OpeningBalance = ledgerRecord.OpeningBalance + (decimal)salesMaster.Total;
 
                 await _databaseContext.SalesMaster.AddAsync(salesMaster);
                 await _databaseContext.SaveChangesAsync();

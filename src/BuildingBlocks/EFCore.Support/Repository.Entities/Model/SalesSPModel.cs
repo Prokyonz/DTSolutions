@@ -10,7 +10,7 @@ namespace Repository.Entities.Model
         public string FinancialYearId { get; set; }
         public long SaleBillNo { get; set; }
         public long SlipNo { get; set; }
-        public string Date { get; set; }
+        public DateTime? Date { get; set; }
         public string Time { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
@@ -35,6 +35,12 @@ namespace Repository.Entities.Model
         public string KapanName { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal NetWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessWeight { get; set; }
+        public double RoundUpAmount { get; set; }
+        public double CVDAmount { get; set; }
         public double SaleRate { get; set; }
         public string Remarks { get; set; }
         public string Message { get; set; }
