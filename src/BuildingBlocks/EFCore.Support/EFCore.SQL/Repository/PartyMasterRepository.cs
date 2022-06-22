@@ -241,11 +241,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<LedgerBalanceSPModel>> GetLedgerReport(string companyId)
+        public async Task<List<LedgerBalanceSPModel>> GetLedgerReport(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReport '" + companyId + "'").ToListAsync();
+                var result = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReport '" + companyId + "', '"+ financialYearId + "'").ToListAsync();
                 return result;
             }
         }

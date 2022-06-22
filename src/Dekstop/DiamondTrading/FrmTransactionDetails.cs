@@ -307,7 +307,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _partyMasterRepository == null)
                 {
                     _partyMasterRepository = new PartyMasterRepository();
-                    var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany);
+                    var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlLedgerReport.DataSource = data;
                 }
             }
@@ -336,7 +336,7 @@ namespace DiamondTrading
             if (xtabManager.SelectedTabPage == xtabPurchase)
             {
 
-                string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("Id").ToString();                
+                string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("PurId").ToString();                
 
                 Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry(SelectedGuid);
 

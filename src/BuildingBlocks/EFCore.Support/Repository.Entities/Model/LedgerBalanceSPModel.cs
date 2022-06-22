@@ -14,5 +14,6 @@ namespace Repository.Entities.Model
         public string SubType { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal OpeningBalance { get; set; }
+        public decimal ClosingBalance { get; set; }
     }
 }

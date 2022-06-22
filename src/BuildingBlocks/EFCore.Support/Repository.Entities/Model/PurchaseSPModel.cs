@@ -8,6 +8,7 @@ namespace Repository.Entities.Model
     public class PurchaseSPModel
     {
         public string Id { get; set; }
+        public string PurId { get; set; }
         public string CompanyId { get; set; }
         public string FinancialYearId { get; set; }
         public long PurchaseBillNo { get; set; }
