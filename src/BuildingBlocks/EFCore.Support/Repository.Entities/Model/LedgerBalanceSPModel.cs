@@ -9,6 +9,7 @@ namespace Repository.Entities.Model
     {
         public string Id { get; set; }
         public string CompanyId { get; set; }
+        public string LedgerId { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
         public string SubType { get; set; }
