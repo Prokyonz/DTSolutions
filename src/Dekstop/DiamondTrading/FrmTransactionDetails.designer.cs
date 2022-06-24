@@ -679,6 +679,8 @@ namespace DiamondTrading
             this.gridColumnPurSlipNo.Caption = "Slip No";
             this.gridColumnPurSlipNo.FieldName = "SlipNo";
             this.gridColumnPurSlipNo.Name = "gridColumnPurSlipNo";
+            this.gridColumnPurSlipNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
             this.gridColumnPurSlipNo.Visible = true;
             this.gridColumnPurSlipNo.VisibleIndex = 1;
             this.gridColumnPurSlipNo.Width = 66;
@@ -1047,6 +1049,8 @@ namespace DiamondTrading
             this.gridColumn3.Caption = "Slip No";
             this.gridColumn3.FieldName = "SlipNo";
             this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
             this.gridColumn3.Visible = true;
             this.gridColumn3.VisibleIndex = 1;
             this.gridColumn3.Width = 61;
@@ -1346,6 +1350,8 @@ namespace DiamondTrading
             this.gridColumnFromPartyName.Caption = "To Party";
             this.gridColumnFromPartyName.FieldName = "FromName";
             this.gridColumnFromPartyName.Name = "gridColumnFromPartyName";
+            this.gridColumnFromPartyName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "FromName", "Total={0}")});
             this.gridColumnFromPartyName.Visible = true;
             this.gridColumnFromPartyName.VisibleIndex = 0;
             this.gridColumnFromPartyName.Width = 97;
@@ -1502,6 +1508,8 @@ namespace DiamondTrading
             this.gridColumnReceiptFromParty.Caption = "From Party";
             this.gridColumnReceiptFromParty.FieldName = "FromName";
             this.gridColumnReceiptFromParty.Name = "gridColumnReceiptFromParty";
+            this.gridColumnReceiptFromParty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "FromName", "Total={0}")});
             this.gridColumnReceiptFromParty.Visible = true;
             this.gridColumnReceiptFromParty.VisibleIndex = 0;
             this.gridColumnReceiptFromParty.Width = 97;
@@ -1653,6 +1661,8 @@ namespace DiamondTrading
             this.gridColumnContraFromPartyName.Caption = "From Party";
             this.gridColumnContraFromPartyName.FieldName = "FromPartyName";
             this.gridColumnContraFromPartyName.Name = "gridColumnContraFromPartyName";
+            this.gridColumnContraFromPartyName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "FromPartyName", "Total={0}")});
             this.gridColumnContraFromPartyName.Visible = true;
             this.gridColumnContraFromPartyName.VisibleIndex = 0;
             this.gridColumnContraFromPartyName.Width = 97;
@@ -1790,6 +1800,8 @@ namespace DiamondTrading
             this.gridColumnExpenseSrNo.Caption = "SrNo";
             this.gridColumnExpenseSrNo.FieldName = "SrNo";
             this.gridColumnExpenseSrNo.Name = "gridColumnExpenseSrNo";
+            this.gridColumnExpenseSrNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SrNo", "Total={0}")});
             this.gridColumnExpenseSrNo.Visible = true;
             this.gridColumnExpenseSrNo.VisibleIndex = 0;
             // 
@@ -1932,6 +1944,8 @@ namespace DiamondTrading
             this.gridColumn29.Caption = "Sr";
             this.gridColumn29.FieldName = "Sr";
             this.gridColumn29.Name = "gridColumn29";
+            this.gridColumn29.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Sr", "Total={0}")});
             this.gridColumn29.Visible = true;
             this.gridColumn29.VisibleIndex = 0;
             // 
@@ -2123,6 +2137,8 @@ namespace DiamondTrading
             this.gridColumn58.Caption = "Created Date";
             this.gridColumn58.FieldName = "CreatedDate";
             this.gridColumn58.Name = "gridColumn58";
+            this.gridColumn58.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "CreatedDate", "Total={0}")});
             this.gridColumn58.Visible = true;
             this.gridColumn58.VisibleIndex = 0;
             this.gridColumn58.Width = 114;
@@ -2253,6 +2269,8 @@ namespace DiamondTrading
             this.gridColumn56.FieldName = "SlipNo";
             this.gridColumn56.Name = "gridColumn56";
             this.gridColumn56.OptionsColumn.AllowEdit = false;
+            this.gridColumn56.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
             this.gridColumn56.Visible = true;
             this.gridColumn56.VisibleIndex = 0;
             this.gridColumn56.Width = 65;
@@ -2408,6 +2426,8 @@ namespace DiamondTrading
             this.gridColumn81.Caption = "Sr No";
             this.gridColumn81.FieldName = "SrNo";
             this.gridColumn81.Name = "gridColumn81";
+            this.gridColumn81.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SrNo", "Total={0}")});
             this.gridColumn81.Visible = true;
             this.gridColumn81.VisibleIndex = 0;
             this.gridColumn81.Width = 61;
@@ -2617,6 +2637,8 @@ namespace DiamondTrading
             this.PFType.Caption = "Type";
             this.PFType.FieldName = "Type";
             this.PFType.Name = "PFType";
+            this.PFType.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Type", "Total={0}")});
             this.PFType.Visible = true;
             this.PFType.VisibleIndex = 0;
             this.PFType.Width = 109;
@@ -2830,6 +2852,8 @@ namespace DiamondTrading
             this.gridColumn101.Caption = "Name";
             this.gridColumn101.FieldName = "Name";
             this.gridColumn101.Name = "gridColumn101";
+            this.gridColumn101.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name", "Total={0}")});
             this.gridColumn101.Visible = true;
             this.gridColumn101.VisibleIndex = 0;
             this.gridColumn101.Width = 484;
@@ -2945,6 +2969,8 @@ namespace DiamondTrading
             this.colWeekNo.FieldName = "WeekNo";
             this.colWeekNo.Name = "colWeekNo";
             this.colWeekNo.OptionsColumn.AllowEdit = false;
+            this.colWeekNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "WeekNo", "Total={0}")});
             this.colWeekNo.Visible = true;
             this.colWeekNo.VisibleIndex = 0;
             this.colWeekNo.Width = 89;
@@ -3041,6 +3067,8 @@ namespace DiamondTrading
             this.gridColumn105.Caption = "Type";
             this.gridColumn105.FieldName = "Type";
             this.gridColumn105.Name = "gridColumn105";
+            this.gridColumn105.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Type", "Total={0}")});
             this.gridColumn105.Visible = true;
             this.gridColumn105.VisibleIndex = 0;
             this.gridColumn105.Width = 222;
