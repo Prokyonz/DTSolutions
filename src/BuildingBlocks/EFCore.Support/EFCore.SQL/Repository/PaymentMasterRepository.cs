@@ -163,5 +163,24 @@ namespace EFCore.SQL.Repository
                 return PayableReceivableDetails;
             }
         }
+
+        public async Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var PayableReceivableDetails = await _databaseContext.SPBalanceSheetReport.FromSqlRaw($"GetBalanceSheet '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return PayableReceivableDetails;
+            }
+        }
+
+        public async Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var profitLossReport = await _databaseContext.SPProfitLossReport.FromSqlRaw($"GetProfitAndLoss '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return profitLossReport;
+            }
+        }
+
     }
 }

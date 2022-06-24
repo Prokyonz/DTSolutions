@@ -135,6 +135,18 @@ namespace DiamondTrading
                     xtraTabPayableReceivable.Text = "Receivable Report";
                     this.Text = "Receivable Report";
                     break;
+                case "BalanceSheet":
+                    xtraTabBalanceSheet.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabBalanceSheet;
+                    xtraTabBalanceSheet.Text = "Balance Sheet";
+                    this.Text = "Balance Sheet";
+                    break;
+                case "ProfitLoss":
+                    xtraTabProfitLoss.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabProfitLoss;
+                    xtraTabProfitLoss.Text = "Balance Sheet";
+                    this.Text = "Balance Sheet";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -160,6 +172,8 @@ namespace DiamondTrading
             xtraTabLedgerBalance.PageVisible = false;
             xtabWeeklyPurchaseReport.PageVisible = false;
             xtraTabPayableReceivable.PageVisible = false;
+            xtraTabBalanceSheet.PageVisible = false;
+            xtraTabProfitLoss.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -327,6 +341,24 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable"? 0: 1);
                     gridControlPayableReceivable.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlBalanceSheet.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlProfitLoss.DataSource = data;
                 }
             }
         }

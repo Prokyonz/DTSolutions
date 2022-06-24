@@ -99,6 +99,8 @@ namespace DiamondTrading
             this.barButtonItem53 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem74 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem75 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem77 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem78 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem57 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem55 = new DevExpress.XtraBars.BarButtonItem();
@@ -120,6 +122,8 @@ namespace DiamondTrading
             this.barButtonItemStockReport = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem73 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem76 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem79 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem80 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem17 = new DevExpress.XtraBars.BarButtonItem();
             this.bar3 = new DevExpress.XtraBars.Bar();
             this.barStaticItem1 = new DevExpress.XtraBars.BarStaticItem();
@@ -207,8 +211,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonItem77 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem78 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -337,9 +339,11 @@ namespace DiamondTrading
             this.barButtonItem75,
             this.barButtonItem76,
             this.barButtonItem77,
-            this.barButtonItem78});
+            this.barButtonItem78,
+            this.barButtonItem79,
+            this.barButtonItem80});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 124;
+            this.barManager1.MaxItemId = 126;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -912,7 +916,9 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem16),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItemStockReport),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem73),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem76)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem76),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem79),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem80)});
             this.barSubItem5.Name = "barSubItem5";
             this.barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1013,6 +1019,20 @@ namespace DiamondTrading
             this.barButtonItem75.Id = 120;
             this.barButtonItem75.Name = "barButtonItem75";
             this.barButtonItem75.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem75_ItemClick);
+            // 
+            // barButtonItem77
+            // 
+            this.barButtonItem77.Caption = "Payables Report";
+            this.barButtonItem77.Id = 122;
+            this.barButtonItem77.Name = "barButtonItem77";
+            this.barButtonItem77.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem77_ItemClick);
+            // 
+            // barButtonItem78
+            // 
+            this.barButtonItem78.Caption = "Receivable Report";
+            this.barButtonItem78.Id = 123;
+            this.barButtonItem78.Name = "barButtonItem78";
+            this.barButtonItem78.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem78_ItemClick);
             // 
             // barSubItem8
             // 
@@ -1181,6 +1201,20 @@ namespace DiamondTrading
             this.barButtonItem76.Id = 121;
             this.barButtonItem76.Name = "barButtonItem76";
             this.barButtonItem76.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem76_ItemClick);
+            // 
+            // barButtonItem79
+            // 
+            this.barButtonItem79.Caption = "Balance Sheet";
+            this.barButtonItem79.Id = 124;
+            this.barButtonItem79.Name = "barButtonItem79";
+            this.barButtonItem79.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem79_ItemClick);
+            // 
+            // barButtonItem80
+            // 
+            this.barButtonItem80.Caption = "Profit Loss";
+            this.barButtonItem80.Id = 125;
+            this.barButtonItem80.Name = "barButtonItem80";
+            this.barButtonItem80.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem80_ItemClick);
             // 
             // barButtonItem17
             // 
@@ -1901,20 +1935,6 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
-            // barButtonItem77
-            // 
-            this.barButtonItem77.Caption = "Payables Report";
-            this.barButtonItem77.Id = 122;
-            this.barButtonItem77.Name = "barButtonItem77";
-            this.barButtonItem77.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem77_ItemClick);
-            // 
-            // barButtonItem78
-            // 
-            this.barButtonItem78.Caption = "Receivable Report";
-            this.barButtonItem78.Id = 123;
-            this.barButtonItem78.Name = "barButtonItem78";
-            this.barButtonItem78.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem78_ItemClick);
-            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -2133,5 +2153,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem76;
         private DevExpress.XtraBars.BarButtonItem barButtonItem77;
         private DevExpress.XtraBars.BarButtonItem barButtonItem78;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem79;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem80;
     }
 }
