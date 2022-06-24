@@ -63,7 +63,7 @@ namespace DiamondTrading.Process
                 if (lueCompany.EditValue.ToString() != Common.LoginCompany)
                     companyId = lueCompany.EditValue.ToString();
             }
-            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, new int[] { PartyTypeMaster.Party, PartyTypeMaster.Broker } );
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, new int[] { PartyTypeMaster.PartyBuy, PartyTypeMaster.PartySale, PartyTypeMaster.Broker } );
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";

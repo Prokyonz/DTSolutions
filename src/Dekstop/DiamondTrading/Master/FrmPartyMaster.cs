@@ -110,9 +110,17 @@ namespace DiamondTrading.Master
                 lueSubType.Enabled = false;
                 btnReset.Enabled = false;
             }
-            else if (LedgerType == PartyTypeMaster.Party)
+            else if (LedgerType == PartyTypeMaster.PartyBuy)
             {
-                luePartyType.EditValue = PartyTypeMaster.Party;
+                luePartyType.EditValue = PartyTypeMaster.PartyBuy;
+
+                lueCompany.Enabled = false;
+                luePartyType.Enabled = false;
+                btnReset.Enabled = false;
+            }
+            else if (LedgerType == PartyTypeMaster.PartySale)
+            {
+                luePartyType.EditValue = PartyTypeMaster.PartySale;
 
                 lueCompany.Enabled = false;
                 luePartyType.Enabled = false;
@@ -407,7 +415,7 @@ namespace DiamondTrading.Master
         {
             if (luePartyType.EditValue != null)
             {
-                if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Party)
+                if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.PartyBuy || Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.PartySale)
                 {
                     pnl1.Visible = false;
                     pnl2.Visible = false;

@@ -181,7 +181,7 @@ namespace EFCore.SQL.Repository
             {
                 var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
 
-                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.Type == PartyTypeMaster.Party).ToListAsync();
+                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && (s.Type == PartyTypeMaster.PartyBuy || s.Type == PartyTypeMaster.PartySale)).ToListAsync();
                 foreach (var item in partyMasters)
                 {
                     var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();

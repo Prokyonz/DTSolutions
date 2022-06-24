@@ -588,7 +588,7 @@ namespace DiamondTrading
             {
                 if (xtabManager.SelectedTabPage == xtabPurchase)
                 {
-                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "PurId").ToString();
                     var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
                 else if(xtabManager.SelectedTabPage == xtabSales)
@@ -607,7 +607,7 @@ namespace DiamondTrading
             {
                 if (xtabManager.SelectedTabPage == xtabPurchase)
                 {
-                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "Id").ToString();
+                    string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "PurId").ToString();
                     var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
                 else if (xtabManager.SelectedTabPage == xtabSales)

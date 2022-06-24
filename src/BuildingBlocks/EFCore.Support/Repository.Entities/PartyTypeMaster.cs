@@ -9,7 +9,8 @@ namespace Repository.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public static int None = 0;
-        public static int Party = 1;
+        public static int PartyBuy = 1;
+        public static int PartySale = 14;
         public static int Employee = 2;
         public static int Expense = 3;
         public static int Bank = 4;
@@ -55,7 +56,8 @@ namespace Repository.Entities
             {
                 partyTypeMaster = new List<PartyTypeMaster>
                 {
-                    new PartyTypeMaster { Id = Party, Name = "Party" },
+                    new PartyTypeMaster { Id = PartyBuy, Name = "Party-Buy" },
+                    new PartyTypeMaster { Id = PartySale, Name = "Party-Sale" },
                     new PartyTypeMaster { Id = Employee, Name = "Employee" },
                     new PartyTypeMaster { Id = DirectIncome, Name = "Direct Income" },
                     new PartyTypeMaster { Id = InDirectIncome, Name = "In-Direct Income" },
@@ -66,8 +68,8 @@ namespace Repository.Entities
                     new PartyTypeMaster { Id = Investment, Name = "Investment" },
                     new PartyTypeMaster { Id = Expense, Name = "Expense" },
                     new PartyTypeMaster { Id = Loan, Name = "Loan" },
-                    new PartyTypeMaster {Id = Bank, Name = "Bank" },
-                    new PartyTypeMaster {Id = Cash, Name = "Cash" }
+                    new PartyTypeMaster { Id = Bank, Name = "Bank" },
+                    new PartyTypeMaster { Id = Cash, Name = "Cash" }
                 };
             }
             return partyTypeMaster;

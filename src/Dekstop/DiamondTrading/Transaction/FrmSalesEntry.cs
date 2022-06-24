@@ -269,7 +269,7 @@ namespace DiamondTrading.Transaction
                 if (lueCompany.EditValue.ToString() != Common.LoginCompany)
                     companyId = lueCompany.EditValue.ToString();
             }
-            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Party);
+            var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.PartySale);
             lueParty.Properties.DataSource = PartyDetailList;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";
@@ -571,7 +571,7 @@ namespace DiamondTrading.Transaction
                 {
                     Master.FrmPartyMaster frmPartyMaster = new Master.FrmPartyMaster();
                     frmPartyMaster.IsSilentEntry = true;
-                    frmPartyMaster.LedgerType = PartyTypeMaster.Party;
+                    frmPartyMaster.LedgerType = PartyTypeMaster.PartySale;
                     if (frmPartyMaster.ShowDialog() == DialogResult.OK)
                     {
                         await GetPartyList();
