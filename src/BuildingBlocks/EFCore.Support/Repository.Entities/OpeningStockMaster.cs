@@ -13,6 +13,9 @@ namespace Repository.Entities
         [Key]
         public string Id { get; set; }
         public string TransferId { get; set; }
+        public string TransferType { get; set; }
+        public string TransferEntryId { get; set; }
+        public double TransferCaratRate { get; set; }
         public string EntryDate { get; set; }
         public string EntryTime { get; set; }
         public int Category { get; set; }

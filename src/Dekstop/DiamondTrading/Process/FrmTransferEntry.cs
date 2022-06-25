@@ -260,7 +260,10 @@ namespace DiamondTrading.Process
                 if (e.Column == colCategory || e.Column == colBranch)
                 {
                     if (e.Column == colCategory)
+                    {
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCategoryType, ((Repository.Entities.Model.TransferCategoryList)repoCategory.GetDataSourceRowByKeyValue(e.Value)).CategoryID);
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCategoryT, ((Repository.Entities.Model.TransferCategoryList)repoCategory.GetDataSourceRowByKeyValue(e.Value)).CategoryID);
+                    }
                     if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, TransferCategoryMaster.Kapan);
@@ -469,9 +472,19 @@ namespace DiamondTrading.Process
                 {
                     this.grvTransferItemDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                     if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    {
+                        //grvTransferItemDetails.Columns["ShapeT"].Visible = false;
+                        colSizeT.Visible = false;
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 1);
+                    }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
+                    {
+                        //grvTransferItemDetails.Columns["ShapeT"].Visible = true;
+                        colSizeT.Visible = true;
+                        grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
+                    }
                     grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, "");
                     this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
                 }
@@ -590,6 +603,7 @@ namespace DiamondTrading.Process
                 NumberProcessMasterRepository numberProcessMasterRepository;
                 KapanMappingMaster kapanMappingMaster;
                 NumberProcessMaster numberProcessMaster;
+                OpeningStockMaster openingStockMaster;
 
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
@@ -598,31 +612,71 @@ namespace DiamondTrading.Process
                     //Transfer From
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
-                        kapanMappingMaster = new KapanMappingMaster();
-                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
-                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
-                        kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                        kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
-                        kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
-                        kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                        kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                        kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                        kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
+                        if (grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString() != "0")
+                        {
+                            kapanMappingMaster = new KapanMappingMaster();
+                            kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                            kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                            kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                            kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                            kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
+                            kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
+                            kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
+                            kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
+                            kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
+                            kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
 
-                        kapanMappingMaster.TransferId = TransferId;
-                        kapanMappingMaster.TransferType = "TransferedFrom";
-                        kapanMappingMaster.TransferEntryId = TransferEntryId;
-                        kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+                            kapanMappingMaster.TransferId = TransferId;
+                            kapanMappingMaster.TransferType = "TransferedFrom";
+                            kapanMappingMaster.TransferEntryId = TransferEntryId;
+                            kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
 
-                        kapanMappingMaster.CreatedDate = DateTime.Now;
-                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
-                        kapanMappingMaster.UpdatedDate = DateTime.Now;
-                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
+                            kapanMappingMaster.CreatedDate = DateTime.Now;
+                            kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                            kapanMappingMaster.UpdatedDate = DateTime.Now;
+                            kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                        kapanMappingMasterRepository = new KapanMappingMasterRepository();
-                        var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
-                        kapanMappingMasterRepository = null;
+                            kapanMappingMasterRepository = new KapanMappingMasterRepository();
+                            var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                            kapanMappingMasterRepository = null;
+                        }
+                        else
+                        {
+                            openingStockMaster = new OpeningStockMaster();
+                            openingStockMaster.Id = Guid.NewGuid().ToString();
+                            openingStockMaster.SrNo = 0;
+                            openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                            openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                            openingStockMaster.Category = TransferCategoryMaster.Kapan;
+                            openingStockMaster.CompanyId = lueCompany.EditValue.ToString();
+                            openingStockMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                            openingStockMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+
+                            openingStockMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
+                            openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
+
+                            openingStockMaster.ShapeId = Common.DefaultShape;
+                            openingStockMaster.PurityId = Common.DefaultPurity;
+
+                            openingStockMaster.TotalCts = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString())*-1;
+                            openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+                            openingStockMaster.Amount = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colAmount).ToString());
+
+                            openingStockMaster.TransferId = TransferId;
+                            openingStockMaster.TransferType = "TransferedFrom";
+                            openingStockMaster.TransferEntryId = TransferEntryId;
+                            openingStockMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+
+                            openingStockMaster.Remarks = txtRemark.Text;
+                            openingStockMaster.CreatedDate = DateTime.Now;
+                            openingStockMaster.CreatedBy = Common.LoginUserID;
+                            openingStockMaster.UpdatedDate = DateTime.Now;
+                            openingStockMaster.UpdatedBy = Common.LoginUserID;
+
+                            OpeningStockMasterRepositody openingStockMasterRepositody = new OpeningStockMasterRepositody();
+                            var Result1 = await openingStockMasterRepositody.AddOpeningStockAsync(openingStockMaster);
+                            openingStockMasterRepositody = null;
+                        }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Number.ToString())
                     {
@@ -671,33 +725,73 @@ namespace DiamondTrading.Process
                     }
 
                     //Transfer To
-                    if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
-                        kapanMappingMaster = new KapanMappingMaster();
-                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
-                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
-                        kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                        kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
-                        kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
-                        kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                        kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
-                        kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                        kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
+                        if (grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString() != "0")
+                        {
+                            kapanMappingMaster = new KapanMappingMaster();
+                            kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                            kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                            kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                            kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                            kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
+                            kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
+                            kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
+                            kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
+                            kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
+                            kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
 
-                        kapanMappingMaster.TransferId = TransferId;
-                        kapanMappingMaster.TransferType = "TransferedTo";
-                        kapanMappingMaster.TransferEntryId = TransferEntryId;
-                        kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+                            kapanMappingMaster.TransferId = TransferId;
+                            kapanMappingMaster.TransferType = "TransferedTo";
+                            kapanMappingMaster.TransferEntryId = TransferEntryId;
+                            kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
-                        kapanMappingMaster.CreatedDate = DateTime.Now;
-                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
-                        kapanMappingMaster.UpdatedDate = DateTime.Now;
-                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
+                            kapanMappingMaster.CreatedDate = DateTime.Now;
+                            kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                            kapanMappingMaster.UpdatedDate = DateTime.Now;
+                            kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                        kapanMappingMasterRepository = new KapanMappingMasterRepository();
-                        var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
-                        kapanMappingMasterRepository = null;
+                            kapanMappingMasterRepository = new KapanMappingMasterRepository();
+                            var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                            kapanMappingMasterRepository = null;
+                        }
+                        else
+                        {
+                            openingStockMaster = new OpeningStockMaster();
+                            openingStockMaster.Id = Guid.NewGuid().ToString();
+                            openingStockMaster.SrNo = 0;
+                            openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                            openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                            openingStockMaster.Category = TransferCategoryMaster.Kapan;
+                            openingStockMaster.CompanyId = lueCompany.EditValue.ToString();
+                            openingStockMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                            openingStockMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+
+                            openingStockMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
+                            openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
+
+                            openingStockMaster.ShapeId = Common.DefaultShape;
+                            openingStockMaster.PurityId = Common.DefaultPurity;
+
+                            openingStockMaster.TotalCts = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString());
+                            openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+                            openingStockMaster.Amount = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colAmountT).ToString());
+
+                            openingStockMaster.TransferId = TransferId;
+                            openingStockMaster.TransferType = "TransferedTo";
+                            openingStockMaster.TransferEntryId = TransferEntryId;
+                            openingStockMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+
+                            openingStockMaster.Remarks = txtRemark.Text;
+                            openingStockMaster.CreatedDate = DateTime.Now;
+                            openingStockMaster.CreatedBy = Common.LoginUserID;
+                            openingStockMaster.UpdatedDate = DateTime.Now;
+                            openingStockMaster.UpdatedBy = Common.LoginUserID;
+
+                            OpeningStockMasterRepositody openingStockMasterRepositody = new OpeningStockMasterRepositody();
+                            var Result1 = await openingStockMasterRepositody.AddOpeningStockAsync(openingStockMaster);
+                            openingStockMasterRepositody = null;
+                        }
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
                     {
@@ -716,7 +810,7 @@ namespace DiamondTrading.Process
                         numberProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
                         numberProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
                         numberProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
-                        numberProcessMaster.CharniSizeId = grvTransferItemDetails.GetRowCellValue(i, colCharniSizeId).ToString();
+                        numberProcessMaster.CharniSizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();//grvTransferItemDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                         numberProcessMaster.Weight = 0;
                         //numberProcessMaster.GalaNumberId = grvTransferItemDetails.GetRowCellValue(i, colTypeId).ToString();
                         numberProcessMaster.NumberId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
