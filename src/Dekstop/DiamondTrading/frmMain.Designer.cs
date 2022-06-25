@@ -211,6 +211,7 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barButtonItem81 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -341,9 +342,10 @@ namespace DiamondTrading
             this.barButtonItem77,
             this.barButtonItem78,
             this.barButtonItem79,
-            this.barButtonItem80});
+            this.barButtonItem80,
+            this.barButtonItem81});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 126;
+            this.barManager1.MaxItemId = 127;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -918,7 +920,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem73),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem76),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem79),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem80)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem80),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem81)});
             this.barSubItem5.Name = "barSubItem5";
             this.barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1935,6 +1938,13 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
+            // barButtonItem81
+            // 
+            this.barButtonItem81.Caption = "Kapan Lagad";
+            this.barButtonItem81.Id = 126;
+            this.barButtonItem81.Name = "barButtonItem81";
+            this.barButtonItem81.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem81_ItemClick);
+            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -2155,5 +2165,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem78;
         private DevExpress.XtraBars.BarButtonItem barButtonItem79;
         private DevExpress.XtraBars.BarButtonItem barButtonItem80;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem81;
     }
 }
