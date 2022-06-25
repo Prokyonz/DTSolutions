@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +93,15 @@ namespace EFCore.SQL.Repository
                 }
                 await _databaseContext.SaveChangesAsync();
                 return kapanMaster;
+            }
+        }
+
+        public async Task<List<KapanLagadReportSPModel>> GetKapanLagadReport(string KapanId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var KapanLagadDetails = await _databaseContext.SPKapanLagadReportModel.FromSqlRaw($"GetKapanLagadReportDetails '" + KapanId + "'").ToListAsync();
+                return KapanLagadDetails;
             }
         }
     }

@@ -90,6 +90,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<PurchaseSPModel> SPPurchaseModel { get; set; }
         public virtual DbSet<PurchaseSlipDetailsSPModel> SPPurchaseSlipDetailsModel { get; set; }
         public virtual DbSet<SlipDetailPrintSPModel> SPSlipDetailPrintModel { get; set; }
+        public virtual DbSet<KapanLagadReportSPModel> SPKapanLagadReportModel { get; set; }
         public virtual DbSet<SalesSPModel> SPSalesModel { get; set; }
         public virtual DbSet<ExpenseSPModel> SPExpenseModel { get; set; }
         public virtual DbSet<LoanSPModel> SPLoanReportModel { get; set; }
@@ -211,6 +212,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<PayableReceivableSPModel>().HasNoKey();
             modelBuilder.Entity<BalanceSheetSPModel>().HasNoKey();
             modelBuilder.Entity<ProfitLossSPModel>().HasNoKey();
+            modelBuilder.Entity<KapanLagadReportSPModel>().HasNoKey();
         }
     }
 }
