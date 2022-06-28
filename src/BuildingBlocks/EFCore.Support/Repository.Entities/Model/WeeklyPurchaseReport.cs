@@ -10,5 +10,7 @@ namespace Repository.Entities.Model
         public string WeekNo { get; set; }
         public string Period { get; set; }
         public double Amount { get; set; }
+        public string Week_Start_Date { get; set; }
+        public string Week_End_Date { get; set; }
     }
 }

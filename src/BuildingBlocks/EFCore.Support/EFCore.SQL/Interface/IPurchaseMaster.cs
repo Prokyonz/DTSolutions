@@ -13,7 +13,7 @@ namespace EFCore.SQL.Interface
         Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, string financialYearId);
         Task<List<PurchaseMaster>> GetAllPurchaseAsync(string companyId, string branchId, DateTime startDate, DateTime endDate);
         Task<PurchaseMaster> GetPurchaseAsync(string purchaseId);
-        Task<List<PurchaseSPModel>> GetPurchaseReport(string companyId, string financialYearId);
+        Task<List<PurchaseSPModel>> GetPurchaseReport(string companyId, string financialYearId, string currentWeek = null);
         Task<List<PurchaseSlipDetailsSPModel>> GetAvailableSlipDetailsReport(int ActionType, string companyId, string financialYearId);
         Task<List<SlipDetailPrintSPModel>> GetSlipDetails(int ActionType, string companyId, string SlipNo, string financialYearId);
         Task<PurchaseMaster> AddPurchaseAsync(PurchaseMaster purchaseMaster);

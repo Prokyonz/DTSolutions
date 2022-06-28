@@ -431,6 +431,12 @@
     <Compile Include="Reports\FrmKapanLagadReport.designer.cs">
       <DependentUpon>FrmKapanLagadReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\FrmWeeklyPurchaseDetailReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\FrmWeeklyPurchaseDetailReport.Designer.cs">
+      <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\rptJangadPrint.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -669,6 +675,9 @@
     </Compile>
     <EmbeddedResource Include="Reports\FrmKapanLagadReport.resx">
       <DependentUpon>FrmKapanLagadReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FrmWeeklyPurchaseDetailReport.resx">
+      <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptJangadPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

@@ -761,5 +761,15 @@ namespace DiamondTrading
                 e.Handled = true;
             }
         }
+
+        private void grvWeeklyPurchaseReport_RowClick(object sender, RowClickEventArgs e)
+        {
+            if (e.Clicks == 2)
+            {
+                string CurrentWeek = grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colWeekNo).ToString();
+                Reports.FrmWeeklyPurchaseDetailReport frmWeeklyPurchaseDetailReport = new Reports.FrmWeeklyPurchaseDetailReport(CurrentWeek);
+                frmWeeklyPurchaseDetailReport.ShowDialog();
+            }
+        }
     }
 }

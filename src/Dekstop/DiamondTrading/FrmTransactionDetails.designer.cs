@@ -341,6 +341,8 @@ namespace DiamondTrading
             this.colWeekNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPeriod = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWeekStartDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colWeekEndDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit3 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridView25 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn111 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -2954,7 +2956,9 @@ namespace DiamondTrading
             this.grvWeeklyPurchaseReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colWeekNo,
             this.colPeriod,
-            this.colAmount});
+            this.colAmount,
+            this.colWeekStartDate,
+            this.colWeekEndDate});
             this.grvWeeklyPurchaseReport.GridControl = this.grdWeeklyPurchaseReport;
             this.grvWeeklyPurchaseReport.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", null, ""),
@@ -2962,6 +2966,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", null, "")});
             this.grvWeeklyPurchaseReport.Name = "grvWeeklyPurchaseReport";
             this.grvWeeklyPurchaseReport.OptionsView.ShowFooter = true;
+            this.grvWeeklyPurchaseReport.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvWeeklyPurchaseReport_RowClick);
             // 
             // colWeekNo
             // 
@@ -2996,6 +3001,18 @@ namespace DiamondTrading
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 2;
             this.colAmount.Width = 204;
+            // 
+            // colWeekStartDate
+            // 
+            this.colWeekStartDate.Caption = "Week Start Date";
+            this.colWeekStartDate.FieldName = "Week_Start_Date";
+            this.colWeekStartDate.Name = "colWeekStartDate";
+            // 
+            // colWeekEndDate
+            // 
+            this.colWeekEndDate.Caption = "Week End Date";
+            this.colWeekEndDate.FieldName = "Week_End_Date";
+            this.colWeekEndDate.Name = "colWeekEndDate";
             // 
             // repositoryItemButtonEdit3
             // 
@@ -3812,5 +3829,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView gridView33;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn129;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView34;
+        private DevExpress.XtraGrid.Columns.GridColumn colWeekStartDate;
+        private DevExpress.XtraGrid.Columns.GridColumn colWeekEndDate;
     }
 }
