@@ -856,6 +856,8 @@ namespace DiamondTrading
             this.gridColumn109.Caption = "Net Cts";
             this.gridColumn109.FieldName = "NetWeight";
             this.gridColumn109.Name = "gridColumn109";
+            this.gridColumn109.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetWeight", "{0:0.##}")});
             this.gridColumn109.Visible = true;
             this.gridColumn109.VisibleIndex = 5;
             this.gridColumn109.Width = 49;
@@ -872,6 +874,8 @@ namespace DiamondTrading
             this.gridColumn113.Caption = "CVD Amt";
             this.gridColumn113.FieldName = "CVDAmount";
             this.gridColumn113.Name = "gridColumn113";
+            this.gridColumn113.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CVDAmount", "{0:0.##}")});
             this.gridColumn113.Visible = true;
             this.gridColumn113.VisibleIndex = 8;
             this.gridColumn113.Width = 66;
@@ -881,6 +885,8 @@ namespace DiamondTrading
             this.gridColumn114.Caption = "Less";
             this.gridColumn114.FieldName = "LessWeight";
             this.gridColumn114.Name = "gridColumn114";
+            this.gridColumn114.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LessWeight", "{0:0.##}")});
             this.gridColumn114.Visible = true;
             this.gridColumn114.VisibleIndex = 7;
             this.gridColumn114.Width = 36;
@@ -1234,6 +1240,8 @@ namespace DiamondTrading
             this.gridColumn117.Caption = "Net Cts";
             this.gridColumn117.FieldName = "NetWeight";
             this.gridColumn117.Name = "gridColumn117";
+            this.gridColumn117.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetWeight", "{0:0.##}")});
             this.gridColumn117.Visible = true;
             this.gridColumn117.VisibleIndex = 5;
             this.gridColumn117.Width = 58;
@@ -1243,6 +1251,8 @@ namespace DiamondTrading
             this.gridColumn118.Caption = "Less";
             this.gridColumn118.FieldName = "LessWeight";
             this.gridColumn118.Name = "gridColumn118";
+            this.gridColumn118.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LessWeight", "{0:0.##}")});
             this.gridColumn118.Visible = true;
             this.gridColumn118.VisibleIndex = 7;
             this.gridColumn118.Width = 36;
@@ -1252,6 +1262,8 @@ namespace DiamondTrading
             this.gridColumn119.Caption = "CVD Amt";
             this.gridColumn119.FieldName = "CVDAmount";
             this.gridColumn119.Name = "gridColumn119";
+            this.gridColumn119.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CVDAmount", "{0:0.##}")});
             this.gridColumn119.Visible = true;
             this.gridColumn119.VisibleIndex = 8;
             this.gridColumn119.Width = 69;
