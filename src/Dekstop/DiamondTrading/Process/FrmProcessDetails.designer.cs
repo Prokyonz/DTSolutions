@@ -505,6 +505,8 @@ namespace DiamondTrading
             this.gridColumnKapanMappingWeight,
             this.gridColumnKapanMappingUpdatedDate});
             this.grvKapanMapping.GridControl = this.grdProcessMaster;
+            this.grvKapanMapping.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "gridColumnKapanMappingWeight", this.gridColumnKapanMappingWeight, "")});
             this.grvKapanMapping.Name = "grvKapanMapping";
             this.grvKapanMapping.OptionsBehavior.Editable = false;
             this.grvKapanMapping.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
@@ -585,6 +587,8 @@ namespace DiamondTrading
             this.gridColumnKapanMappingWeight.Caption = "Weight";
             this.gridColumnKapanMappingWeight.FieldName = "Weight";
             this.gridColumnKapanMappingWeight.Name = "gridColumnKapanMappingWeight";
+            this.gridColumnKapanMappingWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", "{0:0.##}")});
             this.gridColumnKapanMappingWeight.Visible = true;
             this.gridColumnKapanMappingWeight.VisibleIndex = 3;
             this.gridColumnKapanMappingWeight.Width = 274;
