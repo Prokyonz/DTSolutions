@@ -649,7 +649,6 @@ namespace DiamondTrading
             this.grvTransMaster.Name = "grvTransMaster";
             this.grvTransMaster.OptionsBehavior.Editable = false;
             this.grvTransMaster.OptionsBehavior.ReadOnly = true;
-            this.grvTransMaster.OptionsView.AllowCellMerge = true;
             this.grvTransMaster.OptionsView.ShowFooter = true;
             this.grvTransMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnPurSlipNo, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -1031,7 +1030,6 @@ namespace DiamondTrading
             this.grvSalesTransactonMaster.GridControl = this.grdSalesTransactonMaster;
             this.grvSalesTransactonMaster.Name = "grvSalesTransactonMaster";
             this.grvSalesTransactonMaster.OptionsBehavior.Editable = false;
-            this.grvSalesTransactonMaster.OptionsView.AllowCellMerge = true;
             this.grvSalesTransactonMaster.OptionsView.ShowFooter = true;
             this.grvSalesTransactonMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn3, DevExpress.Data.ColumnSortOrder.Descending)});
