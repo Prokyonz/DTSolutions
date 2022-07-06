@@ -17,7 +17,7 @@ namespace EFCore.SQL.Repository
 
         public PaymentMasterRepository()
         {
-            
+
         }
         public async Task<GroupPaymentMaster> AddPaymentAsync(GroupPaymentMaster groupPaymentMaster)
         {
@@ -30,7 +30,7 @@ namespace EFCore.SQL.Repository
                 await _databaseContext.SaveChangesAsync();
 
                 //var getToPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == groupPaymentMaster.ToPartyId).FirstOrDefaultAsync();
-                
+
                 //foreach (var item in groupPaymentMaster.PaymentMasters)
                 //{
                 //    if (groupPaymentMaster.CrDrType == 0)      
@@ -39,7 +39,7 @@ namespace EFCore.SQL.Repository
                 //        getToPartyRecord.OpeningBalance += item.Amount;
 
                 //    var getFromPartyRecord = await _databaseContext.PartyMaster.Where(w => w.Id == item.FromPartyId).FirstOrDefaultAsync();
-                    
+
                 //    if(getFromPartyRecord != null)
                 //    {
                 //        if (groupPaymentMaster.CrDrType == 0)
@@ -70,7 +70,7 @@ namespace EFCore.SQL.Repository
                 return false;
             }
         }
-        
+
         public void Dispose()
         {
             _databaseContext.DisposeAsync();
@@ -88,7 +88,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var countResult = await _databaseContext.GroupPaymentMaster.Where(w =>w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
+                var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
                 if (countResult == null)
                     return 1;
                 return countResult.BillNo + 1;
@@ -97,16 +97,16 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<PaymentSPModel>> GetPaymentReport(string companyId, string financialYearId, int paymentType)
         {
-            using(_databaseContext = new DatabaseContext())
+            using (_databaseContext = new DatabaseContext())
             {
-                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','"+ paymentType +"'").ToListAsync();
+                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "'").ToListAsync();
                 return paymentRecords;
             }
         }
 
         public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType)
         {
-            using (_databaseContext = new DatabaseContext()) 
+            using (_databaseContext = new DatabaseContext())
             {
                 var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "'").ToListAsync();
                 return PaymentPSSlipDetails;
@@ -164,21 +164,28 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId)
+        public async Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var PayableReceivableDetails = await _databaseContext.SPBalanceSheetReport.FromSqlRaw($"GetBalanceSheet '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                var PayableReceivableDetails = await _databaseContext.SPBalanceSheetReport.FromSqlRaw($"GetBalanceSheet '" + companyId + "','" + financialYearId + "'," + balanceSheetType).ToListAsync();
                 return PayableReceivableDetails;
             }
         }
 
-        public async Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId)
+        public async Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType)
         {
-            using (_databaseContext = new DatabaseContext())
+            try
             {
-                var profitLossReport = await _databaseContext.SPProfitLossReport.FromSqlRaw($"GetProfitAndLoss '" + companyId + "','" + financialYearId + "'").ToListAsync();
-                return profitLossReport;
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var profitLossReport = await _databaseContext.SPProfitLossReport.FromSqlRaw($"GetProfitAndLoss '" + companyId + "','" + financialYearId + "', " + PLType).ToListAsync();
+                    return profitLossReport;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 

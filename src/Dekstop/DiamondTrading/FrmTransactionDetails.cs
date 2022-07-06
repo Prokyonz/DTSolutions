@@ -144,7 +144,7 @@ namespace DiamondTrading
                 case "ProfitLoss":
                     xtraTabProfitLoss.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabProfitLoss;
-                    xtraTabProfitLoss.Text = "Balance Sheet";
+                    xtraTabProfitLoss.Text = "Profit & Loss";
                     this.Text = "Balance Sheet";
                     break;
                 default:
@@ -203,6 +203,17 @@ namespace DiamondTrading
 
         private async void FrmMasterDetails_Load(object sender, EventArgs e)
         {
+            lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
+            lueProfitLossType.Properties.DisplayMember = "Name";
+            lueProfitLossType.Properties.ValueMember = "Id";
+            lueProfitLossType.EditValue = 2;
+
+            lueBalanceSheetType.Properties.DataSource = Common.GetBalanceSheetType;
+            lueBalanceSheetType.Properties.DisplayMember = "Name";
+            lueBalanceSheetType.Properties.ValueMember = "Id";
+            lueBalanceSheetType.EditValue = 2;
+
+
             ActiveTab();
             await LoadGridData(true);
         }
@@ -348,7 +359,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueBalanceSheetType.EditValue));
                     gridControlBalanceSheet.DataSource = data;
                 }
             }
@@ -357,7 +368,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
                     gridControlProfitLoss.DataSource = data;
                 }
             }
@@ -770,6 +781,16 @@ namespace DiamondTrading
                 Reports.FrmWeeklyPurchaseDetailReport frmWeeklyPurchaseDetailReport = new Reports.FrmWeeklyPurchaseDetailReport(CurrentWeek);
                 frmWeeklyPurchaseDetailReport.ShowDialog();
             }
+        }
+
+        private void lueBalanceSheetType_EditValueChanged(object sender, EventArgs e)
+        {
+            _ = LoadGridData(true);
+        }
+
+        private void lueProfitLossType_EditValueChanged(object sender, EventArgs e)
+        {
+            _ = LoadGridData(true);
         }
     }
 }

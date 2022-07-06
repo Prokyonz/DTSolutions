@@ -18,7 +18,8 @@ namespace EFCore.SQL.Interface
         Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId);
         Task<bool> DeletePaymentAsync(string groupId);
         Task<List<PayableReceivableSPModel>> GetPayableReceivalbeReport(string companyId, string financialYearId, int type);
-        Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId);
+        Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType);
+        Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType);
 
     }
 }

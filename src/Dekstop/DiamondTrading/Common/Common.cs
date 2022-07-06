@@ -98,6 +98,21 @@ namespace DiamondTrading
             }
 
         }
+
+        internal static DataTable GetBalanceSheetType
+        {
+            get
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Id", typeof(int));
+                dt.Columns.Add("Name", typeof(string));
+
+                dt.Rows.Add(1, "Open");
+                dt.Rows.Add(2, "Current");
+
+                return dt;
+            }
+        }
         public static void MoveToNextControl(object sender, KeyEventArgs e, Form form)
         {
             if (e.KeyCode == Keys.Enter)
