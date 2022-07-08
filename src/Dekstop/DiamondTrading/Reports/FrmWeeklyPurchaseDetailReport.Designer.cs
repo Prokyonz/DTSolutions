@@ -56,16 +56,15 @@ namespace DiamondTrading.Reports
             this.gridColumnPurBuyingRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPurTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPurPaymentDays = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPurRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPurUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPurMessage = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnPurApprovalType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn109 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn113 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn114 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn116 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn122 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAdjustAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -73,6 +72,7 @@ namespace DiamondTrading.Reports
             this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
@@ -87,7 +87,8 @@ namespace DiamondTrading.Reports
             this.grdTransactionMaster.Name = "grdTransactionMaster";
             this.grdTransactionMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
-            this.repositoryItemImageComboBox1});
+            this.repositoryItemImageComboBox1,
+            this.repositoryItemTextEdit1});
             this.grdTransactionMaster.Size = new System.Drawing.Size(1112, 521);
             this.grdTransactionMaster.TabIndex = 3;
             this.grdTransactionMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -117,21 +118,16 @@ namespace DiamondTrading.Reports
             this.gridColumnPurBuyingRate,
             this.gridColumnPurTotal,
             this.gridColumnPurPaymentDays,
-            this.gridColumnPurRemarks,
             this.gridColumnPurUpdatedDate,
-            this.gridColumnPurMessage,
-            this.gridColumnPurApprovalType,
             this.gridColumn109,
             this.gridColumn110,
             this.gridColumn113,
             this.gridColumn114,
             this.gridColumn116,
-            this.gridColumn122});
+            this.gridColumn122,
+            this.colAdjustAmount});
             this.grvTransMaster.GridControl = this.grdTransactionMaster;
             this.grvTransMaster.Name = "grvTransMaster";
-            this.grvTransMaster.OptionsBehavior.Editable = false;
-            this.grvTransMaster.OptionsBehavior.ReadOnly = true;
-            this.grvTransMaster.OptionsView.AllowCellMerge = true;
             this.grvTransMaster.OptionsView.ShowFooter = true;
             this.grvTransMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnPurSlipNo, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -154,6 +150,9 @@ namespace DiamondTrading.Reports
             this.gridColumnPurSlipNo.Caption = "Slip No";
             this.gridColumnPurSlipNo.FieldName = "SlipNo";
             this.gridColumnPurSlipNo.Name = "gridColumnPurSlipNo";
+            this.gridColumnPurSlipNo.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurSlipNo.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurSlipNo.OptionsColumn.TabStop = false;
             this.gridColumnPurSlipNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
             this.gridColumnPurSlipNo.Visible = true;
@@ -172,6 +171,9 @@ namespace DiamondTrading.Reports
             this.gridColumnPurDate.Caption = "Date";
             this.gridColumnPurDate.FieldName = "Date";
             this.gridColumnPurDate.Name = "gridColumnPurDate";
+            this.gridColumnPurDate.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurDate.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurDate.OptionsColumn.TabStop = false;
             this.gridColumnPurDate.Visible = true;
             this.gridColumnPurDate.VisibleIndex = 0;
             this.gridColumnPurDate.Width = 88;
@@ -187,6 +189,9 @@ namespace DiamondTrading.Reports
             this.gridColumnPurKapanName.Caption = "Kapan Name";
             this.gridColumnPurKapanName.FieldName = "KapanName";
             this.gridColumnPurKapanName.Name = "gridColumnPurKapanName";
+            this.gridColumnPurKapanName.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurKapanName.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurKapanName.OptionsColumn.TabStop = false;
             this.gridColumnPurKapanName.Visible = true;
             this.gridColumnPurKapanName.VisibleIndex = 4;
             this.gridColumnPurKapanName.Width = 77;
@@ -196,6 +201,9 @@ namespace DiamondTrading.Reports
             this.gridColumnPurPartyName.Caption = "Party Name";
             this.gridColumnPurPartyName.FieldName = "PartyName";
             this.gridColumnPurPartyName.Name = "gridColumnPurPartyName";
+            this.gridColumnPurPartyName.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurPartyName.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurPartyName.OptionsColumn.TabStop = false;
             this.gridColumnPurPartyName.Visible = true;
             this.gridColumnPurPartyName.VisibleIndex = 2;
             this.gridColumnPurPartyName.Width = 103;
@@ -239,6 +247,8 @@ namespace DiamondTrading.Reports
             this.gridColumnPurcBrokerageName.Caption = "Brok. Name";
             this.gridColumnPurcBrokerageName.FieldName = "BrokerName";
             this.gridColumnPurcBrokerageName.Name = "gridColumnPurcBrokerageName";
+            this.gridColumnPurcBrokerageName.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurcBrokerageName.OptionsColumn.ReadOnly = true;
             this.gridColumnPurcBrokerageName.Visible = true;
             this.gridColumnPurcBrokerageName.VisibleIndex = 3;
             this.gridColumnPurcBrokerageName.Width = 104;
@@ -263,7 +273,10 @@ namespace DiamondTrading.Reports
             this.gridColumnPurBuyingRate.Caption = "Buy Rate";
             this.gridColumnPurBuyingRate.FieldName = "BuyingRate";
             this.gridColumnPurBuyingRate.Name = "gridColumnPurBuyingRate";
+            this.gridColumnPurBuyingRate.OptionsColumn.AllowEdit = false;
             this.gridColumnPurBuyingRate.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
+            this.gridColumnPurBuyingRate.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurBuyingRate.OptionsColumn.TabStop = false;
             this.gridColumnPurBuyingRate.Visible = true;
             this.gridColumnPurBuyingRate.VisibleIndex = 6;
             this.gridColumnPurBuyingRate.Width = 60;
@@ -273,6 +286,9 @@ namespace DiamondTrading.Reports
             this.gridColumnPurTotal.Caption = "Total";
             this.gridColumnPurTotal.FieldName = "GrossTotal";
             this.gridColumnPurTotal.Name = "gridColumnPurTotal";
+            this.gridColumnPurTotal.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurTotal.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurTotal.OptionsColumn.TabStop = false;
             this.gridColumnPurTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "GrossTotal", "{0:0.##}")});
             this.gridColumnPurTotal.Visible = true;
@@ -284,49 +300,35 @@ namespace DiamondTrading.Reports
             this.gridColumnPurPaymentDays.Caption = "Pay Days";
             this.gridColumnPurPaymentDays.FieldName = "PaymentDays";
             this.gridColumnPurPaymentDays.Name = "gridColumnPurPaymentDays";
+            this.gridColumnPurPaymentDays.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurPaymentDays.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurPaymentDays.OptionsColumn.TabStop = false;
             this.gridColumnPurPaymentDays.Visible = true;
             this.gridColumnPurPaymentDays.VisibleIndex = 10;
             this.gridColumnPurPaymentDays.Width = 62;
-            // 
-            // gridColumnPurRemarks
-            // 
-            this.gridColumnPurRemarks.Caption = "Remarks";
-            this.gridColumnPurRemarks.FieldName = "Remarks";
-            this.gridColumnPurRemarks.Name = "gridColumnPurRemarks";
-            this.gridColumnPurRemarks.Visible = true;
-            this.gridColumnPurRemarks.VisibleIndex = 13;
-            this.gridColumnPurRemarks.Width = 64;
             // 
             // gridColumnPurUpdatedDate
             // 
             this.gridColumnPurUpdatedDate.Caption = "Due Date";
             this.gridColumnPurUpdatedDate.FieldName = "PaymentDueDate";
             this.gridColumnPurUpdatedDate.Name = "gridColumnPurUpdatedDate";
+            this.gridColumnPurUpdatedDate.OptionsColumn.AllowEdit = false;
+            this.gridColumnPurUpdatedDate.OptionsColumn.ReadOnly = true;
+            this.gridColumnPurUpdatedDate.OptionsColumn.TabStop = false;
             this.gridColumnPurUpdatedDate.Visible = true;
             this.gridColumnPurUpdatedDate.VisibleIndex = 11;
             this.gridColumnPurUpdatedDate.Width = 60;
-            // 
-            // gridColumnPurMessage
-            // 
-            this.gridColumnPurMessage.Caption = "Message";
-            this.gridColumnPurMessage.FieldName = "Message";
-            this.gridColumnPurMessage.Name = "gridColumnPurMessage";
-            this.gridColumnPurMessage.Visible = true;
-            this.gridColumnPurMessage.VisibleIndex = 14;
-            this.gridColumnPurMessage.Width = 63;
-            // 
-            // gridColumnPurApprovalType
-            // 
-            this.gridColumnPurApprovalType.Caption = "Approval Type";
-            this.gridColumnPurApprovalType.FieldName = "ApprovalType";
-            this.gridColumnPurApprovalType.Name = "gridColumnPurApprovalType";
-            this.gridColumnPurApprovalType.Width = 56;
             // 
             // gridColumn109
             // 
             this.gridColumn109.Caption = "Net Cts";
             this.gridColumn109.FieldName = "NetWeight";
             this.gridColumn109.Name = "gridColumn109";
+            this.gridColumn109.OptionsColumn.AllowEdit = false;
+            this.gridColumn109.OptionsColumn.ReadOnly = true;
+            this.gridColumn109.OptionsColumn.TabStop = false;
+            this.gridColumn109.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "NetWeight", "{0:0.##}")});
             this.gridColumn109.Visible = true;
             this.gridColumn109.VisibleIndex = 5;
             this.gridColumn109.Width = 49;
@@ -343,6 +345,11 @@ namespace DiamondTrading.Reports
             this.gridColumn113.Caption = "CVD Amt";
             this.gridColumn113.FieldName = "CVDAmount";
             this.gridColumn113.Name = "gridColumn113";
+            this.gridColumn113.OptionsColumn.AllowEdit = false;
+            this.gridColumn113.OptionsColumn.ReadOnly = true;
+            this.gridColumn113.OptionsColumn.TabStop = false;
+            this.gridColumn113.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "CVDAmount", "{0:0.##}")});
             this.gridColumn113.Visible = true;
             this.gridColumn113.VisibleIndex = 8;
             this.gridColumn113.Width = 66;
@@ -352,6 +359,11 @@ namespace DiamondTrading.Reports
             this.gridColumn114.Caption = "Less";
             this.gridColumn114.FieldName = "LessWeight";
             this.gridColumn114.Name = "gridColumn114";
+            this.gridColumn114.OptionsColumn.AllowEdit = false;
+            this.gridColumn114.OptionsColumn.ReadOnly = true;
+            this.gridColumn114.OptionsColumn.TabStop = false;
+            this.gridColumn114.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LessWeight", "{0:0.##}")});
             this.gridColumn114.Visible = true;
             this.gridColumn114.VisibleIndex = 7;
             this.gridColumn114.Width = 36;
@@ -361,6 +373,9 @@ namespace DiamondTrading.Reports
             this.gridColumn116.Caption = "Due Days";
             this.gridColumn116.FieldName = "DueDays";
             this.gridColumn116.Name = "gridColumn116";
+            this.gridColumn116.OptionsColumn.AllowEdit = false;
+            this.gridColumn116.OptionsColumn.ReadOnly = true;
+            this.gridColumn116.OptionsColumn.TabStop = false;
             this.gridColumn116.Visible = true;
             this.gridColumn116.VisibleIndex = 9;
             this.gridColumn116.Width = 56;
@@ -370,6 +385,23 @@ namespace DiamondTrading.Reports
             this.gridColumn122.Caption = "PurId";
             this.gridColumn122.FieldName = "PurId";
             this.gridColumn122.Name = "gridColumn122";
+            // 
+            // colAdjustAmount
+            // 
+            this.colAdjustAmount.Caption = "Adjust Amount";
+            this.colAdjustAmount.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colAdjustAmount.FieldName = "AdjustAmount";
+            this.colAdjustAmount.Name = "colAdjustAmount";
+            this.colAdjustAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AdjustAmount", "{0:0.##}")});
+            this.colAdjustAmount.Visible = true;
+            this.colAdjustAmount.VisibleIndex = 13;
+            // 
+            // repositoryItemTextEdit1
+            // 
+            this.repositoryItemTextEdit1.AutoHeight = false;
+            this.repositoryItemTextEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repositoryItemTextEdit1.Name = "repositoryItemTextEdit1";
             // 
             // repositoryItemComboBox1
             // 
@@ -456,8 +488,10 @@ namespace DiamondTrading.Reports
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Weekly Purchase Detail Report";
             this.Load += new System.EventHandler(this.FrmWeeklyPurchaseDetailReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmWeeklyPurchaseDetailReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).EndInit();
@@ -489,10 +523,7 @@ namespace DiamondTrading.Reports
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurBuyingRate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurTotal;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurPaymentDays;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurRemarks;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurUpdatedDate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurMessage;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurApprovalType;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn109;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn113;
@@ -504,5 +535,7 @@ namespace DiamondTrading.Reports
         private DevExpress.XtraGrid.Views.Grid.GridView grdChildTransMaster;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView14;
+        private DevExpress.XtraGrid.Columns.GridColumn colAdjustAmount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEdit1;
     }
 }

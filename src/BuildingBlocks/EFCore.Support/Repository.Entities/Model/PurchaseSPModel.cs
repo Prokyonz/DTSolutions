@@ -47,6 +47,7 @@ namespace Repository.Entities.Model
         public string Message { get; set; }
         public string ApprovalType { get; set; }
         public string Remarks { get; set; }
-
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? AdjustAmount { get; set; }
     }
 }

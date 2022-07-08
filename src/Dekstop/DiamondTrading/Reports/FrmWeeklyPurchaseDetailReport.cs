@@ -27,5 +27,10 @@ namespace DiamondTrading.Reports
             var purchaseData = await purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear, _currentWeek);
             grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
         }
+
+        private void FrmWeeklyPurchaseDetailReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            Common.MoveToNextControl(sender, e, this);
+        }
     }
 }
