@@ -343,6 +343,27 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     grdWeeklyPurchaseReport.DataSource = data;
+
+                    System.Globalization.CultureInfo CI = new System.Globalization.CultureInfo("en-US");
+                    System.Globalization.Calendar Cal = CI.Calendar;
+                    // first week of year
+                    System.Globalization.CalendarWeekRule CWR = CI.DateTimeFormat.CalendarWeekRule;
+                    // first day of week
+                    DayOfWeek FirstDOW = CI.DateTimeFormat.FirstDayOfWeek;
+                    // to get the current week number
+                    int week = Cal.GetWeekOfYear(DateTime.Now, CWR, FirstDOW);
+
+                    int rowHandle = grvWeeklyPurchaseReport.LocateByValue("WeekNo", week.ToString());
+                    if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
+                    {
+                        grvWeeklyPurchaseReport.FocusedRowHandle = rowHandle;
+                        grvWeeklyPurchaseReport.SelectRow(rowHandle);
+                    }
+
+                    string SelectedWeek = "Week: " + grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colPeriod).ToString();
+
+                    await DisplayCurrentWeekPurchaseData(week.ToString(),SelectedWeek);
+
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
@@ -773,14 +794,28 @@ namespace DiamondTrading
             }
         }
 
-        private void grvWeeklyPurchaseReport_RowClick(object sender, RowClickEventArgs e)
+        private async void grvWeeklyPurchaseReport_RowClick(object sender, RowClickEventArgs e)
         {
             if (e.Clicks == 2)
             {
                 string CurrentWeek = grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colWeekNo).ToString();
-                Reports.FrmWeeklyPurchaseDetailReport frmWeeklyPurchaseDetailReport = new Reports.FrmWeeklyPurchaseDetailReport(CurrentWeek);
-                frmWeeklyPurchaseDetailReport.ShowDialog();
+                //Reports.FrmWeeklyPurchaseDetailReport frmWeeklyPurchaseDetailReport = new Reports.FrmWeeklyPurchaseDetailReport(CurrentWeek);
+                //frmWeeklyPurchaseDetailReport.ShowDialog();
+                string SelectedWeek = "Week: " + grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colPeriod).ToString();
+
+                await DisplayCurrentWeekPurchaseData(CurrentWeek, SelectedWeek);
             }
+        }
+
+        private async Task DisplayCurrentWeekPurchaseData(string CurrentWeek, string SelectedWeek)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            grvWeeklyPurchaseDetails.ViewCaption = SelectedWeek;
+
+            PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
+            var purchaseData = await purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear, CurrentWeek);
+            grdWeeklyPurchaseDetails.DataSource = purchaseData.OrderBy(o => o.SlipNo);
+            this.Cursor = Cursors.Default;
         }
 
         private void lueBalanceSheetType_EditValueChanged(object sender, EventArgs e)
