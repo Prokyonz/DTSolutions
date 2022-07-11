@@ -35,8 +35,8 @@ namespace DiamondTrading.Reports
             DevExpress.Utils.SimpleContextButton simpleContextButton4 = new DevExpress.Utils.SimpleContextButton();
             DevExpress.Utils.SimpleContextButton simpleContextButton5 = new DevExpress.Utils.SimpleContextButton();
             DevExpress.Utils.SimpleContextButton simpleContextButton6 = new DevExpress.Utils.SimpleContextButton();
-            this.grdTransactionMaster = new DevExpress.XtraGrid.GridControl();
-            this.grvTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdWeeklyPurchaseDetails = new DevExpress.XtraGrid.GridControl();
+            this.grvWeeklyPurchaseDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnPurId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPurBillNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnPurSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -70,8 +70,8 @@ namespace DiamondTrading.Reports
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView14 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdWeeklyPurchaseDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvWeeklyPurchaseDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).BeginInit();
@@ -79,26 +79,26 @@ namespace DiamondTrading.Reports
             ((System.ComponentModel.ISupportInitialize)(this.gridView14)).BeginInit();
             this.SuspendLayout();
             // 
-            // grdTransactionMaster
+            // grdWeeklyPurchaseDetails
             // 
-            this.grdTransactionMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdTransactionMaster.Location = new System.Drawing.Point(0, 0);
-            this.grdTransactionMaster.MainView = this.grvTransMaster;
-            this.grdTransactionMaster.Name = "grdTransactionMaster";
-            this.grdTransactionMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.grdWeeklyPurchaseDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdWeeklyPurchaseDetails.Location = new System.Drawing.Point(0, 0);
+            this.grdWeeklyPurchaseDetails.MainView = this.grvWeeklyPurchaseDetails;
+            this.grdWeeklyPurchaseDetails.Name = "grdWeeklyPurchaseDetails";
+            this.grdWeeklyPurchaseDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemComboBox1,
             this.repositoryItemImageComboBox1,
             this.repositoryItemTextEdit1});
-            this.grdTransactionMaster.Size = new System.Drawing.Size(1112, 521);
-            this.grdTransactionMaster.TabIndex = 3;
-            this.grdTransactionMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvTransMaster,
+            this.grdWeeklyPurchaseDetails.Size = new System.Drawing.Size(1112, 521);
+            this.grdWeeklyPurchaseDetails.TabIndex = 3;
+            this.grdWeeklyPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvWeeklyPurchaseDetails,
             this.grdChildTransMaster,
             this.gridView14});
             // 
-            // grvTransMaster
+            // grvWeeklyPurchaseDetails
             // 
-            this.grvTransMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvWeeklyPurchaseDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnPurId,
             this.gridColumnPurBillNo,
             this.gridColumnPurSlipNo,
@@ -126,10 +126,10 @@ namespace DiamondTrading.Reports
             this.gridColumn116,
             this.gridColumn122,
             this.colAdjustAmount});
-            this.grvTransMaster.GridControl = this.grdTransactionMaster;
-            this.grvTransMaster.Name = "grvTransMaster";
-            this.grvTransMaster.OptionsView.ShowFooter = true;
-            this.grvTransMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
+            this.grvWeeklyPurchaseDetails.GridControl = this.grdWeeklyPurchaseDetails;
+            this.grvWeeklyPurchaseDetails.Name = "grvWeeklyPurchaseDetails";
+            this.grvWeeklyPurchaseDetails.OptionsView.ShowFooter = true;
+            this.grvWeeklyPurchaseDetails.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnPurSlipNo, DevExpress.Data.ColumnSortOrder.Descending)});
             // 
             // gridColumnPurId
@@ -458,7 +458,7 @@ namespace DiamondTrading.Reports
             // 
             this.grdChildTransMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8});
-            this.grdChildTransMaster.GridControl = this.grdTransactionMaster;
+            this.grdChildTransMaster.GridControl = this.grdWeeklyPurchaseDetails;
             this.grdChildTransMaster.Name = "grdChildTransMaster";
             this.grdChildTransMaster.OptionsBehavior.Editable = false;
             this.grdChildTransMaster.OptionsView.ShowGroupPanel = false;
@@ -471,7 +471,7 @@ namespace DiamondTrading.Reports
             // 
             // gridView14
             // 
-            this.gridView14.GridControl = this.grdTransactionMaster;
+            this.gridView14.GridControl = this.grdWeeklyPurchaseDetails;
             this.gridView14.Name = "gridView14";
             // 
             // FrmWeeklyPurchaseDetailReport
@@ -479,7 +479,7 @@ namespace DiamondTrading.Reports
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1112, 521);
-            this.Controls.Add(this.grdTransactionMaster);
+            this.Controls.Add(this.grdWeeklyPurchaseDetails);
             this.IconOptions.ShowIcon = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -489,8 +489,8 @@ namespace DiamondTrading.Reports
             this.Text = "Weekly Purchase Detail Report";
             this.Load += new System.EventHandler(this.FrmWeeklyPurchaseDetailReport_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmWeeklyPurchaseDetailReport_KeyDown);
-            ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grdWeeklyPurchaseDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvWeeklyPurchaseDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemImageComboBox1)).EndInit();
@@ -502,8 +502,8 @@ namespace DiamondTrading.Reports
 
         #endregion
 
-        private DevExpress.XtraGrid.GridControl grdTransactionMaster;
-        private DevExpress.XtraGrid.Views.Grid.GridView grvTransMaster;
+        private DevExpress.XtraGrid.GridControl grdWeeklyPurchaseDetails;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvWeeklyPurchaseDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurBillNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurSlipNo;
