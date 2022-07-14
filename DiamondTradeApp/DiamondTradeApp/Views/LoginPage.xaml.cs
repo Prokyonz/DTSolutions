@@ -2,6 +2,7 @@
 using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -10,6 +11,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
+
 namespace DiamondTradeApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -17,14 +20,36 @@ namespace DiamondTradeApp.Views
     {
         public LoginPage()
         {
+            //InitializeComponent();
+            //this.BindingContext = new LoginViewModel();
+            var vm = new LoginViewModel();
+            this.BindingContext = vm;
+            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Error", "Invalid Login", "OK");
             InitializeComponent();
-            this.BindingContext = new LoginViewModel();
+
+
+            txtUserName.Completed += (object sender, EventArgs e) =>
+            {
+                txtUserName.Focus();
+            };
+
+            txtPassword.Completed += (object sender, EventArgs e) =>
+            {
+                vm.LoginCommand.Execute(null);
+            };
         }
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        private async void btnLogin_Clicked(object sender, EventArgs e)
         {
             try
             {
+                if (txtUserName.Text == String.Empty || txtPassword.Text == null)
+                {
+                    
+                    //CrossToastPopUp.Current.ShowToastWarning("Please enter username", ToastLength.Long);
+                    return;
+                }
+
                 SqlConnection sqlConnection = new SqlConnection(@"Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;");
 
                 sqlConnection.Open();
