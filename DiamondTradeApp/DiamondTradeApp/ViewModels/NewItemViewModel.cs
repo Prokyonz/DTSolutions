@@ -9,8 +9,9 @@ namespace DiamondTradeApp.ViewModels
 {
     public class NewItemViewModel : BaseViewModel
     {
-        private string text;
-        private string description;
+        private string oldPassword;
+        private string newPassword;
+        private string confirmPassword;
 
         public NewItemViewModel()
         {
@@ -22,20 +23,27 @@ namespace DiamondTradeApp.ViewModels
 
         private bool ValidateSave()
         {
-            return !String.IsNullOrWhiteSpace(text)
-                && !String.IsNullOrWhiteSpace(description);
+            return !String.IsNullOrWhiteSpace(oldPassword)
+                && !String.IsNullOrWhiteSpace(newPassword)
+                && !String.IsNullOrWhiteSpace(confirmPassword);
         }
 
-        public string Text
+        public string OldPassword
         {
-            get => text;
-            set => SetProperty(ref text, value);
+            get => oldPassword;
+            set => SetProperty(ref oldPassword, value);
         }
 
-        public string Description
+        public string NewPassword
         {
-            get => description;
-            set => SetProperty(ref description, value);
+            get => newPassword;
+            set => SetProperty(ref newPassword, value);
+        }
+
+        public string ConfirmPassword
+        {
+            get => confirmPassword;
+            set => SetProperty(ref confirmPassword, value);
         }
 
         public Command SaveCommand { get; }
@@ -49,17 +57,18 @@ namespace DiamondTradeApp.ViewModels
 
         private async void OnSave()
         {
-            Item newItem = new Item()
-            {
-                Id = Guid.NewGuid().ToString(),
-                Text = Text,
-                Description = Description
-            };
+            Console.WriteLine(OldPassword + NewPassword + ConfirmPassword);
+            //Item newItem = new Item()
+            //{
+            //    Id = Guid.NewGuid().ToString(),
+            //    Text = Text,
+            //    Description = Description
+            //};
 
-            await DataStore.AddItemAsync(newItem);
+            //await DataStore.AddItemAsync(newItem);
 
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            //// This will pop the current page off the navigation stack
+            //await Shell.Current.GoToAsync("..");
         }
     }
 }

@@ -5,10 +5,65 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="DiamondTradeApp.Views.LoginPage"
+            BackgroundImageSource="set.png" 
              Shell.NavBarIsVisible="False">
+    <!--<ContentPage.Content>
+        <StackLayout Orientation="Vertical"  Padding="10" Spacing="90">
+            <BoxView HeightRequest="14"/>
+            <Image HorizontalOptions="Center" WidthRequest="100" Source="icon1.png"/>
+            <Frame BackgroundColor="#ccddff" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="Username"   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="Black"/>
+                    <Entry x:Name="Password"  Text="{Binding Password}" Placeholder="Password"   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="Black"/>
+                    <Button Command="{Binding LoginCommand}" 
+                            Text="Login" 
+                            BorderWidth="1"
+                            BorderColor="Orange"
+                            TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large"
+                            HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="blue" />
+                </StackLayout>
+
+            </Frame>
+        </StackLayout>
+        -->
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-            <Button VerticalOptions="Center" Text="Login" Clicked="Button_Clicked" />
+        <StackLayout Padding="10"
+            VerticalOptions="Center">
+            <!--<Image Source="icon1.png" HorizontalOptions="Center" WidthRequest="100"></Image>-->
+            <Label Text="Diamond Trade"
+                   TextColor="Black"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   ></Label>
+            <Entry x:Name="txtUserName"
+                   Placeholder="Username"
+                   
+                   FontSize="Large"/>
+            
+            <Entry x:Name="txtPassword" 
+                    Placeholder="Password"
+                   FontSize="Large"
+                   IsPassword="True"/>
+            
+            <Button Text="Login"
+                    TextColor="White"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    BackgroundColor="SkyBlue"
+                    CornerRadius="15"
+                    x:Name="btnLogin"
+                    Clicked="btnLogin_Clicked"
+                    />
         </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

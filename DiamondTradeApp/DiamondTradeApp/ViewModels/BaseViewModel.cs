@@ -11,6 +11,7 @@ namespace DiamondTradeApp.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public Action DisplayInvalidLoginPrompt;
 
         bool isBusy = false;
         public bool IsBusy
@@ -24,6 +25,19 @@ namespace DiamondTradeApp.ViewModels
         {
             get { return title; }
             set { SetProperty(ref title, value); }
+        }
+
+        private string email = string.Empty;
+        public string txtUserName
+        {
+            get { return email; }
+            set { SetProperty(ref email, value); }
+        }
+        private string password = string.Empty;
+        public string txtPassword
+        {
+            get { return password; }
+            set { SetProperty(ref password, value); }
         }
 
         protected bool SetProperty<T>(ref T backingStore, T value,

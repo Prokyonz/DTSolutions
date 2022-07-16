@@ -1,22 +1,73 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DiamondTradeApp.Views.NewItemPage"
              Shell.PresentationMode="ModalAnimated"
-             Title="New Item"
+             Title="Change Password"
+             BackgroundImageSource="set.png"
+             
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
              ios:Page.UseSafeArea="true">
     <ContentPage.Content>
-        <StackLayout Spacing="3" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Text, Mode=TwoWay}" FontSize="Medium" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
-            <StackLayout Orientation="Horizontal">
-                <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
-                <Button Text="Save" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
-            </StackLayout>
+
+        <StackLayout Padding="10"
+            VerticalOptions="Start">
+
+            <Entry x:Name="OldPassword"
+                   Placeholder="Old Password"
+                   FontSize="Large"
+                   IsPassword="True"/>
+            
+
+            <Entry x:Name="NewPassword" 
+                   Placeholder="New Password"
+                   FontSize="Large"
+                   IsPassword="True"/>
+
+            <Entry x:Name="ConfirmPassword" 
+                   Placeholder="Confirm Password"
+                   FontSize="Large"
+                   IsPassword="True"/> 
+
+            <Button Text="Change Password"
+                    TextColor="White"
+                    FontSize="Large"
+                    FontAttributes="Bold"
+                    BackgroundColor="SkyBlue"
+                    CornerRadius="15"
+                    x:Name="btnLogin"
+                    
+                    />
         </StackLayout>
+
+        <!--<StackLayout Orientation="Vertical"  Padding="30" Spacing="40">
+            <BoxView HeightRequest="10"/>
+            --><!--<Image HorizontalOptions="Center" WidthRequest="200" Source="logo.png"/>--><!--
+            <Frame BackgroundColor="White" BorderColor="#FF0266" HasShadow="False">
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Entry x:Name="OldPassword" Text="{Binding OldPassword}" Placeholder="Old Password"   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"
+                           TextColor="Black"/>
+                    <Entry x:Name="NewPassword" Text="{Binding NewPassword}" Placeholder="New Password"   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="Black"/>
+                    <Entry x:Name="ConfirmPassword" Text="{Binding ConfirmPassword}" Placeholder="Confirm Password"   
+                           PlaceholderColor="Black" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="Black"/>
+                </StackLayout>
+            </Frame>
+            <StackLayout Orientation="Horizontal">
+                <Button Command="{Binding SaveCommand }" Text="Save" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="blue" />
+                <Button Command="{Binding CancelCommand}" Text="Cancel" TextColor="White"  
+                    FontAttributes="Bold" FontSize="Large" HorizontalOptions="FillAndExpand"  
+                    BackgroundColor="blue" />
+            </StackLayout>
+
+        </StackLayout>-->
     </ContentPage.Content>
-    
 </ContentPage>
