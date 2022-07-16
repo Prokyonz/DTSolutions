@@ -62,8 +62,17 @@ namespace DiamondTrading.Transaction
             }
             else
             {
-                var result = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
-                txtSerialNo.Text = result.ToString();
+                ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
+                var PaymentSrNo = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+
+                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
+                int SrNo = 0;
+                if (PaymentSrNo >= ExpenseSrNo)
+                    SrNo = PaymentSrNo;
+                else
+                    SrNo = ExpenseSrNo;
+
+                txtSerialNo.Text = SrNo.ToString();
             }
         }
 
@@ -86,18 +95,23 @@ namespace DiamondTrading.Transaction
             else
                 dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
             dtTime.EditValue = DateTime.Now;
-
+            colBranch.Visible = false;
             await LoadCompany();
             LoadSeries(_paymentType);
             await LoadLedgers(lueCompany.EditValue.ToString());
+
+            if (_paymentType == 0)
+                await LoadBranch(lueCompany.EditValue.ToString());
         }
 
         private static DataTable GetDTColumnsForPaymentDetails()
         {
             DataTable dt = new DataTable();
+            dt.Columns.Add("Branch");
             dt.Columns.Add("Party");
             dt.Columns.Add("Amount");
             dt.Columns.Add("AutoAdjustBillAmount");
+            dt.Columns.Add("PartyType");
             return dt;
         }
 
@@ -148,6 +162,16 @@ namespace DiamondTrading.Transaction
                 List<PaymentPSSlipDetails> PaymentSlipDetails = await _paymentMaterRepository.GetPaymentPSSlipDetails(lueCompany.EditValue.ToString(), _paymentType.ToString());
                 dtSlipDetail = Common.ToDataTable<PaymentPSSlipDetails>(PaymentSlipDetails);
             }
+        }
+
+        private async Task LoadBranch(string CompanyId)
+        {
+            BranchMasterRepository branchMasterRepository = new BranchMasterRepository();
+            var result = await branchMasterRepository.GetAllBranchAsync(CompanyId);
+
+            repoBranch.DataSource = result;
+            repoBranch.DisplayMember = "Name";
+            repoBranch.ValueMember = "Id";
         }
 
         private async void lueLeadger_EditValueChanged(object sender, EventArgs e)
@@ -230,71 +254,120 @@ namespace DiamondTrading.Transaction
                     List<PaymentMaster> paymentMasters = new List<PaymentMaster>();
                     List<PaymentDetails> listPaymentDetails = new List<PaymentDetails>();
                     PaymentDetails paymentDetails;
+                    bool IsSucess = false;
                     for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                     {
-                        string paymentMasterId = Guid.NewGuid().ToString();
-
-                        if (dtSlipDetail.Columns.Contains("Amount"))
+                        if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(i, colPartyType)) != PartyTypeMaster.Expense)
                         {
-                            DataView dbView = new DataView(dtSlipDetail);
-                            dbView.RowFilter = "isnull(Amount,0)<>0 and PartyId='" + grvPaymentDetails.GetRowCellValue(i, colParty) + "'";
-                            if (dbView.Count > 0)
+                            string paymentMasterId = Guid.NewGuid().ToString();
+
+                            if (dtSlipDetail.Columns.Contains("Amount"))
                             {
-                                foreach (DataRowView row in dbView)
+                                DataView dbView = new DataView(dtSlipDetail);
+                                dbView.RowFilter = "isnull(Amount,0)<>0 and PartyId='" + grvPaymentDetails.GetRowCellValue(i, colParty) + "'";
+                                if (dbView.Count > 0)
                                 {
-                                    paymentDetails = new PaymentDetails
+                                    foreach (DataRowView row in dbView)
                                     {
-                                        Id = Guid.NewGuid().ToString(),
-                                        GroupId = groupId.ToString(),
-                                        PaymentId = paymentMasterId,
-                                        PurchaseId = row["PurchaseId"].ToString(),
-                                        SlipNo = row["SlipNo"].ToString(),
-                                        Amount = Convert.ToDecimal(row["Amount"]),
-                                        CreatedBy = Guid.NewGuid().ToString(),
-                                        CreatedDate = DateTime.Now,
-                                        UpdatedBy = Common.LoginUserID.ToString(),
-                                        UpdatedDate = DateTime.Now,
-                                    };
-                                    listPaymentDetails.Add(paymentDetails);
+                                        paymentDetails = new PaymentDetails
+                                        {
+                                            Id = Guid.NewGuid().ToString(),
+                                            GroupId = groupId.ToString(),
+                                            PaymentId = paymentMasterId,
+                                            PurchaseId = row["PurchaseId"].ToString(),
+                                            SlipNo = row["SlipNo"].ToString(),
+                                            Amount = Convert.ToDecimal(row["Amount"]),
+                                            CreatedBy = Guid.NewGuid().ToString(),
+                                            CreatedDate = DateTime.Now,
+                                            UpdatedBy = Common.LoginUserID.ToString(),
+                                            UpdatedDate = DateTime.Now,
+                                        };
+                                        listPaymentDetails.Add(paymentDetails);
+                                    }
                                 }
                             }
+
+                            PaymentMaster paymentMaster = new PaymentMaster();
+                            string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                            string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
+
+                            paymentMaster.GroupId = groupId;
+                            paymentMaster.Id = paymentMasterId;
+                            paymentMaster.Amount = Convert.ToDecimal(amount);
+                            paymentMaster.FromPartyId = fromPartyId;
+                            paymentMaster.CreatedDate = DateTime.Now;
+                            paymentMaster.UpdatedDate = DateTime.Now;
+                            paymentMaster.PaymentDetails = listPaymentDetails;
+                            paymentMasters.Add(paymentMaster);
                         }
+                        else
+                        {
+                            this.Cursor = Cursors.WaitCursor;
+                            try
+                            {
+                                ExpenseDetails expenseDetails = new ExpenseDetails
+                                {
+                                    Id = Guid.NewGuid().ToString(),
+                                    SrNo = Convert.ToInt32(txtSerialNo.Text),
+                                    BranchId = grvPaymentDetails.GetRowCellValue(i, colBranch).ToString(), //Common.LoginBranch,
+                                    CompanyId = lueCompany.EditValue.ToString(),
+                                    FinancialYearId = Common.LoginFinancialYear,
+                                    PartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString(),
+                                    fromPartyId = lueLeadger.EditValue.ToString(),
+                                    Amount = float.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString()),
+                                    IsDelete = false,
+                                    Remarks = txtRemark.Text,
+                                    CreatedBy = Common.LoginUserID,
+                                    CreatedDate = DateTime.Now,
+                                    UpdatedBy = Common.LoginUserID,
+                                    UpdatedDate = DateTime.Now,
+                                };
 
-                        PaymentMaster paymentMaster = new PaymentMaster();
-                        string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
-                        string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
+                                string partyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                                string fromparty = lueLeadger.EditValue.ToString();
+                                decimal amt = decimal.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString());
 
-                        paymentMaster.GroupId = groupId;
-                        paymentMaster.Id = paymentMasterId;
-                        paymentMaster.Amount = Convert.ToDecimal(amount);
-                        paymentMaster.FromPartyId = fromPartyId;
-                        paymentMaster.CreatedDate = DateTime.Now;
-                        paymentMaster.UpdatedDate = DateTime.Now;
-                        paymentMaster.PaymentDetails = listPaymentDetails;
-                        paymentMasters.Add(paymentMaster);
+                                ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
+                                var result = await expenseMasterRepository.AddExpenseAsync(expenseDetails);
+
+                                IsSucess = true;
+                            }
+                            catch (Exception Ex)
+                            {
+                                IsSucess = false;
+                            }
+                        }
                     }
 
-                    GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
+                    if (paymentMasters.Count > 0)
                     {
-                        Id = groupId,
-                        BillNo = Convert.ToInt32(txtSerialNo.Text),
-                        BranchId = Common.LoginBranch,
-                        CompanyId = lueCompany.EditValue.ToString(),
-                        FinancialYearId = Common.LoginFinancialYear,
-                        IsDelete = false,
-                        Remarks = txtRemark.Text,
-                        ToPartyId = lueLeadger.EditValue.ToString(),
-                        CrDrType = _paymentType,
-                        PaymentMasters = paymentMasters,
-                        CreatedBy = Common.LoginUserID,
-                        UpdatedBy = Common.LoginUserID,
-                        CreatedDate = DateTime.Now,
-                        UpdatedDate = DateTime.Now,
-                    };
+                        GroupPaymentMaster groupPaymentMaster = new GroupPaymentMaster
+                        {
+                            Id = groupId,
+                            BillNo = Convert.ToInt32(txtSerialNo.Text),
+                            BranchId = Common.LoginBranch,
+                            CompanyId = lueCompany.EditValue.ToString(),
+                            FinancialYearId = Common.LoginFinancialYear,
+                            IsDelete = false,
+                            Remarks = txtRemark.Text,
+                            ToPartyId = lueLeadger.EditValue.ToString(),
+                            CrDrType = _paymentType,
+                            PaymentMasters = paymentMasters,
+                            CreatedBy = Common.LoginUserID,
+                            UpdatedBy = Common.LoginUserID,
+                            CreatedDate = DateTime.Now,
+                            UpdatedDate = DateTime.Now,
+                        };
 
-                    var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
+                        var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
 
-                    if (Result != null)
+                        if (Result != null)
+                        {
+                            IsSucess = true;
+                        }
+                    }
+
+                    if (IsSucess)
                     {
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -457,6 +530,25 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
+            else if (e.Column == colParty && _paymentType == 0)
+            {
+                try
+                {
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colPartyType, ((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type);
+                    if(((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type==PartyTypeMaster.Expense)
+                    {
+                        colBranch.Visible = true;
+                    }
+                    else
+                    {
+                        colBranch.Visible = false;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private async void NewEntry(object sender, KeyEventArgs e)
@@ -497,9 +589,12 @@ namespace DiamondTrading.Transaction
 
         private void grvPaymentDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
-            if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+            if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(e.RowHandle, colPartyType)) != PartyTypeMaster.Expense)
             {
-                repositoryItemButtonEdit1_Click(null, null);
+                if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    repositoryItemButtonEdit1_Click(null, null);
+                }
             }
         }
     }
