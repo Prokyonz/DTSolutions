@@ -12,11 +12,11 @@ namespace Repository.Entities.Model
         public long SlipNo { get; set; }
         public string Party { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal NetWeight { get; set; }
+        public decimal? NetWeight { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Rate { get; set; }
+        public decimal? Rate { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal Amount { get; set; }
+        public decimal? Amount { get; set; }
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Kapan { get; set;  }
