@@ -15,4 +15,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\BuildingBlocks\EFCore.Support\EFCore.SQL\EFCore.SQL.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\MyPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

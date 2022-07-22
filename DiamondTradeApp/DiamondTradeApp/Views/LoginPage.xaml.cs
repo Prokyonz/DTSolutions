@@ -28,15 +28,15 @@ namespace DiamondTradeApp.Views
             InitializeComponent();
 
 
-            txtUserName.Completed += (object sender, EventArgs e) =>
-            {
-                txtUserName.Focus();
-            };
+            //txtUserName.Completed += (object sender, EventArgs e) =>
+            //{
+            //    txtUserName.Focus();
+            //};
 
-            txtPassword.Completed += (object sender, EventArgs e) =>
-            {
-                vm.LoginCommand.Execute(null);
-            };
+            //txtPassword.Completed += (object sender, EventArgs e) =>
+            //{
+            //    vm.LoginCommand.Execute(null);
+            //};
         }
 
         private async void btnLogin_Clicked(object sender, EventArgs e)
@@ -45,8 +45,6 @@ namespace DiamondTradeApp.Views
             {
                 if (txtUserName.Text == String.Empty || txtPassword.Text == null)
                 {
-                    
-                    //CrossToastPopUp.Current.ShowToastWarning("Please enter username", ToastLength.Long);
                     return;
                 }
 
@@ -58,8 +56,7 @@ namespace DiamondTradeApp.Views
                 DataSet ds = new DataSet();
                 sqlDataAdapter.Fill(ds);
 
-                //UserMasterRepository userMasterRepository = new UserMasterRepository();
-                //var result = await userMasterRepository.Login("admin", "123");
+                await Shell.Current.GoToAsync("//AboutPage");
             }
             catch (Exception ex)
             {
