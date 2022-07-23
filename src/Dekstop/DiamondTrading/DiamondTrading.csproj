@@ -824,6 +824,8 @@
     <Content Include="ExeRefrence\AForge.Controls.dll" />
     <Content Include="ExeRefrence\AForge.Video.DirectShow.dll" />
     <Content Include="ExeRefrence\AForge.Video.dll" />
+    <None Include="Resources\image_16.png" />
+    <None Include="Resources\image.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('..\..\..\packages\Microsoft.Data.SqlClient.SNI.1.1.0\build\net46\Microsoft.Data.SqlClient.SNI.targets')" />

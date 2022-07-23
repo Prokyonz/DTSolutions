@@ -18,6 +18,7 @@ namespace DiamondTrading.Transaction
     {
         FilterInfoCollection videoDevices;
         VideoCaptureDevice videoCaptureDevice;
+        bool _isViewOnly = false;
         int SelectedTab = 0;
 
         public PictureBox Image1
@@ -70,6 +71,12 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
         }
 
+        public FrmTakePicture(bool IsViewOnly)
+        {
+            InitializeComponent();
+            _isViewOnly = IsViewOnly;
+        }
+
         private void FrmTakePicture_Load(object sender, EventArgs e)
         {
             SelectedTab = SelectedImage;
@@ -119,6 +126,15 @@ namespace DiamondTrading.Transaction
             }
 
             videoCaptureDevice = new VideoCaptureDevice();
+
+            if(_isViewOnly)
+            {
+                this.Text = "View Picture";
+                lueDeviceDetails.Enabled = false;
+                btnCapture.Enabled = false;
+                btnBrowse.Enabled = false;
+                btnClick.Enabled = false;
+            }
         }
 
         private void btnCapture_Click(object sender, EventArgs e)

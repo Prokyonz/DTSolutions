@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace DiamondTrading
         private PurchaseMasterRepository _purchaseMasterRepository;
         private SalesMasterRepository _salesMasterRepository;
         private PaymentMasterRepository _paymentMasterRepository;
-        private ContraEntryMasterRespository  _contraEntryMasterRespository;
+        private ContraEntryMasterRespository _contraEntryMasterRespository;
         private ExpenseMasterRepository _expenseMasterRepository;
         private LoanMasterRepository _loanMasterRepository;
         private JangadMasterRepository _JangadMasterRepository;
@@ -178,7 +179,7 @@ namespace DiamondTrading
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private async void accordianAddBtn_Click(object sender, EventArgs e)
@@ -193,7 +194,7 @@ namespace DiamondTrading
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
             {
-                Transaction.FrmSalesEntry frmSalesEntry= new Transaction.FrmSalesEntry();
+                Transaction.FrmSalesEntry frmSalesEntry = new Transaction.FrmSalesEntry();
                 if (frmSalesEntry.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
@@ -218,15 +219,15 @@ namespace DiamondTrading
             await LoadGridData(true);
         }
 
-        private async Task LoadGridData(bool IsForceLoad=false)
+        private async Task LoadGridData(bool IsForceLoad = false)
         {
             if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany,Common.LoginFinancialYear);
-                    grdTransactionMaster.DataSource = purchaseData.OrderBy(o=>o.SlipNo);
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
@@ -237,9 +238,10 @@ namespace DiamondTrading
                     var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
                 }
-            } else if(xtabManager.SelectedTabPage == xtabPayment)
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
             {
-                if(IsForceLoad || _paymentMasterRepository == null)
+                if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
@@ -273,13 +275,13 @@ namespace DiamondTrading
                     grdExpenseControl.DataSource = data;
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabLoan)
+            else if (xtabManager.SelectedTabPage == xtabLoan)
             {
                 if (IsForceLoad || _expenseMasterRepository == null)
                 {
                     _loanMasterRepository = new LoanMasterRepository();
                     var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
-                    gridControlLoan .DataSource = data;
+                    gridControlLoan.DataSource = data;
                     gridView9.ExpandAllGroups();
                 }
             }
@@ -302,7 +304,7 @@ namespace DiamondTrading
                         ActionType = 2;
 
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType,Common.LoginCompany, Common.LoginFinancialYear);
+                    var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType, Common.LoginCompany, Common.LoginFinancialYear);
                     grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
                 }
             }
@@ -318,7 +320,8 @@ namespace DiamondTrading
                     var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
                     gridControlJangadSendReceive.DataSource = data;
                 }
-            } else if(xtabManager.SelectedTabPage == xtraTabPFReport)
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPFReport)
             {
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
@@ -327,7 +330,7 @@ namespace DiamondTrading
                     gridControlPFReport.DataSource = data;
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
             {
                 if (IsForceLoad || _partyMasterRepository == null)
                 {
@@ -362,7 +365,7 @@ namespace DiamondTrading
 
                     string SelectedWeek = "Week: " + grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colPeriod).ToString();
 
-                    await DisplayCurrentWeekPurchaseData(week.ToString(),SelectedWeek);
+                    await DisplayCurrentWeekPurchaseData(week.ToString(), SelectedWeek);
 
                 }
             }
@@ -371,7 +374,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable"? 0: 1);
+                    var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable" ? 0 : 1);
                     gridControlPayableReceivable.DataSource = data;
                 }
             }
@@ -400,7 +403,7 @@ namespace DiamondTrading
             if (xtabManager.SelectedTabPage == xtabPurchase)
             {
 
-                string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("PurId").ToString();                
+                string SelectedGuid = grvTransMaster.GetFocusedRowCellValue("PurId").ToString();
 
                 Transaction.FrmPurchaseEntry frmPurchaseEntry = new Transaction.FrmPurchaseEntry(SelectedGuid);
 
@@ -425,7 +428,7 @@ namespace DiamondTrading
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
             _ = LoadGridData();
-        } 
+        }
 
         private void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
@@ -446,7 +449,8 @@ namespace DiamondTrading
                         bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
 
                         MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    } else
+                    }
+                    else
                     {
                         MessageBox.Show("You can not delete this record because it is mapped with kapan.");
                     }
@@ -458,7 +462,7 @@ namespace DiamondTrading
                 {
                     string id = grvSalesTransactonMaster.GetFocusedRowCellValue(gridColumnSalesId).ToString();
 
-                    bool result = await _salesMasterRepository.DeleteSalesAsync(id,false);
+                    bool result = await _salesMasterRepository.DeleteSalesAsync(id, false);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -504,7 +508,7 @@ namespace DiamondTrading
 
                     bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
 
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));                    
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabLoan)
@@ -528,7 +532,7 @@ namespace DiamondTrading
 
         private void accordionCancelButton_Click(object sender, EventArgs e)
         {
-            btnCancel_Click(sender,e);
+            btnCancel_Click(sender, e);
         }
 
         private void gridViewCompanyMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
@@ -593,8 +597,8 @@ namespace DiamondTrading
                 ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
 
                 var result = await approvalPermissionMasterRepository.GetPermission();
-                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "purchase_approval").FirstOrDefault() ;                
-                
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "purchase_approval").FirstOrDefault();
+
                 if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
                 {
                     DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
@@ -616,14 +620,14 @@ namespace DiamondTrading
         private async void btnApprove_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Transaction.FrmApproveReject frmApproveReject = new Transaction.FrmApproveReject(1);
-            if(frmApproveReject.ShowDialog()==DialogResult.OK)
+            if (frmApproveReject.ShowDialog() == DialogResult.OK)
             {
                 if (xtabManager.SelectedTabPage == xtabPurchase)
                 {
                     string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "PurId").ToString();
                     var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
-                else if(xtabManager.SelectedTabPage == xtabSales)
+                else if (xtabManager.SelectedTabPage == xtabSales)
                 {
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
@@ -741,7 +745,7 @@ namespace DiamondTrading
 
         private void repositoryJangadPrintReport_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void repositoryJangadPrintReport_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
@@ -749,12 +753,12 @@ namespace DiamondTrading
             //string sr = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "Sr").ToString();
             string srNo = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "SrNo").ToString();
             string FinancialYear = grvJangadSendReceive.GetRowCellValue(grvJangadSendReceive.FocusedRowHandle, "FinancialYearId").ToString();
-            
+
             int ActionType = 1;
             if (SelectedTabPage.Equals("JangadSend"))
                 ActionType = 2;
 
-            Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany,ActionType);
+            Utility.FrmViewJangad fvj = new Utility.FrmViewJangad(srNo, FinancialYear, Common.LoginCompany, ActionType);
             fvj.ShowDialog();
         }
 
@@ -826,6 +830,213 @@ namespace DiamondTrading
         private void lueProfitLossType_EditValueChanged(object sender, EventArgs e)
         {
             _ = LoadGridData(true);
+        }
+
+        private async void repositoryItemButtonEdit7_Click(object sender, EventArgs e)
+        {
+            string PurchaseId = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, colPurImage).ToString();
+
+            PurchaseMaster _editedPurchaseMaster = await _purchaseMasterRepository.GetPurchaseAsync(PurchaseId);
+            if (_editedPurchaseMaster != null)
+            {
+                PictureEdit Image1 = new PictureEdit();
+                PictureEdit Image2 = new PictureEdit();
+                PictureEdit Image3 = new PictureEdit();
+
+                byte[] Logo = null;
+                MemoryStream ms = null;
+                try
+                {
+                    Logo = new byte[0];
+                    if (_editedPurchaseMaster.Image1 != null)
+                    {
+                        Logo = (byte[])(_editedPurchaseMaster.Image1);
+                        ms = new MemoryStream(Logo);
+                        //ms.Write(Logo, 0, Logo.Length);
+                        Image1.Image = new Bitmap(ms);
+                        Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //Image1.Size = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedPurchaseMaster.Image2 != null)
+                    {
+                        Logo = (Byte[])(_editedPurchaseMaster.Image2);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image2.Image = Image.FromStream(ms);
+                        Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedPurchaseMaster.Image3 != null)
+                    {
+                        Logo = (Byte[])(_editedPurchaseMaster.Image3);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image3.Image = Image.FromStream(ms);
+                        Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    Transaction.FrmTakePicture fpc = new Transaction.FrmTakePicture(true);
+                    fpc.Image1.Image = Image1.Image;
+                    fpc.Image2.Image = Image2.Image;
+                    fpc.Image3.Image = Image3.Image;
+                    fpc.SelectedImage = 0;
+                    fpc.ShowDialog();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private async void repositoryItemButtonEdit8_Click(object sender, EventArgs e)
+        {
+            string SalesId = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, colSalesImage).ToString();
+
+            SalesMaster _editedSalesMaster = await _salesMasterRepository.GetSalesAsync(SalesId);
+            if (_editedSalesMaster != null)
+            {
+                PictureEdit Image1 = new PictureEdit();
+                PictureEdit Image2 = new PictureEdit();
+                PictureEdit Image3 = new PictureEdit();
+
+                byte[] Logo = null;
+                MemoryStream ms = null;
+                try
+                {
+                    Logo = new byte[0];
+                    if (_editedSalesMaster.Image1 != null)
+                    {
+                        Logo = (byte[])(_editedSalesMaster.Image1);
+                        ms = new MemoryStream(Logo);
+                        //ms.Write(Logo, 0, Logo.Length);
+                        Image1.Image = new Bitmap(ms);
+                        Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //Image1.Size = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedSalesMaster.Image2 != null)
+                    {
+                        Logo = (Byte[])(_editedSalesMaster.Image2);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image2.Image = Image.FromStream(ms);
+                        Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedSalesMaster.Image3 != null)
+                    {
+                        Logo = (Byte[])(_editedSalesMaster.Image3);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image3.Image = Image.FromStream(ms);
+                        Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    Transaction.FrmTakePicture fpc = new Transaction.FrmTakePicture(true);
+                    fpc.Image1.Image = Image1.Image;
+                    fpc.Image2.Image = Image2.Image;
+                    fpc.Image3.Image = Image3.Image;
+                    fpc.SelectedImage = 0;
+                    fpc.ShowDialog();
+                }
+                catch
+                {
+
+                }
+            }
+        }
+
+        private async void repositoryItemButtonEdit9_Click(object sender, EventArgs e)
+        {
+            string PurchaseId = grvWeeklyPurchaseDetails.GetRowCellValue(grvWeeklyPurchaseDetails.FocusedRowHandle, colWeeklyPurImage).ToString();
+
+            PurchaseMaster _editedPurchaseMaster = await _purchaseMasterRepository.GetPurchaseAsync(PurchaseId);
+            if (_editedPurchaseMaster != null)
+            {
+                PictureEdit Image1 = new PictureEdit();
+                PictureEdit Image2 = new PictureEdit();
+                PictureEdit Image3 = new PictureEdit();
+
+                byte[] Logo = null;
+                MemoryStream ms = null;
+                try
+                {
+                    Logo = new byte[0];
+                    if (_editedPurchaseMaster.Image1 != null)
+                    {
+                        Logo = (byte[])(_editedPurchaseMaster.Image1);
+                        ms = new MemoryStream(Logo);
+                        //ms.Write(Logo, 0, Logo.Length);
+                        Image1.Image = new Bitmap(ms);
+                        Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //Image1.Size = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedPurchaseMaster.Image2 != null)
+                    {
+                        Logo = (Byte[])(_editedPurchaseMaster.Image2);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image2.Image = Image.FromStream(ms);
+                        Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    if (_editedPurchaseMaster.Image3 != null)
+                    {
+                        Logo = (Byte[])(_editedPurchaseMaster.Image3);
+                        ms = new MemoryStream(Logo);
+                        ms.Write(Logo, 0, Logo.Length);
+                        Image3.Image = Image.FromStream(ms);
+                        Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                        //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                        Logo = null;
+                        ms = null;
+                    }
+
+                    Transaction.FrmTakePicture fpc = new Transaction.FrmTakePicture(true);
+                    fpc.Image1.Image = Image1.Image;
+                    fpc.Image2.Image = Image2.Image;
+                    fpc.Image3.Image = Image3.Image;
+                    fpc.SelectedImage = 0;
+                    fpc.ShowDialog();
+                }
+                catch
+                {
+
+                }
+            }
         }
     }
 }
