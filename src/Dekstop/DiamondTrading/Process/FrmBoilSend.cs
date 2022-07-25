@@ -260,5 +260,30 @@ namespace DiamondTrading.Process
         {
             Reset();
         }
+
+        private void grvParticularsDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colBoilCarat) == null || (grvParticularsDetails.GetRowCellValue(e.RowHandle, colBoilCarat) != null && grvParticularsDetails.GetRowCellValue(e.RowHandle, colBoilCarat).ToString().Trim().Length == 0))
+            {
+                e.ErrorText = "Please enter carat detail.";
+                grvParticularsDetails.FocusedRowHandle = e.RowHandle;
+                grvParticularsDetails.FocusedColumn = colBoilCarat;
+                e.Valid = false;
+            }
+            else if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat) == null || (grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat) != null && grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat).ToString().Trim().Length == 0))
+            {
+                e.ErrorText = "Please select SlipNo.";
+                grvParticularsDetails.FocusedRowHandle = e.RowHandle;
+                grvParticularsDetails.FocusedColumn = colSlipNo;
+                e.Valid = false;
+            }
+            else if (Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colBoilCarat)) > Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat)))
+            {
+                e.ErrorText = "Maximum available boil carat should be: "+ grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat).ToString();
+                grvParticularsDetails.FocusedRowHandle = e.RowHandle;
+                grvParticularsDetails.FocusedColumn = colBoilCarat;
+                e.Valid = false;
+            }
+        }
     }
 }
