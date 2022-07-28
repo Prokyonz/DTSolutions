@@ -5,6 +5,8 @@
              x:Class="DiamondTradeApp.Views.AboutPage"
              Title="Home"
              >
+
+    
     <!--<Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*" />
@@ -50,7 +52,7 @@
                VerticalOptions="Center" />
     </Grid>-->
 
-    <Grid Margin="25">
+    <!--<Grid Margin="25">
         <Grid.RowDefinitions>
             
             <RowDefinition Height="90"/>
@@ -111,9 +113,51 @@
                HorizontalOptions="Center"
                VerticalOptions="Center" />
        
-    </Grid>
+    </Grid>-->
 
-    
+    <StackLayout Padding="25">
+        <Frame BorderColor="Gray" BackgroundColor="#ffbb99" CornerRadius="10    ">
+            <StackLayout>
+                <Label Text="OREDERS" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center"  />
+                <BoxView Color="Gray"  HeightRequest="1" HorizontalOptions="Fill" />
+                <Label Text="2322K" FontAttributes="Bold" TextColor="Black" FontSize="Large" HorizontalOptions="Center"  />
+            </StackLayout>
+        </Frame>
+        <Label></Label>
+        <Frame BorderColor="Gray" BackgroundColor="#ffff99" CornerRadius="8">
+            <StackLayout>
+                <Label Text="SALES" TextColor="Black" FontSize="Title" FontAttributes="Bold" HorizontalOptions="Center"  />
+                <BoxView Color="Gray"  HeightRequest="1" HorizontalOptions="Fill" />
+                <Label Text="12000K" TextColor="Black" FontSize="Large" FontAttributes="Bold" HorizontalOptions="Center"  />
+            </StackLayout>
+        </Frame>
+        <Label></Label>
+        <Frame BorderColor="Gray" BackgroundColor="#d5ff80" CornerRadius="8">
+            <StackLayout>
+                <Label Text="PURCHASE" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center"  />
+                <BoxView Color="Gray"  HeightRequest="1" HorizontalOptions="Fill" />
+                <Label Text="2000K" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"  />
+            </StackLayout>
+        </Frame>
+        <Label></Label>
+        <Frame BorderColor="Gray" BackgroundColor="#ccddff" CornerRadius="8">
+            <StackLayout>
+                <Label Text="PAYMENTS" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center"  />
+                <BoxView Color="Gray"  HeightRequest="1" HorizontalOptions="Fill" />
+                <Label Text="56000K" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"  />
+            </StackLayout>
+        </Frame>
+
+        <!--<Frame BorderColor="Gray" BackgroundColor="#d5ff80" CornerRadius="8">
+            <StackLayout>
+                <Label Text="RECIPTS" TextColor="Black" FontAttributes="Bold" FontSize="Title" HorizontalOptions="Center"  />
+                <BoxView Color="Gray"  HeightRequest="1" HorizontalOptions="Fill" />
+                <Label Text="20300K" FontSize="Large" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center"  />
+            </StackLayout>
+        </Frame>-->
+    </StackLayout>
+
+
     <!--<ListView x:Name="EmployeeView"
             ItemsSource="{Binding Employees}">
         <ListView.ItemTemplate>
