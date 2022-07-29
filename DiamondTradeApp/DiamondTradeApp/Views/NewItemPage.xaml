@@ -11,7 +11,7 @@
             <StackLayout>
                
                 <StackLayout Padding="40" Spacing="20">
-                    <Entry x:Name="txtOldPassword" PlaceholderColor="DarkBlue" Placeholder="old password" HeightRequest="60"   />
+                    <Entry x:Name="txtOldPassword" Placeholder="old password" HeightRequest="60"   />
                     <Entry x:Name="txtNewPassword" Placeholder="new password" HeightRequest="60"  />
                     <Entry x:Name="txtConfPassword" Placeholder="confirm password" HeightRequest="60"  />
                     <Button Text="Change Password" HeightRequest="50" BackgroundColor="DarkBlue" TextColor="White" CornerRadius="5" />

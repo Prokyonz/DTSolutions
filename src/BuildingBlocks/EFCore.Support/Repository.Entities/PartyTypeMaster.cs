@@ -201,6 +201,7 @@ namespace Repository.Entities
         public static int Boil = 2;
         public static int Charni = 3;
         public static int Gala = 4;
+        public static int Jangad = 5;
 
         public static List<CategoryMaster> GetAllCategory()
         {
@@ -208,6 +209,7 @@ namespace Repository.Entities
             {
                 new CategoryMaster {Id = Number, Name = "Number" },
                 //new CategoryMaster {Id = Kapan, Name = "Kapan" },
+                //new CategoryMaster {Id = Jangad, Name = "Jangad" },
                 new CategoryMaster {Id = Boil, Name = "Boil" },
                 new CategoryMaster {Id = Charni, Name = "Charni" },
                 new CategoryMaster {Id = Gala, Name = "Gala" }
