@@ -2,6 +2,7 @@
 using DevExpress.XtraGrid.Views.Grid;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -535,36 +536,6 @@ namespace DiamondTrading
             btnCancel_Click(sender, e);
         }
 
-        private void gridViewCompanyMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
-        {
-            //GridView gridView = sender as GridView;
-            //CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
-            //if (companyMaster != null)
-            //{
-            //    e.IsEmpty = _companyMaster.Where(w => w.Type == companyMaster.Id).Count() > 0 ? false : true;
-            //}
-        }
-
-        private void gridViewCompanyMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
-        {
-            //GridView gridView = sender as GridView;
-            //CompanyMaster companyMaster = gridView.GetRow(e.RowHandle) as CompanyMaster;
-            //if (companyMaster != null)
-            //{
-            //    e.ChildList = _companyMaster.Where(w => w.Type == companyMaster.Id).ToList();
-            //}
-        }
-
-        private void gridViewCompanyMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
-        {
-            e.RelationCount = 1;
-        }
-
-        private void gridViewCompanyMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
-        {
-            e.RelationName = "Child";
-        }
-
         private void gridControl1_Click(object sender, EventArgs e)
         {
 
@@ -1037,6 +1008,58 @@ namespace DiamondTrading
 
                 }
             }
+        }
+
+        private void grvTransMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
+        {
+            e.IsEmpty = false;
+        }
+
+        private void grvTransMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            PurchaseSPModel purchaseSPModel = gridView.GetRow(e.RowHandle) as PurchaseSPModel;
+            if (purchaseSPModel != null)
+            {
+                var result = _purchaseMasterRepository.GetPurchaseDetailsAsync(purchaseSPModel.PurId);
+                e.ChildList = result;
+            }
+        }
+
+        private void grvTransMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
+        {
+            e.RelationCount = 1;
+        }
+
+        private void grvTransMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
+        {
+            e.RelationName = "Child";
+        }
+
+        private void grvSalesTransactonMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
+        {
+            e.IsEmpty = false;
+        }
+
+        private void grvSalesTransactonMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
+        {
+            GridView gridView = sender as GridView;
+            SalesSPModel salesDetails= gridView.GetRow(e.RowHandle) as SalesSPModel;
+            if (salesDetails != null)
+            {
+                var result = _salesMasterRepository.GetSalesChild(salesDetails.Id);
+                e.ChildList = result;
+            }
+        }
+
+        private void grvSalesTransactonMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
+        {
+            e.RelationName = "Child";
+        }
+
+        private void grvSalesTransactonMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
+        {
+            e.RelationCount = 1;
         }
     }
 }

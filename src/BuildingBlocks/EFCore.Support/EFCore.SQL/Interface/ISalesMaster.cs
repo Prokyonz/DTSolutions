@@ -25,5 +25,6 @@ namespace EFCore.SQL.Interface
         Task<List<CaratCategoryType>> GetCaratCategoryDetails();
 
         Task<bool> UpdateApprovalStatus(string salesId, string message, int status);
+        List<SalesChildSPModel> GetSalesChild(string salesId);
     }
 }

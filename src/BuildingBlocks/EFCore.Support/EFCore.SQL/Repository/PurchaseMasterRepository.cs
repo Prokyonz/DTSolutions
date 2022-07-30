@@ -253,5 +253,15 @@ namespace EFCore.SQL.Repository
                 return getWeeklyPurchaseRecord;
             }
         }
+
+        public List<PurchaseChildSPModel> GetPurchaseDetailsAsync(string purchaseId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPurchaseChild = _databaseContext.SPPurchaseChildReport.FromSqlRaw($"GetChildPurchaseReport '" + purchaseId + "'").ToList();
+                ;
+                return getPurchaseChild;
+            }
+        }
     }
 }

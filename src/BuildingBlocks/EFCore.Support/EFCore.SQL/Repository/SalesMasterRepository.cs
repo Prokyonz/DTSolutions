@@ -246,5 +246,15 @@ namespace EFCore.SQL.Repository
                 return false;
             }
         }
+
+        public List<SalesChildSPModel> GetSalesChild(string salesId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var data = _databaseContext.SPSalesChildReport.FromSqlRaw($"GetChildSalesReport '" + salesId + "'").ToList();
+
+                return data;
+            }
+        }
     }
 }
