@@ -1,5 +1,4 @@
-﻿using DiamondTradeApp.Models;
-using DiamondTradeApp.Services;
+﻿using DiamondTradeApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +9,6 @@ namespace DiamondTradeApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
         public Action DisplayInvalidLoginPrompt;
 
         bool isBusy = false;

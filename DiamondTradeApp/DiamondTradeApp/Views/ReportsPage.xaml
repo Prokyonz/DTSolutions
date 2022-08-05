@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DiamondTradeApp.Views.ReportsPage"
+             x:Name="BrowseItemsPage"
+             Title="Purchase Report">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Export" />
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Padding="20" Spacing="0" >
+
+        <Frame BackgroundColor="DarkBlue" BorderColor="White" HeightRequest="60"  Padding="0">
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+
+                    </Grid.ColumnDefinitions>
+
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Name" VerticalOptions="Center"  Grid.Column="0">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Id" VerticalOptions="Center"  Grid.Column="1">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Sales" VerticalOptions="Center"  Grid.Column="2">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Order" VerticalOptions="Center"  Grid.Column="3">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Name" VerticalOptions="Center"  Grid.Column="4">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Id" VerticalOptions="Center"  Grid.Column="5">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Sales" VerticalOptions="Center"  Grid.Column="6">
+                    </Label>
+                    <Label Margin="10,0,10,0" TextColor="White" Text="Order" VerticalOptions="Center"  Grid.Column="7">
+                    </Label>
+
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                </Grid>
+          
+        </Frame>
+        <ScrollView Orientation="Horizontal">
+            <ListView x:Name="EmplooyeList" ItemsSource="{Binding Employees}" SeparatorVisibility="None" SelectionMode="None" HorizontalOptions="FillAndExpand" HasUnevenRows="False">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame  Padding="0" BorderColor="DarkBlue">
+                                <Grid Padding="0" RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+                                        <ColumnDefinition Width="3.5*"/>
+
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Name}" VerticalOptions="Center" Grid.Column="0"  />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Id}" VerticalOptions="Center" Grid.Column="1" />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Quantity}" VerticalOptions="Center" Grid.Column="2" />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Total}" VerticalOptions="Center" Grid.Column="3" />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Name}" VerticalOptions="Center" Grid.Column="4"  />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Id}" VerticalOptions="Center" Grid.Column="5" />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Quantity}" VerticalOptions="Center" Grid.Column="6" />
+                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Total}" VerticalOptions="Center" Grid.Column="7" />
+
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+    </StackLayout>
+
+
+</ContentPage>

@@ -1,5 +1,4 @@
 ﻿using DiamondTradeApp.ViewModels;
-using EFCore.SQL.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using DiamondTradeApp.Services;
 
 
 
@@ -18,8 +18,11 @@ namespace DiamondTradeApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        private readonly UserMasterRepository _userMasterRepository;
+
         public LoginPage()
         {
+            _userMasterRepository = new UserMasterRepository();
             //InitializeComponent();
             //this.BindingContext = new LoginViewModel();
             var vm = new LoginViewModel();
@@ -48,21 +51,23 @@ namespace DiamondTradeApp.Views
                     return;
                 }
 
-                SqlConnection sqlConnection = new SqlConnection(@"Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=DT@123456;");
 
-                sqlConnection.Open();
+                bool isLogin = _userMasterRepository.Login(txtUserName.Text, txtPassword.Text);
+                if (isLogin)
+                {
+                    await Shell.Current.GoToAsync("//HomePage");
+                }
+                else
+                {
+                    await Shell.Current.GoToAsync("//LoginPage");
+                }
 
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(new SqlCommand("Select * from UserMaster", sqlConnection));
-                DataSet ds = new DataSet();
-                sqlDataAdapter.Fill(ds);
-
-                await Shell.Current.GoToAsync("//AboutPage");
             }
             catch (Exception ex)
             {
 
                 throw;
-            }            
+            }
         }
     }
 }

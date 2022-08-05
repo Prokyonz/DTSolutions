@@ -28,30 +28,17 @@
                     <!--<Label Text="English " FontSize="Medium"  />
                     <Label Text=" • اردو • " FontSize="Medium"  />
                     <Label Text="More..." FontSize="Medium" TextColor="DarkBlue"  />-->
-
-
                 </StackLayout>
                 <StackLayout Padding="40" Spacing="20">
-                    <Entry x:Name="txtUserName" PlaceholderColor="DarkBlue" Placeholder="email address" HeightRequest="60"   />
-                    <Entry x:Name="txtPassword" Placeholder="Password" HeightRequest="60"  />
+                    <Entry x:Name="txtUserName" Placeholder="Enter Username" HeightRequest="60"   />
+                    <Entry x:Name="txtPassword" Placeholder="Enter Password" HeightRequest="60" IsPassword="True"  />
 
                     <StackLayout Orientation="Horizontal">
                         <CheckBox x:Name="chkRememberMe" IsChecked="False" Color="DarkBlue" HorizontalOptions="Fill">
                         </CheckBox>
                         <Label Text="Rememer Me" Margin="0,5,0,0" TextColor="DarkBlue"></Label>
                     </StackLayout>
-
                     <Button x:Name="btnLogin" Text="Log in" HeightRequest="50" BackgroundColor="DarkBlue" TextColor="White" CornerRadius="5" Clicked="btnLogin_Clicked" />
-
-                    <!--<Label Text="Forgotten password?" TextColor="DarkBlue" HorizontalOptions="Center" FontSize="Medium" />
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <BoxView BackgroundColor="#555" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1" />
-                        <Label Text="OR" TextColor="#555" HorizontalOptions="Center"  VerticalOptions="Center" FontSize="Medium" />
-                        <BoxView BackgroundColor="#555" HorizontalOptions="FillAndExpand" VerticalOptions="Center" HeightRequest="1"  />
-
-                    </StackLayout>
-                    <Button Text="Create New Facebook Account" HeightRequest="50" BackgroundColor="Green" TextColor="White" CornerRadius="5" HorizontalOptions="Center" WidthRequest="320" />-->
-
                 </StackLayout>
             </StackLayout>
 

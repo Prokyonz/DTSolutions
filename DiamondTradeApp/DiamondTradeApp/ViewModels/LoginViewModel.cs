@@ -19,7 +19,7 @@ namespace DiamondTradeApp.ViewModels
         {
             if (txtUserName == "jay" || txtPassword == "jay")
             {
-                await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+                await Shell.Current.GoToAsync($"//{nameof(HomePage)}");
             }
             else
             {

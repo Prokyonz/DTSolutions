@@ -6,11 +6,11 @@ using Xamarin.Forms.Xaml;
 
 namespace DiamondTradeApp.Views
 {
-    public partial class AboutPage : ContentPage
+    public partial class HomePage : ContentPage
     {
         ObservableCollection<Employee> employees = new ObservableCollection<Employee>();
         public ObservableCollection<Employee> Employees { get { return employees; } }
-        public AboutPage()
+        public HomePage()
         {
             InitializeComponent();
             //EmployeeView.ItemsSource = employees;

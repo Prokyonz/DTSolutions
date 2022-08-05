@@ -13,7 +13,6 @@ namespace DiamondTradeApp
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
