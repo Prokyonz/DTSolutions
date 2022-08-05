@@ -26,5 +26,6 @@ namespace EFCore.SQL.Interface
 
         Task<List<PFReportSPModel>> GetPFReportAsync(string companyId, string financialYearId, int PFType);
         Task<List<WeeklyPurchaseReport>> GetWeeklyPurchaseReportAsync(string companyId, string financialYearId);
+        List<PurchaseChildSPModel> GetPurchaseDetailsAsync(string purchaseId);
     }
 }

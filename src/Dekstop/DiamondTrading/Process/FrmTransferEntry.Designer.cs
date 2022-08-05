@@ -621,7 +621,6 @@ namespace DiamondTrading.Process
             this.colCategoryT.ColumnEdit = this.repoCategoryT;
             this.colCategoryT.FieldName = "CategoryT";
             this.colCategoryT.Name = "colCategoryT";
-            this.colCategoryT.OptionsColumn.AllowEdit = false;
             this.colCategoryT.Visible = true;
             this.colCategoryT.VisibleIndex = 6;
             this.colCategoryT.Width = 47;
