@@ -530,7 +530,7 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
-            else if (e.Column == colParty && _paymentType == 0)
+            else if (e.Column == colParty)
             {
                 try
                 {
