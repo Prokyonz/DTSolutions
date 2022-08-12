@@ -297,7 +297,6 @@ namespace DiamondTrading.Transaction
             this.dtTime.Name = "dtTime";
             this.dtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTime.Properties.Appearance.Options.UseFont = true;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -337,7 +336,6 @@ namespace DiamondTrading.Transaction
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -667,7 +665,6 @@ namespace DiamondTrading.Transaction
             this.dtPayDate.Name = "dtPayDate";
             this.dtPayDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtPayDate.Properties.Appearance.Options.UseFont = true;
-            this.dtPayDate.Properties.BeepOnError = false;
             this.dtPayDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtPayDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -683,7 +680,6 @@ namespace DiamondTrading.Transaction
             this.txtPaymentDays.Name = "txtPaymentDays";
             this.txtPaymentDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaymentDays.Properties.Appearance.Options.UseFont = true;
-            this.txtPaymentDays.Properties.BeepOnError = false;
             this.txtPaymentDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtPaymentDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtPaymentDays.Properties.MaskSettings.Set("mask", "d");
@@ -718,7 +714,6 @@ namespace DiamondTrading.Transaction
             this.txtDays.Name = "txtDays";
             this.txtDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDays.Properties.Appearance.Options.UseFont = true;
-            this.txtDays.Properties.BeepOnError = false;
             this.txtDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtDays.Properties.MaskSettings.Set("mask", "d");
@@ -1073,7 +1068,6 @@ namespace DiamondTrading.Transaction
             this.colCharniSize.ColumnEdit = this.repoCharniSize;
             this.colCharniSize.FieldName = "CharniSize";
             this.colCharniSize.Name = "colCharniSize";
-            this.colCharniSize.OptionsColumn.AllowEdit = false;
             this.colCharniSize.Visible = true;
             this.colCharniSize.VisibleIndex = 2;
             this.colCharniSize.Width = 37;
@@ -1095,7 +1089,6 @@ namespace DiamondTrading.Transaction
             this.colNumberSize.ColumnEdit = this.repoNumberSize;
             this.colNumberSize.FieldName = "NumberSize";
             this.colNumberSize.Name = "colNumberSize";
-            this.colNumberSize.OptionsColumn.AllowEdit = false;
             this.colNumberSize.Visible = true;
             this.colNumberSize.VisibleIndex = 4;
             this.colNumberSize.Width = 55;
@@ -1117,7 +1110,6 @@ namespace DiamondTrading.Transaction
             this.colGalaSize.ColumnEdit = this.repoGalaSize;
             this.colGalaSize.FieldName = "GalaSize";
             this.colGalaSize.Name = "colGalaSize";
-            this.colGalaSize.OptionsColumn.AllowEdit = false;
             this.colGalaSize.Visible = true;
             this.colGalaSize.VisibleIndex = 3;
             this.colGalaSize.Width = 43;
