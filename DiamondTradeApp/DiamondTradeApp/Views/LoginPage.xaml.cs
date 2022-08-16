@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using DiamondTradeApp.Services;
+using Xamarin.Essentials;
 
 
 
@@ -22,51 +23,61 @@ namespace DiamondTradeApp.Views
 
         public LoginPage()
         {
-            _userMasterRepository = new UserMasterRepository();
-            //InitializeComponent();
-            //this.BindingContext = new LoginViewModel();
-            var vm = new LoginViewModel();
-            this.BindingContext = vm;
-            vm.DisplayInvalidLoginPrompt += () => DisplayAlert("Error", "Invalid Login", "OK");
+            //check if user already logg-in?
+            if (Preferences.ContainsKey("username_key"))
+            {
+                var savedUsername = Preferences.Get("username_key", ""); 
+                if (savedUsername != null)
+                {
+                    //logged-in
+                    Shell.Current.GoToAsync("//HomePage");
+                }
+            }
             InitializeComponent();
-
-
-            //txtUserName.Completed += (object sender, EventArgs e) =>
-            //{
-            //    txtUserName.Focus();
-            //};
-
-            //txtPassword.Completed += (object sender, EventArgs e) =>
-            //{
-            //    vm.LoginCommand.Execute(null);
-            //};
+            _userMasterRepository = new UserMasterRepository();
         }
 
         private async void btnLogin_Clicked(object sender, EventArgs e)
         {
             try
             {
-                if (txtUserName.Text == String.Empty || txtPassword.Text == null)
+                if (txtUserName.Text == null)
                 {
+                    await DisplayAlert("Error", "Please enter your Username.", "OK");
+                    return;
+                }
+                if(txtPassword.Text == null)
+                {
+                    await DisplayAlert("Error", "Please enter your Password.", "OK");
                     return;
                 }
 
-
-                bool isLogin = _userMasterRepository.Login(txtUserName.Text, txtPassword.Text);
+                bool isLogin = _userMasterRepository.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim());
                 if (isLogin)
                 {
+                    if (chkRememberMe.IsChecked)
+                    {
+                        RememberMe(txtUserName.Text.Trim());
+                    }
+                    AppShell appShell = new AppShell();
                     await Shell.Current.GoToAsync("//HomePage");
                 }
                 else
                 {
-                    await Shell.Current.GoToAsync("//LoginPage");
+                    await DisplayAlert("Error", "Invalid Username or Password, Please Try Again!", "OK");
                 }
-
             }
             catch (Exception ex)
             {
+                await DisplayAlert("Error", ex.Message, "OK");
+            }
+        }
 
-                throw;
+        private void RememberMe(string username)
+        {
+            if (!Preferences.ContainsKey("username_key"))
+            {
+                Preferences.Set("username_key", username);
             }
         }
     }

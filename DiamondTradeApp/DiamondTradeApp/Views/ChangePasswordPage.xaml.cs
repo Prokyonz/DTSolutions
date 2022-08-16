@@ -23,11 +23,13 @@ namespace DiamondTradeApp.Views
             {
                 if(txtNewPassword.Text == null || txtOldPassword.Text == null || txtConfPassword == null)
                 {
+                    await DisplayAlert("Error", "Please enter required feild", "OK");
                     return;
                 }
 
                 if(txtNewPassword.Text != txtConfPassword.Text)
                 {
+                    await DisplayAlert("Error", "New Password and Confirm Password not same.", "OK");
                     return;
                 }
 
@@ -36,9 +38,9 @@ namespace DiamondTradeApp.Views
 
                 if (isUpdated)
                 {
+                    await DisplayAlert("Information", "Password Updated Successfully.", "OK");
                     await Shell.Current.GoToAsync("//HomePage");
                 }
-
             }
             catch (Exception ex)
             {

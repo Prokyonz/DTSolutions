@@ -9,7 +9,6 @@ namespace DiamondTradeApp.ViewModels
     public class LoginViewModel : BaseViewModel
     {
         public Command LoginCommand { get; }
-
         public LoginViewModel()
         {
             LoginCommand = new Command(OnLoginClicked);

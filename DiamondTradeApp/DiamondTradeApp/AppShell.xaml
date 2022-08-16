@@ -116,7 +116,7 @@
                Source="image.png"
                        BackgroundColor="DarkBlue"
                Opacity="0.6" />
-                <Label Text="Welcome, Abhishek"
+                <Label Text="{Binding username}"
                TextColor="White"
                FontAttributes="Bold" FontSize="30"
                HorizontalTextAlignment="Center"
