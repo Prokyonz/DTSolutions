@@ -624,6 +624,19 @@ namespace DiamondTrading.Transaction
         private async void lueBranch_EditValueChanged(object sender, EventArgs e)
         {
             await GetSalesNo(false);
+            await ClearGridAsBranchChanged();
+        }
+
+        private async Task ClearGridAsBranchChanged()
+        {
+            _salesItemObj = new SalesItemObj();
+            for (int i = 0; i < grvPurchaseDetails.RowCount;)
+                grvPurchaseDetails.DeleteRow(i);
+
+            txtAmount.Text = "0";
+            txtRoundAmount.Text = "0";
+            txtNetAmount.Text = "0";
+            txtCurrencyAmount.Text = "0";
         }
 
         #endregion
