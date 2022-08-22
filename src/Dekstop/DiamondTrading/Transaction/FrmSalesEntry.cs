@@ -643,6 +643,7 @@ namespace DiamondTrading.Transaction
             {
                 if (e.Column == colCategory)
                 {
+                    this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                     if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
                     {
                         repoShape.Columns["CharniSize"].Visible = true;
@@ -802,6 +803,27 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
                     }
+                    this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                }
+                else if (e.Column == colCharniSize)
+                {
+                    string CharniSizeId = grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCharniSize).ToString();
+                    if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
+                    {
+                        repoNumberSize.DataSource = _salesItemObj.NumberItemList.Where(x => x.CharniSizeId != null && x.CharniSizeId == CharniSizeId).Select(x => new { x.NumberSizeId, x.NumberSize }).Distinct().ToList();
+                        repoNumberSize.DisplayMember = "NumberSize";
+                        repoNumberSize.ValueMember = "NumberSizeId";
+
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, null);
+                    }
+                    else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
+                    {
+                        repoGalaSize.DataSource = _salesItemObj.GalaItemList.Where(x => x.CharniSizeId != null && x.CharniSizeId == CharniSizeId).Select(x => new { x.GalaNumberId, x.GalaSize }).Distinct().ToList();
+                        repoGalaSize.DisplayMember = "GalaSize";
+                        repoGalaSize.ValueMember = "GalaNumberId";
+
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colGalaSize, null);
+                    }
                 }
                 else if (e.Column == colCarat || e.Column == colCVDWeight)
                 {
@@ -856,6 +878,7 @@ namespace DiamondTrading.Transaction
             }
             catch(Exception Ex)
             {
+                this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             }
         }
 
