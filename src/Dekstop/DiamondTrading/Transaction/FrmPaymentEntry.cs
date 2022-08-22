@@ -178,7 +178,7 @@ namespace DiamondTrading.Transaction
         {
             if (lueLeadger.EditValue != null)
             {
-                var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString());
+                var result = await _partyMasterRepository.GetPartyBalance(lueLeadger.EditValue.ToString(), Common.LoginCompany, Common.LoginFinancialYear);
                 string CrDr = "Cr";
                 if (Convert.ToInt32(result) < 0)
                 {

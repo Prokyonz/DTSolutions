@@ -223,7 +223,7 @@ namespace DiamondTrading.Transaction
         {
             if (lueAccounts.EditValue != null)
             {
-                var result = await _partyMasterRepository.GetPartyBalance(lueAccounts.EditValue.ToString());
+                var result = await _partyMasterRepository.GetPartyBalance(lueAccounts.EditValue.ToString(), Common.LoginCompany, Common.LoginFinancialYear);
                 txtLedgerBalance.Text = result.ToString();
             }
         }
