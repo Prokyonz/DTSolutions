@@ -657,6 +657,43 @@ namespace DiamondTrading.Transaction
                 if (e.Column == colCategory)
                 {
                     this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                    if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                    {
+                        repoShape.Columns["CharniSize"].Visible = false;
+                        repoShape.Columns["GalaSize"].Visible = false;
+                        repoShape.Columns["NumberSize"].Visible = false;
+                        repoShape.Columns["Kapan"].Visible = true;
+                        repoShape.Columns["Size"].Visible = true;
+                        repoShape.Columns["Purity"].Visible = true;
+
+                        colSize.Visible = true;
+                        colKapan.Visible = true;
+                        colNumberSize.Visible = false;
+                        colCharniSize.Visible = false;
+                        colGalaSize.Visible = false;
+
+                        if (_salesItemObj.KapanItemList == null)
+                            _salesItemObj.KapanItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Kapan, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+
+                        repoShape.DataSource = _salesItemObj.KapanItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DisplayMember = "Shape";
+                        repoShape.ValueMember = "Id";
+
+                        repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+                        repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                        repoSize.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
+                        repoSize.DisplayMember = "Size";
+                        repoSize.ValueMember = "SizeId";
+
+                        repoPurity.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.PurityId, x.Purity }).Distinct().ToList();
+                        repoPurity.DisplayMember = "Purity";
+                        repoPurity.ValueMember = "PurityId";
+
+                        repoKapan.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+                        repoKapan.DisplayMember = "Kapan";
+                        repoKapan.ValueMember = "KapanId";
+                    }
                     if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
                     {
                         repoShape.Columns["CharniSize"].Visible = true;
@@ -666,6 +703,8 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["Size"].Visible = true;
                         repoShape.Columns["Purity"].Visible = true;
 
+                        colSize.Visible = false;
+                        colKapan.Visible = false;
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = false;
@@ -705,6 +744,8 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["Size"].Visible = false;
                         repoShape.Columns["Purity"].Visible = false;
 
+                        colSize.Visible = false;
+                        colKapan.Visible = false;
                         colNumberSize.Visible = true;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = false;
@@ -747,6 +788,9 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["Kapan"].Visible = true;
                         repoShape.Columns["Size"].Visible = true;
                         repoShape.Columns["Purity"].Visible = true;
+
+                        colSize.Visible = false;
+                        colKapan.Visible = false;
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = true;
                         colGalaSize.Visible = true;
@@ -790,6 +834,8 @@ namespace DiamondTrading.Transaction
                         repoShape.Columns["Size"].Visible = true;
                         repoShape.Columns["Purity"].Visible = true;
 
+                        colSize.Visible = false;
+                        colKapan.Visible = false;
                         colNumberSize.Visible = false;
                         colCharniSize.Visible = false;
                         colGalaSize.Visible = false;
@@ -836,6 +882,18 @@ namespace DiamondTrading.Transaction
                         repoGalaSize.ValueMember = "GalaNumberId";
 
                         grvPurchaseDetails.SetRowCellValue(e.RowHandle, colGalaSize, null);
+                    }
+                }
+                else if (e.Column == colSize)
+                {
+                    string SizeId = grvPurchaseDetails.GetRowCellValue(e.RowHandle, colSize).ToString();
+                    if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                    {
+                        repoKapan.DataSource = _salesItemObj.KapanItemList.Where(x => x.SizeId != null && x.SizeId == SizeId).Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+                        repoKapan.DisplayMember = "Kapan";
+                        repoKapan.ValueMember = "KapanId";
+
+                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, null);
                     }
                 }
                 else if (e.Column == colCarat || e.Column == colCVDWeight)
