@@ -2350,7 +2350,7 @@ namespace DiamondTrading
             this.grvExpenseMaster.GridControl = this.grdExpenseControl;
             this.grvExpenseMaster.GroupCount = 1;
             this.grvExpenseMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", this.gridColumnExpenseAmount, "(Amount: SUM={0:0.##})")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", null, "(Amount: SUM={0:0.##})")});
             this.grvExpenseMaster.Name = "grvExpenseMaster";
             this.grvExpenseMaster.OptionsBehavior.Editable = false;
             this.grvExpenseMaster.OptionsView.ShowFooter = true;
@@ -2393,6 +2393,8 @@ namespace DiamondTrading
             this.gridColumnExpensePartyName.Caption = "Party Name";
             this.gridColumnExpensePartyName.FieldName = "PartyName";
             this.gridColumnExpensePartyName.Name = "gridColumnExpensePartyName";
+            this.gridColumnExpensePartyName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, DevExpress.Data.SummaryMode.Selection, "PartyName", "SUM={0:0.##}")});
             this.gridColumnExpensePartyName.Visible = true;
             this.gridColumnExpensePartyName.VisibleIndex = 1;
             // 
