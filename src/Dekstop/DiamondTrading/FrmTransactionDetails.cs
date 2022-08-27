@@ -149,6 +149,12 @@ namespace DiamondTrading
                     xtraTabProfitLoss.Text = "Profit & Loss";
                     this.Text = "Balance Sheet";
                     break;
+                case "CashBank":
+                    xtabCashBankReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabCashBankReport;
+                    xtabCashBankReport.Text = "Cash & Bank Report";
+                    this.Text = "Cash & Bank Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -176,6 +182,7 @@ namespace DiamondTrading
             xtraTabPayableReceivable.PageVisible = false;
             xtraTabBalanceSheet.PageVisible = false;
             xtraTabProfitLoss.PageVisible = false;
+            xtabCashBankReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -395,6 +402,15 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
                     gridControlProfitLoss.DataSource = data;
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabCashBankReport)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlCashBank.DataSource = data;
                 }
             }
         }

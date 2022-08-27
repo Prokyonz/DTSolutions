@@ -189,5 +189,21 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var cashbankReport = await _databaseContext.SPCashBankReport.FromSqlRaw($"GetCashBankReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                    return cashbankReport;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
     }
 }

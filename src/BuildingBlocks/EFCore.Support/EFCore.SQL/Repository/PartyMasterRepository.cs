@@ -238,9 +238,9 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<decimal> GetPartyBalance(string partyId)
+        public async Task<decimal> GetPartyBalance(string partyId, string companyId, string financialYearId)
         {
-            List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport("", "");
+            List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport(companyId, financialYearId);
 
             using (_databaseContext = new DatabaseContext())
             {                

@@ -23,6 +23,7 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+        public string EntryDate { get; set; }
 
         public virtual List<PaymentMaster> PaymentMasters { get; set; }
     }

@@ -20,6 +20,7 @@ namespace EFCore.SQL.Interface
         Task<List<PayableReceivableSPModel>> GetPayableReceivalbeReport(string companyId, string financialYearId, int type);
         Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType);
         Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType);
+        Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId);
 
     }
 }
