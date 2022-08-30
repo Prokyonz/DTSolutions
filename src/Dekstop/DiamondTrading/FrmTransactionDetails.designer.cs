@@ -835,7 +835,6 @@ namespace DiamondTrading
             this.gridColumnPurSlipNo.FieldName = "SlipNo";
             this.gridColumnPurSlipNo.Name = "gridColumnPurSlipNo";
             this.gridColumnPurSlipNo.OptionsColumn.AllowEdit = false;
-            this.gridColumnPurSlipNo.OptionsColumn.ReadOnly = true;
             this.gridColumnPurSlipNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
             this.gridColumnPurSlipNo.Visible = true;
@@ -855,7 +854,6 @@ namespace DiamondTrading
             this.gridColumnPurDate.FieldName = "Date";
             this.gridColumnPurDate.Name = "gridColumnPurDate";
             this.gridColumnPurDate.OptionsColumn.AllowEdit = false;
-            this.gridColumnPurDate.OptionsColumn.ReadOnly = true;
             this.gridColumnPurDate.Visible = true;
             this.gridColumnPurDate.VisibleIndex = 0;
             this.gridColumnPurDate.Width = 82;
