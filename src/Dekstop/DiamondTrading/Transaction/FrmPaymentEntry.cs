@@ -423,9 +423,10 @@ namespace DiamondTrading.Transaction
                     {
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
                         if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
-                            frmPaymentSlipSelect.IsAutoAdjustBillAmount = true;
+                            frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
                         else
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
+                        
                         if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
                         {
                             decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
