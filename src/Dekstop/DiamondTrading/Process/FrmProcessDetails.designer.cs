@@ -252,6 +252,7 @@ namespace DiamondTrading
             this.grdStockReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gvStockReport = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn149 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn150 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn151 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -289,7 +290,6 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -977,7 +977,7 @@ namespace DiamondTrading
             // gridColumn9
             // 
             this.gridColumn9.Caption = "Sr No";
-            this.gridColumn9.FieldName = "JangadNo";
+            this.gridColumn9.FieldName = "Sr";
             this.gridColumn9.Name = "gridColumn9";
             this.gridColumn9.Visible = true;
             this.gridColumn9.VisibleIndex = 1;
@@ -1236,7 +1236,7 @@ namespace DiamondTrading
             this.gridColumn62});
             this.gridViewBoilSendReceiveMaster.GridControl = this.gridControlBoilSendReceiveMaster;
             this.gridViewBoilSendReceiveMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn12, "")});
             this.gridViewBoilSendReceiveMaster.Name = "gridViewBoilSendReceiveMaster";
             this.gridViewBoilSendReceiveMaster.OptionsBehavior.Editable = false;
             this.gridViewBoilSendReceiveMaster.OptionsView.ShowFooter = true;
@@ -1418,6 +1418,8 @@ namespace DiamondTrading
             this.gridColumn12.Caption = "Total";
             this.gridColumn12.FieldName = "TotalWeight";
             this.gridColumn12.Name = "gridColumn12";
+            this.gridColumn12.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", "SUM={0:0.##}")});
             this.gridColumn12.Visible = true;
             this.gridColumn12.VisibleIndex = 12;
             this.gridColumn12.Width = 66;
@@ -2336,6 +2338,15 @@ namespace DiamondTrading
             this.gridColumn142.Name = "gridColumn142";
             this.gridColumn142.Width = 41;
             // 
+            // gridColumn110
+            // 
+            this.gridColumn110.Caption = "Branch";
+            this.gridColumn110.FieldName = "BranchName";
+            this.gridColumn110.Name = "gridColumn110";
+            this.gridColumn110.Visible = true;
+            this.gridColumn110.VisibleIndex = 0;
+            this.gridColumn110.Width = 69;
+            // 
             // gridColumn149
             // 
             this.gridColumn149.Caption = "Kapan Name";
@@ -2749,15 +2760,6 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
-            // 
-            // gridColumn110
-            // 
-            this.gridColumn110.Caption = "Branch";
-            this.gridColumn110.FieldName = "BranchName";
-            this.gridColumn110.Name = "gridColumn110";
-            this.gridColumn110.Visible = true;
-            this.gridColumn110.VisibleIndex = 0;
-            this.gridColumn110.Width = 69;
             // 
             // FrmProcessDetails
             // 
