@@ -289,6 +289,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -952,7 +953,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", this.gridColumn31, "{0:0.##}")});
             this.grvAssortReceiveMaster.Name = "grvAssortReceiveMaster";
             this.grvAssortReceiveMaster.OptionsBehavior.Editable = false;
-            this.grvAssortReceiveMaster.OptionsView.AllowCellMerge = true;
             this.grvAssortReceiveMaster.OptionsView.ShowFooter = true;
             this.grvAssortReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn7, DevExpress.Data.ColumnSortOrder.Ascending),
@@ -1239,7 +1239,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "Dept", null, "")});
             this.gridViewBoilSendReceiveMaster.Name = "gridViewBoilSendReceiveMaster";
             this.gridViewBoilSendReceiveMaster.OptionsBehavior.Editable = false;
-            this.gridViewBoilSendReceiveMaster.OptionsView.AllowCellMerge = true;
             this.gridViewBoilSendReceiveMaster.OptionsView.ShowFooter = true;
             this.gridViewBoilSendReceiveMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn41, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -1512,7 +1511,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn40, "")});
             this.gridViewCharniReportMaster.Name = "gridViewCharniReportMaster";
             this.gridViewCharniReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewCharniReportMaster.OptionsView.AllowCellMerge = true;
             this.gridViewCharniReportMaster.OptionsView.ShowFooter = true;
             this.gridViewCharniReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn44, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -1787,7 +1785,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", this.gridColumn43, "")});
             this.gridViewGalaReportMaster.Name = "gridViewGalaReportMaster";
             this.gridViewGalaReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewGalaReportMaster.OptionsView.AllowCellMerge = true;
             this.gridViewGalaReportMaster.OptionsView.ShowFooter = true;
             this.gridViewGalaReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn88, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -2059,7 +2056,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RejectionWeight", this.gridColumn130, "")});
             this.gridViewNumberReportMaster.Name = "gridViewNumberReportMaster";
             this.gridViewNumberReportMaster.OptionsBehavior.Editable = false;
-            this.gridViewNumberReportMaster.OptionsView.AllowCellMerge = true;
             this.gridViewNumberReportMaster.OptionsView.ShowFooter = true;
             this.gridViewNumberReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn26, DevExpress.Data.ColumnSortOrder.Descending)});
@@ -2307,14 +2303,15 @@ namespace DiamondTrading
             // 
             // gvStockReport
             // 
-            this.gvStockReport.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvStockReport.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvStockReport.Appearance.FooterPanel.Options.UseFont = true;
-            this.gvStockReport.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvStockReport.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvStockReport.Appearance.GroupFooter.Options.UseFont = true;
-            this.gvStockReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gvStockReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvStockReport.Appearance.Row.Options.UseFont = true;
             this.gvStockReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn142,
+            this.gridColumn110,
             this.gridColumn149,
             this.gridColumn150,
             this.gridColumn151,
@@ -2329,7 +2326,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", this.gridColumn146, "")});
             this.gvStockReport.Name = "gvStockReport";
             this.gvStockReport.OptionsBehavior.Editable = false;
-            this.gvStockReport.OptionsView.AllowCellMerge = true;
             this.gvStockReport.OptionsView.ShowFooter = true;
             this.gvStockReport.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gvStockReport_CellMerge);
             // 
@@ -2346,8 +2342,8 @@ namespace DiamondTrading
             this.gridColumn149.FieldName = "Kapan";
             this.gridColumn149.Name = "gridColumn149";
             this.gridColumn149.Visible = true;
-            this.gridColumn149.VisibleIndex = 0;
-            this.gridColumn149.Width = 195;
+            this.gridColumn149.VisibleIndex = 1;
+            this.gridColumn149.Width = 182;
             // 
             // gridColumn150
             // 
@@ -2357,8 +2353,8 @@ namespace DiamondTrading
             this.gridColumn150.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", "{0:0.##}")});
             this.gridColumn150.Visible = true;
-            this.gridColumn150.VisibleIndex = 1;
-            this.gridColumn150.Width = 221;
+            this.gridColumn150.VisibleIndex = 2;
+            this.gridColumn150.Width = 206;
             // 
             // gridColumn151
             // 
@@ -2373,8 +2369,8 @@ namespace DiamondTrading
             this.gridColumn144.FieldName = "GalaNumber";
             this.gridColumn144.Name = "gridColumn144";
             this.gridColumn144.Visible = true;
-            this.gridColumn144.VisibleIndex = 4;
-            this.gridColumn144.Width = 144;
+            this.gridColumn144.VisibleIndex = 5;
+            this.gridColumn144.Width = 134;
             // 
             // gridColumn148
             // 
@@ -2382,8 +2378,8 @@ namespace DiamondTrading
             this.gridColumn148.FieldName = "Number";
             this.gridColumn148.Name = "gridColumn148";
             this.gridColumn148.Visible = true;
-            this.gridColumn148.VisibleIndex = 5;
-            this.gridColumn148.Width = 138;
+            this.gridColumn148.VisibleIndex = 6;
+            this.gridColumn148.Width = 128;
             // 
             // gridColumn143
             // 
@@ -2391,8 +2387,8 @@ namespace DiamondTrading
             this.gridColumn143.FieldName = "Size";
             this.gridColumn143.Name = "gridColumn143";
             this.gridColumn143.Visible = true;
-            this.gridColumn143.VisibleIndex = 3;
-            this.gridColumn143.Width = 83;
+            this.gridColumn143.VisibleIndex = 4;
+            this.gridColumn143.Width = 77;
             // 
             // gridColumn145
             // 
@@ -2400,8 +2396,8 @@ namespace DiamondTrading
             this.gridColumn145.FieldName = "Type";
             this.gridColumn145.Name = "gridColumn145";
             this.gridColumn145.Visible = true;
-            this.gridColumn145.VisibleIndex = 2;
-            this.gridColumn145.Width = 115;
+            this.gridColumn145.VisibleIndex = 3;
+            this.gridColumn145.Width = 107;
             // 
             // gridColumn146
             // 
@@ -2411,8 +2407,8 @@ namespace DiamondTrading
             this.gridColumn146.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", "{0:0.##}")});
             this.gridColumn146.Visible = true;
-            this.gridColumn146.VisibleIndex = 6;
-            this.gridColumn146.Width = 165;
+            this.gridColumn146.VisibleIndex = 7;
+            this.gridColumn146.Width = 158;
             // 
             // gridColumn147
             // 
@@ -2520,7 +2516,6 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", this.gridColumn156, "(Amount: SUM={0:0.##})")});
             this.grvOpeningStock.Name = "grvOpeningStock";
             this.grvOpeningStock.OptionsBehavior.Editable = false;
-            this.grvOpeningStock.OptionsView.AllowCellMerge = true;
             this.grvOpeningStock.OptionsView.ShowFooter = true;
             this.grvOpeningStock.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.grvOpeningStock_CellMerge);
             // 
@@ -2754,6 +2749,15 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
+            // 
+            // gridColumn110
+            // 
+            this.gridColumn110.Caption = "Branch";
+            this.gridColumn110.FieldName = "BranchName";
+            this.gridColumn110.Name = "gridColumn110";
+            this.gridColumn110.Visible = true;
+            this.gridColumn110.VisibleIndex = 0;
+            this.gridColumn110.Width = 69;
             // 
             // FrmProcessDetails
             // 
@@ -3070,5 +3074,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn159;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn160;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
     }
 }
