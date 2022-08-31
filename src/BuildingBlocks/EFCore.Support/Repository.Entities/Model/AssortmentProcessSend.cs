@@ -9,7 +9,7 @@ namespace Repository.Entities.Models
     public class AssortmentProcessSend
     {
         public string Id { get; set; }
-        public Int64 SlipNo { get; set; }
+        public string SlipNo { get; set; }
         //public string KapanId { get; set; }
         //public string Kapan { get; set; }
         public string PurchaseDetailsId { get; set; }
