@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
 using EFCore.SQL.Repository;
 using Repository.Entities;
@@ -1076,6 +1077,38 @@ namespace DiamondTrading
         private void grvSalesTransactonMaster_MasterRowGetRelationCount(object sender, MasterRowGetRelationCountEventArgs e)
         {
             e.RelationCount = 1;
+        }
+
+        private void grvSalesTransactonMaster_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
+                double Total = double.Parse(view.Columns["GrossTotal"].SummaryText);
+                double saleRate = double.Parse(view.Columns["NetWeight"].SummaryText);
+                e.TotalValue = Total / saleRate;
+            }
+            catch (Exception)
+            {
+                e.TotalValue = 0;
+            }            
+        }
+
+        private void grvTransMaster_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
+        {
+            try
+            {
+                GridView view = sender as GridView;
+                GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
+                double Total = double.Parse(view.Columns[18].SummaryText);
+                double BuyRate = double.Parse(view.Columns["NetWeight"].SummaryText);
+                e.TotalValue = Total / BuyRate;
+            }
+            catch (Exception)
+            {
+                e.TotalValue = 0;
+            }            
         }
     }
 }

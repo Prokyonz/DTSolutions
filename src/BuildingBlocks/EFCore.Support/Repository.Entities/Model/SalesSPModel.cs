@@ -11,6 +11,7 @@ namespace Repository.Entities.Model
         public long SaleBillNo { get; set; }
         public long SlipNo { get; set; }
         public DateTime? Date { get; set; }
+        public string BranchName { get; set; }
         public string Time { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
