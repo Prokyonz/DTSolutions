@@ -133,6 +133,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("PurityId");
             dt.Columns.Add("PurchaseDetailsId");
             dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("StockId");
             return dt;
         }
 
@@ -149,6 +150,7 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colStockId, ((Repository.Entities.Models.AssortmentProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).StockId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -250,6 +252,7 @@ namespace DiamondTrading.Process
                     //accountToAssortDetails.NumberProcessId = null;
                     accountToAssortDetails.Weight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colACarat).ToString());
                     accountToAssortDetails.AssignWeight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colAssignCarat).ToString());
+                    accountToAssortDetails.StockId = grvParticularsDetails.GetRowCellValue(i, colStockId).ToString();
 
                     accountToAssortDetailsList.Insert(i, accountToAssortDetails);
                 }

@@ -9,6 +9,7 @@ namespace Repository.Entities.Models
     public class BoilProcessSend
     {
         public string Id { get; set; }
+        public string StockId { get; set; }
         public Int64 SlipNo { get; set; }
         public string KapanId { get; set; }
         public string Kapan { get; set; }

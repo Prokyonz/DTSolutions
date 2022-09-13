@@ -93,6 +93,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("PurityId");
             dt.Columns.Add("PurchaseDetailsId");
             dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("StockId");
             return dt;
         }
 
@@ -122,6 +123,7 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colStockId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).StockId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -203,6 +205,7 @@ namespace DiamondTrading.Process
                         boilProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
                         boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
                         boilProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
+                        boilProcessMaster.StockId = grvParticularsDetails.GetRowCellValue(i, colStockId).ToString();
                         boilProcessMaster.BoilCategoy = 0;
                         boilProcessMaster.Remarks = txtRemark.Text;
                         boilProcessMaster.IsDelete = false;
