@@ -12,6 +12,7 @@ namespace Repository.Entities.Model
         public string CompanyId { get; set; }
         public string FinancialYearId { get; set; }
         public long PurchaseBillNo { get; set; }
+        public string BranchName { get; set; }
         public long SlipNo { get; set; }
         public DateTime? Date { get; set; }
         public string Time { get; set; }
