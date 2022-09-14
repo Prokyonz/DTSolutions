@@ -33,7 +33,7 @@ namespace Repository.Entities.Model
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string KapanId { get; set; }
-        //public string KapanName { get; set; }
+        public string KapanName { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
