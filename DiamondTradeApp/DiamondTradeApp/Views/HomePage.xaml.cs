@@ -25,6 +25,7 @@ namespace DiamondTradeApp.Views
 
         private void FillBox()
         {
+            var data = _reportMasterRepository.GetPurchaseReport("", "", null);
             var reportList = _reportMasterRepository.GetDashboardReports("", "", 0);
             ReportMaster reportMaster = null;
             if (reportList != null)

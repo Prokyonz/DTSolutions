@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:local="clr-namespace:DiamondTradeApp.Views"
              x:Class="DiamondTradeApp.Views.ReportsPage"
              x:Name="BrowseItemsPage"
              Title="Purchase Report">
@@ -8,16 +8,39 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Export" />
     </ContentPage.ToolbarItems>
+    
+    
+    
+    <CollectionView x:Name="collectionView">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid RowDefinitions="Auto, Auto, Auto, Auto, Auto" Padding="10">
+                    <Label Grid.Row="0" TextColor="DarkBlue" FontSize="Medium" FontAttributes="Bold" Text="{Binding PartyName}"/>
+                    <Label Grid.Row="1" FontAttributes="Bold" Text="Broker Name:" TextColor="Magenta"></Label>
+                    <Label Grid.Row="2" TextColor="Black" Text="{Binding BrokerName}"/>
+                    <Label Grid.Row="3" Text="Gross Total:" FontAttributes="Bold" TextColor="Magenta"></Label>
+                    <Label Grid.Row="4" TextColor="Black" Text="{Binding GrossTotal}"/>
+                    <Label Grid.Row="5" Text="Weight:" FontAttributes="Bold" TextColor="Magenta"></Label>
+                    <Label Grid.Row="6" TextColor="Black" Text="{Binding Weight}"/>
+                    <Label Grid.Row="7" Text="Date:" FontAttributes="Bold" TextColor="Magenta"></Label>
+                    <Label Grid.Row="8" TextColor="Black" Text="{Binding Date}"></Label>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 
-    <ListView x:Name ="lstView" IsGroupingEnabled="true">
+    <!--<ListView x:Name ="lstView" IsGroupingEnabled="true">
         <ListView.GroupHeaderTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Label Text="{Binding LongName}" FontAttributes="Bold" FontSize="Large"  BackgroundColor="#d5ff80" >
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        </Label.GestureRecognizers>
-                    </Label>
+                    <StackLayout>
+                        <Label Text="{Binding LongName}" FontAttributes="Bold" FontSize="Large"  BackgroundColor="#d5ff80" >
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Label.GestureRecognizers>
+                        </Label>
+                        
+                    </StackLayout>
                 </ViewCell>
             </DataTemplate>
         </ListView.GroupHeaderTemplate>
@@ -26,96 +49,67 @@
                 <TextCell Text="{Binding Name}"  Detail="{Binding Comment}" />
             </DataTemplate>
         </ListView.ItemTemplate>
-    </ListView>
+    </ListView>-->
+    <!--<StackLayout>
 
-    <!--<StackLayout Padding="20" Spacing="0" >
-
-        <Frame BackgroundColor="DarkBlue" BorderColor="White" HeightRequest="60"  Padding="0">
-                <Grid Padding="0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-                        <ColumnDefinition Width="2.5*"/>
-
-                    </Grid.ColumnDefinitions>
-
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Name" VerticalOptions="Center"  Grid.Column="0">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Id" VerticalOptions="Center"  Grid.Column="1">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Sales" VerticalOptions="Center"  Grid.Column="2">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Order" VerticalOptions="Center"  Grid.Column="3">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Name" VerticalOptions="Center"  Grid.Column="4">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Id" VerticalOptions="Center"  Grid.Column="5">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Sales" VerticalOptions="Center"  Grid.Column="6">
-                    </Label>
-                    <Label Margin="10,0,10,0" TextColor="White" Text="Order" VerticalOptions="Center"  Grid.Column="7">
-                    </Label>
-
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                    <BoxView BackgroundColor="Black" WidthRequest="3" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                </Grid>
-          
+        <Frame BackgroundColor="Salmon">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5"></ColumnDefinition>
+                    <ColumnDefinition Width="2.5"></ColumnDefinition>
+                    <ColumnDefinition Width="2.5"></ColumnDefinition>
+                    <ColumnDefinition Width="2.5"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0">Date</Label>
+                <Label Grid.Row="0" Grid.Column="1">Party Name</Label>
+                <Label Grid.Row="0" Grid.Column="2">Broker Name</Label>
+                <Label Grid.Row="0" Grid.Column="3">Weight</Label>
+            </Grid>
         </Frame>
-        <ScrollView Orientation="Horizontal">
-            <ListView x:Name="EmplooyeList" ItemsSource="{Binding Employees}" SeparatorVisibility="None" SelectionMode="None" HorizontalOptions="FillAndExpand" HasUnevenRows="False">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <Frame  Padding="0" BorderColor="DarkBlue">
-                                <Grid Padding="0" RowSpacing="0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
-                                        <ColumnDefinition Width="3.5*"/>
+        <ListView x:Name="reportListView" IsVisible="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            
+                        </StackLayout>
+                        --><!--<StackLayout Orientation="Vertical" BackgroundColor="LightPink">-->
 
-                                    </Grid.ColumnDefinitions>
 
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Name}" VerticalOptions="Center" Grid.Column="0"  />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Id}" VerticalOptions="Center" Grid.Column="1" />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Quantity}" VerticalOptions="Center" Grid.Column="2" />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Total}" VerticalOptions="Center" Grid.Column="3" />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Name}" VerticalOptions="Center" Grid.Column="4"  />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Id}" VerticalOptions="Center" Grid.Column="5" />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Quantity}" VerticalOptions="Center" Grid.Column="6" />
-                                    <Label Margin="10,0,10,0" TextColor="Black" Text="{Binding Total}" VerticalOptions="Center" Grid.Column="7" />
 
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="0" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="2" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="3" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="4" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand" />
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="5" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="6" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                    <BoxView BackgroundColor="Black" WidthRequest="1" Grid.Column="7" HorizontalOptions="EndAndExpand" VerticalOptions="FillAndExpand"/>
-                                </Grid>
-                            </Frame>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollView>
+
+                        <!--<Grid>
+                            <Label Grid.Column="0" Text="Party Name"></Label>
+                            <Label Grid.Column="1" Text="{Binding PartyName}"></Label>
+                            <Label Grid.Column="2" Text="Broker Name"></Label>
+                            <Label Grid.Column="3" Text="{Binding BrokerName}"></Label>
+                        </Grid>
+                        <Grid>
+                            <Label Grid.Column="0" Text="Gross Total"></Label>
+                            <Label Grid.Column="1" Text="{Binding GrossTotal}"></Label>
+                            <Label Grid.Column="2" Text="Weight"></Label>
+                            <Label Grid.Column="3" Text="{Binding Weight}"></Label>
+                        </Grid>
+                        <Grid>
+                            <Label Grid.Column="0" Text="Message"></Label>
+                            <Label Grid.Column="1" Text="{Binding Message}"></Label>
+                                <Label Grid.Column="2" Text="Date"></Label>
+                            <Label Grid.Column="3" Text="{Binding Date}"></Label>
+                        </Grid>-->
+                        <!--<Label Text="{Binding PartyName}"></Label>
+                        <Label Text="{Binding BrokerName}"></Label>
+                        <Label Text="{Binding Date}"></Label>
+                        <Label Text="{Binding GrossTotal}"></Label>
+                        <Label Text="{Binding Weight}"></Label>
+                        <Label Text="{Binding Message}"></Label>
+                        <Label Text="{Binding ID}"></Label>--><!--
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackLayout>-->
-
 
 </ContentPage>
