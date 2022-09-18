@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20220913181752_AddNewStockIdColumnInBoilTable")]
+    partial class AddNewStockIdColumnInBoilTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3538,9 +3540,6 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<long>("SlipNo")
                         .HasColumnType("bigint");
-
-                    b.Property<string>("StockId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("TIPWeight")
                         .HasColumnType("decimal(18,2)");

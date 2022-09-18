@@ -253,7 +253,6 @@ namespace DiamondTrading.Transaction
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.BeepOnError = false;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton()});
             this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
@@ -263,7 +262,6 @@ namespace DiamondTrading.Transaction
             // 
             // tglIsAutoMap
             // 
-            this.tglIsAutoMap.EditValue = true;
             this.tglIsAutoMap.Location = new System.Drawing.Point(596, 2);
             this.tglIsAutoMap.Name = "tglIsAutoMap";
             this.tglIsAutoMap.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

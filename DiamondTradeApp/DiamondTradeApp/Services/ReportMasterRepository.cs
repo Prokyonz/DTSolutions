@@ -50,8 +50,8 @@ namespace DiamondTradeApp.Services
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.Add("@CompanyId", SqlDbType.VarChar).Value = "Demo Company";
-                        cmd.Parameters.Add("@FinancialYearId", SqlDbType.VarChar).Value = "00000000-0000-0000-0000-000000000000";
+                        cmd.Parameters.Add("@CompanyId", SqlDbType.VarChar).Value = "ff8d3c9b-957b-46d1-b661-560ae4a2433e";
+                        cmd.Parameters.Add("@FinancialYearId", SqlDbType.VarChar).Value = "146c24c5-6663-4f3d-bdfd-80469275c898";
                         cmd.Parameters.Add("@BalanceSheetType", SqlDbType.Int).Value = 2;
 
                         con.Open();

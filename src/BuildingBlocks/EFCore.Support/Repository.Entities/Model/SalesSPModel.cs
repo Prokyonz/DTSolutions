@@ -11,6 +11,7 @@ namespace Repository.Entities.Model
         public long SaleBillNo { get; set; }
         public long SlipNo { get; set; }
         public DateTime? Date { get; set; }
+        public string BranchName { get; set; }
         public string Time { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
@@ -32,7 +33,7 @@ namespace Repository.Entities.Model
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public string KapanId { get; set; }
-        //public string KapanName { get; set; }
+        public string KapanName { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]

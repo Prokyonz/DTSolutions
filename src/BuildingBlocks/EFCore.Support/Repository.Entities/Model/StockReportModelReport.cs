@@ -7,6 +7,7 @@ namespace Repository.Entities.Model
 {
     public class StockReportModelReport
     {
+        public string BranchName { get; set; }
         public string Type { get; set; }
         public string KapanId { get; set; }
         public string Kapan { get; set; }

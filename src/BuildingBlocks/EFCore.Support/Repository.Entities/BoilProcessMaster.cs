@@ -30,7 +30,8 @@ namespace Repository.Entities
         [Column(TypeName = "decimal(18, 4)")]
         public decimal RejectionWeight { get; set; }
         public string HandOverById { get; set; }
-        public string HandOverToId { get; set; }        
+        public string HandOverToId { get; set; }
+        public string StockId { get; set; }
         public string SlipNo { get; set; }
         public int BoilCategoy { get; set; } // 0 -> Received Carats, 1-> Loss Carets -> Rejection Carates
         public string Remarks { get; set; }
