@@ -20,5 +20,8 @@ namespace Repository.Entities.Model
         public string Category { get; set; }
         public int CategoryId { get; set; }
         public string Kapan { get; set;  }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? ProfitLossPer { get; set; }
+        public int Records { get; set; }
     }
 }
