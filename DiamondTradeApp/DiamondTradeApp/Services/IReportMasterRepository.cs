@@ -8,5 +8,6 @@ namespace DiamondTradeApp.Services
     public interface IReportMasterRepository
     {
         DataTable GetDashboardReports(string companyId, string finYear, int type);
+        DataTable GetPurchaseReport(string companyId, string finYear, string currentWeek);
     }
 }
