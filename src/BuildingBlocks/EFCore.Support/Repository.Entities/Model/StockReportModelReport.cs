@@ -23,5 +23,9 @@ namespace Repository.Entities.Model
         public decimal AvailableWeight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Rate { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Amount { get; set; }
     }
 }
