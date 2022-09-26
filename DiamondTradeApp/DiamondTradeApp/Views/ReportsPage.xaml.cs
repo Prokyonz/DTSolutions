@@ -47,11 +47,14 @@ namespace DiamondTradeApp.Views
                 {
                     ID = getPurchanseReport.Rows[i]["ID"].ToString(),
                     BrokerName = getPurchanseReport.Rows[i]["BrokerName"].ToString(),
-                    Date = Convert.ToDateTime(getPurchanseReport.Rows[i]["Date"]).Date,
+                    Date = Convert.ToDateTime(getPurchanseReport.Rows[i]["Date"]).ToShortDateString(),
                     GrossTotal = Convert.ToDecimal(getPurchanseReport.Rows[i]["GrossTotal"]),
                     PartyName = getPurchanseReport.Rows[i]["PartyName"].ToString(),
                     Weight = Convert.ToDecimal(getPurchanseReport.Rows[i]["Weight"]),
                     Message = getPurchanseReport.Rows[i]["Message"].ToString(),
+                    SlipNo = Convert.ToInt32(getPurchanseReport.Rows[i]["SlipNo"]) ,
+                    BrokerAmount = Convert.ToDouble(getPurchanseReport.Rows[i]["RoundUpAmount"]),
+                    BuyingRate = getPurchanseReport.Rows[i]["BuyingRate"].ToString()
                 });
             }
             return purchaseMastersList;
@@ -61,10 +64,14 @@ namespace DiamondTradeApp.Views
     {
         public string ID { get; set; }
         public string PartyName { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public decimal Weight { get; set; }
         public string BrokerName { get; set; }
         public decimal GrossTotal { get; set; }
         public string Message { get; set; }
+        public long SlipNo { get; set; }
+        public double BrokerAmount { get; set; }
+        public string BuyingRate { get; set; }
+
     }
 }
