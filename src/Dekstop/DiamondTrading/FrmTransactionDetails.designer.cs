@@ -494,6 +494,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumnPurchaseMasterId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -773,6 +774,7 @@ namespace DiamondTrading
             this.grvTransMaster.Appearance.Row.Options.UseFont = true;
             this.grvTransMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnPurId,
+            this.gridColumnPurchaseMasterId,
             this.gridColumnPurBillNo,
             this.gridColumnPurSlipNo,
             this.gridColumnPurPartyId,
@@ -4651,6 +4653,12 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // gridColumnPurchaseMasterId
+            // 
+            this.gridColumnPurchaseMasterId.Caption = "PurId";
+            this.gridColumnPurchaseMasterId.FieldName = "PurId";
+            this.gridColumnPurchaseMasterId.Name = "gridColumnPurchaseMasterId";
+            // 
             // FrmTransactionDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -5185,5 +5193,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn189;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn191;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn192;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurchaseMasterId;
     }
 }

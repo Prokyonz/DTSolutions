@@ -459,8 +459,8 @@ namespace DiamondTrading
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurId).ToString();
-                    string kapanId = grvTransMaster.GetFocusedRowCellValue(gridColumnPurKapanId).ToString();
+                    string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurchaseMasterId).ToString();
+                    //string kapanId = grvTransMaster.GetFocusedRowCellValue().ToString();
 
                     bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
 

@@ -43,7 +43,6 @@ namespace EFCore.SQL.Repository
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {
-                    string _slipno = salesRecord.SlipNo.ToString();
                     var childEntry = await _databaseContext.PaymentDetails.Where(w => w.SlipNo == salesRecord.SlipNo.ToString()).ToListAsync();
 
                     if (childEntry.Any())
