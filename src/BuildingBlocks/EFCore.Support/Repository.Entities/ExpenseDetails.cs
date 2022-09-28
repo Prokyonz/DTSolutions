@@ -29,5 +29,6 @@ namespace Repository.Entities
 
         [ForeignKey("PartyId")]
         public virtual PartyMaster PartyMaster { get; set; }
+        public string EntryDate { get; set; }
     }
 }
