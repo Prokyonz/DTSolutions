@@ -462,10 +462,10 @@ namespace DiamondTrading
                     string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurId).ToString();
                     string kapanId = grvTransMaster.GetFocusedRowCellValue(gridColumnPurKapanId).ToString();
 
-                    if (string.IsNullOrEmpty(kapanId))
-                    {
-                        bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
+                    bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
 
+                    if (result)
+                    {
                         MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     }
                     else
@@ -482,7 +482,14 @@ namespace DiamondTrading
 
                     bool result = await _salesMasterRepository.DeleteSalesAsync(id, false);
 
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    if (result)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    }
+                    else
+                    {
+                        MessageBox.Show("You can not delete this record because receipt has been taken for this sales slipno.");
+                    }
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
