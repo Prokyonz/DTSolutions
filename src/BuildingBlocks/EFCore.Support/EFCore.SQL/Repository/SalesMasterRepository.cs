@@ -17,7 +17,7 @@ namespace EFCore.SQL.Repository
 
         public SalesMasterRepository()
         {
-            
+
         }
         public async Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster)
         {
@@ -43,16 +43,25 @@ namespace EFCore.SQL.Repository
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {
-                    if (isPermanantDetele)
-                        _databaseContext.SalesMaster.Remove(salesRecord);
+                    var childEntry = await _databaseContext.PaymentDetails.Where(w => w.SlipNo == salesRecord.SlipNo.ToString()).ToListAsync();
+
+                    if (childEntry.Any())
+                    {
+                        return false;
+                    }
                     else
-                        salesRecord.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                    {
+                        if (isPermanantDetele)
+                            _databaseContext.SalesMaster.Remove(salesRecord);
+                        else
+                            salesRecord.IsDelete = true;
+                        await _databaseContext.SaveChangesAsync();
+                    }
                     return true;
                 }
                 return false;
             }
-            
+
         }
 
         public async Task<List<SalesMaster>> GetAllSalesAsync(string companyId, string financialYearId)

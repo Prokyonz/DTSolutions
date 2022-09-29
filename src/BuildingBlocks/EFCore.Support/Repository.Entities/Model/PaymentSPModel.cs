@@ -18,6 +18,7 @@ namespace Repository.Entities.Model
         public string Remarks { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
+        public DateTime? EntryDate { get; set; }
 
     }
 

@@ -238,6 +238,7 @@ namespace DiamondTrading.Transaction
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
+                        EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
                     };
 
                     var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
@@ -321,6 +322,7 @@ namespace DiamondTrading.Transaction
                                     CreatedDate = DateTime.Now,
                                     UpdatedBy = Common.LoginUserID,
                                     UpdatedDate = DateTime.Now,
+                                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
                                 };
 
                                 string partyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
@@ -357,6 +359,7 @@ namespace DiamondTrading.Transaction
                             UpdatedBy = Common.LoginUserID,
                             CreatedDate = DateTime.Now,
                             UpdatedDate = DateTime.Now,
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
                         };
 
                         var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
@@ -426,7 +429,7 @@ namespace DiamondTrading.Transaction
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
                         else
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
-                        
+
                         if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
                         {
                             decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
@@ -536,7 +539,7 @@ namespace DiamondTrading.Transaction
                 try
                 {
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colPartyType, ((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type);
-                    if(((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type==PartyTypeMaster.Expense)
+                    if (((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type == PartyTypeMaster.Expense)
                     {
                         colBranch.Visible = true;
                     }

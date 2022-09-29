@@ -42,12 +42,20 @@ namespace EFCore.SQL.Repository
                 var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseId && s.IsDelete == false).FirstOrDefaultAsync();
                 if (getPurchase != null)
                 {
-                    if (isPermanantDetele)
-                        _databaseContext.PurchaseMaster.Remove(getPurchase);
-                    else
-                        getPurchase.IsDelete = true;
+                    //check for the child record of purchase in kapanmapping master
+                    var record = await _databaseContext.KapanMappingMaster.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
 
-                    await _databaseContext.SaveChangesAsync();
+                    if (record.Any())
+                    {
+                        return false;
+                    } else { 
+                        if (isPermanantDetele)
+                            _databaseContext.PurchaseMaster.Remove(getPurchase);
+                        else
+                            getPurchase.IsDelete = true;
+
+                        await _databaseContext.SaveChangesAsync();
+                    }
                     return true;
                 }
                 return false;

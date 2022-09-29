@@ -459,13 +459,13 @@ namespace DiamondTrading
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurId).ToString();
-                    string kapanId = grvTransMaster.GetFocusedRowCellValue(gridColumnPurKapanId).ToString();
+                    string id = grvTransMaster.GetFocusedRowCellValue(gridColumnPurchaseMasterId).ToString();
+                    //string kapanId = grvTransMaster.GetFocusedRowCellValue().ToString();
 
-                    if (string.IsNullOrEmpty(kapanId))
+                    bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
+
+                    if (result)
                     {
-                        bool result = await _purchaseMasterRepository.DeletePurchaseAsync(id, false);
-
                         MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                     }
                     else
@@ -482,7 +482,14 @@ namespace DiamondTrading
 
                     bool result = await _salesMasterRepository.DeleteSalesAsync(id, false);
 
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    if (result)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    }
+                    else
+                    {
+                        MessageBox.Show("You can not delete this record because receipt has been taken for this sales slipno.");
+                    }
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
