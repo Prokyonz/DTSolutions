@@ -17,15 +17,15 @@
                     <Label Grid.Row="1" TextColor="Black" HorizontalTextAlignment="Start" FontAttributes="Bold" Text="{Binding PartyName, StringFormat='  {0}'}"/>
 
                     <Label Grid.Row="0" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="End" Text="Slip No:  "></Label>
-                    <Label Grid.Row="1"  TextColor="Black" Text="{Binding SlipNo, StringFormat='{0}  '}" HorizontalTextAlignment="End" FontAttributes="Bold"/>
+                    <Label Grid.Row="1"  TextColor="Black" Text="{Binding SlipNo, StringFormat='  {0}  '}" HorizontalTextAlignment="End" FontAttributes="Bold"/>
 
-                    <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Date, StringFormat='Date: {0:D}  '}" HorizontalTextAlignment="End"></Label>
+                    <Label Grid.Row="2" FontAttributes="Bold" Text="{Binding Date, StringFormat='  Date: {0:D}  '}" HorizontalTextAlignment="End"></Label>
 
                     <Label Grid.Row="3" TextColor="Black" Text="  Broker Name:" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
-                    <Label Grid.Row="4" TextColor="Black" Text="{Binding BrokerName, StringFormat='  {0}'}" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
+                    <Label Grid.Row="4" TextColor="Black" Text="{Binding BrokerName, StringFormat='  {0}  '}" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
 
                     <Label Grid.Row="3" TextColor="Black" Text="Broker Amount:  " FontAttributes="Bold" HorizontalTextAlignment="End"/>
-                    <Label Grid.Row="4" TextColor="Black" FontSize="Medium" Text="{Binding BrokerAmount, StringFormat='{0:F4}  '}" FontAttributes="Bold" HorizontalTextAlignment="End" />
+                    <Label Grid.Row="4" TextColor="Black" FontSize="Medium" Text="{Binding BrokerAmount, StringFormat='  {0:F4}  '}" FontAttributes="Bold" HorizontalTextAlignment="End" />
 
                     <Label Grid.Row="5" FontSize="Medium" TextColor="Black" Text="  Rate:" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
                     <Label Grid.Row="5" FontSize="Medium" TextColor="Black" Text="Weight:" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
@@ -33,14 +33,14 @@
 
                     <Label Grid.Row="6" FontSize="Medium" TextColor="Black" Text="{Binding BuyingRate,StringFormat='  {0:F2}'}" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
                     <Label Grid.Row="6" FontSize="Medium" TextColor="Black" Text="{Binding Weight}" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                    <Label Grid.Row="6" FontSize="Medium" TextColor="Black" Text="{Binding GrossTotal,StringFormat='{0:F2}'}" FontAttributes="Bold" HorizontalTextAlignment="End"/>
+                    <Label Grid.Row="6" FontSize="Medium" TextColor="Black" Text="{Binding GrossTotal,StringFormat='  {0:F2}  '}" FontAttributes="Bold" HorizontalTextAlignment="End"/>
 
                     <Label Grid.Row="7" TextColor="Black" Text="{Binding Message, StringFormat='  {0'}" FontSize="Medium" FontAttributes="Bold" HorizontalTextAlignment="Start"/>
 
                     <BoxView Grid.Row="8"
-                             Margin ="15, 10, 15, 10"
+                             Margin ="0, 15, 0, 15"
                              HeightRequest="1"
-                             BackgroundColor="DarkBlue"/>
+                             BackgroundColor="Black"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
