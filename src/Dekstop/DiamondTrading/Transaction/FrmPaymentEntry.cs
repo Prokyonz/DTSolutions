@@ -483,7 +483,7 @@ namespace DiamondTrading.Transaction
                 {
                     DataView dtView = new DataView(dtSlipDetail);
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
-                    if (dtView.Count > 0)
+                    //if (dtView.Count > 0)
                     {
                         decimal Value = Convert.ToDecimal(e.Value);
                         if (Value > 0)
