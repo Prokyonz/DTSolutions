@@ -21,6 +21,14 @@ namespace EFCore.SQL.Repository
 
         }
 
+        public async Task<KapanMappingMaster> GetKapanMappingDetailAsync(string purchaseId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.KapanMappingMaster.Where(s => s.PurchaseMasterId == purchaseId).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<KapanMappingMaster> AddKapanMappingAsync(KapanMappingMaster kapanMappingMaster)
         {
             using (_databaseContext = new DatabaseContext())

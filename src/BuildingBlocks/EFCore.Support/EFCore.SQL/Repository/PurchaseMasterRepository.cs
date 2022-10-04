@@ -102,6 +102,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PurchaseDetails>> GetPurchaseDetailAsync(string purchaseId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PurchaseDetails.Where(s => s.PurchaseId == purchaseId).ToListAsync();
+            }
+        }
+
         public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
         {
             try
