@@ -34,13 +34,17 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteAccountToAssortAsync(string accountToAssortId)
+        public async Task<bool> DeleteAccountToAssortAsync(string accountToAssortId, string slipNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 var getMasterRecord = await _databaseContext.AccountToAssortMaster.Where(w => w.Id == accountToAssortId).Include("AccountToAssortDetails").FirstOrDefaultAsync();
 
-                if(getMasterRecord != null)
+                var AssortDetailsRec = getMasterRecord.AccountToAssortDetails.Where(w => w.SlipNo == slipNo).FirstOrDefault();
+
+                var checkInBoil = await _databaseContext.BoilProcessMaster.Where(w => w.SlipNo == slipNo && w.Id == AssortDetailsRec.Id).ToListAsync();    
+
+                if(getMasterRecord != null && checkInBoil.Count == 0)
                 {
                     _databaseContext.AccountToAssortDetails.RemoveRange(getMasterRecord.AccountToAssortDetails);
                     await _databaseContext.SaveChangesAsync();
