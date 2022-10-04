@@ -140,7 +140,7 @@ namespace DiamondTrading.Transaction
                             MessageBox.Show("You can not edit this entry as this entry already processed", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
 
-                        List<PurchaseDetails> EditedPurchaseDetail = await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
+                        List<PurchaseDetails> EditedPurchaseDetail = _editedPurchaseMaster.PurchaseDetails; //await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
 
                         for (int i = 0; i < EditedPurchaseDetail.Count; i++)
                         {

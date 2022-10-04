@@ -98,7 +98,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.Id == purchaseId).FirstOrDefaultAsync();
+                return await _databaseContext.PurchaseMaster.Where(s => s.IsDelete == false && s.Id == purchaseId).Include("PurchaseDetails").FirstOrDefaultAsync();
             }
         }
 
@@ -173,7 +173,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).FirstOrDefaultAsync();
+                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).Include("PurchaseDetails").FirstOrDefaultAsync();
                 if (getPurchase != null)
                 {
                     getPurchase.CompanyId = purchaseMaster.CompanyId;
