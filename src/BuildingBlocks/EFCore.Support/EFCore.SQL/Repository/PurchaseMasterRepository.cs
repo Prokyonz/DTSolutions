@@ -114,8 +114,6 @@ namespace EFCore.SQL.Repository
         {
             try
             {
-
-
                 using (_databaseContext = new DatabaseContext())
                 {
                     var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SlipNo);

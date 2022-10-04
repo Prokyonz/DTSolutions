@@ -46,9 +46,10 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanMappingId).FirstOrDefaultAsync();
+                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Id == kapanMappingId).FirstOrDefaultAsync();
+                var checkForTransferRecord = await _databaseContext.KapanMappingMaster.Where(w => w.SlipNo == getKapanRecord.SlipNo && string.IsNullOrEmpty(w.TransferEntryId) == false).ToListAsync();
 
-                if (getKapanRecord != null)
+                if (getKapanRecord != null && checkForTransferRecord.Count() == 0)
                 {
                     _databaseContext.KapanMappingMaster.Remove(getKapanRecord);
 

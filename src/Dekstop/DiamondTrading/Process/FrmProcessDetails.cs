@@ -314,8 +314,30 @@ namespace DiamondTrading
         {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+                    string SelectedGuid = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
 
+                    if (SelectedGuid != null)
+                    {
+                        var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);                            
+                        }
+                        else
+                        {
+                            message = "You can not delete this record because some quantity is transfered.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message);                    
+                }
+                
                 //string SelectedGuid;
                 //string tempCompanyName = "";
 

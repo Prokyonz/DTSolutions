@@ -261,6 +261,8 @@ namespace DiamondTrading
             this.gridColumn143 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn145 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn146 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn147 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
@@ -290,8 +292,6 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumnRate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -391,7 +391,6 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
-            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
@@ -2425,6 +2424,24 @@ namespace DiamondTrading
             this.gridColumn146.VisibleIndex = 7;
             this.gridColumn146.Width = 129;
             // 
+            // gridColumnRate
+            // 
+            this.gridColumnRate.Caption = "Rate";
+            this.gridColumnRate.FieldName = "Rate";
+            this.gridColumnRate.Name = "gridColumnRate";
+            this.gridColumnRate.Visible = true;
+            this.gridColumnRate.VisibleIndex = 8;
+            this.gridColumnRate.Width = 72;
+            // 
+            // gridColumnAmount
+            // 
+            this.gridColumnAmount.Caption = "Amount";
+            this.gridColumnAmount.FieldName = "Amount";
+            this.gridColumnAmount.Name = "gridColumnAmount";
+            this.gridColumnAmount.Visible = true;
+            this.gridColumnAmount.VisibleIndex = 9;
+            this.gridColumnAmount.Width = 72;
+            // 
             // gridColumn147
             // 
             this.gridColumn147.Caption = "NumberId";
@@ -2764,24 +2781,6 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
-            // 
-            // gridColumnRate
-            // 
-            this.gridColumnRate.Caption = "Rate";
-            this.gridColumnRate.FieldName = "Rate";
-            this.gridColumnRate.Name = "gridColumnRate";
-            this.gridColumnRate.Visible = true;
-            this.gridColumnRate.VisibleIndex = 8;
-            this.gridColumnRate.Width = 72;
-            // 
-            // gridColumnAmount
-            // 
-            this.gridColumnAmount.Caption = "Amount";
-            this.gridColumnAmount.FieldName = "Amount";
-            this.gridColumnAmount.Name = "gridColumnAmount";
-            this.gridColumnAmount.Visible = true;
-            this.gridColumnAmount.VisibleIndex = 9;
-            this.gridColumnAmount.Width = 72;
             // 
             // FrmProcessDetails
             // 
