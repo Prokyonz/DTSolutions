@@ -94,6 +94,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("PurchaseDetailsId");
             dt.Columns.Add("SlipNo1");
             dt.Columns.Add("StockId");
+            dt.Columns.Add("AccountToAssortDetailsId");
             return dt;
         }
 
@@ -124,6 +125,7 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colStockId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).StockId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAccountToAssortDetailsId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).AccountToAssortDetailsId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -171,7 +173,6 @@ namespace DiamondTrading.Process
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
-  
             {
                 this.Cursor = Cursors.WaitCursor;
 
@@ -213,6 +214,7 @@ namespace DiamondTrading.Process
                         boilProcessMaster.CreatedBy = Common.LoginUserID;
                         boilProcessMaster.UpdatedDate = DateTime.Now;
                         boilProcessMaster.UpdatedBy = Common.LoginUserID;
+                        boilProcessMaster.AccountToAssortDetailsId = grvParticularsDetails.GetRowCellValue(i, colAccountToAssortDetailsId).ToString();
 
                         var Result = await _boilMasterRepository.AddBoilAsync(boilProcessMaster);
                         IsSuccess = true;
