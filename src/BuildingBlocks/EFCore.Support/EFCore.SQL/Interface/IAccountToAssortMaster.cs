@@ -16,7 +16,7 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId);
         Task<AccountToAssortMaster> AddAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);
         Task<AccountToAssortMaster> UpdateAccountToAssortAsync(AccountToAssortMaster accountToAssortMaster);
-        Task<bool> DeleteAccountToAssortAsync(string accountToAssortId, string slipNo);
+        Task<bool> DeleteAccountToAssortAsync(string accountToAssortId, string accountToAssortChildId, string slipNo);
 
         Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<StockReportModelReport>> GetStockReportAsync(string companyId, string financialYearId);

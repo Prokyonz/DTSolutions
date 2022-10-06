@@ -34,7 +34,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteAccountToAssortAsync(string accountToAssortId, string slipNo)
+        public async Task<bool> DeleteAccountToAssortAsync(string accountToAssortId, string accountToAssortChildId, string slipNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
@@ -42,7 +42,7 @@ namespace EFCore.SQL.Repository
 
                 var AssortDetailsRec = getMasterRecord.AccountToAssortDetails.Where(w => w.SlipNo == slipNo).FirstOrDefault();
 
-                var checkInBoil = await _databaseContext.BoilProcessMaster.Where(w => w.SlipNo == slipNo && w.Id == AssortDetailsRec.Id).ToListAsync();    
+                var checkInBoil = await _databaseContext.BoilProcessMaster.Where(w => w.SlipNo == slipNo && w.AccountToAssortDetailsId == AssortDetailsRec.Id).ToListAsync();    
 
                 if(getMasterRecord != null && checkInBoil.Count == 0)
                 {

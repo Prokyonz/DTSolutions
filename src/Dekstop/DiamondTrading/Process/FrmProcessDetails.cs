@@ -367,10 +367,11 @@ namespace DiamondTrading
                     this.Cursor = Cursors.WaitCursor;
                     string message = "";
                     string SelectedGuid = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendId).ToString();
+                    string AccountToAssortChildId = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnChildId).ToString();
                     string slipNo = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendSlipNo).ToString(); 
-                    if (SelectedGuid != null)
+                    if (SelectedGuid != null && AccountToAssortChildId != null)
                     {
-                        var result = await _accountToAssortMasterRepository.DeleteAccountToAssortAsync(SelectedGuid.ToString(), slipNo);
+                        var result = await _accountToAssortMasterRepository.DeleteAccountToAssortAsync(SelectedGuid.ToString(), AccountToAssortChildId, slipNo);
 
                         if (result)
                         {
