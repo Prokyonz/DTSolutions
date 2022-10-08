@@ -14,6 +14,9 @@ namespace Repository.Entities.Model
         public int CrDrType { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal Amount { get; set; }
+        public decimal Debit { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Credit { get; set; }
     }
 }
