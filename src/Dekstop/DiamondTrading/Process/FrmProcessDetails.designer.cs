@@ -494,14 +494,6 @@ namespace DiamondTrading
             this.grvKapanMapping.OptionsView.ShowFooter = true;
             this.grvKapanMapping.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnKapanMappingSrNo, DevExpress.Data.ColumnSortOrder.Descending)});
-            this.grvKapanMapping.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvTransMaster_RowCellStyle);
-            this.grvKapanMapping.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvTransMaster_RowStyle);
-            this.grvKapanMapping.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.gridViewCompanyMaster_MasterRowEmpty);
-            this.grvKapanMapping.MasterRowGetChildList += new DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventHandler(this.gridViewCompanyMaster_MasterRowGetChildList);
-            this.grvKapanMapping.MasterRowGetRelationName += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventHandler(this.gridViewCompanyMaster_MasterRowGetRelationName);
-            this.grvKapanMapping.MasterRowGetRelationCount += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventHandler(this.gridViewCompanyMaster_MasterRowGetRelationCount);
-            this.grvKapanMapping.GridMenuItemClick += new DevExpress.XtraGrid.Views.Grid.GridMenuItemClickEventHandler(this.grvTransMaster_GridMenuItemClick);
-            this.grvKapanMapping.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.grvTransMaster_PopupMenuShowing);
             // 
             // gridColumnKapanMapingId
             // 
