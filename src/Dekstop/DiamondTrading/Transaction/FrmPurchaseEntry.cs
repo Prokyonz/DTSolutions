@@ -1092,37 +1092,40 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                if (txtBrokerPer.Text.ToString().Trim().Length == 0)
-                    txtBrokerPer.Text = "0";
-                if (IsCalculateRate)
+                if (!isLoading)
                 {
-                    try
+                    if (txtBrokerPer.Text.ToString().Trim().Length == 0)
+                        txtBrokerPer.Text = "0";
+                    if (IsCalculateRate)
                     {
-                        if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBrokerPer.Text.Trim().Length != 0)
+                        try
                         {
-                            decimal BrokerageAmount = Convert.ToDecimal(txtNetAmount.Text) + ((Convert.ToDecimal(txtNetAmount.Text) * Convert.ToDecimal(txtBrokerPer.Text)) / 100);
-                            double multiplier = Math.Pow(10, 2);
-                            txtBrokerageAmount.Text = (Math.Ceiling((BrokerageAmount - Convert.ToDecimal(txtNetAmount.Text)) * (decimal)multiplier) / (decimal)multiplier).ToString();
+                            if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBrokerPer.Text.Trim().Length != 0)
+                            {
+                                decimal BrokerageAmount = Convert.ToDecimal(txtNetAmount.Text) + ((Convert.ToDecimal(txtNetAmount.Text) * Convert.ToDecimal(txtBrokerPer.Text)) / 100);
+                                double multiplier = Math.Pow(10, 2);
+                                txtBrokerageAmount.Text = (Math.Ceiling((BrokerageAmount - Convert.ToDecimal(txtNetAmount.Text)) * (decimal)multiplier) / (decimal)multiplier).ToString();
+                            }
+                        }
+                        catch
+                        {
+                            txtBrokerageAmount.Text = "";
                         }
                     }
-                    catch
+                    else
                     {
-                        txtBrokerageAmount.Text = "";
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBrokerageAmount.Text.Trim().Length != 0)
+                        try
                         {
-                            decimal BrokeragePer = ((Convert.ToDecimal(txtBrokerageAmount.Text) - Convert.ToDecimal(txtNetAmount.Text)) / Convert.ToDecimal(txtNetAmount.Text)) * 100;
-                            txtBrokerPer.Text = (100 - (BrokeragePer > 0 ? BrokeragePer : (BrokeragePer * -1))).ToString("0.00");
+                            if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBrokerageAmount.Text.Trim().Length != 0)
+                            {
+                                decimal BrokeragePer = ((Convert.ToDecimal(txtBrokerageAmount.Text) - Convert.ToDecimal(txtNetAmount.Text)) / Convert.ToDecimal(txtNetAmount.Text)) * 100;
+                                txtBrokerPer.Text = (100 - (BrokeragePer > 0 ? BrokeragePer : (BrokeragePer * -1))).ToString("0.00");
+                            }
                         }
-                    }
-                    catch
-                    {
-                        txtBrokerPer.Text = "";
+                        catch
+                        {
+                            txtBrokerPer.Text = "";
+                        }
                     }
                 }
             }
@@ -1138,37 +1141,40 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                if (txtBuyerCommisionPer.Text.ToString().Trim().Length == 0)
-                    txtBuyerCommisionPer.Text = "0";
-                if (IsCalculateRate)
+                if (!isLoading)
                 {
-                    try
+                    if (txtBuyerCommisionPer.Text.ToString().Trim().Length == 0)
+                        txtBuyerCommisionPer.Text = "0";
+                    if (IsCalculateRate)
                     {
-                        if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBuyerCommisionPer.Text.Trim().Length != 0)
+                        try
                         {
-                            decimal CommisionAmount = Convert.ToDecimal(txtNetAmount.Text) + ((Convert.ToDecimal(txtNetAmount.Text) * Convert.ToDecimal(txtBuyerCommisionPer.Text)) / 100);
-                            double multiplier = Math.Pow(10, 2);
-                            txtCommisionAmount.Text = (Math.Ceiling((CommisionAmount - Convert.ToDecimal(txtNetAmount.Text)) * (decimal)multiplier) / (decimal)multiplier).ToString();
+                            if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtBuyerCommisionPer.Text.Trim().Length != 0)
+                            {
+                                decimal CommisionAmount = Convert.ToDecimal(txtNetAmount.Text) + ((Convert.ToDecimal(txtNetAmount.Text) * Convert.ToDecimal(txtBuyerCommisionPer.Text)) / 100);
+                                double multiplier = Math.Pow(10, 2);
+                                txtCommisionAmount.Text = (Math.Ceiling((CommisionAmount - Convert.ToDecimal(txtNetAmount.Text)) * (decimal)multiplier) / (decimal)multiplier).ToString();
+                            }
+                        }
+                        catch
+                        {
+                            txtCommisionAmount.Text = "";
                         }
                     }
-                    catch
+                    else
                     {
-                        txtCommisionAmount.Text = "";
-                    }
-                }
-                else
-                {
-                    try
-                    {
-                        if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtCommisionAmount.Text.Trim().Length != 0)
+                        try
                         {
-                            decimal CommisionPer = ((Convert.ToDecimal(txtCommisionAmount.Text) - Convert.ToDecimal(txtNetAmount.Text)) / Convert.ToDecimal(txtNetAmount.Text)) * 100;
-                            txtBuyerCommisionPer.Text = (100 - (CommisionPer > 0 ? CommisionPer : (CommisionPer * -1))).ToString("0.00");
+                            if (Convert.ToDecimal(txtNetAmount.Text) != 0 && txtCommisionAmount.Text.Trim().Length != 0)
+                            {
+                                decimal CommisionPer = ((Convert.ToDecimal(txtCommisionAmount.Text) - Convert.ToDecimal(txtNetAmount.Text)) / Convert.ToDecimal(txtNetAmount.Text)) * 100;
+                                txtBuyerCommisionPer.Text = (100 - (CommisionPer > 0 ? CommisionPer : (CommisionPer * -1))).ToString("0.00");
+                            }
                         }
-                    }
-                    catch
-                    {
-                        txtBuyerCommisionPer.Text = "";
+                        catch
+                        {
+                            txtBuyerCommisionPer.Text = "";
+                        }
                     }
                 }
             }
@@ -1488,6 +1494,8 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.UpdatedDate = DateTime.Now;
                     purchaseMaster.UpdatedBy = Common.LoginUserID;
                     purchaseMaster.PurchaseDetails = purchaseDetailsList;
+                    purchaseMaster.ApprovalType = 0;
+                    purchaseMaster.Message = "";
 
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
                     var Result = await purchaseMasterRepository.UpdatePurchaseAsync(purchaseMaster);

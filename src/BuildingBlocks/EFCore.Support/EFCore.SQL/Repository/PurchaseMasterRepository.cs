@@ -217,6 +217,8 @@ namespace EFCore.SQL.Repository
                     getPurchase.Remarks = purchaseMaster.Remarks;
                     getPurchase.UpdatedDate = purchaseMaster.UpdatedDate;
                     getPurchase.UpdatedBy = purchaseMaster.UpdatedBy;
+                    getPurchase.ApprovalType = purchaseMaster.ApprovalType;
+                    getPurchase.Message = purchaseMaster.Message;
 
                     if (getPurchase.PurchaseDetails != null)
                     {

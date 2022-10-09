@@ -414,7 +414,7 @@ namespace DiamondTrading.Transaction
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
+        private async void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -424,7 +424,34 @@ namespace DiamondTrading.Transaction
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
                     if (dtView.Count > 0)
                     {
+                        DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1");
+                        if (dataRow.Length == 0)
+                        {
+                            var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);
+
+                            //for (int i = 0; i < dtView.ToTable().Rows.Count; i++)
+                            //{
+                            //    allSlipTotal += Convert.ToDecimal(dtView.ToTable().Rows[i].ItemArray[9]);
+                            //}
+
+                            decimal allSlipRemainingBalance = 0;
+
+                            if (dtView.Count > 0)
+                            {
+                                allSlipRemainingBalance = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
+
+                                PartyOpeningBalance = PartyOpeningBalance - allSlipRemainingBalance;
+                            }
+
+                            dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
+                                "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
+                                Common.LoginFinancialYear, Common.LoginFinancialYearName,
+                                PartyOpeningBalance, PartyOpeningBalance);
+                        }
+                        
+
                         dtView.Sort = "SlipNo ASC";
+
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
                         if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
@@ -470,7 +497,7 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
-            catch
+            catch(Exception Ex)
             {
             }
         }
@@ -486,7 +513,7 @@ namespace DiamondTrading.Transaction
                     //if (dtView.Count > 0)
                     {
                         decimal Value = Convert.ToDecimal(e.Value);
-                        if (Value > 0)
+                        //if (Value > 0)
                         {
                             if (!dtSlipDetail.Columns.Contains("Amount"))
                             {
