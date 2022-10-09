@@ -489,8 +489,8 @@ namespace DiamondTrading
             this.gridColumn190 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn193 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn194 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn195 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn21 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCashBankDebit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCashBankCredit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn189 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
@@ -4585,19 +4585,20 @@ namespace DiamondTrading
             this.gridColumn190,
             this.gridColumn193,
             this.gridColumn194,
-            this.gridColumn195,
-            this.gridColumn21,
+            this.colCashBankDebit,
+            this.colCashBankCredit,
             this.gridColumn189});
             this.gridView2.GridControl = this.gridControlCashBank;
             this.gridView2.GroupCount = 1;
             this.gridView2.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", this.gridColumn195, ""),
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", this.gridColumn21, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", this.colCashBankDebit, ""),
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", this.colCashBankCredit, "")});
             this.gridView2.Name = "gridView2";
             this.gridView2.OptionsBehavior.Editable = false;
             this.gridView2.OptionsView.ShowFooter = true;
             this.gridView2.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn189, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.gridView2.CustomColumnDisplayText += new DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventHandler(this.gridView2_CustomColumnDisplayText);
             // 
             // gridColumn190
             // 
@@ -4625,23 +4626,23 @@ namespace DiamondTrading
             this.gridColumn194.VisibleIndex = 1;
             this.gridColumn194.Width = 426;
             // 
-            // gridColumn195
+            // colCashBankDebit
             // 
-            this.gridColumn195.Caption = "Debit";
-            this.gridColumn195.FieldName = "Debit";
-            this.gridColumn195.Name = "gridColumn195";
-            this.gridColumn195.Visible = true;
-            this.gridColumn195.VisibleIndex = 2;
-            this.gridColumn195.Width = 115;
+            this.colCashBankDebit.Caption = "Debit";
+            this.colCashBankDebit.FieldName = "Debit";
+            this.colCashBankDebit.Name = "colCashBankDebit";
+            this.colCashBankDebit.Visible = true;
+            this.colCashBankDebit.VisibleIndex = 2;
+            this.colCashBankDebit.Width = 115;
             // 
-            // gridColumn21
+            // colCashBankCredit
             // 
-            this.gridColumn21.Caption = "Credit";
-            this.gridColumn21.FieldName = "Credit";
-            this.gridColumn21.Name = "gridColumn21";
-            this.gridColumn21.Visible = true;
-            this.gridColumn21.VisibleIndex = 3;
-            this.gridColumn21.Width = 98;
+            this.colCashBankCredit.Caption = "Credit";
+            this.colCashBankCredit.FieldName = "Credit";
+            this.colCashBankCredit.Name = "colCashBankCredit";
+            this.colCashBankCredit.Visible = true;
+            this.colCashBankCredit.VisibleIndex = 3;
+            this.colCashBankCredit.Width = 98;
             // 
             // gridColumn189
             // 
@@ -4737,6 +4738,7 @@ namespace DiamondTrading
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transaction Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmTransactionDetails_FormClosed);
             this.Load += new System.EventHandler(this.FrmMasterDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).EndInit();
@@ -5247,7 +5249,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn190;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn193;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn194;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn195;
+        private DevExpress.XtraGrid.Columns.GridColumn colCashBankDebit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn189;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn191;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn192;
@@ -5256,6 +5258,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEntyDateReceipt;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEntryDateContra;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnEntryDateExpense;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn21;
+        private DevExpress.XtraGrid.Columns.GridColumn colCashBankCredit;
     }
 }

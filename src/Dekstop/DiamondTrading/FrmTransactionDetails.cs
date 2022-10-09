@@ -412,6 +412,9 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlCashBank.DataSource = data;
+
+                    gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
+                    gridView2.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
                 }
             }
         }
@@ -1176,6 +1179,85 @@ namespace DiamondTrading
             //        e.HighPriority = true;
             //    }
             //}
+        }
+
+        private void gridView2_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column == colCashBankCredit)
+                if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
+            if (e.Column == colCashBankDebit)
+                if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
+        }
+
+        private void FrmTransactionDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (xtabManager.SelectedTabPage == xtabPurchase)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabSales)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabContra)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabMixed)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPFReport)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
+            {
+                
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
+            {
+            }
+            else if (xtabManager.SelectedTabPage == xtabCashBankReport)
+            {
+                gridView2.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
+            }
         }
     }
 }

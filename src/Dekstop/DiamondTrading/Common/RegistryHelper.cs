@@ -12,6 +12,10 @@ namespace DiamondTrading
         public static readonly string RecSection = "InfoLogs\\" + Common.AppName;
         public const string MainSection = "Main";
         public const string OtherSection = "Other";
+        public static string ReportLayouts(string GridViewName)
+        {
+            return RecSection+"\\ReportLayouts\\" + GridViewName;
+        }
 
         #region "Registry Name"
         public const string RememberLogin = "RememberLogin";
