@@ -175,7 +175,7 @@ namespace DiamondTrading
             this.grvSalesTransactonMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnSalesId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSalesSlispNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn192 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -1400,7 +1400,7 @@ namespace DiamondTrading
             this.grvSalesTransactonMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnSalesId,
             this.gridColumn2,
-            this.gridColumn3,
+            this.colSalesSlispNo,
             this.gridColumn4,
             this.gridColumn5,
             this.gridColumn192,
@@ -1433,9 +1433,10 @@ namespace DiamondTrading
             this.grvSalesTransactonMaster.OptionsBehavior.ReadOnly = true;
             this.grvSalesTransactonMaster.OptionsView.ShowFooter = true;
             this.grvSalesTransactonMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn3, DevExpress.Data.ColumnSortOrder.Descending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.colSalesSlispNo, DevExpress.Data.ColumnSortOrder.Descending)});
             this.grvSalesTransactonMaster.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.grvSalesTransactonMaster_CellMerge);
             this.grvSalesTransactonMaster.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvSalesTransactonMaster_RowCellStyle);
+            this.grvSalesTransactonMaster.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvSalesTransactonMaster_RowStyle);
             this.grvSalesTransactonMaster.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.grvSalesTransactonMaster_MasterRowEmpty);
             this.grvSalesTransactonMaster.MasterRowGetChildList += new DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventHandler(this.grvSalesTransactonMaster_MasterRowGetChildList);
             this.grvSalesTransactonMaster.MasterRowGetRelationName += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventHandler(this.grvSalesTransactonMaster_MasterRowGetRelationName);
@@ -1456,18 +1457,18 @@ namespace DiamondTrading
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Width = 41;
             // 
-            // gridColumn3
+            // colSalesSlispNo
             // 
-            this.gridColumn3.Caption = "Slip No";
-            this.gridColumn3.FieldName = "SlipNo";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.OptionsColumn.AllowEdit = false;
-            this.gridColumn3.OptionsColumn.ReadOnly = true;
-            this.gridColumn3.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            this.colSalesSlispNo.Caption = "Slip No";
+            this.colSalesSlispNo.FieldName = "SlipNo";
+            this.colSalesSlispNo.Name = "colSalesSlispNo";
+            this.colSalesSlispNo.OptionsColumn.AllowEdit = false;
+            this.colSalesSlispNo.OptionsColumn.ReadOnly = true;
+            this.colSalesSlispNo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SlipNo", "Total={0}")});
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 2;
-            this.gridColumn3.Width = 48;
+            this.colSalesSlispNo.Visible = true;
+            this.colSalesSlispNo.VisibleIndex = 2;
+            this.colSalesSlispNo.Width = 48;
             // 
             // gridColumn4
             // 
@@ -4897,7 +4898,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView grvSalesTransactonMaster;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalesId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn colSalesSlispNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn6;

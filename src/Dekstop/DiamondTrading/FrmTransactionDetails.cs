@@ -653,31 +653,50 @@ namespace DiamondTrading
 
         private void grvTransMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.Column == gridColumnPurApprovalType)
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0)
             {
-                if (e.CellValue.ToString().Equals("0"))
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
                 }
-                else if (e.CellValue.ToString().Equals("1"))
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
                 {
-                    e.Appearance.ForeColor = Color.Black;
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
                 }
-                else if (e.CellValue.ToString().Equals("2"))
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
                 }
             }
-            //if (e.RowHandle < 0)
-            //    return;
-            //string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
-            //if (Convert.ToInt32(ApprovalType) == 0)
-            //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
-            //else if (Convert.ToInt32(ApprovalType) == 2)
-            //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
         }
 
         private void grvTransMaster_RowStyle(object sender, RowStyleEventArgs e)
@@ -718,21 +737,47 @@ namespace DiamondTrading
 
         private void grvSalesTransactonMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.Column == colSalesApprovalType)
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0)
             {
-                if (e.CellValue.ToString().Equals("0"))
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                    }
+                    if(e.Column==colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
                 }
-                else if (e.CellValue.ToString().Equals("1"))
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
                 {
-                    e.Appearance.ForeColor = Color.Black;
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                    }
+                    if (e.Column == colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
                 }
-                else if (e.CellValue.ToString().Equals("2"))
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                    if (e.Column == colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
                 }
             }
@@ -1116,6 +1161,21 @@ namespace DiamondTrading
             {
                 e.TotalValue = 0;
             }            
+        }
+
+        private void grvSalesTransactonMaster_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            //GridView View = sender as GridView;
+            //if (e.RowHandle >= 0)
+            //{
+            //    string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+            //    if (priority.ToLower() == "approved" || priority.ToLower() == "1")
+            //    {
+            //        e.Appearance.BackColor = Color.Green;
+            //        e.Appearance.BackColor2 = Color.Green;
+            //        e.HighPriority = true;
+            //    }
+            //}
         }
     }
 }
