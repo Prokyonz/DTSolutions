@@ -16,5 +16,6 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 4)")]
         public decimal OpeningBalance { get; set; }
         public decimal ClosingBalance { get; set; }
+        public int PartyType { get; set; }
     }
 }
