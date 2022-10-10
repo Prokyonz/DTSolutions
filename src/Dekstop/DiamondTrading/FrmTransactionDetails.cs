@@ -1230,7 +1230,6 @@ namespace DiamondTrading
         {
             try
             {
-
                 if (e.IsTotalSummary)
                 {
                     switch (e.SummaryProcess)
