@@ -1230,16 +1230,22 @@ namespace DiamondTrading
         {
             try
             {
-                GridView view = sender as GridView;
-                GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
-                double Total = double.Parse(view.Columns[18].SummaryText);
-                double BuyRate = double.Parse(view.Columns["NetWeight"].SummaryText);
-                e.TotalValue = Total / BuyRate;
+                if (e.IsTotalSummary)
+                {
+                    switch (e.SummaryProcess)
+                    {
+                        case DevExpress.Data.CustomSummaryProcess.Finalize:
+                            decimal Total = Convert.ToDecimal(gridColumnGrossTotal.SummaryItem.SummaryValue);
+                            decimal BuyRate = Convert.ToDecimal(NetWeight.SummaryItem.SummaryValue);
+                            e.TotalValue = (Total / BuyRate).ToString();
+                            break;
+                    }
+                }
             }
             catch (Exception)
             {
                 e.TotalValue = 0;
-            }            
+            }
         }
 
         private void grvSalesTransactonMaster_RowStyle(object sender, RowStyleEventArgs e)
