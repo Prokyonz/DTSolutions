@@ -173,13 +173,8 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                DateTime mys = new DateTime();
-
                 var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).Include("PurchaseDetails").FirstOrDefaultAsync();
 
-                DateTime mye = new DateTime();
-
-                Console.Write("Total get time : " + (mye - mys).TotalMilliseconds.ToString());
                 if (getPurchase != null)
                 {
                     getPurchase.CompanyId = purchaseMaster.CompanyId;

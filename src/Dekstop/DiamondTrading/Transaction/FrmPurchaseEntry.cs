@@ -1498,15 +1498,12 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.Message = "";
 
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
-                    DateTime dtSt = new DateTime();
                     var Result = await purchaseMasterRepository.UpdatePurchaseAsync(purchaseMaster);
-                    DateTime stend = new DateTime();
-                    MessageBox.Show((stend - dtSt).TotalMilliseconds.ToString());
 
                     if (Result != null)
                     {
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        await Reset();
+                        this.Close();
                     }
                 }
             }
