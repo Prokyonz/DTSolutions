@@ -29,5 +29,10 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? OutwardAvg { get; set; }
         public int Records { get; set; }
+        public string OperationType { get; set; }
+        public string Size { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? TotalSizeGroupWeight
+        { get; set; }
     }
 }
