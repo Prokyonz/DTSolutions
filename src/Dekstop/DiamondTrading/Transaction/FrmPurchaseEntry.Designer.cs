@@ -126,6 +126,7 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.colPurchaseDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -252,7 +253,6 @@ namespace DiamondTrading.Transaction
             this.txtSlipNo.Name = "txtSlipNo";
             this.txtSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSlipNo.Properties.Appearance.Options.UseFont = true;
-            this.txtSlipNo.Properties.BeepOnError = false;
             this.txtSlipNo.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtSlipNo.Properties.MaskSettings.Set("mask", "d");
             this.txtSlipNo.Size = new System.Drawing.Size(88, 26);
@@ -286,7 +286,6 @@ namespace DiamondTrading.Transaction
             this.dtTime.Name = "dtTime";
             this.dtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTime.Properties.Appearance.Options.UseFont = true;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtTime.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -326,7 +325,6 @@ namespace DiamondTrading.Transaction
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -468,7 +466,6 @@ namespace DiamondTrading.Transaction
             this.txtBuyerCommisionPer.Properties.Appearance.Options.UseFont = true;
             this.txtBuyerCommisionPer.Properties.Appearance.Options.UseTextOptions = true;
             this.txtBuyerCommisionPer.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtBuyerCommisionPer.Properties.BeepOnError = false;
             this.txtBuyerCommisionPer.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtBuyerCommisionPer.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtBuyerCommisionPer.Properties.MaskSettings.Set("mask", "f");
@@ -549,7 +546,6 @@ namespace DiamondTrading.Transaction
             this.txtBrokerPer.Properties.Appearance.Options.UseFont = true;
             this.txtBrokerPer.Properties.Appearance.Options.UseTextOptions = true;
             this.txtBrokerPer.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtBrokerPer.Properties.BeepOnError = false;
             this.txtBrokerPer.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtBrokerPer.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtBrokerPer.Properties.MaskSettings.Set("mask", "f");
@@ -667,7 +663,6 @@ namespace DiamondTrading.Transaction
             this.dtPayDate.Name = "dtPayDate";
             this.dtPayDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtPayDate.Properties.Appearance.Options.UseFont = true;
-            this.dtPayDate.Properties.BeepOnError = false;
             this.dtPayDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtPayDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -683,7 +678,6 @@ namespace DiamondTrading.Transaction
             this.txtPaymentDays.Name = "txtPaymentDays";
             this.txtPaymentDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPaymentDays.Properties.Appearance.Options.UseFont = true;
-            this.txtPaymentDays.Properties.BeepOnError = false;
             this.txtPaymentDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtPaymentDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtPaymentDays.Properties.MaskSettings.Set("mask", "d");
@@ -718,7 +712,6 @@ namespace DiamondTrading.Transaction
             this.txtDays.Name = "txtDays";
             this.txtDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDays.Properties.Appearance.Options.UseFont = true;
-            this.txtDays.Properties.BeepOnError = false;
             this.txtDays.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtDays.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtDays.Properties.MaskSettings.Set("mask", "d");
@@ -782,7 +775,8 @@ namespace DiamondTrading.Transaction
             this.colCurrRate,
             this.colCurrAmount,
             this.colDisAmount,
-            this.colCVDAmount});
+            this.colCVDAmount,
+            this.colPurchaseDetailId});
             this.grvPurchaseDetails.GridControl = this.grdPurchaseDetails;
             this.grvPurchaseDetails.Name = "grvPurchaseDetails";
             this.grvPurchaseDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -1331,7 +1325,6 @@ namespace DiamondTrading.Transaction
             this.txtCommisionAmount.Properties.Appearance.Options.UseFont = true;
             this.txtCommisionAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtCommisionAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtCommisionAmount.Properties.BeepOnError = false;
             this.txtCommisionAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCommisionAmount.Properties.MaskSettings.Set("mask", "f");
             this.txtCommisionAmount.Size = new System.Drawing.Size(150, 26);
@@ -1358,7 +1351,6 @@ namespace DiamondTrading.Transaction
             this.txtBrokerageAmount.Properties.Appearance.Options.UseFont = true;
             this.txtBrokerageAmount.Properties.Appearance.Options.UseTextOptions = true;
             this.txtBrokerageAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtBrokerageAmount.Properties.BeepOnError = false;
             this.txtBrokerageAmount.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtBrokerageAmount.Properties.MaskSettings.Set("mask", "f");
             this.txtBrokerageAmount.Size = new System.Drawing.Size(150, 26);
@@ -1423,6 +1415,12 @@ namespace DiamondTrading.Transaction
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // colPurchaseDetailId
+            // 
+            this.colPurchaseDetailId.Caption = "PurchaseDetailId";
+            this.colPurchaseDetailId.FieldName = "PurchaseDetailId";
+            this.colPurchaseDetailId.Name = "colPurchaseDetailId";
             // 
             // FrmPurchaseEntry
             // 
@@ -1635,5 +1633,6 @@ namespace DiamondTrading.Transaction
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private DevExpress.XtraGrid.Columns.GridColumn colDisAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colCVDAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailId;
     }
 }

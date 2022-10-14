@@ -164,6 +164,7 @@ namespace DiamondTrading.Transaction
 
 
                             //grvPurchaseDetails.SetRowCellValue(i, colKapan, EditedPurchaseDetail[i].KapanId);
+                            grvPurchaseDetails.SetFocusedRowCellValue(colPurchaseDetailId, EditedPurchaseDetail[i].Id);
                             grvPurchaseDetails.SetFocusedRowCellValue(colShape, EditedPurchaseDetail[i].ShapeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedPurchaseDetail[i].SizeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedPurchaseDetail[i].PurityId);
@@ -611,6 +612,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("CAmount");
             dt.Columns.Add("DisAmount");
             dt.Columns.Add("CVDAmount");
+            dt.Columns.Add("PurchaseDetailId");
             return dt;
         }
 
@@ -1422,7 +1424,10 @@ namespace DiamondTrading.Transaction
                     for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                     {
                         purchaseDetails = new PurchaseDetails();
-                        purchaseDetails.Id = Guid.NewGuid().ToString();
+                        if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colPurchaseDetailId).ToString()))
+                            purchaseDetails.Id = Guid.NewGuid().ToString();
+                        else
+                            purchaseDetails.Id = grvPurchaseDetails.GetRowCellValue(i, colPurchaseDetailId).ToString();
                         purchaseDetails.PurchaseId = _editedPurchaseMaster.Id;
                         purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
                         purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
