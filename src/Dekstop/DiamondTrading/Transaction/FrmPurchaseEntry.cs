@@ -69,7 +69,9 @@ namespace DiamondTrading.Transaction
 
             if (string.IsNullOrEmpty(_selectedPurchaseId) == false)
             {
+                Console.WriteLine("1 :"+DateTime.Now);
                 _editedPurchaseMaster = await _purchaseMasterRepository.GetPurchaseAsync(_selectedPurchaseId);
+                Console.WriteLine("2 :" + DateTime.Now);
                 //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_editedPurchaseMaster != null)
                 {
@@ -131,6 +133,7 @@ namespace DiamondTrading.Transaction
 
                         txtRemark.Text = _editedPurchaseMaster.Remarks;
 
+                        Console.WriteLine("3 :" + DateTime.Now);
                         KapanMappingMasterRepository kapanMappingMasterRepository = new KapanMappingMasterRepository();
                         var result = await kapanMappingMasterRepository.GetKapanMappingDetailAsync(_selectedPurchaseId);
                         if (result != null)
@@ -139,8 +142,11 @@ namespace DiamondTrading.Transaction
                             btnSave.Enabled = false;
                             MessageBox.Show("You can not edit this entry as this entry already processed", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+                        Console.WriteLine("4 :" + DateTime.Now);
 
+                        Console.WriteLine("5 :" + DateTime.Now);
                         List<PurchaseDetails> EditedPurchaseDetail = await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
+                        Console.WriteLine("6 :" + DateTime.Now);
 
                         for (int i = 0; i < EditedPurchaseDetail.Count; i++)
                         {
