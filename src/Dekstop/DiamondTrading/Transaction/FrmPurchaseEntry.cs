@@ -1513,7 +1513,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        //MessageBox.Show(this, AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                 }

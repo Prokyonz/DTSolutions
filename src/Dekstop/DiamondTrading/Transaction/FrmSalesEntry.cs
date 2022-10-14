@@ -614,6 +614,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("CharniSize");
             dt.Columns.Add("GalaSize");
             dt.Columns.Add("NumberSize");
+            dt.Columns.Add("SalesDetailId");
             return dt;
         }
 
@@ -1679,7 +1680,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        //MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await Reset();
                     }
                 }
