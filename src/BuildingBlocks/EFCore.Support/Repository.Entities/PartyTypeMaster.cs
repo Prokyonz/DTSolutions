@@ -9,8 +9,7 @@ namespace Repository.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public static int None = 0;
-        public static int PartyBuy = 1;
-        public static int PartySale = 14;
+        public static int PartyBuy = 1;        
         public static int Employee = 2;
         public static int Expense = 3;
         public static int Bank = 4;
@@ -23,11 +22,14 @@ namespace Repository.Entities
         public static int CapitalAccount = 11;
         public static int Investment = 12;
         public static int Loan = 13;
+        public static int PartySale = 14;
 
         public static int Buyer = 6;
         public static int Seller = 7;
         public static int Broker = 8;
-        public static int Other = 9;        
+        public static int Other = 9;
+        public static int Process = 15;
+        
 
         //public static List<PartyTypeMaster> GetAllPartyType()
         //{
@@ -82,6 +84,7 @@ namespace Repository.Entities
                 new PartyTypeMaster {Id = Buyer, Name = "Buyer" },
                 new PartyTypeMaster {Id = Seller, Name = "Seller" },
                 new PartyTypeMaster {Id = Broker, Name = "Broker" },
+                new PartyTypeMaster { Id = Process, Name = "Process" },
                 new PartyTypeMaster {Id = Other, Name = "Other" }
             };
             return partyTypeMaster;

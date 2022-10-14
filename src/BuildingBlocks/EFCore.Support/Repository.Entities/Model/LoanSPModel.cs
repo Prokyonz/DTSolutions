@@ -8,7 +8,7 @@ namespace Repository.Entities.Model
         public int Sr { get; set; }
         public string CompanyId { get; set; }
         public string CompanyName { get; set; }
-        public int LoanType { get; set; }
+        public string LoanType { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
         public decimal Amount { get; set; }
