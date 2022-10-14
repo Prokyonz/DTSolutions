@@ -155,7 +155,7 @@ namespace DiamondTrading.Transaction
                             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
                             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
 
-
+                            grvPurchaseDetails.SetFocusedRowCellValue(colSalesDetailId, EditedSalesDetails[i].Id);
                             grvPurchaseDetails.SetFocusedRowCellValue(colCategory, EditedSalesDetails[i].Category);
                             grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
                             try
@@ -614,6 +614,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("CharniSize");
             dt.Columns.Add("GalaSize");
             dt.Columns.Add("NumberSize");
+            dt.Columns.Add("SalesDetailId");
             return dt;
         }
 
@@ -1583,7 +1584,10 @@ namespace DiamondTrading.Transaction
                     for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                     {
                         salesDetails = new SalesDetails();
-                        salesDetails.Id = Guid.NewGuid().ToString();
+                        if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString()))
+                            salesDetails.Id = Guid.NewGuid().ToString();
+                        else
+                            salesDetails.Id = grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString();
                         salesDetails.SalesId = _editedSalesMaster.Id;
                         salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
                         salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
@@ -1676,7 +1680,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        //MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await Reset();
                     }
                 }

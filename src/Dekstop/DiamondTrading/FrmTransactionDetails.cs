@@ -230,208 +230,210 @@ namespace DiamondTrading
 
         private async Task LoadGridData(bool IsForceLoad = false)
         {
-                if (xtabManager.SelectedTabPage == xtabPurchase)
+            this.Cursor = Cursors.WaitCursor;
+            if (xtabManager.SelectedTabPage == xtabPurchase)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
                 {
-                    if (IsForceLoad || _purchaseMasterRepository == null)
-                    {
-                        _purchaseMasterRepository = new PurchaseMasterRepository();
-                        var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear);
-                        grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
-                        grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
-                    }
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
+                    grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabSales)
+            }
+            else if (xtabManager.SelectedTabPage == xtabSales)
+            {
+                if (IsForceLoad || _salesMasterRepository == null)
                 {
-                    if (IsForceLoad || _salesMasterRepository == null)
-                    {
-                        _salesMasterRepository = new SalesMasterRepository();
-                        var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
-                        grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
-                        grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
-                    }
+                    _salesMasterRepository = new SalesMasterRepository();
+                    var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                    grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabPayment)
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
                 {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
-                        grdPaymentDetails.DataSource = data;
-                        gridView4.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PaymentReport"));
-                    }
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
+                    grdPaymentDetails.DataSource = data;
+                    gridView4.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PaymentReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabReceipt)
+            }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
                 {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
-                        grdReceiptDetails.DataSource = data;
-                        gridView7.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ReceiptReport"));
-                    }
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    grdReceiptDetails.DataSource = data;
+                    gridView7.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ReceiptReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabContra)
+            }
+            else if (xtabManager.SelectedTabPage == xtabContra)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
                 {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _contraEntryMasterRespository = new ContraEntryMasterRespository();
-                        var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
-                        grdContraDetails.DataSource = data;
-                        gridView5.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
-                    }
+                    _contraEntryMasterRespository = new ContraEntryMasterRespository();
+                    var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdContraDetails.DataSource = data;
+                    gridView5.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabExpense)
+            }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
+            {
+                if (IsForceLoad || _expenseMasterRepository == null)
                 {
-                    if (IsForceLoad || _expenseMasterRepository == null)
-                    {
-                        _expenseMasterRepository = new ExpenseMasterRepository();
-                        var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
-                        grdExpenseControl.DataSource = data;
-                        grvExpenseMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ExpenseReport"));
-                    }
+                    _expenseMasterRepository = new ExpenseMasterRepository();
+                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdExpenseControl.DataSource = data;
+                    grvExpenseMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ExpenseReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabLoan)
+            }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                if (IsForceLoad || _expenseMasterRepository == null)
                 {
-                    if (IsForceLoad || _expenseMasterRepository == null)
-                    {
-                        _loanMasterRepository = new LoanMasterRepository();
-                        var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
-                        gridControlLoan.DataSource = data;
-                        gridView9.ExpandAllGroups();
-                        gridView9.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LoanReport"));
-                    }
+                    _loanMasterRepository = new LoanMasterRepository();
+                    var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
+                    gridControlLoan.DataSource = data;
+                    gridView9.ExpandAllGroups();
+                    gridView9.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LoanReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabMixed)
+            }
+            else if (xtabManager.SelectedTabPage == xtabMixed)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
                 {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                        gridControlMixed.DataSource = data;
-                        gridView15.ExpandAllGroups();
-                        gridView15.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MixReport"));
-                    }
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlMixed.DataSource = data;
+                    gridView15.ExpandAllGroups();
+                    gridView15.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MixReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            }
+            else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
                 {
-                    if (IsForceLoad || _purchaseMasterRepository == null)
-                    {
-                        int ActionType = 1;
-                        if (SelectedTabPage.Equals("SalesSlipPrint"))
-                            ActionType = 2;
+                    int ActionType = 1;
+                    if (SelectedTabPage.Equals("SalesSlipPrint"))
+                        ActionType = 2;
 
-                        _purchaseMasterRepository = new PurchaseMasterRepository();
-                        var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType, Common.LoginCompany, Common.LoginFinancialYear);
-                        grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
-                        grvPurchaseSlipDetails.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SlipReport"));
-                    }
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType, Common.LoginCompany, Common.LoginFinancialYear);
+                    grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
+                    grvPurchaseSlipDetails.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SlipReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                if (IsForceLoad || _JangadMasterRepository == null)
                 {
-                    if (IsForceLoad || _JangadMasterRepository == null)
-                    {
-                        int ActionType = 1;
-                        if (SelectedTabPage.Equals("JangadSend"))
-                            ActionType = 2;
+                    int ActionType = 1;
+                    if (SelectedTabPage.Equals("JangadSend"))
+                        ActionType = 2;
 
-                        _JangadMasterRepository = new JangadMasterRepository();
-                        var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
-                        gridControlJangadSendReceive.DataSource = data;
-                        grvJangadSendReceive.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadReport"));
-                    }
+                    _JangadMasterRepository = new JangadMasterRepository();
+                    var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
+                    gridControlJangadSendReceive.DataSource = data;
+                    grvJangadSendReceive.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtraTabPFReport)
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPFReport)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
                 {
-                    if (IsForceLoad || _purchaseMasterRepository == null)
-                    {
-                        _purchaseMasterRepository = new PurchaseMasterRepository();
-                        var data = await _purchaseMasterRepository.GetPFReportAsync(Common.LoginCompany, Common.LoginFinancialYear, 1);
-                        gridControlPFReport.DataSource = data;
-                        grvPFReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PFReport"));
-                    }
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var data = await _purchaseMasterRepository.GetPFReportAsync(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    gridControlPFReport.DataSource = data;
+                    grvPFReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PFReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            {
+                if (IsForceLoad || _partyMasterRepository == null)
                 {
-                    if (IsForceLoad || _partyMasterRepository == null)
-                    {
-                        _partyMasterRepository = new PartyMasterRepository();
-                        var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
-                        gridControlLedgerReport.DataSource = data;
-                        grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
-                    }
+                    _partyMasterRepository = new PartyMasterRepository();
+                    var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlLedgerReport.DataSource = data;
+                    grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
                 }
-                else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                if (IsForceLoad || _purchaseMasterRepository == null)
                 {
-                    if (IsForceLoad || _purchaseMasterRepository == null)
-                    {
-                        _purchaseMasterRepository = new PurchaseMasterRepository();
-                        var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                        grdWeeklyPurchaseReport.DataSource = data;
-                        grvWeeklyPurchaseReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("WeeklyReport"));
+                    _purchaseMasterRepository = new PurchaseMasterRepository();
+                    var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdWeeklyPurchaseReport.DataSource = data;
+                    grvWeeklyPurchaseReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("WeeklyReport"));
 
-                        System.Globalization.CultureInfo CI = new System.Globalization.CultureInfo("en-US");
-                        System.Globalization.Calendar Cal = CI.Calendar;
-                        // first week of year
-                        System.Globalization.CalendarWeekRule CWR = CI.DateTimeFormat.CalendarWeekRule;
-                        // first day of week
-                        DayOfWeek FirstDOW = CI.DateTimeFormat.FirstDayOfWeek;
-                        // to get the current week number
-                        int week = Cal.GetWeekOfYear(DateTime.Now, CWR, FirstDOW);
+                    System.Globalization.CultureInfo CI = new System.Globalization.CultureInfo("en-US");
+                    System.Globalization.Calendar Cal = CI.Calendar;
+                    // first week of year
+                    System.Globalization.CalendarWeekRule CWR = CI.DateTimeFormat.CalendarWeekRule;
+                    // first day of week
+                    DayOfWeek FirstDOW = CI.DateTimeFormat.FirstDayOfWeek;
+                    // to get the current week number
+                    int week = Cal.GetWeekOfYear(DateTime.Now, CWR, FirstDOW);
 
-                        int rowHandle = grvWeeklyPurchaseReport.LocateByValue("WeekNo", week.ToString());
-                        if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
-                        {
-                            grvWeeklyPurchaseReport.FocusedRowHandle = rowHandle;
-                            grvWeeklyPurchaseReport.SelectRow(rowHandle);
-                        }
-
-                        string SelectedWeek = "Week: " + grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colPeriod).ToString();
-
-                        await DisplayCurrentWeekPurchaseData(week.ToString(), SelectedWeek);
-
-                    }
-                }
-                else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
-                {
-                    if (IsForceLoad || _paymentMasterRepository == null)
+                    int rowHandle = grvWeeklyPurchaseReport.LocateByValue("WeekNo", week.ToString());
+                    if (rowHandle != DevExpress.XtraGrid.GridControl.InvalidRowHandle)
                     {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable" ? 0 : 1);
-                        gridControlPayableReceivable.DataSource = data;
-                        gridView1.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PayableReceivableReport"));
+                        grvWeeklyPurchaseReport.FocusedRowHandle = rowHandle;
+                        grvWeeklyPurchaseReport.SelectRow(rowHandle);
                     }
-                }
-                else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
-                {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueBalanceSheetType.EditValue));
-                        gridControlBalanceSheet.DataSource = data;
-                        gridView29.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("BalanceSheetReport"));
-                    }
-                }
-                else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
-                {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
-                        gridControlProfitLoss.DataSource = data;
-                        gridView32.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ProfitLossReport"));
-                    }
-                }
-                else if (xtabManager.SelectedTabPage == xtabCashBankReport)
-                {
-                    if (IsForceLoad || _paymentMasterRepository == null)
-                    {
-                        _paymentMasterRepository = new PaymentMasterRepository();
-                        var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                        gridControlCashBank.DataSource = data;
 
-                        gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
-                    }
-                }            
+                    string SelectedWeek = "Week: " + grvWeeklyPurchaseReport.GetRowCellValue(grvWeeklyPurchaseReport.FocusedRowHandle, colPeriod).ToString();
+
+                    await DisplayCurrentWeekPurchaseData(week.ToString(), SelectedWeek);
+
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable" ? 0 : 1);
+                    gridControlPayableReceivable.DataSource = data;
+                    gridView1.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PayableReceivableReport"));
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueBalanceSheetType.EditValue));
+                    gridControlBalanceSheet.DataSource = data;
+                    gridView29.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("BalanceSheetReport"));
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
+                    gridControlProfitLoss.DataSource = data;
+                    gridView32.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ProfitLossReport"));
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabCashBankReport)
+            {
+                if (IsForceLoad || _paymentMasterRepository == null)
+                {
+                    _paymentMasterRepository = new PaymentMasterRepository();
+                    var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlCashBank.DataSource = data;
+
+                    gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
+                }
+            }
+            this.Cursor = Cursors.Default;
         }
 
         private void FrmTransactionDetails_FormClosed(object sender, FormClosedEventArgs e)

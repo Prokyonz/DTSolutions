@@ -69,7 +69,9 @@ namespace DiamondTrading.Transaction
 
             if (string.IsNullOrEmpty(_selectedPurchaseId) == false)
             {
+                Console.WriteLine("1 :"+DateTime.Now);
                 _editedPurchaseMaster = await _purchaseMasterRepository.GetPurchaseAsync(_selectedPurchaseId);
+                Console.WriteLine("2 :" + DateTime.Now);
                 //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_editedPurchaseMaster != null)
                 {
@@ -131,6 +133,7 @@ namespace DiamondTrading.Transaction
 
                         txtRemark.Text = _editedPurchaseMaster.Remarks;
 
+                        Console.WriteLine("3 :" + DateTime.Now);
                         KapanMappingMasterRepository kapanMappingMasterRepository = new KapanMappingMasterRepository();
                         var result = await kapanMappingMasterRepository.GetKapanMappingDetailAsync(_selectedPurchaseId);
                         if (result != null)
@@ -139,8 +142,11 @@ namespace DiamondTrading.Transaction
                             btnSave.Enabled = false;
                             MessageBox.Show("You can not edit this entry as this entry already processed", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
+                        Console.WriteLine("4 :" + DateTime.Now);
 
+                        Console.WriteLine("5 :" + DateTime.Now);
                         List<PurchaseDetails> EditedPurchaseDetail = await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
+                        Console.WriteLine("6 :" + DateTime.Now);
 
                         for (int i = 0; i < EditedPurchaseDetail.Count; i++)
                         {
@@ -158,6 +164,7 @@ namespace DiamondTrading.Transaction
 
 
                             //grvPurchaseDetails.SetRowCellValue(i, colKapan, EditedPurchaseDetail[i].KapanId);
+                            grvPurchaseDetails.SetFocusedRowCellValue(colPurchaseDetailId, EditedPurchaseDetail[i].Id);
                             grvPurchaseDetails.SetFocusedRowCellValue(colShape, EditedPurchaseDetail[i].ShapeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedPurchaseDetail[i].SizeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedPurchaseDetail[i].PurityId);
@@ -605,6 +612,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("CAmount");
             dt.Columns.Add("DisAmount");
             dt.Columns.Add("CVDAmount");
+            dt.Columns.Add("PurchaseDetailId");
             return dt;
         }
 
@@ -1416,7 +1424,10 @@ namespace DiamondTrading.Transaction
                     for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                     {
                         purchaseDetails = new PurchaseDetails();
-                        purchaseDetails.Id = Guid.NewGuid().ToString();
+                        if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colPurchaseDetailId).ToString()))
+                            purchaseDetails.Id = Guid.NewGuid().ToString();
+                        else
+                            purchaseDetails.Id = grvPurchaseDetails.GetRowCellValue(i, colPurchaseDetailId).ToString();
                         purchaseDetails.PurchaseId = _editedPurchaseMaster.Id;
                         purchaseDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
                         purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
@@ -1502,7 +1513,8 @@ namespace DiamondTrading.Transaction
 
                     if (Result != null)
                     {
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                        //MessageBox.Show(this, AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
                     }
                 }
