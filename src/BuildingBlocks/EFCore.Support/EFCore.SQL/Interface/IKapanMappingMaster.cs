@@ -8,6 +8,7 @@ namespace EFCore.SQL.Interface
 {
     public interface IKapanMappingMaster
     {
+        Task<KapanMappingMaster> GetKapanMappingDetailAsync(string purchaseId);
         Task<List<KapanMappingMaster>> GetKapanMappingMaster(string companyId, string branchId, string financialYearId);
         Task<List<KapanMappingReportModel>> GetKapanMappingReport(string companyId, string branchId, string financialYearId);
         Task<List<KapanMapping>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId);

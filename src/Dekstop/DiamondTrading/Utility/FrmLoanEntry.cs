@@ -65,7 +65,7 @@ namespace DiamondTrading.Utility
 
         private async Task LoadParty()
         {
-            var result = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, 10);
+            var result = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, 13);
             lueParty.Properties.DataSource = result;
             lueParty.Properties.DisplayMember = "Name";
             lueParty.Properties.ValueMember = "Id";

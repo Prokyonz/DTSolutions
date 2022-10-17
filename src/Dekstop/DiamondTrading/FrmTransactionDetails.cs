@@ -230,6 +230,7 @@ namespace DiamondTrading
 
         private async Task LoadGridData(bool IsForceLoad = false)
         {
+            this.Cursor = Cursors.WaitCursor;
             if (xtabManager.SelectedTabPage == xtabPurchase)
             {
                 if (IsForceLoad || _purchaseMasterRepository == null)
@@ -237,6 +238,7 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
+                    grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
@@ -246,6 +248,7 @@ namespace DiamondTrading
                     _salesMasterRepository = new SalesMasterRepository();
                     var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                    grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabPayment)
@@ -255,6 +258,7 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
                     grdPaymentDetails.DataSource = data;
+                    gridView4.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PaymentReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabReceipt)
@@ -264,6 +268,7 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
                     grdReceiptDetails.DataSource = data;
+                    gridView7.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ReceiptReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabContra)
@@ -273,6 +278,7 @@ namespace DiamondTrading
                     _contraEntryMasterRespository = new ContraEntryMasterRespository();
                     var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdContraDetails.DataSource = data;
+                    gridView5.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
@@ -282,6 +288,7 @@ namespace DiamondTrading
                     _expenseMasterRepository = new ExpenseMasterRepository();
                     var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
                     grdExpenseControl.DataSource = data;
+                    grvExpenseMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ExpenseReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabLoan)
@@ -292,6 +299,7 @@ namespace DiamondTrading
                     var data = await _loanMasterRepository.GetLoanReportAsync(Common.LoginCompany);
                     gridControlLoan.DataSource = data;
                     gridView9.ExpandAllGroups();
+                    gridView9.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LoanReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabMixed)
@@ -302,6 +310,7 @@ namespace DiamondTrading
                     var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlMixed.DataSource = data;
                     gridView15.ExpandAllGroups();
+                    gridView15.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MixReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
@@ -315,6 +324,7 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var purchaseSlipDetails = await _purchaseMasterRepository.GetAvailableSlipDetailsReport(ActionType, Common.LoginCompany, Common.LoginFinancialYear);
                     grdPurchaseSlipDetails.DataSource = purchaseSlipDetails;
+                    grvPurchaseSlipDetails.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SlipReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
@@ -328,6 +338,7 @@ namespace DiamondTrading
                     _JangadMasterRepository = new JangadMasterRepository();
                     var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
                     gridControlJangadSendReceive.DataSource = data;
+                    grvJangadSendReceive.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabPFReport)
@@ -337,6 +348,7 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var data = await _purchaseMasterRepository.GetPFReportAsync(Common.LoginCompany, Common.LoginFinancialYear, 1);
                     gridControlPFReport.DataSource = data;
+                    grvPFReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PFReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
@@ -346,6 +358,7 @@ namespace DiamondTrading
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlLedgerReport.DataSource = data;
+                    grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
@@ -355,6 +368,7 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var data = await _purchaseMasterRepository.GetWeeklyPurchaseReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     grdWeeklyPurchaseReport.DataSource = data;
+                    grvWeeklyPurchaseReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("WeeklyReport"));
 
                     System.Globalization.CultureInfo CI = new System.Globalization.CultureInfo("en-US");
                     System.Globalization.Calendar Cal = CI.Calendar;
@@ -385,6 +399,7 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetPayableReceivalbeReport(Common.LoginCompany, Common.LoginFinancialYear, SelectedTabPage == "Payable" ? 0 : 1);
                     gridControlPayableReceivable.DataSource = data;
+                    gridView1.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PayableReceivableReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
@@ -394,6 +409,7 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueBalanceSheetType.EditValue));
                     gridControlBalanceSheet.DataSource = data;
+                    gridView29.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("BalanceSheetReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
@@ -403,6 +419,7 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
                     gridControlProfitLoss.DataSource = data;
+                    gridView32.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ProfitLossReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabCashBankReport)
@@ -412,7 +429,82 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlCashBank.DataSource = data;
+
+                    gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
                 }
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void FrmTransactionDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (xtabManager.SelectedTabPage == xtabPurchase)
+            {
+                grvTransMaster.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabSales)
+            {
+                grvSalesTransactonMaster.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("SalesReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                gridView4.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("PaymentReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                gridView7.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ReceiptReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabContra)
+            {
+                gridView5.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ContraReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
+            {
+                grvExpenseMaster.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ExpenseReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                gridView9.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("LoanReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabMixed)
+            {
+                gridView15.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("MixReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            {
+                grvPurchaseSlipDetails.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("SlipReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                grvJangadSendReceive.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("JangadReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPFReport)
+            {
+                grvPFReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("PFReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            {
+                grvLedgerReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                grvWeeklyPurchaseReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("WeeklyReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
+            {
+                gridView1.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("PayableReceivableReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
+            {
+                gridView29.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("BalanceSheetReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
+            {
+                gridView32.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ProfitLossReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabCashBankReport)
+            {
+                gridView2.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
             }
         }
 
@@ -653,42 +745,50 @@ namespace DiamondTrading
 
         private void grvTransMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.Column == gridColumnPurApprovalType)
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0 && e.Column == gridColumnPurApprovalType)
             {
-                if (e.CellValue.ToString().Equals("0"))
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
                 }
-                else if (e.CellValue.ToString().Equals("1"))
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
                 {
-                    e.Appearance.ForeColor = Color.Black;
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
                 }
-                else if (e.CellValue.ToString().Equals("2"))
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    if (e.Column == gridColumnPurApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                    if (e.Column == gridColumnPurSlipNo)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvTransMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
                 }
             }
-            //if (e.RowHandle < 0)
-            //    return;
-            //string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
-            //if (Convert.ToInt32(ApprovalType) == 0)
-            //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
-            //else if (Convert.ToInt32(ApprovalType) == 2)
-            //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
-        }
-
-        private void grvTransMaster_RowStyle(object sender, RowStyleEventArgs e)
-        {
-            //if (e.RowHandle < 0)
-            //    return;
-            //string ApprovalType = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
-            //if (Convert.ToInt32(ApprovalType) == 0)
-            //    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
-            //else if (Convert.ToInt32(ApprovalType) == 2)
-            //    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
         }
 
         private async void grvSalesTransactonMaster_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
@@ -718,21 +818,47 @@ namespace DiamondTrading
 
         private void grvSalesTransactonMaster_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (e.Column == colSalesApprovalType)
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0)
             {
-                if (e.CellValue.ToString().Equals("0"))
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(169, 169, 169);
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                    }
+                    if(e.Column==colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Black;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
                 }
-                else if (e.CellValue.ToString().Equals("1"))
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
                 {
-                    e.Appearance.ForeColor = Color.Black;
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                    }
+                    if (e.Column == colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Green;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
                 }
-                else if (e.CellValue.ToString().Equals("2"))
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
                 {
-                    e.Appearance.ForeColor = Color.FromArgb(217, 83, 79);
+                    if (e.Column == colSalesApprovalType)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                    }
+                    if (e.Column == colSalesSlispNo)
+                    {
+                        e.Appearance.ForeColor = Color.Red;
+                        e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Bold);
+                    }
                     grvSalesTransactonMaster.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
                 }
             }
@@ -771,14 +897,14 @@ namespace DiamondTrading
 
         private void grvTransMaster_CellMerge(object sender, CellMergeEventArgs e)
         {
-            GridView view = sender as GridView;
-            int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["SlipNo"]));
-            int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["SlipNo"]));
-            if (id1 != id2)
-            {
-                e.Merge = false;
-                e.Handled = true;
-            }
+            //GridView view = sender as GridView;
+            //int id1 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle1, view.Columns["SlipNo"]));
+            //int id2 = Convert.ToInt32(view.GetRowCellValue(e.RowHandle2, view.Columns["SlipNo"]));
+            //if (id1 != id2)
+            //{
+            //    e.Merge = false;
+            //    e.Handled = true;
+            //}
         }
 
         private void grvSalesTransactonMaster_CellMerge(object sender, CellMergeEventArgs e)
@@ -1106,16 +1232,45 @@ namespace DiamondTrading
         {
             try
             {
-                GridView view = sender as GridView;
-                GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
-                double Total = double.Parse(view.Columns[18].SummaryText);
-                double BuyRate = double.Parse(view.Columns["NetWeight"].SummaryText);
-                e.TotalValue = Total / BuyRate;
+                if (e.IsTotalSummary)
+                {
+                    switch (e.SummaryProcess)
+                    {
+                        case DevExpress.Data.CustomSummaryProcess.Finalize:
+                            decimal Total = Convert.ToDecimal(gridColumnGrossTotal.SummaryItem.SummaryValue);
+                            decimal BuyRate = Convert.ToDecimal(NetWeight.SummaryItem.SummaryValue);
+                            e.TotalValue = (Total / BuyRate).ToString();
+                            break;
+                    }
+                }
             }
             catch (Exception)
             {
                 e.TotalValue = 0;
-            }            
+            }
+        }
+
+        private void grvSalesTransactonMaster_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            //GridView View = sender as GridView;
+            //if (e.RowHandle >= 0)
+            //{
+            //    string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+            //    if (priority.ToLower() == "approved" || priority.ToLower() == "1")
+            //    {
+            //        e.Appearance.BackColor = Color.Green;
+            //        e.Appearance.BackColor2 = Color.Green;
+            //        e.HighPriority = true;
+            //    }
+            //}
+        }
+
+        private void gridView2_CustomColumnDisplayText(object sender, DevExpress.XtraGrid.Views.Base.CustomColumnDisplayTextEventArgs e)
+        {
+            if (e.Column == colCashBankCredit)
+                if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
+            if (e.Column == colCashBankDebit)
+                if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
         }
     }
 }

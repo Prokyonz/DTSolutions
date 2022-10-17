@@ -53,6 +53,8 @@ namespace DiamondTrading.Process
             this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurchaseDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStockId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAccountToAssortDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -65,7 +67,6 @@ namespace DiamondTrading.Process
             this.lueReceiveFrom = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.colStockId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -267,7 +268,8 @@ namespace DiamondTrading.Process
             this.colPurityId,
             this.colPurchaseDetailsId,
             this.colSlipNo1,
-            this.colStockId});
+            this.colStockId,
+            this.colAccountToAssortDetailsId});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -379,6 +381,18 @@ namespace DiamondTrading.Process
             this.colSlipNo1.Caption = "SlipNo";
             this.colSlipNo1.FieldName = "SlipNo1";
             this.colSlipNo1.Name = "colSlipNo1";
+            // 
+            // colStockId
+            // 
+            this.colStockId.Caption = "StockId";
+            this.colStockId.FieldName = "StockId";
+            this.colStockId.Name = "colStockId";
+            // 
+            // colAccountToAssortDetailsId
+            // 
+            this.colAccountToAssortDetailsId.Caption = "AccountToAssortDetailsId";
+            this.colAccountToAssortDetailsId.FieldName = "AccountToAssortDetailsId";
+            this.colAccountToAssortDetailsId.Name = "colAccountToAssortDetailsId";
             // 
             // repoPayType
             // 
@@ -535,12 +549,6 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Send To* :";
             // 
-            // colStockId
-            // 
-            this.colStockId.Caption = "StockId";
-            this.colStockId.FieldName = "StockId";
-            this.colStockId.Name = "colStockId";
-            // 
             // FrmBoilSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,5 +636,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoPurity;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoKapan;
         private DevExpress.XtraGrid.Columns.GridColumn colStockId;
+        private DevExpress.XtraGrid.Columns.GridColumn colAccountToAssortDetailsId;
     }
 }

@@ -97,7 +97,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SalesMaster.Where(s => s.IsDelete == false && s.Id == salesId).FirstOrDefaultAsync();
+                return await _databaseContext.SalesMaster.Where(s => s.IsDelete == false && s.Id == salesId).Include("SalesDetails").FirstOrDefaultAsync();
             }
         }
 
@@ -146,7 +146,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).FirstOrDefaultAsync();
+                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).Include("SalesDetails").FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {
                     salesRecord.CompanyId = salesMaster.CompanyId;
@@ -189,6 +189,8 @@ namespace EFCore.SQL.Repository
                     salesRecord.Remarks = salesMaster.Remarks;
                     salesRecord.UpdatedDate = salesMaster.UpdatedDate;
                     salesRecord.UpdatedBy = salesMaster.UpdatedBy;
+                    salesRecord.ApprovalType = salesMaster.ApprovalType;
+                    salesRecord.Message = salesMaster.Message;
 
                     if (salesMaster.SalesDetails != null)
                     {
@@ -200,6 +202,75 @@ namespace EFCore.SQL.Repository
                     await _databaseContext.SaveChangesAsync();
                 }
                 return salesMaster;
+            }
+        }
+
+        public async Task<bool> DeleteSalesDetailRangeAsync(List<SalesDetails> salesDetails)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesDetails != null)
+                {
+                    _databaseContext.SalesDetails.RemoveRange(salesDetails);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public async Task<bool> AddSalesDetailRangeAsync(List<SalesDetails> salesDetails)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesDetails != null)
+                {
+                    List<SalesDetails> salesDetailsList = new List<SalesDetails>();
+                    SalesDetails objsalesDetails;
+                    foreach (SalesDetails salesDetail in salesDetails)
+                    {
+                        objsalesDetails = new SalesDetails();
+                        objsalesDetails.Id = salesDetail.Id;
+                        objsalesDetails.SalesId = salesDetail.SalesId;
+                        objsalesDetails.Category = salesDetail.Category;
+                        objsalesDetails.KapanId = salesDetail.KapanId;
+                        objsalesDetails.ShapeId = salesDetail.ShapeId;
+                        objsalesDetails.SizeId = salesDetail.SizeId;
+                        objsalesDetails.PurityId = salesDetail.PurityId;
+                        objsalesDetails.CharniSizeId = salesDetail.CharniSizeId;
+                        objsalesDetails.GalaSizeId = salesDetail.GalaSizeId;
+                        objsalesDetails.NumberSizeId = salesDetail.NumberSizeId;
+                        objsalesDetails.Weight = salesDetail.Weight;
+                        objsalesDetails.TIPWeight = salesDetail.TIPWeight;
+                        objsalesDetails.CVDWeight = salesDetail.CVDWeight;
+                        objsalesDetails.RejectedPercentage = salesDetail.RejectedPercentage;
+                        objsalesDetails.RejectedWeight = salesDetail.RejectedWeight;
+                        objsalesDetails.LessWeight = salesDetail.LessWeight;
+                        objsalesDetails.LessDiscountPercentage = salesDetail.LessDiscountPercentage;
+                        objsalesDetails.LessWeightDiscount = salesDetail.LessWeightDiscount;
+                        objsalesDetails.NetWeight = salesDetail.NetWeight;
+                        objsalesDetails.SaleRate = salesDetail.SaleRate;
+                        objsalesDetails.CVDCharge = salesDetail.CVDCharge;
+                        objsalesDetails.CVDAmount = salesDetail.CVDAmount;
+                        objsalesDetails.Amount = salesDetail.Amount;
+                        objsalesDetails.CurrencyRate = salesDetail.CurrencyRate;
+                        objsalesDetails.CurrencyAmount = salesDetail.CurrencyAmount;
+                        objsalesDetails.IsTransfer = salesDetail.IsTransfer;
+                        objsalesDetails.TransferParentId = salesDetail.TransferParentId;
+                        objsalesDetails.CreatedDate = salesDetail.CreatedDate;
+                        objsalesDetails.CreatedBy = salesDetail.CreatedBy;
+                        objsalesDetails.UpdatedDate = salesDetail.UpdatedDate;
+                        objsalesDetails.UpdatedBy = salesDetail.UpdatedBy;
+
+                        salesDetailsList.Add(objsalesDetails);
+                    }
+                    await _databaseContext.SalesDetails.AddRangeAsync(salesDetailsList);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
             }
         }
 

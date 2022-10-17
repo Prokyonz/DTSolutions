@@ -16,10 +16,10 @@ namespace DiamondTrading
 {
     public partial class FrmProcessDetails : DevExpress.XtraEditors.XtraForm
     {
-        private KapanMappingMasterRepository _kapanMappingMasterRepository ;
-        private AccountToAssortMasterRepository _accountToAssortMasterRepository ;
+        private KapanMappingMasterRepository _kapanMappingMasterRepository;
+        private AccountToAssortMasterRepository _accountToAssortMasterRepository;
         private BoilMasterRepository _boilMasterRepository;
-        private CharniProcessMasterRepository  _charniProcessMasterRepository;
+        private CharniProcessMasterRepository _charniProcessMasterRepository;
         private GalaProcessMasterRepository _galaProcessMasterRepository;
         private NumberProcessMasterRepository _numberProcessMasterRepository;
         private OpeningStockMasterRepositody _openingStockMasterRepositody;
@@ -29,7 +29,7 @@ namespace DiamondTrading
 
         public FrmProcessDetails()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         public void ActiveTab()
@@ -40,7 +40,7 @@ namespace DiamondTrading
                 case "Kapan":
                     xtabKapanMapping.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabKapanMapping;
-                    xtabKapanMapping.Text = this.Text = "Kapan Details";                    
+                    xtabKapanMapping.Text = this.Text = "Kapan Details";
                     break;
                 case "AssortSend":
                     xtabAssortSend.PageVisible = true;
@@ -60,7 +60,7 @@ namespace DiamondTrading
                 case "BoilReceive":
                     xtabBoilSendReceive.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabBoilSendReceive;
-                    xtabBoilSendReceive.Text= this.Text = "Boil Receive";
+                    xtabBoilSendReceive.Text = this.Text = "Boil Receive";
                     break;
                 case "CharniSend":
                     xtabCjharniSendReceive.PageVisible = true;
@@ -130,7 +130,7 @@ namespace DiamondTrading
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private async void accordianAddBtn_Click(object sender, EventArgs e)
@@ -145,7 +145,7 @@ namespace DiamondTrading
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
             {
-                Transaction.FrmSalesEntry frmSalesEntry= new Transaction.FrmSalesEntry();
+                Transaction.FrmSalesEntry frmSalesEntry = new Transaction.FrmSalesEntry();
                 if (frmSalesEntry.ShowDialog() == DialogResult.OK)
                 {
                     await LoadGridData(true);
@@ -250,7 +250,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _accountToAssortMasterRepository == null)
                 {
                     _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany,  Common.LoginFinancialYear);
+                    var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
                     grdStockReportMaster.DataSource = salesData.OrderBy(o => o.Kapan);
                 }
             }
@@ -303,7 +303,7 @@ namespace DiamondTrading
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
             //_ = LoadGridData();
-        } 
+        }
 
         private void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
@@ -314,7 +314,29 @@ namespace DiamondTrading
         {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+                    string SelectedGuid = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
+
+                    if (SelectedGuid != null)
+                    {
+                        var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            message = "You can not delete this record because some quantity is transfered.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message);
+                }
 
                 //string SelectedGuid;
                 //string tempCompanyName = "";
@@ -340,6 +362,30 @@ namespace DiamondTrading
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
             {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+                    string SelectedGuid = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendId).ToString();
+                    string AccountToAssortChildId = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnChildId).ToString();
+                    string slipNo = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendSlipNo).ToString(); 
+                    if (SelectedGuid != null && AccountToAssortChildId != null)
+                    {
+                        var result = await _accountToAssortMasterRepository.DeleteAccountToAssortAsync(SelectedGuid.ToString(), AccountToAssortChildId, slipNo);
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            message = "You can not delete this record because child record is available in boil send.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message);
+                }
                 //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 //{
@@ -358,7 +404,7 @@ namespace DiamondTrading
 
         private void accordionCancelButton_Click(object sender, EventArgs e)
         {
-            btnCancel_Click(sender,e);
+            btnCancel_Click(sender, e);
         }
 
         private void gridViewCompanyMaster_MasterRowEmpty(object sender, MasterRowEmptyEventArgs e)
@@ -423,8 +469,8 @@ namespace DiamondTrading
                 ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
 
                 var result = await approvalPermissionMasterRepository.GetPermission();
-                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "purchase_approval").FirstOrDefault() ;                
-                
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "purchase_approval").FirstOrDefault();
+
                 if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
                 {
                     DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;

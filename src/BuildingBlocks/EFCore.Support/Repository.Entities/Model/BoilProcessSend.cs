@@ -28,5 +28,6 @@ namespace Repository.Entities.Models
 
         public decimal RejectedWeight { get; set; }
         public decimal AvailableWeight { get; set; }
+        public string AccountToAssortDetailsId { get; set; }
     }
 }

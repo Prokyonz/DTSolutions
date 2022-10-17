@@ -102,12 +102,18 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PurchaseDetails>> GetPurchaseDetailAsync(string purchaseId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PurchaseDetails.Where(s => s.PurchaseId == purchaseId).ToListAsync();
+            }
+        }
+
         public async Task<long> GetMaxSlipNo(string companyId, string financialYearId)
         {
             try
             {
-
-
                 using (_databaseContext = new DatabaseContext())
                 {
                     var result = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).MaxAsync(m => m.SlipNo);
@@ -167,7 +173,8 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).FirstOrDefaultAsync();
+                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).Include("PurchaseDetails").FirstOrDefaultAsync();
+
                 if (getPurchase != null)
                 {
                     getPurchase.CompanyId = purchaseMaster.CompanyId;
@@ -211,6 +218,8 @@ namespace EFCore.SQL.Repository
                     getPurchase.Remarks = purchaseMaster.Remarks;
                     getPurchase.UpdatedDate = purchaseMaster.UpdatedDate;
                     getPurchase.UpdatedBy = purchaseMaster.UpdatedBy;
+                    getPurchase.ApprovalType = purchaseMaster.ApprovalType;
+                    getPurchase.Message = purchaseMaster.Message;
 
                     if (getPurchase.PurchaseDetails != null)
                     {

@@ -75,7 +75,7 @@ namespace DiamondTrading
             this.xtabAssortSend = new DevExpress.XtraTab.XtraTabPage();
             this.grdAssortSendReceiveMaster = new DevExpress.XtraGrid.GridControl();
             this.grvAssortSendReceiveMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnAssortSendId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnChildId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSr = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCompanyId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -88,7 +88,7 @@ namespace DiamondTrading
             this.gridColumnPartyNameTo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAssortKapanId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAssortKapanName = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnAssortSendSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn19 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -261,6 +261,8 @@ namespace DiamondTrading
             this.gridColumn143 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn145 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn146 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn147 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
@@ -290,8 +292,6 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumnRate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -391,7 +391,6 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
-            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
@@ -470,11 +469,11 @@ namespace DiamondTrading
             // 
             // grvKapanMapping
             // 
-            this.grvKapanMapping.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvKapanMapping.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvKapanMapping.Appearance.FooterPanel.Options.UseFont = true;
-            this.grvKapanMapping.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvKapanMapping.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvKapanMapping.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvKapanMapping.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvKapanMapping.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvKapanMapping.Appearance.Row.Options.UseFont = true;
             this.grvKapanMapping.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnKapanMapingId,
@@ -495,14 +494,6 @@ namespace DiamondTrading
             this.grvKapanMapping.OptionsView.ShowFooter = true;
             this.grvKapanMapping.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnKapanMappingSrNo, DevExpress.Data.ColumnSortOrder.Descending)});
-            this.grvKapanMapping.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvTransMaster_RowCellStyle);
-            this.grvKapanMapping.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvTransMaster_RowStyle);
-            this.grvKapanMapping.MasterRowEmpty += new DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventHandler(this.gridViewCompanyMaster_MasterRowEmpty);
-            this.grvKapanMapping.MasterRowGetChildList += new DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventHandler(this.gridViewCompanyMaster_MasterRowGetChildList);
-            this.grvKapanMapping.MasterRowGetRelationName += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationNameEventHandler(this.gridViewCompanyMaster_MasterRowGetRelationName);
-            this.grvKapanMapping.MasterRowGetRelationCount += new DevExpress.XtraGrid.Views.Grid.MasterRowGetRelationCountEventHandler(this.gridViewCompanyMaster_MasterRowGetRelationCount);
-            this.grvKapanMapping.GridMenuItemClick += new DevExpress.XtraGrid.Views.Grid.GridMenuItemClickEventHandler(this.grvTransMaster_GridMenuItemClick);
-            this.grvKapanMapping.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.grvTransMaster_PopupMenuShowing);
             // 
             // gridColumnKapanMapingId
             // 
@@ -518,7 +509,7 @@ namespace DiamondTrading
             this.gridColumnKapanMappingSlipNo.Name = "gridColumnKapanMappingSlipNo";
             this.gridColumnKapanMappingSlipNo.Visible = true;
             this.gridColumnKapanMappingSlipNo.VisibleIndex = 1;
-            this.gridColumnKapanMappingSlipNo.Width = 246;
+            this.gridColumnKapanMappingSlipNo.Width = 88;
             // 
             // gridColumnKapanMappingSrNo
             // 
@@ -527,7 +518,7 @@ namespace DiamondTrading
             this.gridColumnKapanMappingSrNo.Name = "gridColumnKapanMappingSrNo";
             this.gridColumnKapanMappingSrNo.Visible = true;
             this.gridColumnKapanMappingSrNo.VisibleIndex = 0;
-            this.gridColumnKapanMappingSrNo.Width = 149;
+            this.gridColumnKapanMappingSrNo.Width = 69;
             // 
             // gridColumnKapanMappingCompanyId
             // 
@@ -564,7 +555,7 @@ namespace DiamondTrading
             this.gridColumnKapanMappingKapanName.Name = "gridColumnKapanMappingKapanName";
             this.gridColumnKapanMappingKapanName.Visible = true;
             this.gridColumnKapanMappingKapanName.VisibleIndex = 2;
-            this.gridColumnKapanMappingKapanName.Width = 277;
+            this.gridColumnKapanMappingKapanName.Width = 672;
             // 
             // gridColumnKapanMappingWeight
             // 
@@ -575,7 +566,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", "{0:0.##}")});
             this.gridColumnKapanMappingWeight.Visible = true;
             this.gridColumnKapanMappingWeight.VisibleIndex = 3;
-            this.gridColumnKapanMappingWeight.Width = 274;
+            this.gridColumnKapanMappingWeight.Width = 127;
             // 
             // gridColumnKapanMappingUpdatedDate
             // 
@@ -584,7 +575,7 @@ namespace DiamondTrading
             this.gridColumnKapanMappingUpdatedDate.Name = "gridColumnKapanMappingUpdatedDate";
             this.gridColumnKapanMappingUpdatedDate.Visible = true;
             this.gridColumnKapanMappingUpdatedDate.VisibleIndex = 4;
-            this.gridColumnKapanMappingUpdatedDate.Width = 115;
+            this.gridColumnKapanMappingUpdatedDate.Width = 105;
             // 
             // repositoryItemComboBox1
             // 
@@ -666,7 +657,7 @@ namespace DiamondTrading
             this.grvAssortSendReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvAssortSendReceiveMaster.Appearance.Row.Options.UseFont = true;
             this.grvAssortSendReceiveMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn1,
+            this.gridColumnAssortSendId,
             this.gridColumnChildId,
             this.gridColumnSr,
             this.gridColumnCompanyId,
@@ -679,7 +670,7 @@ namespace DiamondTrading
             this.gridColumnPartyNameTo,
             this.gridColumnAssortKapanId,
             this.gridColumnAssortKapanName,
-            this.gridColumn3,
+            this.gridColumnAssortSendSlipNo,
             this.gridColumn4,
             this.gridColumn2,
             this.gridColumn19,
@@ -699,11 +690,11 @@ namespace DiamondTrading
             this.grvAssortSendReceiveMaster.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvSalesTransactonMaster_RowCellStyle);
             this.grvAssortSendReceiveMaster.PopupMenuShowing += new DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventHandler(this.grvSalesTransactonMaster_PopupMenuShowing);
             // 
-            // gridColumn1
+            // gridColumnAssortSendId
             // 
-            this.gridColumn1.Caption = "Id";
-            this.gridColumn1.FieldName = "Id";
-            this.gridColumn1.Name = "gridColumn1";
+            this.gridColumnAssortSendId.Caption = "Id";
+            this.gridColumnAssortSendId.FieldName = "Id";
+            this.gridColumnAssortSendId.Name = "gridColumnAssortSendId";
             // 
             // gridColumnChildId
             // 
@@ -795,14 +786,14 @@ namespace DiamondTrading
             this.gridColumnAssortKapanName.VisibleIndex = 2;
             this.gridColumnAssortKapanName.Width = 68;
             // 
-            // gridColumn3
+            // gridColumnAssortSendSlipNo
             // 
-            this.gridColumn3.Caption = "Slip No";
-            this.gridColumn3.FieldName = "SlipNo";
-            this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 1;
-            this.gridColumn3.Width = 80;
+            this.gridColumnAssortSendSlipNo.Caption = "Slip No";
+            this.gridColumnAssortSendSlipNo.FieldName = "SlipNo";
+            this.gridColumnAssortSendSlipNo.Name = "gridColumnAssortSendSlipNo";
+            this.gridColumnAssortSendSlipNo.Visible = true;
+            this.gridColumnAssortSendSlipNo.VisibleIndex = 1;
+            this.gridColumnAssortSendSlipNo.Width = 80;
             // 
             // gridColumn4
             // 
@@ -2425,6 +2416,24 @@ namespace DiamondTrading
             this.gridColumn146.VisibleIndex = 7;
             this.gridColumn146.Width = 129;
             // 
+            // gridColumnRate
+            // 
+            this.gridColumnRate.Caption = "Rate";
+            this.gridColumnRate.FieldName = "Rate";
+            this.gridColumnRate.Name = "gridColumnRate";
+            this.gridColumnRate.Visible = true;
+            this.gridColumnRate.VisibleIndex = 8;
+            this.gridColumnRate.Width = 72;
+            // 
+            // gridColumnAmount
+            // 
+            this.gridColumnAmount.Caption = "Amount";
+            this.gridColumnAmount.FieldName = "Amount";
+            this.gridColumnAmount.Name = "gridColumnAmount";
+            this.gridColumnAmount.Visible = true;
+            this.gridColumnAmount.VisibleIndex = 9;
+            this.gridColumnAmount.Width = 72;
+            // 
             // gridColumn147
             // 
             this.gridColumn147.Caption = "NumberId";
@@ -2765,24 +2774,6 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // gridColumnRate
-            // 
-            this.gridColumnRate.Caption = "Rate";
-            this.gridColumnRate.FieldName = "Rate";
-            this.gridColumnRate.Name = "gridColumnRate";
-            this.gridColumnRate.Visible = true;
-            this.gridColumnRate.VisibleIndex = 8;
-            this.gridColumnRate.Width = 72;
-            // 
-            // gridColumnAmount
-            // 
-            this.gridColumnAmount.Caption = "Amount";
-            this.gridColumnAmount.FieldName = "Amount";
-            this.gridColumnAmount.Name = "gridColumnAmount";
-            this.gridColumnAmount.Visible = true;
-            this.gridColumnAmount.VisibleIndex = 9;
-            this.gridColumnAmount.Width = 72;
-            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2874,8 +2865,8 @@ namespace DiamondTrading
         private DevExpress.XtraTab.XtraTabPage xtabAssortSend;
         private DevExpress.XtraGrid.GridControl grdAssortSendReceiveMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView grvAssortSendReceiveMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAssortSendId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAssortSendSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPartyIdFrom;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPartyNameFrom;

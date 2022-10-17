@@ -35,5 +35,6 @@ namespace Repository.Entities.Model
         public double? Debit { get; set; }
         public DateTime? CreatedDate { get; set; }
         public string TrType { get; set; }
+        public DateTime? EntryDate { get; set; }
     }
 }

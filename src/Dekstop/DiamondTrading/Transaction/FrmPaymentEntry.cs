@@ -414,7 +414,7 @@ namespace DiamondTrading.Transaction
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
+        private async void repositoryItemButtonEdit1_Click(object sender, EventArgs e)
         {
             try
             {
@@ -424,6 +424,34 @@ namespace DiamondTrading.Transaction
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
                     if (dtView.Count > 0)
                     {
+                        DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1");
+                        if (dataRow.Length == 0)
+                        {
+                            var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);
+
+                            //for (int i = 0; i < dtView.ToTable().Rows.Count; i++)
+                            //{
+                            //    allSlipTotal += Convert.ToDecimal(dtView.ToTable().Rows[i].ItemArray[9]);
+                            //}
+
+                            decimal allSlipRemainingBalance = 0;
+
+                            if (dtView.Count > 0)
+                            {
+                                allSlipRemainingBalance = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
+
+                                PartyOpeningBalance = PartyOpeningBalance - allSlipRemainingBalance;
+                            }
+
+                            dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
+                                "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
+                                Common.LoginFinancialYear, Common.LoginFinancialYearName,
+                                PartyOpeningBalance, PartyOpeningBalance);
+                        }
+                        
+
+                        dtView.Sort = "SlipNo ASC";
+
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
                         if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
@@ -469,12 +497,12 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
-            catch
+            catch(Exception Ex)
             {
             }
         }
 
-        private void grvPaymentDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        private async void grvPaymentDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
             if (e.Column == colAmount && _paymentType != -1)
             {
@@ -482,10 +510,10 @@ namespace DiamondTrading.Transaction
                 {
                     DataView dtView = new DataView(dtSlipDetail);
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
-                    if (dtView.Count > 0)
+                    //if (dtView.Count > 0)
                     {
                         decimal Value = Convert.ToDecimal(e.Value);
-                        if (Value > 0)
+                        //if (Value > 0)
                         {
                             if (!dtSlipDetail.Columns.Contains("Amount"))
                             {
@@ -498,38 +526,72 @@ namespace DiamondTrading.Transaction
                                 dtSlipDetail.Columns.Add(column);
                             }
 
-                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
-                            if (Value > a)
-                            {
-                                MessageBox.Show("Max Amount allowed for available slip is '" + a.ToString("0.000") + "'.");
-                                grvPaymentDetails.FocusedRowHandle = e.RowHandle;
-                                grvPaymentDetails.FocusedColumn = colAmount;
-                                grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, 0);
-                                return;
-                            }
-                            decimal TotalValue = 0;
-                            decimal RemainValue = Value;
-                            decimal AvailableValue = 0;
                             foreach (DataRowView row in dtView)
                             {
-                                if (TotalValue != Value)
-                                {
-                                    AvailableValue = Convert.ToDecimal(row["RemainAmount"]);
-                                    decimal TempValue = AvailableValue - RemainValue;
-                                    if (TempValue <= 0)
-                                    {
-                                        row["Amount"] = AvailableValue;
-                                        TotalValue += AvailableValue;
-                                        RemainValue = TempValue * -1;
-                                    }
-                                    else
-                                    {
-                                        row["Amount"] = RemainValue;
-                                        TotalValue += RemainValue;
-                                        RemainValue = 0;
-                                    }
-                                }
+                                row["Amount"] = 0;
                             }
+
+
+                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1");
+                            if (dataRow.Length == 0)
+                            {
+                                var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);
+
+                                //for (int i = 0; i < dtView.ToTable().Rows.Count; i++)
+                                //{
+                                //    allSlipTotal += Convert.ToDecimal(dtView.ToTable().Rows[i].ItemArray[9]);
+                                //}
+
+                                decimal allSlipRemainingBalance = 0;
+
+                                if (dtView.Count > 0)
+                                {
+                                    allSlipRemainingBalance = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
+
+                                    PartyOpeningBalance = PartyOpeningBalance - allSlipRemainingBalance;
+                                }
+
+                                dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
+                                    "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
+                                    Common.LoginFinancialYear, Common.LoginFinancialYearName,
+                                    PartyOpeningBalance, PartyOpeningBalance, Value);
+                            }
+                            else
+                            {
+                                dataRow[0]["Amount"] = Value;
+                            }
+                            //decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
+                            //if (Value > a)
+                            //{
+                            //    MessageBox.Show("Max Amount allowed for available slip is '" + a.ToString("0.000") + "'.");
+                            //    grvPaymentDetails.FocusedRowHandle = e.RowHandle;
+                            //    grvPaymentDetails.FocusedColumn = colAmount;
+                            //    grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, 0);
+                            //    return;
+                            //}
+                            //decimal TotalValue = 0;
+                            //decimal RemainValue = Value;
+                            //decimal AvailableValue = 0;
+                            //foreach (DataRowView row in dtView)
+                            //{
+                            //    if (TotalValue != Value)
+                            //    {
+                            //        AvailableValue = Convert.ToDecimal(row["RemainAmount"]);
+                            //        decimal TempValue = AvailableValue - RemainValue;
+                            //        if (TempValue <= 0)
+                            //        {
+                            //            row["Amount"] = AvailableValue;
+                            //            TotalValue += AvailableValue;
+                            //            RemainValue = TempValue * -1;
+                            //        }
+                            //        else
+                            //        {
+                            //            row["Amount"] = RemainValue;
+                            //            TotalValue += RemainValue;
+                            //            RemainValue = 0;
+                            //        }
+                            //    }
+                            //}
                         }
                     }
                 }

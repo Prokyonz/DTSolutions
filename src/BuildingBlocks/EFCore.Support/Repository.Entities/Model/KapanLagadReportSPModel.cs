@@ -22,6 +22,17 @@ namespace Repository.Entities.Model
         public string Kapan { get; set;  }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? ProfitLossPer { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? PerCts { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? InwardAvg { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? OutwardAvg { get; set; }
         public int Records { get; set; }
+        public string OperationType { get; set; }
+        public string Size { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal? TotalSizeGroupWeight
+        { get; set; }
     }
 }
