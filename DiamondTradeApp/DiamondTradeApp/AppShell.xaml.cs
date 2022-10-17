@@ -33,6 +33,10 @@ namespace DiamondTradeApp
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
+            Preferences.Remove("rememberMe_Key");
+            Preferences.Remove("userId_key");
+            Preferences.Remove("userName_key");
+
             await Shell.Current.GoToAsync("//LoginPage");
         }
     }

@@ -24,10 +24,11 @@ namespace DiamondTradeApp.Views
         {
             InitializeComponent();
             _reportMasterRepository = new ReportMasterRepository();
+            var reportList = PurchaseReport();
 
-            if (PurchaseReport() != null)
+            if (reportList != null)
             {
-                collectionView.ItemsSource = PurchaseReport().OrderByDescending(e => e.Date)
+                collectionView.ItemsSource = reportList.OrderByDescending(e => e.Date)
                 .Take(20).ToList();
             }
         }

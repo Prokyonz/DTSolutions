@@ -19,22 +19,11 @@ namespace DiamondTradeApp.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private readonly UserMasterRepository _userMasterRepository;
+        private UserMasterRepository _userMasterRepository;
 
         public LoginPage()
         {
-            //check if user already logg-in?
-            if (Preferences.ContainsKey("username_key"))
-            {
-                var savedUsername = Preferences.Get("username_key", ""); 
-                if (savedUsername != null)
-                {
-                    //logged-in
-                    Shell.Current.GoToAsync("//HomePage");
-                }
-            }
             InitializeComponent();
-            _userMasterRepository = new UserMasterRepository();
         }
 
         private async void btnLogin_Clicked(object sender, EventArgs e)
@@ -46,20 +35,27 @@ namespace DiamondTradeApp.Views
                     await DisplayAlert("Error", "Please enter your Username.", "OK");
                     return;
                 }
-                if(txtPassword.Text == null)
+                if (txtPassword.Text == null)
                 {
                     await DisplayAlert("Error", "Please enter your Password.", "OK");
                     return;
                 }
+                _userMasterRepository = new UserMasterRepository();
 
-                bool isLogin = _userMasterRepository.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim());
-                if (isLogin)
+                string userID = _userMasterRepository.Login(txtUserName.Text.Trim(), txtPassword.Text.Trim());
+
+                if (userID != null)
                 {
+                    SaveToLocalStorage("userId_key", userID);
+                    SaveToLocalStorage("userName_key", txtUserName.Text.ToString());
                     if (chkRememberMe.IsChecked)
                     {
-                        RememberMe(txtUserName.Text.Trim());
+                        SaveToLocalStorage("rememberMe_Key", "true");
                     }
-                    AppShell appShell = new AppShell();
+                    else
+                    {
+                        SaveToLocalStorage("rememberMe_Key", "false");
+                    }
                     await Shell.Current.GoToAsync("//HomePage");
                 }
                 else
@@ -73,12 +69,9 @@ namespace DiamondTradeApp.Views
             }
         }
 
-        private void RememberMe(string username)
+        private void SaveToLocalStorage(string key, string value)
         {
-            if (!Preferences.ContainsKey("username_key"))
-            {
-                Preferences.Set("username_key", username);
-            }
+            Preferences.Set(key, value);
         }
     }
 }
