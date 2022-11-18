@@ -1,9 +1,7 @@
 ﻿using DiamondTradeApp.Services;
-using System;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DiamondTradeApp.Views
 {
@@ -20,12 +18,22 @@ namespace DiamondTradeApp.Views
             _reportMasterRepository = new ReportMasterRepository();
 
             FillBox();
-            //ReportsView.ItemsSource = reportMastersList;
+            onPurchaseClick();
+        }
+
+        protected override async void OnAppearing()
+        {
+            var remember = Preferences.Get("rememberMe_Key", null);
+            var userId = Preferences.Get("userId_key", null);
+            if (remember == "false" || userId == null)
+            {
+                await Application.Current.MainPage.Navigation.PushModalAsync(new LoginPage(), true);
+            }
+            base.OnAppearing();
         }
 
         private void FillBox()
         {
-            var data = _reportMasterRepository.GetPurchaseReport("", "", null);
             var reportList = _reportMasterRepository.GetDashboardReports("", "", 0);
             ReportMaster reportMaster = null;
             if (reportList != null)
@@ -56,6 +64,17 @@ namespace DiamondTradeApp.Views
                 lblUchina.Text = reportMaster.UchinaPlusEmployee;
             }
         }
+
+        void onPurchaseClick()
+        {
+            boxPurchase.GestureRecognizers.Add(new TapGestureRecognizer()
+            {
+                Command = new Command(async () =>
+                {
+                    await Shell.Current.GoToAsync("//ReportsPage");
+                })
+            });
+        }
     }
 
     public class ReportMaster
@@ -74,10 +93,5 @@ namespace DiamondTradeApp.Views
         public string CapitalAccount { get; set; }
         public string Loan { get; set; }
         public string Purchase { get; set; }
-    }
-
-    public class Employee
-    {
-        public string DisplayName { get; set; }
     }
 }

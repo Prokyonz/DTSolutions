@@ -14,8 +14,9 @@ namespace DiamondTradeApp.Services
         {
         }
 
-        public bool Login(string username, string password)
+        public string Login(string username, string password)
         {
+            string userId = "";
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
@@ -30,10 +31,10 @@ namespace DiamondTradeApp.Services
 
                 if (dt.Rows.Count > 0)
                 {
-                    return true;
+                    userId = dt.Rows[0]["ID"].ToString();
                 }
 
-                return false;
+                return userId;
             }
         }
 
@@ -59,7 +60,7 @@ namespace DiamondTradeApp.Services
                     updatePassCommand.Parameters.AddWithValue("@CurrentPassword", currentPass);
                     int updated = updatePassCommand.ExecuteNonQuery();
 
-                    if(updated > 0)
+                    if (updated > 0)
                     {
                         return true;
                     }
