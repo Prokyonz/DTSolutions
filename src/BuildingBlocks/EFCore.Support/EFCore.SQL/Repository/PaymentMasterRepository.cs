@@ -205,5 +205,24 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> UpdateApprovalStatus(string paymentGroupId, string message, int status)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPayment = await _databaseContext.GroupPaymentMaster.Where(s => s.Id == paymentGroupId).FirstOrDefaultAsync();
+
+                if (getPayment != null)
+                {
+                    getPayment.ApprovalType = status;
+                    getPayment.Message = message;
+
+                    await _databaseContext.SaveChangesAsync();
+
+                    return true;
+                }
+                return false;
+            }
+        }
+
     }
 }

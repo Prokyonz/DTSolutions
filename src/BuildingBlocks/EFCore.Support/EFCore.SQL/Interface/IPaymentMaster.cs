@@ -22,5 +22,7 @@ namespace EFCore.SQL.Interface
         Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType);
         Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId);
 
+        Task<bool> UpdateApprovalStatus(string paymentGroupId, string message, int status);
+
     }
 }

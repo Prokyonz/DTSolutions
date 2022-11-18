@@ -16,8 +16,9 @@ namespace Repository.Entities.Model
         public string ChequeNo { get; set; }
         public DateTime? ChequeDate { get; set; }
         public string Remarks { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public string UpdatedBy { get; set; }
+        public string ApprovalType { get; set; }
+        //public DateTime? UpdatedDate { get; set; }
+        //public string UpdatedBy { get; set; }
         public DateTime? EntryDate { get; set; }
 
     }

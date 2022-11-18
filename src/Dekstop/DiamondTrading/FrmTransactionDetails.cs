@@ -719,6 +719,17 @@ namespace DiamondTrading
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
+                else if(xtabManager.SelectedTabPage == xtabPayment)
+                {
+                    string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
+                    var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
+                }
+                else if (xtabManager.SelectedTabPage == xtabReceipt)
+                {
+                    string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
+                    var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
+                }
+                
                 _ = LoadGridData(true);
             }
         }
@@ -737,6 +748,16 @@ namespace DiamondTrading
                 {
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
+                }
+                else if (xtabManager.SelectedTabPage == xtabPayment)
+                {
+                    string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
+                    var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
+                }
+                else if (xtabManager.SelectedTabPage == xtabReceipt)
+                {
+                    string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
+                    var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
 
                 _ = LoadGridData(true);
@@ -828,7 +849,7 @@ namespace DiamondTrading
                     {
                         e.Appearance.ForeColor = Color.Black;
                     }
-                    if(e.Column==colSalesSlispNo)
+                    if (e.Column == colSalesSlispNo)
                     {
                         e.Appearance.ForeColor = Color.Black;
                         e.Appearance.Font = new Font(e.Appearance.Font, FontStyle.Regular);
@@ -1194,7 +1215,7 @@ namespace DiamondTrading
         private void grvSalesTransactonMaster_MasterRowGetChildList(object sender, MasterRowGetChildListEventArgs e)
         {
             GridView gridView = sender as GridView;
-            SalesSPModel salesDetails= gridView.GetRow(e.RowHandle) as SalesSPModel;
+            SalesSPModel salesDetails = gridView.GetRow(e.RowHandle) as SalesSPModel;
             if (salesDetails != null)
             {
                 var result = _salesMasterRepository.GetSalesChild(salesDetails.Id);
@@ -1225,7 +1246,7 @@ namespace DiamondTrading
             catch (Exception)
             {
                 e.TotalValue = 0;
-            }            
+            }
         }
 
         private void grvTransMaster_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
@@ -1271,6 +1292,112 @@ namespace DiamondTrading
                 if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
             if (e.Column == colCashBankDebit)
                 if (Convert.ToDecimal(e.Value) == 0) e.DisplayText = "";
+        }
+
+        private void gridView4_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0 && e.Column == gridColumnApprovalType)
+            {
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
+                {
+
+                    e.Appearance.ForeColor = Color.Black;
+
+                    gridView4.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
+                }
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
+                {
+                    e.Appearance.ForeColor = Color.Green;
+
+                    gridView4.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
+                }
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
+                {
+                    e.Appearance.ForeColor = Color.Red;
+
+
+                    gridView4.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
+                }
+            }
+        }
+
+        private void gridView4_RowStyle(object sender, RowStyleEventArgs e)
+        {
+
+        }
+
+        private async void gridView4_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            string ApprovalType = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "ApprovalType").ToString();
+            if (ApprovalType.Equals("Pending"))
+            {
+                //var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+                ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
+
+                var result = await approvalPermissionMasterRepository.GetPermission();
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "payment_approval").FirstOrDefault();
+
+                if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
+                {
+                    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
+                    if (e.HitInfo.InRow)
+                    {
+                        view.FocusedRowHandle = e.HitInfo.RowHandle;
+                        popupMenu1.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
+        }
+
+        private void gridView7_RowCellStyle(object sender, RowCellStyleEventArgs e)
+        {
+            GridView View = sender as GridView;
+            if (e.RowHandle >= 0 && e.Column == gridColumnReceiptApprovalType)
+            {
+                string priority = View.GetRowCellDisplayText(e.RowHandle, View.Columns["ApprovalType"]);
+                if (priority.ToLower() == "pending" || priority.ToLower() == "0")
+                {
+                    e.Appearance.ForeColor = Color.Black;
+                    gridView7.SetRowCellValue(e.RowHandle, "ApprovalType", "Pending");
+                }
+                if (priority.ToLower() == "approved" || priority.ToLower() == "1")
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                    gridView7.SetRowCellValue(e.RowHandle, "ApprovalType", "Approved");
+                }
+                if (priority.ToLower() == "reject" || priority.ToLower() == "2")
+                {
+                    e.Appearance.ForeColor = Color.Red;
+                    gridView7.SetRowCellValue(e.RowHandle, "ApprovalType", "Reject");
+                }
+            }
+        }
+
+        private async void gridView7_PopupMenuShowing(object sender, PopupMenuShowingEventArgs e)
+        {
+            string ApprovalType = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "ApprovalType").ToString();
+            if (ApprovalType.Equals("Pending"))
+            {
+                //var IsHavingApprovalPermission = Common.UserPermissionChildren.Where(x => x.KeyName.Equals("approval_master"));
+                ApprovalPermissionMasterRepository approvalPermissionMasterRepository = new ApprovalPermissionMasterRepository();
+
+                var result = await approvalPermissionMasterRepository.GetPermission();
+                var IsHavingApprovalPermission = result.Where(w => w.KeyName == "receipt_approval").FirstOrDefault();
+
+                if (IsHavingApprovalPermission.UserId.Contains(Common.LoginUserID.ToString()))
+                {
+                    DevExpress.XtraGrid.Views.Grid.GridView view = sender as DevExpress.XtraGrid.Views.Grid.GridView;
+                    DevExpress.XtraGrid.Views.Grid.ViewInfo.GridHitInfo hitInfo = view.CalcHitInfo(e.Point);
+                    if (e.HitInfo.InRow)
+                    {
+                        view.FocusedRowHandle = e.HitInfo.RowHandle;
+                        popupMenu1.ShowPopup(Control.MousePosition);
+                    }
+                }
+            }
         }
     }
 }

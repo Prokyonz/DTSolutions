@@ -41,6 +41,13 @@ namespace DiamondTrading
         public const string PrintPurchasePF = "PrintPurchasePF";
         public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
         #endregion "FrmOther"
+
+        public static void DeleteSettings()
+        {
+            string MainSec = "Software\\" + RecSection + "\\ReportLayouts";
+
+            Registry.CurrentUser.DeleteSubKeyTree(MainSec, false);
+        }
         
         public static void SaveSettings(string SubSection, string Key, string Value)
         {

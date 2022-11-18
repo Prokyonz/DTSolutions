@@ -35,13 +35,14 @@ namespace DiamondTrading
             this.txtFormTitle = new DevExpress.XtraEditors.TextEdit();
             this.xtabAdvanced = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.chkPrintPF = new DevExpress.XtraEditors.CheckEdit();
             this.chkAllowToSelectPaymentDueDate = new DevExpress.XtraEditors.CheckEdit();
             this.chkPrintSlip = new DevExpress.XtraEditors.CheckEdit();
             this.xtabOther = new DevExpress.XtraTab.XtraTabPage();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
-            this.chkPrintPF = new DevExpress.XtraEditors.CheckEdit();
+            this.checkEditClearReportLayout = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtabGeneral.SuspendLayout();
@@ -51,9 +52,10 @@ namespace DiamondTrading
             this.xtabAdvanced.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditClearReportLayout.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -91,7 +93,6 @@ namespace DiamondTrading
             this.txtFormTitle.Name = "txtFormTitle";
             this.txtFormTitle.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.txtFormTitle.Properties.Appearance.Options.UseFont = true;
-            this.txtFormTitle.Properties.BeepOnError = false;
             this.txtFormTitle.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtFormTitle.Size = new System.Drawing.Size(280, 26);
             this.txtFormTitle.TabIndex = 3;
@@ -106,14 +107,26 @@ namespace DiamondTrading
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.checkEditClearReportLayout);
             this.groupControl2.Controls.Add(this.chkPrintPF);
             this.groupControl2.Controls.Add(this.chkAllowToSelectPaymentDueDate);
             this.groupControl2.Controls.Add(this.chkPrintSlip);
             this.groupControl2.Location = new System.Drawing.Point(3, 3);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(290, 103);
+            this.groupControl2.Size = new System.Drawing.Size(290, 126);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Purchase Entry Settings";
+            // 
+            // chkPrintPF
+            // 
+            this.chkPrintPF.Location = new System.Drawing.Point(9, 50);
+            this.chkPrintPF.Name = "chkPrintPF";
+            this.chkPrintPF.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkPrintPF.Properties.Appearance.Options.UseFont = true;
+            this.chkPrintPF.Properties.Caption = "Print PF";
+            this.chkPrintPF.Size = new System.Drawing.Size(75, 18);
+            this.chkPrintPF.TabIndex = 1;
+            this.chkPrintPF.CheckedChanged += new System.EventHandler(this.chkPrintPF_CheckedChanged);
             // 
             // chkAllowToSelectPaymentDueDate
             // 
@@ -180,16 +193,16 @@ namespace DiamondTrading
             this.btnOk.Text = "&OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // chkPrintPF
+            // checkEditClearReportLayout
             // 
-            this.chkPrintPF.Location = new System.Drawing.Point(9, 50);
-            this.chkPrintPF.Name = "chkPrintPF";
-            this.chkPrintPF.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkPrintPF.Properties.Appearance.Options.UseFont = true;
-            this.chkPrintPF.Properties.Caption = "Print PF";
-            this.chkPrintPF.Size = new System.Drawing.Size(75, 18);
-            this.chkPrintPF.TabIndex = 1;
-            this.chkPrintPF.CheckedChanged += new System.EventHandler(this.chkPrintPF_CheckedChanged);
+            this.checkEditClearReportLayout.Location = new System.Drawing.Point(9, 96);
+            this.checkEditClearReportLayout.Name = "checkEditClearReportLayout";
+            this.checkEditClearReportLayout.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkEditClearReportLayout.Properties.Appearance.Options.UseFont = true;
+            this.checkEditClearReportLayout.Properties.Caption = "Delete all report layout.";
+            this.checkEditClearReportLayout.Size = new System.Drawing.Size(233, 18);
+            this.checkEditClearReportLayout.TabIndex = 3;
+            this.checkEditClearReportLayout.CheckedChanged += new System.EventHandler(this.checkEditClearReportLayout_CheckedChanged);
             // 
             // FrmOptions
             // 
@@ -218,9 +231,10 @@ namespace DiamondTrading
             this.xtabAdvanced.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.checkEditClearReportLayout.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -240,5 +254,6 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.CheckEdit chkAllowToSelectPaymentDueDate;
         private DevExpress.XtraEditors.CheckEdit chkPrintSlip;
         private DevExpress.XtraEditors.CheckEdit chkPrintPF;
+        private DevExpress.XtraEditors.CheckEdit checkEditClearReportLayout;
     }
 }

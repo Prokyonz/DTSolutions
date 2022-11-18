@@ -94,5 +94,13 @@ namespace DiamondTrading
         {
             EnableDisableApplyButton(true);
         }
+
+        private void checkEditClearReportLayout_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkEditClearReportLayout.Checked)
+            {
+                RegistryHelper.DeleteSettings();
+            }
+        }
     }
 }
