@@ -264,5 +264,14 @@ namespace EFCore.SQL.Repository
                 return result;
             }
         }
+
+        public async Task<List<ChildLedgerSPModel>> GetLedgerChildReport(string companyId, string finanialYearId, string ledgerId)
+        {
+            using(_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.SPLedgerChildReport.FromSqlRaw("GetLedgerChildReport '" + companyId + "', '"+ finanialYearId +"', '"+ ledgerId +"'").ToListAsync();
+                return result;
+            }
+        }
     }
 }

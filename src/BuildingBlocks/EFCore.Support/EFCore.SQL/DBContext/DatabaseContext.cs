@@ -119,11 +119,12 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<SalesChildSPModel> SPSalesChildReport { get; set; }
         public virtual DbSet<PurchaseChildSPModel> SPPurchaseChildReport { get; set; }
         public virtual DbSet<CashBankSPReport> SPCashBankReport { get; set; }
+        public virtual DbSet<ChildLedgerSPModel> SPLedgerChildReport { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmaew@123;").EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;").EnableSensitiveDataLogging();
             optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -218,6 +219,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalesChildSPModel>().HasNoKey();
             modelBuilder.Entity<PurchaseChildSPModel>().HasNoKey();
             modelBuilder.Entity<CashBankSPReport>().HasNoKey();
+            modelBuilder.Entity<ChildLedgerSPModel>().HasNoKey();
         }
     }
 }

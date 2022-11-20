@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DiamondTrading.Transaction;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using Repository.Entities.Model;
@@ -1398,6 +1399,12 @@ namespace DiamondTrading
                     }
                 }
             }
+        }
+
+        private void grvLedgerReport_RowClick(object sender, RowClickEventArgs e)
+        {
+            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).LedgerId);
+            fromChildLedgerReport.ShowDialog();
         }
     }
 }
