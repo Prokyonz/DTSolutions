@@ -1404,7 +1404,9 @@ namespace DiamondTrading
         private void grvLedgerReport_RowClick(object sender, RowClickEventArgs e)
         {
             FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).LedgerId);
+            fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).Name;
             fromChildLedgerReport.ShowDialog();
+            
         }
     }
 }
