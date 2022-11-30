@@ -1033,15 +1033,15 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                if (row["SlipNo"].ToString() != "0")
+                                if ((row.Row.Table.Columns.Contains("SlipNo") && row["SlipNo"].ToString() != "0") || !row.Row.Table.Columns.Contains("SlipNo"))
                                 {
                                     kapanMappingMaster = new KapanMappingMaster();
                                     kapanMappingMaster.Id = Guid.NewGuid().ToString();
                                     kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
                                     kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
                                     kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                                    kapanMappingMaster.PurchaseMasterId = row["PurchaseMasterId"].ToString();
-                                    kapanMappingMaster.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
+                                    kapanMappingMaster.PurchaseMasterId = row.Row.Table.Columns.Contains("PurchaseMasterId")? row["PurchaseMasterId"].ToString():"";
+                                    kapanMappingMaster.PurchaseDetailsId = row.Row.Table.Columns.Contains("PurchaseDetailsId")? row["PurchaseDetailsId"].ToString():"";
                                     kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
                                     kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
                                     kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
