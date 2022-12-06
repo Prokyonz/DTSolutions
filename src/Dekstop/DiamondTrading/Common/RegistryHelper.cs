@@ -44,7 +44,7 @@ namespace DiamondTrading
 
         public static void DeleteSettings()
         {
-            string MainSec = "Software\\" + RecSection + "\\ReportLayouts";
+            string MainSec = RecSection + "\\ReportLayouts";
 
             Registry.CurrentUser.DeleteSubKeyTree(MainSec, false);
         }

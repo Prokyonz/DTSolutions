@@ -95,7 +95,7 @@ namespace DiamondTrading.Utility
         private async Task GetEmployeeList()
         {
             PartyMasterRepository partyMasterRepository = new PartyMasterRepository();
-            var EmployeeDetailList = await partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, PartyTypeMaster.Other);
+            var EmployeeDetailList = await partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, new int[] { PartyTypeMaster.Other });
             lueTransferBy.Properties.DataSource = EmployeeDetailList;
             lueTransferBy.Properties.DisplayMember = "Name";
             lueTransferBy.Properties.ValueMember = "Id";
