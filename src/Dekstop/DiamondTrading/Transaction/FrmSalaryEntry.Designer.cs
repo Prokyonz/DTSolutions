@@ -245,6 +245,7 @@ namespace DiamondTrading.Transaction
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 1;
             this.btnSave.Text = "&Save";
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // panelControl1
             // 
@@ -292,11 +293,11 @@ namespace DiamondTrading.Transaction
             this.lueMonth.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.lueMonth.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "KapanID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Month", "Month", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueMonth.Properties.NullText = "";
             this.lueMonth.Size = new System.Drawing.Size(138, 22);
             this.lueMonth.TabIndex = 13;
+            this.lueMonth.EditValueChanged += new System.EventHandler(this.lueMonth_EditValueChanged);
             // 
             // labelControl4
             // 
@@ -377,6 +378,7 @@ namespace DiamondTrading.Transaction
             this.grvParticularsDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvParticularsDetails.OptionsView.ShowFooter = true;
             this.grvParticularsDetails.OptionsView.ShowGroupPanel = false;
+            this.grvParticularsDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvParticularsDetails_CellValueChanged);
             // 
             // colName
             // 
@@ -576,6 +578,7 @@ namespace DiamondTrading.Transaction
             this.Name = "FrmSalaryEntry";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Salary Entry";
+            this.Load += new System.EventHandler(this.FrmSalaryEntry_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmSalaryEntry_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
