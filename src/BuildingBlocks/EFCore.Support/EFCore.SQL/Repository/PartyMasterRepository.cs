@@ -154,7 +154,7 @@ namespace EFCore.SQL.Repository
             }
             return partyMasters;
         }
-        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int subType)
+        public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int[] subType)
         {
             List<PartyMaster> partyMasters;
 
@@ -162,7 +162,7 @@ namespace EFCore.SQL.Repository
 
             using (_databaseContext = new DatabaseContext())
             {
-                partyMasters = await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && w.SubType == subType).ToListAsync();
+                partyMasters = await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && w.Type == partTypeMaster && subType.Contains(w.SubType)).ToListAsync();
                 foreach (var item in partyMasters)
                 {
                     var getBalance = LedgerData.Where(w => w.LedgerId == item.Id).FirstOrDefault();
