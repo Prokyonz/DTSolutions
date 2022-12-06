@@ -37,5 +37,6 @@ namespace Repository.Entities.Model
         public DateTime? CreatedDate { get; set; }
         public string TrType { get; set; }
         public DateTime? EntryDate { get; set; }
+        public string Remarks { get; set; }
     }
 }
