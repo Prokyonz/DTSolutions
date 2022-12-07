@@ -13,7 +13,8 @@ namespace Repository.Entities
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
-        public string SalaryMonthName { get; set; }
+        public string FromPartyId { get; set; }
+        public int SalaryMonth { get; set; }
         public DateTime SalaryMonthDateTime { get; set; }
         public int MonthDays { get; set; }
         public float Holidays { get; set; }

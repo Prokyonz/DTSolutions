@@ -87,7 +87,7 @@ namespace EFCore.SQL.Repository
                     salaryRecord.CompanyId = salaryMaster.CompanyId;
                     salaryRecord.BranchId = salaryMaster.BranchId;
                     salaryRecord.FinancialYearId = salaryMaster.FinancialYearId;
-                    salaryRecord.SalaryMonthName = salaryMaster.SalaryMonthName;
+                    salaryRecord.SalaryMonth = salaryMaster.SalaryMonth;
                     salaryRecord.SalaryMonthDateTime = salaryMaster.SalaryMonthDateTime;
                     salaryMaster.MonthDays = salaryMaster.MonthDays;
                     salaryMaster.Holidays = salaryMaster.Holidays;

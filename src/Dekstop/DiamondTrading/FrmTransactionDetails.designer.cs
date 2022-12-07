@@ -214,6 +214,7 @@ namespace DiamondTrading
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtabManager = new DevExpress.XtraTab.XtraTabControl();
             this.xtabPurchase = new DevExpress.XtraTab.XtraTabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dtToDate = new DevExpress.XtraEditors.DateEdit();
             this.lblStartDate = new System.Windows.Forms.Label();
@@ -510,7 +511,6 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -1002,6 +1002,8 @@ namespace DiamondTrading
             // gridColumnGrossTotal
             // 
             this.gridColumnGrossTotal.Caption = "Total";
+            this.gridColumnGrossTotal.DisplayFormat.FormatString = "n";
+            this.gridColumnGrossTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnGrossTotal.FieldName = "GrossTotal";
             this.gridColumnGrossTotal.Name = "gridColumnGrossTotal";
             this.gridColumnGrossTotal.OptionsColumn.AllowEdit = false;
@@ -1613,6 +1615,8 @@ namespace DiamondTrading
             // GrossTotal
             // 
             this.GrossTotal.Caption = "Total";
+            this.GrossTotal.DisplayFormat.FormatString = "n";
+            this.GrossTotal.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.GrossTotal.FieldName = "GrossTotal";
             this.GrossTotal.Name = "GrossTotal";
             this.GrossTotal.OptionsColumn.AllowEdit = false;
@@ -1878,6 +1882,16 @@ namespace DiamondTrading
             this.xtabPurchase.Size = new System.Drawing.Size(768, 415);
             this.xtabPurchase.Text = "Purchase Details";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(310, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Get Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -2040,6 +2054,8 @@ namespace DiamondTrading
             // gridColumnAmount
             // 
             this.gridColumnAmount.Caption = "Amount";
+            this.gridColumnAmount.DisplayFormat.FormatString = "n";
+            this.gridColumnAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnAmount.FieldName = "Amount";
             this.gridColumnAmount.Name = "gridColumnAmount";
             this.gridColumnAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -2223,6 +2239,8 @@ namespace DiamondTrading
             // gridColumnReceiptAmount
             // 
             this.gridColumnReceiptAmount.Caption = "Amount";
+            this.gridColumnReceiptAmount.DisplayFormat.FormatString = "n";
+            this.gridColumnReceiptAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnReceiptAmount.FieldName = "Amount";
             this.gridColumnReceiptAmount.Name = "gridColumnReceiptAmount";
             this.gridColumnReceiptAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -2395,6 +2413,8 @@ namespace DiamondTrading
             // gridColumnContraAmount
             // 
             this.gridColumnContraAmount.Caption = "Amount";
+            this.gridColumnContraAmount.DisplayFormat.FormatString = "n";
+            this.gridColumnContraAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnContraAmount.FieldName = "Amount";
             this.gridColumnContraAmount.Name = "gridColumnContraAmount";
             this.gridColumnContraAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -2567,6 +2587,8 @@ namespace DiamondTrading
             // gridColumnExpenseAmount
             // 
             this.gridColumnExpenseAmount.Caption = "Amount";
+            this.gridColumnExpenseAmount.DisplayFormat.FormatString = "n";
+            this.gridColumnExpenseAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnExpenseAmount.FieldName = "Amount";
             this.gridColumnExpenseAmount.Name = "gridColumnExpenseAmount";
             this.gridColumnExpenseAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -2733,6 +2755,8 @@ namespace DiamondTrading
             // gridColumn35
             // 
             this.gridColumn35.Caption = "Amount";
+            this.gridColumn35.DisplayFormat.FormatString = "n";
+            this.gridColumn35.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn35.FieldName = "Amount";
             this.gridColumn35.Name = "gridColumn35";
             this.gridColumn35.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -2777,6 +2801,8 @@ namespace DiamondTrading
             // gridColumn41
             // 
             this.gridColumn41.Caption = "Total Interest";
+            this.gridColumn41.DisplayFormat.FormatString = "n";
+            this.gridColumn41.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn41.FieldName = "TotalInterest";
             this.gridColumn41.Name = "gridColumn41";
             this.gridColumn41.Visible = true;
@@ -2785,6 +2811,8 @@ namespace DiamondTrading
             // gridColumn42
             // 
             this.gridColumn42.Caption = "Net Amount";
+            this.gridColumn42.DisplayFormat.FormatString = "n";
+            this.gridColumn42.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn42.FieldName = "NetAmount";
             this.gridColumn42.Name = "gridColumn42";
             this.gridColumn42.Visible = true;
@@ -2936,6 +2964,7 @@ namespace DiamondTrading
             // gridColumn51
             // 
             this.gridColumn51.Caption = "Credit";
+            this.gridColumn51.DisplayFormat.FormatString = "n";
             this.gridColumn51.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn51.FieldName = "Credit";
             this.gridColumn51.Name = "gridColumn51";
@@ -2948,6 +2977,7 @@ namespace DiamondTrading
             // gridColumn49
             // 
             this.gridColumn49.Caption = "Debit";
+            this.gridColumn49.DisplayFormat.FormatString = "n";
             this.gridColumn49.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn49.FieldName = "Debit";
             this.gridColumn49.Name = "gridColumn49";
@@ -3290,6 +3320,8 @@ namespace DiamondTrading
             // gridColumn79
             // 
             this.gridColumn79.Caption = "Amount";
+            this.gridColumn79.DisplayFormat.FormatString = "n";
+            this.gridColumn79.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn79.FieldName = "Amount";
             this.gridColumn79.Name = "gridColumn79";
             this.gridColumn79.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -3519,6 +3551,8 @@ namespace DiamondTrading
             // gridColumn95
             // 
             this.gridColumn95.Caption = "Rate";
+            this.gridColumn95.DisplayFormat.FormatString = "n";
+            this.gridColumn95.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn95.FieldName = "Rate";
             this.gridColumn95.Name = "gridColumn95";
             this.gridColumn95.Visible = true;
@@ -3528,6 +3562,8 @@ namespace DiamondTrading
             // gridColumn96
             // 
             this.gridColumn96.Caption = "Amount";
+            this.gridColumn96.DisplayFormat.FormatString = "n";
+            this.gridColumn96.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn96.FieldName = "Amount";
             this.gridColumn96.Name = "gridColumn96";
             this.gridColumn96.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -3596,11 +3632,11 @@ namespace DiamondTrading
             // 
             // grvLedgerReport
             // 
-            this.grvLedgerReport.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvLedgerReport.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvLedgerReport.Appearance.FooterPanel.Options.UseFont = true;
-            this.grvLedgerReport.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvLedgerReport.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvLedgerReport.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvLedgerReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvLedgerReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvLedgerReport.Appearance.Row.Options.UseFont = true;
             this.grvLedgerReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn98,
@@ -3639,7 +3675,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name", "Total={0}")});
             this.gridColumn101.Visible = true;
             this.gridColumn101.VisibleIndex = 0;
-            this.gridColumn101.Width = 484;
+            this.gridColumn101.Width = 579;
             // 
             // gridColumn102
             // 
@@ -3648,7 +3684,7 @@ namespace DiamondTrading
             this.gridColumn102.Name = "gridColumn102";
             this.gridColumn102.Visible = true;
             this.gridColumn102.VisibleIndex = 1;
-            this.gridColumn102.Width = 117;
+            this.gridColumn102.Width = 140;
             // 
             // gridColumn103
             // 
@@ -3657,25 +3693,25 @@ namespace DiamondTrading
             this.gridColumn103.Name = "gridColumn103";
             this.gridColumn103.Visible = true;
             this.gridColumn103.VisibleIndex = 2;
-            this.gridColumn103.Width = 107;
+            this.gridColumn103.Width = 132;
             // 
             // gridColumn104
             // 
             this.gridColumn104.Caption = "OpeningBalance";
             this.gridColumn104.FieldName = "OpeningBalance";
             this.gridColumn104.Name = "gridColumn104";
-            this.gridColumn104.Visible = true;
-            this.gridColumn104.VisibleIndex = 3;
             this.gridColumn104.Width = 175;
             // 
             // gridColumn121
             // 
             this.gridColumn121.Caption = "Closing Balance";
+            this.gridColumn121.DisplayFormat.FormatString = "n";
+            this.gridColumn121.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn121.FieldName = "ClosingBalance";
             this.gridColumn121.Name = "gridColumn121";
             this.gridColumn121.Visible = true;
-            this.gridColumn121.VisibleIndex = 4;
-            this.gridColumn121.Width = 178;
+            this.gridColumn121.VisibleIndex = 3;
+            this.gridColumn121.Width = 210;
             // 
             // repositoryItemButtonEdit2
             // 
@@ -4041,6 +4077,8 @@ namespace DiamondTrading
             // gridColumn148
             // 
             this.gridColumn148.Caption = "Total";
+            this.gridColumn148.DisplayFormat.FormatString = "n";
+            this.gridColumn148.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn148.FieldName = "GrossTotal";
             this.gridColumn148.Name = "gridColumn148";
             this.gridColumn148.OptionsColumn.AllowEdit = false;
@@ -4361,7 +4399,11 @@ namespace DiamondTrading
             // gridColumn108
             // 
             this.gridColumn108.Caption = "Total";
+            this.gridColumn108.DisplayFormat.FormatString = "n";
+            this.gridColumn108.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn108.FieldName = "Total";
+            this.gridColumn108.GroupFormat.FormatString = "n";
+            this.gridColumn108.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn108.Name = "gridColumn108";
             this.gridColumn108.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:0.##}")});
@@ -4494,7 +4536,11 @@ namespace DiamondTrading
             // gridColumn125
             // 
             this.gridColumn125.Caption = "Amount";
+            this.gridColumn125.DisplayFormat.FormatString = "n";
+            this.gridColumn125.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn125.FieldName = "Amount";
+            this.gridColumn125.GroupFormat.FormatString = "n";
+            this.gridColumn125.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn125.Name = "gridColumn125";
             this.gridColumn125.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
@@ -4626,7 +4672,11 @@ namespace DiamondTrading
             // gridColumn128
             // 
             this.gridColumn128.Caption = "Amount";
+            this.gridColumn128.DisplayFormat.FormatString = "n";
+            this.gridColumn128.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn128.FieldName = "Amount";
+            this.gridColumn128.GroupFormat.FormatString = "n";
+            this.gridColumn128.GroupFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn128.Name = "gridColumn128";
             this.gridColumn128.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
@@ -4756,10 +4806,12 @@ namespace DiamondTrading
             // colCashBankDebit
             // 
             this.colCashBankDebit.Caption = "Debit";
+            this.colCashBankDebit.DisplayFormat.FormatString = "n";
+            this.colCashBankDebit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colCashBankDebit.FieldName = "Debit";
             this.colCashBankDebit.Name = "colCashBankDebit";
             this.colCashBankDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{n}")});
             this.colCashBankDebit.Visible = true;
             this.colCashBankDebit.VisibleIndex = 4;
             this.colCashBankDebit.Width = 112;
@@ -4767,10 +4819,12 @@ namespace DiamondTrading
             // colCashBankCredit
             // 
             this.colCashBankCredit.Caption = "Credit";
+            this.colCashBankCredit.DisplayFormat.FormatString = "n";
+            this.colCashBankCredit.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.colCashBankCredit.FieldName = "Credit";
             this.colCashBankCredit.Name = "colCashBankCredit";
             this.colCashBankCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{n}")});
             this.colCashBankCredit.Visible = true;
             this.colCashBankCredit.VisibleIndex = 5;
             this.colCashBankCredit.Width = 105;
@@ -4848,16 +4902,6 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(310, 9);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Get Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // FrmTransactionDetails
             // 

@@ -107,12 +107,13 @@ namespace DiamondTrading.Transaction
             DataTable dt = new DataTable();
             dt.Columns.Add("Name");
             dt.Columns.Add("SalaryAmount");
-            dt.Columns.Add("LeaveHours");
-            dt.Columns.Add("FixedRate");
+            dt.Columns.Add("WorkingDays");
+            dt.Columns.Add("WorkedDays");
             dt.Columns.Add("OTHours");
-            dt.Columns.Add("OTRate");
-            dt.Columns.Add("Round");
+            dt.Columns.Add("OTRateHr");
+            dt.Columns.Add("AdvanceAmount");
             dt.Columns.Add("Bonus");
+            dt.Columns.Add("Round");            
             dt.Columns.Add("Total");
             return dt;
         }
@@ -127,7 +128,7 @@ namespace DiamondTrading.Transaction
 
         private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
         {
-            if (e.Column == colFixedRate || e.Column == colOTHours || e.Column == colOTRate || e.Column == colBonus)
+            if (e.Column == colOTHours || e.Column == colOTRate || e.Column == colBonus || e.Column == gridColumnAdvanceAmount)
             {
                 decimal SalaryAmount = 0;
                 if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colSalaryAmount).ToString()))
@@ -141,14 +142,28 @@ namespace DiamondTrading.Transaction
                 decimal Bonus = 0;
                 if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colBonus).ToString()))
                     Bonus = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colBonus).ToString());
-                CalculateTotal(SalaryAmount, OTHours,OTRate,Bonus, e.RowHandle);    
+
+                decimal workingDays = 0, workedDays = 0, advanceAmount = 0;
+
+                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkingDays).ToString()))
+                    workingDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkingDays).ToString());
+
+                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkedDays).ToString()))
+                    workedDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkedDays).ToString());
+
+                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnAdvanceAmount).ToString()))
+                    advanceAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnAdvanceAmount).ToString());
+
+                CalculateTotal(SalaryAmount, OTHours,OTRate,Bonus, e.RowHandle, workingDays, workedDays, advanceAmount);    
             }
         }
 
-        private void CalculateTotal(decimal SalaryAmount, decimal OTHours, decimal OTRate, decimal Bonus, int GridRowIndex)
+        private void CalculateTotal(decimal SalaryAmount, decimal OTHours, decimal OTRate, decimal Bonus, int GridRowIndex, decimal workingdays, decimal workeddays, decimal advanceAmount)
         {
-            decimal Total = SalaryAmount + (OTHours * OTRate) + Bonus;
-            decimal RoundUp = 0;
+            decimal perdaySal = (SalaryAmount / workingdays);
+
+            decimal Total = (perdaySal * workeddays) + (OTHours * OTRate) + Bonus + advanceAmount;
+            decimal RoundUp = Total - Math.Round(Total);
             grvParticularsDetails.SetRowCellValue(GridRowIndex, colRound, RoundUp.ToString());
             grvParticularsDetails.SetRowCellValue(GridRowIndex, colTotal, Total.ToString());
         }
@@ -173,11 +188,16 @@ namespace DiamondTrading.Transaction
                     salaryDetail = new SalaryDetail();
                     salaryDetail.Id = Guid.NewGuid().ToString();
                     salaryDetail.SalaryMasterId = SalaryId;
-                    salaryDetail.PartyId = grvParticularsDetails.GetRowCellValue(i, colName).ToString();
-                    salaryDetail.PayDays = float.Parse(txtWorkingDays.Text);
-                    salaryDetail.OvetimeDays = float.Parse(grvParticularsDetails.GetRowCellValue(i, colOTHours).ToString());
-                    salaryDetail.AdvanceAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTRate).ToString());
+                    salaryDetail.ToPartyId = grvParticularsDetails.GetRowCellValue(i, colName).ToString();
+                    salaryDetail.WorkingDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnWorkingDays).ToString());
+                    salaryDetail.WorkedDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnWorkedDays).ToString());
+
+                    salaryDetail.OverTimeHrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTHours).ToString());
+                    salaryDetail.OverTimeRateHrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTRate).ToString());
+                    salaryDetail.AdvanceAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnAdvanceAmount).ToString());
                     salaryDetail.BonusAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colBonus).ToString());
+                    salaryDetail.RoundOfAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colRound).ToString());
+
                     salaryDetail.TotalAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colTotal).ToString());
 
                     salaryDetailList.Insert(i, salaryDetail);
@@ -186,16 +206,17 @@ namespace DiamondTrading.Transaction
                 salaryMaster.CompanyId = lueCompany.EditValue.ToString();
                 salaryMaster.BranchId = Common.LoginBranch;
                 salaryMaster.FinancialYearId = Common.LoginFinancialYear;
-                salaryMaster.SalaryMonthName = lueMonth.EditValue.ToString();
+                salaryMaster.FromPartyId = lueLeadger.EditValue.ToString();
+                salaryMaster.SalaryMonth = Convert.ToInt32(lueMonth.EditValue.ToString());
                 salaryMaster.SalaryMonthDateTime = Convert.ToDateTime(dtDate.Text);
                 salaryMaster.MonthDays = Convert.ToInt32(txtWorkingDays.Text);
                 salaryMaster.Holidays = 0;
-                salaryMaster.Remarks = txtRemark.Text;
-                salaryMaster.SalaryDetails = salaryDetailList;
+                salaryMaster.Remarks = txtRemark.Text;                
                 salaryMaster.CreatedDate = DateTime.Now;
                 salaryMaster.UpdatedDate = DateTime.Now;
                 salaryMaster.CreatedBy = Common.LoginUserID;
                 salaryMaster.UpdatedBy = Common.LoginUserID;
+                salaryMaster.SalaryDetails = salaryDetailList;
 
                 var Result = await _SalaryMasterRepository.AddSalary(salaryMaster);
                 if (Result != null)
