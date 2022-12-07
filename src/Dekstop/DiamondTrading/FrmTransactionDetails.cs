@@ -214,6 +214,9 @@ namespace DiamondTrading
 
         private async void FrmMasterDetails_Load(object sender, EventArgs e)
         {
+            var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            dtFromDate.EditValue = firstDayOfMonth;
+            dtToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
             lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
             lueProfitLossType.Properties.DisplayMember = "Name";
             lueProfitLossType.Properties.ValueMember = "Id";
@@ -237,7 +240,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear,null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
                     grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
                 }
@@ -1408,6 +1411,11 @@ namespace DiamondTrading
             fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
             fromChildLedgerReport.ShowDialog();
             
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
         }
     }
 }
