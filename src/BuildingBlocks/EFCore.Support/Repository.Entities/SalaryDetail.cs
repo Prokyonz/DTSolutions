@@ -35,9 +35,5 @@ namespace Repository.Entities
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalAmount { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public string CreatedBy { get; set; }
-        public string UpdatedBy { get; set; }
     }
 }
