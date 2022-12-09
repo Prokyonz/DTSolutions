@@ -18,5 +18,7 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Credit { get; set; }
         public DateTime? Date { get; set; }
+        public string SlipNo { get; set; }
+        public string Remarks { get; set; }
     }
 }

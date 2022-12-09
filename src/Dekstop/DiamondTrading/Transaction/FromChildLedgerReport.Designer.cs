@@ -44,6 +44,8 @@ namespace DiamondTrading.Transaction
             this.gridColumnToPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnDebit = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCredit = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnChildSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnChildRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChildLedgerReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChildLedgerReport)).BeginInit();
@@ -60,7 +62,7 @@ namespace DiamondTrading.Transaction
             this.gridControlChildLedgerReport.Name = "gridControlChildLedgerReport";
             this.gridControlChildLedgerReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2});
-            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(800, 451);
+            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(973, 468);
             this.gridControlChildLedgerReport.TabIndex = 7;
             this.gridControlChildLedgerReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvChildLedgerReport});
@@ -81,7 +83,9 @@ namespace DiamondTrading.Transaction
             this.gridColumnToPartyId,
             this.gridColumnToPartyName,
             this.gridColumnDebit,
-            this.gridColumnCredit});
+            this.gridColumnCredit,
+            this.gridColumnChildSlipNo,
+            this.gridColumnChildRemarks});
             this.grvChildLedgerReport.GridControl = this.gridControlChildLedgerReport;
             this.grvChildLedgerReport.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", this.gridColumnDebit, ""),
@@ -98,8 +102,8 @@ namespace DiamondTrading.Transaction
             this.gridColumnDate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Date", "Total = {0}")});
             this.gridColumnDate.Visible = true;
-            this.gridColumnDate.VisibleIndex = 0;
-            this.gridColumnDate.Width = 107;
+            this.gridColumnDate.VisibleIndex = 1;
+            this.gridColumnDate.Width = 60;
             // 
             // gridColumnEntryType
             // 
@@ -107,8 +111,8 @@ namespace DiamondTrading.Transaction
             this.gridColumnEntryType.FieldName = "EntryType";
             this.gridColumnEntryType.Name = "gridColumnEntryType";
             this.gridColumnEntryType.Visible = true;
-            this.gridColumnEntryType.VisibleIndex = 1;
-            this.gridColumnEntryType.Width = 110;
+            this.gridColumnEntryType.VisibleIndex = 2;
+            this.gridColumnEntryType.Width = 62;
             // 
             // gridColumnFromPartyId
             // 
@@ -123,8 +127,8 @@ namespace DiamondTrading.Transaction
             this.gridColumnFromPartyName.FieldName = "FromPartyName";
             this.gridColumnFromPartyName.Name = "gridColumnFromPartyName";
             this.gridColumnFromPartyName.Visible = true;
-            this.gridColumnFromPartyName.VisibleIndex = 2;
-            this.gridColumnFromPartyName.Width = 242;
+            this.gridColumnFromPartyName.VisibleIndex = 3;
+            this.gridColumnFromPartyName.Width = 104;
             // 
             // gridColumnToPartyId
             // 
@@ -138,11 +142,9 @@ namespace DiamondTrading.Transaction
             this.gridColumnToPartyName.Caption = "To PartyName";
             this.gridColumnToPartyName.FieldName = "ToPartyName";
             this.gridColumnToPartyName.Name = "gridColumnToPartyName";
-            this.gridColumnToPartyName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "ToPartyName", "Closing Balance = {0}")});
             this.gridColumnToPartyName.Visible = true;
-            this.gridColumnToPartyName.VisibleIndex = 3;
-            this.gridColumnToPartyName.Width = 379;
+            this.gridColumnToPartyName.VisibleIndex = 4;
+            this.gridColumnToPartyName.Width = 128;
             // 
             // gridColumnDebit
             // 
@@ -152,8 +154,8 @@ namespace DiamondTrading.Transaction
             this.gridColumnDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{0:0.##}")});
             this.gridColumnDebit.Visible = true;
-            this.gridColumnDebit.VisibleIndex = 4;
-            this.gridColumnDebit.Width = 104;
+            this.gridColumnDebit.VisibleIndex = 6;
+            this.gridColumnDebit.Width = 76;
             // 
             // gridColumnCredit
             // 
@@ -163,8 +165,28 @@ namespace DiamondTrading.Transaction
             this.gridColumnCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{0:0.##}")});
             this.gridColumnCredit.Visible = true;
-            this.gridColumnCredit.VisibleIndex = 5;
-            this.gridColumnCredit.Width = 119;
+            this.gridColumnCredit.VisibleIndex = 7;
+            this.gridColumnCredit.Width = 74;
+            // 
+            // gridColumnChildSlipNo
+            // 
+            this.gridColumnChildSlipNo.Caption = "SlipNo";
+            this.gridColumnChildSlipNo.FieldName = "SlipNo";
+            this.gridColumnChildSlipNo.Name = "gridColumnChildSlipNo";
+            this.gridColumnChildSlipNo.Visible = true;
+            this.gridColumnChildSlipNo.VisibleIndex = 0;
+            this.gridColumnChildSlipNo.Width = 42;
+            // 
+            // gridColumnChildRemarks
+            // 
+            this.gridColumnChildRemarks.Caption = "Remarks";
+            this.gridColumnChildRemarks.FieldName = "Remarks";
+            this.gridColumnChildRemarks.Name = "gridColumnChildRemarks";
+            this.gridColumnChildRemarks.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "Remarks", "Closing Balance = {0}")});
+            this.gridColumnChildRemarks.Visible = true;
+            this.gridColumnChildRemarks.VisibleIndex = 5;
+            this.gridColumnChildRemarks.Width = 139;
             // 
             // repositoryItemButtonEdit2
             // 
@@ -179,7 +201,7 @@ namespace DiamondTrading.Transaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(973, 467);
             this.Controls.Add(this.gridControlChildLedgerReport);
             this.Name = "FromChildLedgerReport";
             this.Text = "FromChildLedgerReport";
@@ -204,5 +226,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnToPartyName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnDebit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCredit;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnChildSlipNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnChildRemarks;
     }
 }
