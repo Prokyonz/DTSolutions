@@ -217,6 +217,10 @@ namespace DiamondTrading
             var firstDayOfMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             dtFromDate.EditValue = firstDayOfMonth;
             dtToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            dtSalesFromDate.EditValue = firstDayOfMonth;
+            dtSalesToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
             lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
             lueProfitLossType.Properties.DisplayMember = "Name";
             lueProfitLossType.Properties.ValueMember = "Id";
@@ -250,7 +254,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _salesMasterRepository == null)
                 {
                     _salesMasterRepository = new SalesMasterRepository();
-                    var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear, dtSalesFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtSalesToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
                     grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
                 }
@@ -1409,11 +1413,15 @@ namespace DiamondTrading
             FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).LedgerId);
             fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).Name;
             fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
-            fromChildLedgerReport.ShowDialog();
-            
+            fromChildLedgerReport.ShowDialog();            
         }
 
         private void button1_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnSalesSearch_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
         }

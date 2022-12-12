@@ -511,6 +511,11 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.btnSalesSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtSalesToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtSalesFromDate = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -623,6 +628,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grdChildTransMaster
@@ -1388,17 +1397,19 @@ namespace DiamondTrading
             // 
             // grdSalesTransactonMaster
             // 
-            this.grdSalesTransactonMaster.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdSalesTransactonMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             gridLevelNode2.LevelTemplate = this.grvSalesChildTransMaster;
             gridLevelNode2.RelationName = "Child";
             this.grdSalesTransactonMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
             gridLevelNode2});
-            this.grdSalesTransactonMaster.Location = new System.Drawing.Point(0, 0);
+            this.grdSalesTransactonMaster.Location = new System.Drawing.Point(0, 38);
             this.grdSalesTransactonMaster.MainView = this.grvSalesTransactonMaster;
             this.grdSalesTransactonMaster.Name = "grdSalesTransactonMaster";
             this.grdSalesTransactonMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit8});
-            this.grdSalesTransactonMaster.Size = new System.Drawing.Size(768, 415);
+            this.grdSalesTransactonMaster.Size = new System.Drawing.Size(778, 382);
             this.grdSalesTransactonMaster.TabIndex = 3;
             this.grdSalesTransactonMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvSalesTransactonMaster,
@@ -1781,7 +1792,7 @@ namespace DiamondTrading
             this.accordionControl1.Location = new System.Drawing.Point(3, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
-            this.accordionControl1.Size = new System.Drawing.Size(48, 438);
+            this.accordionControl1.Size = new System.Drawing.Size(48, 443);
             this.accordionControl1.TabIndex = 2;
             this.accordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu;
             // 
@@ -1838,7 +1849,7 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(830, 444);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(840, 449);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // xtabManager
@@ -1847,7 +1858,7 @@ namespace DiamondTrading
             this.xtabManager.Location = new System.Drawing.Point(57, 3);
             this.xtabManager.Name = "xtabManager";
             this.xtabManager.SelectedTabPage = this.xtabPurchase;
-            this.xtabManager.Size = new System.Drawing.Size(770, 438);
+            this.xtabManager.Size = new System.Drawing.Size(780, 443);
             this.xtabManager.TabIndex = 0;
             this.xtabManager.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.xtabPurchase,
@@ -1942,9 +1953,14 @@ namespace DiamondTrading
             // 
             // xtabSales
             // 
+            this.xtabSales.Controls.Add(this.btnSalesSearch);
+            this.xtabSales.Controls.Add(this.label2);
+            this.xtabSales.Controls.Add(this.dtSalesToDate);
+            this.xtabSales.Controls.Add(this.label3);
+            this.xtabSales.Controls.Add(this.dtSalesFromDate);
             this.xtabSales.Controls.Add(this.grdSalesTransactonMaster);
             this.xtabSales.Name = "xtabSales";
-            this.xtabSales.Size = new System.Drawing.Size(768, 415);
+            this.xtabSales.Size = new System.Drawing.Size(778, 420);
             this.xtabSales.Text = "Sales Details";
             // 
             // xtabPayment
@@ -4855,15 +4871,15 @@ namespace DiamondTrading
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(830, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(840, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 444);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 449);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(830, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(840, 0);
             // 
             // barDockControlLeft
             // 
@@ -4871,15 +4887,15 @@ namespace DiamondTrading
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 444);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 449);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(830, 0);
+            this.barDockControlRight.Location = new System.Drawing.Point(840, 0);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 444);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 449);
             // 
             // btnApprove
             // 
@@ -4903,12 +4919,70 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // btnSalesSearch
+            // 
+            this.btnSalesSearch.Location = new System.Drawing.Point(310, 8);
+            this.btnSalesSearch.Name = "btnSalesSearch";
+            this.btnSalesSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSalesSearch.TabIndex = 16;
+            this.btnSalesSearch.Text = "Get Data";
+            this.btnSalesSearch.UseVisualStyleBackColor = true;
+            this.btnSalesSearch.Click += new System.EventHandler(this.btnSalesSearch_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(161, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "To Date:";
+            // 
+            // dtSalesToDate
+            // 
+            this.dtSalesToDate.EditValue = null;
+            this.dtSalesToDate.Location = new System.Drawing.Point(216, 10);
+            this.dtSalesToDate.Name = "dtSalesToDate";
+            this.dtSalesToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtSalesToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtSalesToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtSalesToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtSalesToDate.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "From Date:";
+            // 
+            // dtSalesFromDate
+            // 
+            this.dtSalesFromDate.EditValue = null;
+            this.dtSalesFromDate.Location = new System.Drawing.Point(67, 10);
+            this.dtSalesFromDate.Name = "dtSalesFromDate";
+            this.dtSalesFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtSalesFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtSalesFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtSalesFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtSalesFromDate.TabIndex = 12;
+            // 
             // FrmTransactionDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(830, 444);
+            this.ClientSize = new System.Drawing.Size(840, 449);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.barDockControlLeft);
@@ -4946,6 +5020,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
             this.xtabSales.ResumeLayout(false);
+            this.xtabSales.PerformLayout();
             this.xtabPayment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
@@ -5040,6 +5115,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5458,5 +5537,10 @@ namespace DiamondTrading
         private System.Windows.Forms.Label lblStartDate;
         private DevExpress.XtraEditors.DateEdit dtFromDate;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSalesSearch;
+        private System.Windows.Forms.Label label2;
+        private DevExpress.XtraEditors.DateEdit dtSalesToDate;
+        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.DateEdit dtSalesFromDate;
     }
 }
