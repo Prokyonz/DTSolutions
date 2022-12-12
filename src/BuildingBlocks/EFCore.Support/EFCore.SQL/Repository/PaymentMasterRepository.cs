@@ -146,11 +146,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId)
+        public async Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId, string fromDate, string toDate)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var PaymentPSSlipDetails = await _databaseContext.SPMixedReportModel.FromSqlRaw($"GetMixedRepot '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                var PaymentPSSlipDetails = await _databaseContext.SPMixedReportModel.FromSqlRaw($"GetMixedRepot '" + companyId + "','" + financialYearId + "','"+ fromDate+"','"+ toDate+"'").ToListAsync();
                 return PaymentPSSlipDetails;
             }
         }
@@ -189,13 +189,13 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId)
+        public async Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId, string fromDate, string toDate)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var cashbankReport = await _databaseContext.SPCashBankReport.FromSqlRaw($"GetCashBankReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                    var cashbankReport = await _databaseContext.SPCashBankReport.FromSqlRaw($"GetCashBankReport '" + companyId + "','" + financialYearId + "','"+ fromDate+"','"+ toDate +"'").ToListAsync();
                     return cashbankReport;
                 }
             }

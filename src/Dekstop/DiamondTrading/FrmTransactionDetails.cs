@@ -233,6 +233,12 @@ namespace DiamondTrading
             dtExpenseFromDate.EditValue = firstDayOfMonth;
             dtExpenseToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
+            dtMixedFromDate.EditValue = firstDayOfMonth;
+            dtMixedToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            dtCashBankFromDate.EditValue = firstDayOfMonth;
+            dtCashBankToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
             lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
             lueProfitLossType.Properties.DisplayMember = "Name";
             lueProfitLossType.Properties.ValueMember = "Id";
@@ -327,7 +333,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _paymentMasterRepository.GetMixedReportAsync(Common.LoginCompany, Common.LoginFinancialYear, dtMixedFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtMixedToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     gridControlMixed.DataSource = data;
                     gridView15.ExpandAllGroups();
                     gridView15.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MixReport"));
@@ -447,7 +453,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _paymentMasterRepository.GetCashBankReportAsync(Common.LoginCompany, Common.LoginFinancialYear, dtCashBankFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtCashBankToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     gridControlCashBank.DataSource = data;
 
                     gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
@@ -1454,6 +1460,16 @@ namespace DiamondTrading
         }
 
         private void btnExpenseGetData_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnMixedGetData_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnCashBankGetData_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
         }

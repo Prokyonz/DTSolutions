@@ -30,75 +30,75 @@ namespace DiamondTrading
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions12 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject45 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject46 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject47 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject48 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SimpleContextButton simpleContextButton13 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton14 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton15 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton16 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton17 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton18 = new DevExpress.Utils.SimpleContextButton();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SimpleContextButton simpleContextButton1 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton2 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton3 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton4 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton5 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton6 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions3 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject9 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject10 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject11 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject12 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions5 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject17 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject18 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject19 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject20 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions6 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject21 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject22 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject23 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject24 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions7 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject25 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject26 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject27 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject28 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions8 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject29 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject30 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject31 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject32 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SimpleContextButton simpleContextButton7 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton8 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton9 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton10 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton11 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton12 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions9 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject33 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject34 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject35 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject36 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions10 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject37 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject38 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject39 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject40 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions11 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject41 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject42 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject43 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject44 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions13 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject49 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject50 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject51 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject52 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions14 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject53 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject55 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject56 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions15 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject57 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject58 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject59 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject60 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions16 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions17 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject65 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject66 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject67 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject68 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions18 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject69 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject70 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject71 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject72 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions19 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject73 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject74 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject75 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject76 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SimpleContextButton simpleContextButton19 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton20 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton21 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton22 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton23 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton24 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions20 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject77 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject78 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject79 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject80 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions21 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject81 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject82 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject83 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject84 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions22 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject85 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject86 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject87 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject88 = new DevExpress.Utils.SerializableAppearanceObject();
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn158 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -220,7 +220,17 @@ namespace DiamondTrading
             this.lblStartDate = new System.Windows.Forms.Label();
             this.dtFromDate = new DevExpress.XtraEditors.DateEdit();
             this.xtabSales = new DevExpress.XtraTab.XtraTabPage();
+            this.btnSalesSearch = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dtSalesToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label3 = new System.Windows.Forms.Label();
+            this.dtSalesFromDate = new DevExpress.XtraEditors.DateEdit();
             this.xtabPayment = new DevExpress.XtraTab.XtraTabPage();
+            this.btnPaymentGetData = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.dtPaymentToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtPaymentFromDate = new DevExpress.XtraEditors.DateEdit();
             this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnEntryDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -241,6 +251,11 @@ namespace DiamondTrading
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.xtabReceipt = new DevExpress.XtraTab.XtraTabPage();
+            this.btnReceiptGetData = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtReceiptToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtReceiptFromDate = new DevExpress.XtraEditors.DateEdit();
             this.grdReceiptDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView7 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnEntyDateReceipt = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -260,6 +275,11 @@ namespace DiamondTrading
             this.gridView8 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn44 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabContra = new DevExpress.XtraTab.XtraTabPage();
+            this.btnContraGetData = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dtContraToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label9 = new System.Windows.Forms.Label();
+            this.dtContraFromDate = new DevExpress.XtraEditors.DateEdit();
             this.grdContraDetails = new DevExpress.XtraGrid.GridControl();
             this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnEntryDateContra = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -278,6 +298,11 @@ namespace DiamondTrading
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabExpense = new DevExpress.XtraTab.XtraTabPage();
+            this.btnExpenseGetData = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.dtExpenseToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label11 = new System.Windows.Forms.Label();
+            this.dtExpenseFromDate = new DevExpress.XtraEditors.DateEdit();
             this.grdExpenseControl = new DevExpress.XtraGrid.GridControl();
             this.grvExpenseMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnEntryDateExpense = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -314,6 +339,11 @@ namespace DiamondTrading
             this.gridView11 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn37 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabMixed = new DevExpress.XtraTab.XtraTabPage();
+            this.btnMixedGetData = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.dtMixedToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label13 = new System.Windows.Forms.Label();
+            this.dtMixedFromDate = new DevExpress.XtraEditors.DateEdit();
             this.gridControlMixed = new DevExpress.XtraGrid.GridControl();
             this.gridView15 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn46 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -511,31 +541,11 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.btnSalesSearch = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.dtSalesToDate = new DevExpress.XtraEditors.DateEdit();
-            this.label3 = new System.Windows.Forms.Label();
-            this.dtSalesFromDate = new DevExpress.XtraEditors.DateEdit();
-            this.btnPaymentGetData = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.dtPaymentToDate = new DevExpress.XtraEditors.DateEdit();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dtPaymentFromDate = new DevExpress.XtraEditors.DateEdit();
-            this.btnReceiptGetData = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtReceiptToDate = new DevExpress.XtraEditors.DateEdit();
-            this.label7 = new System.Windows.Forms.Label();
-            this.dtReceiptFromDate = new DevExpress.XtraEditors.DateEdit();
-            this.btnContraGetData = new System.Windows.Forms.Button();
-            this.label8 = new System.Windows.Forms.Label();
-            this.dtContraToDate = new DevExpress.XtraEditors.DateEdit();
-            this.label9 = new System.Windows.Forms.Label();
-            this.dtContraFromDate = new DevExpress.XtraEditors.DateEdit();
-            this.btnExpenseGetData = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.dtExpenseToDate = new DevExpress.XtraEditors.DateEdit();
-            this.label11 = new System.Windows.Forms.Label();
-            this.dtExpenseFromDate = new DevExpress.XtraEditors.DateEdit();
+            this.btnCashBankGetData = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.dtCashBankToDate = new DevExpress.XtraEditors.DateEdit();
+            this.label15 = new System.Windows.Forms.Label();
+            this.dtCashBankFromDate = new DevExpress.XtraEditors.DateEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -556,20 +566,40 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).BeginInit();
             this.xtabSales.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).BeginInit();
             this.xtabPayment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).BeginInit();
             this.xtabReceipt.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).BeginInit();
             this.xtabContra.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.xtabExpense.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdExpenseControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvExpenseMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView10)).BeginInit();
@@ -578,6 +608,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).BeginInit();
             this.xtabMixed.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMixed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView15)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView16)).BeginInit();
@@ -648,26 +682,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties.CalendarTimeProperties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankToDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankToDate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankFromDate.Properties.CalendarTimeProperties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankFromDate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grdChildTransMaster
@@ -811,10 +829,10 @@ namespace DiamondTrading
             this.grdTransactionMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            gridLevelNode1.LevelTemplate = this.grdChildTransMaster;
-            gridLevelNode1.RelationName = "Child";
+            gridLevelNode3.LevelTemplate = this.grdChildTransMaster;
+            gridLevelNode3.RelationName = "Child";
             this.grdTransactionMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode3});
             this.grdTransactionMaster.Location = new System.Drawing.Point(0, 39);
             this.grdTransactionMaster.MainView = this.grvTransMaster;
             this.grdTransactionMaster.Name = "grdTransactionMaster";
@@ -1190,9 +1208,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit7
             // 
             this.repositoryItemButtonEdit7.AutoHeight = false;
-            editorButtonImageOptions1.Image = global::DiamondTrading.Properties.Resources.image_16;
+            editorButtonImageOptions12.Image = global::DiamondTrading.Properties.Resources.image_16;
             this.repositoryItemButtonEdit7.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions12, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject45, serializableAppearanceObject46, serializableAppearanceObject47, serializableAppearanceObject48, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit7.Name = "repositoryItemButtonEdit7";
             this.repositoryItemButtonEdit7.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit7.Click += new System.EventHandler(this.repositoryItemButtonEdit7_Click);
@@ -1202,24 +1220,24 @@ namespace DiamondTrading
             this.repositoryItemComboBox1.AutoHeight = false;
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton1.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton1.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton1.Name = "Pending";
-            simpleContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton2.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton2.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton2.Name = "Approved";
-            simpleContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton3.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton3.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton3.Name = "Reject";
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton1);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton2);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton3);
+            simpleContextButton13.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton13.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton13.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton13.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton13.Name = "Pending";
+            simpleContextButton14.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton14.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton14.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton14.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton14.Name = "Approved";
+            simpleContextButton15.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton15.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton15.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton15.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton15.Name = "Reject";
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton13);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton14);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton15);
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -1228,24 +1246,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox1.AutoHeight = false;
             this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton4.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton4.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton4.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton4.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton4.Name = "Pending";
-            simpleContextButton5.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton5.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton5.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton5.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton5.Name = "Approved";
-            simpleContextButton6.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton6.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton6.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton6.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton6.Name = "Reject";
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton4);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton5);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton6);
+            simpleContextButton16.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton16.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton16.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton16.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton16.Name = "Pending";
+            simpleContextButton17.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton17.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton17.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton17.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton17.Name = "Approved";
+            simpleContextButton18.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton18.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton18.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton18.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton18.Name = "Reject";
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton16);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton17);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton18);
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // grvSalesChildTransMaster
@@ -1436,10 +1454,10 @@ namespace DiamondTrading
             this.grdSalesTransactonMaster.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            gridLevelNode2.LevelTemplate = this.grvSalesChildTransMaster;
-            gridLevelNode2.RelationName = "Child";
+            gridLevelNode1.LevelTemplate = this.grvSalesChildTransMaster;
+            gridLevelNode1.RelationName = "Child";
             this.grdSalesTransactonMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.grdSalesTransactonMaster.Location = new System.Drawing.Point(0, 38);
             this.grdSalesTransactonMaster.MainView = this.grvSalesTransactonMaster;
             this.grdSalesTransactonMaster.Name = "grdSalesTransactonMaster";
@@ -1799,9 +1817,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit8
             // 
             this.repositoryItemButtonEdit8.AutoHeight = false;
-            editorButtonImageOptions2.Image = global::DiamondTrading.Properties.Resources.image_16;
+            editorButtonImageOptions13.Image = global::DiamondTrading.Properties.Resources.image_16;
             this.repositoryItemButtonEdit8.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions13, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject49, serializableAppearanceObject50, serializableAppearanceObject51, serializableAppearanceObject52, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit8.Name = "repositoryItemButtonEdit8";
             this.repositoryItemButtonEdit8.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit8.Click += new System.EventHandler(this.repositoryItemButtonEdit8_Click);
@@ -1926,7 +1944,7 @@ namespace DiamondTrading
             this.xtabPurchase.Controls.Add(this.grdTransactionMaster);
             this.xtabPurchase.Name = "xtabPurchase";
             this.xtabPurchase.PageVisible = false;
-            this.xtabPurchase.Size = new System.Drawing.Size(768, 415);
+            this.xtabPurchase.Size = new System.Drawing.Size(778, 420);
             this.xtabPurchase.Text = "Purchase Details";
             // 
             // button1
@@ -1999,6 +2017,64 @@ namespace DiamondTrading
             this.xtabSales.Size = new System.Drawing.Size(778, 420);
             this.xtabSales.Text = "Sales Details";
             // 
+            // btnSalesSearch
+            // 
+            this.btnSalesSearch.Location = new System.Drawing.Point(310, 7);
+            this.btnSalesSearch.Name = "btnSalesSearch";
+            this.btnSalesSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSalesSearch.TabIndex = 16;
+            this.btnSalesSearch.Text = "Get Data";
+            this.btnSalesSearch.UseVisualStyleBackColor = true;
+            this.btnSalesSearch.Click += new System.EventHandler(this.btnSalesSearch_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(161, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(49, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "To Date:";
+            // 
+            // dtSalesToDate
+            // 
+            this.dtSalesToDate.EditValue = null;
+            this.dtSalesToDate.Location = new System.Drawing.Point(216, 9);
+            this.dtSalesToDate.Name = "dtSalesToDate";
+            this.dtSalesToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtSalesToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtSalesToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtSalesToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtSalesToDate.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "From Date:";
+            // 
+            // dtSalesFromDate
+            // 
+            this.dtSalesFromDate.EditValue = null;
+            this.dtSalesFromDate.Location = new System.Drawing.Point(67, 9);
+            this.dtSalesFromDate.Name = "dtSalesFromDate";
+            this.dtSalesFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtSalesFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtSalesFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtSalesFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtSalesFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtSalesFromDate.TabIndex = 12;
+            // 
             // xtabPayment
             // 
             this.xtabPayment.Controls.Add(this.btnPaymentGetData);
@@ -2010,6 +2086,64 @@ namespace DiamondTrading
             this.xtabPayment.Name = "xtabPayment";
             this.xtabPayment.Size = new System.Drawing.Size(778, 420);
             this.xtabPayment.Text = "Payment Details";
+            // 
+            // btnPaymentGetData
+            // 
+            this.btnPaymentGetData.Location = new System.Drawing.Point(311, 7);
+            this.btnPaymentGetData.Name = "btnPaymentGetData";
+            this.btnPaymentGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnPaymentGetData.TabIndex = 21;
+            this.btnPaymentGetData.Text = "Get Data";
+            this.btnPaymentGetData.UseVisualStyleBackColor = true;
+            this.btnPaymentGetData.Click += new System.EventHandler(this.btnPaymentGetData_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(162, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(49, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "To Date:";
+            // 
+            // dtPaymentToDate
+            // 
+            this.dtPaymentToDate.EditValue = null;
+            this.dtPaymentToDate.Location = new System.Drawing.Point(217, 9);
+            this.dtPaymentToDate.Name = "dtPaymentToDate";
+            this.dtPaymentToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPaymentToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtPaymentToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtPaymentToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtPaymentToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtPaymentToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtPaymentToDate.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(4, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "From Date:";
+            // 
+            // dtPaymentFromDate
+            // 
+            this.dtPaymentFromDate.EditValue = null;
+            this.dtPaymentFromDate.Location = new System.Drawing.Point(68, 9);
+            this.dtPaymentFromDate.Name = "dtPaymentFromDate";
+            this.dtPaymentFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPaymentFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtPaymentFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtPaymentFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtPaymentFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtPaymentFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtPaymentFromDate.TabIndex = 17;
             // 
             // grdPaymentDetails
             // 
@@ -2205,6 +2339,64 @@ namespace DiamondTrading
             this.xtabReceipt.Size = new System.Drawing.Size(778, 420);
             this.xtabReceipt.Text = "Receipt Details";
             // 
+            // btnReceiptGetData
+            // 
+            this.btnReceiptGetData.Location = new System.Drawing.Point(311, 8);
+            this.btnReceiptGetData.Name = "btnReceiptGetData";
+            this.btnReceiptGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnReceiptGetData.TabIndex = 26;
+            this.btnReceiptGetData.Text = "Get Data";
+            this.btnReceiptGetData.UseVisualStyleBackColor = true;
+            this.btnReceiptGetData.Click += new System.EventHandler(this.btnReceiptGetData_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(162, 13);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 13);
+            this.label6.TabIndex = 25;
+            this.label6.Text = "To Date:";
+            // 
+            // dtReceiptToDate
+            // 
+            this.dtReceiptToDate.EditValue = null;
+            this.dtReceiptToDate.Location = new System.Drawing.Point(217, 10);
+            this.dtReceiptToDate.Name = "dtReceiptToDate";
+            this.dtReceiptToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtReceiptToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtReceiptToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtReceiptToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtReceiptToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtReceiptToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtReceiptToDate.TabIndex = 24;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(4, 13);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.TabIndex = 23;
+            this.label7.Text = "From Date:";
+            // 
+            // dtReceiptFromDate
+            // 
+            this.dtReceiptFromDate.EditValue = null;
+            this.dtReceiptFromDate.Location = new System.Drawing.Point(68, 10);
+            this.dtReceiptFromDate.Name = "dtReceiptFromDate";
+            this.dtReceiptFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtReceiptFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtReceiptFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtReceiptFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtReceiptFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtReceiptFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtReceiptFromDate.TabIndex = 22;
+            // 
             // grdReceiptDetails
             // 
             this.grdReceiptDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2391,6 +2583,64 @@ namespace DiamondTrading
             this.xtabContra.Size = new System.Drawing.Size(778, 420);
             this.xtabContra.Text = "Contra Details";
             // 
+            // btnContraGetData
+            // 
+            this.btnContraGetData.Location = new System.Drawing.Point(311, 7);
+            this.btnContraGetData.Name = "btnContraGetData";
+            this.btnContraGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnContraGetData.TabIndex = 31;
+            this.btnContraGetData.Text = "Get Data";
+            this.btnContraGetData.UseVisualStyleBackColor = true;
+            this.btnContraGetData.Click += new System.EventHandler(this.btnContraGetData_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(162, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 30;
+            this.label8.Text = "To Date:";
+            // 
+            // dtContraToDate
+            // 
+            this.dtContraToDate.EditValue = null;
+            this.dtContraToDate.Location = new System.Drawing.Point(217, 9);
+            this.dtContraToDate.Name = "dtContraToDate";
+            this.dtContraToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtContraToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtContraToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtContraToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtContraToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtContraToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtContraToDate.TabIndex = 29;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 12);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(59, 13);
+            this.label9.TabIndex = 28;
+            this.label9.Text = "From Date:";
+            // 
+            // dtContraFromDate
+            // 
+            this.dtContraFromDate.EditValue = null;
+            this.dtContraFromDate.Location = new System.Drawing.Point(68, 9);
+            this.dtContraFromDate.Name = "dtContraFromDate";
+            this.dtContraFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtContraFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtContraFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtContraFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtContraFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtContraFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtContraFromDate.TabIndex = 27;
+            // 
             // grdContraDetails
             // 
             this.grdContraDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2566,6 +2816,64 @@ namespace DiamondTrading
             this.xtabExpense.Size = new System.Drawing.Size(778, 420);
             this.xtabExpense.Text = "Expense Details";
             // 
+            // btnExpenseGetData
+            // 
+            this.btnExpenseGetData.Location = new System.Drawing.Point(310, 6);
+            this.btnExpenseGetData.Name = "btnExpenseGetData";
+            this.btnExpenseGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnExpenseGetData.TabIndex = 36;
+            this.btnExpenseGetData.Text = "Get Data";
+            this.btnExpenseGetData.UseVisualStyleBackColor = true;
+            this.btnExpenseGetData.Click += new System.EventHandler(this.btnExpenseGetData_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(161, 11);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(49, 13);
+            this.label10.TabIndex = 35;
+            this.label10.Text = "To Date:";
+            // 
+            // dtExpenseToDate
+            // 
+            this.dtExpenseToDate.EditValue = null;
+            this.dtExpenseToDate.Location = new System.Drawing.Point(216, 8);
+            this.dtExpenseToDate.Name = "dtExpenseToDate";
+            this.dtExpenseToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtExpenseToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtExpenseToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtExpenseToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtExpenseToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtExpenseToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtExpenseToDate.TabIndex = 34;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 13);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "From Date:";
+            // 
+            // dtExpenseFromDate
+            // 
+            this.dtExpenseFromDate.EditValue = null;
+            this.dtExpenseFromDate.Location = new System.Drawing.Point(67, 8);
+            this.dtExpenseFromDate.Name = "dtExpenseFromDate";
+            this.dtExpenseFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtExpenseFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtExpenseFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtExpenseFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtExpenseFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtExpenseFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtExpenseFromDate.TabIndex = 32;
+            // 
             // grdExpenseControl
             // 
             this.grdExpenseControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -2617,7 +2925,7 @@ namespace DiamondTrading
             this.gridColumnEntryDateExpense.Name = "gridColumnEntryDateExpense";
             this.gridColumnEntryDateExpense.Visible = true;
             this.gridColumnEntryDateExpense.VisibleIndex = 0;
-            this.gridColumnEntryDateExpense.Width = 97;
+            this.gridColumnEntryDateExpense.Width = 77;
             // 
             // gridColumnExpenseId
             // 
@@ -2635,7 +2943,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "SrNo", "Total={0}")});
             this.gridColumnExpenseSrNo.Visible = true;
             this.gridColumnExpenseSrNo.VisibleIndex = 1;
-            this.gridColumnExpenseSrNo.Width = 79;
+            this.gridColumnExpenseSrNo.Width = 62;
             // 
             // gridColumn26
             // 
@@ -2644,7 +2952,7 @@ namespace DiamondTrading
             this.gridColumn26.Name = "gridColumn26";
             this.gridColumn26.Visible = true;
             this.gridColumn26.VisibleIndex = 2;
-            this.gridColumn26.Width = 324;
+            this.gridColumn26.Width = 79;
             // 
             // gridColumnExpensePartyId
             // 
@@ -2673,7 +2981,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.gridColumnExpenseAmount.Visible = true;
             this.gridColumnExpenseAmount.VisibleIndex = 3;
-            this.gridColumnExpenseAmount.Width = 195;
+            this.gridColumnExpenseAmount.Width = 248;
             // 
             // gridColumnExpenseRemarks
             // 
@@ -2682,15 +2990,13 @@ namespace DiamondTrading
             this.gridColumnExpenseRemarks.Name = "gridColumnExpenseRemarks";
             this.gridColumnExpenseRemarks.Visible = true;
             this.gridColumnExpenseRemarks.VisibleIndex = 4;
-            this.gridColumnExpenseRemarks.Width = 167;
+            this.gridColumnExpenseRemarks.Width = 219;
             // 
             // gridColumnExpenseUpdatedDate
             // 
             this.gridColumnExpenseUpdatedDate.Caption = "Updated Date";
             this.gridColumnExpenseUpdatedDate.FieldName = "UpdatedDate";
             this.gridColumnExpenseUpdatedDate.Name = "gridColumnExpenseUpdatedDate";
-            this.gridColumnExpenseUpdatedDate.Visible = true;
-            this.gridColumnExpenseUpdatedDate.VisibleIndex = 5;
             this.gridColumnExpenseUpdatedDate.Width = 97;
             // 
             // gridColumnExpenseUpdatedBy
@@ -2698,8 +3004,6 @@ namespace DiamondTrading
             this.gridColumnExpenseUpdatedBy.Caption = "UpdatedBy";
             this.gridColumnExpenseUpdatedBy.FieldName = "UpdatedBy";
             this.gridColumnExpenseUpdatedBy.Name = "gridColumnExpenseUpdatedBy";
-            this.gridColumnExpenseUpdatedBy.Visible = true;
-            this.gridColumnExpenseUpdatedBy.VisibleIndex = 6;
             this.gridColumnExpenseUpdatedBy.Width = 102;
             // 
             // gridColumnExpenseIdCol
@@ -2726,7 +3030,7 @@ namespace DiamondTrading
             // 
             this.xtabLoan.Controls.Add(this.gridControlLoan);
             this.xtabLoan.Name = "xtabLoan";
-            this.xtabLoan.Size = new System.Drawing.Size(768, 415);
+            this.xtabLoan.Size = new System.Drawing.Size(778, 420);
             this.xtabLoan.Text = "Loan Details";
             // 
             // gridControlLoan
@@ -2735,7 +3039,7 @@ namespace DiamondTrading
             this.gridControlLoan.Location = new System.Drawing.Point(0, 0);
             this.gridControlLoan.MainView = this.gridView9;
             this.gridControlLoan.Name = "gridControlLoan";
-            this.gridControlLoan.Size = new System.Drawing.Size(768, 415);
+            this.gridControlLoan.Size = new System.Drawing.Size(778, 420);
             this.gridControlLoan.TabIndex = 5;
             this.gridControlLoan.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView9,
@@ -2920,18 +3224,83 @@ namespace DiamondTrading
             // 
             // xtabMixed
             // 
+            this.xtabMixed.Controls.Add(this.btnMixedGetData);
+            this.xtabMixed.Controls.Add(this.label12);
+            this.xtabMixed.Controls.Add(this.dtMixedToDate);
+            this.xtabMixed.Controls.Add(this.label13);
+            this.xtabMixed.Controls.Add(this.dtMixedFromDate);
             this.xtabMixed.Controls.Add(this.gridControlMixed);
             this.xtabMixed.Name = "xtabMixed";
             this.xtabMixed.Size = new System.Drawing.Size(778, 420);
             this.xtabMixed.Text = "Mixed Report";
             // 
+            // btnMixedGetData
+            // 
+            this.btnMixedGetData.Location = new System.Drawing.Point(308, 8);
+            this.btnMixedGetData.Name = "btnMixedGetData";
+            this.btnMixedGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnMixedGetData.TabIndex = 41;
+            this.btnMixedGetData.Text = "Get Data";
+            this.btnMixedGetData.UseVisualStyleBackColor = true;
+            this.btnMixedGetData.Click += new System.EventHandler(this.btnMixedGetData_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(159, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(49, 13);
+            this.label12.TabIndex = 40;
+            this.label12.Text = "To Date:";
+            // 
+            // dtMixedToDate
+            // 
+            this.dtMixedToDate.EditValue = null;
+            this.dtMixedToDate.Location = new System.Drawing.Point(214, 10);
+            this.dtMixedToDate.Name = "dtMixedToDate";
+            this.dtMixedToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtMixedToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtMixedToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMixedToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMixedToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtMixedToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtMixedToDate.TabIndex = 39;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(1, 13);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(59, 13);
+            this.label13.TabIndex = 38;
+            this.label13.Text = "From Date:";
+            // 
+            // dtMixedFromDate
+            // 
+            this.dtMixedFromDate.EditValue = null;
+            this.dtMixedFromDate.Location = new System.Drawing.Point(65, 10);
+            this.dtMixedFromDate.Name = "dtMixedFromDate";
+            this.dtMixedFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtMixedFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtMixedFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMixedFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.dtMixedFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtMixedFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtMixedFromDate.TabIndex = 37;
+            // 
             // gridControlMixed
             // 
-            this.gridControlMixed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlMixed.Location = new System.Drawing.Point(0, 0);
+            this.gridControlMixed.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlMixed.Location = new System.Drawing.Point(0, 39);
             this.gridControlMixed.MainView = this.gridView15;
             this.gridControlMixed.Name = "gridControlMixed";
-            this.gridControlMixed.Size = new System.Drawing.Size(778, 420);
+            this.gridControlMixed.Size = new System.Drawing.Size(778, 381);
             this.gridControlMixed.TabIndex = 6;
             this.gridControlMixed.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView15,
@@ -3092,7 +3461,7 @@ namespace DiamondTrading
             // 
             this.xtabPurchaseSlipPrint.Controls.Add(this.grdPurchaseSlipDetails);
             this.xtabPurchaseSlipPrint.Name = "xtabPurchaseSlipPrint";
-            this.xtabPurchaseSlipPrint.Size = new System.Drawing.Size(768, 415);
+            this.xtabPurchaseSlipPrint.Size = new System.Drawing.Size(778, 420);
             this.xtabPurchaseSlipPrint.Text = "Purchase Slip Print";
             // 
             // grdPurchaseSlipDetails
@@ -3103,7 +3472,7 @@ namespace DiamondTrading
             this.grdPurchaseSlipDetails.Name = "grdPurchaseSlipDetails";
             this.grdPurchaseSlipDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoPurchaseSlipPrintBtn});
-            this.grdPurchaseSlipDetails.Size = new System.Drawing.Size(768, 415);
+            this.grdPurchaseSlipDetails.Size = new System.Drawing.Size(778, 420);
             this.grdPurchaseSlipDetails.TabIndex = 3;
             this.grdPurchaseSlipDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPurchaseSlipDetails,
@@ -3213,9 +3582,9 @@ namespace DiamondTrading
             // repoPurchaseSlipPrintBtn
             // 
             this.repoPurchaseSlipPrintBtn.AutoHeight = false;
-            editorButtonImageOptions3.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions14.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repoPurchaseSlipPrintBtn.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions3, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject9, serializableAppearanceObject10, serializableAppearanceObject11, serializableAppearanceObject12, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repoPurchaseSlipPrintBtn.Name = "repoPurchaseSlipPrintBtn";
             this.repoPurchaseSlipPrintBtn.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repoPurchaseSlipPrintBtn.Click += new System.EventHandler(this.repoPurchaseSlipPrintBtn_Click);
@@ -3244,7 +3613,7 @@ namespace DiamondTrading
             // 
             this.xtabJangadSendReceive.Controls.Add(this.gridControlJangadSendReceive);
             this.xtabJangadSendReceive.Name = "xtabJangadSendReceive";
-            this.xtabJangadSendReceive.Size = new System.Drawing.Size(768, 415);
+            this.xtabJangadSendReceive.Size = new System.Drawing.Size(778, 420);
             this.xtabJangadSendReceive.Text = "Jangad Details";
             // 
             // gridControlJangadSendReceive
@@ -3255,7 +3624,7 @@ namespace DiamondTrading
             this.gridControlJangadSendReceive.Name = "gridControlJangadSendReceive";
             this.gridControlJangadSendReceive.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryJangadPrintReport});
-            this.gridControlJangadSendReceive.Size = new System.Drawing.Size(768, 415);
+            this.gridControlJangadSendReceive.Size = new System.Drawing.Size(778, 420);
             this.gridControlJangadSendReceive.TabIndex = 4;
             this.gridControlJangadSendReceive.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvJangadSendReceive,
@@ -3437,9 +3806,9 @@ namespace DiamondTrading
             // repositoryJangadPrintReport
             // 
             this.repositoryJangadPrintReport.AutoHeight = false;
-            editorButtonImageOptions4.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions15.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryJangadPrintReport.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions15, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject57, serializableAppearanceObject58, serializableAppearanceObject59, serializableAppearanceObject60, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryJangadPrintReport.Name = "repositoryJangadPrintReport";
             this.repositoryJangadPrintReport.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryJangadPrintReport.ButtonClick += new DevExpress.XtraEditors.Controls.ButtonPressedEventHandler(this.repositoryJangadPrintReport_ButtonClick);
@@ -3468,7 +3837,7 @@ namespace DiamondTrading
             // 
             this.xtraTabPFReport.Controls.Add(this.gridControlPFReport);
             this.xtraTabPFReport.Name = "xtraTabPFReport";
-            this.xtraTabPFReport.Size = new System.Drawing.Size(768, 415);
+            this.xtraTabPFReport.Size = new System.Drawing.Size(778, 420);
             this.xtraTabPFReport.Text = "PF Report";
             // 
             // gridControlPFReport
@@ -3479,7 +3848,7 @@ namespace DiamondTrading
             this.gridControlPFReport.Name = "gridControlPFReport";
             this.gridControlPFReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit1});
-            this.gridControlPFReport.Size = new System.Drawing.Size(768, 415);
+            this.gridControlPFReport.Size = new System.Drawing.Size(778, 420);
             this.gridControlPFReport.TabIndex = 5;
             this.gridControlPFReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPFReport,
@@ -3662,9 +4031,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit1
             // 
             this.repositoryItemButtonEdit1.AutoHeight = false;
-            editorButtonImageOptions5.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions16.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions5, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject17, serializableAppearanceObject18, serializableAppearanceObject19, serializableAppearanceObject20, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
             this.repositoryItemButtonEdit1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -3692,7 +4061,7 @@ namespace DiamondTrading
             // 
             this.xtraTabLedgerBalance.Controls.Add(this.gridControlLedgerReport);
             this.xtraTabLedgerBalance.Name = "xtraTabLedgerBalance";
-            this.xtraTabLedgerBalance.Size = new System.Drawing.Size(768, 415);
+            this.xtraTabLedgerBalance.Size = new System.Drawing.Size(778, 420);
             this.xtraTabLedgerBalance.Text = "Ledger Report";
             // 
             // gridControlLedgerReport
@@ -3703,7 +4072,7 @@ namespace DiamondTrading
             this.gridControlLedgerReport.Name = "gridControlLedgerReport";
             this.gridControlLedgerReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2});
-            this.gridControlLedgerReport.Size = new System.Drawing.Size(768, 415);
+            this.gridControlLedgerReport.Size = new System.Drawing.Size(778, 420);
             this.gridControlLedgerReport.TabIndex = 6;
             this.gridControlLedgerReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvLedgerReport});
@@ -3794,9 +4163,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions6.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions17.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions6, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject21, serializableAppearanceObject22, serializableAppearanceObject23, serializableAppearanceObject24, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions17, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject65, serializableAppearanceObject66, serializableAppearanceObject67, serializableAppearanceObject68, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -3804,7 +4173,7 @@ namespace DiamondTrading
             // 
             this.xtabWeeklyPurchaseReport.Controls.Add(this.splitContainerControl1);
             this.xtabWeeklyPurchaseReport.Name = "xtabWeeklyPurchaseReport";
-            this.xtabWeeklyPurchaseReport.Size = new System.Drawing.Size(768, 415);
+            this.xtabWeeklyPurchaseReport.Size = new System.Drawing.Size(778, 420);
             this.xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
             // 
             // splitContainerControl1
@@ -3823,7 +4192,7 @@ namespace DiamondTrading
             // 
             this.splitContainerControl1.Panel2.Controls.Add(this.grdWeeklyPurchaseDetails);
             this.splitContainerControl1.Panel2.Text = "Panel2";
-            this.splitContainerControl1.Size = new System.Drawing.Size(768, 415);
+            this.splitContainerControl1.Size = new System.Drawing.Size(778, 420);
             this.splitContainerControl1.SplitterPosition = 200;
             this.splitContainerControl1.TabIndex = 8;
             // 
@@ -3835,7 +4204,7 @@ namespace DiamondTrading
             this.grdWeeklyPurchaseReport.Name = "grdWeeklyPurchaseReport";
             this.grdWeeklyPurchaseReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit3});
-            this.grdWeeklyPurchaseReport.Size = new System.Drawing.Size(768, 200);
+            this.grdWeeklyPurchaseReport.Size = new System.Drawing.Size(778, 200);
             this.grdWeeklyPurchaseReport.TabIndex = 8;
             this.grdWeeklyPurchaseReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvWeeklyPurchaseReport,
@@ -3914,9 +4283,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit3
             // 
             this.repositoryItemButtonEdit3.AutoHeight = false;
-            editorButtonImageOptions7.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions18.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions7, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject25, serializableAppearanceObject26, serializableAppearanceObject27, serializableAppearanceObject28, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions18, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject69, serializableAppearanceObject70, serializableAppearanceObject71, serializableAppearanceObject72, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit3.Name = "repositoryItemButtonEdit3";
             this.repositoryItemButtonEdit3.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -3951,7 +4320,7 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox2,
             this.repositoryItemTextEdit1,
             this.repositoryItemButtonEdit9});
-            this.grdWeeklyPurchaseDetails.Size = new System.Drawing.Size(768, 205);
+            this.grdWeeklyPurchaseDetails.Size = new System.Drawing.Size(778, 210);
             this.grdWeeklyPurchaseDetails.TabIndex = 4;
             this.grdWeeklyPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvWeeklyPurchaseDetails,
@@ -4290,9 +4659,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit9
             // 
             this.repositoryItemButtonEdit9.AutoHeight = false;
-            editorButtonImageOptions8.Image = global::DiamondTrading.Properties.Resources.image_16;
+            editorButtonImageOptions19.Image = global::DiamondTrading.Properties.Resources.image_16;
             this.repositoryItemButtonEdit9.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions8, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject29, serializableAppearanceObject30, serializableAppearanceObject31, serializableAppearanceObject32, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions19, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject73, serializableAppearanceObject74, serializableAppearanceObject75, serializableAppearanceObject76, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit9.Name = "repositoryItemButtonEdit9";
             this.repositoryItemButtonEdit9.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             this.repositoryItemButtonEdit9.Click += new System.EventHandler(this.repositoryItemButtonEdit9_Click);
@@ -4302,24 +4671,24 @@ namespace DiamondTrading
             this.repositoryItemComboBox2.AutoHeight = false;
             this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton7.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton7.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton7.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton7.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton7.Name = "Pending";
-            simpleContextButton8.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton8.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton8.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton8.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton8.Name = "Approved";
-            simpleContextButton9.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton9.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton9.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton9.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton9.Name = "Reject";
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton7);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton8);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton9);
+            simpleContextButton19.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton19.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton19.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton19.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton19.Name = "Pending";
+            simpleContextButton20.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton20.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton20.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton20.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton20.Name = "Approved";
+            simpleContextButton21.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton21.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton21.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton21.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton21.Name = "Reject";
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton19);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton20);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton21);
             this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
             this.repositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -4328,24 +4697,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox2.AutoHeight = false;
             this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton10.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton10.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton10.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton10.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton10.Name = "Pending";
-            simpleContextButton11.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton11.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton11.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton11.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton11.Name = "Approved";
-            simpleContextButton12.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton12.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton12.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton12.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton12.Name = "Reject";
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton10);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton11);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton12);
+            simpleContextButton22.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton22.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton22.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton22.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton22.Name = "Pending";
+            simpleContextButton23.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton23.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton23.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton23.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton23.Name = "Approved";
+            simpleContextButton24.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton24.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton24.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton24.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton24.Name = "Reject";
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton22);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton23);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton24);
             this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             // 
             // gridView35
@@ -4372,7 +4741,7 @@ namespace DiamondTrading
             // 
             this.xtraTabPayableReceivable.Controls.Add(this.gridControlPayableReceivable);
             this.xtraTabPayableReceivable.Name = "xtraTabPayableReceivable";
-            this.xtraTabPayableReceivable.Size = new System.Drawing.Size(768, 415);
+            this.xtraTabPayableReceivable.Size = new System.Drawing.Size(778, 420);
             this.xtraTabPayableReceivable.Text = "Payable";
             // 
             // gridControlPayableReceivable
@@ -4383,7 +4752,7 @@ namespace DiamondTrading
             this.gridControlPayableReceivable.Name = "gridControlPayableReceivable";
             this.gridControlPayableReceivable.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit4});
-            this.gridControlPayableReceivable.Size = new System.Drawing.Size(768, 415);
+            this.gridControlPayableReceivable.Size = new System.Drawing.Size(778, 420);
             this.gridControlPayableReceivable.TabIndex = 7;
             this.gridControlPayableReceivable.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1,
@@ -4492,9 +4861,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit4
             // 
             this.repositoryItemButtonEdit4.AutoHeight = false;
-            editorButtonImageOptions9.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions20.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit4.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions9, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject33, serializableAppearanceObject34, serializableAppearanceObject35, serializableAppearanceObject36, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions20, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject77, serializableAppearanceObject78, serializableAppearanceObject79, serializableAppearanceObject80, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit4.Name = "repositoryItemButtonEdit4";
             this.repositoryItemButtonEdit4.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -4524,7 +4893,7 @@ namespace DiamondTrading
             this.xtraTabBalanceSheet.Controls.Add(this.lueBalanceSheetType);
             this.xtraTabBalanceSheet.Controls.Add(this.gridControlBalanceSheet);
             this.xtraTabBalanceSheet.Name = "xtraTabBalanceSheet";
-            this.xtraTabBalanceSheet.Size = new System.Drawing.Size(768, 415);
+            this.xtraTabBalanceSheet.Size = new System.Drawing.Size(778, 420);
             this.xtraTabBalanceSheet.Text = "Balance Sheet";
             // 
             // labelControl6
@@ -4628,9 +4997,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit5
             // 
             this.repositoryItemButtonEdit5.AutoHeight = false;
-            editorButtonImageOptions10.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions21.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit5.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions10, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject37, serializableAppearanceObject38, serializableAppearanceObject39, serializableAppearanceObject40, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions21, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject81, serializableAppearanceObject82, serializableAppearanceObject83, serializableAppearanceObject84, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit5.Name = "repositoryItemButtonEdit5";
             this.repositoryItemButtonEdit5.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -4660,7 +5029,7 @@ namespace DiamondTrading
             this.xtraTabProfitLoss.Controls.Add(this.lueProfitLossType);
             this.xtraTabProfitLoss.Controls.Add(this.gridControlProfitLoss);
             this.xtraTabProfitLoss.Name = "xtraTabProfitLoss";
-            this.xtraTabProfitLoss.Size = new System.Drawing.Size(768, 415);
+            this.xtraTabProfitLoss.Size = new System.Drawing.Size(778, 420);
             this.xtraTabProfitLoss.Text = "Profit And Loss Report";
             // 
             // labelControl1
@@ -4764,9 +5133,9 @@ namespace DiamondTrading
             // repositoryItemButtonEdit6
             // 
             this.repositoryItemButtonEdit6.AutoHeight = false;
-            editorButtonImageOptions11.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions22.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit6.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions11, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject41, serializableAppearanceObject42, serializableAppearanceObject43, serializableAppearanceObject44, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions22, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject85, serializableAppearanceObject86, serializableAppearanceObject87, serializableAppearanceObject88, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit6.Name = "repositoryItemButtonEdit6";
             this.repositoryItemButtonEdit6.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -4792,6 +5161,11 @@ namespace DiamondTrading
             // 
             // xtabCashBankReport
             // 
+            this.xtabCashBankReport.Controls.Add(this.btnCashBankGetData);
+            this.xtabCashBankReport.Controls.Add(this.label14);
+            this.xtabCashBankReport.Controls.Add(this.dtCashBankToDate);
+            this.xtabCashBankReport.Controls.Add(this.label15);
+            this.xtabCashBankReport.Controls.Add(this.dtCashBankFromDate);
             this.xtabCashBankReport.Controls.Add(this.gridControlCashBank);
             this.xtabCashBankReport.Name = "xtabCashBankReport";
             this.xtabCashBankReport.Size = new System.Drawing.Size(778, 420);
@@ -4799,11 +5173,13 @@ namespace DiamondTrading
             // 
             // gridControlCashBank
             // 
-            this.gridControlCashBank.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlCashBank.Location = new System.Drawing.Point(0, 0);
+            this.gridControlCashBank.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlCashBank.Location = new System.Drawing.Point(0, 39);
             this.gridControlCashBank.MainView = this.gridView2;
             this.gridControlCashBank.Name = "gridControlCashBank";
-            this.gridControlCashBank.Size = new System.Drawing.Size(778, 420);
+            this.gridControlCashBank.Size = new System.Drawing.Size(778, 381);
             this.gridControlCashBank.TabIndex = 5;
             this.gridControlCashBank.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -4981,295 +5357,63 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // btnSalesSearch
+            // btnCashBankGetData
             // 
-            this.btnSalesSearch.Location = new System.Drawing.Point(310, 7);
-            this.btnSalesSearch.Name = "btnSalesSearch";
-            this.btnSalesSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSalesSearch.TabIndex = 16;
-            this.btnSalesSearch.Text = "Get Data";
-            this.btnSalesSearch.UseVisualStyleBackColor = true;
-            this.btnSalesSearch.Click += new System.EventHandler(this.btnSalesSearch_Click);
+            this.btnCashBankGetData.Location = new System.Drawing.Point(312, 9);
+            this.btnCashBankGetData.Name = "btnCashBankGetData";
+            this.btnCashBankGetData.Size = new System.Drawing.Size(75, 23);
+            this.btnCashBankGetData.TabIndex = 46;
+            this.btnCashBankGetData.Text = "Get Data";
+            this.btnCashBankGetData.UseVisualStyleBackColor = true;
+            this.btnCashBankGetData.Click += new System.EventHandler(this.btnCashBankGetData_Click);
             // 
-            // label2
+            // label14
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(161, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "To Date:";
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(163, 14);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(49, 13);
+            this.label14.TabIndex = 45;
+            this.label14.Text = "To Date:";
             // 
-            // dtSalesToDate
+            // dtCashBankToDate
             // 
-            this.dtSalesToDate.EditValue = null;
-            this.dtSalesToDate.Location = new System.Drawing.Point(216, 9);
-            this.dtSalesToDate.Name = "dtSalesToDate";
-            this.dtSalesToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtSalesToDate.Properties.Appearance.Options.UseFont = true;
-            this.dtSalesToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCashBankToDate.EditValue = null;
+            this.dtCashBankToDate.Location = new System.Drawing.Point(218, 11);
+            this.dtCashBankToDate.Name = "dtCashBankToDate";
+            this.dtCashBankToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtCashBankToDate.Properties.Appearance.Options.UseFont = true;
+            this.dtCashBankToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSalesToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCashBankToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSalesToDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtSalesToDate.Size = new System.Drawing.Size(88, 22);
-            this.dtSalesToDate.TabIndex = 14;
+            this.dtCashBankToDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtCashBankToDate.Size = new System.Drawing.Size(88, 22);
+            this.dtCashBankToDate.TabIndex = 44;
             // 
-            // label3
+            // label15
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 12);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 13);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "From Date:";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(5, 14);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 13);
+            this.label15.TabIndex = 43;
+            this.label15.Text = "From Date:";
             // 
-            // dtSalesFromDate
+            // dtCashBankFromDate
             // 
-            this.dtSalesFromDate.EditValue = null;
-            this.dtSalesFromDate.Location = new System.Drawing.Point(67, 9);
-            this.dtSalesFromDate.Name = "dtSalesFromDate";
-            this.dtSalesFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtSalesFromDate.Properties.Appearance.Options.UseFont = true;
-            this.dtSalesFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCashBankFromDate.EditValue = null;
+            this.dtCashBankFromDate.Location = new System.Drawing.Point(69, 11);
+            this.dtCashBankFromDate.Name = "dtCashBankFromDate";
+            this.dtCashBankFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtCashBankFromDate.Properties.Appearance.Options.UseFont = true;
+            this.dtCashBankFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSalesFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.dtCashBankFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtSalesFromDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtSalesFromDate.Size = new System.Drawing.Size(88, 22);
-            this.dtSalesFromDate.TabIndex = 12;
-            // 
-            // btnPaymentGetData
-            // 
-            this.btnPaymentGetData.Location = new System.Drawing.Point(311, 7);
-            this.btnPaymentGetData.Name = "btnPaymentGetData";
-            this.btnPaymentGetData.Size = new System.Drawing.Size(75, 23);
-            this.btnPaymentGetData.TabIndex = 21;
-            this.btnPaymentGetData.Text = "Get Data";
-            this.btnPaymentGetData.UseVisualStyleBackColor = true;
-            this.btnPaymentGetData.Click += new System.EventHandler(this.btnPaymentGetData_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(162, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 13);
-            this.label4.TabIndex = 20;
-            this.label4.Text = "To Date:";
-            // 
-            // dtPaymentToDate
-            // 
-            this.dtPaymentToDate.EditValue = null;
-            this.dtPaymentToDate.Location = new System.Drawing.Point(217, 9);
-            this.dtPaymentToDate.Name = "dtPaymentToDate";
-            this.dtPaymentToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPaymentToDate.Properties.Appearance.Options.UseFont = true;
-            this.dtPaymentToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtPaymentToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtPaymentToDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtPaymentToDate.Size = new System.Drawing.Size(88, 22);
-            this.dtPaymentToDate.TabIndex = 19;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "From Date:";
-            // 
-            // dtPaymentFromDate
-            // 
-            this.dtPaymentFromDate.EditValue = null;
-            this.dtPaymentFromDate.Location = new System.Drawing.Point(68, 9);
-            this.dtPaymentFromDate.Name = "dtPaymentFromDate";
-            this.dtPaymentFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPaymentFromDate.Properties.Appearance.Options.UseFont = true;
-            this.dtPaymentFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtPaymentFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtPaymentFromDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtPaymentFromDate.Size = new System.Drawing.Size(88, 22);
-            this.dtPaymentFromDate.TabIndex = 17;
-            // 
-            // btnReceiptGetData
-            // 
-            this.btnReceiptGetData.Location = new System.Drawing.Point(311, 8);
-            this.btnReceiptGetData.Name = "btnReceiptGetData";
-            this.btnReceiptGetData.Size = new System.Drawing.Size(75, 23);
-            this.btnReceiptGetData.TabIndex = 26;
-            this.btnReceiptGetData.Text = "Get Data";
-            this.btnReceiptGetData.UseVisualStyleBackColor = true;
-            this.btnReceiptGetData.Click += new System.EventHandler(this.btnReceiptGetData_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(162, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 25;
-            this.label6.Text = "To Date:";
-            // 
-            // dtReceiptToDate
-            // 
-            this.dtReceiptToDate.EditValue = null;
-            this.dtReceiptToDate.Location = new System.Drawing.Point(217, 10);
-            this.dtReceiptToDate.Name = "dtReceiptToDate";
-            this.dtReceiptToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtReceiptToDate.Properties.Appearance.Options.UseFont = true;
-            this.dtReceiptToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtReceiptToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtReceiptToDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtReceiptToDate.Size = new System.Drawing.Size(88, 22);
-            this.dtReceiptToDate.TabIndex = 24;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 13);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
-            this.label7.TabIndex = 23;
-            this.label7.Text = "From Date:";
-            // 
-            // dtReceiptFromDate
-            // 
-            this.dtReceiptFromDate.EditValue = null;
-            this.dtReceiptFromDate.Location = new System.Drawing.Point(68, 10);
-            this.dtReceiptFromDate.Name = "dtReceiptFromDate";
-            this.dtReceiptFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtReceiptFromDate.Properties.Appearance.Options.UseFont = true;
-            this.dtReceiptFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtReceiptFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtReceiptFromDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtReceiptFromDate.Size = new System.Drawing.Size(88, 22);
-            this.dtReceiptFromDate.TabIndex = 22;
-            // 
-            // btnContraGetData
-            // 
-            this.btnContraGetData.Location = new System.Drawing.Point(311, 7);
-            this.btnContraGetData.Name = "btnContraGetData";
-            this.btnContraGetData.Size = new System.Drawing.Size(75, 23);
-            this.btnContraGetData.TabIndex = 31;
-            this.btnContraGetData.Text = "Get Data";
-            this.btnContraGetData.UseVisualStyleBackColor = true;
-            this.btnContraGetData.Click += new System.EventHandler(this.btnContraGetData_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(162, 12);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 13);
-            this.label8.TabIndex = 30;
-            this.label8.Text = "To Date:";
-            // 
-            // dtContraToDate
-            // 
-            this.dtContraToDate.EditValue = null;
-            this.dtContraToDate.Location = new System.Drawing.Point(217, 9);
-            this.dtContraToDate.Name = "dtContraToDate";
-            this.dtContraToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtContraToDate.Properties.Appearance.Options.UseFont = true;
-            this.dtContraToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtContraToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtContraToDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtContraToDate.Size = new System.Drawing.Size(88, 22);
-            this.dtContraToDate.TabIndex = 29;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(4, 12);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 13);
-            this.label9.TabIndex = 28;
-            this.label9.Text = "From Date:";
-            // 
-            // dtContraFromDate
-            // 
-            this.dtContraFromDate.EditValue = null;
-            this.dtContraFromDate.Location = new System.Drawing.Point(68, 9);
-            this.dtContraFromDate.Name = "dtContraFromDate";
-            this.dtContraFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtContraFromDate.Properties.Appearance.Options.UseFont = true;
-            this.dtContraFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtContraFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtContraFromDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtContraFromDate.Size = new System.Drawing.Size(88, 22);
-            this.dtContraFromDate.TabIndex = 27;
-            // 
-            // btnExpenseGetData
-            // 
-            this.btnExpenseGetData.Location = new System.Drawing.Point(310, 6);
-            this.btnExpenseGetData.Name = "btnExpenseGetData";
-            this.btnExpenseGetData.Size = new System.Drawing.Size(75, 23);
-            this.btnExpenseGetData.TabIndex = 36;
-            this.btnExpenseGetData.Text = "Get Data";
-            this.btnExpenseGetData.UseVisualStyleBackColor = true;
-            this.btnExpenseGetData.Click += new System.EventHandler(this.btnExpenseGetData_Click);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(161, 11);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(49, 13);
-            this.label10.TabIndex = 35;
-            this.label10.Text = "To Date:";
-            // 
-            // dtExpenseToDate
-            // 
-            this.dtExpenseToDate.EditValue = null;
-            this.dtExpenseToDate.Location = new System.Drawing.Point(216, 8);
-            this.dtExpenseToDate.Name = "dtExpenseToDate";
-            this.dtExpenseToDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtExpenseToDate.Properties.Appearance.Options.UseFont = true;
-            this.dtExpenseToDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtExpenseToDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtExpenseToDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtExpenseToDate.Size = new System.Drawing.Size(88, 22);
-            this.dtExpenseToDate.TabIndex = 34;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 11);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 13);
-            this.label11.TabIndex = 33;
-            this.label11.Text = "From Date:";
-            // 
-            // dtExpenseFromDate
-            // 
-            this.dtExpenseFromDate.EditValue = null;
-            this.dtExpenseFromDate.Location = new System.Drawing.Point(67, 8);
-            this.dtExpenseFromDate.Name = "dtExpenseFromDate";
-            this.dtExpenseFromDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtExpenseFromDate.Properties.Appearance.Options.UseFont = true;
-            this.dtExpenseFromDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtExpenseFromDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.dtExpenseFromDate.Properties.MaskSettings.Set("mask", "d");
-            this.dtExpenseFromDate.Size = new System.Drawing.Size(88, 22);
-            this.dtExpenseFromDate.TabIndex = 32;
+            this.dtCashBankFromDate.Properties.MaskSettings.Set("mask", "d");
+            this.dtCashBankFromDate.Size = new System.Drawing.Size(88, 22);
+            this.dtCashBankFromDate.TabIndex = 42;
             // 
             // FrmTransactionDetails
             // 
@@ -5315,24 +5459,44 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.dtFromDate.Properties)).EndInit();
             this.xtabSales.ResumeLayout(false);
             this.xtabSales.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).EndInit();
             this.xtabPayment.ResumeLayout(false);
             this.xtabPayment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView12)).EndInit();
             this.xtabReceipt.ResumeLayout(false);
             this.xtabReceipt.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdReceiptDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView8)).EndInit();
             this.xtabContra.ResumeLayout(false);
             this.xtabContra.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.xtabExpense.ResumeLayout(false);
             this.xtabExpense.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdExpenseControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvExpenseMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView10)).EndInit();
@@ -5341,6 +5505,11 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView11)).EndInit();
             this.xtabMixed.ResumeLayout(false);
+            this.xtabMixed.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtMixedFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlMixed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView15)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView16)).EndInit();
@@ -5409,30 +5578,15 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.gridView33)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView34)).EndInit();
             this.xtabCashBankReport.ResumeLayout(false);
+            this.xtabCashBankReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlCashBank)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtSalesFromDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtPaymentFromDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtReceiptFromDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties.CalendarTimeProperties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dtExpenseFromDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankToDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankToDate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankFromDate.Properties.CalendarTimeProperties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtCashBankFromDate.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -5876,5 +6030,15 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.DateEdit dtExpenseToDate;
         private System.Windows.Forms.Label label11;
         private DevExpress.XtraEditors.DateEdit dtExpenseFromDate;
+        private System.Windows.Forms.Button btnMixedGetData;
+        private System.Windows.Forms.Label label12;
+        private DevExpress.XtraEditors.DateEdit dtMixedToDate;
+        private System.Windows.Forms.Label label13;
+        private DevExpress.XtraEditors.DateEdit dtMixedFromDate;
+        private System.Windows.Forms.Button btnCashBankGetData;
+        private System.Windows.Forms.Label label14;
+        private DevExpress.XtraEditors.DateEdit dtCashBankToDate;
+        private System.Windows.Forms.Label label15;
+        private DevExpress.XtraEditors.DateEdit dtCashBankFromDate;
     }
 }
