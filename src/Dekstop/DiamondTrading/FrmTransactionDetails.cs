@@ -221,6 +221,12 @@ namespace DiamondTrading
             dtSalesFromDate.EditValue = firstDayOfMonth;
             dtSalesToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
+            dtPaymentFromDate.EditValue = firstDayOfMonth;
+            dtPaymentToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            dtReceiptFromDate.EditValue = firstDayOfMonth;
+            dtReceiptToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
             lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
             lueProfitLossType.Properties.DisplayMember = "Name";
             lueProfitLossType.Properties.ValueMember = "Id";
@@ -264,7 +270,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0);
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 0, dtPaymentFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtPaymentToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdPaymentDetails.DataSource = data;
                     gridView4.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PaymentReport"));
                 }
@@ -274,7 +280,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _paymentMasterRepository = new PaymentMasterRepository();
-                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    var data = await _paymentMasterRepository.GetPaymentReport(Common.LoginCompany, Common.LoginFinancialYear, 1, dtReceiptFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtReceiptToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdReceiptDetails.DataSource = data;
                     gridView7.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ReceiptReport"));
                 }
@@ -1422,6 +1428,16 @@ namespace DiamondTrading
         }
 
         private void btnSalesSearch_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnPaymentGetData_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnReceiptGetData_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
         }
