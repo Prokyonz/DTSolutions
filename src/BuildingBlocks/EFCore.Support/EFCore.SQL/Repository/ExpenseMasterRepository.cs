@@ -59,11 +59,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string financialYearId)
+        public async Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string financialYearId, string fromDate, string toDate)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpenseReport = await _databaseContext.SPExpenseModel.FromSqlRaw($"GetExpenseReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                var getExpenseReport = await _databaseContext.SPExpenseModel.FromSqlRaw($"GetExpenseReport '" + companyId + "','" + financialYearId + "', '"+ fromDate +"','"+ toDate +"'").ToListAsync();
                 return getExpenseReport;
             }
         }

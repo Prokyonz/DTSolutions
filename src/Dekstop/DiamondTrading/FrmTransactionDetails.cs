@@ -227,6 +227,12 @@ namespace DiamondTrading
             dtReceiptFromDate.EditValue = firstDayOfMonth;
             dtReceiptToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
+            dtContraFromDate.EditValue = firstDayOfMonth;
+            dtContraToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            dtExpenseFromDate.EditValue = firstDayOfMonth;
+            dtExpenseToDate.EditValue = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
             lueProfitLossType.Properties.DataSource = Common.GetBalanceSheetType;
             lueProfitLossType.Properties.DisplayMember = "Name";
             lueProfitLossType.Properties.ValueMember = "Id";
@@ -290,7 +296,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _paymentMasterRepository == null)
                 {
                     _contraEntryMasterRespository = new ContraEntryMasterRespository();
-                    var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear, dtContraFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtContraToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdContraDetails.DataSource = data;
                     gridView5.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
                 }
@@ -300,7 +306,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _expenseMasterRepository == null)
                 {
                     _expenseMasterRepository = new ExpenseMasterRepository();
-                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    var data = await _expenseMasterRepository.GetExpenseReport(Common.LoginCompany, Common.LoginFinancialYear, dtExpenseFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtExpenseToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdExpenseControl.DataSource = data;
                     grvExpenseMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ExpenseReport"));
                 }
@@ -1438,6 +1444,16 @@ namespace DiamondTrading
         }
 
         private void btnReceiptGetData_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnContraGetData_Click(object sender, EventArgs e)
+        {
+            accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void btnExpenseGetData_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
         }

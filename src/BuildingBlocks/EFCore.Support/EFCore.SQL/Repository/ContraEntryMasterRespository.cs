@@ -74,12 +74,12 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<ContraSPModel>> GetContraReport(string companyId, string financialYearId)
+        public async Task<List<ContraSPModel>> GetContraReport(string companyId, string financialYearId, string fromDate, string toDate)
         {
 
             using (_databaseContext = new DatabaseContext())
             {
-                var paymentRecords = await _databaseContext.SPContraModel.FromSqlRaw($"GetContraReport '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                var paymentRecords = await _databaseContext.SPContraModel.FromSqlRaw($"GetContraReport '" + companyId + "','" + financialYearId + "', '"+ fromDate+"', '"+ toDate+"'").ToListAsync();
                 return paymentRecords;
             }
         }

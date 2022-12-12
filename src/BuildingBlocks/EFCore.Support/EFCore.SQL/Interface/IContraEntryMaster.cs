@@ -10,7 +10,7 @@ namespace EFCore.SQL.Interface
     public interface IContraEntryMaster
     {
         Task<List<ContraEntryMaster>> GetAllContraEntryAsync(string companyId, string financialYearId);
-        Task<List<ContraSPModel>> GetContraReport(string companyId, string financialYearId);
+        Task<List<ContraSPModel>> GetContraReport(string companyId, string financialYearId, string fromDate, string toDate);
         Task<int> GetMaxNo(string companyId, string financialYearId);
         Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster);
         Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster);
