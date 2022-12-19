@@ -40,6 +40,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
         public DbSet<SalesMaster> SalesMaster { get; set; }
         public DbSet<SalesDetails> SalesDetails { get; set; }
+        public DbSet<SalesDetailsSummary> SalesDetailsSummary { get; set; }
         public DbSet<ExpenseMaster> ExpenseMaster { get; set; }
         public DbSet<ExpenseDetails> ExpenseDetails { get; set; }
         public DbSet<SalaryMaster> SalaryMaster { get; set; }
@@ -154,6 +155,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<ContraEntryDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalesDetails>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<SalesDetailsSummary>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<ExpenseDetails>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<SalaryMaster>().Property(c => c.Sr).UseIdentityColumn();

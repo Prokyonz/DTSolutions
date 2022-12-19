@@ -53,9 +53,10 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
-
+        
         [ForeignKey("SalesId")]
         public virtual SalesMaster SalesMaster { get; set; }
+        public virtual List<SalesDetailsSummary> SalesDetailsSummary { get; set; }
 
     }
 }

@@ -21,18 +21,25 @@ namespace EFCore.SQL.Repository
         }
         public async Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster)
         {
-            using (_databaseContext = new DatabaseContext())
+            try
             {
-                if (salesMaster.Id == null)
-                    salesMaster.Id = Guid.NewGuid().ToString();
+                using (_databaseContext = new DatabaseContext())
+                {
+                    if (salesMaster.Id == null)
+                        salesMaster.Id = Guid.NewGuid().ToString();
 
-                //var ledgerRecord = await _databaseContext.PartyMaster.Where(w => w.Id == salesMaster.PartyId).FirstOrDefaultAsync();
+                    //var ledgerRecord = await _databaseContext.PartyMaster.Where(w => w.Id == salesMaster.PartyId).FirstOrDefaultAsync();
 
-                //ledgerRecord.OpeningBalance = ledgerRecord.OpeningBalance + (decimal)salesMaster.Total;
+                    //ledgerRecord.OpeningBalance = ledgerRecord.OpeningBalance + (decimal)salesMaster.Total;
 
-                await _databaseContext.SalesMaster.AddAsync(salesMaster);
-                await _databaseContext.SaveChangesAsync();
-                return salesMaster;
+                    await _databaseContext.SalesMaster.AddAsync(salesMaster);
+                    await _databaseContext.SaveChangesAsync();
+                    return salesMaster;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -266,6 +273,67 @@ namespace EFCore.SQL.Repository
                         salesDetailsList.Add(objsalesDetails);
                     }
                     await _databaseContext.SalesDetails.AddRangeAsync(salesDetailsList);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public async Task<bool> DeleteSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesDetailsSummary != null)
+                {
+                    _databaseContext.SalesDetailsSummary.RemoveRange(salesDetailsSummary);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public async Task<bool> AddSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesDetailsSummary != null)
+                {
+                    List<SalesDetailsSummary> salesDetailsSummaryList = new List<SalesDetailsSummary>();
+                    SalesDetailsSummary objsalesDetailsSummary;
+                    foreach (SalesDetailsSummary salesDetailSummary in salesDetailsSummary)
+                    {
+                        objsalesDetailsSummary = new SalesDetailsSummary();
+                        objsalesDetailsSummary.Id = salesDetailSummary.Id;
+                        objsalesDetailsSummary.SalesId = salesDetailSummary.SalesId;
+                        objsalesDetailsSummary.SalesDetailsId = salesDetailSummary.SalesDetailsId;
+                        objsalesDetailsSummary.CompanyId = salesDetailSummary.CompanyId;
+                        objsalesDetailsSummary.BranchId = salesDetailSummary.BranchId;
+                        objsalesDetailsSummary.FinancialYearId = salesDetailSummary.FinancialYearId;
+                        objsalesDetailsSummary.SlipNo = salesDetailSummary.SlipNo;
+
+
+                        objsalesDetailsSummary.KapanId = salesDetailSummary.KapanId;
+                        objsalesDetailsSummary.ShapeId = salesDetailSummary.ShapeId;
+                        objsalesDetailsSummary.SizeId = salesDetailSummary.SizeId;
+                        objsalesDetailsSummary.PurityId = salesDetailSummary.PurityId;
+                        objsalesDetailsSummary.CharniSizeId = salesDetailSummary.CharniSizeId;
+                        objsalesDetailsSummary.GalaSizeId = salesDetailSummary.GalaSizeId;
+                        objsalesDetailsSummary.NumberSizeId = salesDetailSummary.NumberSizeId;
+                        objsalesDetailsSummary.Weight = salesDetailSummary.Weight;
+                        objsalesDetailsSummary.Category = salesDetailSummary.Category;
+                        
+                        objsalesDetailsSummary.CreatedDate = salesDetailSummary.CreatedDate;
+                        objsalesDetailsSummary.CreatedBy = salesDetailSummary.CreatedBy;
+                        objsalesDetailsSummary.UpdatedDate = salesDetailSummary.UpdatedDate;
+                        objsalesDetailsSummary.UpdatedBy = salesDetailSummary.UpdatedBy;
+
+                        salesDetailsSummaryList.Add(objsalesDetailsSummary);
+                    }
+                    await _databaseContext.SalesDetailsSummary.AddRangeAsync(salesDetailsSummaryList);
                     await _databaseContext.SaveChangesAsync();
                     return true;
                 }

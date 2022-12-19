@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221217063940_AddedNewSaleDetailsSummaryTable1")]
+    partial class AddedNewSaleDetailsSummaryTable1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -5334,6 +5336,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("SalesDetailsId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("SalesDetailsMasterId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("SalesId")
                         .HasColumnType("nvarchar(max)");
 
@@ -5365,6 +5370,8 @@ namespace EFCore.SQL.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("SalesDetailsId");
+
+                    b.HasIndex("SalesDetailsMasterId");
 
                     b.ToTable("SalesDetailsSummary");
                 });
@@ -5776,6 +5783,10 @@ namespace EFCore.SQL.Migrations
                     b.HasOne("Repository.Entities.SalesDetails", null)
                         .WithMany("SalesDetailsSummary")
                         .HasForeignKey("SalesDetailsId");
+
+                    b.HasOne("Repository.Entities.SalesDetailsMaster", "SalesDetailsMaster")
+                        .WithMany()
+                        .HasForeignKey("SalesDetailsMasterId");
                 });
 
             modelBuilder.Entity("Repository.Entities.SlipTransferEntry", b =>
