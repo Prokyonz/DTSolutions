@@ -97,7 +97,7 @@ namespace DiamondTrading.Transaction
             lueLeadger.Properties.DisplayMember = "Name";
             lueLeadger.Properties.ValueMember = "Id";
 
-            repoEmployee.DataSource = result.Where(x => x.Type != PartyTypeMaster.Employee);
+            repoEmployee.DataSource = result.Where(x => x.Type == PartyTypeMaster.Employee);
             repoEmployee.DisplayMember = "Name";
             repoEmployee.ValueMember = "Id";
         }
