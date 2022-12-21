@@ -28,6 +28,7 @@ namespace DiamondTrading
         private LoanMasterRepository _loanMasterRepository;
         private JangadMasterRepository _JangadMasterRepository;
         private PartyMasterRepository _partyMasterRepository;
+        private SalaryMasterRepository _salaryMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -157,6 +158,12 @@ namespace DiamondTrading
                     xtabCashBankReport.Text = "Cash & Bank Report";
                     this.Text = "Cash & Bank Report";
                     break;
+                case "SalaryReport":
+                    xtabSalaryReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtabSalaryReport;
+                    xtabSalaryReport.Text = "Salary Report";
+                    this.Text = "Salary Report";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -185,6 +192,7 @@ namespace DiamondTrading
             xtraTabBalanceSheet.PageVisible = false;
             xtraTabProfitLoss.PageVisible = false;
             xtabCashBankReport.PageVisible = false;
+            xtabSalaryReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -459,6 +467,17 @@ namespace DiamondTrading
                     gridView2.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
+            {
+                if (IsForceLoad || _salaryMasterRepository == null)
+                {
+                    _salaryMasterRepository = new SalaryMasterRepository();
+                    var data = await _salaryMasterRepository.GetSalaries(Common.LoginCompany, Common.LoginFinancialYear);
+                    gridControlSalaryReport.DataSource = data;
+
+                    grdViewSalaryReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalaryReport"));
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -531,6 +550,10 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabCashBankReport)
             {
                 gridView2.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("CashBankReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
+            {
+                grdViewSalaryReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("SalaryReport"));
             }
         }
 

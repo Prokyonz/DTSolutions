@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,15 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYear).Include("SalaryDetails").ToListAsync();
+                return await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYear).Include("SalaryDetails").ToListAsync();
+            }
+        }
+
+        public async Task<List<SalaryReportSPModel>> GetSalaries(string companyId, string financialYear)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.SPSalaryReport.FromSqlRaw($"GetSalaryReport '" + companyId + "','" + financialYear + "'").ToListAsync(); 
             }
         }
 
@@ -73,7 +82,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SalaryMaster.Where(w => w.SalaryMonthDateTime.Month == month && w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYear).Include("SalaryDetails").FirstOrDefaultAsync();
+                return await _databaseContext.SalaryMaster.Where(w => w.SalaryMonthDateTime.Month == month && w.CompanyId == companyId && w.FinancialYearId == financialYear).Include("SalaryDetails").FirstOrDefaultAsync();
             }
         }
 
