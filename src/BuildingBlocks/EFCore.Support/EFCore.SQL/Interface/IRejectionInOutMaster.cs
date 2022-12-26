@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,5 +16,6 @@ namespace EFCore.SQL.Interface
         Task<RejectionInOutMaster> AddRejectionAsync(RejectionInOutMaster priceMaster);
         Task<RejectionInOutMaster> UpdateRejectionAsync(RejectionInOutMaster priceMaster);
         Task<bool> DeleteRejectionAsync(string priceId);
+        Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, string partyId = null, int TransType = 0);
     }
 }

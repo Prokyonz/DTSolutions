@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -101,6 +102,15 @@ namespace EFCore.SQL.Repository
                     await _databaseContext.SaveChangesAsync();
                 }
                 return rejectionInOutMaster;
+            }
+        }
+
+        public async Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, string partyId = null, int TransType = 0)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var purchaseReport = await _databaseContext.SPRejectionSendReceiveModel.FromSqlRaw($"GetRejectionSendReceiveDetail '" + companyId + "','" + financialYearId + "','" + partyId + "', '" + TransType + "'").ToListAsync();
+                return purchaseReport;
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,8 @@ namespace DiamondTrading.Process
         CompanyMasterRepository _companyMasterRepository;
         BoilMasterRepository _boilMasterRepository;
         PartyMasterRepository _partyMasterRepository;
-        List<BoilProcessSend> ListAssortmentProcessSend;
+        RejectionInOutMasterRepository _rejectionInOutMasterRepository;
+        List<RejectionSendReceiveSPModel> ListRejectionSendReceiveSPModel;
         int _RejectionType = 0;
 
         public FrmRejectionSendReceive(int RejectionType)
@@ -29,6 +31,7 @@ namespace DiamondTrading.Process
 
             _boilMasterRepository = new BoilMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
+            _rejectionInOutMasterRepository = new RejectionInOutMasterRepository();
 
             _RejectionType = RejectionType;
 
@@ -55,6 +58,45 @@ namespace DiamondTrading.Process
             lueCompany.Properties.ValueMember = "Id";
         }
 
+        private async Task LoadParty()
+        {
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+
+            if (_RejectionType == 2)
+            {
+                var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.PartyBuy);
+                lueParty.Properties.DataSource = PartyDetailList;
+                lueParty.Properties.DisplayMember = "Name";
+                lueParty.Properties.ValueMember = "Id";
+            }
+            else
+            {
+                var PartyDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.PartySale);
+                lueParty.Properties.DataSource = PartyDetailList;
+                lueParty.Properties.DisplayMember = "Name";
+                lueParty.Properties.ValueMember = "Id";
+            }
+        }
+
+        private async Task GetBrokerList()
+        {
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+            var BrokerDetailList = await _partyMasterRepository.GetAllPartyAsync(companyId, PartyTypeMaster.Employee, new int[] { PartyTypeMaster.Broker });
+            lueBroker.Properties.DataSource = BrokerDetailList;
+            lueBroker.Properties.DisplayMember = "Name";
+            lueBroker.Properties.ValueMember = "Id";
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -78,11 +120,14 @@ namespace DiamondTrading.Process
             //SetThemeColors(Color.FromArgb(250, 243, 197));
 
             await GetMaxSrNo();
+            await LoadParty();
+            await GetBrokerList();
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
         }
 
         private async Task GetMaxSrNo()
         {
-            var SrNo = await _boilMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear,0);
+            var SrNo = await _rejectionInOutMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear, _RejectionType);
             txtSerialNo.Text = SrNo.ToString();
         }
 
@@ -93,19 +138,9 @@ namespace DiamondTrading.Process
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
-        }
-
-        private async Task GetBoilProcessSendDetail()
-        {
-            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-            ListAssortmentProcessSend = await _boilMasterRepository.GetBoilSendToDetails(Common.LoginCompany.ToString(), Common.LoginBranch.ToString(), Common.LoginFinancialYear.ToString());
-
-            lueKapan.Properties.DataSource = ListAssortmentProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
-            lueKapan.Properties.DisplayMember = "Kapan";
-            lueKapan.Properties.ValueMember = "KapanId";
+            lueParty.Properties.DataSource = EmployeeDetailList;
+            lueParty.Properties.DisplayMember = "Name";
+            lueParty.Properties.ValueMember = "Id";
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
@@ -113,21 +148,21 @@ namespace DiamondTrading.Process
             DataTable dt = new DataTable();
             dt.Columns.Add("SlipNo");
             dt.Columns.Add("Size");
-            dt.Columns.Add("AvailableWeight");
-            dt.Columns.Add("BoilCarat");
+            dt.Columns.Add("Available");
+            dt.Columns.Add("Carat");
             dt.Columns.Add("SizeId");
             dt.Columns.Add("ShapeId");
             dt.Columns.Add("PurityId");
-            dt.Columns.Add("PurchaseDetailsId");
+            dt.Columns.Add("KapanId");
             dt.Columns.Add("SlipNo1");
             return dt;
         }
 
         private async void lueKapan_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueKapan.EditValue != null)
+            if (lueSlipNo.EditValue != null)
             {
-                repoSlipNo.DataSource = ListAssortmentProcessSend.Where(x => x.KapanId == lueKapan.EditValue.ToString()).ToList();
+                repoSlipNo.DataSource = ListRejectionSendReceiveSPModel.Where(x => x.SlipNo.ToString() == lueSlipNo.EditValue.ToString()).ToList();
                 repoSlipNo.DisplayMember = "SlipNo";
                 repoSlipNo.ValueMember = "Id";
 
@@ -142,12 +177,12 @@ namespace DiamondTrading.Process
             {
                 if (e.Column == colSlipNo)
                 {
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colACarat, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
-                    //grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseDetailsId, ((Repository.Entities.Models.BoilProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseDetailsId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colACarat, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Available);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colkapanId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -171,16 +206,16 @@ namespace DiamondTrading.Process
                 lueCompany.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
+            else if (lueParty.EditValue == null)
             {
                 MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
+                lueParty.Focus();
                 return false;
             }
-            if (lueKapan.EditValue == null)
+            if (lueSlipNo.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueKapan.Focus();
+                lueSlipNo.Focus();
                 return false;
             }
             else if (grvParticularsDetails.RowCount == 0)
@@ -234,18 +269,17 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
-            ListAssortmentProcessSend = null;
+            ListRejectionSendReceiveSPModel = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
             lueCompany.EditValue = null;
-            lueSendto.EditValue = null;
-            lueKapan.EditValue = null;
+            lueParty.EditValue = null;
+            lueSlipNo.EditValue = null;
             repoSlipNo.DataSource = null;
 
             await GetMaxSrNo();
             await GetEmployeeList();
-            await GetBoilProcessSendDetail();
 
             lueCompany.Select();
             lueCompany.Focus();
@@ -254,6 +288,34 @@ namespace DiamondTrading.Process
         private void btnReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private async void lueParty_EditValueChanged(object sender, EventArgs e)
+        {
+            if (lueParty.EditValue == null || lueParty.EditValue == "")
+                return;
+
+            string companyId = Common.LoginCompany;
+            if (lueCompany.EditValue != null)
+            {
+                if (lueCompany.EditValue.ToString() != Common.LoginCompany)
+                    companyId = lueCompany.EditValue.ToString();
+            }
+
+            var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
+            ListRejectionSendReceiveSPModel = await _rejectionInOutMasterRepository.GetRejectionSendReceiveDetail(companyId, Common.LoginFinancialYear, selectedParty.Id, _RejectionType);
+            //repoSlipNo.DataSource = ListRejectionSendReceiveSPModel;
+            //repoSlipNo.DisplayMember = "SlipNo";
+            //repoSlipNo.ValueMember = "Id";
+
+            //repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
+            //repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+
+            var SlipNos = ListRejectionSendReceiveSPModel.Select(x => new { x.SlipNo }).Distinct().ToList();
+            lueSlipNo.Properties.DataSource = SlipNos;
+            lueSlipNo.Properties.DisplayMember = "SlipNo";
+            lueSlipNo.Properties.ValueMember = "SlipNo";
         }
     }
 }
