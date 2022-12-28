@@ -23,5 +23,6 @@ namespace Repository.Entities.Model
         public decimal ReturnCts { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Available { get; set; }
+        public double Rate { get; set; }
     }
 }

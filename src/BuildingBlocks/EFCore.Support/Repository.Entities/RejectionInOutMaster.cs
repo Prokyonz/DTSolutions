@@ -29,7 +29,7 @@ namespace Repository.Entities
         public string TableEntryID { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal Rate { get; set; }
+        public double Rate { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalCarat { get; set; }

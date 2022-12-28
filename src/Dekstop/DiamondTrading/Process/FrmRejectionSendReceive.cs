@@ -56,6 +56,8 @@ namespace DiamondTrading.Process
             lueCompany.Properties.DataSource = data;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
+
+            lueCompany.EditValue = Common.LoginCompany;
         }
 
         private async Task LoadParty()
@@ -131,18 +133,6 @@ namespace DiamondTrading.Process
             txtSerialNo.Text = SrNo.ToString();
         }
 
-        private async Task GetEmployeeList()
-        {
-            var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, new int[] { PartyTypeMaster.Other });
-            lueCompany.Properties.DataSource = EmployeeDetailList;
-            lueCompany.Properties.DisplayMember = "Name";
-            lueCompany.Properties.ValueMember = "Id";
-
-            lueParty.Properties.DataSource = EmployeeDetailList;
-            lueParty.Properties.DisplayMember = "Name";
-            lueParty.Properties.ValueMember = "Id";
-        }
-
         private static DataTable GetDTColumnsforParticularDetails()
         {
             DataTable dt = new DataTable();
@@ -154,6 +144,8 @@ namespace DiamondTrading.Process
             dt.Columns.Add("ShapeId");
             dt.Columns.Add("PurityId");
             dt.Columns.Add("KapanId");
+            dt.Columns.Add("Rate");
+            dt.Columns.Add("Amount");
             dt.Columns.Add("SlipNo1");
             return dt;
         }
@@ -183,8 +175,19 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurityId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurityId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colkapanId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Rate);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
+                }
+                else if (e.Column == colRate || e.Column == colCarat)
+                {
+                    decimal Rate = 0;
+                    if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString()))
+                        Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
+                    decimal Carat = 0;
+                    if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString()))
+                        Carat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString());
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, Carat*Rate);
                 }
             }
             catch
@@ -240,8 +243,38 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
+                    string RejectionInOutId = Guid.NewGuid().ToString();
+                    RejectionInOutMaster rejectionInOutMaster = new RejectionInOutMaster();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
+                        rejectionInOutMaster = new RejectionInOutMaster();
+                        rejectionInOutMaster.Id = RejectionInOutId;
+                        rejectionInOutMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
+                        rejectionInOutMaster.CompanyId = lueCompany.EditValue.ToString();
+                        rejectionInOutMaster.BranchId = Common.LoginBranch;
+                        rejectionInOutMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                        rejectionInOutMaster.PartyId = lueParty.EditValue.ToString();
+                        rejectionInOutMaster.BrokerageId = lueBroker.EditValue.ToString();
+                        rejectionInOutMaster.FinancialYearId = Common.LoginFinancialYear;
+                        rejectionInOutMaster.TransType = _RejectionType; //send/Boil/Charni/Gala/Number receive-2 or receive/Sales-1
+                        rejectionInOutMaster.SlipNo = lueSlipNo.EditValue.ToString();
+                        rejectionInOutMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                        rejectionInOutMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
+                        rejectionInOutMaster.CharniSizeId = "";
+                        rejectionInOutMaster.GalaSizeId = "";
+                        rejectionInOutMaster.NumberSizeId = "";
+                        rejectionInOutMaster.TableName = ""; //Boil/Charni/Gala/Number
+                        rejectionInOutMaster.TableEntryID = "";
+                        rejectionInOutMaster.Rate = float.Parse(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
+                        rejectionInOutMaster.TotalCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colCarat).ToString());
+                        rejectionInOutMaster.Amount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());
+                        rejectionInOutMaster.Remarks = txtRemark.Text;
+                        rejectionInOutMaster.CreatedDate = DateTime.Now;
+                        rejectionInOutMaster.CreatedBy = Common.LoginUserID;
+                        rejectionInOutMaster.UpdatedDate = DateTime.Now;
+                        rejectionInOutMaster.UpdatedBy = Common.LoginUserID;
+
+                        var Result = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster);
                         IsSuccess = true;
                     }
                 }
@@ -273,13 +306,16 @@ namespace DiamondTrading.Process
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
-            lueCompany.EditValue = null;
+            //lueCompany.EditValue = null;
             lueParty.EditValue = null;
             lueSlipNo.EditValue = null;
+            lueBroker.EditValue = null;
             repoSlipNo.DataSource = null;
 
             await GetMaxSrNo();
-            await GetEmployeeList();
+            await LoadParty();
+            await GetBrokerList();
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
 
             lueCompany.Select();
             lueCompany.Focus();
