@@ -29,6 +29,7 @@ namespace DiamondTrading
         private JangadMasterRepository _JangadMasterRepository;
         private PartyMasterRepository _partyMasterRepository;
         private SalaryMasterRepository _salaryMasterRepository;
+        private RejectionInOutMasterRepository _rejectionInOutMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -164,6 +165,18 @@ namespace DiamondTrading
                     xtabSalaryReport.Text = "Salary Report";
                     this.Text = "Salary Report";
                     break;
+                case "RejectionIn":
+                    xtraTabRejectionReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabRejectionReport;
+                    xtraTabRejectionReport.Text = "Rejection In/Receive";
+                    this.Text = "Rejection In/Receive";
+                    break;
+                case "RejectionOut":
+                    xtraTabRejectionReport.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabRejectionReport;
+                    xtraTabRejectionReport.Text = "Rejection Out/Send";
+                    this.Text = "Rejection Out/Send";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -193,6 +206,7 @@ namespace DiamondTrading
             xtraTabProfitLoss.PageVisible = false;
             xtabCashBankReport.PageVisible = false;
             xtabSalaryReport.PageVisible = false;
+            xtraTabRejectionReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -259,7 +273,13 @@ namespace DiamondTrading
 
 
             ActiveTab();
-            await LoadGridData(true);
+            try
+            {
+                await LoadGridData(true);
+            }
+            catch(Exception ex)
+            {
+            }            
         }
 
         private async Task LoadGridData(bool IsForceLoad = false)
@@ -478,6 +498,21 @@ namespace DiamondTrading
                     grdViewSalaryReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalaryReport"));
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionReport)
+            {
+                if (IsForceLoad || _rejectionInOutMasterRepository == null)
+                {
+                    int ActionType = 1;
+                    if (SelectedTabPage.Equals("RejectionOut"))
+                        ActionType = 2;
+
+                    _rejectionInOutMasterRepository = new RejectionInOutMasterRepository();
+                    var data = await _rejectionInOutMasterRepository.GetRejectionSendReceiveReport(Common.LoginCompany, Common.LoginFinancialYear, ActionType);
+                    gridControlRejectionReport.DataSource = data;
+
+                    gridView13.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -554,6 +589,10 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabSalaryReport)
             {
                 grdViewSalaryReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("SalaryReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
+            {
+                gridView13.SaveLayoutToRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
             }
         }
 

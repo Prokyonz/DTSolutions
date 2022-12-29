@@ -587,6 +587,10 @@ namespace DiamondTrading
             this.xtraTabRejectionReport = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlRejectionReport = new DevExpress.XtraGrid.GridControl();
             this.gridView13 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.repositoryItemButtonEdit11 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn217 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView37 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn115 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn196 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn197 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -608,10 +612,10 @@ namespace DiamondTrading
             this.gridColumn214 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn215 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn216 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit11 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn217 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridView37 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn218 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn219 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn220 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn221 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -5788,7 +5792,9 @@ namespace DiamondTrading
             this.gridColumn199,
             this.gridColumn200,
             this.gridColumn201,
+            this.gridColumn220,
             this.gridColumn202,
+            this.gridColumn221,
             this.gridColumn204,
             this.gridColumn205,
             this.gridColumn206,
@@ -5799,9 +5805,11 @@ namespace DiamondTrading
             this.gridColumn211,
             this.gridColumn212,
             this.gridColumn213,
+            this.gridColumn216,
             this.gridColumn214,
+            this.gridColumn218,
             this.gridColumn215,
-            this.gridColumn216});
+            this.gridColumn219});
             this.gridView13.GridControl = this.gridControlRejectionReport;
             this.gridView13.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", null, "")});
@@ -5809,172 +5817,6 @@ namespace DiamondTrading
             this.gridView13.OptionsBehavior.Editable = false;
             this.gridView13.OptionsBehavior.ReadOnly = true;
             this.gridView13.OptionsView.ShowFooter = true;
-            // 
-            // gridColumn115
-            // 
-            this.gridColumn115.Caption = "Id";
-            this.gridColumn115.FieldName = "Id";
-            this.gridColumn115.Name = "gridColumn115";
-            // 
-            // gridColumn196
-            // 
-            this.gridColumn196.Caption = "MasterId";
-            this.gridColumn196.FieldName = "SalaryMasterId";
-            this.gridColumn196.Name = "gridColumn196";
-            // 
-            // gridColumn197
-            // 
-            this.gridColumn197.Caption = "Sr";
-            this.gridColumn197.FieldName = "Sr";
-            this.gridColumn197.Name = "gridColumn197";
-            this.gridColumn197.Visible = true;
-            this.gridColumn197.VisibleIndex = 0;
-            this.gridColumn197.Width = 30;
-            // 
-            // gridColumn198
-            // 
-            this.gridColumn198.Caption = "CompanyId";
-            this.gridColumn198.FieldName = "CompanyId";
-            this.gridColumn198.Name = "gridColumn198";
-            // 
-            // gridColumn199
-            // 
-            this.gridColumn199.Caption = "BranchId";
-            this.gridColumn199.FieldName = "BranchId";
-            this.gridColumn199.Name = "gridColumn199";
-            // 
-            // gridColumn200
-            // 
-            this.gridColumn200.Caption = "BranchName";
-            this.gridColumn200.FieldName = "BranchName";
-            this.gridColumn200.Name = "gridColumn200";
-            this.gridColumn200.Width = 42;
-            // 
-            // gridColumn201
-            // 
-            this.gridColumn201.Caption = "From Party Id";
-            this.gridColumn201.FieldName = "FromPartyId";
-            this.gridColumn201.Name = "gridColumn201";
-            // 
-            // gridColumn202
-            // 
-            this.gridColumn202.Caption = "FromPartyName";
-            this.gridColumn202.FieldName = "FromPartyName";
-            this.gridColumn202.Name = "gridColumn202";
-            this.gridColumn202.Visible = true;
-            this.gridColumn202.VisibleIndex = 1;
-            this.gridColumn202.Width = 98;
-            // 
-            // gridColumn204
-            // 
-            this.gridColumn204.Caption = "FinancialYearId";
-            this.gridColumn204.FieldName = "FinancialYear";
-            this.gridColumn204.Name = "gridColumn204";
-            // 
-            // gridColumn205
-            // 
-            this.gridColumn205.Caption = "Date";
-            this.gridColumn205.FieldName = "SalaryMonthDateTime";
-            this.gridColumn205.Name = "gridColumn205";
-            this.gridColumn205.Visible = true;
-            this.gridColumn205.VisibleIndex = 3;
-            this.gridColumn205.Width = 56;
-            // 
-            // gridColumn206
-            // 
-            this.gridColumn206.Caption = "Month";
-            this.gridColumn206.FieldName = "SalaryMonth";
-            this.gridColumn206.Name = "gridColumn206";
-            this.gridColumn206.Visible = true;
-            this.gridColumn206.VisibleIndex = 4;
-            this.gridColumn206.Width = 41;
-            // 
-            // gridColumn207
-            // 
-            this.gridColumn207.Caption = "Advance Amount";
-            this.gridColumn207.FieldName = "AdvanceAmount";
-            this.gridColumn207.Name = "gridColumn207";
-            this.gridColumn207.Visible = true;
-            this.gridColumn207.VisibleIndex = 9;
-            this.gridColumn207.Width = 59;
-            // 
-            // gridColumn208
-            // 
-            this.gridColumn208.Caption = "Bonus Amount";
-            this.gridColumn208.FieldName = "BonusAmount";
-            this.gridColumn208.Name = "gridColumn208";
-            this.gridColumn208.Visible = true;
-            this.gridColumn208.VisibleIndex = 10;
-            this.gridColumn208.Width = 52;
-            // 
-            // gridColumn209
-            // 
-            this.gridColumn209.Caption = "Total Salary";
-            this.gridColumn209.FieldName = "TotalAmount";
-            this.gridColumn209.Name = "gridColumn209";
-            this.gridColumn209.Visible = true;
-            this.gridColumn209.VisibleIndex = 12;
-            this.gridColumn209.Width = 59;
-            // 
-            // gridColumn210
-            // 
-            this.gridColumn210.Caption = "OT Hrs";
-            this.gridColumn210.FieldName = "OverTimeHrs";
-            this.gridColumn210.Name = "gridColumn210";
-            this.gridColumn210.Visible = true;
-            this.gridColumn210.VisibleIndex = 5;
-            this.gridColumn210.Width = 31;
-            // 
-            // gridColumn211
-            // 
-            this.gridColumn211.Caption = "OT Rates";
-            this.gridColumn211.FieldName = "OverTimeRateHrs";
-            this.gridColumn211.Name = "gridColumn211";
-            this.gridColumn211.Visible = true;
-            this.gridColumn211.VisibleIndex = 6;
-            this.gridColumn211.Width = 43;
-            // 
-            // gridColumn212
-            // 
-            this.gridColumn212.Caption = "Round (+/-)";
-            this.gridColumn212.FieldName = "RoundOfAmount";
-            this.gridColumn212.Name = "gridColumn212";
-            this.gridColumn212.Visible = true;
-            this.gridColumn212.VisibleIndex = 11;
-            this.gridColumn212.Width = 49;
-            // 
-            // gridColumn213
-            // 
-            this.gridColumn213.Caption = "ToPartyId";
-            this.gridColumn213.FieldName = "ToPartyId";
-            this.gridColumn213.Name = "gridColumn213";
-            // 
-            // gridColumn214
-            // 
-            this.gridColumn214.Caption = "To Party Name";
-            this.gridColumn214.FieldName = "ToPartyName";
-            this.gridColumn214.Name = "gridColumn214";
-            this.gridColumn214.Visible = true;
-            this.gridColumn214.VisibleIndex = 2;
-            this.gridColumn214.Width = 88;
-            // 
-            // gridColumn215
-            // 
-            this.gridColumn215.Caption = "Worked Days";
-            this.gridColumn215.FieldName = "WorkedDays";
-            this.gridColumn215.Name = "gridColumn215";
-            this.gridColumn215.Visible = true;
-            this.gridColumn215.VisibleIndex = 8;
-            this.gridColumn215.Width = 43;
-            // 
-            // gridColumn216
-            // 
-            this.gridColumn216.Caption = "Working Days";
-            this.gridColumn216.FieldName = "WorkingDays";
-            this.gridColumn216.Name = "gridColumn216";
-            this.gridColumn216.Visible = true;
-            this.gridColumn216.VisibleIndex = 7;
-            this.gridColumn216.Width = 36;
             // 
             // repositoryItemButtonEdit11
             // 
@@ -6004,6 +5846,205 @@ namespace DiamondTrading
             // 
             this.gridView37.GridControl = this.gridControlRejectionReport;
             this.gridView37.Name = "gridView37";
+            // 
+            // gridColumn115
+            // 
+            this.gridColumn115.Caption = "Id";
+            this.gridColumn115.FieldName = "Id";
+            this.gridColumn115.Name = "gridColumn115";
+            // 
+            // gridColumn196
+            // 
+            this.gridColumn196.Caption = "EntryDate";
+            this.gridColumn196.FieldName = "EntryDate";
+            this.gridColumn196.Name = "gridColumn196";
+            this.gridColumn196.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "EntryDate", "Rows={0}")});
+            this.gridColumn196.Visible = true;
+            this.gridColumn196.VisibleIndex = 0;
+            this.gridColumn196.Width = 68;
+            // 
+            // gridColumn197
+            // 
+            this.gridColumn197.Caption = "SrNo";
+            this.gridColumn197.FieldName = "SrNo";
+            this.gridColumn197.Name = "gridColumn197";
+            this.gridColumn197.Visible = true;
+            this.gridColumn197.VisibleIndex = 1;
+            this.gridColumn197.Width = 53;
+            // 
+            // gridColumn198
+            // 
+            this.gridColumn198.Caption = "CompanyId";
+            this.gridColumn198.FieldName = "CompanyId";
+            this.gridColumn198.Name = "gridColumn198";
+            // 
+            // gridColumn199
+            // 
+            this.gridColumn199.Caption = "BranchId";
+            this.gridColumn199.FieldName = "BranchId";
+            this.gridColumn199.Name = "gridColumn199";
+            // 
+            // gridColumn200
+            // 
+            this.gridColumn200.Caption = "FinancialYearId";
+            this.gridColumn200.FieldName = "FinancialYearId";
+            this.gridColumn200.Name = "gridColumn200";
+            // 
+            // gridColumn201
+            // 
+            this.gridColumn201.Caption = "PartyId";
+            this.gridColumn201.FieldName = "PartyId";
+            this.gridColumn201.Name = "gridColumn201";
+            // 
+            // gridColumn202
+            // 
+            this.gridColumn202.Caption = "BrokerageId";
+            this.gridColumn202.FieldName = "BrokerageId";
+            this.gridColumn202.Name = "gridColumn202";
+            // 
+            // gridColumn204
+            // 
+            this.gridColumn204.Caption = "SlipNo";
+            this.gridColumn204.FieldName = "SlipNo";
+            this.gridColumn204.Name = "gridColumn204";
+            this.gridColumn204.Visible = true;
+            this.gridColumn204.VisibleIndex = 2;
+            this.gridColumn204.Width = 55;
+            // 
+            // gridColumn205
+            // 
+            this.gridColumn205.Caption = "SizeId";
+            this.gridColumn205.FieldName = "SizeId";
+            this.gridColumn205.Name = "gridColumn205";
+            // 
+            // gridColumn206
+            // 
+            this.gridColumn206.Caption = "SizeName";
+            this.gridColumn206.FieldName = "SizeName";
+            this.gridColumn206.Name = "gridColumn206";
+            this.gridColumn206.Visible = true;
+            this.gridColumn206.VisibleIndex = 5;
+            this.gridColumn206.Width = 63;
+            // 
+            // gridColumn207
+            // 
+            this.gridColumn207.Caption = "Rate";
+            this.gridColumn207.FieldName = "Rate";
+            this.gridColumn207.Name = "gridColumn207";
+            this.gridColumn207.Visible = true;
+            this.gridColumn207.VisibleIndex = 10;
+            this.gridColumn207.Width = 63;
+            // 
+            // gridColumn208
+            // 
+            this.gridColumn208.Caption = "Carat";
+            this.gridColumn208.FieldName = "TotalCarat";
+            this.gridColumn208.Name = "gridColumn208";
+            this.gridColumn208.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCarat", "{0:0.##}")});
+            this.gridColumn208.Visible = true;
+            this.gridColumn208.VisibleIndex = 11;
+            this.gridColumn208.Width = 65;
+            // 
+            // gridColumn209
+            // 
+            this.gridColumn209.Caption = "Amount";
+            this.gridColumn209.FieldName = "Amount";
+            this.gridColumn209.Name = "gridColumn209";
+            this.gridColumn209.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            this.gridColumn209.Visible = true;
+            this.gridColumn209.VisibleIndex = 12;
+            this.gridColumn209.Width = 68;
+            // 
+            // gridColumn210
+            // 
+            this.gridColumn210.Caption = "Remarks";
+            this.gridColumn210.FieldName = "Remarks";
+            this.gridColumn210.Name = "gridColumn210";
+            this.gridColumn210.Visible = true;
+            this.gridColumn210.VisibleIndex = 13;
+            this.gridColumn210.Width = 83;
+            // 
+            // gridColumn211
+            // 
+            this.gridColumn211.Caption = "CharniSizeId";
+            this.gridColumn211.FieldName = "CharniSizeId";
+            this.gridColumn211.Name = "gridColumn211";
+            // 
+            // gridColumn212
+            // 
+            this.gridColumn212.Caption = "CharniSizeName";
+            this.gridColumn212.FieldName = "CharniSizeName";
+            this.gridColumn212.Name = "gridColumn212";
+            this.gridColumn212.Visible = true;
+            this.gridColumn212.VisibleIndex = 6;
+            this.gridColumn212.Width = 86;
+            // 
+            // gridColumn213
+            // 
+            this.gridColumn213.Caption = "GalaSizeId";
+            this.gridColumn213.FieldName = "GalaSizeName";
+            this.gridColumn213.Name = "gridColumn213";
+            // 
+            // gridColumn214
+            // 
+            this.gridColumn214.Caption = "NumberSizeId";
+            this.gridColumn214.FieldName = "NumberSizeName";
+            this.gridColumn214.Name = "gridColumn214";
+            // 
+            // gridColumn215
+            // 
+            this.gridColumn215.Caption = "PurityId";
+            this.gridColumn215.FieldName = "PurityName";
+            this.gridColumn215.Name = "gridColumn215";
+            this.gridColumn215.Width = 50;
+            // 
+            // gridColumn216
+            // 
+            this.gridColumn216.Caption = "GalaSizeName";
+            this.gridColumn216.FieldName = "GalaSizeName";
+            this.gridColumn216.Name = "gridColumn216";
+            this.gridColumn216.Visible = true;
+            this.gridColumn216.VisibleIndex = 7;
+            this.gridColumn216.Width = 79;
+            // 
+            // gridColumn218
+            // 
+            this.gridColumn218.Caption = "NumberSizeName";
+            this.gridColumn218.FieldName = "NumberSizeName";
+            this.gridColumn218.Name = "gridColumn218";
+            this.gridColumn218.Visible = true;
+            this.gridColumn218.VisibleIndex = 8;
+            this.gridColumn218.Width = 98;
+            // 
+            // gridColumn219
+            // 
+            this.gridColumn219.Caption = "PurityName";
+            this.gridColumn219.FieldName = "Purity";
+            this.gridColumn219.Name = "gridColumn219";
+            this.gridColumn219.Visible = true;
+            this.gridColumn219.VisibleIndex = 9;
+            this.gridColumn219.Width = 71;
+            // 
+            // gridColumn220
+            // 
+            this.gridColumn220.Caption = "Party Name";
+            this.gridColumn220.FieldName = "PartyName";
+            this.gridColumn220.Name = "gridColumn220";
+            this.gridColumn220.Visible = true;
+            this.gridColumn220.VisibleIndex = 3;
+            this.gridColumn220.Width = 98;
+            // 
+            // gridColumn221
+            // 
+            this.gridColumn221.Caption = "Broker Name";
+            this.gridColumn221.FieldName = "BrokerName";
+            this.gridColumn221.Name = "gridColumn221";
+            this.gridColumn221.Visible = true;
+            this.gridColumn221.VisibleIndex = 4;
+            this.gridColumn221.Width = 98;
             // 
             // FrmTransactionDetails
             // 
@@ -6673,6 +6714,10 @@ namespace DiamondTrading
         private DevExpress.XtraTab.XtraTabPage xtraTabRejectionReport;
         private DevExpress.XtraGrid.GridControl gridControlRejectionReport;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView13;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit11;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView24;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn217;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView37;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn115;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn196;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn197;
@@ -6680,7 +6725,9 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn199;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn200;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn201;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn220;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn202;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn221;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn204;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn205;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn206;
@@ -6691,12 +6738,10 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn211;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn212;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn213;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn214;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn215;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn216;
-        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit11;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView24;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn217;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView37;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn214;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn218;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn215;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn219;
     }
 }

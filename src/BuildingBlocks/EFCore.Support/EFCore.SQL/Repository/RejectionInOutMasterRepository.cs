@@ -113,5 +113,14 @@ namespace EFCore.SQL.Repository
                 return purchaseReport;
             }
         }
+
+        public async Task<List<RejectionInOutSPModel>> GetRejectionSendReceiveReport(string companyId, string financialYearId, int TransType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var rejectionReport = await _databaseContext.SPRejectionSendReceiveReport.FromSqlRaw($"GetRejectInOutReport '" + companyId + "','" + financialYearId + "','" + TransType + "'").ToListAsync();
+                return rejectionReport;
+            }
+        }
     }
 }
