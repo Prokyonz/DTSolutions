@@ -57,7 +57,7 @@ namespace EFCore.SQL.Repository
             {
                 var getCountRecord = await _databaseContext.SalaryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == finanialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
                 if (getCountRecord != null)
-                    return getCountRecord.Sr + 1;
+                    return getCountRecord.SrNo + 1;
                 return 1;
             }
         }

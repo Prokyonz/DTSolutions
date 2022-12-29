@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20221226084407_AddColumnsOnRejectionInOutMasterTable")]
+    partial class AddColumnsOnRejectionInOutMasterTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3053,53 +3055,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPPurchaseSlipDetailsModel");
                 });
 
-            modelBuilder.Entity("Repository.Entities.Model.RejectionSendReceiveSPModel", b =>
-                {
-                    b.Property<decimal>("Available")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FinancialYearId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Kapan")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("KapanId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PurityId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
-
-                    b.Property<decimal>("RejectedWeight")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<decimal>("ReturnCts")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("ShapeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SizeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<long>("SlipNo")
-                        .HasColumnType("bigint");
-
-                    b.ToTable("SPRejectionSendReceiveModel");
-                });
-
             modelBuilder.Entity("Repository.Entities.Model.SalaryReportSPModel", b =>
                 {
                     b.Property<decimal>("AdvanceAmount")
@@ -5159,9 +5114,6 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("SrNo")
-                        .HasColumnType("int");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");

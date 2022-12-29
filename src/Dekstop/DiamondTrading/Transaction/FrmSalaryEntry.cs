@@ -239,6 +239,7 @@ namespace DiamondTrading.Transaction
                     salaryDetailList.Insert(i, salaryDetail);
                 }
 
+                salaryMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
                 salaryMaster.CompanyId = lueCompany.EditValue.ToString();
                 salaryMaster.BranchId = Common.LoginBranch;
                 salaryMaster.FinancialYearId = Common.LoginFinancialYear;

@@ -18,12 +18,18 @@ namespace Repository.Entities
         public string PartyId { get; set; }
         public string BrokerageId { get; set; }
         public string FinancialYearId { get; set; }
-        public int TransType { get; set; } //send or receive
+        public int TransType { get; set; } //send/Boil/Charni/Gala/Number receive-2 or receive/Sales-1
         public string SlipNo { get; set; }
         public string SizeId { get; set; }
+        public string PurityId { get; set; }
+        public string CharniSizeId { get; set; }
+        public string GalaSizeId { get; set; }
+        public string NumberSizeId { get; set; }
+        public string TableName { get; set; } //Boil/Charni/Gala/Number
+        public string TableEntryID { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal Rate { get; set; }
+        public double Rate { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalCarat { get; set; }

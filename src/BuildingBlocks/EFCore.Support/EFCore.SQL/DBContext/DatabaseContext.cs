@@ -122,6 +122,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<CashBankSPReport> SPCashBankReport { get; set; }
         public virtual DbSet<ChildLedgerSPModel> SPLedgerChildReport { get; set; }
         public virtual DbSet<SalaryReportSPModel> SPSalaryReport{ get; set; }
+        public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -223,6 +224,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CashBankSPReport>().HasNoKey();
             modelBuilder.Entity<ChildLedgerSPModel>().HasNoKey();
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
+            modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
         }
     }
 }
