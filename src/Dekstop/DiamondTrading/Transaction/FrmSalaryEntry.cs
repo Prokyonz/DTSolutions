@@ -192,11 +192,47 @@ namespace DiamondTrading.Transaction
                     salaryDetail.WorkingDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnWorkingDays).ToString());
                     salaryDetail.WorkedDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnWorkedDays).ToString());
 
-                    salaryDetail.OverTimeHrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTHours).ToString());
-                    salaryDetail.OverTimeRateHrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTRate).ToString());
-                    salaryDetail.AdvanceAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnAdvanceAmount).ToString());
-                    salaryDetail.BonusAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colBonus).ToString());
-                    salaryDetail.RoundOfAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colRound).ToString());
+                    decimal othrs = 0;
+
+                    if(grvParticularsDetails.GetRowCellValue(i, colOTHours).ToString() != "")
+                    {
+                        othrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTHours).ToString());
+                    }
+
+                    salaryDetail.OverTimeHrs = othrs;
+
+                    decimal otrates = 0;
+                    if (grvParticularsDetails.GetRowCellValue(i, colOTRate).ToString() != "")
+                    {
+                        othrs = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colOTRate).ToString());
+                    }
+
+                    salaryDetail.OverTimeRateHrs = otrates;
+
+                    decimal advAmt = 0;
+
+                    if (grvParticularsDetails.GetRowCellValue(i, gridColumnAdvanceAmount).ToString() != "")
+                        advAmt = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, gridColumnAdvanceAmount).ToString());
+
+                    salaryDetail.AdvanceAmount = advAmt;
+
+                    decimal colBon = 0;
+                    if(grvParticularsDetails.GetRowCellValue(i, colBonus).ToString() != "")
+                    {
+                        colBon = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colBonus).ToString());
+                    }
+
+                    salaryDetail.BonusAmount = colBon;
+
+
+                    decimal rond = 0;
+
+                    if(grvParticularsDetails.GetRowCellValue(i, colRound).ToString() != "")
+                    {
+                        rond = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colRound).ToString());
+                    }
+
+                    salaryDetail.RoundOfAmount = rond;
 
                     salaryDetail.TotalAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colTotal).ToString());
 
