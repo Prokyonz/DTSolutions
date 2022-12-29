@@ -102,6 +102,7 @@ namespace DiamondTrading
             this.barButtonItem77 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem78 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem82 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonSalaryReport = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem57 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem55 = new DevExpress.XtraBars.BarButtonItem();
@@ -213,7 +214,8 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonSalaryReport = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonRejectionInReceive = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonRejectionOutSend = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -347,9 +349,11 @@ namespace DiamondTrading
             this.barButtonItem80,
             this.barButtonItem81,
             this.barButtonItem82,
-            this.barButtonSalaryReport});
+            this.barButtonSalaryReport,
+            this.barButtonRejectionInReceive,
+            this.barButtonRejectionOutSend});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 129;
+            this.barManager1.MaxItemId = 131;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -947,7 +951,9 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem77),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem78),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem82),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSalaryReport)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSalaryReport),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonRejectionInReceive),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonRejectionOutSend)});
             this.barSubItem6.Name = "barSubItem6";
             this.barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1049,6 +1055,13 @@ namespace DiamondTrading
             this.barButtonItem82.Id = 127;
             this.barButtonItem82.Name = "barButtonItem82";
             this.barButtonItem82.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem82_ItemClick);
+            // 
+            // barButtonSalaryReport
+            // 
+            this.barButtonSalaryReport.Caption = "Salary Report";
+            this.barButtonSalaryReport.Id = 128;
+            this.barButtonSalaryReport.Name = "barButtonSalaryReport";
+            this.barButtonSalaryReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSalaryReport_ItemClick);
             // 
             // barSubItem8
             // 
@@ -1958,12 +1971,19 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
-            // barButtonSalaryReport
+            // barButtonRejectionInReceive
             // 
-            this.barButtonSalaryReport.Caption = "Salary Report";
-            this.barButtonSalaryReport.Id = 128;
-            this.barButtonSalaryReport.Name = "barButtonSalaryReport";
-            this.barButtonSalaryReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSalaryReport_ItemClick);
+            this.barButtonRejectionInReceive.Caption = "Rejection In/Receive";
+            this.barButtonRejectionInReceive.Id = 129;
+            this.barButtonRejectionInReceive.Name = "barButtonRejectionInReceive";
+            this.barButtonRejectionInReceive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionInReceive_ItemClick);
+            // 
+            // barButtonRejectionOutSend
+            // 
+            this.barButtonRejectionOutSend.Caption = "Rejection Out/Send";
+            this.barButtonRejectionOutSend.Id = 130;
+            this.barButtonRejectionOutSend.Name = "barButtonRejectionOutSend";
+            this.barButtonRejectionOutSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionOutSend_ItemClick);
             // 
             // FrmMain
             // 
@@ -2188,5 +2208,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonItem81;
         private DevExpress.XtraBars.BarButtonItem barButtonItem82;
         private DevExpress.XtraBars.BarButtonItem barButtonSalaryReport;
+        private DevExpress.XtraBars.BarButtonItem barButtonRejectionInReceive;
+        private DevExpress.XtraBars.BarButtonItem barButtonRejectionOutSend;
     }
 }
