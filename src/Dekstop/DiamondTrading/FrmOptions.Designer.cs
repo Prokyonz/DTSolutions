@@ -35,6 +35,14 @@ namespace DiamondTrading
             this.txtFormTitle = new DevExpress.XtraEditors.TextEdit();
             this.xtabAdvanced = new DevExpress.XtraTab.XtraTabPage();
             this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.txtMinusOTHourRate = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.txtPlusOTHourRate = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.txtDayHours = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.rdbHours = new System.Windows.Forms.RadioButton();
+            this.rdbDays = new System.Windows.Forms.RadioButton();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
             this.checkEditClearReportLayout = new DevExpress.XtraEditors.CheckEdit();
@@ -45,14 +53,6 @@ namespace DiamondTrading
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
-            this.rdbDays = new System.Windows.Forms.RadioButton();
-            this.rdbHours = new System.Windows.Forms.RadioButton();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.txtDayHours = new DevExpress.XtraEditors.TextEdit();
-            this.txtPlusOTHourRate = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.txtMinusOTHourRate = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtabGeneral.SuspendLayout();
@@ -62,15 +62,15 @@ namespace DiamondTrading
             this.xtabAdvanced.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
             this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinusOTHourRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlusOTHourRate.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDayHours.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
             this.groupControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.checkEditClearReportLayout.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDayHours.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlusOTHourRate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinusOTHourRate.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -135,9 +135,105 @@ namespace DiamondTrading
             this.groupControl3.Location = new System.Drawing.Point(3, 135);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(290, 139);
-            this.groupControl3.TabIndex = 4;
+            this.groupControl3.TabIndex = 1;
             this.groupControl3.Text = "Salary Settings";
             this.groupControl3.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl3_Paint);
+            // 
+            // txtMinusOTHourRate
+            // 
+            this.txtMinusOTHourRate.EditValue = "0";
+            this.txtMinusOTHourRate.Location = new System.Drawing.Point(115, 107);
+            this.txtMinusOTHourRate.Name = "txtMinusOTHourRate";
+            this.txtMinusOTHourRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtMinusOTHourRate.Properties.Appearance.Options.UseFont = true;
+            this.txtMinusOTHourRate.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtMinusOTHourRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtMinusOTHourRate.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtMinusOTHourRate.Properties.MaskSettings.Set("mask", "f");
+            this.txtMinusOTHourRate.Size = new System.Drawing.Size(58, 20);
+            this.txtMinusOTHourRate.TabIndex = 8;
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl3.Appearance.Options.UseFont = true;
+            this.labelControl3.Location = new System.Drawing.Point(9, 110);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(94, 14);
+            this.labelControl3.TabIndex = 7;
+            this.labelControl3.Text = "(-)OT Hour Rate:";
+            // 
+            // txtPlusOTHourRate
+            // 
+            this.txtPlusOTHourRate.EditValue = "0";
+            this.txtPlusOTHourRate.Location = new System.Drawing.Point(115, 80);
+            this.txtPlusOTHourRate.Name = "txtPlusOTHourRate";
+            this.txtPlusOTHourRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtPlusOTHourRate.Properties.Appearance.Options.UseFont = true;
+            this.txtPlusOTHourRate.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtPlusOTHourRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtPlusOTHourRate.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtPlusOTHourRate.Properties.MaskSettings.Set("mask", "f");
+            this.txtPlusOTHourRate.Size = new System.Drawing.Size(58, 20);
+            this.txtPlusOTHourRate.TabIndex = 6;
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl2.Appearance.Options.UseFont = true;
+            this.labelControl2.Location = new System.Drawing.Point(9, 83);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(98, 14);
+            this.labelControl2.TabIndex = 5;
+            this.labelControl2.Text = "(+)OT Hour Rate:";
+            // 
+            // txtDayHours
+            // 
+            this.txtDayHours.EditValue = "0";
+            this.txtDayHours.Location = new System.Drawing.Point(115, 53);
+            this.txtDayHours.Name = "txtDayHours";
+            this.txtDayHours.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.txtDayHours.Properties.Appearance.Options.UseFont = true;
+            this.txtDayHours.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtDayHours.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtDayHours.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtDayHours.Properties.MaskSettings.Set("mask", "f");
+            this.txtDayHours.Size = new System.Drawing.Size(58, 20);
+            this.txtDayHours.TabIndex = 4;
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(9, 56);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(59, 14);
+            this.labelControl1.TabIndex = 3;
+            this.labelControl1.Text = "Day Hours:";
+            // 
+            // rdbHours
+            // 
+            this.rdbHours.AutoSize = true;
+            this.rdbHours.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbHours.Location = new System.Drawing.Point(223, 26);
+            this.rdbHours.Name = "rdbHours";
+            this.rdbHours.Size = new System.Drawing.Size(56, 18);
+            this.rdbHours.TabIndex = 2;
+            this.rdbHours.Text = "Hours";
+            this.rdbHours.UseVisualStyleBackColor = true;
+            // 
+            // rdbDays
+            // 
+            this.rdbDays.AutoSize = true;
+            this.rdbDays.Checked = true;
+            this.rdbDays.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdbDays.Location = new System.Drawing.Point(164, 26);
+            this.rdbDays.Name = "rdbDays";
+            this.rdbDays.Size = new System.Drawing.Size(50, 18);
+            this.rdbDays.TabIndex = 1;
+            this.rdbDays.TabStop = true;
+            this.rdbDays.Text = "Days";
+            this.rdbDays.UseVisualStyleBackColor = true;
             // 
             // labelControl11
             // 
@@ -146,7 +242,7 @@ namespace DiamondTrading
             this.labelControl11.Location = new System.Drawing.Point(9, 28);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(149, 14);
-            this.labelControl11.TabIndex = 1;
+            this.labelControl11.TabIndex = 0;
             this.labelControl11.Text = "Salary calculation based on:";
             // 
             // groupControl2
@@ -248,102 +344,6 @@ namespace DiamondTrading
             this.btnOk.Text = "&OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // rdbDays
-            // 
-            this.rdbDays.AutoSize = true;
-            this.rdbDays.Checked = true;
-            this.rdbDays.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbDays.Location = new System.Drawing.Point(164, 26);
-            this.rdbDays.Name = "rdbDays";
-            this.rdbDays.Size = new System.Drawing.Size(50, 18);
-            this.rdbDays.TabIndex = 3;
-            this.rdbDays.TabStop = true;
-            this.rdbDays.Text = "Days";
-            this.rdbDays.UseVisualStyleBackColor = true;
-            // 
-            // rdbHours
-            // 
-            this.rdbHours.AutoSize = true;
-            this.rdbHours.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdbHours.Location = new System.Drawing.Point(223, 26);
-            this.rdbHours.Name = "rdbHours";
-            this.rdbHours.Size = new System.Drawing.Size(56, 18);
-            this.rdbHours.TabIndex = 4;
-            this.rdbHours.Text = "Hours";
-            this.rdbHours.UseVisualStyleBackColor = true;
-            // 
-            // labelControl1
-            // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(9, 56);
-            this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(59, 14);
-            this.labelControl1.TabIndex = 5;
-            this.labelControl1.Text = "Day Hours:";
-            // 
-            // txtDayHours
-            // 
-            this.txtDayHours.EditValue = "0";
-            this.txtDayHours.Location = new System.Drawing.Point(115, 53);
-            this.txtDayHours.Name = "txtDayHours";
-            this.txtDayHours.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtDayHours.Properties.Appearance.Options.UseFont = true;
-            this.txtDayHours.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtDayHours.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtDayHours.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtDayHours.Properties.MaskSettings.Set("mask", "f");
-            this.txtDayHours.Size = new System.Drawing.Size(58, 20);
-            this.txtDayHours.TabIndex = 6;
-            // 
-            // txtPlusOTHourRate
-            // 
-            this.txtPlusOTHourRate.EditValue = "0";
-            this.txtPlusOTHourRate.Location = new System.Drawing.Point(115, 80);
-            this.txtPlusOTHourRate.Name = "txtPlusOTHourRate";
-            this.txtPlusOTHourRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtPlusOTHourRate.Properties.Appearance.Options.UseFont = true;
-            this.txtPlusOTHourRate.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtPlusOTHourRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtPlusOTHourRate.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtPlusOTHourRate.Properties.MaskSettings.Set("mask", "f");
-            this.txtPlusOTHourRate.Size = new System.Drawing.Size(58, 20);
-            this.txtPlusOTHourRate.TabIndex = 8;
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(9, 83);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(98, 14);
-            this.labelControl2.TabIndex = 7;
-            this.labelControl2.Text = "(+)OT Hour Rate:";
-            // 
-            // txtMinusOTHourRate
-            // 
-            this.txtMinusOTHourRate.EditValue = "0";
-            this.txtMinusOTHourRate.Location = new System.Drawing.Point(115, 107);
-            this.txtMinusOTHourRate.Name = "txtMinusOTHourRate";
-            this.txtMinusOTHourRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.txtMinusOTHourRate.Properties.Appearance.Options.UseFont = true;
-            this.txtMinusOTHourRate.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtMinusOTHourRate.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtMinusOTHourRate.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.txtMinusOTHourRate.Properties.MaskSettings.Set("mask", "f");
-            this.txtMinusOTHourRate.Size = new System.Drawing.Size(58, 20);
-            this.txtMinusOTHourRate.TabIndex = 10;
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(9, 110);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(94, 14);
-            this.labelControl3.TabIndex = 9;
-            this.labelControl3.Text = "(-)OT Hour Rate:";
-            // 
             // FrmOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,15 +372,15 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
             this.groupControl3.ResumeLayout(false);
             this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMinusOTHourRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtPlusOTHourRate.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtDayHours.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
             this.groupControl2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.checkEditClearReportLayout.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtDayHours.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtPlusOTHourRate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMinusOTHourRate.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -40,6 +40,12 @@ namespace DiamondTrading
         public const string PrintPurchaseSlip = "PrintPurchaseSlip";
         public const string PrintPurchasePF = "PrintPurchasePF";
         public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
+
+
+        public const string SalaryPaidInDays = "SalaryPaidInDays";
+        public const string SalaryTotalDayHours = "SalaryTotalDayHours";
+        public const string SalaryPlusOTRatePerHour = "SalaryPlusOTRatePerHour";
+        public const string SalaryMinusOTRatePerHour = "SalaryMinusOTRatePerHour";
         #endregion "FrmOther"
 
         public static void DeleteSettings()

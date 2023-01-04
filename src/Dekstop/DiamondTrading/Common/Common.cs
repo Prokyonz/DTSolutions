@@ -43,6 +43,11 @@ namespace DiamondTrading
         public static bool PrintPurchasePF = false;
         public static bool AllowToSelectPurchaseDueDate = false;
 
+        public static bool SalaryPaidInDays = true;
+        public static decimal SalaryTotalDayHours = 0;
+        public static decimal SalaryPlusOTRatePerHour = 0;
+        public static decimal SalaryMinusOTRatePerHour = 0;
+
         public static List<UserPermissionChild> UserPermissionChildren
         {
             get;
@@ -152,6 +157,11 @@ namespace DiamondTrading
                 PrintPurchaseSlip = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchaseSlip, "false"));
                 PrintPurchasePF = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchasePF, "false"));
                 AllowToSelectPurchaseDueDate = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.AllowToSelectPurchaseDueDate, "false"));
+
+                SalaryPaidInDays = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryPaidInDays, "true"));
+                SalaryTotalDayHours = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryTotalDayHours, "0"));
+                SalaryPlusOTRatePerHour = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryPlusOTRatePerHour, "0"));
+                SalaryMinusOTRatePerHour = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryMinusOTRatePerHour, "0"));
                 #endregion "FrmOption"
             }
             catch (Exception Ex)

@@ -46,6 +46,14 @@ namespace DiamondTrading
             chkPrintSlip.Checked = Common.PrintPurchaseSlip;
             chkPrintPF.Checked = Common.PrintPurchasePF;
             chkAllowToSelectPaymentDueDate.Checked = Common.AllowToSelectPurchaseDueDate;
+
+            if (Common.SalaryPaidInDays)
+                rdbDays.Checked = true;
+            else
+                rdbHours.Checked = true;
+            txtDayHours.Text = Common.SalaryTotalDayHours.ToString();
+            txtPlusOTHourRate.Text = Common.SalaryPlusOTRatePerHour.ToString();
+            txtMinusOTHourRate.Text = Common.SalaryMinusOTRatePerHour.ToString();
         }
 
         private void SaveSettings()
@@ -66,6 +74,19 @@ namespace DiamondTrading
 
                 Common.AllowToSelectPurchaseDueDate = chkAllowToSelectPaymentDueDate.Checked;
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.AllowToSelectPurchaseDueDate, chkAllowToSelectPaymentDueDate.Checked.ToString());
+
+                //Salary
+                Common.SalaryPaidInDays = rdbDays.Checked;
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryPaidInDays, rdbDays.Checked.ToString());
+
+                Common.SalaryTotalDayHours = Convert.ToDecimal(txtDayHours.Text);
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryTotalDayHours, txtDayHours.Text);
+
+                Common.SalaryPlusOTRatePerHour = Convert.ToDecimal(txtPlusOTHourRate.Text);
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryPlusOTRatePerHour, txtPlusOTHourRate.Text);
+
+                Common.SalaryMinusOTRatePerHour = Convert.ToDecimal(txtMinusOTHourRate.Text);
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryMinusOTRatePerHour, txtMinusOTHourRate.Text);
                 #endregion
             }
         }
