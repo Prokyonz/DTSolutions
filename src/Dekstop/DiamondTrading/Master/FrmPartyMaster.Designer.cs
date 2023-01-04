@@ -57,7 +57,7 @@ namespace DiamondTrading.Master
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pnl3 = new DevExpress.XtraEditors.PanelControl();
+            this.pnl4 = new DevExpress.XtraEditors.PanelControl();
             this.txtOpeningBalance = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.pnl2 = new DevExpress.XtraEditors.PanelControl();
@@ -67,6 +67,9 @@ namespace DiamondTrading.Master
             this.lueSubType = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
             this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.pnl3 = new DevExpress.XtraEditors.PanelControl();
+            this.txtSalary = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).BeginInit();
@@ -85,8 +88,8 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).BeginInit();
-            this.pnl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl4)).BeginInit();
+            this.pnl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl2)).BeginInit();
             this.pnl2.SuspendLayout();
@@ -96,6 +99,9 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.lueSubType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).BeginInit();
+            this.pnl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalary.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -184,7 +190,6 @@ namespace DiamondTrading.Master
             this.txtPartyName.Name = "txtPartyName";
             this.txtPartyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.txtPartyName.Properties.Appearance.Options.UseFont = true;
-            this.txtPartyName.Properties.BeepOnError = false;
             this.txtPartyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPartyName.Size = new System.Drawing.Size(690, 26);
             this.txtPartyName.TabIndex = 2;
@@ -388,53 +393,55 @@ namespace DiamondTrading.Master
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.pnl3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnl2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnl1, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(5, 23);
+            this.tableLayoutPanel1.Controls.Add(this.pnl4, 3, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 23);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(700, 53);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 54);
             this.tableLayoutPanel1.TabIndex = 7;
             // 
-            // pnl3
+            // pnl4
             // 
-            this.pnl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.pnl3.Controls.Add(this.txtOpeningBalance);
-            this.pnl3.Controls.Add(this.labelControl13);
-            this.pnl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl3.Location = new System.Drawing.Point(456, 3);
-            this.pnl3.Name = "pnl3";
-            this.pnl3.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.pnl3.Size = new System.Drawing.Size(241, 47);
-            this.pnl3.TabIndex = 2;
+            this.pnl4.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnl4.Controls.Add(this.txtOpeningBalance);
+            this.pnl4.Controls.Add(this.labelControl13);
+            this.pnl4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl4.Location = new System.Drawing.Point(456, 3);
+            this.pnl4.Name = "pnl4";
+            this.pnl4.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.pnl4.Size = new System.Drawing.Size(247, 48);
+            this.pnl4.TabIndex = 3;
             // 
             // txtOpeningBalance
             // 
             this.txtOpeningBalance.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtOpeningBalance.EditValue = "0";
-            this.txtOpeningBalance.Location = new System.Drawing.Point(0, 21);
+            this.txtOpeningBalance.Location = new System.Drawing.Point(0, 22);
             this.txtOpeningBalance.Name = "txtOpeningBalance";
             this.txtOpeningBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.txtOpeningBalance.Properties.Appearance.Options.UseFont = true;
             this.txtOpeningBalance.Properties.Appearance.Options.UseTextOptions = true;
             this.txtOpeningBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtOpeningBalance.Properties.BeepOnError = false;
             this.txtOpeningBalance.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtOpeningBalance.Properties.MaskSettings.Set("mask", "f");
-            this.txtOpeningBalance.Size = new System.Drawing.Size(238, 26);
+            this.txtOpeningBalance.Size = new System.Drawing.Size(244, 26);
             this.txtOpeningBalance.TabIndex = 1;
             // 
             // labelControl13
             // 
             this.labelControl13.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
             this.labelControl13.Appearance.Options.UseFont = true;
-            this.labelControl13.Location = new System.Drawing.Point(0, 4);
+            this.labelControl13.Location = new System.Drawing.Point(3, 4);
             this.labelControl13.Name = "labelControl13";
             this.labelControl13.Size = new System.Drawing.Size(98, 14);
             this.labelControl13.TabIndex = 0;
@@ -446,17 +453,17 @@ namespace DiamondTrading.Master
             this.pnl2.Controls.Add(this.lueBrokerage);
             this.pnl2.Controls.Add(this.labelControl12);
             this.pnl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl2.Location = new System.Drawing.Point(209, 3);
+            this.pnl2.Location = new System.Drawing.Point(106, 3);
             this.pnl2.Name = "pnl2";
             this.pnl2.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.pnl2.Size = new System.Drawing.Size(241, 47);
+            this.pnl2.Size = new System.Drawing.Size(241, 48);
             this.pnl2.TabIndex = 1;
             this.pnl2.Visible = false;
             // 
             // lueBrokerage
             // 
             this.lueBrokerage.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lueBrokerage.Location = new System.Drawing.Point(0, 21);
+            this.lueBrokerage.Location = new System.Drawing.Point(0, 22);
             this.lueBrokerage.Name = "lueBrokerage";
             this.lueBrokerage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lueBrokerage.Properties.Appearance.Options.UseFont = true;
@@ -489,14 +496,14 @@ namespace DiamondTrading.Master
             this.pnl1.Location = new System.Drawing.Point(3, 3);
             this.pnl1.Name = "pnl1";
             this.pnl1.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.pnl1.Size = new System.Drawing.Size(200, 47);
+            this.pnl1.Size = new System.Drawing.Size(97, 48);
             this.pnl1.TabIndex = 0;
             this.pnl1.Visible = false;
             // 
             // lueSubType
             // 
             this.lueSubType.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lueSubType.Location = new System.Drawing.Point(0, 21);
+            this.lueSubType.Location = new System.Drawing.Point(0, 22);
             this.lueSubType.Name = "lueSubType";
             this.lueSubType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
             this.lueSubType.Properties.Appearance.Options.UseFont = true;
@@ -506,7 +513,7 @@ namespace DiamondTrading.Master
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Party Type", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyTypeID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueSubType.Properties.NullText = "";
-            this.lueSubType.Size = new System.Drawing.Size(197, 26);
+            this.lueSubType.Size = new System.Drawing.Size(94, 26);
             this.lueSubType.TabIndex = 1;
             this.lueSubType.EditValueChanged += new System.EventHandler(this.lueSubType_EditValueChanged);
             // 
@@ -528,6 +535,44 @@ namespace DiamondTrading.Master
             this.groupControl4.Size = new System.Drawing.Size(710, 79);
             this.groupControl4.TabIndex = 1;
             this.groupControl4.Text = "Ledger Sub Details";
+            // 
+            // pnl3
+            // 
+            this.pnl3.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            this.pnl3.Controls.Add(this.txtSalary);
+            this.pnl3.Controls.Add(this.labelControl14);
+            this.pnl3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnl3.Location = new System.Drawing.Point(353, 3);
+            this.pnl3.Name = "pnl3";
+            this.pnl3.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
+            this.pnl3.Size = new System.Drawing.Size(97, 48);
+            this.pnl3.TabIndex = 2;
+            this.pnl3.Visible = false;
+            // 
+            // txtSalary
+            // 
+            this.txtSalary.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtSalary.EditValue = "0";
+            this.txtSalary.Location = new System.Drawing.Point(0, 22);
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSalary.Properties.Appearance.Options.UseFont = true;
+            this.txtSalary.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSalary.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtSalary.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.txtSalary.Properties.MaskSettings.Set("mask", "f");
+            this.txtSalary.Size = new System.Drawing.Size(94, 26);
+            this.txtSalary.TabIndex = 1;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Location = new System.Drawing.Point(3, 4);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(38, 14);
+            this.labelControl14.TabIndex = 0;
+            this.labelControl14.Text = "Salary*";
             // 
             // FrmPartyMaster
             // 
@@ -574,9 +619,9 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.txtPancardNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtGSTNo.Properties)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).EndInit();
-            this.pnl3.ResumeLayout(false);
-            this.pnl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pnl4)).EndInit();
+            this.pnl4.ResumeLayout(false);
+            this.pnl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnl2)).EndInit();
             this.pnl2.ResumeLayout(false);
@@ -588,6 +633,10 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.lueSubType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pnl3)).EndInit();
+            this.pnl3.ResumeLayout(false);
+            this.pnl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSalary.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -625,12 +674,15 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.LookUpEdit lueSubType;
         private DevExpress.XtraEditors.LabelControl labelControl11;
         private DevExpress.XtraEditors.PanelControl pnl1;
-        private DevExpress.XtraEditors.PanelControl pnl3;
+        private DevExpress.XtraEditors.PanelControl pnl4;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.PanelControl pnl2;
         private DevExpress.XtraEditors.LookUpEdit lueBrokerage;
         private DevExpress.XtraEditors.LabelControl labelControl12;
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.TextEdit txtOpeningBalance;
+        private DevExpress.XtraEditors.PanelControl pnl3;
+        private DevExpress.XtraEditors.TextEdit txtSalary;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
     }
 }

@@ -228,6 +228,7 @@ namespace EFCore.SQL.Repository
                     getParty.OfficeNo = partyMaster.OfficeNo;
                     getParty.GSTNo = partyMaster.GSTNo;
                     getParty.PancardNo = partyMaster.PancardNo;
+                    getParty.Salary = partyMaster.Salary;
                     getParty.OpeningBalance = partyMaster.OpeningBalance;
                     getParty.AadharCardNo = partyMaster.AadharCardNo;
                     getParty.UpdatedDate = partyMaster.UpdatedDate;

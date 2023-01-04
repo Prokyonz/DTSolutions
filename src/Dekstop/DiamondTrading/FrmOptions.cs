@@ -102,5 +102,15 @@ namespace DiamondTrading
                 RegistryHelper.DeleteSettings();
             }
         }
+
+        private void groupControl3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

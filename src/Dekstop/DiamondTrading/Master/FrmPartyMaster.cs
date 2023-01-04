@@ -164,6 +164,7 @@ namespace DiamondTrading.Master
                     txtGSTNo.Text = _EditedPartyMasterSet.GSTNo;
                     txtPancardNo.Text = _EditedPartyMasterSet.PancardNo;
                     txtAadharcardNo.Text = _EditedPartyMasterSet.AadharCardNo;
+                    txtSalary.Text = _EditedPartyMasterSet.Salary.ToString();
                 }
             }
 
@@ -278,6 +279,11 @@ namespace DiamondTrading.Master
 
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && lueBrokerage.EditValue != null && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller))
                         PartyMaster.BrokerageId = lueBrokerage.EditValue.ToString();
+
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Salaried)
+                        PartyMaster.Salary = Convert.ToDecimal(txtSalary.Text);
+                    else
+                        PartyMaster.Salary = 0;
 
                     var Result = await _partyMasterRepository.AddPartyAsync(PartyMaster);
 
@@ -419,11 +425,13 @@ namespace DiamondTrading.Master
                 {
                     pnl1.Visible = false;
                     pnl2.Visible = false;
+                    pnl3.Visible = false;
                 }
                 else if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
                 {
                     pnl1.Visible = true;
                     pnl2.Visible = false;
+                    pnl3.Visible = false;
 
                     var SubTypes = PartyTypeMaster.GetAllSubLedgerType();
 
@@ -443,6 +451,7 @@ namespace DiamondTrading.Master
                 {
                     pnl1.Visible = false;
                     pnl2.Visible = false;
+                    pnl3.Visible = false;
                 }
             }
         }
@@ -451,15 +460,21 @@ namespace DiamondTrading.Master
         {
             if (lueSubType.EditValue != null)
             {
-                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other)
+                if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Other || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Process)
                 {
                     pnl2.Visible = false;
+                    pnl3.Visible = false;
                 }
                 else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer
                     || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller)
                 {
                     pnl2.Visible = true;
+                    pnl3.Visible = false;
                     await GetBrokerageList();
+                }
+                else if (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Salaried)
+                {
+                    pnl3.Visible = true;
                 }
             }
         }

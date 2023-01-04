@@ -29,7 +29,8 @@ namespace Repository.Entities
         public static int Broker = 8;
         public static int Other = 9;
         public static int Process = 15;
-        
+        public static int Salaried = 16;
+
 
         //public static List<PartyTypeMaster> GetAllPartyType()
         //{
@@ -85,7 +86,8 @@ namespace Repository.Entities
                 new PartyTypeMaster {Id = Seller, Name = "Seller" },
                 new PartyTypeMaster {Id = Broker, Name = "Broker" },
                 new PartyTypeMaster { Id = Process, Name = "Process" },
-                new PartyTypeMaster {Id = Other, Name = "Other" }
+                new PartyTypeMaster {Id = Other, Name = "Other" },
+                new PartyTypeMaster {Id = Salaried, Name = "Salaried" }
             };
             return partyTypeMaster;
         }
