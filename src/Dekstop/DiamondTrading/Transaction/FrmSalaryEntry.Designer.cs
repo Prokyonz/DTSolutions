@@ -54,17 +54,20 @@ namespace DiamondTrading.Transaction
             this.repoEmployee = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colSalaryAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.gridColumnWorkingDays = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoWorkingDays = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.gridColumnWorkedDays = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoWorkedDays = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.colOTHours = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colOTRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTPlusHours = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTPlusRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnAdvanceAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoAdvanceAmount = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colBonus = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRound = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTMinusHours = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTMinusRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTPlusAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOTMinusAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoWorkingDays = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.lueLeadger = new DevExpress.XtraEditors.LookUpEdit();
@@ -86,9 +89,9 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvParticularsDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoWorkingDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoWorkedDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoAdvanceAmount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoWorkingDays)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -375,14 +378,17 @@ namespace DiamondTrading.Transaction
             this.grvParticularsDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colName,
             this.colSalaryAmount,
-            this.gridColumnWorkingDays,
             this.gridColumnWorkedDays,
-            this.colOTHours,
-            this.colOTRate,
+            this.colOTPlusHours,
+            this.colOTPlusRate,
             this.gridColumnAdvanceAmount,
             this.colBonus,
             this.colRound,
-            this.colTotal});
+            this.colTotal,
+            this.colOTMinusHours,
+            this.colOTMinusRate,
+            this.colOTPlusAmount,
+            this.colOTMinusAmount});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -401,7 +407,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name", "Total: {0}")});
             this.colName.Visible = true;
             this.colName.VisibleIndex = 0;
-            this.colName.Width = 83;
+            this.colName.Width = 115;
             // 
             // repoEmployee
             // 
@@ -410,7 +416,8 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.repoEmployee.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "EmployeeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "EmployeeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Salary", "Salary", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.repoEmployee.Name = "repoEmployee";
             this.repoEmployee.NullText = "";
             // 
@@ -422,7 +429,7 @@ namespace DiamondTrading.Transaction
             this.colSalaryAmount.Name = "colSalaryAmount";
             this.colSalaryAmount.Visible = true;
             this.colSalaryAmount.VisibleIndex = 1;
-            this.colSalaryAmount.Width = 66;
+            this.colSalaryAmount.Width = 92;
             // 
             // repoTxtEdit
             // 
@@ -432,21 +439,6 @@ namespace DiamondTrading.Transaction
             this.repoTxtEdit.MaskSettings.Set("mask", "n");
             this.repoTxtEdit.Name = "repoTxtEdit";
             // 
-            // gridColumnWorkingDays
-            // 
-            this.gridColumnWorkingDays.Caption = "Working Days";
-            this.gridColumnWorkingDays.ColumnEdit = this.repoWorkingDays;
-            this.gridColumnWorkingDays.FieldName = "WorkingDays";
-            this.gridColumnWorkingDays.Name = "gridColumnWorkingDays";
-            this.gridColumnWorkingDays.Visible = true;
-            this.gridColumnWorkingDays.VisibleIndex = 2;
-            this.gridColumnWorkingDays.Width = 74;
-            // 
-            // repoWorkingDays
-            // 
-            this.repoWorkingDays.AutoHeight = false;
-            this.repoWorkingDays.Name = "repoWorkingDays";
-            // 
             // gridColumnWorkedDays
             // 
             this.gridColumnWorkedDays.Caption = "Worked Days";
@@ -454,32 +446,33 @@ namespace DiamondTrading.Transaction
             this.gridColumnWorkedDays.FieldName = "WorkedDays";
             this.gridColumnWorkedDays.Name = "gridColumnWorkedDays";
             this.gridColumnWorkedDays.Visible = true;
-            this.gridColumnWorkedDays.VisibleIndex = 3;
+            this.gridColumnWorkedDays.VisibleIndex = 2;
+            this.gridColumnWorkedDays.Width = 104;
             // 
             // repoWorkedDays
             // 
             this.repoWorkedDays.AutoHeight = false;
             this.repoWorkedDays.Name = "repoWorkedDays";
             // 
-            // colOTHours
+            // colOTPlusHours
             // 
-            this.colOTHours.Caption = "OT Hours";
-            this.colOTHours.ColumnEdit = this.repoTxtEdit;
-            this.colOTHours.FieldName = "OTHours";
-            this.colOTHours.Name = "colOTHours";
-            this.colOTHours.Visible = true;
-            this.colOTHours.VisibleIndex = 4;
-            this.colOTHours.Width = 53;
+            this.colOTPlusHours.Caption = "(+)OT Hours";
+            this.colOTPlusHours.ColumnEdit = this.repoTxtEdit;
+            this.colOTPlusHours.FieldName = "OTPlusHours";
+            this.colOTPlusHours.Name = "colOTPlusHours";
+            this.colOTPlusHours.Visible = true;
+            this.colOTPlusHours.VisibleIndex = 5;
+            this.colOTPlusHours.Width = 92;
             // 
-            // colOTRate
+            // colOTPlusRate
             // 
-            this.colOTRate.Caption = "OT Rate (Hr)";
-            this.colOTRate.ColumnEdit = this.repoTxtEdit;
-            this.colOTRate.FieldName = "OTRateHr";
-            this.colOTRate.Name = "colOTRate";
-            this.colOTRate.Visible = true;
-            this.colOTRate.VisibleIndex = 5;
-            this.colOTRate.Width = 70;
+            this.colOTPlusRate.Caption = "(+)OT Rate";
+            this.colOTPlusRate.ColumnEdit = this.repoTxtEdit;
+            this.colOTPlusRate.FieldName = "OTPlusRate";
+            this.colOTPlusRate.Name = "colOTPlusRate";
+            this.colOTPlusRate.Visible = true;
+            this.colOTPlusRate.VisibleIndex = 6;
+            this.colOTPlusRate.Width = 87;
             // 
             // gridColumnAdvanceAmount
             // 
@@ -487,9 +480,7 @@ namespace DiamondTrading.Transaction
             this.gridColumnAdvanceAmount.ColumnEdit = this.repoAdvanceAmount;
             this.gridColumnAdvanceAmount.FieldName = "AdvanceAmount";
             this.gridColumnAdvanceAmount.Name = "gridColumnAdvanceAmount";
-            this.gridColumnAdvanceAmount.Visible = true;
-            this.gridColumnAdvanceAmount.VisibleIndex = 7;
-            this.gridColumnAdvanceAmount.Width = 70;
+            this.gridColumnAdvanceAmount.Width = 107;
             // 
             // repoAdvanceAmount
             // 
@@ -504,9 +495,7 @@ namespace DiamondTrading.Transaction
             this.colBonus.Name = "colBonus";
             this.colBonus.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Bonus", "{0:0.##}")});
-            this.colBonus.Visible = true;
-            this.colBonus.VisibleIndex = 8;
-            this.colBonus.Width = 36;
+            this.colBonus.Width = 54;
             // 
             // colRound
             // 
@@ -523,8 +512,8 @@ namespace DiamondTrading.Transaction
             this.colRound.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Round", "{0:0}")});
             this.colRound.Visible = true;
-            this.colRound.VisibleIndex = 6;
-            this.colRound.Width = 69;
+            this.colRound.VisibleIndex = 7;
+            this.colRound.Width = 105;
             // 
             // colTotal
             // 
@@ -541,8 +530,45 @@ namespace DiamondTrading.Transaction
             this.colTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:0}")});
             this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 9;
-            this.colTotal.Width = 89;
+            this.colTotal.VisibleIndex = 8;
+            this.colTotal.Width = 149;
+            // 
+            // colOTMinusHours
+            // 
+            this.colOTMinusHours.Caption = "(-)OT Hours";
+            this.colOTMinusHours.ColumnEdit = this.repoTxtEdit;
+            this.colOTMinusHours.FieldName = "OTMinusHours";
+            this.colOTMinusHours.Name = "colOTMinusHours";
+            this.colOTMinusHours.Visible = true;
+            this.colOTMinusHours.VisibleIndex = 3;
+            this.colOTMinusHours.Width = 84;
+            // 
+            // colOTMinusRate
+            // 
+            this.colOTMinusRate.Caption = "(-)OT Rate";
+            this.colOTMinusRate.ColumnEdit = this.repoTxtEdit;
+            this.colOTMinusRate.FieldName = "OTMinusRate";
+            this.colOTMinusRate.Name = "colOTMinusRate";
+            this.colOTMinusRate.Visible = true;
+            this.colOTMinusRate.VisibleIndex = 4;
+            this.colOTMinusRate.Width = 72;
+            // 
+            // colOTPlusAmount
+            // 
+            this.colOTPlusAmount.Caption = "(+)OT Amount";
+            this.colOTPlusAmount.FieldName = "OTPlusAmount";
+            this.colOTPlusAmount.Name = "colOTPlusAmount";
+            // 
+            // colOTMinusAmount
+            // 
+            this.colOTMinusAmount.Caption = "(-)OT Amount";
+            this.colOTMinusAmount.FieldName = "OTMinusAmount";
+            this.colOTMinusAmount.Name = "colOTMinusAmount";
+            // 
+            // repoWorkingDays
+            // 
+            this.repoWorkingDays.AutoHeight = false;
+            this.repoWorkingDays.Name = "repoWorkingDays";
             // 
             // grpGroup2
             // 
@@ -634,9 +660,9 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.grvParticularsDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoWorkingDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoWorkedDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoAdvanceAmount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoWorkingDays)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
             this.grpGroup2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).EndInit();
@@ -677,16 +703,19 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraEditors.TextEdit txtWorkingDays;
-        private DevExpress.XtraGrid.Columns.GridColumn colOTHours;
-        private DevExpress.XtraGrid.Columns.GridColumn colOTRate;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTPlusHours;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTPlusRate;
         private DevExpress.XtraGrid.Columns.GridColumn colRound;
         private DevExpress.XtraGrid.Columns.GridColumn colBonus;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnWorkingDays;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoWorkingDays;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnWorkedDays;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoWorkedDays;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnAdvanceAmount;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoAdvanceAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTMinusHours;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTMinusRate;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTPlusAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colOTMinusAmount;
     }
 }

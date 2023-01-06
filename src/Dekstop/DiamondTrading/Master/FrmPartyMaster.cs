@@ -280,7 +280,7 @@ namespace DiamondTrading.Master
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && lueBrokerage.EditValue != null && (Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Broker || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Buyer || Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Seller))
                         PartyMaster.BrokerageId = lueBrokerage.EditValue.ToString();
 
-                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Salaried)
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Salaried)
                         PartyMaster.Salary = Convert.ToDecimal(txtSalary.Text);
                     else
                         PartyMaster.Salary = 0;
@@ -334,6 +334,10 @@ namespace DiamondTrading.Master
                     _EditedPartyMasterSet.GSTNo = txtGSTNo.Text;
                     _EditedPartyMasterSet.PancardNo = txtPancardNo.Text;
                     _EditedPartyMasterSet.AadharCardNo = txtAadharcardNo.Text;
+                    if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee && Convert.ToInt32(lueSubType.EditValue) == PartyTypeMaster.Salaried)
+                        _EditedPartyMasterSet.Salary = Convert.ToDecimal(txtSalary.Text);
+                    else
+                        _EditedPartyMasterSet.Salary = 0;
                     _EditedPartyMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedPartyMasterSet.UpdatedDate = DateTime.Now;
 
