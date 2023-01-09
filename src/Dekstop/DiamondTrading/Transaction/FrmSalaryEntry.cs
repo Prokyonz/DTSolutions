@@ -309,6 +309,8 @@ namespace DiamondTrading.Transaction
 
                     salaryDetail.RoundOfAmount = rond;
 
+                    salaryDetail.SalaryAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colSalaryAmount).ToString());
+
                     salaryDetail.TotalAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colTotal).ToString());
 
                     salaryDetailList.Insert(i, salaryDetail);

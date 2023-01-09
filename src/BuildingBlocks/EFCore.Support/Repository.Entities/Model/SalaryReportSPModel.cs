@@ -31,9 +31,14 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 2)")]
         public decimal WorkedDays { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal OverTimeHrs { get; set; }
+        public decimal OTMinusHrs { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
-        public decimal OverTimeRateHrs { get; set; }
+        public decimal OTMinusRate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal OTPlusHrs { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal OTPlusRate { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal AdvanceAmount { get; set; }
