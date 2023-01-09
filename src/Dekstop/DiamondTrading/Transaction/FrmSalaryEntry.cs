@@ -93,9 +93,9 @@ namespace DiamondTrading.Transaction
         private async Task LoadLedgers(string companyId)
         {
             var result = await _partyMasterRepository.GetAllPartyAsync(companyId);
-            lueLeadger.Properties.DataSource = result.Where(x => x.Type == PartyTypeMaster.Cash || x.Type == PartyTypeMaster.Bank);
-            lueLeadger.Properties.DisplayMember = "Name";
-            lueLeadger.Properties.ValueMember = "Id";
+            //lueLeadger.Properties.DataSource = result.Where(x => x.Type == PartyTypeMaster.Cash || x.Type == PartyTypeMaster.Bank);
+            //lueLeadger.Properties.DisplayMember = "Name";
+            //lueLeadger.Properties.ValueMember = "Id";
 
             repoEmployee.DataSource = result.Where(x => x.Type == PartyTypeMaster.Employee && x.SubType == PartyTypeMaster.Salaried);
             repoEmployee.DisplayMember = "Name";
@@ -189,13 +189,19 @@ namespace DiamondTrading.Transaction
         private void CalculateTotal(decimal SalaryAmount, decimal OTMinusHours, decimal OTMinusRate, decimal OTPlusHours, decimal OTPlusRate, decimal Bonus, int GridRowIndex, decimal workingdays, decimal workeddays, decimal advanceAmount)
         {
             grvParticularsDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvParticularsDetails_CellValueChanged);
+            if (Common.SalaryTotalDayHours < 0)
+                Common.SalaryTotalDayHours = 10.5m;
+
             decimal perHoursSal = (SalaryAmount / workingdays) / Common.SalaryTotalDayHours;
             decimal totalWorkedHours = workeddays * Common.SalaryTotalDayHours;
             if (OTPlusRate == 0)
                 OTPlusRate = Common.SalaryPlusOTRatePerHour;
             decimal OTPlusHoursAmount = OTPlusHours * OTPlusRate;
-            if (OTMinusRate == 0)
+            if (OTMinusRate == 0 && Common.SalaryMinusOTRatePerHour > 0)
                 OTMinusRate = Common.SalaryMinusOTRatePerHour;
+            else
+                OTMinusRate = perHoursSal;
+
             decimal OTMinusHoursAmount = (OTMinusHours * OTMinusRate)*-1;
 
             decimal Total = (perHoursSal * totalWorkedHours) + OTMinusHoursAmount + OTPlusHoursAmount + Bonus + advanceAmount;
@@ -320,7 +326,7 @@ namespace DiamondTrading.Transaction
                 salaryMaster.CompanyId = lueCompany.EditValue.ToString();
                 salaryMaster.BranchId = Common.LoginBranch;
                 salaryMaster.FinancialYearId = Common.LoginFinancialYear;
-                salaryMaster.FromPartyId = lueLeadger.EditValue.ToString();
+                //salaryMaster.FromPartyId = lueLeadger.EditValue.ToString();
                 salaryMaster.SalaryMonth = Convert.ToInt32(lueMonth.EditValue.ToString());
                 salaryMaster.SalaryMonthDateTime = Convert.ToDateTime(dtDate.Text);
                 salaryMaster.MonthDays = Convert.ToInt32(txtWorkingDays.Text);
@@ -373,12 +379,12 @@ namespace DiamondTrading.Transaction
                 lueCompany.Focus();
                 return false;
             }
-            else if (lueLeadger.EditValue == null)
-            {
-                MessageBox.Show("Please select ledger", "Salary Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueLeadger.Focus();
-                return false;
-            }
+            //else if (lueLeadger.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select ledger", "Salary Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueLeadger.Focus();
+            //    return false;
+            //}
             else if (lueMonth.EditValue == null)
             {
                 MessageBox.Show("Please select salary month", "Salary Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);

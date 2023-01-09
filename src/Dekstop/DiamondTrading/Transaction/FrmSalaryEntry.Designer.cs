@@ -46,7 +46,6 @@ namespace DiamondTrading.Transaction
             this.lueMonth = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.separatorControl1 = new DevExpress.XtraEditors.SeparatorControl();
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
             this.grdParticularsDetails = new DevExpress.XtraGrid.GridControl();
             this.grvParticularsDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -82,7 +81,6 @@ namespace DiamondTrading.Transaction
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWorkingDays.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMonth.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdParticularsDetails)).BeginInit();
@@ -138,11 +136,12 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(11, 108);
+            this.labelControl6.Location = new System.Drawing.Point(109, 67);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(62, 16);
             this.labelControl6.TabIndex = 8;
             this.labelControl6.Text = "Account* :";
+            this.labelControl6.Visible = false;
             // 
             // lblFormTitle
             // 
@@ -263,7 +262,6 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Controls.Add(this.lueMonth);
             this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.labelControl5);
-            this.panelControl1.Controls.Add(this.separatorControl1);
             this.panelControl1.Controls.Add(this.grpGroup1);
             this.panelControl1.Controls.Add(this.grpGroup2);
             this.panelControl1.Controls.Add(this.lueLeadger);
@@ -285,7 +283,7 @@ namespace DiamondTrading.Transaction
             // txtWorkingDays
             // 
             this.txtWorkingDays.EditValue = "0";
-            this.txtWorkingDays.Location = new System.Drawing.Point(733, 134);
+            this.txtWorkingDays.Location = new System.Drawing.Point(109, 138);
             this.txtWorkingDays.Name = "txtWorkingDays";
             this.txtWorkingDays.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtWorkingDays.Properties.Appearance.Options.UseFont = true;
@@ -296,7 +294,7 @@ namespace DiamondTrading.Transaction
             // 
             // lueMonth
             // 
-            this.lueMonth.Location = new System.Drawing.Point(733, 105);
+            this.lueMonth.Location = new System.Drawing.Point(109, 109);
             this.lueMonth.Name = "lueMonth";
             this.lueMonth.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueMonth.Properties.Appearance.Options.UseFont = true;
@@ -313,7 +311,7 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(633, 137);
+            this.labelControl4.Location = new System.Drawing.Point(9, 141);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(95, 16);
             this.labelControl4.TabIndex = 14;
@@ -323,19 +321,11 @@ namespace DiamondTrading.Transaction
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(633, 108);
+            this.labelControl5.Location = new System.Drawing.Point(9, 112);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(52, 16);
             this.labelControl5.TabIndex = 12;
             this.labelControl5.Text = "Month* :";
-            // 
-            // separatorControl1
-            // 
-            this.separatorControl1.LineOrientation = System.Windows.Forms.Orientation.Vertical;
-            this.separatorControl1.Location = new System.Drawing.Point(614, 92);
-            this.separatorControl1.Name = "separatorControl1";
-            this.separatorControl1.Size = new System.Drawing.Size(21, 70);
-            this.separatorControl1.TabIndex = 11;
             // 
             // grpGroup1
             // 
@@ -593,7 +583,7 @@ namespace DiamondTrading.Transaction
             // 
             // lueLeadger
             // 
-            this.lueLeadger.Location = new System.Drawing.Point(80, 105);
+            this.lueLeadger.Location = new System.Drawing.Point(178, 64);
             this.lueLeadger.Name = "lueLeadger";
             this.lueLeadger.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueLeadger.Properties.Appearance.Options.UseFont = true;
@@ -606,12 +596,13 @@ namespace DiamondTrading.Transaction
             this.lueLeadger.Properties.NullText = "";
             this.lueLeadger.Size = new System.Drawing.Size(532, 22);
             this.lueLeadger.TabIndex = 9;
+            this.lueLeadger.Visible = false;
             // 
             // txtLedgerBalance
             // 
             this.txtLedgerBalance.EditValue = "0";
             this.txtLedgerBalance.Enabled = false;
-            this.txtLedgerBalance.Location = new System.Drawing.Point(80, 129);
+            this.txtLedgerBalance.Location = new System.Drawing.Point(178, 88);
             this.txtLedgerBalance.Name = "txtLedgerBalance";
             this.txtLedgerBalance.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.txtLedgerBalance.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -622,6 +613,7 @@ namespace DiamondTrading.Transaction
             this.txtLedgerBalance.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.txtLedgerBalance.Size = new System.Drawing.Size(147, 20);
             this.txtLedgerBalance.TabIndex = 10;
+            this.txtLedgerBalance.Visible = false;
             // 
             // FrmSalaryEntry
             // 
@@ -653,7 +645,6 @@ namespace DiamondTrading.Transaction
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtWorkingDays.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueMonth.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdParticularsDetails)).EndInit();
@@ -701,7 +692,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.LookUpEdit lueMonth;
         private DevExpress.XtraEditors.LabelControl labelControl4;
         private DevExpress.XtraEditors.LabelControl labelControl5;
-        private DevExpress.XtraEditors.SeparatorControl separatorControl1;
         private DevExpress.XtraEditors.TextEdit txtWorkingDays;
         private DevExpress.XtraGrid.Columns.GridColumn colOTPlusHours;
         private DevExpress.XtraGrid.Columns.GridColumn colOTPlusRate;
