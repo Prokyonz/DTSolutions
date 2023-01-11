@@ -756,25 +756,76 @@ namespace DiamondTrading.Transaction
                         colCharniSize.Visible = false;
                         colGalaSize.Visible = false;
 
-                        if (_salesItemObj.KapanItemList == null)
-                            _salesItemObj.KapanItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Kapan, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                        //if (_salesItemObj.KapanItemList == null)
+                        //    _salesItemObj.KapanItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Kapan, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
-                        repoShape.DataSource = _salesItemObj.KapanItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        //repoShape.DataSource = _salesItemObj.KapanItemList;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        //repoShape.DisplayMember = "Shape";
+                        //repoShape.ValueMember = "Id";
+
+                        AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                        var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
+                        //var listKapanProcess = ListKapanProcessSend.Where(x => x.KapanId == grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString()).ToList();
+
+                        var listKapanProcess1 = ListKapanProcessSend.Select(g => new Repository.Entities.Models.AssortmentProcessSend()
+                        {
+                            Kapan = g.Kapan,
+                            KapanId = g.KapanId,
+                            Size = g.Size,
+                            SizeId = g.SizeId,
+                            Purity = g.Purity,
+                            PurityId = g.PurityId,
+                            Shape = g.Shape,
+                            ShapeId = g.ShapeId,
+                            AvailableWeight = g.AvailableWeight,
+                            LessWeight = g.LessWeight,
+                            NetWeight = g.NetWeight,
+                            Weight = g.Weight,
+                            Id = g.KapanId + g.SizeId + g.ShapeId + g.PurityId,
+                            SlipNo = g.SlipNo
+                        }).GroupBy(r => new {
+                            r.Kapan,
+                            r.KapanId,
+                            r.Purity,
+                            r.PurityId,
+                            r.Shape,
+                            r.ShapeId,
+                            r.Size,
+                            r.SizeId
+                        }).OrderBy(g => g.Key.Kapan).Select(g => new Repository.Entities.Models.AssortmentProcessSend()
+                        {
+                            Kapan = g.Key.Kapan,
+                            KapanId = g.Key.KapanId,
+                            Size = g.Key.Size,
+                            SizeId = g.Key.SizeId,
+                            Purity = g.Key.Purity,
+                            PurityId = g.Key.PurityId,
+                            Shape = g.Key.Shape,
+                            ShapeId = g.Key.ShapeId,
+                            Id = g.Key.KapanId + g.Key.ShapeId + g.Key.PurityId + g.Key.SizeId,
+                            SlipNo = string.Join(",", g.Select(kvp => kvp.SlipNo)),
+                            AvailableWeight = g.Sum(x => x.AvailableWeight),
+                            NetWeight = g.Sum(x => x.NetWeight),
+                            Weight = g.Sum(x => x.Weight),
+                            LessWeight = g.Sum(x => x.LessWeight)
+                        });
+
+                        repoShape.DataSource = listKapanProcess1.ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "Id";
 
                         repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                         repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
 
-                        repoSize.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
+                        repoSize.DataSource = ListKapanProcessSend.Select(x => new { x.SizeId, x.Size }).Distinct().ToList();
                         repoSize.DisplayMember = "Size";
                         repoSize.ValueMember = "SizeId";
 
-                        repoPurity.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.PurityId, x.Purity }).Distinct().ToList();
+                        repoPurity.DataSource = ListKapanProcessSend.Select(x => new { x.PurityId, x.Purity }).Distinct().ToList();
                         repoPurity.DisplayMember = "Purity";
                         repoPurity.ValueMember = "PurityId";
 
-                        repoKapan.DataSource = _salesItemObj.KapanItemList.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
+                        repoKapan.DataSource = ListKapanProcessSend.Select(x => new { x.KapanId, x.Kapan }).Distinct().ToList();
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
                     }
@@ -1044,10 +1095,20 @@ namespace DiamondTrading.Transaction
                 {
                     if (e.Value != Common.DefaultGuid)
                     {
-                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
-                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
-                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
-                        grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                        {
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+                        }
+                        else
+                        {
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).PurityId);
+                            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
+                        }
 
                         if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Boil.ToString())
                         {
@@ -1546,6 +1607,15 @@ namespace DiamondTrading.Transaction
                             var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
                             dt = Common.ToDataTable(listNumberProcess);
                         }
+                        else if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                        {
+                            //var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                            //dt = Common.ToDataTable(listNumberProcess);
+
+                            AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                            var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
+                            dt = Common.ToDataTable(ListKapanProcessSend);
+                        }
 
                         if (dt.Rows.Count > 0)
                         {
@@ -1592,7 +1662,14 @@ namespace DiamondTrading.Transaction
                             dtView.RowFilter = rowFilter.Trim();
                             if (dtView.Count > 0)
                             {
-                                dtView.Sort = "CharniSizeId ASC";
+                                if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                {
+                                    dtView.Sort = "SlipNo ASC";
+                                }
+                                else
+                                {
+                                    dtView.Sort = "CharniSizeId ASC";
+                                }
 
                                 decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
 
@@ -1667,6 +1744,8 @@ namespace DiamondTrading.Transaction
                                     if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
                                         salesDetailsSummary.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
 
+                                    if(row.Row.Table.Columns.Contains("SlipNo"))
+                                        salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
                                     salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
                                     salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
                                     salesDetailsSummary.CreatedDate = DateTime.Now;
