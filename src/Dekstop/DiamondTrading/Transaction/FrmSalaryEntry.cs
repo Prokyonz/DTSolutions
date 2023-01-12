@@ -198,9 +198,14 @@ namespace DiamondTrading.Transaction
                 OTPlusRate = Common.SalaryPlusOTRatePerHour;
             decimal OTPlusHoursAmount = OTPlusHours * OTPlusRate;
             if (OTMinusRate == 0 && Common.SalaryMinusOTRatePerHour > 0)
+            {
                 OTMinusRate = Common.SalaryMinusOTRatePerHour;
+            }
             else
+            {
                 OTMinusRate = perHoursSal;
+                grvParticularsDetails.SetRowCellValue(GridRowIndex, colOTMinusRate, OTMinusRate.ToString());
+            }
 
             decimal OTMinusHoursAmount = (OTMinusHours * OTMinusRate)*-1;
 
