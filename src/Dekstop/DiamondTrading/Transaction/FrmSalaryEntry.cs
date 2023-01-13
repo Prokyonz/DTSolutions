@@ -39,7 +39,7 @@ namespace DiamondTrading.Transaction
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-
+            Reset();
         }
 
         private async void FrmSalaryEntry_Load(object sender, EventArgs e)
@@ -148,6 +148,14 @@ namespace DiamondTrading.Transaction
             }
             else if (e.Column == gridColumnWorkedDays || e.Column == colOTMinusHours || e.Column == colOTMinusRate || e.Column == colOTPlusHours || e.Column == colOTPlusRate || e.Column == colBonus || e.Column == gridColumnAdvanceAmount)
             {
+                decimal workingDays = 0, workedDays = 0, advanceAmount = 0;
+
+                if (!string.IsNullOrWhiteSpace(txtWorkingDays.Text))
+                    workingDays = Convert.ToDecimal(txtWorkingDays.Text);
+
+                if (Common.SalaryTotalDayHours < 0)
+                    Common.SalaryTotalDayHours = 10.5m;
+
                 decimal SalaryAmount = 0;
                 if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colSalaryAmount).ToString()))
                     SalaryAmount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colSalaryAmount).ToString());
@@ -155,26 +163,44 @@ namespace DiamondTrading.Transaction
                 if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusHours).ToString()))
                     OTMinusHours = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusHours).ToString());
                 decimal OTMinusRate = 0;
-                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusRate).ToString()))
+                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusRate).ToString())
+                    && Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusRate).ToString())>0)
                     OTMinusRate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTMinusRate).ToString());
                 else
-                    OTMinusRate = Common.SalaryMinusOTRatePerHour;
+                {
+                    if (Common.SalaryMinusOTRatePerHour == 0)
+                    {
+                        decimal perHoursSal = (SalaryAmount / workingDays) / Common.SalaryTotalDayHours;
+                        OTMinusRate = perHoursSal;
+                    }
+                    else
+                        OTMinusRate = Common.SalaryMinusOTRatePerHour;
+
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colOTMinusRate, OTMinusRate);
+                }
+
                 decimal OTPlusHours = 0;
                 if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusHours).ToString()))
                     OTPlusHours = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusHours).ToString());
                 decimal OTPlusRate = 0;
-                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusRate).ToString()))
+                if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusRate).ToString())
+                    && Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusRate).ToString()) > 0)
                     OTPlusRate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colOTPlusRate).ToString());
                 else
-                    OTPlusRate = Common.SalaryPlusOTRatePerHour;
+                {
+                    if (Common.SalaryMinusOTRatePerHour == 0)
+                    {
+                        decimal perHoursSal = (SalaryAmount / workingDays) / Common.SalaryTotalDayHours;
+                        OTPlusRate = perHoursSal;
+                    }
+                    else
+                        OTPlusRate = Common.SalaryPlusOTRatePerHour;
+
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colOTPlusRate, OTPlusRate);
+                }
                 decimal Bonus = 0;
                 if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colBonus).ToString()))
                     Bonus = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colBonus).ToString());
-
-                decimal workingDays = 0, workedDays = 0, advanceAmount = 0;
-
-                if (!string.IsNullOrWhiteSpace(txtWorkingDays.Text))
-                    workingDays = Convert.ToDecimal(txtWorkingDays.Text);
 
                 if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkedDays).ToString()))
                     workedDays = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, gridColumnWorkedDays).ToString());
@@ -189,32 +215,11 @@ namespace DiamondTrading.Transaction
         private void CalculateTotal(decimal SalaryAmount, decimal OTMinusHours, decimal OTMinusRate, decimal OTPlusHours, decimal OTPlusRate, decimal Bonus, int GridRowIndex, decimal workingdays, decimal workeddays, decimal advanceAmount)
         {
             grvParticularsDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvParticularsDetails_CellValueChanged);
-            if (Common.SalaryTotalDayHours < 0)
-                Common.SalaryTotalDayHours = 10.5m;
 
             decimal perHoursSal = (SalaryAmount / workingdays) / Common.SalaryTotalDayHours;
             decimal totalWorkedHours = workeddays * Common.SalaryTotalDayHours;
 
-            if (OTPlusRate == 0 && Common.SalaryPlusOTRatePerHour > 0)
-            {
-                OTPlusRate = Common.SalaryPlusOTRatePerHour;
-            }
-            else
-            {
-                OTPlusRate = perHoursSal;
-                grvParticularsDetails.SetRowCellValue(GridRowIndex, colOTPlusRate, OTPlusRate.ToString());
-            }
-
             decimal OTPlusHoursAmount = OTPlusHours * OTPlusRate;
-            if (OTMinusRate == 0 && Common.SalaryMinusOTRatePerHour > 0)
-            {
-                OTMinusRate = Common.SalaryMinusOTRatePerHour;
-            }
-            else
-            {
-                OTMinusRate = perHoursSal;
-                grvParticularsDetails.SetRowCellValue(GridRowIndex, colOTMinusRate, OTMinusRate.ToString());
-            }
 
             decimal OTMinusHoursAmount = (OTMinusHours * OTMinusRate)*-1;
 
