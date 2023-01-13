@@ -194,8 +194,6 @@ namespace DiamondTrading.Transaction
 
             decimal perHoursSal = (SalaryAmount / workingdays) / Common.SalaryTotalDayHours;
             decimal totalWorkedHours = workeddays * Common.SalaryTotalDayHours;
-            if (OTPlusRate == 0)
-                OTPlusRate = Common.SalaryPlusOTRatePerHour;
 
             if (OTPlusRate == 0 && Common.SalaryPlusOTRatePerHour > 0)
             {
