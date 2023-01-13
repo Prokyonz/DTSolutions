@@ -12,6 +12,6 @@ namespace EFCore.SQL.Interface
         Task<SalaryMaster> GetSalaries(int month, string companyId, string branchId, string financialYear);
         Task<SalaryMaster> AddSalary(SalaryMaster salaryMaster);
         Task<bool> UpdateSalary(SalaryMaster salaryMaster);
-        Task<bool> DeleteSalary(string salaryMasterId);
+        Task<bool> DeleteSalary(string salaryMasterId, string salaryDetailsId, bool deleteThread);
     }
 }
