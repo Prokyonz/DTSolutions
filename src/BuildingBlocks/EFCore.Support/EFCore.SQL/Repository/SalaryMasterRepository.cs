@@ -31,23 +31,35 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteSalary(string salaryMasterId)
+        public async Task<bool> DeleteSalary(string salaryMasterId, string salaryDetailsId, bool deleteThread = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var salaryRecord = await _databaseContext.SalaryMaster.Where(w => w.Id == salaryMasterId).FirstOrDefaultAsync();
-                if (salaryRecord != null)
+                if (deleteThread == true)
                 {
-                    var salaryDetailRecord = await _databaseContext.SalaryDetails.Where(w => w.SalaryMasterId == salaryMasterId).ToListAsync();
-                    if (salaryDetailRecord != null)
-                        _databaseContext.SalaryDetails.RemoveRange(salaryDetailRecord);
+                    var salaryRecord = await _databaseContext.SalaryMaster.Where(w => w.Id == salaryMasterId).FirstOrDefaultAsync();
+                    if (salaryRecord != null)
+                    {
+                        var salaryDetailRecord = await _databaseContext.SalaryDetails.Where(w => w.SalaryMasterId == salaryMasterId).ToListAsync();
+                        if (salaryDetailRecord != null)
+                            _databaseContext.SalaryDetails.RemoveRange(salaryDetailRecord);
 
-                    _databaseContext.SalaryMaster.Remove(salaryRecord);
+                        _databaseContext.SalaryMaster.Remove(salaryRecord);
 
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
+                        await _databaseContext.SaveChangesAsync();
+                    }
                 }
-                return false;
+                else
+                {
+                    var childRecord = await _databaseContext.SalaryDetails.Where(w => w.Id == salaryDetailsId).FirstOrDefaultAsync();
+                    if (childRecord != null)
+                    {
+                        _databaseContext.SalaryDetails.Remove(childRecord);
+                        await _databaseContext.SaveChangesAsync();
+                    }
+                }
+                return true;
+                
             }
         }
 

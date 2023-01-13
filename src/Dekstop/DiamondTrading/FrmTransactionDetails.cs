@@ -727,6 +727,26 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
+            else if(xtabManager.SelectedTabPage == xtabSalaryReport)
+            {
+                if (MessageBox.Show(string.Format("Do you want to delete complete thread?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
+                    string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
+
+                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId,id,true);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                } else if(MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
+                    string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
+
+                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId, id, false);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                }
+            }
             await LoadGridData(true);
         }
 

@@ -619,6 +619,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumnSalaryMasterSrNo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -5490,7 +5491,8 @@ namespace DiamondTrading
             this.gridColumnSalaryWorkingDays,
             this.gridColumnSalaryOTPlusHrs,
             this.gridColumnSalaryOTPlusRate,
-            this.gridColumnSalaryRemark});
+            this.gridColumnSalaryRemark,
+            this.gridColumnSalaryMasterSrNo});
             this.grdViewSalaryReport.GridControl = this.gridControlSalaryReport;
             this.grdViewSalaryReport.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", null, "")});
@@ -5517,8 +5519,8 @@ namespace DiamondTrading
             this.gridColumnSalarySr.FieldName = "Sr";
             this.gridColumnSalarySr.Name = "gridColumnSalarySr";
             this.gridColumnSalarySr.Visible = true;
-            this.gridColumnSalarySr.VisibleIndex = 0;
-            this.gridColumnSalarySr.Width = 41;
+            this.gridColumnSalarySr.VisibleIndex = 1;
+            this.gridColumnSalarySr.Width = 36;
             // 
             // gridColumnSalaryCompanyId
             // 
@@ -5564,8 +5566,8 @@ namespace DiamondTrading
             this.gridColumnSalaryMonthDateTime.FieldName = "SalaryMonthDateTime";
             this.gridColumnSalaryMonthDateTime.Name = "gridColumnSalaryMonthDateTime";
             this.gridColumnSalaryMonthDateTime.Visible = true;
-            this.gridColumnSalaryMonthDateTime.VisibleIndex = 2;
-            this.gridColumnSalaryMonthDateTime.Width = 54;
+            this.gridColumnSalaryMonthDateTime.VisibleIndex = 3;
+            this.gridColumnSalaryMonthDateTime.Width = 71;
             // 
             // gridColumnSalaryMonth
             // 
@@ -5573,8 +5575,8 @@ namespace DiamondTrading
             this.gridColumnSalaryMonth.FieldName = "SalaryMonth";
             this.gridColumnSalaryMonth.Name = "gridColumnSalaryMonth";
             this.gridColumnSalaryMonth.Visible = true;
-            this.gridColumnSalaryMonth.VisibleIndex = 4;
-            this.gridColumnSalaryMonth.Width = 45;
+            this.gridColumnSalaryMonth.VisibleIndex = 5;
+            this.gridColumnSalaryMonth.Width = 38;
             // 
             // gridColumnSalaryAdvance
             // 
@@ -5596,8 +5598,8 @@ namespace DiamondTrading
             this.gridColumnSalaryTotalAmt.FieldName = "TotalAmount";
             this.gridColumnSalaryTotalAmt.Name = "gridColumnSalaryTotalAmt";
             this.gridColumnSalaryTotalAmt.Visible = true;
-            this.gridColumnSalaryTotalAmt.VisibleIndex = 10;
-            this.gridColumnSalaryTotalAmt.Width = 120;
+            this.gridColumnSalaryTotalAmt.VisibleIndex = 11;
+            this.gridColumnSalaryTotalAmt.Width = 110;
             // 
             // gridColumnSalaryOverTimeHrs
             // 
@@ -5605,8 +5607,8 @@ namespace DiamondTrading
             this.gridColumnSalaryOverTimeHrs.FieldName = "OTMinusHrs";
             this.gridColumnSalaryOverTimeHrs.Name = "gridColumnSalaryOverTimeHrs";
             this.gridColumnSalaryOverTimeHrs.Visible = true;
-            this.gridColumnSalaryOverTimeHrs.VisibleIndex = 5;
-            this.gridColumnSalaryOverTimeHrs.Width = 53;
+            this.gridColumnSalaryOverTimeHrs.VisibleIndex = 6;
+            this.gridColumnSalaryOverTimeHrs.Width = 67;
             // 
             // gridColumnSalaryOTRate
             // 
@@ -5614,7 +5616,7 @@ namespace DiamondTrading
             this.gridColumnSalaryOTRate.FieldName = "OTMinusRate";
             this.gridColumnSalaryOTRate.Name = "gridColumnSalaryOTRate";
             this.gridColumnSalaryOTRate.Visible = true;
-            this.gridColumnSalaryOTRate.VisibleIndex = 6;
+            this.gridColumnSalaryOTRate.VisibleIndex = 7;
             this.gridColumnSalaryOTRate.Width = 67;
             // 
             // gridColumnSalaryRoundOfAmount
@@ -5623,8 +5625,7 @@ namespace DiamondTrading
             this.gridColumnSalaryRoundOfAmount.FieldName = "RoundOfAmount";
             this.gridColumnSalaryRoundOfAmount.Name = "gridColumnSalaryRoundOfAmount";
             this.gridColumnSalaryRoundOfAmount.Visible = true;
-            this.gridColumnSalaryRoundOfAmount.VisibleIndex = 9;
-            this.gridColumnSalaryRoundOfAmount.Width = 65;
+            this.gridColumnSalaryRoundOfAmount.VisibleIndex = 10;
             // 
             // gridColumnSalaryToPartyId
             // 
@@ -5638,8 +5639,8 @@ namespace DiamondTrading
             this.gridColumnSalaryToPartyName.FieldName = "ToPartyName";
             this.gridColumnSalaryToPartyName.Name = "gridColumnSalaryToPartyName";
             this.gridColumnSalaryToPartyName.Visible = true;
-            this.gridColumnSalaryToPartyName.VisibleIndex = 1;
-            this.gridColumnSalaryToPartyName.Width = 103;
+            this.gridColumnSalaryToPartyName.VisibleIndex = 2;
+            this.gridColumnSalaryToPartyName.Width = 140;
             // 
             // gridColumnSalaryWorkedDays
             // 
@@ -5647,7 +5648,7 @@ namespace DiamondTrading
             this.gridColumnSalaryWorkedDays.FieldName = "WorkedDays";
             this.gridColumnSalaryWorkedDays.Name = "gridColumnSalaryWorkedDays";
             this.gridColumnSalaryWorkedDays.Visible = true;
-            this.gridColumnSalaryWorkedDays.VisibleIndex = 3;
+            this.gridColumnSalaryWorkedDays.VisibleIndex = 4;
             this.gridColumnSalaryWorkedDays.Width = 104;
             // 
             // gridColumnSalaryWorkingDays
@@ -5663,8 +5664,8 @@ namespace DiamondTrading
             this.gridColumnSalaryOTPlusHrs.FieldName = "OTPlusHrs";
             this.gridColumnSalaryOTPlusHrs.Name = "gridColumnSalaryOTPlusHrs";
             this.gridColumnSalaryOTPlusHrs.Visible = true;
-            this.gridColumnSalaryOTPlusHrs.VisibleIndex = 7;
-            this.gridColumnSalaryOTPlusHrs.Width = 56;
+            this.gridColumnSalaryOTPlusHrs.VisibleIndex = 8;
+            this.gridColumnSalaryOTPlusHrs.Width = 65;
             // 
             // gridColumnSalaryOTPlusRate
             // 
@@ -5672,8 +5673,8 @@ namespace DiamondTrading
             this.gridColumnSalaryOTPlusRate.FieldName = "OTPlusRate";
             this.gridColumnSalaryOTPlusRate.Name = "gridColumnSalaryOTPlusRate";
             this.gridColumnSalaryOTPlusRate.Visible = true;
-            this.gridColumnSalaryOTPlusRate.VisibleIndex = 8;
-            this.gridColumnSalaryOTPlusRate.Width = 64;
+            this.gridColumnSalaryOTPlusRate.VisibleIndex = 9;
+            this.gridColumnSalaryOTPlusRate.Width = 73;
             // 
             // gridColumnSalaryRemark
             // 
@@ -5681,8 +5682,8 @@ namespace DiamondTrading
             this.gridColumnSalaryRemark.FieldName = "Remarks";
             this.gridColumnSalaryRemark.Name = "gridColumnSalaryRemark";
             this.gridColumnSalaryRemark.Visible = true;
-            this.gridColumnSalaryRemark.VisibleIndex = 11;
-            this.gridColumnSalaryRemark.Width = 151;
+            this.gridColumnSalaryRemark.VisibleIndex = 12;
+            this.gridColumnSalaryRemark.Width = 152;
             // 
             // repositoryItemButtonEdit10
             // 
@@ -6070,6 +6071,15 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.btnReject)});
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
+            // 
+            // gridColumnSalaryMasterSrNo
+            // 
+            this.gridColumnSalaryMasterSrNo.Caption = "SrNo";
+            this.gridColumnSalaryMasterSrNo.FieldName = "SrNo";
+            this.gridColumnSalaryMasterSrNo.Name = "gridColumnSalaryMasterSrNo";
+            this.gridColumnSalaryMasterSrNo.Visible = true;
+            this.gridColumnSalaryMasterSrNo.VisibleIndex = 0;
+            this.gridColumnSalaryMasterSrNo.Width = 46;
             // 
             // FrmTransactionDetails
             // 
@@ -6771,5 +6781,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalaryOTPlusHrs;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalaryOTPlusRate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalaryRemark;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnSalaryMasterSrNo;
     }
 }
