@@ -18,8 +18,8 @@ namespace EFCore.SQL.Interface
         Task<SalesMaster> AddSalesAsync(SalesMaster salesMaster);
         Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster);
         Task<bool> DeleteSalesDetailRangeAsync(List<SalesDetails> salesDetails);
-        Task<bool> AddSalesDetailRangeAsync(List<SalesDetails> salesDetails);
         Task<bool> DeleteSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary);
+        Task<bool> AddSalesDetailRangeAsync(List<SalesDetails> salesDetails);
         Task<bool> AddSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary);
         Task<long> GetMaxSlipNo(string companyId, string financialYearId);
         Task<long> GetMaxSrNo(string branchId, string financialYearId);

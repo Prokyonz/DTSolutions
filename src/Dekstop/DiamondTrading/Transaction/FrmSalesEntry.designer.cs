@@ -103,6 +103,7 @@ namespace DiamondTrading.Transaction
             this.colGalaSize = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoGalaSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSalesDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpGroup6 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -135,7 +136,6 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colSalesDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -1137,6 +1137,12 @@ namespace DiamondTrading.Transaction
             this.colShapeId.FieldName = "ShapeId";
             this.colShapeId.Name = "colShapeId";
             // 
+            // colSalesDetailId
+            // 
+            this.colSalesDetailId.Caption = "SalesDetailId";
+            this.colSalesDetailId.FieldName = "SalesDetailId";
+            this.colSalesDetailId.Name = "colSalesDetailId";
+            // 
             // grpGroup6
             // 
             this.grpGroup6.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1508,12 +1514,6 @@ namespace DiamondTrading.Transaction
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
-            // 
-            // colSalesDetailId
-            // 
-            this.colSalesDetailId.Caption = "SalesDetailId";
-            this.colSalesDetailId.FieldName = "SalesDetailId";
-            this.colSalesDetailId.Name = "colSalesDetailId";
             // 
             // FrmSalesEntry
             // 

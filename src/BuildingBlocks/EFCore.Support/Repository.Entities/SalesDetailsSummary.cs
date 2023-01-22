@@ -29,6 +29,7 @@ namespace Repository.Entities
         public int Category { get; set; }
         public string PurchaseId { get; set; }
         public string PurchaseDetailsId { get; set; }
+        public string StockId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }

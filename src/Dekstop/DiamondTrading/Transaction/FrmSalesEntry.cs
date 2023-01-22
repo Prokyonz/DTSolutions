@@ -136,6 +136,7 @@ namespace DiamondTrading.Transaction
                         _editedSalesMaster.SalesDetails.CopyTo(tempEditedSalesDetails); //await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
                         if (tempEditedSalesDetails != null)
                         {
+                            ///await salesMasterRepository.DeleteSalesDetailSummaryRangeAsync(_editedSalesMaster.SalesDetails.SalesDetailsSummary);
                             await salesMasterRepository.DeleteSalesDetailRangeAsync(_editedSalesMaster.SalesDetails);
                         }
 
@@ -1748,6 +1749,11 @@ namespace DiamondTrading.Transaction
                                         salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
                                     salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
                                     salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
+                                    if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                    {
+                                        salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
+                                        salesDetailsSummary.StockId = row["StockId"].ToString();
+                                    }
                                     salesDetailsSummary.CreatedDate = DateTime.Now;
                                     salesDetailsSummary.CreatedBy = Common.LoginUserID;
                                     salesDetailsSummary.UpdatedDate = DateTime.Now;
@@ -1860,14 +1866,185 @@ namespace DiamondTrading.Transaction
                 else
                 {
                     List<SalesDetails> salesDetailsList = new List<SalesDetails>();
+                    List<SalesDetailsSummary> salesDetailsSummaryList = new List<SalesDetailsSummary>();
                     SalesDetails salesDetails = new SalesDetails();
+
                     for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                     {
-                        salesDetails = new SalesDetails();
+                        DataView dtView = new DataView();
+                        string SalesDetailsId = Guid.NewGuid().ToString();
+
                         if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString()))
-                            salesDetails.Id = Guid.NewGuid().ToString();
+                            SalesDetailsId = Guid.NewGuid().ToString();
                         else
-                            salesDetails.Id = grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString();
+                            SalesDetailsId = grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString();
+
+                        #region "Sales Details Summary"
+                        DataTable dt = new DataTable();
+                        if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Number.ToString())
+                        {
+                            var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                            dt = Common.ToDataTable(listNumberProcess);
+                        }
+                        else if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                        {
+                            //var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                            //dt = Common.ToDataTable(listNumberProcess);
+
+                            AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                            var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
+                            dt = Common.ToDataTable(ListKapanProcessSend);
+                        }
+
+                        if (dt.Rows.Count > 0)
+                        {
+                            dtView = new DataView(dt);
+                            string rowFilter = "";
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString()))
+                                rowFilter += "KapanId='" + grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString() + "'";
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " PurityId ='" + grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString() + "'";
+                            }
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " ShapeId='" + grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString() + "'";
+                            }
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSize).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " SizeId ='" + grvPurchaseDetails.GetRowCellValue(i, colSize).ToString() + "'";
+                            }
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " CharniSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
+                            }
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " GalaNumberId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
+                            }
+                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString()))
+                            {
+                                if (rowFilter.Length > 0)
+                                    rowFilter += " and";
+                                rowFilter += " NumberSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString() + "'";
+                            }
+                            dtView.RowFilter = rowFilter.Trim();
+                            if (dtView.Count > 0)
+                            {
+                                if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                {
+                                    dtView.Sort = "SlipNo ASC";
+                                }
+                                else
+                                {
+                                    dtView.Sort = "CharniSizeId ASC";
+                                }
+
+                                decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+
+                                if (!dt.Columns.Contains("AdjustCarat"))
+                                {
+                                    DataColumn column = new DataColumn();
+                                    column.ColumnName = "AdjustCarat";
+                                    column.DataType = System.Type.GetType("System.Decimal");
+                                    column.DefaultValue = 0;
+                                    column.ReadOnly = false;
+
+                                    dt.Columns.Add(column);
+                                }
+
+                                foreach (DataRowView row in dtView)
+                                {
+                                    row["AdjustCarat"] = 0;
+                                }
+
+                                decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(Weight)", string.Empty));
+                                if (Value > a)
+                                {
+                                    MessageBox.Show("Max Amount allowed for available Weight is '" + a.ToString("0.000") + "'.");
+                                    return;
+                                }
+                                decimal TotalValue = 0;
+                                decimal RemainValue = Value;
+                                decimal AvailableValue = 0;
+                                foreach (DataRowView row in dtView)
+                                {
+                                    if (TotalValue != Value)
+                                    {
+                                        AvailableValue = Convert.ToDecimal(row["Weight"]);
+                                        decimal TempValue = AvailableValue - RemainValue;
+                                        if (TempValue <= 0)
+                                        {
+                                            row["AdjustCarat"] = AvailableValue;
+                                            TotalValue += AvailableValue;
+                                            RemainValue = TempValue * -1;
+                                        }
+                                        else
+                                        {
+                                            row["AdjustCarat"] = RemainValue;
+                                            TotalValue += RemainValue;
+                                            RemainValue = 0;
+                                        }
+                                    }
+                                }
+                            }
+
+                            dtView.RowFilter = "AdjustCarat > 0";
+                            if (dtView.Count > 0)
+                            {
+                                SalesDetailsSummary salesDetailsSummary;
+                                foreach (DataRowView row in dtView)
+                                {
+                                    salesDetailsSummary = new SalesDetailsSummary();
+                                    salesDetailsSummary.Id = Guid.NewGuid().ToString();
+                                    salesDetailsSummary.SalesId = _editedSalesMaster.Id;
+                                    salesDetailsSummary.SalesDetailsId = SalesDetailsId;
+                                    salesDetailsSummary.CompanyId = lueCompany.EditValue.ToString();
+                                    salesDetailsSummary.BranchId = lueBranch.EditValue.ToString();
+                                    salesDetailsSummary.FinancialYearId = Common.LoginFinancialYear;
+                                    salesDetailsSummary.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                                    salesDetailsSummary.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
+                                    salesDetailsSummary.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
+                                    salesDetailsSummary.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                                    if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
+                                        salesDetailsSummary.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
+                                    if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
+                                        salesDetailsSummary.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
+                                    if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
+                                        salesDetailsSummary.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
+
+                                    if (row.Row.Table.Columns.Contains("SlipNo"))
+                                        salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
+                                    salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
+                                    salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
+                                    if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                    {
+                                        salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
+                                        salesDetailsSummary.StockId = row["StockId"].ToString();
+                                    }
+                                    salesDetailsSummary.CreatedDate = DateTime.Now;
+                                    salesDetailsSummary.CreatedBy = Common.LoginUserID;
+                                    salesDetailsSummary.UpdatedDate = DateTime.Now;
+                                    salesDetailsSummary.UpdatedBy = Common.LoginUserID;
+
+                                    salesDetailsSummaryList.Insert(i, salesDetailsSummary);
+                                }
+                            }
+                        }
+                        #endregion
+
+                        salesDetails = new SalesDetails();
+                        salesDetails.Id = SalesDetailsId;
                         salesDetails.SalesId = _editedSalesMaster.Id;
                         salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
                         salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
@@ -1902,6 +2079,7 @@ namespace DiamondTrading.Transaction
                         salesDetails.CreatedBy = Common.LoginUserID;
                         salesDetails.UpdatedDate = DateTime.Now;
                         salesDetails.UpdatedBy = Common.LoginUserID;
+                        salesDetails.SalesDetailsSummary = salesDetailsSummaryList;
 
                         salesDetailsList.Insert(i, salesDetails);
                     }

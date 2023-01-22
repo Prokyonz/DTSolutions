@@ -218,7 +218,28 @@ namespace EFCore.SQL.Repository
             {
                 if (salesDetails != null)
                 {
+                    for (int i = 0; i < salesDetails.Count; i++)
+                    {
+                        var getSalesDetailsSummary = await _databaseContext.SalesDetailsSummary.Where(s => s.SalesDetailsId == salesDetails[i].Id).ToListAsync();
+                        _databaseContext.SalesDetailsSummary.RemoveRange(getSalesDetailsSummary);
+                        await _databaseContext.SaveChangesAsync();
+                    }
                     _databaseContext.SalesDetails.RemoveRange(salesDetails);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                else
+                    return false;
+            }
+        }
+
+        public async Task<bool> DeleteSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                if (salesDetailsSummary != null)
+                {
+                    _databaseContext.SalesDetailsSummary.RemoveRange(salesDetailsSummary);
                     await _databaseContext.SaveChangesAsync();
                     return true;
                 }
@@ -273,21 +294,6 @@ namespace EFCore.SQL.Repository
                         salesDetailsList.Add(objsalesDetails);
                     }
                     await _databaseContext.SalesDetails.AddRangeAsync(salesDetailsList);
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
-                }
-                else
-                    return false;
-            }
-        }
-
-        public async Task<bool> DeleteSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
-        {
-            using (_databaseContext = new DatabaseContext())
-            {
-                if (salesDetailsSummary != null)
-                {
-                    _databaseContext.SalesDetailsSummary.RemoveRange(salesDetailsSummary);
                     await _databaseContext.SaveChangesAsync();
                     return true;
                 }
