@@ -48,8 +48,12 @@ namespace DiamondTrading.Utility
             //Category
             GetCategoryDetail();
 
+            await GetShapeDetail();
+
             //Size
             await GetSizeDetail();
+
+            await GetPurityDetail();
 
             //Kapan
             await GetKapanDetail();
@@ -123,6 +127,26 @@ namespace DiamondTrading.Utility
             repoSize.ValueMember = "Id";
         }
 
+        private async Task GetShapeDetail()
+        {
+            ShapeMasterRepository shapeMasterRepository = new ShapeMasterRepository();
+            var shapeMaster = await shapeMasterRepository.GetAllShapeAsync();
+
+            repoShape.DataSource = shapeMaster;
+            repoShape.DisplayMember = "Name";
+            repoShape.ValueMember = "Id";
+        }
+
+        private async Task GetPurityDetail()
+        {
+            PurityMasterRepository purityMasterRepository = new PurityMasterRepository();
+            var purityMaster = await purityMasterRepository.GetAllPurityAsync();
+
+            repoPuity.DataSource = purityMaster;
+            repoPuity.DisplayMember = "Name";
+            repoPuity.ValueMember = "Id";
+        }
+
         private async Task GetKapanDetail()
         {
             KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
@@ -155,6 +179,8 @@ namespace DiamondTrading.Utility
             dt.Columns.Add("Branch");
             dt.Columns.Add("Kapan");
             dt.Columns.Add("Size");
+            dt.Columns.Add("Shape");
+            dt.Columns.Add("Purity");
             dt.Columns.Add("Carat");
             dt.Columns.Add("Number");
             dt.Columns.Add("Rate");
@@ -255,9 +281,9 @@ namespace DiamondTrading.Utility
                         numberProcessMaster.FinancialYearId = Common.LoginFinancialYear;
                         numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.OpeningStock);
                         numberProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapan).ToString();
-                        numberProcessMaster.ShapeId = Common.DefaultShape; ;
+                        numberProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShape).ToString();
                         numberProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSize).ToString();
-                        numberProcessMaster.PurityId = Common.DefaultPurity;
+                        numberProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurity).ToString();
                         numberProcessMaster.CharniSizeId = grvTransferItemDetails.GetRowCellValue(i, colSize).ToString();
                         numberProcessMaster.Weight = 0;
                         //numberProcessMaster.GalaNumberId = grvTransferItemDetails.GetRowCellValue(i, colTypeId).ToString();
@@ -303,8 +329,8 @@ namespace DiamondTrading.Utility
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == OpeningStockCategoryMaster.Number.ToString())
                         openingStockMaster.NumberId = grvTransferItemDetails.GetRowCellValue(i, colNumber).ToString();
 
-                    openingStockMaster.ShapeId = Common.DefaultShape;
-                    openingStockMaster.PurityId = Common.DefaultPurity;
+                    openingStockMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShape).ToString();
+                    openingStockMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurity).ToString();
 
                     openingStockMaster.TotalCts = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCarat).ToString());
                     openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
