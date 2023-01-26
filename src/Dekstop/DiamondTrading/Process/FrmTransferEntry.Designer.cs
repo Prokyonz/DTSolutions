@@ -544,7 +544,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaNumberId", "GalaNumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSize", "Number"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSizeId", "NumberSizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight")});
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight")});
             this.repoShape.Name = "repoShape";
             this.repoShape.NullText = "";
             this.repoShape.ValueMember = "Guid";

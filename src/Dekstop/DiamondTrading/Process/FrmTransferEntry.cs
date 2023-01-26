@@ -784,8 +784,8 @@ namespace DiamondTrading.Process
                                     kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
                                     kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
                                     kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                                    kapanMappingMaster.PurchaseMasterId = row["PurchaseDetailsId"].ToString();
-                                    kapanMappingMaster.PurchaseDetailsId = row["PurchaseMasterId"].ToString();
+                                    kapanMappingMaster.PurchaseMasterId = row["PurchaseMasterId"].ToString();
+                                    kapanMappingMaster.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
                                     kapanMappingMaster.PurityId = row["PurityId"].ToString();
                                     kapanMappingMaster.KapanId = row["KapanId"].ToString();
                                     kapanMappingMaster.SlipNo = row["SlipNo"].ToString();
@@ -820,8 +820,8 @@ namespace DiamondTrading.Process
                                     openingStockMaster.KapanId = row["KapanId"].ToString();
                                     openingStockMaster.SizeId = row["SizeId"].ToString();
 
-                                    openingStockMaster.ShapeId = Common.DefaultShape;
-                                    openingStockMaster.PurityId = Common.DefaultPurity;
+                                    openingStockMaster.ShapeId = row["ShapeId"].ToString();
+                                    openingStockMaster.PurityId = row["PurityId"].ToString();
 
                                     openingStockMaster.TotalCts = Convert.ToDecimal(row["AdjustCarat"].ToString()) * -1;
                                     openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
@@ -1076,8 +1076,8 @@ namespace DiamondTrading.Process
                                     openingStockMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
                                     openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
 
-                                    openingStockMaster.ShapeId = Common.DefaultShape;
-                                    openingStockMaster.PurityId = Common.DefaultPurity;
+                                    openingStockMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
+                                    openingStockMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
 
                                     openingStockMaster.TotalCts = Convert.ToDecimal(row["AdjustCarat"].ToString());
                                     openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());

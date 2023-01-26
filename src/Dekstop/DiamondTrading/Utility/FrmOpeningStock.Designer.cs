@@ -338,6 +338,7 @@ namespace DiamondTrading.Utility
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name")});
             this.repoPuity.Name = "repoPuity";
+            this.repoPuity.NullText = "";
             this.repoPuity.ValueMember = "Guid";
             // 
             // colShape
