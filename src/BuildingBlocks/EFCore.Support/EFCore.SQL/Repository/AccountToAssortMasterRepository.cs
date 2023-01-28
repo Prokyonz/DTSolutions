@@ -170,7 +170,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetStockReport '" + companyId + "', '" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "','', '" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }

@@ -252,18 +252,21 @@ namespace DiamondTrading
             this.grdStockReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gvStockReport = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn149 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn150 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn151 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn144 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn148 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn143 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn145 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn146 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnRate = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumnAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn147 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReport = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportShapeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportPurDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportPurMasterId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportFinYearId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportTipWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportLessWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportRejWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportUsedWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtraOpeningStock = new DevExpress.XtraTab.XtraTabPage();
@@ -292,6 +295,10 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumnStockReportAvaWeight = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportShape = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnStockReportPurity = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -2306,21 +2313,28 @@ namespace DiamondTrading
             this.gvStockReport.Appearance.Row.Options.UseFont = true;
             this.gvStockReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn142,
-            this.gridColumn110,
             this.gridColumn149,
-            this.gridColumn150,
-            this.gridColumn151,
-            this.gridColumn144,
-            this.gridColumn148,
-            this.gridColumn143,
-            this.gridColumn145,
-            this.gridColumn146,
-            this.gridColumnRate,
-            this.gridColumnAmount,
-            this.gridColumn147});
+            this.gridColumnStockReport,
+            this.gridColumnStockReportShapeId,
+            this.gridColumnStockReportShape,
+            this.gridColumnStockReportPurDetailId,
+            this.gridColumnStockReportPurMasterId,
+            this.gridColumnStockReportSizeId,
+            this.gridColumnStockReportSize,
+            this.gridColumnStockReportPurityId,
+            this.gridColumnStockReportPurity,
+            this.gridColumnStockReportFinYearId,
+            this.gridColumnStockReportTipWeight,
+            this.gridColumnStockReportLessWeight,
+            this.gridColumnStockReportWeight,
+            this.gridColumnStockReportRejWeight,
+            this.gridColumnStockReportUsedWeight,
+            this.gridColumnStockReportId,
+            this.gridColumnStockReportAvaWeight,
+            this.gridColumn150});
             this.gvStockReport.GridControl = this.grdStockReportMaster;
             this.gvStockReport.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", this.gridColumn146, "")});
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", null, "")});
             this.gvStockReport.Name = "gvStockReport";
             this.gvStockReport.OptionsBehavior.Editable = false;
             this.gvStockReport.OptionsView.ShowFooter = true;
@@ -2333,112 +2347,138 @@ namespace DiamondTrading
             this.gridColumn142.Name = "gridColumn142";
             this.gridColumn142.Width = 41;
             // 
-            // gridColumn110
-            // 
-            this.gridColumn110.Caption = "Branch";
-            this.gridColumn110.FieldName = "BranchName";
-            this.gridColumn110.Name = "gridColumn110";
-            this.gridColumn110.Visible = true;
-            this.gridColumn110.VisibleIndex = 0;
-            this.gridColumn110.Width = 60;
-            // 
             // gridColumn149
             // 
             this.gridColumn149.Caption = "Kapan Name";
             this.gridColumn149.FieldName = "Kapan";
             this.gridColumn149.Name = "gridColumn149";
+            this.gridColumn149.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Kapan", "Rec = {0}")});
             this.gridColumn149.Visible = true;
             this.gridColumn149.VisibleIndex = 1;
-            this.gridColumn149.Width = 159;
+            this.gridColumn149.Width = 111;
             // 
             // gridColumn150
             // 
-            this.gridColumn150.Caption = "Total Weight";
-            this.gridColumn150.FieldName = "TotalWeight";
+            this.gridColumn150.Caption = "Net Weight";
+            this.gridColumn150.FieldName = "NetWeight";
             this.gridColumn150.Name = "gridColumn150";
             this.gridColumn150.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", "{0:0.##}")});
             this.gridColumn150.Visible = true;
-            this.gridColumn150.VisibleIndex = 2;
-            this.gridColumn150.Width = 180;
+            this.gridColumn150.VisibleIndex = 5;
+            this.gridColumn150.Width = 110;
             // 
-            // gridColumn151
+            // gridColumnStockReport
             // 
-            this.gridColumn151.Caption = "Not Mapped";
-            this.gridColumn151.FieldName = "NotMapped";
-            this.gridColumn151.Name = "gridColumn151";
-            this.gridColumn151.Width = 247;
+            this.gridColumnStockReport.Caption = "SlipNo";
+            this.gridColumnStockReport.FieldName = "SlipNo";
+            this.gridColumnStockReport.Name = "gridColumnStockReport";
+            this.gridColumnStockReport.Visible = true;
+            this.gridColumnStockReport.VisibleIndex = 0;
+            this.gridColumnStockReport.Width = 81;
             // 
-            // gridColumn144
+            // gridColumnStockReportShapeId
             // 
-            this.gridColumn144.Caption = "Gala Number";
-            this.gridColumn144.FieldName = "GalaNumber";
-            this.gridColumn144.Name = "gridColumn144";
-            this.gridColumn144.Visible = true;
-            this.gridColumn144.VisibleIndex = 5;
-            this.gridColumn144.Width = 117;
+            this.gridColumnStockReportShapeId.Caption = "ShapeId";
+            this.gridColumnStockReportShapeId.FieldName = "ShapeId";
+            this.gridColumnStockReportShapeId.Name = "gridColumnStockReportShapeId";
+            this.gridColumnStockReportShapeId.Width = 108;
             // 
-            // gridColumn148
+            // gridColumnStockReportPurDetailId
             // 
-            this.gridColumn148.Caption = "Number";
-            this.gridColumn148.FieldName = "Number";
-            this.gridColumn148.Name = "gridColumn148";
-            this.gridColumn148.Visible = true;
-            this.gridColumn148.VisibleIndex = 6;
-            this.gridColumn148.Width = 112;
+            this.gridColumnStockReportPurDetailId.Caption = "PurchaseDetailId";
+            this.gridColumnStockReportPurDetailId.FieldName = "PurchaseDetailId";
+            this.gridColumnStockReportPurDetailId.Name = "gridColumnStockReportPurDetailId";
+            this.gridColumnStockReportPurDetailId.Width = 94;
             // 
-            // gridColumn143
+            // gridColumnStockReportPurMasterId
             // 
-            this.gridColumn143.Caption = "Size";
-            this.gridColumn143.FieldName = "Size";
-            this.gridColumn143.Name = "gridColumn143";
-            this.gridColumn143.Visible = true;
-            this.gridColumn143.VisibleIndex = 4;
-            this.gridColumn143.Width = 67;
+            this.gridColumnStockReportPurMasterId.Caption = "PurchaseMasterId";
+            this.gridColumnStockReportPurMasterId.FieldName = "PurchaseMasterId";
+            this.gridColumnStockReportPurMasterId.Name = "gridColumnStockReportPurMasterId";
+            this.gridColumnStockReportPurMasterId.Width = 58;
             // 
-            // gridColumn145
+            // gridColumnStockReportSizeId
             // 
-            this.gridColumn145.Caption = "Type";
-            this.gridColumn145.FieldName = "Type";
-            this.gridColumn145.Name = "gridColumn145";
-            this.gridColumn145.Visible = true;
-            this.gridColumn145.VisibleIndex = 3;
-            this.gridColumn145.Width = 93;
+            this.gridColumnStockReportSizeId.Caption = "SizeId";
+            this.gridColumnStockReportSizeId.FieldName = "SizeId";
+            this.gridColumnStockReportSizeId.Name = "gridColumnStockReportSizeId";
+            this.gridColumnStockReportSizeId.Width = 85;
             // 
-            // gridColumn146
+            // gridColumnStockReportPurityId
             // 
-            this.gridColumn146.Caption = "Ava. Weight";
-            this.gridColumn146.FieldName = "AvailableWeight";
-            this.gridColumn146.Name = "gridColumn146";
-            this.gridColumn146.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", "{0:0.##}")});
-            this.gridColumn146.Visible = true;
-            this.gridColumn146.VisibleIndex = 7;
-            this.gridColumn146.Width = 129;
+            this.gridColumnStockReportPurityId.Caption = "PurityId";
+            this.gridColumnStockReportPurityId.FieldName = "PurityId";
+            this.gridColumnStockReportPurityId.Name = "gridColumnStockReportPurityId";
+            this.gridColumnStockReportPurityId.Width = 85;
             // 
-            // gridColumnRate
+            // gridColumnStockReportFinYearId
             // 
-            this.gridColumnRate.Caption = "Rate";
-            this.gridColumnRate.FieldName = "Rate";
-            this.gridColumnRate.Name = "gridColumnRate";
-            this.gridColumnRate.Visible = true;
-            this.gridColumnRate.VisibleIndex = 8;
-            this.gridColumnRate.Width = 72;
+            this.gridColumnStockReportFinYearId.Caption = "FinancialYearId";
+            this.gridColumnStockReportFinYearId.FieldName = "FinancialYearId";
+            this.gridColumnStockReportFinYearId.Name = "gridColumnStockReportFinYearId";
+            this.gridColumnStockReportFinYearId.Width = 58;
             // 
-            // gridColumnAmount
+            // gridColumnStockReportTipWeight
             // 
-            this.gridColumnAmount.Caption = "Amount";
-            this.gridColumnAmount.FieldName = "Amount";
-            this.gridColumnAmount.Name = "gridColumnAmount";
-            this.gridColumnAmount.Visible = true;
-            this.gridColumnAmount.VisibleIndex = 9;
-            this.gridColumnAmount.Width = 72;
+            this.gridColumnStockReportTipWeight.Caption = "Tip Weight";
+            this.gridColumnStockReportTipWeight.FieldName = "TipWeight";
+            this.gridColumnStockReportTipWeight.Name = "gridColumnStockReportTipWeight";
+            this.gridColumnStockReportTipWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TipWeight", "{0:0.##}")});
+            this.gridColumnStockReportTipWeight.Visible = true;
+            this.gridColumnStockReportTipWeight.VisibleIndex = 6;
+            this.gridColumnStockReportTipWeight.Width = 90;
             // 
-            // gridColumn147
+            // gridColumnStockReportLessWeight
             // 
-            this.gridColumn147.Caption = "NumberId";
-            this.gridColumn147.FieldName = "NumberId";
-            this.gridColumn147.Name = "gridColumn147";
+            this.gridColumnStockReportLessWeight.Caption = "Less Weight";
+            this.gridColumnStockReportLessWeight.FieldName = "LessWeight";
+            this.gridColumnStockReportLessWeight.Name = "gridColumnStockReportLessWeight";
+            this.gridColumnStockReportLessWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "LessWeight", "{0:0.##}")});
+            this.gridColumnStockReportLessWeight.Visible = true;
+            this.gridColumnStockReportLessWeight.VisibleIndex = 7;
+            this.gridColumnStockReportLessWeight.Width = 93;
+            // 
+            // gridColumnStockReportWeight
+            // 
+            this.gridColumnStockReportWeight.Caption = "Weight";
+            this.gridColumnStockReportWeight.FieldName = "Weight";
+            this.gridColumnStockReportWeight.Name = "gridColumnStockReportWeight";
+            this.gridColumnStockReportWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", "{0:0.##}")});
+            this.gridColumnStockReportWeight.Visible = true;
+            this.gridColumnStockReportWeight.VisibleIndex = 9;
+            this.gridColumnStockReportWeight.Width = 81;
+            // 
+            // gridColumnStockReportRejWeight
+            // 
+            this.gridColumnStockReportRejWeight.Caption = "Rej. Weight";
+            this.gridColumnStockReportRejWeight.FieldName = "RejectedWeight";
+            this.gridColumnStockReportRejWeight.Name = "gridColumnStockReportRejWeight";
+            this.gridColumnStockReportRejWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "RejectedWeight", "{0:0.##}")});
+            this.gridColumnStockReportRejWeight.Visible = true;
+            this.gridColumnStockReportRejWeight.VisibleIndex = 8;
+            this.gridColumnStockReportRejWeight.Width = 96;
+            // 
+            // gridColumnStockReportUsedWeight
+            // 
+            this.gridColumnStockReportUsedWeight.Caption = "Used Weight";
+            this.gridColumnStockReportUsedWeight.FieldName = "UsedWeight";
+            this.gridColumnStockReportUsedWeight.Name = "gridColumnStockReportUsedWeight";
+            this.gridColumnStockReportUsedWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "UsedWeight", "{0:0.##}")});
+            this.gridColumnStockReportUsedWeight.Width = 88;
+            // 
+            // gridColumnStockReportId
+            // 
+            this.gridColumnStockReportId.Caption = "Id";
+            this.gridColumnStockReportId.FieldName = "Id";
+            this.gridColumnStockReportId.Name = "gridColumnStockReportId";
+            this.gridColumnStockReportId.Width = 87;
             // 
             // repositoryItemComboBox2
             // 
@@ -2774,6 +2814,40 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // gridColumnStockReportAvaWeight
+            // 
+            this.gridColumnStockReportAvaWeight.Caption = "Ava. Weight";
+            this.gridColumnStockReportAvaWeight.FieldName = "AvailableWeight";
+            this.gridColumnStockReportAvaWeight.Name = "gridColumnStockReportAvaWeight";
+            this.gridColumnStockReportAvaWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "AvailableWeight", "{0:0.##}")});
+            this.gridColumnStockReportAvaWeight.Visible = true;
+            this.gridColumnStockReportAvaWeight.VisibleIndex = 10;
+            // 
+            // gridColumnStockReportShape
+            // 
+            this.gridColumnStockReportShape.Caption = "Shape";
+            this.gridColumnStockReportShape.FieldName = "Shape";
+            this.gridColumnStockReportShape.Name = "gridColumnStockReportShape";
+            this.gridColumnStockReportShape.Visible = true;
+            this.gridColumnStockReportShape.VisibleIndex = 2;
+            // 
+            // gridColumnStockReportSize
+            // 
+            this.gridColumnStockReportSize.Caption = "Size";
+            this.gridColumnStockReportSize.FieldName = "Size";
+            this.gridColumnStockReportSize.Name = "gridColumnStockReportSize";
+            this.gridColumnStockReportSize.Visible = true;
+            this.gridColumnStockReportSize.VisibleIndex = 3;
+            // 
+            // gridColumnStockReportPurity
+            // 
+            this.gridColumnStockReportPurity.Caption = "Purity";
+            this.gridColumnStockReportPurity.FieldName = "Purity";
+            this.gridColumnStockReportPurity.Name = "gridColumnStockReportPurity";
+            this.gridColumnStockReportPurity.Visible = true;
+            this.gridColumnStockReportPurity.VisibleIndex = 4;
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3062,15 +3136,8 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn142;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn149;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn150;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn151;
         private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBox2;
         private DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox repositoryItemImageComboBox2;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn144;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn143;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn145;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn146;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn148;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn147;
         private DevExpress.XtraTab.XtraTabPage xtraOpeningStock;
         private DevExpress.XtraGrid.GridControl gridControlOpeningStock;
         private DevExpress.XtraGrid.Views.Grid.GridView grvOpeningStock;
@@ -3089,8 +3156,22 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn159;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn160;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnRate;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumnAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReport;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportShapeId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportPurDetailId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportPurMasterId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportSizeId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportPurityId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportFinYearId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportTipWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportLessWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportRejWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportUsedWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportId;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportShape;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportSize;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportPurity;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnStockReportAvaWeight;
     }
 }
