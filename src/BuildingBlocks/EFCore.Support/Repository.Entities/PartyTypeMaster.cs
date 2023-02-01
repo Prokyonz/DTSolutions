@@ -215,9 +215,9 @@ namespace Repository.Entities
                 new CategoryMaster {Id = Number, Name = "Number" },
                 new CategoryMaster {Id = Kapan, Name = "Kapan" },
                 //new CategoryMaster {Id = Jangad, Name = "Jangad" },
-                new CategoryMaster {Id = Boil, Name = "Boil" },
-                new CategoryMaster {Id = Charni, Name = "Charni" },
-                new CategoryMaster {Id = Gala, Name = "Gala" }
+                //new CategoryMaster {Id = Boil, Name = "Boil" },
+                //new CategoryMaster {Id = Charni, Name = "Charni" },
+                //new CategoryMaster {Id = Gala, Name = "Gala" }
             };
             return categoryMaster;
         }

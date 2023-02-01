@@ -1753,6 +1753,7 @@ namespace DiamondTrading.Transaction
                                     {
                                         salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
                                         salesDetailsSummary.StockId = row["StockId"].ToString();
+                                        salesDetailsSummary.KapanType = row["KapanType"].ToString();
                                     }
                                     salesDetailsSummary.CreatedDate = DateTime.Now;
                                     salesDetailsSummary.CreatedBy = Common.LoginUserID;
@@ -2031,6 +2032,7 @@ namespace DiamondTrading.Transaction
                                     {
                                         salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
                                         salesDetailsSummary.StockId = row["StockId"].ToString();
+                                        salesDetailsSummary.KapanType = row["KapanType"].ToString();
                                     }
                                     salesDetailsSummary.CreatedDate = DateTime.Now;
                                     salesDetailsSummary.CreatedBy = Common.LoginUserID;

@@ -24,6 +24,7 @@ namespace Repository.Entities.Models
         public string PurityId { get; set; }
         public string Purity { get; set; }
         public string FinancialYearId { get; set; }
+        public string KapanType { get; set; }
         public decimal NetWeight { get; set; }
         public decimal TIPWeight { get; set; }
         public decimal LessWeight { get; set; }
