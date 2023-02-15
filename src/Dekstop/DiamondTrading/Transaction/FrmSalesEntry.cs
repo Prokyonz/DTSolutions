@@ -811,6 +811,7 @@ namespace DiamondTrading.Transaction
                             LessWeight = g.Sum(x => x.LessWeight)
                         });
 
+                        listKapanProcess1 = listKapanProcess1.Where(x => x.AvailableWeight > 0);
                         repoShape.DataSource = listKapanProcess1.ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "Id";
@@ -1660,6 +1661,11 @@ namespace DiamondTrading.Transaction
                                     rowFilter += " and";
                                 rowFilter += " NumberSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString() + "'";
                             }
+
+                            if (rowFilter.Length > 0)
+                                rowFilter += " and";
+                            rowFilter += "AvailableWeight > 0";
+
                             dtView.RowFilter = rowFilter.Trim();
                             if (dtView.Count > 0)
                             {

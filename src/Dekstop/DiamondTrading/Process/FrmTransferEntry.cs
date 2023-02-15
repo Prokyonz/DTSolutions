@@ -318,6 +318,7 @@ namespace DiamondTrading.Process
                                 LessWeight = g.Sum(x => x.LessWeight)
                             });
 
+                            listKapanProcess1 = listKapanProcess1.Where(x => x.AvailableWeight > 0);
                             repoShape.DataSource = listKapanProcess1.ToList();
                             repoShape.DisplayMember = "Shape";
                             repoShape.ValueMember = "Id";
@@ -496,7 +497,7 @@ namespace DiamondTrading.Process
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSize, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Size);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colPurity, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Purity);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Kapan);
-                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).Weight);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
 
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSlipNo, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Models.AssortmentProcessSend)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
@@ -717,7 +718,8 @@ namespace DiamondTrading.Process
                         DataTable dt = Common.ToDataTable(listKapanProcess);
                         dtView = new DataView(dt);
                         dtView.RowFilter = "KapanId='" + grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString() + "' and  PurityId='" + grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString() + "'" +
-                            "and ShapeId='" + grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString() + "' and SizeId='" + grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString() + "'";
+                            "and ShapeId='" + grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString() + "' and SizeId='" + grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString() + "'" +
+                            "and AvailableWeight > 0";
 
                         if (dtView.Count>0)
                         {
@@ -736,9 +738,21 @@ namespace DiamondTrading.Process
                                 dt.Columns.Add(column);
                             }
 
+                            if (!dt.Columns.Contains("TransferEntryId"))
+                            {
+                                DataColumn column = new DataColumn();
+                                column.ColumnName = "TransferEntryId";
+                                column.DataType = System.Type.GetType("System.String");
+                                column.DefaultValue = "";
+                                column.ReadOnly = false;
+
+                                dt.Columns.Add(column);
+                            }
+
                             foreach (DataRowView row in dtView)
                             {
                                 row["AdjustCarat"] = 0;
+                                row["TransferEntryId"] = "";
                             }
 
                             decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(Weight)", string.Empty));
@@ -768,6 +782,7 @@ namespace DiamondTrading.Process
                                         TotalValue += RemainValue;
                                         RemainValue = 0;
                                     }
+                                    row["TransferEntryId"] = Guid.NewGuid().ToString();
                                 }
                             }
                         }
@@ -777,7 +792,7 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                if (row["SlipNo"].ToString() != "0")
+                                if (row["KapanType"].ToString().Equals("KapanMapped"))
                                 {
                                     kapanMappingMaster = new KapanMappingMaster();
                                     kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -793,7 +808,7 @@ namespace DiamondTrading.Process
 
                                     kapanMappingMaster.TransferId = TransferId;
                                     kapanMappingMaster.TransferType = "TransferedFrom";
-                                    kapanMappingMaster.TransferEntryId = TransferEntryId;
+                                    kapanMappingMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                     kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
 
                                     kapanMappingMaster.CreatedDate = DateTime.Now;
@@ -805,7 +820,7 @@ namespace DiamondTrading.Process
                                     var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
                                     kapanMappingMasterRepository = null;
                                 }
-                                else
+                                else if (row["KapanType"].ToString().Equals("OpeningStock"))
                                 {
                                     openingStockMaster = new OpeningStockMaster();
                                     openingStockMaster.Id = Guid.NewGuid().ToString();
@@ -829,7 +844,7 @@ namespace DiamondTrading.Process
 
                                     openingStockMaster.TransferId = TransferId;
                                     openingStockMaster.TransferType = "TransferedFrom";
-                                    openingStockMaster.TransferEntryId = TransferEntryId;
+                                    openingStockMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                     openingStockMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
 
                                     openingStockMaster.Remarks = txtRemark.Text;
@@ -842,74 +857,45 @@ namespace DiamondTrading.Process
                                     var Result1 = await openingStockMasterRepositody.AddOpeningStockAsync(openingStockMaster);
                                     openingStockMasterRepositody = null;
                                 }
+                                else if (row["KapanType"].ToString().Equals("Boil"))
+                                {
+                                    BoilProcessMaster boilProcessMaster = new BoilProcessMaster();
+                                    boilProcessMaster.Id = Guid.NewGuid().ToString();
+                                    boilProcessMaster.BoilNo = 0;
+                                    boilProcessMaster.JangadNo = 0;
+                                    boilProcessMaster.CompanyId = lueCompany.EditValue.ToString();
+                                    boilProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                                    boilProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                                    boilProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                                    boilProcessMaster.FinancialYearId = row["FinancialYearId"].ToString();
+                                    boilProcessMaster.BoilType = Convert.ToInt32(ProcessType.Transfer);
+                                    boilProcessMaster.KapanId = row["KapanId"].ToString();
+                                    boilProcessMaster.ShapeId = row["ShapeId"].ToString();
+                                    boilProcessMaster.SizeId = row["SizeId"].ToString();
+                                    boilProcessMaster.PurityId = row["PurityId"].ToString();
+                                    boilProcessMaster.Weight = Convert.ToDecimal(row["AdjustCarat"]) * -1;
+                                    boilProcessMaster.LossWeight = 0;
+                                    boilProcessMaster.RejectionWeight = 0;
+                                    boilProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
+                                    boilProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
+                                    boilProcessMaster.SlipNo = row["SlipNo"].ToString();
+                                    boilProcessMaster.BoilCategoy = 0;
+                                    boilProcessMaster.Remarks = txtRemark.Text;
+                                    boilProcessMaster.IsDelete = false;
+                                    boilProcessMaster.CreatedDate = DateTime.Now;
+                                    boilProcessMaster.CreatedBy = Common.LoginUserID;
+                                    boilProcessMaster.UpdatedDate = DateTime.Now;
+                                    boilProcessMaster.UpdatedBy = Common.LoginUserID;
+                                    boilProcessMaster.TransferId = TransferId;
+                                    boilProcessMaster.TransferType = "TransferedFrom";
+                                    boilProcessMaster.TransferEntryId = row["TransferEntryId"].ToString();
+                                    boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+
+                                    BoilMasterRepository boilMasterRepository = new BoilMasterRepository();
+                                    var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
+                                }
                             }
                         }
-
-                        //if (grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString() != "0")
-                        //{
-                        //    kapanMappingMaster = new KapanMappingMaster();
-                        //    kapanMappingMaster.Id = Guid.NewGuid().ToString();
-                        //    kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
-                        //    kapanMappingMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                        //    kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                        //    kapanMappingMaster.PurchaseMasterId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseMasterId).ToString();
-                        //    kapanMappingMaster.PurchaseDetailsId = grvTransferItemDetails.GetRowCellValue(i, colPurchaseDetailsId).ToString();
-                        //    kapanMappingMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
-                        //    kapanMappingMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                        //    kapanMappingMaster.SlipNo = grvTransferItemDetails.GetRowCellValue(i, colSlipNo).ToString();
-                        //    kapanMappingMaster.Weight = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
-
-                        //    kapanMappingMaster.TransferId = TransferId;
-                        //    kapanMappingMaster.TransferType = "TransferedFrom";
-                        //    kapanMappingMaster.TransferEntryId = TransferEntryId;
-                        //    kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-
-                        //    kapanMappingMaster.CreatedDate = DateTime.Now;
-                        //    kapanMappingMaster.CreatedBy = Common.LoginUserID;
-                        //    kapanMappingMaster.UpdatedDate = DateTime.Now;
-                        //    kapanMappingMaster.UpdatedBy = Common.LoginUserID;
-
-                        //    kapanMappingMasterRepository = new KapanMappingMasterRepository();
-                        //    var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
-                        //    kapanMappingMasterRepository = null;
-                        //}
-                        //else
-                        //{
-                        //    openingStockMaster = new OpeningStockMaster();
-                        //    openingStockMaster.Id = Guid.NewGuid().ToString();
-                        //    openingStockMaster.SrNo = 0;
-                        //    openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                        //    openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                        //    openingStockMaster.Category = TransferCategoryMaster.Kapan;
-                        //    openingStockMaster.CompanyId = lueCompany.EditValue.ToString();
-                        //    openingStockMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
-                        //    openingStockMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-
-                        //    openingStockMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colKapanId).ToString();
-                        //    openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
-
-                        //    openingStockMaster.ShapeId = Common.DefaultShape;
-                        //    openingStockMaster.PurityId = Common.DefaultPurity;
-
-                        //    openingStockMaster.TotalCts = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT).ToString()) * -1;
-                        //    openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-                        //    openingStockMaster.Amount = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colAmount).ToString());
-
-                        //    openingStockMaster.TransferId = TransferId;
-                        //    openingStockMaster.TransferType = "TransferedFrom";
-                        //    openingStockMaster.TransferEntryId = TransferEntryId;
-                        //    openingStockMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
-
-                        //    openingStockMaster.Remarks = txtRemark.Text;
-                        //    openingStockMaster.CreatedDate = DateTime.Now;
-                        //    openingStockMaster.CreatedBy = Common.LoginUserID;
-                        //    openingStockMaster.UpdatedDate = DateTime.Now;
-                        //    openingStockMaster.UpdatedBy = Common.LoginUserID;
-
-                        //    OpeningStockMasterRepositody openingStockMasterRepositody = new OpeningStockMasterRepositody();
-                        //    var Result1 = await openingStockMasterRepositody.AddOpeningStockAsync(openingStockMaster);
-                        //    openingStockMasterRepositody = null;
-                        //}
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Number.ToString())
                     {
@@ -939,9 +925,21 @@ namespace DiamondTrading.Process
                                 dt.Columns.Add(column);
                             }
 
+                            if (!dt.Columns.Contains("TransferEntryId"))
+                            {
+                                DataColumn column = new DataColumn();
+                                column.ColumnName = "TransferEntryId";
+                                column.DataType = System.Type.GetType("System.String");
+                                column.DefaultValue = "";
+                                column.ReadOnly = false;
+
+                                dt.Columns.Add(column);
+                            }
+
                             foreach (DataRowView row in dtView)
                             {
                                 row["AdjustCarat"] = 0;
+                                row["TransferEntryId"] = "";
                             }
 
                             decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(Weight)", string.Empty));
@@ -971,6 +969,7 @@ namespace DiamondTrading.Process
                                         TotalValue += RemainValue;
                                         RemainValue = 0;
                                     }
+                                    row["TransferEntryId"] = Guid.NewGuid().ToString();
                                 }
                             }
                         }
@@ -1010,7 +1009,7 @@ namespace DiamondTrading.Process
 
                                 numberProcessMaster.TransferId = TransferId;
                                 numberProcessMaster.TransferType = "TransferedFrom";
-                                numberProcessMaster.TransferEntryId = TransferEntryId;
+                                numberProcessMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                 numberProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
 
                                 numberProcessMaster.IsDelete = false;
@@ -1033,7 +1032,7 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                if ((row.Row.Table.Columns.Contains("SlipNo") && row["SlipNo"].ToString() != "0") || !row.Row.Table.Columns.Contains("SlipNo"))
+                                if (row["KapanType"].ToString().Equals("KapanMapped"))
                                 {
                                     kapanMappingMaster = new KapanMappingMaster();
                                     kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -1049,7 +1048,7 @@ namespace DiamondTrading.Process
 
                                     kapanMappingMaster.TransferId = TransferId;
                                     kapanMappingMaster.TransferType = "TransferedTo";
-                                    kapanMappingMaster.TransferEntryId = TransferEntryId;
+                                    kapanMappingMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                     kapanMappingMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
                                     kapanMappingMaster.CreatedDate = DateTime.Now;
@@ -1061,7 +1060,7 @@ namespace DiamondTrading.Process
                                     var Result1 = await kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
                                     kapanMappingMasterRepository = null;
                                 }
-                                else
+                                else if (row["KapanType"].ToString().Equals("OpeningStock"))
                                 {
                                     openingStockMaster = new OpeningStockMaster();
                                     openingStockMaster.Id = Guid.NewGuid().ToString();
@@ -1085,7 +1084,7 @@ namespace DiamondTrading.Process
 
                                     openingStockMaster.TransferId = TransferId;
                                     openingStockMaster.TransferType = "TransferedTo";
-                                    openingStockMaster.TransferEntryId = TransferEntryId;
+                                    openingStockMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                     openingStockMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
                                     openingStockMaster.Remarks = txtRemark.Text;
@@ -1097,6 +1096,43 @@ namespace DiamondTrading.Process
                                     OpeningStockMasterRepositody openingStockMasterRepositody = new OpeningStockMasterRepositody();
                                     var Result1 = await openingStockMasterRepositody.AddOpeningStockAsync(openingStockMaster);
                                     openingStockMasterRepositody = null;
+                                }
+                                else if (row["KapanType"].ToString().Equals("Boil"))
+                                {
+                                    BoilProcessMaster boilProcessMaster = new BoilProcessMaster();
+                                    boilProcessMaster.Id = Guid.NewGuid().ToString();
+                                    boilProcessMaster.BoilNo = 0;
+                                    boilProcessMaster.JangadNo = 0;
+                                    boilProcessMaster.CompanyId = lueCompany.EditValue.ToString();
+                                    boilProcessMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString();
+                                    boilProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                                    boilProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                                    boilProcessMaster.FinancialYearId = row["FinancialYearId"].ToString();
+                                    boilProcessMaster.BoilType = Convert.ToInt32(ProcessType.Transfer);
+                                    boilProcessMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
+                                    boilProcessMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
+                                    boilProcessMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
+                                    boilProcessMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
+                                    boilProcessMaster.Weight = Convert.ToDecimal(row["AdjustCarat"]);
+                                    boilProcessMaster.LossWeight = 0;
+                                    boilProcessMaster.RejectionWeight = 0;
+                                    boilProcessMaster.HandOverById = lueTransferBy.EditValue.ToString();
+                                    boilProcessMaster.HandOverToId = lueTransferBy.EditValue.ToString();
+                                    boilProcessMaster.SlipNo = row["SlipNo"].ToString();
+                                    boilProcessMaster.BoilCategoy = 0;
+                                    boilProcessMaster.Remarks = txtRemark.Text;
+                                    boilProcessMaster.IsDelete = false;
+                                    boilProcessMaster.CreatedDate = DateTime.Now;
+                                    boilProcessMaster.CreatedBy = Common.LoginUserID;
+                                    boilProcessMaster.UpdatedDate = DateTime.Now;
+                                    boilProcessMaster.UpdatedBy = Common.LoginUserID;
+                                    boilProcessMaster.TransferId = TransferId;
+                                    boilProcessMaster.TransferType = "TransferedFrom";
+                                    boilProcessMaster.TransferEntryId = row["TransferEntryId"].ToString();
+                                    boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+
+                                    BoilMasterRepository boilMasterRepository = new BoilMasterRepository();
+                                    var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster);
                                 }
                             }
                         }
@@ -1137,7 +1173,7 @@ namespace DiamondTrading.Process
 
                                 numberProcessMaster.TransferId = TransferId;
                                 numberProcessMaster.TransferType = "TransferedTo";
-                                numberProcessMaster.TransferEntryId = TransferEntryId;
+                                numberProcessMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                 numberProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
                                 numberProcessMaster.IsDelete = false;
@@ -1204,9 +1240,9 @@ namespace DiamondTrading.Process
             }
             else if (grvTransferItemDetails.RowCount == 0)
             {
+                return false;
                 MessageBox.Show("Please select Particulars Details", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 grvTransferItemDetails.Focus();
-                return false;
             }
             return true;
         }

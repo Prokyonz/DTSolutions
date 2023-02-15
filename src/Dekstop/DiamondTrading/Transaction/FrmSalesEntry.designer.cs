@@ -824,7 +824,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("CharniSize", "CharniSize"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GalaSize", "GalaSize"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberSize", "NumberSize"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Weight", "Weight"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "Weight", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "A Weight")});
             this.repoShape.Name = "repoShape";
             this.repoShape.NullText = "";
