@@ -906,7 +906,7 @@ namespace DiamondTrading.Transaction
                             GalaSize = g.GalaSize,
                             NumberSizeId = g.NumberSizeId,
                             NumberSize = g.NumberSize,
-                            Weight = g.Weight,
+                            AvailableWeight = g.AvailableWeight,
                             Id = g.KapanId + g.SizeId + g.ShapeId + g.PurityId,
                         }).GroupBy(r => new
                         {
@@ -941,7 +941,7 @@ namespace DiamondTrading.Transaction
                             NumberSizeId = g.Key.NumberSizeId,
                             NumberSize = g.Key.NumberSize,
                             Id = g.Key.KapanId + g.Key.ShapeId + g.Key.PurityId + g.Key.SizeId + g.Key.CharniSizeId + g.Key.GalaNumberId + g.Key.NumberSizeId,
-                            Weight = g.Sum(x => x.Weight),
+                            AvailableWeight = g.Sum(x => x.AvailableWeight),
                         });
 
                         repoShape.DataSource = listNumberProcess1;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();

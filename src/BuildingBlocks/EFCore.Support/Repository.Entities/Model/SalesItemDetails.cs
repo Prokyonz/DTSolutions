@@ -28,7 +28,7 @@ namespace Repository.Entities.Model
         public string NumberSizeId { get; set; }
         public string NumberSize { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal Weight { get; set; }
+        public decimal AvailableWeight { get; set; }
 
     }
 }

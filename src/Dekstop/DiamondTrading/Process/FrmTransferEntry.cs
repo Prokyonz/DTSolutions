@@ -362,7 +362,7 @@ namespace DiamondTrading.Process
                                 GalaSize = g.GalaSize,
                                 NumberSizeId = g.NumberSizeId,
                                 NumberSize = g.NumberSize,
-                                Weight = g.Weight,
+                                AvailableWeight = g.AvailableWeight,
                                 Id = g.KapanId + g.SizeId + g.ShapeId + g.PurityId,
                             }).GroupBy(r => new
                             {
@@ -397,7 +397,7 @@ namespace DiamondTrading.Process
                                 NumberSizeId = g.Key.NumberSizeId,
                                 NumberSize = g.Key.NumberSize,
                                 Id = g.Key.KapanId + g.Key.ShapeId + g.Key.PurityId + g.Key.SizeId + g.Key.CharniSizeId + g.Key.GalaNumberId + g.Key.NumberSizeId,
-                                Weight = g.Sum(x => x.Weight),
+                                AvailableWeight = g.Sum(x => x.AvailableWeight),
                             });
 
                             repoShape.DataSource = listNumberProcess1;
@@ -518,7 +518,7 @@ namespace DiamondTrading.Process
                             //grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategory, ((Repository.Entities.Models.CharniProcessSend)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SizeId);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colType, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSize);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).Kapan);
-                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).Weight);
+                            grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
 
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSlipNo, 0);
                             grvTransferItemDetails.SetRowCellValue(e.RowHandle, colShapeId, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).ShapeId);
