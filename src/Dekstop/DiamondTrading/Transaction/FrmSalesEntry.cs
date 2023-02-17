@@ -1664,7 +1664,7 @@ namespace DiamondTrading.Transaction
 
                             if (rowFilter.Length > 0)
                                 rowFilter += " and";
-                            rowFilter += "AvailableWeight > 0";
+                            rowFilter += " AvailableWeight > 0";
 
                             dtView.RowFilter = rowFilter.Trim();
                             if (dtView.Count > 0)
