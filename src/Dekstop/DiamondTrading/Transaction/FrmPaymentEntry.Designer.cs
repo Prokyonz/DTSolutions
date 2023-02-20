@@ -29,6 +29,11 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -45,6 +50,8 @@ namespace DiamondTrading.Transaction
             this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colBranch = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoBranch = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colAdjustAmt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
@@ -67,6 +74,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
@@ -171,7 +179,8 @@ namespace DiamondTrading.Transaction
             this.repoTxtEdit,
             this.repoParty,
             this.repositoryItemButtonEdit1,
-            this.repoBranch});
+            this.repoBranch,
+            this.repoAdjustAmt});
             this.grdPaymentDetails.Size = new System.Drawing.Size(602, 244);
             this.grdPaymentDetails.TabIndex = 0;
             this.grdPaymentDetails.UseEmbeddedNavigator = true;
@@ -191,7 +200,8 @@ namespace DiamondTrading.Transaction
             this.colAmount,
             this.colAutoAdjustBillAmount,
             this.colPartyType,
-            this.colBranch});
+            this.colBranch,
+            this.colAdjustAmt});
             this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
             this.grvPaymentDetails.Name = "grvPaymentDetails";
             this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -210,7 +220,7 @@ namespace DiamondTrading.Transaction
             this.colParty.Name = "colParty";
             this.colParty.Visible = true;
             this.colParty.VisibleIndex = 0;
-            this.colParty.Width = 567;
+            this.colParty.Width = 639;
             // 
             // repoParty
             // 
@@ -234,7 +244,7 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 2;
-            this.colAmount.Width = 223;
+            this.colAmount.Width = 290;
             // 
             // repositoryItemButtonEdit1
             // 
@@ -267,6 +277,7 @@ namespace DiamondTrading.Transaction
             this.colBranch.Name = "colBranch";
             this.colBranch.Visible = true;
             this.colBranch.VisibleIndex = 1;
+            this.colBranch.Width = 84;
             // 
             // repoBranch
             // 
@@ -278,6 +289,27 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.repoBranch.Name = "repoBranch";
             this.repoBranch.NullText = "";
+            // 
+            // colAdjustAmt
+            // 
+            this.colAdjustAmt.Caption = "-";
+            this.colAdjustAmt.ColumnEdit = this.repoAdjustAmt;
+            this.colAdjustAmt.FieldName = "AdjustBtn";
+            this.colAdjustAmt.Name = "colAdjustAmt";
+            this.colAdjustAmt.Visible = true;
+            this.colAdjustAmt.VisibleIndex = 3;
+            this.colAdjustAmt.Width = 48;
+            // 
+            // repoAdjustAmt
+            // 
+            this.repoAdjustAmt.AutoHeight = false;
+            editorButtonImageOptions1.Image = global::DiamondTrading.Properties.Resources.edit_16;
+            this.repoAdjustAmt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repoAdjustAmt.Name = "repoAdjustAmt";
+            this.repoAdjustAmt.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            this.repoAdjustAmt.Click += new System.EventHandler(this.repoAdjustAmt_Click);
+            this.repoAdjustAmt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.repoAdjustAmt_KeyDown);
             // 
             // repoTxtEdit
             // 
@@ -486,6 +518,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).EndInit();
             this.grpGroup2.ResumeLayout(false);
@@ -534,5 +567,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colPartyType;
         private DevExpress.XtraGrid.Columns.GridColumn colBranch;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoBranch;
+        private DevExpress.XtraGrid.Columns.GridColumn colAdjustAmt;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoAdjustAmt;
     }
 }

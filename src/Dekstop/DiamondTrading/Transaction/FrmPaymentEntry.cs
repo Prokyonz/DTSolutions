@@ -49,6 +49,7 @@ namespace DiamondTrading.Transaction
                 _paymentType = -1;
                 SetThemeColors(Color.FromArgb(217, 217, 217));
                 this.Text = "CONTRA";
+                colAdjustAmt.Visible = false;
             }
         }
 
@@ -112,6 +113,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("Amount");
             dt.Columns.Add("AutoAdjustBillAmount");
             dt.Columns.Add("PartyType");
+            dt.Columns.Add("AdjustBtn");
             return dt;
         }
 
@@ -460,6 +462,7 @@ namespace DiamondTrading.Transaction
 
                         if (frmPaymentSlipSelect.ShowDialog() == DialogResult.OK)
                         {
+                            frmPaymentSlipSelect.BringToFront();
                             decimal a = Convert.ToDecimal(frmPaymentSlipSelect.dtSlipDetail.Compute("SUM(Amount)", string.Empty));
                             DataView dtView1 = new DataView(frmPaymentSlipSelect.dtSlipDetail);
                             //dtView1.RowFilter = "isnull(Amount,0)<>0";
@@ -655,11 +658,36 @@ namespace DiamondTrading.Transaction
 
         private void grvPaymentDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
         {
-            if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(e.RowHandle, colPartyType)) != PartyTypeMaster.Expense)
+            //if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(e.RowHandle, colPartyType)) != PartyTypeMaster.Expense)
+            //{
+            //    if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+            //    {
+            //        repositoryItemButtonEdit1_Click(null, null);
+            //    }
+            //}
+        }
+
+        private void repoAdjustAmt_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
             {
                 if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                 {
                     repositoryItemButtonEdit1_Click(null, null);
+                }
+            }
+        }
+
+        private void repoAdjustAmt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
+                {
+                    if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        repositoryItemButtonEdit1_Click(null, null);
+                    }
                 }
             }
         }
