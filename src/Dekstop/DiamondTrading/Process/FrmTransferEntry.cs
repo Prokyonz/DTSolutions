@@ -1129,7 +1129,7 @@ namespace DiamondTrading.Process
                                     boilProcessMaster.UpdatedDate = DateTime.Now;
                                     boilProcessMaster.UpdatedBy = Common.LoginUserID;
                                     boilProcessMaster.TransferId = TransferId;
-                                    boilProcessMaster.TransferType = "TransferedFrom";
+                                    boilProcessMaster.TransferType = "TransferedTo";
                                     boilProcessMaster.TransferEntryId = row["TransferEntryId"].ToString();
                                     boilProcessMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
 
