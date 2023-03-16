@@ -825,6 +825,7 @@ namespace DiamondTrading.Process
                                     openingStockMaster = new OpeningStockMaster();
                                     openingStockMaster.Id = Guid.NewGuid().ToString();
                                     openingStockMaster.SrNo = 0;
+                                    openingStockMaster.StockId = row["StockId"].ToString();
                                     openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                                     openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                                     openingStockMaster.Category = TransferCategoryMaster.Kapan;
@@ -1065,6 +1066,7 @@ namespace DiamondTrading.Process
                                     openingStockMaster = new OpeningStockMaster();
                                     openingStockMaster.Id = Guid.NewGuid().ToString();
                                     openingStockMaster.SrNo = 0;
+                                    openingStockMaster.StockId = row["StockId"].ToString();
                                     openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                                     openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                                     openingStockMaster.Category = TransferCategoryMaster.Kapan;

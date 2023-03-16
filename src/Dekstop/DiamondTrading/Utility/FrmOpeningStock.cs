@@ -267,6 +267,7 @@ namespace DiamondTrading.Utility
                 string TempGuid = Guid.NewGuid().ToString();
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
+                    string guid = Guid.NewGuid().ToString();
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == OpeningStockCategoryMaster.Number.ToString())
                     {
                         numberProcessMaster = new NumberProcessMaster();
@@ -314,7 +315,8 @@ namespace DiamondTrading.Utility
                     }
 
                     openingStockMaster = new OpeningStockMaster();
-                    openingStockMaster.Id = Guid.NewGuid().ToString();
+                    openingStockMaster.Id = guid;
+                    openingStockMaster.StockId = guid;
                     openingStockMaster.TransferId = TempGuid;
                     openingStockMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
                     openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");

@@ -12,6 +12,7 @@ namespace Repository.Entities
         public int SrNo { get; set; }
         [Key]
         public string Id { get; set; }
+        public string StockId { get; set; }
         public string TransferId { get; set; }
         public string TransferType { get; set; }
         public string TransferEntryId { get; set; }
