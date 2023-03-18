@@ -7,38 +7,38 @@ namespace Repository.Entities.Model
 {
     public class StockReportModelReport
     {
-        public string StockId { get; set; }
-        public string Id { get; set; }
+        //public string StockId { get; set; }
+        //public int Id { get; set; }
         public string KapanId { get; set; }
-        public string Kapan { get; set; }
-        public string SizeId { get; set; }
-        public string Size { get; set; }
-        public string PurityId { get; set; }
-        public string Purity { get; set; }
-        public string ShapeId { get; set; }
-        public string Shape { get; set; }
-        public string SlipNo { get; set; }
-        public string PurchaseMasterId { get; set; }
-        public string PurchaseDetailsId { get; set; }
+        public string Name { get; set; }
+        //public string SizeId { get; set; }
+        //public string Size { get; set; }
+        //public string PurityId { get; set; }
+        //public string Purity { get; set; }
+        //public string ShapeId { get; set; }
+        //public string Shape { get; set; }
+        //public string SlipNo { get; set; }
+        //public string PurchaseMasterId { get; set; }
+        //public string PurchaseDetailsId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal NetWeight { get; set; }
+        public decimal InwardNetWeight { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal TipWeight { get; set; }
+        public decimal InwardRate { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal LessWeight { get; set; }
+        public decimal InwardAmount { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal Weight { get; set; }
+        public decimal OutwardNetWeight { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal RejectedWeight { get; set; }
+        public decimal OutwardRate { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
-        public decimal UsedWeight { get; set; }
+        public decimal OutwardAmount { get; set; }
 
-        [Column(TypeName = "decimal(18, 4)")]
-        public decimal AvailableWeight { get; set; }
-        public string FinancialYearId { get; set; }
+        //[Column(TypeName = "decimal(18, 4)")]
+        //public decimal AvailableWeight { get; set; }
+        //public string FinancialYearId { get; set; }
     }
 }

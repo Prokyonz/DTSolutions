@@ -251,7 +251,7 @@ namespace DiamondTrading
                 {
                     _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                     var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                    grdStockReportMaster.DataSource = salesData.OrderBy(o => o.Kapan);
+                    grdStockReportMaster.DataSource = salesData;//.OrderBy(o => o.Kapan);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraOpeningStock)
