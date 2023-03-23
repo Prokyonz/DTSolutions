@@ -30,24 +30,24 @@ namespace DiamondTrading
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            DevExpress.Utils.SimpleContextButton simpleContextButton1 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton2 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton3 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton4 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton5 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton6 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton7 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton8 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton9 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton10 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton11 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton12 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton13 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton14 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton15 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton16 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton17 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton18 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton61 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton62 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton63 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton64 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton65 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton66 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton55 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton56 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton57 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton58 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton59 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton60 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton67 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton68 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton69 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton70 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton71 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton72 = new DevExpress.Utils.SimpleContextButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -251,6 +251,8 @@ namespace DiamondTrading
             this.xtraTabStockReport = new DevExpress.XtraTab.XtraTabPage();
             this.grdStockReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gvStockReport = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn149 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -578,24 +580,24 @@ namespace DiamondTrading
             this.repositoryItemComboBox1.AutoHeight = false;
             this.repositoryItemComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton1.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton1.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton1.Name = "Pending";
-            simpleContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton2.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton2.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton2.Name = "Approved";
-            simpleContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton3.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton3.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton3.Name = "Reject";
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton1);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton2);
-            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton3);
+            simpleContextButton61.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton61.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton61.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton61.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton61.Name = "Pending";
+            simpleContextButton62.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton62.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton62.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton62.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton62.Name = "Approved";
+            simpleContextButton63.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton63.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton63.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton63.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton63.Name = "Reject";
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton61);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton62);
+            this.repositoryItemComboBox1.ContextButtons.Add(simpleContextButton63);
             this.repositoryItemComboBox1.Name = "repositoryItemComboBox1";
             this.repositoryItemComboBox1.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -604,24 +606,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox1.AutoHeight = false;
             this.repositoryItemImageComboBox1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton4.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton4.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton4.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton4.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton4.Name = "Pending";
-            simpleContextButton5.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton5.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton5.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton5.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton5.Name = "Approved";
-            simpleContextButton6.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton6.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton6.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton6.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton6.Name = "Reject";
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton4);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton5);
-            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton6);
+            simpleContextButton64.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton64.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton64.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton64.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton64.Name = "Pending";
+            simpleContextButton65.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton65.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton65.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton65.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton65.Name = "Approved";
+            simpleContextButton66.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton66.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton66.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton66.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton66.Name = "Reject";
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton64);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton65);
+            this.repositoryItemImageComboBox1.ContextButtons.Add(simpleContextButton66);
             this.repositoryItemImageComboBox1.Name = "repositoryItemImageComboBox1";
             // 
             // xtabAssortSend
@@ -2291,6 +2293,7 @@ namespace DiamondTrading
             this.grdStockReportMaster.TabIndex = 3;
             this.grdStockReportMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvStockReport});
+            this.grdStockReportMaster.DoubleClick += new System.EventHandler(this.grdStockReportMaster_DoubleClick);
             // 
             // gvStockReport
             // 
@@ -2301,6 +2304,8 @@ namespace DiamondTrading
             this.gvStockReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvStockReport.Appearance.Row.Options.UseFont = true;
             this.gvStockReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn3,
+            this.gridColumn110,
             this.gridColumn142,
             this.gridColumn149,
             this.gridColumn1,
@@ -2324,6 +2329,24 @@ namespace DiamondTrading
             this.gvStockReport.OptionsView.ShowFooter = true;
             this.gvStockReport.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gvStockReport_CellMerge);
             // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "Id";
+            this.gridColumn3.FieldName = "Id";
+            this.gridColumn3.Name = "gridColumn3";
+            this.gridColumn3.Visible = true;
+            this.gridColumn3.VisibleIndex = 0;
+            this.gridColumn3.Width = 46;
+            // 
+            // gridColumn110
+            // 
+            this.gridColumn110.Caption = "Type";
+            this.gridColumn110.FieldName = "Name";
+            this.gridColumn110.Name = "gridColumn110";
+            this.gridColumn110.Visible = true;
+            this.gridColumn110.VisibleIndex = 1;
+            this.gridColumn110.Width = 361;
+            // 
             // gridColumn142
             // 
             this.gridColumn142.Caption = "Kapan Id";
@@ -2338,8 +2361,6 @@ namespace DiamondTrading
             this.gridColumn149.Name = "gridColumn149";
             this.gridColumn149.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Kapan", "Rec = {0}")});
-            this.gridColumn149.Visible = true;
-            this.gridColumn149.VisibleIndex = 0;
             this.gridColumn149.Width = 111;
             // 
             // gridColumn1
@@ -2347,38 +2368,39 @@ namespace DiamondTrading
             this.gridColumn1.Caption = "Party";
             this.gridColumn1.FieldName = "Party";
             this.gridColumn1.Name = "gridColumn1";
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
             // 
             // InwardNetWeightCol
             // 
-            this.InwardNetWeightCol.Caption = "Inward Weight";
-            this.InwardNetWeightCol.FieldName = "InwardNetWeight";
+            this.InwardNetWeightCol.Caption = "Total Weight";
+            this.InwardNetWeightCol.FieldName = "TotalWeight";
             this.InwardNetWeightCol.Name = "InwardNetWeightCol";
             this.InwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalWeight", "{0:0.##}")});
             this.InwardNetWeightCol.Visible = true;
             this.InwardNetWeightCol.VisibleIndex = 2;
+            this.InwardNetWeightCol.Width = 220;
             // 
             // InwardRateCol
             // 
-            this.InwardRateCol.Caption = "Inward Rate";
-            this.InwardRateCol.FieldName = "InwardRate";
+            this.InwardRateCol.Caption = "Rate";
+            this.InwardRateCol.FieldName = "Rate";
             this.InwardRateCol.Name = "InwardRateCol";
             this.InwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "Rate", "{0:0.##}")});
             this.InwardRateCol.Visible = true;
             this.InwardRateCol.VisibleIndex = 3;
+            this.InwardRateCol.Width = 168;
             // 
             // InwardAmountCol
             // 
-            this.InwardAmountCol.Caption = "Inward Amount";
-            this.InwardAmountCol.FieldName = "InwardAmount";
+            this.InwardAmountCol.Caption = "Total Amount";
+            this.InwardAmountCol.FieldName = "TotalAmount";
             this.InwardAmountCol.Name = "InwardAmountCol";
             this.InwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalAmount", "{0:0.##}")});
             this.InwardAmountCol.Visible = true;
             this.InwardAmountCol.VisibleIndex = 4;
+            this.InwardAmountCol.Width = 233;
             // 
             // OutwardNetWeightCol
             // 
@@ -2387,8 +2409,6 @@ namespace DiamondTrading
             this.OutwardNetWeightCol.Name = "OutwardNetWeightCol";
             this.OutwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
-            this.OutwardNetWeightCol.Visible = true;
-            this.OutwardNetWeightCol.VisibleIndex = 5;
             // 
             // OutwardRateCol
             // 
@@ -2397,8 +2417,6 @@ namespace DiamondTrading
             this.OutwardRateCol.Name = "OutwardRateCol";
             this.OutwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
-            this.OutwardRateCol.Visible = true;
-            this.OutwardRateCol.VisibleIndex = 6;
             // 
             // OutwardAmountCol
             // 
@@ -2407,32 +2425,30 @@ namespace DiamondTrading
             this.OutwardAmountCol.Name = "OutwardAmountCol";
             this.OutwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
-            this.OutwardAmountCol.Visible = true;
-            this.OutwardAmountCol.VisibleIndex = 7;
             // 
             // repositoryItemComboBox2
             // 
             this.repositoryItemComboBox2.AutoHeight = false;
             this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton7.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton7.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton7.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton7.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton7.Name = "Pending";
-            simpleContextButton8.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton8.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton8.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton8.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton8.Name = "Approved";
-            simpleContextButton9.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton9.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton9.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton9.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton9.Name = "Reject";
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton7);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton8);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton9);
+            simpleContextButton55.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton55.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton55.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton55.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton55.Name = "Pending";
+            simpleContextButton56.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton56.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton56.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton56.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton56.Name = "Approved";
+            simpleContextButton57.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton57.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton57.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton57.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton57.Name = "Reject";
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton55);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton56);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton57);
             this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
             this.repositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -2441,24 +2457,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox2.AutoHeight = false;
             this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton10.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton10.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton10.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton10.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton10.Name = "Pending";
-            simpleContextButton11.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton11.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton11.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton11.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton11.Name = "Approved";
-            simpleContextButton12.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton12.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton12.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton12.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton12.Name = "Reject";
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton10);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton11);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton12);
+            simpleContextButton58.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton58.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton58.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton58.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton58.Name = "Pending";
+            simpleContextButton59.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton59.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton59.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton59.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton59.Name = "Approved";
+            simpleContextButton60.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton60.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton60.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton60.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton60.Name = "Reject";
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton58);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton59);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton60);
             this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             // 
             // xtraOpeningStock
@@ -2632,24 +2648,24 @@ namespace DiamondTrading
             this.repositoryItemComboBox3.AutoHeight = false;
             this.repositoryItemComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton13.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton13.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton13.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton13.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton13.Name = "Pending";
-            simpleContextButton14.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton14.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton14.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton14.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton14.Name = "Approved";
-            simpleContextButton15.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton15.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton15.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton15.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton15.Name = "Reject";
-            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton13);
-            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton14);
-            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton15);
+            simpleContextButton67.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton67.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton67.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton67.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton67.Name = "Pending";
+            simpleContextButton68.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton68.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton68.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton68.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton68.Name = "Approved";
+            simpleContextButton69.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton69.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton69.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton69.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton69.Name = "Reject";
+            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton67);
+            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton68);
+            this.repositoryItemComboBox3.ContextButtons.Add(simpleContextButton69);
             this.repositoryItemComboBox3.Name = "repositoryItemComboBox3";
             this.repositoryItemComboBox3.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
             // 
@@ -2658,24 +2674,24 @@ namespace DiamondTrading
             this.repositoryItemImageComboBox3.AutoHeight = false;
             this.repositoryItemImageComboBox3.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton16.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton16.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton16.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton16.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton16.Name = "Pending";
-            simpleContextButton17.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton17.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton17.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton17.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton17.Name = "Approved";
-            simpleContextButton18.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton18.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton18.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton18.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton18.Name = "Reject";
-            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton16);
-            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton17);
-            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton18);
+            simpleContextButton70.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton70.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton70.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton70.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton70.Name = "Pending";
+            simpleContextButton71.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton71.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton71.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton71.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton71.Name = "Approved";
+            simpleContextButton72.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton72.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton72.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton72.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton72.Name = "Reject";
+            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton70);
+            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton71);
+            this.repositoryItemImageComboBox3.ContextButtons.Add(simpleContextButton72);
             this.repositoryItemImageComboBox3.Name = "repositoryItemImageComboBox3";
             // 
             // barManager1
@@ -3058,5 +3074,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn OutwardNetWeightCol;
         private DevExpress.XtraGrid.Columns.GridColumn OutwardRateCol;
         private DevExpress.XtraGrid.Columns.GridColumn OutwardAmountCol;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
     }
 }

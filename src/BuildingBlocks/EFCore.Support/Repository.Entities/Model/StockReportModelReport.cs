@@ -11,6 +11,7 @@ namespace Repository.Entities.Model
         //public int Id { get; set; }
         public string KapanId { get; set; }
         public string Name { get; set; }
+        public string Party { get; set; }
         //public string SizeId { get; set; }
         //public string Size { get; set; }
         //public string PurityId { get; set; }
@@ -40,5 +41,17 @@ namespace Repository.Entities.Model
         //[Column(TypeName = "decimal(18, 4)")]
         //public decimal AvailableWeight { get; set; }
         //public string FinancialYearId { get; set; }
+    }
+
+    public class StockReportMasterGrid
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Rate { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalAmount { get; set; }
     }
 }

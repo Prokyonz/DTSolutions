@@ -1,7 +1,12 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Utils;
+using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using DiamondTrading.Process;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -249,9 +254,32 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _accountToAssortMasterRepository == null)
                 {
-                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                    grdStockReportMaster.DataSource = salesData;//.OrderBy(o => o.Kapan);
+                    //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                    //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+
+
+                    List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
+                    {
+                        new StockReportMasterGrid()
+                        {
+                            Id = 1,
+                            Name = "Kapan",
+                            Rate = 12345.3223M,
+                            TotalWeight = 55354354,
+                            TotalAmount = 443234324
+                        },
+                        new StockReportMasterGrid()
+                        {
+                            Id = 2,
+                            Name = "Number",
+                            Rate = 2000.3000M,
+                            TotalWeight = 5000,
+                            TotalAmount = 443234324
+                        },
+                    };
+
+
+                    grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraOpeningStock)
@@ -368,7 +396,7 @@ namespace DiamondTrading
                     string message = "";
                     string SelectedGuid = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendId).ToString();
                     string AccountToAssortChildId = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnChildId).ToString();
-                    string slipNo = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendSlipNo).ToString(); 
+                    string slipNo = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendSlipNo).ToString();
                     if (SelectedGuid != null && AccountToAssortChildId != null)
                     {
                         var result = await _accountToAssortMasterRepository.DeleteAccountToAssortAsync(SelectedGuid.ToString(), AccountToAssortChildId, slipNo);
@@ -697,6 +725,14 @@ namespace DiamondTrading
                 e.Merge = false;
                 e.Handled = true;
             }
+        }
+
+        private void grdStockReportMaster_DoubleClick(object sender, EventArgs e)
+        {
+            FrmChildStockReport frmChildStockReport = new FrmChildStockReport();
+            frmChildStockReport.Text = "Kapan Child Report";
+            frmChildStockReport.StartPosition = FormStartPosition.CenterScreen;
+            frmChildStockReport.ShowDialog();
         }
     }
 }
