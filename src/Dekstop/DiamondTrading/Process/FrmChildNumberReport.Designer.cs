@@ -113,15 +113,14 @@ namespace DiamondTrading.Process
             this.grdNumbeName.FieldName = "Number";
             this.grdNumbeName.Name = "grdNumbeName";
             this.grdNumbeName.Visible = true;
-            this.grdNumbeName.VisibleIndex = 4;
+            this.grdNumbeName.VisibleIndex = 3;
+            this.grdNumbeName.Width = 71;
             // 
             // grdChildId
             // 
             this.grdChildId.Caption = "Id";
             this.grdChildId.FieldName = "Id";
             this.grdChildId.Name = "grdChildId";
-            this.grdChildId.Visible = true;
-            this.grdChildId.VisibleIndex = 0;
             this.grdChildId.Width = 34;
             // 
             // grdOperationType
@@ -130,8 +129,8 @@ namespace DiamondTrading.Process
             this.grdOperationType.FieldName = "OperationType";
             this.grdOperationType.Name = "grdOperationType";
             this.grdOperationType.Visible = true;
-            this.grdOperationType.VisibleIndex = 1;
-            this.grdOperationType.Width = 83;
+            this.grdOperationType.VisibleIndex = 0;
+            this.grdOperationType.Width = 89;
             // 
             // grdSize
             // 
@@ -139,8 +138,8 @@ namespace DiamondTrading.Process
             this.grdSize.FieldName = "Size";
             this.grdSize.Name = "grdSize";
             this.grdSize.Visible = true;
-            this.grdSize.VisibleIndex = 3;
-            this.grdSize.Width = 89;
+            this.grdSize.VisibleIndex = 2;
+            this.grdSize.Width = 83;
             // 
             // grdKapan
             // 
@@ -148,8 +147,8 @@ namespace DiamondTrading.Process
             this.grdKapan.FieldName = "Kapan";
             this.grdKapan.Name = "grdKapan";
             this.grdKapan.Visible = true;
-            this.grdKapan.VisibleIndex = 5;
-            this.grdKapan.Width = 89;
+            this.grdKapan.VisibleIndex = 4;
+            this.grdKapan.Width = 83;
             // 
             // grdCategory
             // 
@@ -157,8 +156,8 @@ namespace DiamondTrading.Process
             this.grdCategory.FieldName = "Category";
             this.grdCategory.Name = "grdCategory";
             this.grdCategory.Visible = true;
-            this.grdCategory.VisibleIndex = 6;
-            this.grdCategory.Width = 104;
+            this.grdCategory.VisibleIndex = 5;
+            this.grdCategory.Width = 98;
             // 
             // grdBranch
             // 
@@ -166,8 +165,8 @@ namespace DiamondTrading.Process
             this.grdBranch.FieldName = "BranchName";
             this.grdBranch.Name = "grdBranch";
             this.grdBranch.Visible = true;
-            this.grdBranch.VisibleIndex = 2;
-            this.grdBranch.Width = 89;
+            this.grdBranch.VisibleIndex = 1;
+            this.grdBranch.Width = 83;
             // 
             // InwardNetWeightCol
             // 
@@ -177,8 +176,8 @@ namespace DiamondTrading.Process
             this.InwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
             this.InwardNetWeightCol.Visible = true;
-            this.InwardNetWeightCol.VisibleIndex = 7;
-            this.InwardNetWeightCol.Width = 89;
+            this.InwardNetWeightCol.VisibleIndex = 6;
+            this.InwardNetWeightCol.Width = 83;
             // 
             // InwardRateCol
             // 
@@ -188,8 +187,8 @@ namespace DiamondTrading.Process
             this.InwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
             this.InwardRateCol.Visible = true;
-            this.InwardRateCol.VisibleIndex = 8;
-            this.InwardRateCol.Width = 74;
+            this.InwardRateCol.VisibleIndex = 7;
+            this.InwardRateCol.Width = 70;
             // 
             // InwardAmountCol
             // 
@@ -199,8 +198,8 @@ namespace DiamondTrading.Process
             this.InwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
             this.InwardAmountCol.Visible = true;
-            this.InwardAmountCol.VisibleIndex = 9;
-            this.InwardAmountCol.Width = 100;
+            this.InwardAmountCol.VisibleIndex = 8;
+            this.InwardAmountCol.Width = 94;
             // 
             // OutwardNetWeightCol
             // 
@@ -210,8 +209,8 @@ namespace DiamondTrading.Process
             this.OutwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
             this.OutwardNetWeightCol.Visible = true;
-            this.OutwardNetWeightCol.VisibleIndex = 10;
-            this.OutwardNetWeightCol.Width = 94;
+            this.OutwardNetWeightCol.VisibleIndex = 9;
+            this.OutwardNetWeightCol.Width = 88;
             // 
             // OutwardRateCol
             // 
@@ -221,8 +220,8 @@ namespace DiamondTrading.Process
             this.OutwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
             this.OutwardRateCol.Visible = true;
-            this.OutwardRateCol.VisibleIndex = 11;
-            this.OutwardRateCol.Width = 83;
+            this.OutwardRateCol.VisibleIndex = 10;
+            this.OutwardRateCol.Width = 78;
             // 
             // OutwardAmountCol
             // 
@@ -232,8 +231,8 @@ namespace DiamondTrading.Process
             this.OutwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
             this.OutwardAmountCol.Visible = true;
-            this.OutwardAmountCol.VisibleIndex = 12;
-            this.OutwardAmountCol.Width = 100;
+            this.OutwardAmountCol.VisibleIndex = 11;
+            this.OutwardAmountCol.Width = 108;
             // 
             // repositoryItemComboBox2
             // 
