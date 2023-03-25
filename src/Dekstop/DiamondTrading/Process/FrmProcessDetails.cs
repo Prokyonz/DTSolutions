@@ -729,10 +729,22 @@ namespace DiamondTrading
 
         private void grdStockReportMaster_DoubleClick(object sender, EventArgs e)
         {
-            FrmChildStockReport frmChildStockReport = new FrmChildStockReport();
-            frmChildStockReport.Text = "Kapan Child Report";
-            frmChildStockReport.StartPosition = FormStartPosition.CenterScreen;
-            frmChildStockReport.ShowDialog();
+            string id = gvStockReport.GetFocusedRowCellValue(grdColId).ToString();
+            
+            if(id == "1")
+            {
+                FrmChildStockReport frmChildStockReport = new FrmChildStockReport();
+                frmChildStockReport.Text = "Kapan Child Report";
+                frmChildStockReport.StartPosition = FormStartPosition.CenterScreen;
+                frmChildStockReport.ShowDialog();
+
+            } else if(id == "2") {
+
+                FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport();
+                frmChildNumberReport.Text = "Number Child Report";
+                frmChildNumberReport.StartPosition = FormStartPosition.CenterScreen;
+                frmChildNumberReport.ShowDialog();
+            }            
         }
     }
 }

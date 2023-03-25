@@ -20,5 +20,6 @@ namespace EFCore.SQL.Interface
 
         Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<StockReportModelReport>> GetStockReportAsync(string companyId, string financialYearId);
+        Task<List<NumberReportModelReport>> GetNumberReportAsync(string companyId, string financialYearId);
     }
 }

@@ -755,7 +755,7 @@ namespace DiamondTrading.Process
                                 row["TransferEntryId"] = "";
                             }
 
-                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(Weight)", string.Empty));
+                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(AvailableWeight)", string.Empty));
                             if (Value > a)
                             {
                                 MessageBox.Show("Max Amount allowed for available Weight is '" + a.ToString("0.000") + "'.");
@@ -768,7 +768,7 @@ namespace DiamondTrading.Process
                             {
                                 if (TotalValue != Value)
                                 {
-                                    AvailableValue = Convert.ToDecimal(row["Weight"]);
+                                    AvailableValue = Convert.ToDecimal(row["AvailableWeight"]);
                                     decimal TempValue = AvailableValue - RemainValue;
                                     if (TempValue <= 0)
                                     {
@@ -943,7 +943,7 @@ namespace DiamondTrading.Process
                                 row["TransferEntryId"] = "";
                             }
 
-                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(Weight)", string.Empty));
+                            decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(AvailableWeight)", string.Empty));
                             if (Value > a)
                             {
                                 MessageBox.Show("Max Amount allowed for available Weight is '" + a.ToString("0.000") + "'.");
@@ -956,7 +956,7 @@ namespace DiamondTrading.Process
                             {
                                 if (TotalValue != Value)
                                 {
-                                    AvailableValue = Convert.ToDecimal(row["Weight"]);
+                                    AvailableValue = Convert.ToDecimal(row["AvailableWeight"]);
                                     decimal TempValue = AvailableValue - RemainValue;
                                     if (TempValue <= 0)
                                     {

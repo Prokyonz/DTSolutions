@@ -237,6 +237,12 @@
     <Compile Include="FrmOptions.Designer.cs">
       <DependentUpon>FrmOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmChildNumberReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmChildNumberReport.Designer.cs">
+      <DependentUpon>FrmChildNumberReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmChildStockReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -580,6 +586,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOptions.resx">
       <DependentUpon>FrmOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmChildNumberReport.resx">
+      <DependentUpon>FrmChildNumberReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmChildStockReport.resx">
       <DependentUpon>FrmChildStockReport.cs</DependentUpon>
