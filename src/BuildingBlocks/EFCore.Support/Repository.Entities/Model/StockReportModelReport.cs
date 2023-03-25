@@ -9,6 +9,7 @@ namespace Repository.Entities.Model
     {
         public string KapanId { get; set; }
         public string Name { get; set; }
+        public string BranchName { get; set; }
         public string Party { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
@@ -48,6 +49,8 @@ namespace Repository.Entities.Model
     {
         public int Id { get; set; }
         public string OperationType { get; set; }
+        public string BranchName { get; set; }
+        public string Number { get; set; }
         public string Size { get; set; }
         public string Kapan { get; set; }
         public string Category { get; set; }

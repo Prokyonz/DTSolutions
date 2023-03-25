@@ -389,6 +389,7 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
+            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
@@ -2780,6 +2781,7 @@ namespace DiamondTrading
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Process Details";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmProcessDetails_FormClosed);
             this.Load += new System.EventHandler(this.FrmMasterDetails_Load);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

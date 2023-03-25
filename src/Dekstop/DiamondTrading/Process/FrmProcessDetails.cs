@@ -31,6 +31,8 @@ namespace DiamondTrading
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
+        private List<StockReportModelReport> stockReportModelReports;
+        private List<NumberReportModelReport> numberReportModelReports;
 
         public FrmProcessDetails()
         {
@@ -254,6 +256,26 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _accountToAssortMasterRepository == null)
                 {
+                    stockReportModelReports = await LoadDataStock();
+                    numberReportModelReports = await LoadDataNumber();
+
+                    decimal inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
+                    decimal inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
+                    decimal inwardRate = stockReportModelReports.Average(a => a.InwardRate);
+
+                    decimal outwardAmount = stockReportModelReports.Sum(s => s.OutwardAmount);
+                    decimal outwardWeight = stockReportModelReports.Sum(s => s.OutwardNetWeight);
+                    decimal outwardRate = stockReportModelReports.Sum(s => s.OutwardRate);
+
+
+                    decimal inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
+                    decimal inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
+                    decimal inwardRateN = numberReportModelReports.Average(a => a.InwardRate);
+
+                    decimal outwardAmountN = numberReportModelReports.Sum(s => s.OutwardAmount);
+                    decimal outwardWeightN = numberReportModelReports.Sum(s => s.OutwardNetWeight);
+                    decimal outwardRateN = numberReportModelReports.Sum(s => s.OutwardRate);
+
                     //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                     //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
 
@@ -264,22 +286,23 @@ namespace DiamondTrading
                         {
                             Id = 1,
                             Name = "Kapan",
-                            Rate = 12345.3223M,
-                            TotalWeight = 55354354,
-                            TotalAmount = 443234324
+                            Rate = Math.Round((inwardRate - outwardRate),2),
+                            TotalWeight = inwardWeight - outwardWeight,
+                            TotalAmount = inwardAmount - outwardAmount
                         },
                         new StockReportMasterGrid()
                         {
                             Id = 2,
                             Name = "Number",
-                            Rate = 2000.3000M,
-                            TotalWeight = 5000,
-                            TotalAmount = 443234324
+                            Rate = Math.Round(inwardRateN - outwardRateN,2),
+                            TotalWeight = inwardWeightN - outwardWeightN,
+                            TotalAmount = inwardAmountN - outwardAmountN
                         },
                     };
 
-
                     grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
+
+                    gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraOpeningStock)
@@ -727,24 +750,44 @@ namespace DiamondTrading
             }
         }
 
-        private void grdStockReportMaster_DoubleClick(object sender, EventArgs e)
+        private async void grdStockReportMaster_DoubleClick(object sender, EventArgs e)
         {
             string id = gvStockReport.GetFocusedRowCellValue(grdColId).ToString();
             
             if(id == "1")
             {
-                FrmChildStockReport frmChildStockReport = new FrmChildStockReport();
+                FrmChildStockReport frmChildStockReport = new FrmChildStockReport(stockReportModelReports);
                 frmChildStockReport.Text = "Kapan Child Report";
                 frmChildStockReport.StartPosition = FormStartPosition.CenterScreen;
                 frmChildStockReport.ShowDialog();
 
             } else if(id == "2") {
 
-                FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport();
+                FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport(numberReportModelReports);
                 frmChildNumberReport.Text = "Number Child Report";
                 frmChildNumberReport.StartPosition = FormStartPosition.CenterScreen;
                 frmChildNumberReport.ShowDialog();
             }            
+        }
+
+        public async Task<List<StockReportModelReport>> LoadDataStock()
+        {
+            _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+            return await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);            
+        }
+
+        public async Task<List<NumberReportModelReport>> LoadDataNumber()
+        {
+            _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+            return await _accountToAssortMasterRepository.GetNumberReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+        }
+
+        private void FrmProcessDetails_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (xtabManager.SelectedTabPage == xtraTabStockReport)
+            {
+                gvStockReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
+            }
         }
     }
 }

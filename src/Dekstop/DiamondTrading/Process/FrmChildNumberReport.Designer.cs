@@ -29,14 +29,20 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.Utils.SimpleContextButton simpleContextButton7 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton8 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton9 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton10 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton11 = new DevExpress.Utils.SimpleContextButton();
-            DevExpress.Utils.SimpleContextButton simpleContextButton12 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton1 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton2 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton3 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton4 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton5 = new DevExpress.Utils.SimpleContextButton();
+            DevExpress.Utils.SimpleContextButton simpleContextButton6 = new DevExpress.Utils.SimpleContextButton();
             this.grdNumberReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gvNumberReport = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grdNumbeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdChildId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdOperationType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdSize = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdKapan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grdBranch = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardNetWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardRateCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -46,11 +52,6 @@ namespace DiamondTrading.Process
             this.OutwardAmountCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.grdChildId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdOperationType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdSize = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdKapan = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.grdCategory = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdNumberReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNumberReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -80,6 +81,7 @@ namespace DiamondTrading.Process
             this.gvNumberReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvNumberReport.Appearance.Row.Options.UseFont = true;
             this.gvNumberReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grdNumbeName,
             this.grdChildId,
             this.grdOperationType,
             this.grdSize,
@@ -105,130 +107,13 @@ namespace DiamondTrading.Process
             this.gvNumberReport.OptionsBehavior.Editable = false;
             this.gvNumberReport.OptionsView.ShowFooter = true;
             // 
-            // grdBranch
+            // grdNumbeName
             // 
-            this.grdBranch.Caption = "Branch";
-            this.grdBranch.Name = "grdBranch";
-            this.grdBranch.Visible = true;
-            this.grdBranch.VisibleIndex = 3;
-            this.grdBranch.Width = 89;
-            // 
-            // InwardNetWeightCol
-            // 
-            this.InwardNetWeightCol.Caption = "Inward Weight";
-            this.InwardNetWeightCol.FieldName = "InwardNetWeight";
-            this.InwardNetWeightCol.Name = "InwardNetWeightCol";
-            this.InwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
-            this.InwardNetWeightCol.Visible = true;
-            this.InwardNetWeightCol.VisibleIndex = 6;
-            this.InwardNetWeightCol.Width = 89;
-            // 
-            // InwardRateCol
-            // 
-            this.InwardRateCol.Caption = "Inward Rate";
-            this.InwardRateCol.FieldName = "InwardRate";
-            this.InwardRateCol.Name = "InwardRateCol";
-            this.InwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
-            this.InwardRateCol.Visible = true;
-            this.InwardRateCol.VisibleIndex = 7;
-            this.InwardRateCol.Width = 74;
-            // 
-            // InwardAmountCol
-            // 
-            this.InwardAmountCol.Caption = "Inward Amount";
-            this.InwardAmountCol.FieldName = "InwardAmount";
-            this.InwardAmountCol.Name = "InwardAmountCol";
-            this.InwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
-            this.InwardAmountCol.Visible = true;
-            this.InwardAmountCol.VisibleIndex = 8;
-            this.InwardAmountCol.Width = 100;
-            // 
-            // OutwardNetWeightCol
-            // 
-            this.OutwardNetWeightCol.Caption = "Outward Weight";
-            this.OutwardNetWeightCol.FieldName = "OutwardNetWeight";
-            this.OutwardNetWeightCol.Name = "OutwardNetWeightCol";
-            this.OutwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
-            this.OutwardNetWeightCol.Visible = true;
-            this.OutwardNetWeightCol.VisibleIndex = 9;
-            this.OutwardNetWeightCol.Width = 94;
-            // 
-            // OutwardRateCol
-            // 
-            this.OutwardRateCol.Caption = "Outward Rate";
-            this.OutwardRateCol.FieldName = "OutwardRate";
-            this.OutwardRateCol.Name = "OutwardRateCol";
-            this.OutwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
-            this.OutwardRateCol.Visible = true;
-            this.OutwardRateCol.VisibleIndex = 10;
-            this.OutwardRateCol.Width = 83;
-            // 
-            // OutwardAmountCol
-            // 
-            this.OutwardAmountCol.Caption = "Outward Amount";
-            this.OutwardAmountCol.FieldName = "OutwardAmount";
-            this.OutwardAmountCol.Name = "OutwardAmountCol";
-            this.OutwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
-            this.OutwardAmountCol.Visible = true;
-            this.OutwardAmountCol.VisibleIndex = 11;
-            this.OutwardAmountCol.Width = 100;
-            // 
-            // repositoryItemComboBox2
-            // 
-            this.repositoryItemComboBox2.AutoHeight = false;
-            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton7.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton7.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton7.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
-            simpleContextButton7.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton7.Name = "Pending";
-            simpleContextButton8.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton8.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton8.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
-            simpleContextButton8.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton8.Name = "Approved";
-            simpleContextButton9.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton9.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton9.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
-            simpleContextButton9.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton9.Name = "Reject";
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton7);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton8);
-            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton9);
-            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
-            this.repositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // repositoryItemImageComboBox2
-            // 
-            this.repositoryItemImageComboBox2.AutoHeight = false;
-            this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            simpleContextButton10.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton10.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton10.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
-            simpleContextButton10.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton10.Name = "Pending";
-            simpleContextButton11.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton11.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton11.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
-            simpleContextButton11.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton11.Name = "Approved";
-            simpleContextButton12.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
-            simpleContextButton12.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
-            simpleContextButton12.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
-            simpleContextButton12.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
-            simpleContextButton12.Name = "Reject";
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton10);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton11);
-            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton12);
-            this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
+            this.grdNumbeName.Caption = "Number";
+            this.grdNumbeName.FieldName = "Number";
+            this.grdNumbeName.Name = "grdNumbeName";
+            this.grdNumbeName.Visible = true;
+            this.grdNumbeName.VisibleIndex = 4;
             // 
             // grdChildId
             // 
@@ -254,7 +139,7 @@ namespace DiamondTrading.Process
             this.grdSize.FieldName = "Size";
             this.grdSize.Name = "grdSize";
             this.grdSize.Visible = true;
-            this.grdSize.VisibleIndex = 2;
+            this.grdSize.VisibleIndex = 3;
             this.grdSize.Width = 89;
             // 
             // grdKapan
@@ -263,7 +148,7 @@ namespace DiamondTrading.Process
             this.grdKapan.FieldName = "Kapan";
             this.grdKapan.Name = "grdKapan";
             this.grdKapan.Visible = true;
-            this.grdKapan.VisibleIndex = 4;
+            this.grdKapan.VisibleIndex = 5;
             this.grdKapan.Width = 89;
             // 
             // grdCategory
@@ -272,8 +157,134 @@ namespace DiamondTrading.Process
             this.grdCategory.FieldName = "Category";
             this.grdCategory.Name = "grdCategory";
             this.grdCategory.Visible = true;
-            this.grdCategory.VisibleIndex = 5;
+            this.grdCategory.VisibleIndex = 6;
             this.grdCategory.Width = 104;
+            // 
+            // grdBranch
+            // 
+            this.grdBranch.Caption = "Branch";
+            this.grdBranch.FieldName = "BranchName";
+            this.grdBranch.Name = "grdBranch";
+            this.grdBranch.Visible = true;
+            this.grdBranch.VisibleIndex = 2;
+            this.grdBranch.Width = 89;
+            // 
+            // InwardNetWeightCol
+            // 
+            this.InwardNetWeightCol.Caption = "Inward Weight";
+            this.InwardNetWeightCol.FieldName = "InwardNetWeight";
+            this.InwardNetWeightCol.Name = "InwardNetWeightCol";
+            this.InwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
+            this.InwardNetWeightCol.Visible = true;
+            this.InwardNetWeightCol.VisibleIndex = 7;
+            this.InwardNetWeightCol.Width = 89;
+            // 
+            // InwardRateCol
+            // 
+            this.InwardRateCol.Caption = "Inward Rate";
+            this.InwardRateCol.FieldName = "InwardRate";
+            this.InwardRateCol.Name = "InwardRateCol";
+            this.InwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
+            this.InwardRateCol.Visible = true;
+            this.InwardRateCol.VisibleIndex = 8;
+            this.InwardRateCol.Width = 74;
+            // 
+            // InwardAmountCol
+            // 
+            this.InwardAmountCol.Caption = "Inward Amount";
+            this.InwardAmountCol.FieldName = "InwardAmount";
+            this.InwardAmountCol.Name = "InwardAmountCol";
+            this.InwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
+            this.InwardAmountCol.Visible = true;
+            this.InwardAmountCol.VisibleIndex = 9;
+            this.InwardAmountCol.Width = 100;
+            // 
+            // OutwardNetWeightCol
+            // 
+            this.OutwardNetWeightCol.Caption = "Outward Weight";
+            this.OutwardNetWeightCol.FieldName = "OutwardNetWeight";
+            this.OutwardNetWeightCol.Name = "OutwardNetWeightCol";
+            this.OutwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
+            this.OutwardNetWeightCol.Visible = true;
+            this.OutwardNetWeightCol.VisibleIndex = 10;
+            this.OutwardNetWeightCol.Width = 94;
+            // 
+            // OutwardRateCol
+            // 
+            this.OutwardRateCol.Caption = "Outward Rate";
+            this.OutwardRateCol.FieldName = "OutwardRate";
+            this.OutwardRateCol.Name = "OutwardRateCol";
+            this.OutwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
+            this.OutwardRateCol.Visible = true;
+            this.OutwardRateCol.VisibleIndex = 11;
+            this.OutwardRateCol.Width = 83;
+            // 
+            // OutwardAmountCol
+            // 
+            this.OutwardAmountCol.Caption = "Outward Amount";
+            this.OutwardAmountCol.FieldName = "OutwardAmount";
+            this.OutwardAmountCol.Name = "OutwardAmountCol";
+            this.OutwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
+            this.OutwardAmountCol.Visible = true;
+            this.OutwardAmountCol.VisibleIndex = 12;
+            this.OutwardAmountCol.Width = 100;
+            // 
+            // repositoryItemComboBox2
+            // 
+            this.repositoryItemComboBox2.AutoHeight = false;
+            this.repositoryItemComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            simpleContextButton1.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton1.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton1.Id = new System.Guid("54721bc4-12c7-44e4-b1f0-3eed0f0a527f");
+            simpleContextButton1.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton1.Name = "Pending";
+            simpleContextButton2.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton2.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton2.Id = new System.Guid("ef446b4e-752a-4c31-8bf4-d810bb6e9d15");
+            simpleContextButton2.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton2.Name = "Approved";
+            simpleContextButton3.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton3.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton3.Id = new System.Guid("e82ded0a-e804-44ad-872c-5d9ec8dd7edd");
+            simpleContextButton3.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton3.Name = "Reject";
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton1);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton2);
+            this.repositoryItemComboBox2.ContextButtons.Add(simpleContextButton3);
+            this.repositoryItemComboBox2.Name = "repositoryItemComboBox2";
+            this.repositoryItemComboBox2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // repositoryItemImageComboBox2
+            // 
+            this.repositoryItemImageComboBox2.AutoHeight = false;
+            this.repositoryItemImageComboBox2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            simpleContextButton4.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton4.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton4.Id = new System.Guid("1a85506e-04a5-4c54-82b1-95c309d2d2c0");
+            simpleContextButton4.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton4.Name = "Pending";
+            simpleContextButton5.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton5.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton5.Id = new System.Guid("e3c978b9-43c4-4559-b2ae-e2fde3a38a31");
+            simpleContextButton5.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton5.Name = "Approved";
+            simpleContextButton6.AlignmentOptions.Panel = DevExpress.Utils.ContextItemPanel.Center;
+            simpleContextButton6.AlignmentOptions.Position = DevExpress.Utils.ContextItemPosition.Far;
+            simpleContextButton6.Id = new System.Guid("91d3c9e8-3e9f-4b9c-b5d6-a06ff32a7a2e");
+            simpleContextButton6.ImageOptionsCollection.ItemNormal.UseDefaultImage = true;
+            simpleContextButton6.Name = "Reject";
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton4);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton5);
+            this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton6);
+            this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             // 
             // FrmChildNumberReport
             // 
@@ -283,6 +294,7 @@ namespace DiamondTrading.Process
             this.Controls.Add(this.grdNumberReportMaster);
             this.Name = "FrmChildNumberReport";
             this.Text = "FrmChildNumberReport";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmChildNumberReport_FormClosed);
             this.Load += new System.EventHandler(this.FrmChildNumberReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdNumberReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvNumberReport)).EndInit();
@@ -310,5 +322,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn grdSize;
         private DevExpress.XtraGrid.Columns.GridColumn grdKapan;
         private DevExpress.XtraGrid.Columns.GridColumn grdCategory;
+        private DevExpress.XtraGrid.Columns.GridColumn grdNumbeName;
     }
 }

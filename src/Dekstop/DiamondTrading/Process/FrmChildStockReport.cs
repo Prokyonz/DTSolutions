@@ -1,4 +1,5 @@
 ﻿using EFCore.SQL.Repository;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,23 +14,34 @@ namespace DiamondTrading.Process
 {
     public partial class FrmChildStockReport : DevExpress.XtraEditors.XtraForm
     {
-        private AccountToAssortMasterRepository _accountToAssortMasterRepository;
+        private List<StockReportModelReport> _stockReportModelReports;
+
         public FrmChildStockReport()
         {
             InitializeComponent();
 
         }
 
-        public async Task LoadData()
+        public FrmChildStockReport(List<StockReportModelReport> stockReportModelReports)
         {
-            _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-            var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-            grdStockReportMaster.DataSource = salesData;
+            InitializeComponent();
+            _stockReportModelReports = stockReportModelReports;
+        }
+
+        public async Task LoadDataStock()
+        {
+            grdStockReportMaster.DataSource = _stockReportModelReports;
+            gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("StockChildReport"));
         }
 
         private void FrmChildStockReport_Load(object sender, EventArgs e)
         {
-            _ = LoadData();
+            _ = LoadDataStock();
+        }
+
+        private void FrmChildStockReport_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            gvStockReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("StockChildReport"));
         }
     }
 }

@@ -40,6 +40,7 @@ namespace DiamondTrading.Process
             this.gridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn149 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardNetWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardRateCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardAmountCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -48,7 +49,6 @@ namespace DiamondTrading.Process
             this.OutwardAmountCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox2 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
-            this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdStockReportMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBox2)).BeginInit();
@@ -117,15 +117,25 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Kapan", "Total = {0}")});
             this.gridColumn149.Visible = true;
             this.gridColumn149.VisibleIndex = 0;
-            this.gridColumn149.Width = 111;
+            this.gridColumn149.Width = 122;
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Trans. Type";
+            this.gridColumn1.Caption = "Operation Type";
             this.gridColumn1.FieldName = "Party";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
+            this.gridColumn1.Width = 207;
+            // 
+            // gridColumn2
+            // 
+            this.gridColumn2.Caption = "Branch";
+            this.gridColumn2.FieldName = "BranchName";
+            this.gridColumn2.Name = "gridColumn2";
+            this.gridColumn2.Visible = true;
+            this.gridColumn2.VisibleIndex = 1;
+            this.gridColumn2.Width = 143;
             // 
             // InwardNetWeightCol
             // 
@@ -136,6 +146,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
             this.InwardNetWeightCol.Visible = true;
             this.InwardNetWeightCol.VisibleIndex = 3;
+            this.InwardNetWeightCol.Width = 106;
             // 
             // InwardRateCol
             // 
@@ -146,6 +157,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
             this.InwardRateCol.Visible = true;
             this.InwardRateCol.VisibleIndex = 4;
+            this.InwardRateCol.Width = 78;
             // 
             // InwardAmountCol
             // 
@@ -156,6 +168,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
             this.InwardAmountCol.Visible = true;
             this.InwardAmountCol.VisibleIndex = 5;
+            this.InwardAmountCol.Width = 87;
             // 
             // OutwardNetWeightCol
             // 
@@ -166,6 +179,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
             this.OutwardNetWeightCol.Visible = true;
             this.OutwardNetWeightCol.VisibleIndex = 6;
+            this.OutwardNetWeightCol.Width = 91;
             // 
             // OutwardRateCol
             // 
@@ -176,6 +190,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
             this.OutwardRateCol.Visible = true;
             this.OutwardRateCol.VisibleIndex = 7;
+            this.OutwardRateCol.Width = 87;
             // 
             // OutwardAmountCol
             // 
@@ -186,6 +201,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
             this.OutwardAmountCol.Visible = true;
             this.OutwardAmountCol.VisibleIndex = 8;
+            this.OutwardAmountCol.Width = 107;
             // 
             // repositoryItemComboBox2
             // 
@@ -238,13 +254,6 @@ namespace DiamondTrading.Process
             this.repositoryItemImageComboBox2.ContextButtons.Add(simpleContextButton6);
             this.repositoryItemImageComboBox2.Name = "repositoryItemImageComboBox2";
             // 
-            // gridColumn2
-            // 
-            this.gridColumn2.Caption = "Branch";
-            this.gridColumn2.Name = "gridColumn2";
-            this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 1;
-            // 
             // FrmChildStockReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,6 +262,7 @@ namespace DiamondTrading.Process
             this.Controls.Add(this.grdStockReportMaster);
             this.Name = "FrmChildStockReport";
             this.Text = "FrmChildStockReport";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmChildStockReport_FormClosed);
             this.Load += new System.EventHandler(this.FrmChildStockReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grdStockReportMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvStockReport)).EndInit();
