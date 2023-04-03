@@ -11,6 +11,8 @@ namespace Repository.Entities.Model
         public string LoanType { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
+        public string CashBankPartyId { get; set; }
+        public string CashBankName { get; set; }
         public decimal Amount { get; set; }
         public int DuratonType { get; set; }
         public DateTime? StartDate { get; set; }

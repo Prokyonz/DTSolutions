@@ -61,6 +61,8 @@ namespace DiamondTrading.Utility
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
+            this.lueCashBank = new DevExpress.XtraEditors.LookUpEdit();
+            this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.lueParty.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
@@ -81,6 +83,7 @@ namespace DiamondTrading.Utility
             ((System.ComponentModel.ISupportInitialize)(this.lueDuration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCashBank.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // lueParty
@@ -133,7 +136,6 @@ namespace DiamondTrading.Utility
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -157,7 +159,7 @@ namespace DiamondTrading.Utility
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(376, 455);
+            this.btnCancel.Location = new System.Drawing.Point(376, 497);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
             this.btnCancel.TabIndex = 15;
@@ -168,7 +170,7 @@ namespace DiamondTrading.Utility
             // 
             this.btnReset.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Appearance.Options.UseFont = true;
-            this.btnReset.Location = new System.Drawing.Point(295, 455);
+            this.btnReset.Location = new System.Drawing.Point(295, 497);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 14;
@@ -179,7 +181,7 @@ namespace DiamondTrading.Utility
             // 
             this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(214, 455);
+            this.btnSave.Location = new System.Drawing.Point(214, 497);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 13;
@@ -188,6 +190,8 @@ namespace DiamondTrading.Utility
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.lueCashBank);
+            this.panelControl1.Controls.Add(this.labelControl14);
             this.panelControl1.Controls.Add(this.labelControl13);
             this.panelControl1.Controls.Add(this.lueCompany);
             this.panelControl1.Controls.Add(this.labelControl11);
@@ -218,7 +222,7 @@ namespace DiamondTrading.Utility
             this.panelControl1.Controls.Add(this.dtDate);
             this.panelControl1.Location = new System.Drawing.Point(12, 4);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(439, 445);
+            this.panelControl1.Size = new System.Drawing.Size(439, 487);
             this.panelControl1.TabIndex = 4;
             // 
             // labelControl13
@@ -250,7 +254,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl11.Appearance.Options.UseFont = true;
-            this.labelControl11.Location = new System.Drawing.Point(11, 392);
+            this.labelControl11.Location = new System.Drawing.Point(11, 423);
             this.labelControl11.Name = "labelControl11";
             this.labelControl11.Size = new System.Drawing.Size(61, 16);
             this.labelControl11.TabIndex = 27;
@@ -258,7 +262,7 @@ namespace DiamondTrading.Utility
             // 
             // txtRemark
             // 
-            this.txtRemark.Location = new System.Drawing.Point(119, 391);
+            this.txtRemark.Location = new System.Drawing.Point(119, 422);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Size = new System.Drawing.Size(315, 49);
             this.txtRemark.TabIndex = 12;
@@ -266,7 +270,7 @@ namespace DiamondTrading.Utility
             // txtNetAmount
             // 
             this.txtNetAmount.EditValue = "0";
-            this.txtNetAmount.Location = new System.Drawing.Point(119, 357);
+            this.txtNetAmount.Location = new System.Drawing.Point(119, 388);
             this.txtNetAmount.Name = "txtNetAmount";
             this.txtNetAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNetAmount.Properties.Appearance.Options.UseFont = true;
@@ -279,7 +283,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(11, 360);
+            this.labelControl10.Location = new System.Drawing.Point(11, 391);
             this.labelControl10.Name = "labelControl10";
             this.labelControl10.Size = new System.Drawing.Size(84, 16);
             this.labelControl10.TabIndex = 25;
@@ -289,7 +293,7 @@ namespace DiamondTrading.Utility
             // 
             this.txtTotalInterest.EditValue = "0";
             this.txtTotalInterest.Enabled = false;
-            this.txtTotalInterest.Location = new System.Drawing.Point(119, 324);
+            this.txtTotalInterest.Location = new System.Drawing.Point(119, 355);
             this.txtTotalInterest.Name = "txtTotalInterest";
             this.txtTotalInterest.Properties.Appearance.BackColor = System.Drawing.Color.LightGray;
             this.txtTotalInterest.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -304,7 +308,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl9.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl9.Appearance.Options.UseFont = true;
-            this.labelControl9.Location = new System.Drawing.Point(11, 327);
+            this.labelControl9.Location = new System.Drawing.Point(11, 358);
             this.labelControl9.Name = "labelControl9";
             this.labelControl9.Size = new System.Drawing.Size(94, 16);
             this.labelControl9.TabIndex = 23;
@@ -313,7 +317,7 @@ namespace DiamondTrading.Utility
             // txtInterestRate
             // 
             this.txtInterestRate.EditValue = "0";
-            this.txtInterestRate.Location = new System.Drawing.Point(119, 291);
+            this.txtInterestRate.Location = new System.Drawing.Point(119, 322);
             this.txtInterestRate.Name = "txtInterestRate";
             this.txtInterestRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtInterestRate.Properties.Appearance.Options.UseFont = true;
@@ -327,7 +331,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(11, 294);
+            this.labelControl7.Location = new System.Drawing.Point(11, 325);
             this.labelControl7.Name = "labelControl7";
             this.labelControl7.Size = new System.Drawing.Size(91, 16);
             this.labelControl7.TabIndex = 21;
@@ -336,7 +340,7 @@ namespace DiamondTrading.Utility
             // txtAmount
             // 
             this.txtAmount.EditValue = "0";
-            this.txtAmount.Location = new System.Drawing.Point(119, 189);
+            this.txtAmount.Location = new System.Drawing.Point(119, 220);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAmount.Properties.Appearance.Options.UseFont = true;
@@ -350,7 +354,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(234, 260);
+            this.labelControl5.Location = new System.Drawing.Point(234, 291);
             this.labelControl5.Name = "labelControl5";
             this.labelControl5.Size = new System.Drawing.Size(68, 16);
             this.labelControl5.TabIndex = 18;
@@ -359,11 +363,10 @@ namespace DiamondTrading.Utility
             // dateEnd
             // 
             this.dateEnd.EditValue = null;
-            this.dateEnd.Location = new System.Drawing.Point(305, 257);
+            this.dateEnd.Location = new System.Drawing.Point(305, 288);
             this.dateEnd.Name = "dateEnd";
             this.dateEnd.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateEnd.Properties.Appearance.Options.UseFont = true;
-            this.dateEnd.Properties.BeepOnError = false;
             this.dateEnd.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateEnd.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -377,7 +380,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(11, 260);
+            this.labelControl4.Location = new System.Drawing.Point(11, 291);
             this.labelControl4.Name = "labelControl4";
             this.labelControl4.Size = new System.Drawing.Size(75, 16);
             this.labelControl4.TabIndex = 16;
@@ -386,11 +389,10 @@ namespace DiamondTrading.Utility
             // dateStart
             // 
             this.dateStart.EditValue = null;
-            this.dateStart.Location = new System.Drawing.Point(119, 257);
+            this.dateStart.Location = new System.Drawing.Point(119, 288);
             this.dateStart.Name = "dateStart";
             this.dateStart.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dateStart.Properties.Appearance.Options.UseFont = true;
-            this.dateStart.Properties.BeepOnError = false;
             this.dateStart.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dateStart.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -402,7 +404,7 @@ namespace DiamondTrading.Utility
             // 
             // lueDuration
             // 
-            this.lueDuration.Location = new System.Drawing.Point(119, 224);
+            this.lueDuration.Location = new System.Drawing.Point(119, 255);
             this.lueDuration.Name = "lueDuration";
             this.lueDuration.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueDuration.Properties.Appearance.Options.UseFont = true;
@@ -420,7 +422,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(11, 227);
+            this.labelControl3.Location = new System.Drawing.Point(11, 258);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(65, 16);
             this.labelControl3.TabIndex = 14;
@@ -430,7 +432,7 @@ namespace DiamondTrading.Utility
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(11, 192);
+            this.labelControl2.Location = new System.Drawing.Point(11, 223);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(61, 16);
             this.labelControl2.TabIndex = 10;
@@ -495,7 +497,6 @@ namespace DiamondTrading.Utility
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -509,12 +510,37 @@ namespace DiamondTrading.Utility
             this.dtTime.Size = new System.Drawing.Size(88, 20);
             this.dtTime.TabIndex = 5;
             // 
+            // lueCashBank
+            // 
+            this.lueCashBank.Location = new System.Drawing.Point(119, 188);
+            this.lueCashBank.Name = "lueCashBank";
+            this.lueCashBank.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCashBank.Properties.Appearance.Options.UseFont = true;
+            this.lueCashBank.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueCashBank.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueCashBank.Properties.NullText = "";
+            this.lueCashBank.Size = new System.Drawing.Size(315, 26);
+            this.lueCashBank.TabIndex = 30;
+            // 
+            // labelControl14
+            // 
+            this.labelControl14.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl14.Appearance.Options.UseFont = true;
+            this.labelControl14.Location = new System.Drawing.Point(11, 191);
+            this.labelControl14.Name = "labelControl14";
+            this.labelControl14.Size = new System.Drawing.Size(77, 16);
+            this.labelControl14.TabIndex = 31;
+            this.labelControl14.Text = "Cash/Bank* :";
+            // 
             // FrmLoanEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(463, 488);
+            this.ClientSize = new System.Drawing.Size(463, 530);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -550,6 +576,7 @@ namespace DiamondTrading.Utility
             ((System.ComponentModel.ISupportInitialize)(this.lueDuration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueCashBank.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -587,5 +614,7 @@ namespace DiamondTrading.Utility
         private DevExpress.XtraEditors.TextEdit txtAmount;
         private DevExpress.XtraEditors.LabelControl labelControl13;
         private DevExpress.XtraEditors.LookUpEdit lueCompany;
+        private DevExpress.XtraEditors.LookUpEdit lueCashBank;
+        private DevExpress.XtraEditors.LabelControl labelControl14;
     }
 }

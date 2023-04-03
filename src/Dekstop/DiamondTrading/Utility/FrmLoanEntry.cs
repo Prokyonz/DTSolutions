@@ -37,6 +37,8 @@ namespace DiamondTrading.Utility
 
             _ = GetMaxSrNo();
 
+            _ = LoadCashank();
+
             lueReceiveFrom.Properties.DataSource = Common.GetLoanType();
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
@@ -44,7 +46,6 @@ namespace DiamondTrading.Utility
             lueDuration.Properties.DataSource = Common.GetLoanDuration();
             lueDuration.Properties.DisplayMember = "Name";
             lueDuration.Properties.ValueMember = "Id";
-
         }
 
         private async Task GetMaxSrNo()
@@ -61,6 +62,16 @@ namespace DiamondTrading.Utility
             lueCompany.Properties.ValueMember = "Id";
 
             lueCompany.EditValue = Common.LoginCompany;
+        }
+
+        private async Task LoadCashank()
+        {
+            var result = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany, new int[] { 4, 5 });
+            lueCashBank.Properties.DataSource = result;
+            lueCashBank.Properties.DisplayMember = "Name";
+            lueCashBank.Properties.ValueMember = "Id";
+
+            lueCashBank.EditValue = Common.LoginCompany;
         }
 
         private async Task LoadParty()
@@ -80,6 +91,7 @@ namespace DiamondTrading.Utility
                 {
                     Id = Guid.NewGuid().ToString(),
                     PartyId = lueParty.EditValue.ToString(),
+                    CashBankPartyId = lueCashBank.EditValue.ToString(),
                     Amount = decimal.Parse(txtAmount.Text),
                     CompanyId = lueCompany.EditValue.ToString(),
                     CreatedBy = Common.LoginCompany.ToString(),

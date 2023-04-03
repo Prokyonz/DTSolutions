@@ -14,6 +14,7 @@ namespace Repository.Entities
         public string CompanyId { get; set; }
         public int LoanType { get; set; }
         public string PartyId { get; set; }
+        public string CashBankPartyId { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Amount { get; set; }
