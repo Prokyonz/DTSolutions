@@ -28,9 +28,14 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 4)")]
         public decimal OutwardAmount { get; set; }
 
-        //[Column(TypeName = "decimal(18, 4)")]
-        //public decimal AvailableWeight { get; set; }
-        //public string FinancialYearId { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingNetWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingRate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingAmount { get; set; }
     }
 
     public class StockReportMasterGrid
@@ -70,6 +75,15 @@ namespace Repository.Entities.Model
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal OutwardAmount { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingNetWeight { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingRate { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal ClosingAmount { get; set; }
 
     }
 }
