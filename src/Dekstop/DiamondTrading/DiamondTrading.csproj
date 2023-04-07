@@ -848,6 +848,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\x64\SNI.dll" />
+    <Content Include="bin\Debug\x64\SNI.pdb" />
+    <Content Include="bin\Debug\x86\SNI.dll" />
+    <Content Include="bin\Debug\x86\SNI.pdb" />
     <Content Include="ExeRefrence\AForge.Controls.dll" />
     <Content Include="ExeRefrence\AForge.Video.DirectShow.dll" />
     <Content Include="ExeRefrence\AForge.Video.dll" />
