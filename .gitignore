@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/src/Service/DiamondTrade.API/Properties/Resources.resx
+/src/Service/DiamondTrade.API/Properties/Resources.Designer.cs

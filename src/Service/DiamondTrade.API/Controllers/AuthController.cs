@@ -23,11 +23,15 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _userMaster.Login(login.UserName, login.Password);
-
-                LoginResponseModel loginResponseModel = new LoginResponseModel();
-                loginResponseModel.Id = result.UserMaster.Id;
-
-                return Ok(loginResponseModel);
+                if (result.UserMaster != null)
+                {
+                    LoginResponseModel loginResponseModel = new LoginResponseModel();
+                    loginResponseModel.Id = result.UserMaster.Id;
+                    return Ok(loginResponseModel);
+                }
+                else
+                    return NotFound();
+                
             }
             catch
             {
