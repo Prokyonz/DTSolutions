@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class CalculatorMasterRepository: ICalculatorMaster
+    public class CalculatorMasterRepository : ICalculatorMaster
     {
         private DatabaseContext _databaseContext;
         public CalculatorMasterRepository()
@@ -62,8 +62,19 @@ namespace EFCore.SQL.Repository
                     var CalculatorEntry = await _databaseContext.CalculatorMaster.Where(w => w.Sr == calculatorMasterEntries[0].Sr).ToListAsync();
                     _databaseContext.CalculatorMaster.RemoveRange(CalculatorEntry);
 
-                    //Add New updated records to the database
+                    //Create an Id for each Record
+                    var result = calculatorMasterEntries.Where(x => x.Id == null).ToList();
+                    if (result.Any())
+                    {
+                        calculatorMasterEntries.ForEach(calculatorMaster =>
+                        {
+                            if (calculatorMaster.Id == null)
+                                calculatorMaster.Id = Guid.NewGuid().ToString();
+                        });
+                    }
 
+
+                    //Add New updated records to the database
                     await _databaseContext.CalculatorMaster.AddRangeAsync(calculatorMasterEntries);
 
                     await _databaseContext.SaveChangesAsync();

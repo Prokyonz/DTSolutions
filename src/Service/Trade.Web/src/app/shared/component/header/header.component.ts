@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
@@ -6,7 +6,14 @@ import { MenuItem } from 'primeng/api';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
+
 export class HeaderComponent implements OnInit {
+  @Input() title:string = "MyHeader";
+  @Input() iconName:string = "pi-align-justify";
+  @Input() showSideBar:boolean = false;
+  @Output() onClickMainIcon = new EventEmitter();
+
+
   sidebarVisible!: boolean;
   items: MenuItem[] = [
     {
@@ -20,7 +27,7 @@ export class HeaderComponent implements OnInit {
     {
         label: 'Calculator',
         icon: 'pi pi-fw pi-calculator',
-        routerLink: "/calculator",
+        routerLink: "/viewcts",
         command: () => {
           this.sidebarVisible = false;
         }
@@ -60,4 +67,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     
   }  
+
+  iconClick() {
+    console.log("event fired");
+    this.sidebarVisible = this.showSideBar;
+    this.onClickMainIcon.emit();
+  }
 }

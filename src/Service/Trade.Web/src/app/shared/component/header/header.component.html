@@ -2,11 +2,11 @@
     <table class="table">
         <tr>
             <td style="width: 50px;">
-                <p-button (click)="sidebarVisible = true" icon="pi pi-align-justify"></p-button>
+                <p-button (click)="iconClick();" icon="pi {{iconName}}"></p-button>
             </td>
             <td class="title">
                 <div>                    
-                    <b>Diamond Trade</b>
+                    <b>{{ title }}</b>
                 </div>
             </td>
             <td style="width: 50px;">
@@ -18,7 +18,7 @@
 </div>
 
 <div class="card flex justify-content-center">
-    <p-sidebar [(visible)]="sidebarVisible">
+    <p-sidebar [(visible)]="sidebarVisible" transitionOptions="300ms">
         <ng-template pTemplate="header">
             <div>
                 <b style="font-size: 25px;"><i class="pi pi-spin pi-star-fill"></i> Diamond Trade</b>
