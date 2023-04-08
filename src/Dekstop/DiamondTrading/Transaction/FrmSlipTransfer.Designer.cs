@@ -30,6 +30,7 @@ namespace DiamondTrading.Transaction
         private void InitializeComponent()
         {
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.txtSlipNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.lueSlipType = new DevExpress.XtraEditors.LookUpEdit();
             this.txtTotalAmount = new DevExpress.XtraEditors.TextEdit();
@@ -58,9 +59,9 @@ namespace DiamondTrading.Transaction
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.txtSlipNo = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSlipType.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
@@ -81,7 +82,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // panelControl1
@@ -107,6 +107,16 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Name = "panelControl1";
             this.panelControl1.Size = new System.Drawing.Size(628, 503);
             this.panelControl1.TabIndex = 4;
+            // 
+            // txtSlipNo
+            // 
+            this.txtSlipNo.Enabled = false;
+            this.txtSlipNo.Location = new System.Drawing.Point(84, 128);
+            this.txtSlipNo.Name = "txtSlipNo";
+            this.txtSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSlipNo.Properties.Appearance.Options.UseFont = true;
+            this.txtSlipNo.Size = new System.Drawing.Size(253, 22);
+            this.txtSlipNo.TabIndex = 23;
             // 
             // labelControl2
             // 
@@ -443,16 +453,7 @@ namespace DiamondTrading.Transaction
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 5;
             this.btnSave.Text = "&Save";
-            // 
-            // txtSlipNo
-            // 
-            this.txtSlipNo.Enabled = false;
-            this.txtSlipNo.Location = new System.Drawing.Point(84, 128);
-            this.txtSlipNo.Name = "txtSlipNo";
-            this.txtSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSlipNo.Properties.Appearance.Options.UseFont = true;
-            this.txtSlipNo.Size = new System.Drawing.Size(253, 22);
-            this.txtSlipNo.TabIndex = 23;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmSlipTransfer
             // 
@@ -473,6 +474,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSlipType.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTotalAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
@@ -493,7 +495,6 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -35,11 +35,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteSlipTransferEntryAsync(int Id)
+        public async Task<bool> DeleteSlipTransferEntryAsync(int Id, int SlipType, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id).ToListAsync();
+                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id && w.SlipType == SlipType && w.FinancialYearId == financialYearId).ToListAsync();
                 _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
                 await _databaseContext.SaveChangesAsync();
                 return true;
@@ -72,6 +72,22 @@ namespace EFCore.SQL.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public async Task<long> GetMaxSrNo(int slipType, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var result = await _databaseContext.SlipTransferEntry.Where(w => w.SlipType == slipType && w.FinancialYearId == financialYearId).MaxAsync(m => m.Sr);
+                    return result + 1;
+                }
+            }
+            catch (Exception ex)
+            {
+                return 1;
             }
         }
     }
