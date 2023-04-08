@@ -300,4 +300,22 @@ namespace Repository.Entities
             return openingStockCategoryMasters;
         }
     }
+
+    public class SlipType
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public static int Purchase = 0;
+        public static int Sale = 1;
+
+        public static List<SlipType> GetSlipTypes()
+        {
+            List<SlipType> slipTypes = new List<SlipType>
+            {
+                new SlipType {Id = Purchase, Name = "Purchase" },
+                new SlipType {Id = Sale, Name = "Sale" },
+            };
+            return slipTypes;
+        }
+    }
 }

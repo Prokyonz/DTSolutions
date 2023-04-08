@@ -35,22 +35,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteSlipTransferEntryAsync(string purchaseId)
+        public async Task<bool> DeleteSlipTransferEntryAsync(int Id)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
+                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id).ToListAsync();
                 _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
                 await _databaseContext.SaveChangesAsync();
                 return true;
             }
         }
 
-        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(string purchaseId)
+        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(int Id)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == purchaseId).ToListAsync();
+                return await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id).ToListAsync();
             }
         }
 
@@ -60,7 +60,7 @@ namespace EFCore.SQL.Repository
             {
                 if (slipTransferEntries.Count > 0)
                 {
-                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.PurchaseMasterId == slipTransferEntries[0].PurchaseMasterId).ToListAsync();
+                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == slipTransferEntries[0].Sr).ToListAsync();
                     _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
 
                     //Add New updated records to the database

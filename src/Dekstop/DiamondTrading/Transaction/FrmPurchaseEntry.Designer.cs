@@ -94,6 +94,7 @@ namespace DiamondTrading.Transaction
             this.colCurrAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDisAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCVDAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurchaseDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.grpGroup6 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -126,7 +127,7 @@ namespace DiamondTrading.Transaction
             this.Image1 = new DevExpress.XtraEditors.PictureEdit();
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.colPurchaseDetailId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.btnSlipAdd = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -1033,6 +1034,12 @@ namespace DiamondTrading.Transaction
             this.colCVDAmount.FieldName = "CVDAmount";
             this.colCVDAmount.Name = "colCVDAmount";
             // 
+            // colPurchaseDetailId
+            // 
+            this.colPurchaseDetailId.Caption = "PurchaseDetailId";
+            this.colPurchaseDetailId.FieldName = "PurchaseDetailId";
+            this.colPurchaseDetailId.Name = "colPurchaseDetailId";
+            // 
             // grpGroup6
             // 
             this.grpGroup6.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1099,6 +1106,7 @@ namespace DiamondTrading.Transaction
             // 
             this.grpGroup4.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup4.AppearanceCaption.Options.UseFont = true;
+            this.grpGroup4.Controls.Add(this.btnSlipAdd);
             this.grpGroup4.Controls.Add(this.labelControl19);
             this.grpGroup4.Controls.Add(this.tlSlipTransfer);
             this.grpGroup4.Location = new System.Drawing.Point(824, 31);
@@ -1416,11 +1424,19 @@ namespace DiamondTrading.Transaction
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // colPurchaseDetailId
+            // btnSlipAdd
             // 
-            this.colPurchaseDetailId.Caption = "PurchaseDetailId";
-            this.colPurchaseDetailId.FieldName = "PurchaseDetailId";
-            this.colPurchaseDetailId.Name = "colPurchaseDetailId";
+            this.btnSlipAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSlipAdd.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
+            this.btnSlipAdd.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSlipAdd.Appearance.Options.UseBackColor = true;
+            this.btnSlipAdd.Appearance.Options.UseFont = true;
+            this.btnSlipAdd.Location = new System.Drawing.Point(215, 45);
+            this.btnSlipAdd.Name = "btnSlipAdd";
+            this.btnSlipAdd.Size = new System.Drawing.Size(39, 24);
+            this.btnSlipAdd.TabIndex = 34;
+            this.btnSlipAdd.Text = "+";
+            this.btnSlipAdd.Click += new System.EventHandler(this.btnSlipAdd_Click);
             // 
             // FrmPurchaseEntry
             // 
@@ -1634,5 +1650,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colDisAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colCVDAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailId;
+        private DevExpress.XtraEditors.SimpleButton btnSlipAdd;
     }
 }
