@@ -40,7 +40,7 @@ body {
 }
 
 // Dropdown 100%
-.p-dropdown, .p-calendar {
+.p-dropdown, .p-calendar, .p-button {
   width: 100%;
 }
 
@@ -54,6 +54,6 @@ body {
   margin:8px;
 }
 
-.p-dropdown .p-dropdown-label {
+.p-dropdown .p-dropdown-label, .p-calendar-w-btn .p-inputtext {
   padding: 15px;
 }
