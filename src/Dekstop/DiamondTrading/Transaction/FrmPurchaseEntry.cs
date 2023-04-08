@@ -21,6 +21,7 @@ namespace DiamondTrading.Transaction
     {
         PurchaseMasterRepository _purchaseMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        SlipTransferEntryRepository _slipTransferEntryRepository;
         private readonly BrokerageMasterRepository _brokerageMasterRepository;
         decimal ItemRunningWeight = 0;
         decimal ItemFinalAmount = 0;
@@ -28,6 +29,7 @@ namespace DiamondTrading.Transaction
         private PurchaseMaster _editedPurchaseMaster;
         private PurchaseDetails _editedPurchaseDetails;
         private bool isLoading = false;
+        private List<SlipTransferEntry> _slipTransferEntries;
 
         public FrmPurchaseEntry()
         {
@@ -35,6 +37,7 @@ namespace DiamondTrading.Transaction
             _purchaseMasterRepository = new PurchaseMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _slipTransferEntryRepository = new SlipTransferEntryRepository();
             this.Text = "PURCHASE - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
         }
 
@@ -44,6 +47,7 @@ namespace DiamondTrading.Transaction
             _purchaseMasterRepository = new PurchaseMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
+            _slipTransferEntryRepository = new SlipTransferEntryRepository();
             this.Text = "PURCHASE - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
             _selectedPurchaseId = SelectedPurchaseId;
         }
@@ -56,7 +60,7 @@ namespace DiamondTrading.Transaction
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             tglPF.IsOn = Common.PrintPurchasePF;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
-
+            _slipTransferEntries = new List<SlipTransferEntry>();
             SetThemeColors(Color.FromArgb(250, 243, 197));
 
             //SetThemeColors(Color.FromArgb(0));
@@ -188,6 +192,12 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.UpdateCurrentRow();
                         }
 
+                        if (!string.IsNullOrEmpty(_editedPurchaseMaster.TransferParentId))
+                        {
+                            _slipTransferEntries = await LoadSlipTransferDetails(Convert.ToInt32(_editedPurchaseMaster.TransferParentId));
+                            grdSlipParticularsDetails.DataSource = _slipTransferEntries;
+                        }
+
                         byte[] Logo = null;
                         MemoryStream ms = null;
                         try
@@ -265,6 +275,12 @@ namespace DiamondTrading.Transaction
 
             lueCompany.EditValue = Common.LoginCompany;
             await LoadBranch(Common.LoginCompany);
+        }
+
+        private async Task<List<SlipTransferEntry>> LoadSlipTransferDetails(int SlipTransferId)
+        {
+            var slipTranferDetails = await _slipTransferEntryRepository.GetSlipTransferEntriesAsync(SlipTransferId);
+            return slipTranferDetails;
         }
 
         private void SetThemeColors(Color color)
@@ -1408,11 +1424,31 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.UpdatedBy = Common.LoginUserID;
                     purchaseMaster.PurchaseDetails = purchaseDetailsList;
 
+                    var SlipTransferEntity = await _slipTransferEntryRepository.AddSlipTransferEntryAsync(_slipTransferEntries);
+
+                    if (SlipTransferEntity.Count > 0)
+                    {
+                        purchaseMaster.TransferParentId = SlipTransferEntity[0].Sr.ToString();
+                    }
+
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
                     var Result = await purchaseMasterRepository.AddPurchaseAsync(purchaseMaster);
 
                     if (Result != null)
                     {
+                        try
+                        {
+                            foreach (var item in _slipTransferEntries)
+                            {
+                                item.PurchaseSaleId = Result.Id;
+                            }
+                            _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(SlipTransferEntity);
+                        }
+                        catch
+                        {
+
+                        }
+
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await Reset();
                     }
@@ -1508,11 +1544,29 @@ namespace DiamondTrading.Transaction
                     purchaseMaster.ApprovalType = 0;
                     purchaseMaster.Message = "";
 
+                    if (_slipTransferEntries.Count > 0)
+                    {
+                        purchaseMaster.TransferParentId = _slipTransferEntries[0].Sr.ToString();
+                    }
+
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
                     var Result = await purchaseMasterRepository.UpdatePurchaseAsync(purchaseMaster);
 
                     if (Result != null)
                     {
+                        try
+                        {
+                            foreach (var item in _slipTransferEntries)
+                            {
+                                item.PurchaseSaleId = Result.Id;
+                            }
+                            _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries);
+                        }
+                        catch
+                        {
+
+                        }
+
                         this.DialogResult = DialogResult.OK;
                         //MessageBox.Show(this, AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Close();
@@ -1701,10 +1755,25 @@ namespace DiamondTrading.Transaction
             await Reset();
         }
 
-        private void btnSlipAdd_Click(object sender, EventArgs e)
+        private async void btnSlipAdd_Click(object sender, EventArgs e)
         {
-            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer();
-            frmSlipTransfer.ShowDialog();
+            string SrNo = string.Empty;
+            if (_slipTransferEntries.Count > 0)
+            {
+                SrNo = _slipTransferEntries[0].Sr.ToString();
+            }
+            else
+            {
+                var SrNo1 = await _slipTransferEntryRepository.GetMaxSrNo(0, Common.LoginFinancialYear);
+                SrNo = SrNo1.ToString();
+            }
+
+            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer(lueCompany.EditValue.ToString(), 0, txtSlipNo.Text, Convert.ToDecimal(colAmount.SummaryItem.SummaryValue), SrNo, _slipTransferEntries);
+            if(frmSlipTransfer.ShowDialog() == DialogResult.OK)
+            {
+                _slipTransferEntries = frmSlipTransfer.SlipTransferDetails;
+                grdSlipParticularsDetails.DataSource = _slipTransferEntries;
+            }
         }
     }
 }
