@@ -68,7 +68,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
         public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
         public DbSet<LedgerBalanceManager> LedgerBalanceManager { get; set; }
-
+        public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
 
 
 
@@ -129,8 +129,8 @@ namespace EFCore.SQL.DBContext
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;").EnableSensitiveDataLogging();
-            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
@@ -184,6 +184,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<RejectionInOutMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<OpeningStockMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LedgerBalanceManager>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CalculatorMaster>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();

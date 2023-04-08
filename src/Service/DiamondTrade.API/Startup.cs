@@ -45,6 +45,7 @@ namespace DiamondTrade.API
             });
 
             services.AddScoped<IUserMaster, UserMasterRepository>();
+            services.AddScoped<ICalculatorMaster, CalculatorMasterRepository>();
             services.AddScoped<IPurchaseMaster, PurchaseMasterRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 

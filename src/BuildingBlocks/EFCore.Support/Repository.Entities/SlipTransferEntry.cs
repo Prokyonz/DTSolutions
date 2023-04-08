@@ -9,8 +9,9 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
-        public string PersonName { get; set; }
-        public string PurchaseMasterId { get; set; }
+        public string Party { get; set; }
+        public string PurchaseSaleId { get; set; }
+        public int SlipType { get; set; }
         public DateTime SlipTransferEntryDate { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Amount { get; set; }
@@ -20,8 +21,5 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
-
-        [ForeignKey("PurchaseMasterId")]
-        public PurchaseMaster PurchaseMaster { get; set; }
     }
 }

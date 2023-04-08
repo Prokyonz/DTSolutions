@@ -1700,5 +1700,11 @@ namespace DiamondTrading.Transaction
         {
             await Reset();
         }
+
+        private void btnSlipAdd_Click(object sender, EventArgs e)
+        {
+            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer();
+            frmSlipTransfer.ShowDialog();
+        }
     }
 }

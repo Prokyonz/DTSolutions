@@ -1,15 +1,7 @@
-﻿using DiamondTrade.API.Models.Request;
-using DiamondTrade.API.Models.Response;
+﻿using DiamondTrade.API.Models;
+using DiamondTrade.API.Models.Request;
 using EFCore.SQL.Interface;
-using EFCore.SQL.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace DiamondTrade.API.Controllers
@@ -19,12 +11,9 @@ namespace DiamondTrade.API.Controllers
     public class AuthController : ControllerBase
     {
         private IUserMaster _userMaster;
-        private IPurchaseMaster _purchaseMaster;
-        public AuthController(IUserMaster userMaster,
-            IPurchaseMaster purchaseMaster)
+        public AuthController(IUserMaster userMaster)
         {
             _userMaster = userMaster;
-            _purchaseMaster = purchaseMaster;
         }
 
         [Route("login")]
@@ -33,40 +22,22 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                //var result = await _userMaster.Login(login.UserName, login.Password);
-
-                //LoginResponseModel loginResponseModel = new LoginResponseModel();
-                //loginResponseModel.Id = result.UserMaster.Id;
-
-                //return Ok(loginResponseModel);
-
-                var result = await _purchaseMaster.GetAllPurchaseAsync("ff8d3c9b-957b-46d1-b661-560ae4a2433e", "146c24c5-6663-4f3d-bdfd-80469275c898");
-
-                result.ForEach(element =>
+                var result = await _userMaster.Login(login.UserName, login.Password);
+                if (result.UserMaster != null)
                 {
-                    element.Image1 = null;
-                    element.Image2 = null;
-                    element.Image3 = null;
-                });
-
-                var minResult = result;
-
-                var json = JsonConvert.SerializeObject(minResult);
-
-                return Ok(json);
-
+                    LoginResponseModel loginResponseModel = new LoginResponseModel();
+                    loginResponseModel.Id = result.UserMaster.Id;
+                    return Ok(loginResponseModel);
+                }
+                else
+                    return NotFound();
+                
             }
-            catch (Exception Ex)
+            catch
             {
-
                 throw;
             }
         }
     }
-
-    public class LoginResponseModel
-    {
-        public string Id { get; set; }
-        
-    }
+  
 }
