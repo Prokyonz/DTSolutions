@@ -4,6 +4,7 @@ using EFCore.SQL.Interface;
 using EFCore.SQL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,19 +33,27 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _userMaster.Login(login.UserName, login.Password);
-                return Ok(result);
+                //var result = await _userMaster.Login(login.UserName, login.Password);
 
-                //var result = await _purchaseMaster.GetAllPurchaseAsync("ff8d3c9b-957b-46d1-b661-560ae4a2433e", "146c24c5-6663-4f3d-bdfd-80469275c898");
+                //LoginResponseModel loginResponseModel = new LoginResponseModel();
+                //loginResponseModel.Id = result.UserMaster.Id;
 
-                //var options = new JsonSerializerOptions
-                //{
-                //    ReferenceHandler = ReferenceHandler.Preserve
-                //};
+                //return Ok(loginResponseModel);
 
-                //var json = JsonSerializer.Serialize(result, options);
+                var result = await _purchaseMaster.GetAllPurchaseAsync("ff8d3c9b-957b-46d1-b661-560ae4a2433e", "146c24c5-6663-4f3d-bdfd-80469275c898");
 
-                //return Ok(json);
+                result.ForEach(element =>
+                {
+                    element.Image1 = null;
+                    element.Image2 = null;
+                    element.Image3 = null;
+                });
+
+                var minResult = result;
+
+                var json = JsonConvert.SerializeObject(minResult);
+
+                return Ok(json);
 
             }
             catch (Exception Ex)
@@ -53,5 +62,11 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+    }
+
+    public class LoginResponseModel
+    {
+        public string Id { get; set; }
+        
     }
 }
