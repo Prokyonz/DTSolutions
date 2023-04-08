@@ -1,5 +1,7 @@
 .panel {
+    height: calc(100vh - 56px);
     margin: 8px;
+    overflow: scroll;
 }
 .custom-design {
     width: 100%;

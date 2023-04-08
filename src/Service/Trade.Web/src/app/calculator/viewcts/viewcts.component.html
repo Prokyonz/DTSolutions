@@ -1,1 +1,106 @@
-<p>viewcts works!</p>
+<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" title="Add Details"></app-header>
+<div class="panel">    
+
+    <div class="card flex justify-content-center customClass">
+        <p-card style="width:100%; margin: 8px;">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
+                        </td>
+                        <td style="text-align: end; padding-right: 1rem">
+                            <span>SrNo:</span><b> &nbsp;<span>10</span></b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>                        
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Date</span><br/>                         
+                            <p-calendar [showIcon]="true"></p-calendar>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                </table>
+                
+            </div>
+        </p-card>
+    </div>
+    
+    <p-card class="customClass">
+        <ng-template pTemplate="header">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <b style="font-size: 20px; padding-left: 1rem;">Add Carats</b>
+                    </td>
+                </tr>
+            </table>
+        </ng-template>
+        <div>
+            <table style="width: 100%;" [cellSpacing]="5">
+                <tr>
+                    <td>   
+                        <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
+                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                    </td>
+                </tr>
+                <tr>
+                    <td>   
+                        <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                    </td>
+                </tr>
+                <tr>
+                    <td>   
+                        <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                        <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: end;">                                                     
+                        <p-button label="Submit"></p-button>                         
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </p-card>
+</div>
