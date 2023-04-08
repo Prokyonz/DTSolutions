@@ -130,6 +130,7 @@ namespace DiamondTrading.Transaction
             // 
             // lueSlipType
             // 
+            this.lueSlipType.Enabled = false;
             this.lueSlipType.Location = new System.Drawing.Point(84, 99);
             this.lueSlipType.Name = "lueSlipType";
             this.lueSlipType.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -443,6 +444,7 @@ namespace DiamondTrading.Transaction
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 6;
             this.btnReset.Text = "&Reset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 

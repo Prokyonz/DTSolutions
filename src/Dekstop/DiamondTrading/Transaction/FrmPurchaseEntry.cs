@@ -1428,7 +1428,7 @@ namespace DiamondTrading.Transaction
 
                     if (SlipTransferEntity.Count > 0)
                     {
-                        purchaseMaster.TransferParentId = SlipTransferEntity[0].Sr.ToString();
+                        purchaseMaster.TransferParentId = SlipTransferEntity[0].SrNo.ToString();
                     }
 
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
@@ -1441,6 +1441,8 @@ namespace DiamondTrading.Transaction
                             foreach (var item in _slipTransferEntries)
                             {
                                 item.PurchaseSaleId = Result.Id;
+                                item.BranchId = Result.BranchId;
+                                item.FinancialYearId = Result.FinancialYearId;
                             }
                             _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(SlipTransferEntity);
                         }
@@ -1546,7 +1548,7 @@ namespace DiamondTrading.Transaction
 
                     if (_slipTransferEntries.Count > 0)
                     {
-                        purchaseMaster.TransferParentId = _slipTransferEntries[0].Sr.ToString();
+                        purchaseMaster.TransferParentId = _slipTransferEntries[0].SrNo.ToString();
                     }
 
                     PurchaseMasterRepository purchaseMasterRepository = new PurchaseMasterRepository();
@@ -1559,6 +1561,8 @@ namespace DiamondTrading.Transaction
                             foreach (var item in _slipTransferEntries)
                             {
                                 item.PurchaseSaleId = Result.Id;
+                                item.BranchId = Result.BranchId;
+                                item.FinancialYearId = Result.FinancialYearId;
                             }
                             _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries);
                         }
@@ -1760,7 +1764,7 @@ namespace DiamondTrading.Transaction
             string SrNo = string.Empty;
             if (_slipTransferEntries.Count > 0)
             {
-                SrNo = _slipTransferEntries[0].Sr.ToString();
+                SrNo = _slipTransferEntries[0].SrNo.ToString();
             }
             else
             {

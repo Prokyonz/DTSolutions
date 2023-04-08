@@ -39,7 +39,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id && w.SlipType == SlipType && w.FinancialYearId == financialYearId).ToListAsync();
+                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == Id && w.SlipType == SlipType && w.FinancialYearId == financialYearId).ToListAsync();
                 _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
                 await _databaseContext.SaveChangesAsync();
                 return true;
@@ -50,7 +50,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SlipTransferEntry.Where(w => w.Sr == Id).ToListAsync();
+                return await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == Id).ToListAsync();
             }
         }
 
@@ -60,12 +60,12 @@ namespace EFCore.SQL.Repository
             {
                 if (slipTransferEntries.Count > 0)
                 {
-                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.Sr == slipTransferEntries[0].Sr).ToListAsync();
+                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == slipTransferEntries[0].SrNo).ToListAsync();
                     _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
 
                     //Add New updated records to the database
 
-                    await _databaseContext.SlipTransferEntry.AddRangeAsync(slipEntry);
+                    await _databaseContext.SlipTransferEntry.AddRangeAsync(slipTransferEntries);
 
                     await _databaseContext.SaveChangesAsync();
 
@@ -81,7 +81,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var result = await _databaseContext.SlipTransferEntry.Where(w => w.SlipType == slipType && w.FinancialYearId == financialYearId).MaxAsync(m => m.Sr);
+                    var result = await _databaseContext.SlipTransferEntry.Where(w => w.SlipType == slipType && w.FinancialYearId == financialYearId).MaxAsync(m => m.SrNo);
                     return result + 1;
                 }
             }

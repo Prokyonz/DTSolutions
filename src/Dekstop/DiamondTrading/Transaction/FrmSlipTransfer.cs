@@ -20,9 +20,12 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
         }
 
-        public FrmSlipTransfer(string CompanyId,int SlipType, string SlipNo, decimal TotalAmount, string SrNo, List<SlipTransferEntry> slipTransferEntry)
+        public FrmSlipTransfer(string CompanyId, int SlipType, string SlipNo, decimal TotalAmount, string SrNo, List<SlipTransferEntry> slipTransferEntry)
         {
             InitializeComponent();
+
+            dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
 
             _ = LoadCompany();
             GetSlipTypes();
@@ -34,19 +37,15 @@ namespace DiamondTrading.Transaction
             txtTotalAmount.Text = TotalAmount.ToString("0.00");
             SlipTransferDetails = slipTransferEntry;
             txtSerialNo.Text = SrNo;
-            grdParticularsDetails.DataSource = SlipTransferDetails;
+            if (SlipTransferDetails.Count > 0)
+                grdParticularsDetails.DataSource = SlipTransferDetails;
         }
 
         public List<SlipTransferEntry> SlipTransferDetails { get; set; }
 
         private void FrmSlipTransfer_Load(object sender, EventArgs e)
         {
-            dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
-
-            _ = LoadCompany();
-            GetSlipTypes();
-            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+            
         }
 
         private async Task LoadCompany()
@@ -88,12 +87,13 @@ namespace DiamondTrading.Transaction
             {
                 slipTransfer = new SlipTransferEntry();
                 slipTransfer.Id = Guid.NewGuid().ToString();
-                slipTransfer.Sr = Convert.ToInt32(txtSerialNo.Text);
+                slipTransfer.SrNo = Convert.ToInt32(txtSerialNo.Text);
                 slipTransfer.Party = grvParticularsDetails.GetRowCellValue(i, colParty).ToString();
                 slipTransfer.PurchaseSaleId = "";
                 slipTransfer.SlipType = Convert.ToInt32(lueSlipType.EditValue);
                 slipTransfer.SlipTransferEntryDate = Convert.ToDateTime(dtDate.Text);
                 slipTransfer.Amount = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());
+                slipTransfer.Message = txtRemark.Text;
                 slipTransfer.CreatedBy = Common.LoginUserID;
                 slipTransfer.CreatedDate = DateTime.Now;
                 slipTransfer.UpdatedBy = Common.LoginUserID;
@@ -104,6 +104,12 @@ namespace DiamondTrading.Transaction
             SlipTransferDetails = slipTransferEntryList;
 
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            grdParticularsDetails.DataSource = null;
+            grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
         }
     }
 }
