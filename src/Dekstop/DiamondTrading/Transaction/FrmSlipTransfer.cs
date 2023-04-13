@@ -36,9 +36,20 @@ namespace DiamondTrading.Transaction
             txtSlipNo.Text = SlipNo.ToString();
             txtTotalAmount.Text = TotalAmount.ToString("0.00");
             SlipTransferDetails = slipTransferEntry;
+
             txtSerialNo.Text = SrNo;
             if (SlipTransferDetails.Count > 0)
-                grdParticularsDetails.DataSource = SlipTransferDetails;
+            {
+                for (int i = 0; i < SlipTransferDetails.Count; i++)
+                {
+                    grvParticularsDetails.AddNewRow();
+                    grvParticularsDetails.SetFocusedRowCellValue(colParty, SlipTransferDetails[i].Party);
+                    grvParticularsDetails.SetFocusedRowCellValue(colAmount, SlipTransferDetails[i].Amount);
+                    grvParticularsDetails.SetFocusedRowCellValue(colPercentage, SlipTransferDetails[i].Percentage);
+                    grvParticularsDetails.SetFocusedRowCellValue(colDays, SlipTransferDetails[i].Days);
+                    grvParticularsDetails.UpdateCurrentRow();
+                }
+            }
         }
 
         public List<SlipTransferEntry> SlipTransferDetails { get; set; }
@@ -76,6 +87,8 @@ namespace DiamondTrading.Transaction
             DataTable dt = new DataTable();
             dt.Columns.Add("Party");
             dt.Columns.Add("Amount");
+            dt.Columns.Add("Percentage");
+            dt.Columns.Add("Days");
             return dt;
         }
 
@@ -93,6 +106,8 @@ namespace DiamondTrading.Transaction
                 slipTransfer.SlipType = Convert.ToInt32(lueSlipType.EditValue);
                 slipTransfer.SlipTransferEntryDate = Convert.ToDateTime(dtDate.Text);
                 slipTransfer.Amount = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());
+                slipTransfer.Percentage = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPercentage).ToString());
+                slipTransfer.Days = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colDays).ToString());
                 slipTransfer.Message = txtRemark.Text;
                 slipTransfer.CreatedBy = Common.LoginUserID;
                 slipTransfer.CreatedDate = DateTime.Now;

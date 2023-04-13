@@ -1668,6 +1668,7 @@ namespace DiamondTrading.Transaction
         private async Task Reset()
         {
             grdPurchaseDetails.DataSource = null;
+            grdSlipParticularsDetails.DataSource = null;
             lueBuyer.EditValue = "";
             lueParty.EditValue = "";
             lueBroker.EditValue = "";

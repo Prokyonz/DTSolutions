@@ -18,6 +18,9 @@ namespace Repository.Entities
         public DateTime SlipTransferEntryDate { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Amount { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Percentage { get; set; }
+        public int Days { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
