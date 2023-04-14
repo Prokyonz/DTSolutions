@@ -15,12 +15,15 @@ namespace DiamondTrading.Transaction
 {
     public partial class FrmSlipTransfer : DevExpress.XtraEditors.XtraForm
     {
+        private string BranchId { get; set; }
+        private string FinancialYearId { get; set; }
+
         public FrmSlipTransfer()
         {
             InitializeComponent();
         }
 
-        public FrmSlipTransfer(string CompanyId, int SlipType, string SlipNo, decimal TotalAmount, string SrNo, List<SlipTransferEntry> slipTransferEntry)
+        public FrmSlipTransfer(string CompanyId, int SlipType, string SlipNo, decimal TotalAmount, string SrNo, List<SlipTransferEntry> slipTransferEntry, string branchId, string financialYearId)
         {
             InitializeComponent();
 
@@ -36,6 +39,9 @@ namespace DiamondTrading.Transaction
             txtSlipNo.Text = SlipNo.ToString();
             txtTotalAmount.Text = TotalAmount.ToString("0.00");
             SlipTransferDetails = slipTransferEntry;
+            BranchId = branchId;
+            FinancialYearId = financialYearId;
+
 
             txtSerialNo.Text = SrNo;
             if (SlipTransferDetails.Count > 0)
@@ -109,6 +115,8 @@ namespace DiamondTrading.Transaction
                 slipTransfer.Percentage = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPercentage).ToString());
                 slipTransfer.Days = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colDays).ToString());
                 slipTransfer.Message = txtRemark.Text;
+                slipTransfer.BranchId = BranchId;
+                slipTransfer.FinancialYearId = FinancialYearId;
                 slipTransfer.CreatedBy = Common.LoginUserID;
                 slipTransfer.CreatedDate = DateTime.Now;
                 slipTransfer.UpdatedBy = Common.LoginUserID;

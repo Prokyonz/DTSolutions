@@ -1441,8 +1441,8 @@ namespace DiamondTrading.Transaction
                             foreach (var item in _slipTransferEntries)
                             {
                                 item.PurchaseSaleId = Result.Id;
-                                item.BranchId = Result.BranchId;
-                                item.FinancialYearId = Result.FinancialYearId;
+                                //item.BranchId = Result.BranchId;
+                                //item.FinancialYearId = Result.FinancialYearId;
                             }
                             _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(SlipTransferEntity);
                         }
@@ -1561,8 +1561,8 @@ namespace DiamondTrading.Transaction
                             foreach (var item in _slipTransferEntries)
                             {
                                 item.PurchaseSaleId = Result.Id;
-                                item.BranchId = Result.BranchId;
-                                item.FinancialYearId = Result.FinancialYearId;
+                                //item.BranchId = Result.BranchId;
+                                //item.FinancialYearId = Result.FinancialYearId;
                             }
                             _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries);
                         }
@@ -1669,6 +1669,7 @@ namespace DiamondTrading.Transaction
         {
             grdPurchaseDetails.DataSource = null;
             grdSlipParticularsDetails.DataSource = null;
+            _slipTransferEntries = new List<SlipTransferEntry>();
             lueBuyer.EditValue = "";
             lueParty.EditValue = "";
             lueBroker.EditValue = "";
@@ -1773,7 +1774,7 @@ namespace DiamondTrading.Transaction
                 SrNo = SrNo1.ToString();
             }
 
-            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer(lueCompany.EditValue.ToString(), 0, txtSlipNo.Text, Convert.ToDecimal(colAmount.SummaryItem.SummaryValue), SrNo, _slipTransferEntries);
+            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer(lueCompany.EditValue.ToString(), 0, txtSlipNo.Text, Convert.ToDecimal(colAmount.SummaryItem.SummaryValue), SrNo, _slipTransferEntries, lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
             if(frmSlipTransfer.ShowDialog() == DialogResult.OK)
             {
                 _slipTransferEntries = frmSlipTransfer.SlipTransferDetails;
