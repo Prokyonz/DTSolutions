@@ -13,6 +13,9 @@ interface City {
 })
 
 export class ViewctsComponent {
+  showViewSection:boolean = false;
+  PageTitle:string = "Add Details"
+
   cities: City[] = [
       { name: 'New York', code: 'NY' },
       { name: 'Rome', code: 'RM' },
@@ -21,11 +24,21 @@ export class ViewctsComponent {
       { name: 'Paris', code: 'PRS' }
   ];
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
 
   }
 
-  myfunction(){
-    this.router.navigate(["/dashboard"]);
+  myfunction() {
+    if(this.showViewSection == true) {
+      this.showViewSection = false;
+      this.PageTitle = "Add Details";
+    }
+    else
+      this.router.navigate(["dashboard"]);
+  }
+
+  showDetails() {
+    this.PageTitle = "View Details";
+    this.showViewSection = true;
   }
 }

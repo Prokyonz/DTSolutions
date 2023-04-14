@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
     {
         label: 'Reports',
         icon: 'pi pi-fw pi-user',
+        expanded: false,
         items: [
             {
                 label: 'Purchase',
@@ -61,6 +62,10 @@ export class HeaderComponent implements OnInit {
     {
         label: 'Logout',
         icon: 'pi pi-fw pi-calendar',
+        routerLink: "/login",
+        command: () => {
+          this.sidebarVisible = false;
+        }
     }
   ];
 
@@ -69,7 +74,6 @@ export class HeaderComponent implements OnInit {
   }  
 
   iconClick() {
-    console.log("event fired");
     this.sidebarVisible = this.showSideBar;
     this.onClickMainIcon.emit();
   }
