@@ -290,6 +290,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -357,7 +358,8 @@ namespace DiamondTrading
             this.accordionEditBtn,
             this.accordionDeleteBtn,
             this.accordionRefreshBtn,
-            this.accordionCancelButton});
+            this.accordionCancelButton,
+            this.accordionExportToExcel});
             this.accordionControl1.Location = new System.Drawing.Point(3, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
@@ -2761,6 +2763,14 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // accordionExportToExcel
+            // 
+            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
+            this.accordionExportToExcel.Name = "accordionExportToExcel";
+            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionExportToExcel.Text = "Excel";
+            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3078,5 +3088,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn OutwardAmountCol;
         private DevExpress.XtraGrid.Columns.GridColumn grdColId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
     }
 }

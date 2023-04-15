@@ -316,6 +316,73 @@ namespace DiamondTrading
             }
         }
 
+        private void ExportGridData(ExportDataType exportType)
+        {
+            if (xtabManager.SelectedTabPage == xtabKapanMapping)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvKapanMapping);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabAssortSend)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvAssortSendReceiveMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabAssortReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvAssortReceiveMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabBoilSendReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridViewBoilSendReceiveMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridViewCharniReportMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridViewGalaReportMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridViewNumberReportMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabStockReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gvStockReport);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraOpeningStock)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvOpeningStock);
+                }
+            }
+        }
+
         private async void accordionEditBtn_Click(object sender, EventArgs e)
         {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
@@ -788,6 +855,24 @@ namespace DiamondTrading
             {
                 gvStockReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
             }
+        }
+
+        private void accordionExportToExcel_Click(object sender, EventArgs e)
+        {
+            ExportGridData(ExportDataType.Excel);
+        }
+
+        private void ExportToExcel(GridView gridView)
+        {
+            gridView.ExpandAllGroups();
+            gridView.BestFitColumns();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Save an Excel File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+                gridView.ExportToXlsx(saveFileDialog.FileName);
         }
     }
 }
