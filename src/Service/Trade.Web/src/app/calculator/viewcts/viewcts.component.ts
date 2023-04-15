@@ -9,7 +9,16 @@ interface tableitems {
   number: string,
   carat: number,
   rate: number,
-  sizename: string
+  numbername: string,
+  percentage: number,
+  amount: number
+  //sizename: string
+}
+
+interface masterItem{
+  size: string,
+  sizename: string,
+  totalcarat: number
 }
 
 interface City {
@@ -27,10 +36,11 @@ interface Product {
 }
 
 interface Summary {
-  id: number,
-  sizeName:string,
-  percentage: string,
-  amount: number 
+  size:string,
+  sizename:string,
+  percentage: number,
+  amount: number,
+  totcarat: number 
 }
 
 @Component({
@@ -52,21 +62,26 @@ export class ViewctsComponent implements OnInit{
   pricelist: any[] = [];
   comanyid: string = "ff8d3c9b-957b-46d1-b661-560ae4a2433e";
   tableitems: tableitems[] = [];
+  masterItem: masterItem[] = [];
+  summatydata: Summary[] = [];
   selectednumber: any;
   selectedsize: any;
   selectedcarat : number = 0;
+  mastercarat: number = 0;
+  selectedtotalcarat: number = 0;
   valueTextArea: string;
+  summaryTotAmount = 0;
 
   products: Product[] = [
     { id: 1, number: 'IF SSD', cts: 12, rate: 1254, percentage: '1.3', amount: 125 },
     { id: 2, number: 'SSD', cts: 10, rate: 1569, percentage: '1.4', amount: 157 },
   ]
 
-  summary: Summary[] = [
-    { id: 1, sizeName: '+2', percentage: '14', amount: 12563 },
-    { id: 2, sizeName: '+6', percentage: '52', amount: 58000 },
-    { id: 3, sizeName: '+11', percentage: '68', amount: 158000 }
-  ]
+  // summary: Summary[] = [
+  //   { id: 1, sizeName: '+2', percentage: '14', amount: 12563 },
+  //   { id: 2, sizeName: '+6', percentage: '52', amount: 58000 },
+  //   { id: 3, sizeName: '+11', percentage: '68', amount: 158000 }
+  // ]
 
   cities: City[] = [
       { name: '+2', code: 'NY' },
@@ -100,6 +115,18 @@ export class ViewctsComponent implements OnInit{
   showDetails() {
     this.PageTitle = "View Details";
     this.showViewSection = true;
+    this.summatydata.forEach(e => {
+      const filteredSize = this.tableitems.filter((f) => {
+        return f.size == e.size;
+      });
+      
+      const totalAmount = filteredSize.reduce((acc, curr) => {
+        return acc + curr.amount;
+      }, 0);
+      e.amount = totalAmount;
+      e.percentage = (e.totcarat / this.mastercarat)*100;
+      this.summaryTotAmount = this.summaryTotAmount + e.amount;
+    });
   }
 
   showMessage() {
@@ -171,7 +198,11 @@ export class ViewctsComponent implements OnInit{
   }
 
   handlesize(event: any) {
-    this.selectedsize = event.value.value;
+    this.selectedsize = event.value;
+    var caratData = this.masterItem.filter(e => e.size == this.selectedsize.id);
+    if (caratData != null && caratData.length > 0){
+      this.selectedtotalcarat = caratData[0].totalcarat;
+    }
   }
 
   viewdata(){
@@ -185,16 +216,53 @@ export class ViewctsComponent implements OnInit{
 
   addItems(){
     debugger;
+    if (this.masterItem.filter(e => e.size == this.selectedsize.id).length == 0){
+      this.masterItem.push({
+        size : this.selectedsize.id,
+        sizename: this.selectedsize.name,
+        totalcarat: this.selectedtotalcarat
+      });
+
+      this.summatydata.push({
+        size: this.selectedsize.id,
+        sizename : this.selectedsize.name,
+        percentage : 0,
+        amount : 0,
+        totcarat : this.selectedtotalcarat
+      });
+    }
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
-    this.tableitems.push({
-      size : this.selectedsize.id,
-      number : this.selectednumber.id,
-      carat : this.selectedcarat,
-      rate : retdata[0].price,
-      sizename: this.selectedsize.name
+      this.tableitems.push({
+        size : this.selectedsize.id,
+        number : this.selectednumber.id,
+        carat : this.selectedcarat,
+        rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
+        numbername: this.selectednumber.name,
+        amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
+        percentage : (this.selectedcarat / ((retdata != null && retdata.length > 0) ? retdata[0].price : 0)) * 100
     });
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
     //   this.selectedsizeonly.push(this.selectedsize);
     // }    
+  }
+  getItemsBySize(size: string){
+    debugger;
+    return this.tableitems.filter(item => item.size === size);
+  }
+
+  deleteitems(item: any){
+    debugger;
+    if (confirm("Are you sure you want to delete this item?")) {
+      var index = this.tableitems.indexOf(item);
+      if (index >= 0){
+        this.tableitems.splice(index, 1);
+      }
+      if (this.tableitems.filter(e => e.size == item.size).length == 0){
+        var ind = this.masterItem.findIndex(e => e.size == item.size);
+        if (ind >= 0){
+          this.masterItem.splice(ind,1);
+        }
+      }
+    }
   }
 }
