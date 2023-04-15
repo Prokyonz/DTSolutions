@@ -28,6 +28,8 @@ import { CommonModule } from '@angular/common';
 import { SharedService } from './common/shared.service';
 import { AuthService } from './auth.service';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @NgModule({
   declarations: [
@@ -56,10 +58,12 @@ import { ToastModule } from 'primeng/toast';
     PanelModule,
     SidebarModule,
     PanelMenuModule,
+    ToastModule,
+    TableModule,
+    InputTextareaModule
     HttpClientModule,
     FormsModule,
-    CommonModule,
-    ToastModule
+    CommonModule
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]

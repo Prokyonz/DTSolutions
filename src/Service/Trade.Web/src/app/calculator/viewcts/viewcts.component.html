@@ -41,6 +41,10 @@
                                     <p-dropdown [options]="dealers" optionLabel="name"></p-dropdown>                            
                                 </td>
                             </tr>
+                            <td colspan="2" style="padding-top:10px;">   
+                                <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                                <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                            </td>
                         </table>
                         
                     </div>
@@ -60,36 +64,64 @@
             </ng-template>
             <div>
                 <table style="width: 100%;" [cellSpacing]="5">
-                    <tr>
+                    <tr style="border-bottom: 1px groove red;">
                         <td style="width: 50%;">   
                             <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
                             <p-dropdown [options]="sizes" optionLabel="name" [(ngModel)] = "selectedsize"></p-dropdown>                            
                         </td>
-                        <td>   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="numbers" optionLabel="name"  [(ngModel)]="selectednumber"></p-dropdown>                            
-                        </td>
+                        <td style="width:50%;">   
+                            <span style="bottom: 5px; position: relative;">Total Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                        </td>                        
                     </tr>
                     <tr>
-                        <td style="width:50%; padding-top:10px;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" [(ngModel)]="selectedcarat"  style="width: 100%;"/>                            
-                        </td>
-                        <td style="vertical-align: bottom;">                                                     
-                            <p-button label="Add Item" (onClick)="addItems()" ></p-button>                         
+                        <td colspan="2">   
+                            <p-panel header="Number Details">
+                                <table style="width:100%;">
+                                    <tr>
+                                        <td>   
+                                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                        </td>
+                                        <td style="width:50%;">   
+                                            <span style="bottom: 5px; position: relative;">CTS</span><br/>                                                       
+                                            <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                                        </td>                                           
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="vertical-align: bottom;">                                                     
+                                            <p-button label="Add Item" (onClick)="showMessage()"></p-button>                         
+                                        </td>
+                                    </tr>
+                                </table>
+                            </p-panel>                            
                         </td>
                     </tr>
                 </table>
             </div>
-        </p-card>            
+        </p-card>   
+
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">Notes</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <textarea rows="5" cols="30" pInputTextarea style="width: 100%;"></textarea>
+            </div>
+        </p-card>           
     </div>
-    <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-check"></p-button>
-    
+    <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>    
 </div>
 
 
-<div>
-    <div class="panel" *ngIf="showViewSection">
+<div *ngIf="showViewSection">
+    <div class="panel">
         <p-card class="customClass">
             <ng-template pTemplate="header">
                 <table style="width: 100%;">
@@ -97,48 +129,38 @@
                         <td>
                             <b style="font-size: 20px; padding-left: 1rem;">+2</b>
                         </td>
+                        <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
+                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
+                        </td>
                     </tr>
                 </table>
             </ng-template>
+            
             <div>
-                <table style="width: 100%;" [cellSpacing]="5">
-                    <tr>
-                        <td style="width: 33%;">   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                        </td>
-                        <td style="width:33%;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton  icon="pi pi-file-edit"></button>
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                        </td>
-                    </tr>  
-                    <tr>
-                        <td style="width: 33%;">   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                        </td>
-                        <td style="width:33%;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton  icon="pi pi-file-edit"></button>
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                        </td>
-                    </tr>  
-                </table>
+                <p-table [value]="products" styleClass="p-datatable-striped">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Number</th>
+                            <th>CTS</th>
+                            <th>Rate</th>
+                            <th>%</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{ product.number }}</td>
+                            <td>{{ product.cts }}</td>
+                            <td>{{ product.rate }}</td>
+                            <td>{{ product.percentage }}</td>
+                            <td>{{ product.amount }}</td>
+                            <td>
+                                <i class="pi text-red-500 pi-times-circle"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </p-card>
         <p-card class="customClass">
@@ -148,30 +170,37 @@
                         <td>
                             <b style="font-size: 20px; padding-left: 1rem;">+11</b>
                         </td>
+                        <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
+                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
+                        </td>
                     </tr>
                 </table>
             </ng-template>
             <div>
-                <table style="width: 100%;" [cellSpacing]="5">
-                    <tr>
-                        <td style="width: 33%;">   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                        </td>
-                        <td style="width:33%;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton  icon="pi pi-file-edit"></button>
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                        </td>
-                    </tr>                
-                </table>
+                <p-table [value]="products" styleClass="p-datatable-striped">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Number</th>
+                            <th>CTS</th>
+                            <th>Rate</th>
+                            <th>%</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{ product.number }}</td>
+                            <td>{{ product.cts }}</td>
+                            <td>{{ product.rate }}</td>
+                            <td>{{ product.percentage }}</td>
+                            <td>{{ product.amount }}</td>
+                            <td>
+                                <i class="pi text-red-500 pi-times-circle"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </p-card>
         <p-card class="customClass">
@@ -179,32 +208,39 @@
                 <table style="width: 100%;">
                     <tr>
                         <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">+11</b>
+                            <b style="font-size: 20px; padding-left: 1rem;">+6</b>
+                        </td>
+                        <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
+                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
                         </td>
                     </tr>
                 </table>
             </ng-template>
             <div>
-                <table style="width: 100%;" [cellSpacing]="5">
-                    <tr>
-                        <td style="width: 33%;">   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                        </td>
-                        <td style="width:33%;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton  icon="pi pi-file-edit"></button>
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                        </td>
-                    </tr>                
-                </table>
+                <p-table [value]="products" styleClass="p-datatable-striped">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Number</th>
+                            <th>CTS</th>
+                            <th>Rate</th>
+                            <th>%</th>
+                            <th>Amount</th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{ product.number }}</td>
+                            <td>{{ product.cts }}</td>
+                            <td>{{ product.rate }}</td>
+                            <td>{{ product.percentage }}</td>
+                            <td>{{ product.amount }}</td>
+                            <td>
+                                <i class="pi text-red-500 pi-times-circle"></i>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </p-card>
         <p-card class="customClass">
@@ -218,26 +254,28 @@
                 </table>
             </ng-template>
             <div>
-                <table style="width: 100%;" [cellSpacing]="5">
-                    <tr>
-                        <td style="width: 33%;">   
-                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                        </td>
-                        <td style="width:33%;">   
-                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton  icon="pi pi-file-edit"></button>
-                        </td>
-                        <td>
-                            <span style="bottom: 5px; position: relative;"></span><br/>  
-                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                        </td>
-                    </tr>                
-                </table>
+                <p-table [value]="summary" styleClass="p-datatable-striped">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Size Name</th>
+                            <th>Percentage</th>
+                            <th>Amount</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-summ>
+                        <tr>
+                            <td>{{ summ.sizeName }}</td>
+                            <td>{{ summ.percentage }}</td>
+                            <td>{{ summ.amount | currency: 'USD' }}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <tr>
+                            <td colspan="2" class="text-right">Totals</td>
+                            <td>{{ 25000 | currency: 'USD'}}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
         </p-card>
     </div>
