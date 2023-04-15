@@ -1,6 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.Export;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraPrinting;
 using DiamondTrading.Transaction;
 using EFCore.SQL.Repository;
 using Repository.Entities;
@@ -15,6 +17,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.XtraPrinting;
+using DevExpress.XtraPrintingLinks;
+using DevExpress.XtraGrid;
 
 namespace DiamondTrading
 {
@@ -514,6 +519,158 @@ namespace DiamondTrading
                 }
             }
             this.Cursor = Cursors.Default;
+        }
+
+        private void ExportGridData(ExportDataType exportType)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            if (xtabManager.SelectedTabPage == xtabPurchase)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvTransMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabSales)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvSalesTransactonMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView4);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView7);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabContra)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView5);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvExpenseMaster);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView9);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabMixed)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView15);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvPurchaseSlipDetails);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvJangadSendReceive);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPFReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvPFReport);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvLedgerReport);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvWeeklyPurchaseReport);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView1);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView29);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView32);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabCashBankReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView2);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grdViewSalaryReport);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(gridView13);
+                }
+            }
+            this.Cursor = Cursors.Default;
+        }
+
+        private void ExportToExcel(GridView gridView)
+        {
+            gridView.ExpandAllGroups();
+            gridView.BestFitColumns();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Save an Excel File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+                gridView.ExportToXlsx(saveFileDialog.FileName);
         }
 
         private void FrmTransactionDetails_FormClosed(object sender, FormClosedEventArgs e)
@@ -1554,6 +1711,21 @@ namespace DiamondTrading
         private void btnCashBankGetData_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
+        }
+
+        private void accordionExportToExcel_Click(object sender, EventArgs e)
+        {
+            ExportGridData(ExportDataType.Excel);
+        }
+
+        private void accordionExportToPdf_Click(object sender, EventArgs e)
+        {
+            ExportGridData(ExportDataType.PDF);
+        }
+
+        private void accordionPrint_Click(object sender, EventArgs e)
+        {
+            ExportGridData(ExportDataType.Print);
         }
     }
 }

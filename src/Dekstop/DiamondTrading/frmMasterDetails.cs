@@ -412,6 +412,108 @@ namespace DiamondTrading
             }
         }
 
+        private void ExportGridData(ExportDataType exportType)
+        {
+            if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvCompanyMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvBranchMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvLessGroupWeightMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvShapeMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvPurityMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvSizeMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvGalaMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvNumberMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvFinancialYearMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvBrokerageMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvCurrencyMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvKapanMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvPartyMaster);
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvUserMaster);
+                }
+            }
+        }
+
         private async void accordionEditBtn_Click(object sender, EventArgs e)
         {
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
@@ -814,6 +916,24 @@ namespace DiamondTrading
         private void gridViewCompanyMaster_MasterRowGetRelationName(object sender, MasterRowGetRelationNameEventArgs e)
         {
             e.RelationName = "Child";
+        }
+
+        private void accordionExportToExcel_Click(object sender, EventArgs e)
+        {
+            ExportGridData(ExportDataType.Excel);
+        }
+
+        private void ExportToExcel(GridView gridView)
+        {
+            gridView.ExpandAllGroups();
+            gridView.BestFitColumns();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel Files (*.xlsx)|*.xlsx";
+            saveFileDialog.Title = "Save an Excel File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+                gridView.ExportToXlsx(saveFileDialog.FileName);
         }
     }
 }

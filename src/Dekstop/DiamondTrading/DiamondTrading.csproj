@@ -949,6 +949,9 @@
     <Content Include="ExeRefrence\AForge.Controls.dll" />
     <Content Include="ExeRefrence\AForge.Video.DirectShow.dll" />
     <Content Include="ExeRefrence\AForge.Video.dll" />
+    <None Include="Resources\print_24.png" />
+    <None Include="Resources\pdf_24.png" />
+    <None Include="Resources\ibook_24.png" />
     <None Include="Resources\edit_16.png" />
     <None Include="Resources\image_16.png" />
     <None Include="Resources\image.png" />
