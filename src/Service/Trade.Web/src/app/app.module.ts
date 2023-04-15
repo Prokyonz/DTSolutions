@@ -71,9 +71,12 @@ import { AuthService } from './auth.service';
     ToastModule,
     TableModule,
     InputTextareaModule,
+<<<<<<< HEAD
     FormsModule,
     RadioButtonModule
 =======
+=======
+>>>>>>> Resolve Conflict
     HttpClientModule,
     FormsModule,
 <<<<<<< HEAD
