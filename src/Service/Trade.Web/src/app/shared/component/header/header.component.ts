@@ -39,19 +39,35 @@ export class HeaderComponent implements OnInit {
         items: [
             {
                 label: 'Purchase',
-                icon: 'pi pi-fw pi-user-plus'
+                icon: 'pi pi-fw pi-user-plus',
+                routerLink: "/report/1",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
             },
             {
                 label: 'Sales',
-                icon: 'pi pi-fw pi-user-minus'
+                icon: 'pi pi-fw pi-user-minus',
+                routerLink: "/report/2",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
             },
             {
                 label: 'Payment',
-                icon: 'pi pi-fw pi-users'
+                icon: 'pi pi-fw pi-users',
+                routerLink: "/report/3",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
             },
             {
                 label: 'Receipt',
-                icon: 'pi pi-fw pi-users'
+                icon: 'pi pi-fw pi-users',
+                routerLink: "/report/4",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
             }
         ]
     },

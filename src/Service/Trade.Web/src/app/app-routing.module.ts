@@ -5,6 +5,7 @@ import { AddctsComponent } from './calculator/addcts/addcts.component';
 import { ViewctsComponent } from './calculator/viewcts/viewcts.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CalculatorComponent } from './calculator/calculator.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path:'dashboard', component:DashboardComponent},
   {path:'addcts', component:AddctsComponent},
   {path:'viewcts', component:ViewctsComponent},
-  {path: 'calculator', component: CalculatorComponent}
+  {path: 'calculator', component: CalculatorComponent},
+  {path: 'report/:id', component: ReportComponent}
 ];
 
 @NgModule({

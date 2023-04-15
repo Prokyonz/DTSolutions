@@ -9,6 +9,7 @@ body {
 /* width */
 ::-webkit-scrollbar {
   width: 5px;
+  height: 5px;
 }
   
 /* Track */
@@ -54,7 +55,7 @@ body {
   margin:8px;
 }
 
-.p-dropdown .p-dropdown-label, .p-calendar-w-btn .p-inputtext, .p-inputtext {
+.p-dropdown .p-dropdown-label {
   padding: 15px;
 }
 
@@ -64,4 +65,13 @@ body {
 
 .p-toast {
   width: 20rem !important;
+}
+
+//Report CSS
+.p-paginator .p-dropdown > .p-paginator .p-dropdown .p-dropdown-label {
+  padding: 8px !important;
+}
+
+#pr_id_2_label {
+  padding:10px !important;
 }

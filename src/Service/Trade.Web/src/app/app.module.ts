@@ -23,6 +23,9 @@ import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
 import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { ToastModule } from 'primeng/toast';
     ViewctsComponent,
     DashboardComponent,
     HeaderComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,9 @@ import { ToastModule } from 'primeng/toast';
     PanelModule,
     SidebarModule,
     PanelMenuModule,
-    ToastModule
+    ToastModule,
+    TableModule,
+    InputTextareaModule
   ],
   providers: [],
   bootstrap: [AppComponent]
