@@ -4,6 +4,6 @@ namespace DiamondTrade.API.Models
 {
     public class LoginResponseModel
     {
-            public string Id { get; set; }
+        public string Id { get; set; }
     }
 }

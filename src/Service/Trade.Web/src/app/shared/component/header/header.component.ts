@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
         label: 'Calculator',
         icon: 'pi pi-fw pi-calculator',
         routerLink: "/viewcts",
+        expanded: false,
         command: () => {
           this.sidebarVisible = false;
         }

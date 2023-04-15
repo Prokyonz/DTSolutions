@@ -22,6 +22,11 @@ import { PanelModule } from 'primeng/panel';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SharedService } from './common/shared.service';
+import { AuthService } from './auth.service';
 
 @NgModule({
   declarations: [
@@ -49,9 +54,12 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     DropdownModule,
     PanelModule,
     SidebarModule,
-    PanelMenuModule
+    PanelMenuModule,
+    HttpClientModule,
+    FormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
