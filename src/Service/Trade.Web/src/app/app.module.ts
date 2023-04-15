@@ -76,8 +76,13 @@ import { AuthService } from './auth.service';
 =======
     HttpClientModule,
     FormsModule,
+<<<<<<< HEAD
     CommonModule
 >>>>>>> Login Module and Add code in API
+=======
+    CommonModule,
+    ToastModule
+>>>>>>> Update Calculator
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]

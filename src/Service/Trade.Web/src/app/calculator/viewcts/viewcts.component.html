@@ -26,19 +26,19 @@
                                 </td>    
                                 <td>   
                                     <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="branches" optionLabel="name"></p-dropdown>                            
                                 </td>                    
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="party" optionLabel="name"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="dealers" optionLabel="name"></p-dropdown>                            
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
@@ -67,8 +67,9 @@
                     <tr style="border-bottom: 1px groove red;">
                         <td style="width: 50%;">   
                             <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                            <p-dropdown [options]="sizes" optionLabel="name" [(ngModel)] = "selectedsize"></p-dropdown>                            
                         </td>
+<<<<<<< HEAD
                         <td style="width:50%;">   
                             <span style="bottom: 5px; position: relative;">Total Catats</span><br/>                                                       
                             <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
@@ -95,6 +96,20 @@
                                     </tr>
                                 </table>
                             </p-panel>                            
+=======
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="numbers" optionLabel="name"  [(ngModel)]="selectednumber"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%; padding-top:10px;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" [(ngModel)]="selectedcarat"  style="width: 100%;"/>                            
+                        </td>
+                        <td style="vertical-align: bottom;">                                                     
+                            <p-button label="Add Item" (onClick)="addItems()" ></p-button>                         
+>>>>>>> Update Calculator
                         </td>
                     </tr>
                 </table>

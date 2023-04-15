@@ -25,7 +25,8 @@ export class SharedService {
 }
 
 export class ApiResponse {
-    status: boolean = false;
-    message: string = '';
+    success: boolean = false;
+    statusCode: number;
+    sessage: string = '';
     data: any
 }
