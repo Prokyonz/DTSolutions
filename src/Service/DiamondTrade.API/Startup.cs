@@ -39,6 +39,17 @@ namespace DiamondTrade.API
                 options.JsonSerializerOptions.MaxDepth = 10485760; // add your desired limit here
             }); ;
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DiamondTrade.API", Version = "v1" });
@@ -66,6 +77,7 @@ namespace DiamondTrade.API
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAllOrigins");
 
             app.UseRouting();
 

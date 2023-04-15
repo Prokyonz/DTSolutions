@@ -22,6 +22,7 @@ import { PanelModule } from 'primeng/panel';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+<<<<<<< HEAD
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
@@ -29,6 +30,13 @@ import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
+=======
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SharedService } from './common/shared.service';
+import { AuthService } from './auth.service';
+>>>>>>> Login Module and Add code in API
 
 @NgModule({
   declarations: [
@@ -59,13 +67,19 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     PanelModule,
     SidebarModule,
     PanelMenuModule,
+<<<<<<< HEAD
     ToastModule,
     TableModule,
     InputTextareaModule,
     FormsModule,
     RadioButtonModule
+=======
+    HttpClientModule,
+    FormsModule,
+    CommonModule
+>>>>>>> Login Module and Add code in API
   ],
-  providers: [],
+  providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
