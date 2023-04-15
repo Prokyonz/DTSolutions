@@ -55,7 +55,7 @@ body {
   margin:8px;
 }
 
-.p-dropdown .p-dropdown-label {
+.p-dropdown .p-dropdown-label .p-inputtext {
   padding: 15px;
 }
 
@@ -70,8 +70,4 @@ body {
 //Report CSS
 .p-paginator .p-dropdown > .p-paginator .p-dropdown .p-dropdown-label {
   padding: 8px !important;
-}
-
-#pr_id_2_label {
-  padding:10px !important;
 }
