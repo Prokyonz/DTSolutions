@@ -60,7 +60,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     PanelMenuModule,
     ToastModule,
     TableModule,
-    InputTextareaModule
+    InputTextareaModule,
     HttpClientModule,
     FormsModule,
     CommonModule
