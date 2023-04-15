@@ -53,6 +53,7 @@ namespace DiamondTrading.Transaction
                     grvParticularsDetails.SetFocusedRowCellValue(colAmount, SlipTransferDetails[i].Amount);
                     grvParticularsDetails.SetFocusedRowCellValue(colPercentage, SlipTransferDetails[i].Percentage);
                     grvParticularsDetails.SetFocusedRowCellValue(colDays, SlipTransferDetails[i].Days);
+                    grvParticularsDetails.SetFocusedRowCellValue(colTotal, SlipTransferDetails[i].Total);
                     grvParticularsDetails.UpdateCurrentRow();
                 }
             }
@@ -95,6 +96,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("Amount");
             dt.Columns.Add("Percentage");
             dt.Columns.Add("Days");
+            dt.Columns.Add("Total");
             return dt;
         }
 
@@ -114,6 +116,7 @@ namespace DiamondTrading.Transaction
                 slipTransfer.Amount = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());
                 slipTransfer.Percentage = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPercentage).ToString());
                 slipTransfer.Days = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colDays).ToString());
+                slipTransfer.Total = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colTotal).ToString());
                 slipTransfer.Message = txtRemark.Text;
                 slipTransfer.BranchId = BranchId;
                 slipTransfer.FinancialYearId = FinancialYearId;
@@ -133,6 +136,34 @@ namespace DiamondTrading.Transaction
         {
             grdParticularsDetails.DataSource = null;
             grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+        }
+
+        private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column == colAmount || e.Column == colPercentage || e.Column == colDays)
+                {
+                    decimal Amount = 0;
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colAmount) != null && grvParticularsDetails.GetRowCellValue(e.RowHandle, colAmount).ToString().Length != 0)
+                        Amount = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colAmount));
+
+                    decimal Percentage = 0;
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colPercentage) != null && grvParticularsDetails.GetRowCellValue(e.RowHandle, colPercentage).ToString().Length != 0)
+                        Percentage = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colPercentage));
+
+                    int Days = 0;
+                    if (grvParticularsDetails.GetRowCellValue(e.RowHandle, colDays) != null && grvParticularsDetails.GetRowCellValue(e.RowHandle, colDays).ToString().Length != 0)
+                        Days = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(e.RowHandle, colDays));
+
+                    decimal Total = Amount + (Amount * Percentage * Days);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colTotal, Total);
+                }
+            }
+            catch (Exception Ex)
+            {
+                grvParticularsDetails.SetRowCellValue(e.RowHandle, colTotal, 0);
+            }
         }
     }
 }

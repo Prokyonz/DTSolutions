@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedService } from './common/shared.service';
 import { AuthService } from './auth.service';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { AuthService } from './auth.service';
     HttpClientModule,
     FormsModule,
     CommonModule
+    ToastModule
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
