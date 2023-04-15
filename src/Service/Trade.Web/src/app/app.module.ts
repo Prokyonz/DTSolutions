@@ -58,7 +58,7 @@ import { ToastModule } from 'primeng/toast';
     PanelMenuModule,
     HttpClientModule,
     FormsModule,
-    CommonModule
+    CommonModule,
     ToastModule
   ],
   providers: [SharedService, AuthService],
