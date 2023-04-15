@@ -25,6 +25,7 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ViewctsComponent,
     DashboardComponent,
     HeaderComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,
