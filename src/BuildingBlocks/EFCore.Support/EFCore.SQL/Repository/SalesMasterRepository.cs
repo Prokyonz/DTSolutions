@@ -184,6 +184,7 @@ namespace EFCore.SQL.Repository
                     salesRecord.PaymentDueDate = salesMaster.PaymentDueDate;
                     salesRecord.IsSlip = salesMaster.IsSlip;
                     salesRecord.IsPF = salesMaster.IsPF;
+                    salesRecord.TransferParentId = salesMaster.TransferParentId;
 
                     salesRecord.CommissionToPartyId = salesMaster.CommissionToPartyId;
                     salesRecord.CommissionPercentage = salesMaster.CommissionPercentage;

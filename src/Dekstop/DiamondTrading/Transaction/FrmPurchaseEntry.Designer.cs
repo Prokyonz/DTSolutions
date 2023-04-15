@@ -1137,7 +1137,7 @@ namespace DiamondTrading.Transaction
             this.btnSlipAdd.Location = new System.Drawing.Point(222, 1);
             this.btnSlipAdd.Name = "btnSlipAdd";
             this.btnSlipAdd.Size = new System.Drawing.Size(37, 21);
-            this.btnSlipAdd.TabIndex = 34;
+            this.btnSlipAdd.TabIndex = 0;
             this.btnSlipAdd.Text = "+";
             this.btnSlipAdd.Click += new System.EventHandler(this.btnSlipAdd_Click);
             // 

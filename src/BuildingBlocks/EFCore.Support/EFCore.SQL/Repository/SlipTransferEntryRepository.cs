@@ -46,11 +46,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(int Id)
+        public async Task<List<SlipTransferEntry>> GetSlipTransferEntriesAsync(int Id, int SlipType, string FinancialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == Id).ToListAsync();
+                return await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == Id && w.SlipType == SlipType && w.FinancialYearId == FinancialYearId).ToListAsync();
             }
         }
 
@@ -60,7 +60,7 @@ namespace EFCore.SQL.Repository
             {
                 if (slipTransferEntries.Count > 0)
                 {
-                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == slipTransferEntries[0].SrNo).ToListAsync();
+                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == slipTransferEntries[0].SrNo && w.SlipType == slipTransferEntries[0].SlipType && w.FinancialYearId == slipTransferEntries[0].FinancialYearId).ToListAsync();
                     _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
 
                     //Add New updated records to the database

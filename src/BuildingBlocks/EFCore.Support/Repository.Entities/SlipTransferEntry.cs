@@ -21,6 +21,8 @@ namespace Repository.Entities
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Percentage { get; set; }
         public int Days { get; set; }
+        [Column(TypeName = "decimal(18, 2)")]
+        public decimal Total { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }

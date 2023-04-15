@@ -279,7 +279,7 @@ namespace DiamondTrading.Transaction
 
         private async Task<List<SlipTransferEntry>> LoadSlipTransferDetails(int SlipTransferId)
         {
-            var slipTranferDetails = await _slipTransferEntryRepository.GetSlipTransferEntriesAsync(SlipTransferId);
+            var slipTranferDetails = await _slipTransferEntryRepository.GetSlipTransferEntriesAsync(SlipTransferId, 0, Common.LoginFinancialYear);
             return slipTranferDetails;
         }
 
