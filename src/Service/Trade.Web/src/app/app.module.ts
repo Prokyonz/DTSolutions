@@ -22,6 +22,7 @@ import { PanelModule } from 'primeng/panel';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { PanelMenuModule } from 'primeng/panelmenu';
     DropdownModule,
     PanelModule,
     SidebarModule,
-    PanelMenuModule
+    PanelMenuModule,
+    ToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]

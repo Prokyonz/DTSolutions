@@ -1,172 +1,245 @@
 <app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" title="{{ PageTitle }}"></app-header>
-<div class="panel" *ngIf="!showViewSection">    
-    <div class="card flex justify-content-center customClass">
-        <div style="margin: 8px; width: 100%;">
-            <p-card>
-                <ng-template pTemplate="header">
-                    <table style="width: 100%;">
-                        <tr>
-                            <td>
-                                <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
-                            </td>
-                            <td style="text-align: end; padding-right: 1rem">
-                                <span>SrNo:</span><b> &nbsp;<span>10</span></b>
-                            </td>
-                        </tr>
-                    </table>
-                </ng-template>
-                <div>
-                    <table style="width: 100%;" [cellSpacing]="5">
-                        <tr>                        
-                            <td style="width: 50%;">   
-                                <span style="bottom: 5px; position: relative;">Date</span><br/>                         
-                                <p-calendar [showIcon]="true"></p-calendar>
-                            </td>    
-                            <td>   
-                                <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
-                                <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                            </td>                    
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="padding-top:10px;">   
-                                <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="padding-top:10px;">   
-                                <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                            </td>
-                        </tr>
-                    </table>
-                    
-                </div>
-            </p-card>
+<p-toast></p-toast>
+<div *ngIf="!showViewSection">
+    <div class="panel">    
+        <div class="card flex justify-content-center customClass">
+            <div style="margin: 8px; width: 100%;">
+                <p-card>
+                    <ng-template pTemplate="header">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
+                                </td>
+                                <td style="text-align: end; padding-right: 1rem">
+                                    <span>SrNo:</span><b> &nbsp;<span>10</span></b>
+                                </td>
+                            </tr>
+                        </table>
+                    </ng-template>
+                    <div>
+                        <table style="width: 100%;" [cellSpacing]="5">
+                            <tr>                        
+                                <td style="width: 50%;">   
+                                    <span style="bottom: 5px; position: relative;">Date</span><br/>                         
+                                    <p-calendar [showIcon]="true"></p-calendar>
+                                </td>    
+                                <td>   
+                                    <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
+                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                </td>                    
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top:10px;">   
+                                    <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
+                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top:10px;">   
+                                    <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
+                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                </td>
+                            </tr>
+                        </table>
+                        
+                    </div>
+                </p-card>
+            </div>
         </div>
+        
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">Add Carats</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>
+                        <td style="width: 50%;">   
+                            <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td>   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:50%; padding-top:10px;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                        </td>
+                        <td style="vertical-align: bottom;">                                                     
+                            <p-button label="Add Item" (onClick)="showMessage()"></p-button>                         
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </p-card>            
     </div>
-    
-    <p-card class="customClass">
-        <ng-template pTemplate="header">
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <b style="font-size: 20px; padding-left: 1rem;">Add Carats</b>
-                    </td>
-                </tr>
-            </table>
-        </ng-template>
-        <div>
-            <table style="width: 100%;" [cellSpacing]="5">
-                <tr>
-                    <td style="width: 50%;">   
-                        <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
-                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                    </td>
-                    <td>   
-                        <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                    </td>
-                </tr>
-                <tr>
-                    <td style="width:50%; padding-top:10px;">   
-                        <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                        <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
-                    </td>
-                    <td style="vertical-align: bottom;">                                                     
-                        <p-button label="Add Item"></p-button>                         
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </p-card>
     <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-check"></p-button>
+    
 </div>
 
-<div class="panel" *ngIf="showViewSection">
-    <p-card class="customClass">
-        <ng-template pTemplate="header">
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <b style="font-size: 20px; padding-left: 1rem;">+2</b>
-                    </td>
-                </tr>
-            </table>
-        </ng-template>
-        <div>
-            <table style="width: 100%;" [cellSpacing]="5">
-                <tr>
-                    <td style="width: 33%;">   
-                        <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                    </td>
-                    <td style="width:33%;">   
-                        <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                        <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton  icon="pi pi-check"></button>
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                    </td>
-                </tr>  
-                <tr>
-                    <td style="width: 33%;">   
-                        <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                    </td>
-                    <td style="width:33%;">   
-                        <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                        <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton  icon="pi pi-check"></button>
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                    </td>
-                </tr>  
-            </table>
-        </div>
-    </p-card>
-    <p-card class="customClass">
-        <ng-template pTemplate="header">
-            <table style="width: 100%;">
-                <tr>
-                    <td>
-                        <b style="font-size: 20px; padding-left: 1rem;">+11</b>
-                    </td>
-                </tr>
-            </table>
-        </ng-template>
-        <div>
-            <table style="width: 100%;" [cellSpacing]="5">
-                <tr>
-                    <td style="width: 33%;">   
-                        <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                        <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                    </td>
-                    <td style="width:33%;">   
-                        <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                        <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton  icon="pi pi-check"></button>
-                    </td>
-                    <td>
-                        <span style="bottom: 5px; position: relative;"></span><br/>  
-                        <button pButton icon="pi pi-times" class="p-button-danger"></button>
-                    </td>
-                </tr>                
-            </table>
-        </div>
-    </p-card>
-    <button pButton label="Save Details" icon="pi pi-check"></button>
+
+<div>
+    <div class="panel" *ngIf="showViewSection">
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">+2</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>
+                        <td style="width: 33%;">   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td style="width:33%;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton  icon="pi pi-file-edit"></button>
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
+                        </td>
+                    </tr>  
+                    <tr>
+                        <td style="width: 33%;">   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td style="width:33%;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton  icon="pi pi-file-edit"></button>
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
+                        </td>
+                    </tr>  
+                </table>
+            </div>
+        </p-card>
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">+11</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>
+                        <td style="width: 33%;">   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td style="width:33%;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton  icon="pi pi-file-edit"></button>
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
+                        </td>
+                    </tr>                
+                </table>
+            </div>
+        </p-card>
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">+11</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>
+                        <td style="width: 33%;">   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td style="width:33%;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton  icon="pi pi-file-edit"></button>
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
+                        </td>
+                    </tr>                
+                </table>
+            </div>
+        </p-card>
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">Summary</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <table style="width: 100%;" [cellSpacing]="5">
+                    <tr>
+                        <td style="width: 33%;">   
+                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
+                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                        </td>
+                        <td style="width:33%;">   
+                            <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
+                            <input pInputText pKeyFilter="int" value="110" style="width: 100%;"/>                            
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton  icon="pi pi-file-edit"></button>
+                        </td>
+                        <td>
+                            <span style="bottom: 5px; position: relative;"></span><br/>  
+                            <button pButton icon="pi pi-times" class="p-button-danger"></button>
+                        </td>
+                    </tr>                
+                </table>
+            </div>
+        </p-card>
+    </div>
+    <p-button pRipple label="Save Details" [loading]="loading" (onClick)="saveDetails()" icon="pi pi-check" styleClass="p-button-success"></p-button>
 </div>
