@@ -21,6 +21,7 @@ namespace DiamondTrading.Transaction
     {
         SalesMasterRepository _salesMasterRepository;
         PartyMasterRepository _partyMasterRepository;
+        SlipTransferEntryRepository _slipTransferEntryRepository;
         private readonly BrokerageMasterRepository _brokerageMasterRepository;
         SalesItemObj _salesItemObj;
         decimal ItemRunningWeight = 0;
@@ -29,12 +30,14 @@ namespace DiamondTrading.Transaction
         private SalesMaster _editedSalesMaster;
         private SalesDetails _editedSalesDetails;
         private bool isLoading = false;
+        private List<SlipTransferEntry> _slipTransferEntries;
 
         public FrmSalesEntry()
         {
             InitializeComponent();
             _salesMasterRepository = new SalesMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
+            _slipTransferEntryRepository = new SlipTransferEntryRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
             _salesItemObj = new SalesItemObj();
 
@@ -46,6 +49,7 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
             _salesMasterRepository = new SalesMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
+            _slipTransferEntryRepository = new SlipTransferEntryRepository();
             _brokerageMasterRepository = new BrokerageMasterRepository();
             this.Text = "SALES - " + Common.LoginCompanyName + " - [" + Common.LoginFinancialYearName + "]";
             _selectedSalesId = SelectedSalesId;
@@ -59,7 +63,7 @@ namespace DiamondTrading.Transaction
             tglSlip.IsOn = Common.PrintPurchaseSlip;
             tglPF.IsOn = Common.PrintPurchasePF;
             dtPayDate.Enabled = Common.AllowToSelectPurchaseDueDate;
-
+            _slipTransferEntries = new List<SlipTransferEntry>();
             SetThemeColors(Color.FromArgb(215, 246, 214));
 
             FillCombos();
@@ -206,6 +210,12 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.SetFocusedRowCellValue(colCurrRate, EditedSalesDetails[i].CurrencyRate);
                             grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
                             grvPurchaseDetails.UpdateCurrentRow();
+                        }
+
+                        if (!string.IsNullOrEmpty(_editedSalesMaster.TransferParentId))
+                        {
+                            _slipTransferEntries = await LoadSlipTransferDetails(Convert.ToInt32(_editedSalesMaster.TransferParentId));
+                            grdSlipParticularsDetails.DataSource = _slipTransferEntries;
                         }
 
                         byte[] Logo = null;
@@ -384,6 +394,12 @@ namespace DiamondTrading.Transaction
             lueCompany.EditValue = Common.LoginCompany;
 
             await LoadBranch(Common.LoginCompany);
+        }
+
+        private async Task<List<SlipTransferEntry>> LoadSlipTransferDetails(int SlipTransferId)
+        {
+            var slipTranferDetails = await _slipTransferEntryRepository.GetSlipTransferEntriesAsync(SlipTransferId, 1, Common.LoginFinancialYear);
+            return slipTranferDetails;
         }
 
         private async Task LoadBranch(string companyId)
@@ -1861,11 +1877,33 @@ namespace DiamondTrading.Transaction
                     salesMaster.UpdatedBy = Common.LoginUserID;
                     salesMaster.SalesDetails = salesDetailsList;
 
+                    var SlipTransferEntity = await _slipTransferEntryRepository.AddSlipTransferEntryAsync(_slipTransferEntries);
+
+                    if (SlipTransferEntity.Count > 0)
+                    {
+                        salesMaster.TransferParentId = SlipTransferEntity[0].SrNo.ToString();
+                    }
+
                     SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
                     var Result = await salesMasterRepository.AddSalesAsync(salesMaster);
 
                     if (Result != null)
                     {
+                        try
+                        {
+                            foreach (var item in _slipTransferEntries)
+                            {
+                                item.PurchaseSaleId = Result.Id;
+                                //item.BranchId = Result.BranchId;
+                                //item.FinancialYearId = Result.FinancialYearId;
+                            }
+                            _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(SlipTransferEntity);
+                        }
+                        catch
+                        {
+
+                        }
+
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await Reset();
                     }
@@ -2141,11 +2179,31 @@ namespace DiamondTrading.Transaction
                     salesMaster.Message = "";
                     salesMaster.SalesDetails = salesDetailsList;
 
+                    if (_slipTransferEntries.Count > 0)
+                    {
+                        salesMaster.TransferParentId = _slipTransferEntries[0].SrNo.ToString();
+                    }
+
                     SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
                     var Result = await salesMasterRepository.UpdateSalesAsync(salesMaster);
 
                     if (Result != null)
                     {
+                        try
+                        {
+                            foreach (var item in _slipTransferEntries)
+                            {
+                                item.PurchaseSaleId = Result.Id;
+                                //item.BranchId = Result.BranchId;
+                                //item.FinancialYearId = Result.FinancialYearId;
+                            }
+                            _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries);
+                        }
+                        catch
+                        {
+
+                        }
+
                         this.DialogResult = DialogResult.OK;
                         //MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         await Reset();
@@ -2243,6 +2301,8 @@ namespace DiamondTrading.Transaction
         private async Task Reset()
         {
             grdPurchaseDetails.DataSource = null;
+            grdSlipParticularsDetails.DataSource = null;
+            _slipTransferEntries = new List<SlipTransferEntry>();
             lueSaler.EditValue = "";
             lueParty.EditValue = "";
             lueBroker.EditValue = "";
@@ -2281,6 +2341,27 @@ namespace DiamondTrading.Transaction
         private async void btnReset_Click(object sender, EventArgs e)
         {
             await Reset();
+        }
+
+        private async void btnSlipAdd_Click(object sender, EventArgs e)
+        {
+            string SrNo = string.Empty;
+            if (_slipTransferEntries.Count > 0)
+            {
+                SrNo = _slipTransferEntries[0].SrNo.ToString();
+            }
+            else
+            {
+                var SrNo1 = await _slipTransferEntryRepository.GetMaxSrNo(1, Common.LoginFinancialYear);
+                SrNo = SrNo1.ToString();
+            }
+
+            Transaction.FrmSlipTransfer frmSlipTransfer = new FrmSlipTransfer(lueCompany.EditValue.ToString(), 1, txtSlipNo.Text, Convert.ToDecimal(colAmount.SummaryItem.SummaryValue), SrNo, _slipTransferEntries, lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+            if (frmSlipTransfer.ShowDialog() == DialogResult.OK)
+            {
+                _slipTransferEntries = frmSlipTransfer.SlipTransferDetails;
+                grdSlipParticularsDetails.DataSource = _slipTransferEntries;
+            }
         }
     }
 }

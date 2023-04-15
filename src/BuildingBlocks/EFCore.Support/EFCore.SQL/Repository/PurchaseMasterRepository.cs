@@ -205,6 +205,7 @@ namespace EFCore.SQL.Repository
                     getPurchase.PaymentDueDate = purchaseMaster.PaymentDueDate;
                     getPurchase.IsSlip = purchaseMaster.IsSlip;
                     getPurchase.IsPF = purchaseMaster.IsPF;
+                    getPurchase.TransferParentId = purchaseMaster.TransferParentId;
 
                     getPurchase.CommissionPercentage = purchaseMaster.CommissionPercentage;
                     getPurchase.CommissionAmount = purchaseMaster.CommissionAmount;
