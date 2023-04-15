@@ -36,7 +36,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedService } from './common/shared.service';
 import { AuthService } from './auth.service';
+<<<<<<< HEAD
 >>>>>>> Login Module and Add code in API
+=======
+import { ToastModule } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { ReportComponent } from './report/report.component';
+>>>>>>> added table report
 
 @NgModule({
   declarations: [
@@ -48,7 +55,10 @@ import { AuthService } from './auth.service';
     DashboardComponent,
     HeaderComponent,
     ReportComponent,
+<<<<<<< HEAD
     FilterbarComponent,
+=======
+>>>>>>> added table report
   ],
   imports: [
     BrowserModule,

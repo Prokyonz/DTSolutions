@@ -60,8 +60,11 @@ export class ReportComponent implements OnInit {
     return event.target.value;
   }
 
+<<<<<<< HEAD
   onSeach(event: any) {
     console.log(event);
   }
 
+=======
+>>>>>>> added table report
 }

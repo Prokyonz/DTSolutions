@@ -1,27 +1,47 @@
+<<<<<<< HEAD
 <app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
 <div class="card" style="height: calc(100vh - 149px); overflow:scroll;">
+=======
+<app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}"></app-header>
+
+<div class="card" style="height: calc(100vh - 56px); overflow:scroll;">
+>>>>>>> added table report
     <p-table
         #dt1
         [value]="customers"
         dataKey="id"
+<<<<<<< HEAD
         [rows]="5"
         [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
+=======
+        [rows]="10"
+        [showCurrentPageReport]="false"
+        [rowsPerPageOptions]="[10, 25, 50]"
+>>>>>>> added table report
         [loading]="loading"
         [paginator]="true"
         [scrollable]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
         >
+<<<<<<< HEAD
         <!-- <ng-template pTemplate="caption">
+=======
+        <ng-template pTemplate="caption">
+>>>>>>> added table report
             <div class="flex">
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
                 </span>
             </div>
+<<<<<<< HEAD
         </ng-template> -->
+=======
+        </ng-template>
+>>>>>>> added table report
         <ng-template pTemplate="header">
             <tr>
                 <th style="min-width:15rem">
