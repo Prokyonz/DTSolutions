@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -154,6 +154,7 @@ namespace DiamondTrading
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -215,10 +216,10 @@ namespace DiamondTrading
             // grdLessGroupWeightMaster
             // 
             this.grdLessGroupWeightMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.grdLessWeightGroupDetailMaster;
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode3.LevelTemplate = this.grdLessWeightGroupDetailMaster;
+            gridLevelNode3.RelationName = "Level1";
             this.grdLessGroupWeightMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode3});
             this.grdLessGroupWeightMaster.Location = new System.Drawing.Point(0, 0);
             this.grdLessGroupWeightMaster.MainView = this.grvLessGroupWeightMaster;
             this.grdLessGroupWeightMaster.Name = "grdLessGroupWeightMaster";
@@ -344,10 +345,10 @@ namespace DiamondTrading
             // grdCompanyMaster
             // 
             this.grdCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.grdChildCompanyMaster;
-            gridLevelNode2.RelationName = "Child";
+            gridLevelNode1.LevelTemplate = this.grdChildCompanyMaster;
+            gridLevelNode1.RelationName = "Child";
             this.grdCompanyMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.grdCompanyMaster.Location = new System.Drawing.Point(0, 0);
             this.grdCompanyMaster.MainView = this.grvCompanyMaster;
             this.grdCompanyMaster.Name = "grdCompanyMaster";
@@ -1323,7 +1324,8 @@ namespace DiamondTrading
             this.accordionEditBtn,
             this.accordionDeleteBtn,
             this.accordionRefreshBtn,
-            this.accordionCancelButton});
+            this.accordionCancelButton,
+            this.accordionExportToExcel});
             this.accordionControl1.Location = new System.Drawing.Point(3, 3);
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
@@ -1385,6 +1387,14 @@ namespace DiamondTrading
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // accordionExportToExcel
+            // 
+            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
+            this.accordionExportToExcel.Name = "accordionExportToExcel";
+            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionExportToExcel.Text = "Excel";
+            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
             // 
             // FrmMasterDetails
             // 
@@ -1583,5 +1593,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn ColUserType;
         private DevExpress.XtraGrid.Columns.GridColumn colUserUpdatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
+        private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
     }
 }

@@ -14,4 +14,11 @@ namespace DiamondTrading
         Transfer = 3,
         OpeningStock = 4
     }
+
+    public enum ExportDataType
+    {
+        Excel = 0,
+        PDF = 1,
+        Print = 2
+    }
 }

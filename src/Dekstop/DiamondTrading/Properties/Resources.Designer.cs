@@ -153,6 +153,16 @@ namespace DiamondTrading.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ibook_24 {
+            get {
+                object obj = ResourceManager.GetObject("ibook_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap image {
             get {
                 object obj = ResourceManager.GetObject("image", resourceCulture);
@@ -196,6 +206,26 @@ namespace DiamondTrading.Properties {
         internal static System.Drawing.Bitmap option_16 {
             get {
                 object obj = ResourceManager.GetObject("option_16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pdf_24 {
+            get {
+                object obj = ResourceManager.GetObject("pdf_24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_24 {
+            get {
+                object obj = ResourceManager.GetObject("print_24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
