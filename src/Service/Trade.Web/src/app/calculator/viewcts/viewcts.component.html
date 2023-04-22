@@ -11,9 +11,9 @@
                                 <td>
                                     <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
                                 </td>
-                                <td style="text-align: end; padding-right: 1rem">
+                                <!-- <td style="text-align: end; padding-right: 1rem">
                                     <span>SrNo:</span><b> &nbsp;<span>10</span></b>
-                                </td>
+                                </td> -->
                             </tr>
                         </table>
                     </ng-template>
@@ -22,28 +22,28 @@
                             <tr>                        
                                 <td style="width: 50%;">   
                                     <span style="bottom: 5px; position: relative;">Date</span><br/>                         
-                                    <p-calendar [showIcon]="true"></p-calendar>
+                                    <p-calendar [showIcon]="true" [(ngModel)]="date" (onChange)="handledate($event)"></p-calendar>
                                 </td>    
                                 <td>   
                                     <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
-                                    <p-dropdown [options]="branches" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="branches" optionLabel="name" [(ngModel)]="branchid" (onChange)="handlebranch($event)"></p-dropdown>                            
                                 </td>                    
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="party" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="party" optionLabel="name" [(ngModel)]="partyid" (onChange)="handleparty($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                    <p-dropdown [options]="dealers" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="dealers" optionLabel="name" [(ngModel)]="dealerid" (onChange)="handledealer($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
                                 <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                                <input pInputText pKeyFilter="int" style="width: 100%;" [(ngModel)]="mastercarat" />                            
+                                <input pInputText pKeyFilter="int" style="width: 100%;" [(ngModel)]="netcarat" />                            
                             </td>
                         </table>
                         
@@ -139,22 +139,22 @@
     </div> -->
     <div *ngIf="showViewSection">      
       <div class="panel">
-        <div *ngFor="let header of masterItem">
+        <div *ngFor="let header of SizeDetails">
         <p-card class="customClass" >
             <ng-template #headerTemplate pTemplate="header">                
                 <table style="width: 100%;">
                     <tr>
                         <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">{{header.sizename}}</b>
+                            <b style="font-size: 20px; padding-left: 1rem;">{{header.SizeName}}</b>
                         </td>
                         <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
-                            <span>Total CTS:</span><b> &nbsp;<span>{{header.totalcarat}}</span></b>
+                            <span>Total CTS:</span><b> &nbsp;<span>{{header.TotalCarat}}</span></b>
                         </td>
                     </tr>
                 </table>
             </ng-template>
             <div>
-                <p-table [value]="getItemsBySize(header.size)" styleClass="p-datatable-striped">
+                <p-table [value]="getItemsBySize(header.SizeId)" styleClass="p-datatable-striped">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Number</th>
@@ -167,11 +167,11 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-item>
                         <tr>
-                            <td>{{ item.numbername }}</td>
-                            <td>{{ item.carat }}</td>
-                            <td>{{ item.rate }}</td>
-                            <td>{{ item.percentage }}</td>
-                            <td>{{ item.amount }}</td>
+                            <td>{{ item.NumberName }}</td>
+                            <td>{{ item.Carat }}</td>
+                            <td>{{ item.Rate }}</td>
+                            <td>{{ item.Percentage }}</td>
+                            <td>{{ item.Amount }}</td>
                             <td>
                                 <i class="pi text-red-500 pi-times-circle" (click)="deleteitems(item)"></i>
                             </td>
@@ -202,22 +202,22 @@
                     </ng-template>
                     <ng-template pTemplate="body" let-summ>
                         <tr>
-                            <td>{{ summ.sizename }}</td>
-                            <td>{{ summ.percentage }}</td>
-                            <td>{{ summ.amount}}</td>
+                            <td>{{ summ.SizeName }}</td>
+                            <td>{{ summ.Percentage }}</td>
+                            <td>{{ summ.Amount}}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="footer">
                         <tr>
                             <td colspan="2" class="text-right">Totals</td>
-                            <td>{{ summaryTotAmount | currency: 'USD'}}</td>
+                            <td>{{ summaryTotAmount}}</td>
                         </tr>
                     </ng-template>
                 </p-table>
             </div>
         </p-card>+
       </div>
-      <p-button pRipple label="Save Details" [loading]="loading" icon="pi pi-check" styleClass="p-button-success"></p-button>
+      <p-button pRipple label="Save Details" [loading]="loading" icon="pi pi-check" styleClass="p-button-success" (onClick)="saveData()"></p-button>
     </div>
 <!-- </div> -->
 <!-- <div *ngIf="showViewSection">

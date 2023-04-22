@@ -4,44 +4,32 @@ import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 
-interface tableitems {
-  size: string,
-  number: string,
-  carat: number,
-  rate: number,
-  numbername: string,
-  percentage: number,
-  amount: number
+interface NumberDetails {
+  SizeId: string,
+  NumberId: string,
+  Carat: number,
+  Rate: number,
+  NumberName: string,
+  Percentage: number,
+  Amount: number
   //sizename: string
 }
 
-interface masterItem{
-  size: string,
-  sizename: string,
-  totalcarat: number
-}
-
-interface City {
-  name: string;
-  code: string;
-}
-
-interface Product {
-  id:number,
-  number: string,
-  cts: number,
-  rate: number,
-  percentage: string,
-  amount: number,
+interface SizeDetails{
+  SizeId: string,
+  SizeName: string,
+  TotalCarat: number,
+  NumberDetails: NumberDetails[] | null
 }
 
 interface Summary {
-  size:string,
-  sizename:string,
-  percentage: number,
-  amount: number,
-  totcarat: number 
+  SizeId:string,
+  SizeName:string,
+  Percentage: number,
+  Amount: number,
+  TotCarat: number 
 }
+
 
 @Component({
   selector: 'app-viewcts',
@@ -61,35 +49,21 @@ export class ViewctsComponent implements OnInit{
   numbers: any;
   pricelist: any[] = [];
   comanyid: string = "ff8d3c9b-957b-46d1-b661-560ae4a2433e";
-  tableitems: tableitems[] = [];
-  masterItem: masterItem[] = [];
+  NumberDetails: NumberDetails[] = [];
+  SizeDetails: SizeDetails[] = [];
   summatydata: Summary[] = [];
   selectednumber: any;
   selectedsize: any;
   selectedcarat : number = 0;
-  mastercarat: number = 0;
+  netcarat: number = 0;
   selectedtotalcarat: number = 0;
   valueTextArea: string;
   summaryTotAmount = 0;
-
-  products: Product[] = [
-    { id: 1, number: 'IF SSD', cts: 12, rate: 1254, percentage: '1.3', amount: 125 },
-    { id: 2, number: 'SSD', cts: 10, rate: 1569, percentage: '1.4', amount: 157 },
-  ]
-
-  // summary: Summary[] = [
-  //   { id: 1, sizeName: '+2', percentage: '14', amount: 12563 },
-  //   { id: 2, sizeName: '+6', percentage: '52', amount: 58000 },
-  //   { id: 3, sizeName: '+11', percentage: '68', amount: 158000 }
-  // ]
-
-  cities: City[] = [
-      { name: '+2', code: 'NY' },
-      { name: '-2', code: 'RM' },
-      { name: '+6', code: 'LDN' },
-      { name: '+11', code: 'IST' },
-      { name: '-6', code: 'PRS' }
-  ];
+  date: Date = new Date();
+  branchid: string = '';
+  partyid: string = '';
+  dealerid: string = '';
+  note: string = '';
 
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
 
@@ -115,17 +89,22 @@ export class ViewctsComponent implements OnInit{
   showDetails() {
     this.PageTitle = "View Details";
     this.showViewSection = true;
+    this.calulateSummary();
+  }
+
+  calulateSummary(){
+    this.summaryTotAmount = 0;
     this.summatydata.forEach(e => {
-      const filteredSize = this.tableitems.filter((f) => {
-        return f.size == e.size;
+      const filteredSize = this.NumberDetails.filter((f) => {
+        return f.SizeId == e.SizeId;
       });
       
       const totalAmount = filteredSize.reduce((acc, curr) => {
-        return acc + curr.amount;
+        return acc + curr.Amount;
       }, 0);
-      e.amount = totalAmount;
-      e.percentage = (e.totcarat / this.mastercarat)*100;
-      this.summaryTotAmount = this.summaryTotAmount + e.amount;
+      e.Amount = totalAmount;
+      e.Percentage = (e.TotCarat / this.netcarat)*100;
+      this.summaryTotAmount = this.summaryTotAmount + e.Amount;
     });
   }
 
@@ -145,7 +124,6 @@ export class ViewctsComponent implements OnInit{
 
   getparty(){
     this.sharedService.customGetApi("Service/GetParty?companyid=" + this.comanyid).subscribe((t) => {
-      debugger;
       if (t.success == true){
         this.party = t.data;
       }
@@ -154,7 +132,6 @@ export class ViewctsComponent implements OnInit{
 
   getdealer(){
     this.sharedService.customGetApi("Service/GetDealer?companyid=" + this.comanyid).subscribe((t) => {
-      debugger;
       if (t.success == true){
         this.dealers = t.data;
       }
@@ -163,7 +140,6 @@ export class ViewctsComponent implements OnInit{
 
   getbranch(){
     this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.comanyid).subscribe((t) => {
-      debugger;
       if (t.success == true){
         this.branches = t.data;
       }
@@ -172,7 +148,6 @@ export class ViewctsComponent implements OnInit{
 
   getsize(){
       this.sharedService.customGetApi("Service/GetSize").subscribe((t) => {
-        debugger;
         if (t.success == true){
           this.sizes = t.data;
         }
@@ -181,7 +156,6 @@ export class ViewctsComponent implements OnInit{
 
   getnumber(){
     this.sharedService.customGetApi("Service/GetNumber").subscribe((t) => {
-      debugger;
       if (t.success == true){
         this.numbers = t.data;
       }
@@ -190,7 +164,6 @@ export class ViewctsComponent implements OnInit{
 
   getAllNumberPrice(){
     this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=ff8d3c9b-957b-46d1-b661-560ae4a2433e&categoryId=0").subscribe((t) => {
-      debugger;
       if (t.success == true){
        this.pricelist = t.data;
       }
@@ -199,9 +172,9 @@ export class ViewctsComponent implements OnInit{
 
   handlesize(event: any) {
     this.selectedsize = event.value;
-    var caratData = this.masterItem.filter(e => e.size == this.selectedsize.id);
+    var caratData = this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id);
     if (caratData != null && caratData.length > 0){
-      this.selectedtotalcarat = caratData[0].totalcarat;
+      this.selectedtotalcarat = caratData[0].TotalCarat;
     }
   }
 
@@ -213,55 +186,93 @@ export class ViewctsComponent implements OnInit{
   handlenumber(event: any) {
     this.selectednumber = event.value.number;
   }
+  handleparty(event: any){
+    this.partyid = event.value.partyid;
+  }
 
+  handlebranch(event: any){
+    this.branchid = event.value.branchid;
+  }
+
+  handledealer(event: any){
+    this.dealerid = event.value.dealerid;
+  }
+
+  handledate(event: any){
+    this.date = event.value;
+  }
+  
   addItems(){
-    debugger;
-    if (this.masterItem.filter(e => e.size == this.selectedsize.id).length == 0){
-      this.masterItem.push({
-        size : this.selectedsize.id,
-        sizename: this.selectedsize.name,
-        totalcarat: this.selectedtotalcarat
+    if (this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id).length == 0){
+      this.SizeDetails.push({
+        SizeId : this.selectedsize.id,
+        SizeName: this.selectedsize.name,
+        TotalCarat: this.selectedtotalcarat,
+        NumberDetails: []
       });
 
       this.summatydata.push({
-        size: this.selectedsize.id,
-        sizename : this.selectedsize.name,
-        percentage : 0,
-        amount : 0,
-        totcarat : this.selectedtotalcarat
+        SizeId: this.selectedsize.id,
+        SizeName : this.selectedsize.name,
+        Percentage : 0,
+        Amount : 0,
+        TotCarat : this.selectedtotalcarat
       });
     }
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
-      this.tableitems.push({
-        size : this.selectedsize.id,
-        number : this.selectednumber.id,
-        carat : this.selectedcarat,
-        rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
-        numbername: this.selectednumber.name,
-        amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
-        percentage : (this.selectedcarat / ((retdata != null && retdata.length > 0) ? retdata[0].price : 0)) * 100
+      this.NumberDetails.push({
+        SizeId : this.selectedsize.id,
+        NumberId : this.selectednumber.id,
+        Carat : this.selectedcarat,
+        Rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
+        NumberName: this.selectednumber.name,
+        Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
+        Percentage : (this.selectedcarat / ((retdata != null && retdata.length > 0) ? retdata[0].price : 0)) * 100
     });
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
     //   this.selectedsizeonly.push(this.selectedsize);
     // }    
   }
-  getItemsBySize(size: string){
-    debugger;
-    return this.tableitems.filter(item => item.size === size);
+  getItemsBySize(SizeId: string){
+    return this.NumberDetails.filter(item => item.SizeId === SizeId);
   }
 
   deleteitems(item: any){
-    debugger;
     if (confirm("Are you sure you want to delete this item?")) {
-      var index = this.tableitems.indexOf(item);
+      var index = this.NumberDetails.indexOf(item);
       if (index >= 0){
-        this.tableitems.splice(index, 1);
+        this.NumberDetails.splice(index, 1);
       }
-      if (this.tableitems.filter(e => e.size == item.size).length == 0){
-        var ind = this.masterItem.findIndex(e => e.size == item.size);
+      if (this.NumberDetails.filter(e => e.SizeId == item.SizeId).length == 0){
+        var ind = this.SizeDetails.findIndex(e => e.SizeId == item.SizeId);
         if (ind >= 0){
-          this.masterItem.splice(ind,1);
+          this.SizeDetails.splice(ind,1);
         }
+        var ind1 = this.summatydata.findIndex(e => e.SizeId == item.SizeId);
+        if (ind >= 0){
+          this.summatydata.splice(ind1,1);
+        }
+      }
+    }
+    this.calulateSummary();
+  }
+
+  saveData(){
+    if (this.SizeDetails != null && this.SizeDetails.length > 0 && this.NumberDetails != null && this.NumberDetails.length > 0)
+    {
+      debugger;
+      this.SizeDetails.forEach(element => {
+        element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
+      });
+      if (confirm("Are you sure want to save this item?")){
+         const data = {
+          Date: this.date,
+          BranchId: this.branchid,
+          PartyId: this.partyid,
+          BrokerId: this.dealerid,
+          NetCarat: this.netcarat,
+
+         };
       }
     }
   }
