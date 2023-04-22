@@ -20,30 +20,31 @@ namespace DiamondTrade.API.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<Response<LoginResponseModel>> Login([FromBody] Login login)
+        public async Task<IActionResult> Login([FromBody] Login login)
         {
             try
             {
                 var result = await _userMaster.Login(login.UserName, login.Password);
-                if (result.UserMaster != null)
-                {
-                    Response<LoginResponseModel> loginResponseModel = new Response<LoginResponseModel>();
-                    loginResponseModel.Data = new LoginResponseModel
-                    {
-                        Id = result.UserMaster.Id
-                    };
-                    loginResponseModel.Success = true;
-                    loginResponseModel.StatusCode = (int)HttpStatusCode.OK;
-                    return loginResponseModel;
-                }
-                else
-                {
-                    return new Response<LoginResponseModel>
-                    {
-                        Success = false,
-                        StatusCode = (int)HttpStatusCode.NotAcceptable
-                    };
-            }
+                //if (result.UserMaster != null)
+                //{
+                //    Response<LoginResponseModel> loginResponseModel = new Response<LoginResponseModel>();
+                //    loginResponseModel.Data = new LoginResponseModel
+                //    {
+                //        Id = result.UserMaster.Id
+                //    };
+                //    loginResponseModel.Success = true;
+                //    loginResponseModel.StatusCode = (int)HttpStatusCode.OK;
+                //    return loginResponseModel;
+                //}
+                //else
+                //{
+                //    return new Response<LoginResponseModel>
+                //    {
+                //        Success = false,
+                //        StatusCode = (int)HttpStatusCode.NotAcceptable
+                //    };
+                //}
+                return Ok(result);
 
             }
             catch
