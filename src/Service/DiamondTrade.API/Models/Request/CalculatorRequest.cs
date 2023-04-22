@@ -13,9 +13,9 @@ namespace DiamondTrade.API.Models.Request
 
         public string Note { get; set; }
 
-        public string CreatedBy { get; set; }
+        public string UserId { get; set; }
 
-        public string UpdatedBy { get; set; }
+        //public string UpdatedBy { get; set; }
 
         public bool IsDelete { get; set; }
         public List<SizeDetails> SizeDetails { get; set; }
