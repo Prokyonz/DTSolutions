@@ -76,3 +76,11 @@ body {
 .p-panelmenu .p-panelmenu-header > a, .p-panelmenu .p-panelmenu-content .p-menuitem .p-menuitem-link {
   padding: 1.25rem !important;
 }
+
+.center > .card > p-card > .p-card {
+  box-shadow: none !important;
+}
+
+.center > .card > p-card > .p-card .p-card-content {
+  padding: 0px !important;
+}
