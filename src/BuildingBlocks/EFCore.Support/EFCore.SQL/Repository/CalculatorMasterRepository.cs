@@ -5,6 +5,7 @@ using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -30,11 +31,29 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCalculatorAsync(int calculatorId)
+        public async Task<List<CalculatorMaster>> AddCalculatorListAsync(List<CalculatorMaster> calculatorMasterList)
+        {
+            var Sr = GetMaxSrNo(calculatorMasterList.First().BranchId);
+            using (_databaseContext = new DatabaseContext())
+            {
+                calculatorMasterList.ForEach(x =>
+                {
+                    x.Sr = Sr;
+                    if (x.Id == null)
+                        x.Id = Guid.NewGuid().ToString();
+                    _databaseContext.CalculatorMaster.AddAsync(x);
+                });
+                await _databaseContext.SaveChangesAsync();
+            }
+
+            return calculatorMasterList;
+        }
+
+        public async Task<bool> DeleteCalculatorAsync(int calculatorId, string branchId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => s.Sr == calculatorId).ToListAsync();
+                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => s.Sr == calculatorId && s.BranchId == branchId && !s.IsDelete).ToListAsync();
                 if (getCalculator != null)
                 {
                     _databaseContext.CalculatorMaster.RemoveRange(getCalculator);
@@ -82,6 +101,22 @@ namespace EFCore.SQL.Repository
                     return true;
                 }
                 return false;
+            }
+        }
+
+        private int GetMaxSrNo(string branchId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var getCount = _databaseContext.CalculatorMaster.Where(m => m.BranchId == branchId).Max(m => m.Sr);
+                    return getCount + 1;
+                }
+            }
+            catch
+            {
+                return 1;
             }
         }
     }

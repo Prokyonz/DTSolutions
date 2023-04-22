@@ -1,7 +1,9 @@
-﻿using DiamondTrade.API.Models.Request;
+﻿using Bogus.DataSets;
+using DiamondTrade.API.Models.Request;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -35,11 +37,11 @@ namespace DiamondTrade.API.Controllers
 
         [Route("Delete")]
         [HttpPost]
-        public async Task<IActionResult> Delete(int calculatorId)
+        public async Task<IActionResult> Delete(int calculatorId,string branchId)
         {
             try
             {
-                var result = await _calculatorMaster.DeleteCalculatorAsync(calculatorId);
+                var result = await _calculatorMaster.DeleteCalculatorAsync(calculatorId, branchId);
 
                 return Ok(result);
             }
@@ -80,5 +82,48 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("Add")]
+        [HttpPut]
+        public async Task<IActionResult> Add(CalculatorRequest calculator)
+        {
+            try
+            {
+                var calculatorMasterList = new List<CalculatorMaster>();
+
+                calculator.SizeDetails.ForEach(x =>
+                {
+                    x.NumberDetails.ForEach(number =>
+                    {
+                        CalculatorMaster calculatorMaster = new CalculatorMaster();
+                        calculatorMaster.BranchId = calculator.BranchId;
+                        calculatorMaster.DealerId = calculator.BrokerId;
+                        calculatorMaster.PartyId = calculator.PartyId;
+                        calculatorMaster.Date = calculator.Date;
+                        calculatorMaster.CreatedDate = DateTime.Now;
+                        calculatorMaster.CreatedBy = calculator.CreatedBy;
+                        calculatorMaster.SizeId = x.SizeId;
+                        calculatorMaster.NetCarat = calculator.NetCarat;
+                        calculatorMaster.TotalCarat = x.TotalCarat;
+                        calculatorMaster.IsDelete = false;
+                        calculatorMaster.Rate = number.Rate;
+                        calculatorMaster.Amount = number.Amount;
+                        calculatorMaster.Carat = number.Carat;
+                        calculatorMaster.Percentage = number.Percentage;
+                        calculatorMaster.NumberId = number.NumberId;
+                        calculatorMasterList.Add(calculatorMaster);
+                    });
+                });
+
+                var result = await _calculatorMaster.AddCalculatorListAsync(calculatorMasterList);
+
+                return Ok(result);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }

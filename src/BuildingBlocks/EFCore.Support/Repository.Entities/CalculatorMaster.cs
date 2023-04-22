@@ -8,7 +8,7 @@ namespace Repository.Entities
 {
     public class CalculatorMaster
     {
-        public int Sr { get; }
+        public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
         public DateTime Date { get; set; }
@@ -19,6 +19,11 @@ namespace Repository.Entities
         public string SizeId { get; set; }
         public string NumberId { get; set; }
 
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal NetCarat { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalCarat { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Carat { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
