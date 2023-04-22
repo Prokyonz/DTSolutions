@@ -22,7 +22,7 @@ export class LoginComponent {
   }
 
 
-  onlogin(){
+  onLogin(){
     if (this.loginForm.valid){      
       debugger;
       this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)

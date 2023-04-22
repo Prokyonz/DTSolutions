@@ -1,6 +1,6 @@
-<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" title="{{ PageTitle }}"></app-header>
+<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" leftIconName="pi-plus" (onClickLeftIcon)="onAddIconClick();" title="{{ PageTitle }}"></app-header>
 <p-toast></p-toast>
-<div *ngIf="!showViewSection">
+<div *ngIf="showAddSection">
     <div class="panel">    
         <div class="card flex justify-content-center customClass">
             <div style="margin: 8px; width: 100%;">

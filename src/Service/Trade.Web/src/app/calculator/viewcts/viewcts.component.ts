@@ -40,7 +40,10 @@ interface Summary {
 
 export class ViewctsComponent implements OnInit{
   showViewSection:boolean = false;
-  PageTitle:string = "Add Details";
+  showAddSection:boolean = false;
+  showHomeSection:boolean = true;
+
+  PageTitle:string = "History";
   loading: boolean = false;
   branches: any[] = [];
   party: any[] = [];
@@ -79,7 +82,9 @@ export class ViewctsComponent implements OnInit{
 
   myfunction() {
     if(this.showViewSection == true) {
+      this.showAddSection = true;
       this.showViewSection = false;
+      this.showHomeSection = false;
       this.PageTitle = "Add Details";
     }
     else
@@ -88,6 +93,7 @@ export class ViewctsComponent implements OnInit{
 
   showDetails() {
     this.PageTitle = "View Details";
+    this.showAddSection = false;
     this.showViewSection = true;
     this.calulateSummary();
   }
@@ -118,7 +124,9 @@ export class ViewctsComponent implements OnInit{
       setTimeout(() => {
           this.loading = false;
           this.messageService.addAll([{severity:'success', summary:'Details saved successfully.'}, { severity:'error', summary:'Error occurred.' }]);
+          this.showAddSection = false;
           this.showViewSection = false;
+          this.showHomeSection = true;
       }, 2000);
   }
 
