@@ -26,6 +26,8 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReportComponent } from './report/report.component';
+import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,7 @@ import { ReportComponent } from './report/report.component';
     DashboardComponent,
     HeaderComponent,
     ReportComponent,
+    FilterbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,8 @@ import { ReportComponent } from './report/report.component';
     PanelMenuModule,
     ToastModule,
     TableModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

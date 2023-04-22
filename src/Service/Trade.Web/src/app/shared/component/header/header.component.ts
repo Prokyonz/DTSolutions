@@ -33,9 +33,8 @@ export class HeaderComponent implements OnInit {
         }
     },
     {
-        label: 'Reports',
-        icon: 'pi pi-fw pi-user',
-        expanded: false,
+        label: 'Reports',        
+        expanded: true,
         items: [
             {
                 label: 'Purchase',
