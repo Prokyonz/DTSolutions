@@ -12,6 +12,6 @@ namespace EFCore.SQL.Interface
         Task<CalculatorMaster> AddCalculatorAsync(CalculatorMaster calculatorMaster);
         Task<List<CalculatorMaster>> AddCalculatorListAsync(List<CalculatorMaster> calculatorMaster);
         Task<bool> UpdateCalculatorAsync(List<CalculatorMaster> calculatorMasterEntries);
-        Task<bool> DeleteCalculatorAsync(int calculatorId);
+        Task<bool> DeleteCalculatorAsync(int calculatorId, string branchId);
     }
 }
