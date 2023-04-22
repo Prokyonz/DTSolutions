@@ -35,7 +35,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _partyMaster.GetAllPartyAsync(CompanyId, new int[] {6, 7 });
+                var result = await _partyMaster.GetAllPartyAsync(CompanyId, new int[] { PartyTypeMaster.PartySale, PartyTypeMaster.PartyBuy });
 
                 return new Response<dynamic>
                 {
@@ -56,7 +56,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _partyMaster.GetAllPartyAsync(CompanyId, new int[] { 8 });
+                var result = await _partyMaster.GetAllPartyAsync(CompanyId, new int[] { PartyTypeMaster.Broker });
                 return new Response<dynamic>
                 {
                     StatusCode = 200,
