@@ -32,7 +32,6 @@ import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
-import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
