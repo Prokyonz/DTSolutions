@@ -445,4 +445,8 @@ export class ViewctsComponent implements OnInit{
       }
     }
   }
+  onAddIconClick()
+  {
+    
+  }
 }

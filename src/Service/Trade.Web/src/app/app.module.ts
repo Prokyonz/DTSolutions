@@ -43,7 +43,12 @@ import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReportComponent } from './report/report.component';
+<<<<<<< HEAD
 >>>>>>> added table report
+=======
+import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
+import { RadioButtonModule } from 'primeng/radiobutton';
+>>>>>>> changes for merge main
 
 @NgModule({
   declarations: [
