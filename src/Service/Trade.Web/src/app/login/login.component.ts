@@ -32,29 +32,22 @@ export class LoginComponent {
 =======
 
   onlogin(){
-    if (this.loginForm.valid){
-      // const data = {
-      //   UserName: this.loginForm.get("username")?.value,
-      //   Password: this.loginForm.get("password")?.value
-      // };
-      // this.shared.customPostApi("auth/login",data).subscribe((t) => {
-      //   if (t.status == true){
-      //     this.router.navigate(['/dashboard']);
-      //   }
-      // });      
-
+    if (this.loginForm.valid){      
       debugger;
       this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
-      .subscribe((data: any) => {
+      .subscribe((response: any) => {
         debugger;
-        if (data.success == true){
-          this.router.navigate(['/dashboard']);
-        }
-        //this.router.navigateByUrl('/');
-        
+          if (response.success == true){
+            if (response.data != null){
+              localStorage.setItem("userid",response.data.id);
+              this.router.navigate(['/dashboard']);
+            }
+          }
+          else{
+            localStorage.clear();       
+          }
       }, (ex: any) => {
       });
-
     }
 >>>>>>> Login Module and Add code in API
   }

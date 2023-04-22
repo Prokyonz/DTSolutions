@@ -57,6 +57,7 @@ export class ViewctsComponent implements OnInit{
   loading: boolean = false;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   valueTextArea: string;
   showHistory: boolean = true;
 =======
@@ -65,6 +66,13 @@ export class ViewctsComponent implements OnInit{
   dealers: any;
   sizes: any;
   numbers: any;
+=======
+  branches: any[] = [];
+  party: any[] = [];
+  dealers: any[] = [];
+  sizes: any[] = [];
+  numbers: any[] = [];
+>>>>>>> Calculator changes
   pricelist: any[] = [];
   comanyid: string = "ff8d3c9b-957b-46d1-b661-560ae4a2433e";
   NumberDetails: NumberDetails[] = [];
@@ -121,9 +129,9 @@ export class ViewctsComponent implements OnInit{
   ];
 =======
   date: Date = new Date();
-  branchid: string = '';
-  partyid: string = '';
-  dealerid: string = '';
+  branchid: any = [];
+  partyid: any = [];
+  dealerid: any = [];
   note: string = '';
 >>>>>>> Commit
 
@@ -226,7 +234,13 @@ export class ViewctsComponent implements OnInit{
   getparty(){
     this.sharedService.customGetApi("Service/GetParty?companyid=" + this.comanyid).subscribe((t) => {
       if (t.success == true){
-        this.party = t.data;
+        if (t.data != null && t.data.length > 0){
+          t.data = [
+            { name: '-Select-', id: '' },
+            ...t.data
+          ];
+          this.party = t.data;
+        }
       }
     });      
   }
@@ -234,7 +248,13 @@ export class ViewctsComponent implements OnInit{
   getdealer(){
     this.sharedService.customGetApi("Service/GetDealer?companyid=" + this.comanyid).subscribe((t) => {
       if (t.success == true){
-        this.dealers = t.data;
+        if (t.data != null && t.data.length > 0){
+          t.data = [
+            { name: '-Select-', id: '' },
+            ...t.data
+          ];
+          this.dealers = t.data;
+        }
       }
     });      
   }
@@ -242,7 +262,13 @@ export class ViewctsComponent implements OnInit{
   getbranch(){
     this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.comanyid).subscribe((t) => {
       if (t.success == true){
-        this.branches = t.data;
+        if (t.data != null && t.data.length > 0){
+          t.data = [
+            { name: '-Select-', id: '' },
+            ...t.data
+          ];
+          this.branches = t.data;
+        }
       }
     });      
   }
@@ -250,14 +276,28 @@ export class ViewctsComponent implements OnInit{
   getsize(){
       this.sharedService.customGetApi("Service/GetSize").subscribe((t) => {
         if (t.success == true){
-          this.sizes = t.data;
+          if (t.data != null && t.data.length > 0){          
+            t.data = [
+              { name: '-Select-', id: '' },
+              ...t.data
+            ];
+          }
         }
+        this.sizes = t.data;
       });      
   }
 
   getnumber(){
     this.sharedService.customGetApi("Service/GetNumber").subscribe((t) => {
       if (t.success == true){
+        if (t.success == true){
+          if (t.data != null && t.data.length > 0){          
+            t.data = [
+              { name: '-Select-', id: '' },
+              ...t.data
+            ];
+          }
+        }
         this.numbers = t.data;
       }
     });      
@@ -277,6 +317,9 @@ export class ViewctsComponent implements OnInit{
     if (caratData != null && caratData.length > 0){
       this.selectedtotalcarat = caratData[0].TotalCarat;
     }
+    else{
+      this.selectedtotalcarat = 0;
+    }
   }
 
   viewdata(){
@@ -288,15 +331,15 @@ export class ViewctsComponent implements OnInit{
     this.selectednumber = event.value.number;
   }
   handleparty(event: any){
-    this.partyid = event.value.partyid;
+    this.partyid = event.value;
   }
 
   handlebranch(event: any){
-    this.branchid = event.value.branchid;
+    this.branchid = event.value;
   }
 
   handledealer(event: any){
-    this.dealerid = event.value.dealerid;
+    this.dealerid = event.value;
   }
 
   handledate(event: any){
@@ -320,6 +363,7 @@ export class ViewctsComponent implements OnInit{
         TotCarat : this.selectedtotalcarat
       });
     }
+    
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
       this.NumberDetails.push({
         SizeId : this.selectedsize.id,
@@ -330,6 +374,8 @@ export class ViewctsComponent implements OnInit{
         Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
         Percentage : (this.selectedcarat / ((retdata != null && retdata.length > 0) ? retdata[0].price : 0)) * 100
     });
+    this.selectednumber = this.numbers.filter(e => e.id == '');
+    this.selectedcarat = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
     //   this.selectedsizeonly.push(this.selectedsize);
     // }    
@@ -362,19 +408,40 @@ export class ViewctsComponent implements OnInit{
   saveData(){
     if (this.SizeDetails != null && this.SizeDetails.length > 0 && this.NumberDetails != null && this.NumberDetails.length > 0)
     {
+      let totCarat: number = 0;
+      this.SizeDetails.forEach(e => {
+        totCarat = totCarat + (+e.TotalCarat);
+      });     
       debugger;
-      this.SizeDetails.forEach(element => {
-        element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
-      });
-      if (confirm("Are you sure want to save this item?")){
-         const data = {
-          Date: this.date,
-          BranchId: this.branchid,
-          PartyId: this.partyid,
-          BrokerId: this.dealerid,
-          NetCarat: this.netcarat,
+      if (this.netcarat == totCarat){
+        const userId = localStorage.getItem('userid');
+        this.SizeDetails.forEach(element => {
+          element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
+        });
+        if (confirm("Are you sure want to save this item?")){
+          const data = {
+              Date: this.date,
+              BranchId: this.branchid.id,
+              PartyId: this.partyid.id,
+              BrokerId: this.dealerid.id,
+              NetCarat: this.netcarat,
+              Note: this.note,
+              IsDelete: false,
+              SizeDetails: this.SizeDetails,
+              UserId: userId
+          };
 
-         };
+          this.sharedService.customPostApi("Calculator/Add",data)
+          .subscribe((data: any) => {
+            debugger;
+            // if (data.success == true){
+            //   this.router.navigate(['/dashboard']);
+            // }
+            //this.router.navigateByUrl('/');
+            
+              }, (ex: any) => {
+            });
+        }
       }
     }
   }

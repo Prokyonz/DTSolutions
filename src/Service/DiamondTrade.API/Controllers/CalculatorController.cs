@@ -19,22 +19,6 @@ namespace DiamondTrade.API.Controllers
             _calculatorMaster = calculatorMaster;
         }
 
-        [Route("Add")]
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] CalculatorMaster calculatorData)
-        {
-            try
-            {
-                var result = await _calculatorMaster.AddCalculatorAsync(calculatorData);
-
-                return Ok(result);
-            }
-            catch
-            {
-                throw;
-            }
-        }
-
         [Route("Delete")]
         [HttpPost]
         public async Task<IActionResult> Delete(int calculatorId,string branchId)
@@ -84,7 +68,7 @@ namespace DiamondTrade.API.Controllers
         }
 
         [Route("Add")]
-        [HttpPut]
+        [HttpPost]
         public async Task<IActionResult> Add(CalculatorRequest calculator)
         {
             try
@@ -101,7 +85,7 @@ namespace DiamondTrade.API.Controllers
                         calculatorMaster.PartyId = calculator.PartyId;
                         calculatorMaster.Date = calculator.Date;
                         calculatorMaster.CreatedDate = DateTime.Now;
-                        calculatorMaster.CreatedBy = calculator.CreatedBy;
+                        calculatorMaster.CreatedBy =  calculator.UserId;
                         calculatorMaster.SizeId = x.SizeId;
                         calculatorMaster.NetCarat = calculator.NetCarat;
                         calculatorMaster.TotalCarat = x.TotalCarat;
@@ -115,9 +99,9 @@ namespace DiamondTrade.API.Controllers
                     });
                 });
 
-                var result = await _calculatorMaster.AddCalculatorListAsync(calculatorMasterList);
+                //var result = await _calculatorMaster.AddCalculatorListAsync(calculatorMasterList);
 
-                return Ok(result);
+                return Ok();
             }
             catch
             {
