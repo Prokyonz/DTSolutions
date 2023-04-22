@@ -10,9 +10,10 @@ import { MenuItem } from 'primeng/api';
 export class HeaderComponent implements OnInit {
   @Input() title:string = "MyHeader";
   @Input() iconName:string = "pi-align-justify";
+  @Input() leftIconName:string = "pi-align-justify";
   @Input() showSideBar:boolean = false;
   @Output() onClickMainIcon = new EventEmitter();
-
+  @Output() onClickLeftIcon = new EventEmitter();
 
   sidebarVisible!: boolean;
   items: MenuItem[] = [
@@ -91,5 +92,9 @@ export class HeaderComponent implements OnInit {
   iconClick() {
     this.sidebarVisible = this.showSideBar;
     this.onClickMainIcon.emit();
+  }
+
+  leftIconClick() {
+    this.onClickLeftIcon.emit();
   }
 }
