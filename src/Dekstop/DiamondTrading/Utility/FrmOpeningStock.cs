@@ -150,7 +150,7 @@ namespace DiamondTrading.Utility
         private async Task GetKapanDetail()
         {
             KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
-            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync();
+            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
 
             repoKapan.DataSource = kapanMaster;
             repoKapan.DisplayMember = "Name";

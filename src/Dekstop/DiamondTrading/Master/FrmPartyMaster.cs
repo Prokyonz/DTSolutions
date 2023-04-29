@@ -410,7 +410,7 @@ namespace DiamondTrading.Master
                 return false;
             }
 
-            PartyMaster PartyNameExist = _partyMasters.Where(c => c.Name == txtPartyName.Text).FirstOrDefault();
+            PartyMaster PartyNameExist = _partyMasters.Where(c => c.Name == txtPartyName.Text && c.CompanyId == Common.LoginCompany).FirstOrDefault();
             if ((_EditedPartyMasterSet == null && PartyNameExist != null) || (PartyNameExist != null && _EditedPartyMasterSet != null && _EditedPartyMasterSet.Name != PartyNameExist.Name))
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.PartyNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -485,7 +485,7 @@ namespace DiamondTrading.Master
 
         private async Task GetBrokerageList()
         {
-            var Brokerage = await _brokerageMasterRepository.GetAllBrokerageAsync();
+            var Brokerage = await _brokerageMasterRepository.GetAllBrokerageAsync(Common.LoginCompany);
             if (Brokerage != null)
             {
                 lueBrokerage.Properties.DataSource = Brokerage;

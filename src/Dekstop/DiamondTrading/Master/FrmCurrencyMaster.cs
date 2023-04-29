@@ -89,6 +89,7 @@ namespace DiamondTrading.Master
                         Name = txtCurrencyName.Text,
                         ShortName = txtShortName.Text,
                         Value = Convert.ToDecimal(txtRate.Text),
+                        CompanyId = Common.LoginCompany,
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,

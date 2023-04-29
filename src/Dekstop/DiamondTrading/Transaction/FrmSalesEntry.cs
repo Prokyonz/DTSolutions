@@ -418,7 +418,7 @@ namespace DiamondTrading.Transaction
         {
             //Currency
             CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
-            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync();
+            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync(Common.LoginCompany);
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
@@ -489,7 +489,7 @@ namespace DiamondTrading.Transaction
         private async Task GetKapanDetail(bool IsNew)
         {
             KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
-            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync();
+            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
             repoKapan.DataSource = kapanMaster;
             repoKapan.DisplayMember = "Name";
             repoKapan.ValueMember = "Id";

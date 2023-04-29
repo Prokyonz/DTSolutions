@@ -370,7 +370,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _brokerageMaster == null)
                 {
                     _brokerageMasterRepository = new BrokerageMasterRepository();
-                    _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync();
+                    _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync(Common.LoginCompany);
                     grdBrokerageMaster.DataSource = _brokerageMaster;
                 }
             }
@@ -379,7 +379,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _currencyMaster == null)
                 {
                     _currencyMasterRepository = new CurrencyMasterRepository();
-                    _currencyMaster = await _currencyMasterRepository.GetAllCurrencyAsync();
+                    _currencyMaster = await _currencyMasterRepository.GetAllCurrencyAsync(Common.LoginCompany);
                     grdCurrencyMaster.DataSource = _currencyMaster;
                 }
             }
@@ -388,7 +388,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _kapanMaster == null)
                 {
                     _kapanMasterRepository = new KapanMasterRepository();
-                    _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync();
+                    _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
                     grdKapanMaster.DataSource = _kapanMaster;
                 }
             }
