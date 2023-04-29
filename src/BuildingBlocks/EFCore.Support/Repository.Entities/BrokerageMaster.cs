@@ -10,6 +10,7 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string Name { get; set; }
         public float Percentage { get; set; }
+        public string CompanyId { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }

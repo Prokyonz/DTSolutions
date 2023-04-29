@@ -56,7 +56,7 @@ namespace DiamondTrading.Master
         private async void FrmBrokerageMaster_Load(object sender, EventArgs e)
         {
             if (_brokerageMaster == null)
-                _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync();
+                _brokerageMaster = await _brokerageMasterRepository.GetAllBrokerageAsync(Common.LoginCompany);
 
             if (string.IsNullOrEmpty(_selectedBrokerageId) == false)
             {
@@ -108,6 +108,7 @@ namespace DiamondTrading.Master
                         Id = tempId,
                         Name = txtBrokerageName.Text,
                         Percentage = float.Parse(txtPercentage.Text),
+                        CompanyId = Common.LoginCompany,
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,

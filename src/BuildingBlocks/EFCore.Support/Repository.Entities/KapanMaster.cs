@@ -15,6 +15,7 @@ namespace Repository.Entities
         public decimal CaratLimit { get; set; }
         public bool IsStatus { get; set; }
         public bool IsDelete { get; set; }
+        public string CompanyId { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public DateTime CreatedDate { get; set; }

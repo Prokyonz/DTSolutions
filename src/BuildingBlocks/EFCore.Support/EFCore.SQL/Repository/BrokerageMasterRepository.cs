@@ -19,7 +19,7 @@ namespace EFCore.SQL.Repository
             
         }
 
-        public async Task<List<BrokerageMaster>> GetAllBrokerageAsync()
+        public async Task<List<BrokerageMaster>> GetAllBrokerageAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {

@@ -56,7 +56,7 @@ namespace DiamondTrading.Master
         private async void FrmKapanMaster_Load(object sender, EventArgs e)
         {
             if (_kapanMaster == null)
-                _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync();
+                _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
 
             if (IsSilentEntry)
                 btnReset.Enabled = false;
@@ -129,6 +129,7 @@ namespace DiamondTrading.Master
                         Name = txtKapanName.Text,
                         Details = txtDetails.Text,
                         CaratLimit = KapanExpense,
+                        CompanyId = Common.LoginCompany,
                         IsDelete = false,
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
