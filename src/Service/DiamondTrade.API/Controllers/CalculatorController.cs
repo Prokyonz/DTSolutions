@@ -37,11 +37,11 @@ namespace DiamondTrade.API.Controllers
 
         [Route("GetAll")]
         [HttpGet]
-        public async Task<IActionResult> GetAllCaluculator()
+        public async Task<IActionResult> GetAllCaluculator(string CompanyId)
         {
             try
             {
-                var result = await _calculatorMaster.GetAllCalculatorAsync();
+                var result = await _calculatorMaster.GetAllCalculatorAsync(CompanyId);
 
                 return Ok(result);
             }

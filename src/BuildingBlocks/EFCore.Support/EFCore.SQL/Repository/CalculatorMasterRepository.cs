@@ -64,11 +64,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<CalculatorMaster>> GetAllCalculatorAsync()
+        public async Task<List<CalculatorMaster>> GetAllCalculatorAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.CalculatorMaster.Where(s => s.IsDelete == false).ToListAsync();
+                return await _databaseContext.CalculatorMaster.Where(s => s.IsDelete == false && s.CompanyId == CompanyId).ToListAsync();
             }
         }
 
