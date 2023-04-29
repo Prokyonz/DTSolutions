@@ -38,10 +38,10 @@ namespace EFCore.SQL.Repository
             {
                 calculatorMasterList.ForEach(x =>
                 {
-                    x.Sr = Sr;
+                    x.SrNo = Sr;
                     if (x.Id == null)
                         x.Id = Guid.NewGuid().ToString();
-                    _databaseContext.CalculatorMaster.AddAsync(x);
+                    _databaseContext.CalculatorMaster.AddRangeAsync(x);
                 });
                 await _databaseContext.SaveChangesAsync();
             }
@@ -53,7 +53,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => s.Sr == calculatorId && s.BranchId == branchId && !s.IsDelete).ToListAsync();
+                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => s.SrNo == calculatorId && s.BranchId == branchId && !s.IsDelete).ToListAsync();
                 if (getCalculator != null)
                 {
                     _databaseContext.CalculatorMaster.RemoveRange(getCalculator);
@@ -78,7 +78,7 @@ namespace EFCore.SQL.Repository
             {
                 if (calculatorMasterEntries.Count > 0)
                 {
-                    var CalculatorEntry = await _databaseContext.CalculatorMaster.Where(w => w.Sr == calculatorMasterEntries[0].Sr).ToListAsync();
+                    var CalculatorEntry = await _databaseContext.CalculatorMaster.Where(w => w.SrNo == calculatorMasterEntries[0].SrNo).ToListAsync();
                     _databaseContext.CalculatorMaster.RemoveRange(CalculatorEntry);
 
                     //Create an Id for each Record
@@ -110,7 +110,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var getCount = _databaseContext.CalculatorMaster.Where(m => m.BranchId == branchId).Max(m => m.Sr);
+                    var getCount = _databaseContext.CalculatorMaster.Where(m => m.BranchId == branchId).Max(m => m.SrNo);
                     return getCount + 1;
                 }
             }
