@@ -20,6 +20,11 @@ namespace Repository.Entities
         public string NumberId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
+        public decimal NetCarat { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal TotalCarat { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
         public decimal Carat { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Rate { get; set; }
