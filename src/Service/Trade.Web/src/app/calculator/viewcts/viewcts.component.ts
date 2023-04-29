@@ -30,6 +30,13 @@ interface Summary {
   TotCarat: number 
 }
 
+interface Customer {
+  name: string,
+  country: string,
+  date: string,
+  balance: number,
+  verified: boolean
+}
 
 @Component({
   selector: 'app-viewcts',
@@ -42,7 +49,7 @@ export class ViewctsComponent implements OnInit{
   showViewSection:boolean = false;
   showAddSection:boolean = false;
   showHomeSection:boolean = true;
-
+  showHistory: boolean = true;
   PageTitle:string = "History";
   loading: boolean = false;
   branches: any[] = [];
@@ -68,6 +75,7 @@ export class ViewctsComponent implements OnInit{
   dealerid: any = [];
   note: string = '';
 
+
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
 
   }
@@ -79,6 +87,21 @@ export class ViewctsComponent implements OnInit{
     this.getnumber();
     this.getAllNumberPrice();
   }
+
+  customers: Customer[] = [
+    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
+    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
+    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
+    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
+    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
+    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
+    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
+    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
+    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
+    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
+    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
+    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
+  ];  
 
   myfunction() {
     if(this.showViewSection == true) {
@@ -92,22 +115,54 @@ export class ViewctsComponent implements OnInit{
   }
 
   showDetails() {
+    if (this.date == null)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any date' }]);
+      return;
+    }
+    if (this.branchid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any branch' }]);
+      return;
+    }
+    if (this.partyid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any party' }]);
+      return;
+    }
+    if (this.dealerid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any broker' }]);
+      return;
+    }
+    if (this.netcarat <= 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Netcarat can not be less than or equal to zero' }]);
+      return;
+    }
+    if (this.NumberDetails.length == 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Carat item can not be empty' }]);
+      return;
+    }
     this.PageTitle = "View Details";
     this.showAddSection = false;
     this.showViewSection = true;
+    this.showHomeSection = false;
     this.calulateSummary();
   }
 
   calulateSummary(){
     this.summaryTotAmount = 0;
     this.summatydata.forEach(e => {
-      const filteredSize = this.NumberDetails.filter((f) => {
+      let filteredSize = this.NumberDetails.filter((f) => {
         return f.SizeId == e.SizeId;
       });
       
-      const totalAmount = filteredSize.reduce((acc, curr) => {
+      let totalAmount = filteredSize.reduce((acc, curr) => {
         return acc + curr.Amount;
-      }, 0);
+      }, 0);      
+
       e.Amount = totalAmount;
       e.Percentage = (e.TotCarat / this.netcarat)*100;
       this.summaryTotAmount = this.summaryTotAmount + e.Amount;
@@ -246,6 +301,31 @@ export class ViewctsComponent implements OnInit{
   }
   
   addItems(){
+    if (this.selectedsize.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any size' }]);
+      return;
+    }
+    if (this.selectedtotalcarat <= 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Size total carat can not be less than or equal to zero' }]);
+      return;
+    }
+    if (this.selectednumber.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any number' }]);
+      return;
+    }
+    if (this.selectedcarat <= 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Number carat can not be less than or equal to zero' }]);
+      return;
+    }
+    if (this.NumberDetails.filter(e => e.SizeId == this.selectedsize.id && e.NumberId == this.selectednumber.id).length > 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Selected number exist in selected size.' }]);
+      return;
+    }
     if (this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id).length == 0){
       this.SizeDetails.push({
         SizeId : this.selectedsize.id,
@@ -262,7 +342,24 @@ export class ViewctsComponent implements OnInit{
         TotCarat : this.selectedtotalcarat
       });
     }
-    
+    else{
+      let index = this.SizeDetails.findIndex((item) => item.SizeId === this.selectedsize.id);
+      if (index !== -1) {
+        this.SizeDetails[index].SizeId = this.selectedsize.id;
+        this.SizeDetails[index].SizeName = this.selectedsize.name;
+        this.SizeDetails[index].TotalCarat = this.selectedtotalcarat;
+        this.SizeDetails[index].NumberDetails = []
+      }
+
+      index = this.summatydata.findIndex((item) => item.SizeId === this.selectedsize.id);
+      if (index !== -1) {
+        this.summatydata[index].SizeId = this.selectedsize.id;
+        this.summatydata[index].SizeName = this.selectedsize.name;
+        this.summatydata[index].Percentage = 0;
+        this.summatydata[index].Amount = 0;
+        this.summatydata[index].TotCarat =  this.selectedtotalcarat;
+      }
+    }
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
       this.NumberDetails.push({
         SizeId : this.selectedsize.id,
@@ -271,7 +368,7 @@ export class ViewctsComponent implements OnInit{
         Rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
         NumberName: this.selectednumber.name,
         Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
-        Percentage : (this.selectedcarat / ((retdata != null && retdata.length > 0) ? retdata[0].price : 0)) * 100
+        Percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
     });
     this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedcarat = 0;
@@ -295,15 +392,64 @@ export class ViewctsComponent implements OnInit{
           this.SizeDetails.splice(ind,1);
         }
         var ind1 = this.summatydata.findIndex(e => e.SizeId == item.SizeId);
-        if (ind >= 0){
+        if (ind1 >= 0){
           this.summatydata.splice(ind1,1);
         }
       }
+      this.calulateSummary();
     }
-    this.calulateSummary();
   }
 
+  public getSizeCaratTotal(SizeId: string): number {
+    const sizeTotCarat = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
+      return acc + (+curr.Carat);
+    }, 0);
+    return sizeTotCarat;
+  }
+
+  public getSizeAmountTotal(SizeId: string): number {
+    const sizeTotCarat = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
+      return acc + (+curr.Carat);
+    }, 0);
+    const sizeTotAmount = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
+      return acc + (+curr.Amount);
+    }, 0);
+    return sizeTotAmount/sizeTotCarat;
+  }
+  
+
   saveData(){
+    if (this.date == null)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any date' }]);
+      return;
+    }
+    if (this.branchid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any branch' }]);
+      return;
+    }
+    if (this.partyid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any party' }]);
+      return;
+    }
+    if (this.dealerid.id == '')
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Select any broker' }]);
+      return;
+    }
+    if (this.netcarat <= 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Netcarat can not be less than or equal to zero' }]);
+      return;
+    }
+    if (this.NumberDetails.length == 0)
+    {
+      this.messageService.addAll([{ severity:'error', summary:'Carat item can not be empty' }]);
+      return;
+    }
+    
     if (this.SizeDetails != null && this.SizeDetails.length > 0 && this.NumberDetails != null && this.NumberDetails.length > 0)
     {
       let totCarat: number = 0;
@@ -343,8 +489,9 @@ export class ViewctsComponent implements OnInit{
       }
     }
   }
-  onAddIconClick()
-  {
-    
+  onAddIconClick() {
+    this.showAddSection = true;
+    this.showViewSection = false;
+    this.showHomeSection = false;
   }
 }

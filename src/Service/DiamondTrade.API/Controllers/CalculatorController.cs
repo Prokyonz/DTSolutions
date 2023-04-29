@@ -1,5 +1,6 @@
 ﻿using Bogus.DataSets;
 using DiamondTrade.API.Models.Request;
+using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
@@ -69,7 +70,7 @@ namespace DiamondTrade.API.Controllers
 
         [Route("Add")]
         [HttpPost]
-        public async Task<IActionResult> Add(CalculatorRequest calculator)
+        public async Task<Response<List<CalculatorMaster>>> Add(CalculatorRequest calculator)
         {
             try
             {
@@ -85,7 +86,7 @@ namespace DiamondTrade.API.Controllers
                         calculatorMaster.PartyId = calculator.PartyId;
                         calculatorMaster.Date = calculator.Date;
                         calculatorMaster.CreatedDate = DateTime.Now;
-                        calculatorMaster.CreatedBy =  calculator.UserId;
+                        calculatorMaster.CreatedBy = calculator.UserId;
                         calculatorMaster.SizeId = x.SizeId;
                         calculatorMaster.NetCarat = calculator.NetCarat;
                         calculatorMaster.TotalCarat = x.TotalCarat;
@@ -99,13 +100,27 @@ namespace DiamondTrade.API.Controllers
                     });
                 });
 
-                //var result = await _calculatorMaster.AddCalculatorListAsync(calculatorMasterList);
+                var result = await _calculatorMaster.AddCalculatorListAsync(calculatorMasterList);
 
-                return Ok();
+                return new Response<List<CalculatorMaster>>()
+                {
+                    Message = "Record has been saved successfully",
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
             }
-            catch
+            catch (Exception ex)
             {
-                throw;
+                {
+                    return new Response<List<CalculatorMaster>>()
+                    {
+                        Message = ex.Message,
+                        StatusCode = 200,
+                        Success = false,
+                        Data = null
+                    };
+                }
             }
         }
 
