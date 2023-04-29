@@ -8,7 +8,7 @@ namespace EFCore.SQL.Interface
 {
     public interface ICalculatorMaster
     {
-        Task<List<CalculatorMaster>> GetAllCalculatorAsync();
+        Task<List<CalculatorMaster>> GetAllCalculatorAsync(string CompanyId);
         Task<CalculatorMaster> AddCalculatorAsync(CalculatorMaster calculatorMaster);
         Task<List<CalculatorMaster>> AddCalculatorListAsync(List<CalculatorMaster> calculatorMaster);
         Task<bool> UpdateCalculatorAsync(List<CalculatorMaster> calculatorMasterEntries);
