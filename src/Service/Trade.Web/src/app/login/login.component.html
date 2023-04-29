@@ -1,79 +1,76 @@
-<html>
-  <head>
-    <title>Login Page</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <style>
-      body {
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+<!-- <div style="height: calc(100vh); background: #1c80cf;">
+  <div class="center">
+    <table style="width: 100%;">
+      <tr>
+        <td>          
+          <div>
+              <table style="width: 100%;">               
+                <tr>
+                  <td style="padding-top:10px;">   
+                      <span style="bottom: 5px; position: relative;">Username</span><br/>                                                       
+                      <input pInputText formControlName="username" required style="width: 100%;"/>                            
+                  </td>
+                </tr> 
+                <tr>
+                  <td style="padding-top:10px;">   
+                      <span style="bottom: 5px; position: relative;">Password</span><br/>                                                       
+                      <input pInputText formControlName="password" required style="width: 100%;"/>                            
+                  </td>
+                </tr> 
+                <tr>
+                  <td style="padding-top:10px;">   
+                    <div class="flex align-items-center">
+                      <p-radioButton name="pizza" value="Cheese" formControlName="rememberme" inputId="ingredient1"></p-radioButton>
+                      <label for="ingredient1" class="ml-2">Cheese</label>
+                  </div>
+                  </td>
+                </tr> 
+                <tr>
+                  <td style="vertical-align: bottom;">                                                     
+                      <p-button label="Add Item" (onClick)="onLogin()"></p-button>                         
+                  </td>
+              </tr>
+            </table>
+          </div>          
+        </td>
+      </tr>
+    </table>
+  </div>
+</div> -->
 
-      .card {
-        border-radius: 20px;
-        box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
-      }
 
-      .form-control {
-        border-radius: 20px;
-        border: none;
-        background-color: #F8F8F8;
-        box-shadow: none;
-        font-size: 16px;
-        padding: 18px;
-        margin-bottom: 20px;
-      }
-
-      .form-control:focus {
-        border: none;
-        box-shadow: none;
-      }
-
-      .btn-primary {
-        background-color: #0D6EFD;
-        border: none;
-        border-radius: 20px;
-        padding: 15px;
-        width: 100%;
-      }
-
-      .btn-primary:hover {
-        background-color: #0B58C8;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container-fluid">
-      <div class="row justify-content-center">
-        <div class="col-sm-10 col-md-8 col-lg-6">
-          <div class="card mt-5 animate__animated animate__fadeInDown">
-            <div class="card-body">
-              <h5 class="card-title text-center mb-4">Login</h5>
-              <form [formGroup]="loginForm">
-                <div class="form-group">
-                  <label for="email">User Name</label>
-                  <!-- <input type="email" class="form-control" id="email" placeholder="Enter email"> -->
-                  <input type="text" pInputText placeholder="Username" class="form-control" formControlName="username"  />
-                </div>
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <!-- <input type="password" class="form-control" id="password" placeholder="Password"> -->
-                  <input type="password" pInputText class="form-control" placeholder="Password" formControlName="password" />  
-                </div>
-                <!-- <button type="submit" class="btn btn-primary btn-block animate__animated animate__fadeInUp">Login</button> -->
-                <button pButton class="btn btn-primary btn-block animate__animated animate__fadeInUp" type="submit" label="Login" (click)="onlogin()"></button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+<div style="height: calc(100vh); background: #1c80cf;">
+  <div class="center">
+    <div class="card flex justify-content-center">
+      <p-card header="Login">      
+          <ng-template pTemplate="content">        
+            <table style="width: 100%;" [cellPadding]="5">
+              <tr>
+                <td>
+                  <span style="bottom: 5px; position: relative;">Username</span><br/>                                                       
+                  <input pInputText pKeyFilter="int" style="width: 100%;"/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span style="bottom: 5px; position: relative;">Password</span><br/>                                                                         
+                  <input type="password" pPassword [feedback]="false" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-radioButton value="Remember password" inputId="rem"></p-radioButton>
+                  <label for="rem" class="ml-2">Remember password</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-button label="Login" (onClick)="onLogin();" icon="pi pi-check"></p-button>
+                </td>
+              </tr>
+            </table>        
+          </ng-template>
+      </p-card>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  </body>
-</html>
+  </div>
+</div>

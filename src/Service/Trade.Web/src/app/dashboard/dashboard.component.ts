@@ -9,4 +9,8 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   openMenu() {
   }
+
+  onSeach(event:any) {
+    console.log(event);
+  }
 }

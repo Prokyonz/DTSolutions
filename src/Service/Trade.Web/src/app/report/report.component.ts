@@ -60,4 +60,8 @@ export class ReportComponent implements OnInit {
     return event.target.value;
   }
 
+  onSeach(event: any) {
+    console.log(event);
+  }
+
 }

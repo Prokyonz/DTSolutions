@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm: FormGroup;
   isLoggedIn = false;
+
   constructor(private fb: FormBuilder, private router: Router) {
     this.isLoggedIn = false;
     this.loginForm = fb.group({
@@ -19,9 +20,7 @@ export class LoginComponent {
     });
   }
 
-  onlogin(){
-    //if (this.loginForm.valid){
-      this.router.navigate(['/dashboard']);
-    //}
+  onLogin() {
+      this.router.navigate(['/dashboard']);    
   }
 }

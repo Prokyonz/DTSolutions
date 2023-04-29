@@ -1,7 +1,8 @@
 .panel {
-    height: calc(100vh - 56px);
-    margin: 8px;
+    height: calc(100vh - 149px);
+    padding: 8px;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 .custom-design {
     width: 100%;
