@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -117,6 +118,15 @@ namespace EFCore.SQL.Repository
             catch
             {
                 return 1;
+            }
+        }
+
+        public async Task<List<CalculatorSPModel>> GetCalculatorReport(string companyId, string financialYearId, string fromDate, string toDate)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var calsulatorReport = await _databaseContext.SPCalculatorModel.FromSqlRaw($"GetCalulatorDetails '" + companyId + "','" + financialYearId + "', '" + fromDate + "', '" + toDate + "'").ToListAsync();
+                return calsulatorReport;
             }
         }
     }

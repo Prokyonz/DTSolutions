@@ -1,4 +1,5 @@
 ﻿using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,5 +14,6 @@ namespace EFCore.SQL.Interface
         Task<List<CalculatorMaster>> AddCalculatorListAsync(List<CalculatorMaster> calculatorMaster);
         Task<bool> UpdateCalculatorAsync(List<CalculatorMaster> calculatorMasterEntries);
         Task<bool> DeleteCalculatorAsync(int calculatorId, string branchId);
+        Task<List<CalculatorSPModel>> GetCalculatorReport(string companyId, string financialYearId, string fromDate, string toDate);
     }
 }

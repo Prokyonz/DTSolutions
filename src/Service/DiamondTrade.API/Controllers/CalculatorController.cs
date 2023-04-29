@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace DiamondTrade.API.Controllers
@@ -121,6 +122,73 @@ namespace DiamondTrade.API.Controllers
                         Data = null
                     };
                 }
+            }
+        }
+
+        [Route("GetCalculatorReport")]
+        [HttpGet]
+        public async Task<IActionResult> GetCalculatorReport(string CompanyId, string FinancialYearId, string FromDate, string ToDate)
+        {
+            try
+            {
+                var result = await _calculatorMaster.GetCalculatorReport(CompanyId, FinancialYearId, FromDate, ToDate);
+
+                var calculatorResponseModel = result.GroupBy(x => new
+                {
+                    x.Date,
+                    x.SrNo,
+                    x.CompanyId,
+                    x.FinancialYearId,
+                    x.BranchId,
+                    x.PartyId,
+                    x.PartyName,
+                    x.BrokerId,
+                    x.BrokerName,
+                    x.NetCarat,
+                    x.Note,
+                    x.UserId,
+                    x.UserName
+                }).Select(x => new CalculatorResponseModel()
+                {
+                    Date = x.Key.Date,
+                    SrNo = x.Key.SrNo,
+                    CompanyId = x.Key.CompanyId,
+                    FinancialYearId = x.Key.FinancialYearId,
+                    BranchId = x.Key.BranchId,
+                    PartyId = x.Key.PartyId,
+                    PartyName = x.Key.PartyName,
+                    BrokerId = x.Key.BrokerId,
+                    BrokerName = x.Key.BrokerName,
+                    NetCarat = x.Key.NetCarat,
+                    Note = x.Key.Note,
+                    UserId = x.Key.UserId,
+                    UserName = x.Key.UserName,
+                    SizeDetails = x.Select(s => new Models.Response.SizeDetails()
+                    {
+                        SizeId = s.SizeId,
+                        SizeName = s.SizeName,
+                        TotalCarat = s.TotalCarat,
+                        NumberDetails = new List<Models.Response.NumberDetails>()
+                        {
+                            new Models.Response.NumberDetails(){
+                            SizeId = s.SizeId,
+                            NumberId = s.NumberId,
+                            Carat = s.Carat,
+                            Rate = s.Rate,
+                            NumberName = s.NumberName,
+                            Percentage = s.Percentage,
+                            Amount = s.Amount
+                            },
+                        }
+                    }).ToList()
+                });
+
+                calculatorResponseModel = calculatorResponseModel.OrderByDescending(x => x.SrNo);
+                return Ok(calculatorResponseModel);
+            }
+            catch(Exception Ex)
+            {
+                throw;
             }
         }
 
