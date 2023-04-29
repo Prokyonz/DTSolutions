@@ -4,6 +4,19 @@ import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 
+interface CalclatorMaster{
+  Date: Date,
+  CompanyId: string,
+  FinancialYearId: string,
+  BranchId: string,
+  PartyId: string,
+  BrokerId: string,
+  NetCarat: number,
+  Note: string,
+  SizeDetails: SizeDetails[] | null,
+  UserId: string              
+}
+
 interface NumberDetails {
   SizeId: string,
   NumberId: string,
@@ -75,17 +88,11 @@ export class ViewctsComponent implements OnInit{
   dealerid: any = [];
   note: string = '';
 
-
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
 
   }
   ngOnInit(): void {
-    this.getparty();
-    this.getdealer();
-    this.getbranch();
-    this.getsize();
-    this.getnumber();
-    this.getAllNumberPrice();
+    
   }
 
   customers: Customer[] = [
@@ -108,7 +115,7 @@ export class ViewctsComponent implements OnInit{
       this.showAddSection = true;
       this.showViewSection = false;
       this.showHomeSection = false;
-      this.PageTitle = "Add Details";
+      this.PageTitle = "Add Details";      
     }
     else
       this.router.navigate(["dashboard"]);
@@ -149,6 +156,9 @@ export class ViewctsComponent implements OnInit{
     this.showAddSection = false;
     this.showViewSection = true;
     this.showHomeSection = false;
+    this.SizeDetails.forEach(element => {
+      element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
+    });
     this.calulateSummary();
   }
 
@@ -465,6 +475,8 @@ export class ViewctsComponent implements OnInit{
         if (confirm("Are you sure want to save this item?")){
           const data = {
               Date: this.date,
+              CompanyId: '',
+              FinancialYearId: '',
               BranchId: this.branchid.id,
               PartyId: this.partyid.id,
               BrokerId: this.dealerid.id,
@@ -478,18 +490,44 @@ export class ViewctsComponent implements OnInit{
           this.sharedService.customPostApi("Calculator/Add",data)
           .subscribe((data: any) => {
             debugger;
-            // if (data.success == true){
-            //   this.router.navigate(['/dashboard']);
-            // }
-            //this.router.navigateByUrl('/');
-            
+                if (data.success == true){
+                  this.messageService.addAll([{severity:'success', summary:data.message}]);
+                  this.showAddSection = false;
+                  this.showHistory = true;
+                  this.showViewSection = false;
+                  this.PageTitle = "History";
+                  this.NumberDetails = [];
+                  this.SizeDetails = [];
+                  this.summatydata = [];
+                  this.selectednumber = this.numbers.filter(e => e.id == '');
+                  this.selectedsize = this.sizes.filter(e => e.Id == '');
+                  this.selectedcarat = 0;
+                  this.netcarat = 0;
+                  this.selectedtotalcarat = 0;
+                  this.summaryTotAmount = 0;
+                  this.date = new Date();
+                  this.branchid = this.branches.filter(e => e.id == '');
+                  this.partyid = this.party.filter(e => e.id == '');
+                  this.dealerid = this.dealers.filter(e => e.id == '');
+                  this.note = '';
+                }
+                else{
+                  this.messageService.addAll([{ severity:'error', summary:'Something went wrong...' }]);
+                }
               }, (ex: any) => {
+                this.messageService.addAll([{ severity:'error', summary:ex }]);
             });
         }
       }
     }
   }
   onAddIconClick() {
+    this.getparty();
+    this.getdealer();
+    this.getbranch();
+    this.getsize();
+    this.getnumber();
+    this.getAllNumberPrice();
     this.showAddSection = true;
     this.showViewSection = false;
     this.showHomeSection = false;
