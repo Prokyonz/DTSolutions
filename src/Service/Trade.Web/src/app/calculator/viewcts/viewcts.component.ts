@@ -531,5 +531,6 @@ export class ViewctsComponent implements OnInit{
     this.showAddSection = true;
     this.showViewSection = false;
     this.showHomeSection = false;
+    this.showHistory = false;
   }
 }
