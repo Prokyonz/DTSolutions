@@ -219,32 +219,32 @@ export class ViewctsComponent implements OnInit{
   showDetails() {
     if (this.date == null)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any date' }]);
+      this.showMessage('error','Select any date');
       return;
     }
     if (this.branchid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any branch', sticky: true }]);
+      this.showMessage('error',"Select any branch");
       return;
     }
     if (this.partyid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any party' }]);
+      this.showMessage('error','Select any party');
       return;
     }
     if (this.dealerid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any broker' }]);
+      this.showMessage('error','Select any broker');
       return;
     }
     if (this.netcarat <= 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Netcarat can not be less than or equal to zero' }]);
+      this.showMessage('error','Netcarat can not be less than or equal to zero');
       return;
     }
     if (this.NumberDetails.length == 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Carat item can not be empty' }]);
+      this.showMessage('error','Carat item can not be empty');
       return;
     }
     this.PageTitle = "View Details";
@@ -273,7 +273,7 @@ export class ViewctsComponent implements OnInit{
     .subscribe((data: any) => {
           this.calculatorData = data;
         }, (ex: any) => {
-          this.messageService.addAll([{ severity:'error', summary:ex }]);
+          this.showMessage('error',ex);
       });
   }
 
@@ -296,6 +296,7 @@ export class ViewctsComponent implements OnInit{
 >>>>>>> Add changes
   }
 
+<<<<<<< HEAD
   showMessage() {
     this.messageService.addAll([{severity:'success', summary:'Success'}, { severity:'error', summary:'Error occurred.' }]);
   }
@@ -319,6 +320,8 @@ export class ViewctsComponent implements OnInit{
     this.showViewSection = false;
     this.showHomeSection = false;
 =======
+=======
+>>>>>>> Change Message
   getparty(){
     this.sharedService.customGetApi("Service/GetParty?companyid=" + this.comanyid).subscribe((t) => {
       if (t.success == true){
@@ -392,7 +395,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getAllNumberPrice(){
-    this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=ff8d3c9b-957b-46d1-b661-560ae4a2433e&categoryId=0").subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.comanyid + "&categoryId=0").subscribe((t) => {
       if (t.success == true){
        this.pricelist = t.data;
       }
@@ -437,27 +440,27 @@ export class ViewctsComponent implements OnInit{
   addItems(){
     if (this.selectedsize.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any size' }]);
+      this.showMessage('error','Select any size');
       return;
     }
     if (this.selectedtotalcarat <= 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Size total carat can not be less than or equal to zero' }]);
+      this.showMessage('error','Size total carat can not be less than or equal to zero');
       return;
     }
     if (this.selectednumber.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any number' }]);
+      this.showMessage('error','Select any number');
       return;
     }
     if (this.selectedcarat <= 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Number carat can not be less than or equal to zero' }]);
+      this.showMessage('error','Number carat can not be less than or equal to zero');
       return;
     }
     if (this.NumberDetails.filter(e => e.SizeId == this.selectedsize.id && e.NumberId == this.selectednumber.id).length > 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Selected number exist in selected size.' }]);
+      this.showMessage('error','Selected number exist in selected size.');
       return;
     }
     if (this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id).length == 0){
@@ -504,7 +507,7 @@ export class ViewctsComponent implements OnInit{
         Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
         Percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
     });
-    this.messageService.addAll([{severity:'success', summary:"Items added successfully"}]);
+    this.showMessage('success','Items added successfully');
     this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedcarat = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
@@ -557,32 +560,32 @@ export class ViewctsComponent implements OnInit{
   saveData(){
     if (this.date == null)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any date' }]);
+      this.showMessage('error','Select any date');
       return;
     }
     if (this.branchid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any branch' }]);
+      this.showMessage('error','Select any branch');
       return;
     }
     if (this.partyid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any party' }]);
+      this.showMessage('error','Select any party');
       return;
     }
     if (this.dealerid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any broker' }]);
+      this.showMessage('error','Select any broker');
       return;
     }
     if (this.netcarat <= 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Netcarat can not be less than or equal to zero' }]);
+      this.showMessage('error','Netcarat can not be less than or equal to zero');
       return;
     }
     if (this.NumberDetails.length == 0)
     {
-      this.messageService.addAll([{ severity:'error', summary:'Carat item can not be empty' }]);
+      this.showMessage('error','Carat item can not be empty');
       return;
     }
     
@@ -591,8 +594,8 @@ export class ViewctsComponent implements OnInit{
       let totCarat: number = 0;
       this.SizeDetails.forEach(e => {
         totCarat = totCarat + (+e.TotalCarat);
-      });     
-      debugger;
+      }); 
+      this.loading = true;    
       if (this.netcarat == totCarat){
         const userId = localStorage.getItem('userid');
         this.SizeDetails.forEach(element => {
@@ -615,9 +618,8 @@ export class ViewctsComponent implements OnInit{
 
           this.sharedService.customPostApi("Calculator/Add",data)
           .subscribe((data: any) => {
-            debugger;
-                if (data.success == true){
-                  this.messageService.addAll([{severity:'success', summary:data.message}]);
+                if (data.success == true){                  
+                  this.showMessage('success',data.message);
                   this.showAddSection = false;
                   this.showHistory = true;
                   this.showViewSection = false;
@@ -636,13 +638,16 @@ export class ViewctsComponent implements OnInit{
                   this.partyid = this.party.filter(e => e.id == '');
                   this.dealerid = this.dealers.filter(e => e.id == '');
                   this.note = '';
+                  this.loading = false;
                   this.calculatorList();
                 }
                 else{
-                  this.messageService.addAll([{ severity:'error', summary:'Something went wrong...' }]);
+                  this.loading = false;
+                  this.showMessage('error','Something went wrong...');
                 }
               }, (ex: any) => {
-                this.messageService.addAll([{ severity:'error', summary:ex }]);
+                this.loading = false;
+                this.showMessage('error',ex);
             });
         }
       }
@@ -660,5 +665,9 @@ export class ViewctsComponent implements OnInit{
     this.showViewSection = false;
     this.showHomeSection = false;
     this.showHistory = false;
+  }
+
+  showMessage(type: string, message: string){
+    this.messageService.add({severity: type, summary:message});
   }
 }
