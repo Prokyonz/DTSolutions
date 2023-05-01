@@ -151,6 +151,7 @@ export class ViewctsComponent implements OnInit{
   branchid: any = [];
   partyid: any = [];
   dealerid: any = [];
+  calculatorData: any = [];
   note: string = '';
 <<<<<<< HEAD
 >>>>>>> Commit
@@ -186,7 +187,7 @@ export class ViewctsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    
+    this.calculatorList();
   }
 
   customers: Customer[] = [
@@ -223,7 +224,7 @@ export class ViewctsComponent implements OnInit{
     }
     if (this.branchid.id == '')
     {
-      this.messageService.addAll([{ severity:'error', summary:'Select any branch' }]);
+      this.messageService.addAll([{ severity:'error', summary:'Select any branch', sticky: true }]);
       return;
     }
     if (this.partyid.id == '')
@@ -265,6 +266,15 @@ export class ViewctsComponent implements OnInit{
     });
 >>>>>>> Add
     this.calulateSummary();
+  }
+
+  calculatorList(){
+    this.sharedService.customGetApi("Calculator/GetAll?CompanyId=" + this.comanyid)
+    .subscribe((data: any) => {
+          this.calculatorData = data;
+        }, (ex: any) => {
+          this.messageService.addAll([{ severity:'error', summary:ex }]);
+      });
   }
 
   calulateSummary(){
@@ -494,6 +504,7 @@ export class ViewctsComponent implements OnInit{
         Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
         Percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
     });
+    this.messageService.addAll([{severity:'success', summary:"Items added successfully"}]);
     this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedcarat = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
@@ -590,7 +601,7 @@ export class ViewctsComponent implements OnInit{
         if (confirm("Are you sure want to save this item?")){
           const data = {
               Date: this.date,
-              CompanyId: '',
+              CompanyId: this.comanyid,
               FinancialYearId: '',
               BranchId: this.branchid.id,
               PartyId: this.partyid.id,
@@ -625,6 +636,7 @@ export class ViewctsComponent implements OnInit{
                   this.partyid = this.party.filter(e => e.id == '');
                   this.dealerid = this.dealers.filter(e => e.id == '');
                   this.note = '';
+                  this.calculatorList();
                 }
                 else{
                   this.messageService.addAll([{ severity:'error', summary:'Something went wrong...' }]);
@@ -637,6 +649,7 @@ export class ViewctsComponent implements OnInit{
     }
   }
   onAddIconClick() {
+    this.PageTitle = "Add Details"
     this.getparty();
     this.getdealer();
     this.getbranch();
