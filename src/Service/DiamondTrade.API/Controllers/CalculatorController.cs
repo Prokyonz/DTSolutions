@@ -83,6 +83,7 @@ namespace DiamondTrade.API.Controllers
                     {
                         CalculatorMaster calculatorMaster = new CalculatorMaster();
                         calculatorMaster.BranchId = calculator.BranchId;
+                        calculatorMaster.CompanyId = calculator.CompanyId;
                         calculatorMaster.DealerId = calculator.BrokerId;
                         calculatorMaster.PartyId = calculator.PartyId;
                         calculatorMaster.Date = calculator.Date;
