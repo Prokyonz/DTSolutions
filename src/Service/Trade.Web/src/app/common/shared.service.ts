@@ -5,7 +5,7 @@ import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 //import {config} from '../../assets/config/app.config';
 
-const apiUrl : string = "https://localhost:44359/api/";
+const apiUrl : string = "http://192.168.29.223/calculator/api/";
 //const apiKey = config.apiKey;
 @Injectable({
     providedIn: 'root' // or specify a module where it should be provided
