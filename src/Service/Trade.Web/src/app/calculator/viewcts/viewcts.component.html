@@ -420,17 +420,18 @@
         <p-table
             #dt1
             [value]="calculatorData"
-            dataKey="id"
+            dataKey="SrNo"
             [rows]="5"
             [showCurrentPageReport]="false"
             [rowsPerPageOptions]="[5, 10, 25, 50]"
             [loading]="loading"
             [paginator]="true"
             [scrollable]="true"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [globalFilterFields]="['companyId', 'partyId', 'dealerId']"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"            
             >
-            <!-- <ng-template pTemplate="caption">
+            <!-- 
+                [globalFilterFields]="['companyId', 'partyName', 'brokerName']"
+                <ng-template pTemplate="caption">
                 <div class="flex">
                     <span class="p-input-icon-left ml-auto">
                         <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
@@ -440,37 +441,37 @@
             </ng-template> -->
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="min-width:15rem">
+                    <!-- <th style="min-width:15rem">
                         <div class="flex align-items-center">
                             Id
                             <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
                         </div>
-                    </th>
-                    <th style="min-width:15rem">
+                    </th> -->
+                    <!-- <th style="min-width:15rem">
                         <div class="flex align-items-center">
-                            CompanyId
+                            SR No
                             <p-columnFilter type="text" field="companyId" display="menu"></p-columnFilter>
                         </div>
-                    </th>
-                    <th style="min-width:10rem">
+                    </th> -->
+                    <th style="min-width:5rem">
                         <div class="flex align-items-center">
                             Date
                             <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width:10rem">
+                    <th style="min-width:15rem">
                         <div class="flex align-items-center">
-                            PartyId
-                            <p-columnFilter field="partyId" display="menu"></p-columnFilter>
+                            Party
+                            <p-columnFilter field="partyName" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="width: 3rem">
+                    <th style="min-width: 15rem">
                         <div class="flex align-items-center">
-                            DealerId
-                            <p-columnFilter field="dealerId" display="menu"></p-columnFilter>
+                            Broker
+                            <p-columnFilter field="brokerName" display="menu"></p-columnFilter>
                         </div>
                     </th>    
-                    <th style="width: 3rem">
+                    <th style="min-width: 10rem">
                         <div class="flex align-items-center">
                             Net Carat
                             <p-columnFilter type="number" field="netCarat" display="menu"></p-columnFilter>
@@ -480,20 +481,20 @@
             </ng-template>
             <ng-template pTemplate="body" let-calculatorData>
                 <tr>
-                    <td>
+                    <!-- <td>
                         {{ calculatorData.id }}
                     </td>
                     <td>
                         {{ calculatorData.companyId }}
-                    </td>                    
+                    </td>                     -->
                     <td>
                         {{ calculatorData.date | date: 'MM/dd/yyyy' }}
                     </td>
                     <td>
-                        {{ calculatorData.partyId  }}
+                        {{ calculatorData.partyName  }}
                     </td>
                     <td>
-                        {{ calculatorData.dealerId  }}
+                        {{ calculatorData.brokerName  }}
                     </td>        
                     <td>
                         {{ calculatorData.netCarat  }}
@@ -502,7 +503,7 @@
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="6">No Data found.</td>
+                    <td colspan="4">No Data found.</td>
                 </tr>
             </ng-template>
         </p-table>

@@ -269,9 +269,11 @@ export class ViewctsComponent implements OnInit{
   }
 
   calculatorList(){
-    this.sharedService.customGetApi("Calculator/GetAll?CompanyId=" + this.comanyid)
+    
+    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.comanyid + "&FinancialYearId=1&FromDate=20230501&ToDate=20230501")
     .subscribe((data: any) => {
           this.calculatorData = data;
+          console.log(this.calculatorData);
         }, (ex: any) => {
           this.showMessage('error',ex);
       });
@@ -605,7 +607,7 @@ export class ViewctsComponent implements OnInit{
           const data = {
               Date: this.date,
               CompanyId: this.comanyid,
-              FinancialYearId: '',
+              FinancialYearId: '1',
               BranchId: this.branchid.id,
               PartyId: this.partyid.id,
               BrokerId: this.dealerid.id,

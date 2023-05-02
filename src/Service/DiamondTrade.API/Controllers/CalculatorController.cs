@@ -136,7 +136,7 @@ namespace DiamondTrade.API.Controllers
 
                 var calculatorResponseModel = result.GroupBy(x => new
                 {
-                    x.Date,
+                    x.Date.Date,
                     x.SrNo,
                     x.CompanyId,
                     x.FinancialYearId,
@@ -151,7 +151,7 @@ namespace DiamondTrade.API.Controllers
                     x.UserName
                 }).Select(x => new CalculatorResponseModel()
                 {
-                    Date = x.Key.Date,
+                    Date = x.Key.Date.Date,
                     SrNo = x.Key.SrNo,
                     CompanyId = x.Key.CompanyId,
                     FinancialYearId = x.Key.FinancialYearId,
