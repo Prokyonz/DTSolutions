@@ -51,7 +51,7 @@ export class CompanyselectionComponent {
   rememberMe : boolean = false;
 
   ngOnInit() {
-      this.showHeaderForCompanySelect = this.activateRoute.component?.name.toLocaleLowerCase() == "companyselectioncomponent" ? true : false;
+      this.showHeaderForCompanySelect = this.activateRoute.snapshot?.params['value'] == "header" ? true : false;
       this.getCompany();
       this.getBranch();
       this.getFinancialYear();

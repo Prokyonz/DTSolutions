@@ -38,6 +38,7 @@ namespace DiamondTrading
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
+        private GridControl _gridControl = new GridControl();
 
         public FrmTransactionDetails()
         {
@@ -530,12 +531,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(grvTransMaster);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdTransactionMaster);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabSales)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(grvSalesTransactonMaster);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdSalesTransactonMaster);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabPayment)
@@ -544,12 +553,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(gridView4);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdPaymentDetails);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabReceipt)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(gridView7);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdReceiptDetails);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabContra)
@@ -558,12 +575,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(gridView5);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdContraDetails);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(grvExpenseMaster);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdExpenseControl);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabLoan)
@@ -572,12 +597,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(gridView9);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlLoan);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabMixed)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(gridView15);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlMixed);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabPurchaseSlipPrint)
@@ -586,12 +619,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(grvPurchaseSlipDetails);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdPurchaseSlipDetails);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(grvJangadSendReceive);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlJangadSendReceive);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabPFReport)
@@ -600,12 +641,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(grvPFReport);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlPFReport);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtraTabLedgerBalance)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(grvLedgerReport);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlLedgerReport);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
@@ -614,12 +663,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(grvWeeklyPurchaseReport);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdWeeklyPurchaseReport);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtraTabPayableReceivable)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(gridView1);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlPayableReceivable);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtraTabBalanceSheet)
@@ -628,12 +685,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(gridView29);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlBalanceSheet);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtraTabProfitLoss)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(gridView32);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlProfitLoss);
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabCashBankReport)
@@ -642,6 +707,10 @@ namespace DiamondTrading
                 {
                     ExportToExcel(gridView2);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlCashBank);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabSalaryReport)
             {
@@ -649,12 +718,20 @@ namespace DiamondTrading
                 {
                     ExportToExcel(grdViewSalaryReport);
                 }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlSalaryReport);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtraTabRejectionReport)
             {
                 if (exportType == ExportDataType.Excel)
                 {
                     ExportToExcel(gridView13);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlRejectionReport);
                 }
             }
             this.Cursor = Cursors.Default;
@@ -671,6 +748,44 @@ namespace DiamondTrading
 
             if (saveFileDialog.FileName != "")
                 gridView.ExportToXlsx(saveFileDialog.FileName);
+        }
+
+        private void ExportToPDF(GridControl gridView)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "PDF Files (*.pdf)|*.pdf";
+            saveFileDialog.Title = "PDF an Excel File";
+            saveFileDialog.ShowDialog();
+
+            if (saveFileDialog.FileName != "")
+            {
+                this.Cursor = Cursors.WaitCursor;
+                DevExpress.XtraPrinting.PrintingSystem printingSystem1 = new DevExpress.XtraPrinting.PrintingSystem();
+                DevExpress.XtraPrinting.PrintableComponentLink printLink = new DevExpress.XtraPrinting.PrintableComponentLink();
+
+                DevExpress.XtraPrinting.PdfExportOptions options = new DevExpress.XtraPrinting.PdfExportOptions();
+
+                try
+                {
+                    printLink.Component = gridView;
+                    printLink.CreateDocument(printingSystem1);
+                    printLink.Landscape = true;
+
+                    printingSystem1.ShowPrintStatusDialog = true;
+                    printingSystem1.PageSettings.Landscape = true;
+                    printingSystem1.ExportToPdf(saveFileDialog.FileName, options);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                finally
+                {
+                    printingSystem1.Dispose();
+                    printLink.Dispose();
+                    this.Cursor = Cursors.Default;
+                }
+            }
         }
 
         private void FrmTransactionDetails_FormClosed(object sender, FormClosedEventArgs e)

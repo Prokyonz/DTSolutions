@@ -1999,7 +1999,6 @@ namespace DiamondTrading
             this.accordionExportToPdf.Name = "accordionExportToPdf";
             this.accordionExportToPdf.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionExportToPdf.Text = "PDF";
-            this.accordionExportToPdf.Visible = false;
             this.accordionExportToPdf.Click += new System.EventHandler(this.accordionExportToPdf_Click);
             // 
             // accordionPrint
