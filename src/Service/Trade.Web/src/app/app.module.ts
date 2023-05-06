@@ -109,6 +109,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     HttpClientModule,
     FormsModule,
 <<<<<<< HEAD
+<<<<<<< HEAD
     CommonModule
 >>>>>>> Login Module and Add code in API
 =======
@@ -124,6 +125,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CheckboxModule,
     ProgressSpinnerModule
 >>>>>>> added loader
+=======
+    CommonModule,
+    RadioButtonModule,
+    CheckboxModule,
+    ProgressSpinnerModule
+>>>>>>> Add new changes
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]

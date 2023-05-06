@@ -162,6 +162,7 @@ export class ViewctsComponent implements OnInit{
 >>>>>>> Commit
 =======
   calculator: CalculatorMaster;
+<<<<<<< HEAD
   isSaveButtopn: boolean = true;
 <<<<<<< HEAD
 >>>>>>> Add view changes
@@ -193,6 +194,9 @@ export class ViewctsComponent implements OnInit{
 =======
 >>>>>>> Add
 =======
+=======
+  isSaveButton: boolean = true;
+>>>>>>> Add new changes
   RememberCompany: RememberCompany = new RememberCompany();
 >>>>>>> Add Company Data On Login
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
@@ -200,8 +204,10 @@ export class ViewctsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.calculatorList();
+    debugger;
     this.getCompanyData();
+    this.calculatorList();
+    
   }
 
   customers: Customer[] = [
@@ -261,7 +267,7 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Carat item can not be empty');
       return;
     }
-    this.isSaveButtopn = true;
+    this.isSaveButton = true;
     this.PageTitle = "View Details";
     this.showAddSection = false;
     this.showViewSection = true;
@@ -288,6 +294,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getCompanyData(){
+    debugger;
     const data = localStorage.getItem("companyremember");
     if (data != null){
       this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
@@ -567,7 +574,8 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    this.isSaveButtopn = false;
+    debugger;
+    
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -602,6 +610,7 @@ export class ViewctsComponent implements OnInit{
       })
     });
     this.showDetails();
+    this.isSaveButton = false;
   }
 
   public getSizeCaratTotal(sizeId: string): number {
@@ -720,6 +729,8 @@ export class ViewctsComponent implements OnInit{
   }
   onAddIconClick() {
     this.PageTitle = "Add Details"
+    debugger;
+    this.isSaveButton = true;
     this.getparty();
     this.getdealer();
     this.getbranch();
