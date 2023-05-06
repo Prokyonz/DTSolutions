@@ -51,6 +51,7 @@ export class CompanyselectionComponent {
   rememberMe : boolean = false;
 
   ngOnInit() {
+<<<<<<< HEAD
       this.showHeaderForCompanySelect = this.activateRoute.component?.name.toLocaleLowerCase() == "companyselectioncomponent" ? true : false;
       this.getCompany();
       this.getBranch();
@@ -111,6 +112,16 @@ export class CompanyselectionComponent {
 
   handleAccountYear(event: any){
     this.SelectedFinancialYear = event.value;
+=======
+      this.showHeaderForCompanySelect = this.activateRoute.snapshot?.params['value'] == "header" ? true : false;
+      this.companies = [
+          { name: 'New York', code: 'NY' },
+          { name: 'Rome', code: 'RM' },
+          { name: 'London', code: 'LDN' },
+          { name: 'Istanbul', code: 'IST' },
+          { name: 'Paris', code: 'PRS' }
+      ];
+>>>>>>> updated the title
   }
 
   onSaveCompanySelection() {
