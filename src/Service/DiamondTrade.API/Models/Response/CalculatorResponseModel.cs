@@ -12,6 +12,7 @@ namespace DiamondTrade.API.Models.Response
         public string CompanyId { get; set; }
         public string FinancialYearId { get; set; }
         public string BranchId { get; set; }
+        public string BranchName { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
         public string BrokerId { get; set; }

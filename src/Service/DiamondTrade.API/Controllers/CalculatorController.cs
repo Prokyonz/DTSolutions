@@ -84,6 +84,7 @@ namespace DiamondTrade.API.Controllers
                         CalculatorMaster calculatorMaster = new CalculatorMaster();
                         calculatorMaster.BranchId = calculator.BranchId;
                         calculatorMaster.CompanyId = calculator.CompanyId;
+                        calculatorMaster.FinancialYearId = "1";
                         calculatorMaster.DealerId = calculator.BrokerId;
                         calculatorMaster.PartyId = calculator.PartyId;
                         calculatorMaster.Date = calculator.Date;
@@ -141,6 +142,7 @@ namespace DiamondTrade.API.Controllers
                     x.CompanyId,
                     x.FinancialYearId,
                     x.BranchId,
+                    x.BranchName,
                     x.PartyId,
                     x.PartyName,
                     x.BrokerId,
@@ -156,6 +158,7 @@ namespace DiamondTrade.API.Controllers
                     CompanyId = x.Key.CompanyId,
                     FinancialYearId = x.Key.FinancialYearId,
                     BranchId = x.Key.BranchId,
+                    BranchName  = x.Key.BranchName,
                     PartyId = x.Key.PartyId,
                     PartyName = x.Key.PartyName,
                     BrokerId = x.Key.BrokerId,
