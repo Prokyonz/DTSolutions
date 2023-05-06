@@ -33,6 +33,8 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     HeaderComponent,
     ReportComponent,
     FilterbarComponent,
+    CompanyselectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +72,8 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     HttpClientModule,
     FormsModule,
       CommonModule,
-      RadioButtonModule
+      RadioButtonModule,
+      CheckboxModule
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]

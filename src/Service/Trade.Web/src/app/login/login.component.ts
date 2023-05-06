@@ -11,7 +11,8 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  isLoggedIn = false;
+    isLoggedIn = false;
+    showCompanySelection = false;
   constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService,) {
     this.isLoggedIn = false;
     this.loginForm = fb.group({
@@ -30,8 +31,9 @@ export class LoginComponent {
         debugger;
           if (response.success == true){
             if (response.data != null){
-              localStorage.setItem("userid",response.data.id);
-              this.router.navigate(['/dashboard']);
+                localStorage.setItem("userid", response.data.id);
+                this.showCompanySelection = true;
+              //this.router.navigate(['/dashboard']);
             }
           }
           else{

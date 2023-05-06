@@ -14,6 +14,7 @@ namespace Repository.Entities
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Value { get; set; }
+        public string CompanyId { get; set; }
         public bool IsDelete { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
