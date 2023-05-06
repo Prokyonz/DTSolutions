@@ -72,8 +72,19 @@ export class HeaderComponent implements OnInit {
         ]
     },
     {
-      label: 'Settings',
-      icon: 'pi pi-spin pi-cog',
+        label: 'Settings',
+        icon: 'pi pi-spin pi-cog',
+        expanded: true,
+        items: [
+            {
+              label: 'Change Company',
+              icon: 'pi pi-fw pi-user-plus',
+              routerLink: "/companyselection",
+              command: () => {
+                this.sidebarVisible = false;
+              }
+          },
+        ]
     },
     {
         label: 'Logout',
