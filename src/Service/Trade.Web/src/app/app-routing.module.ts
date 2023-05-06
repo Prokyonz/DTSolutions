@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'viewcts', component:ViewctsComponent},
   {path: 'calculator', component: CalculatorComponent},
   {path: 'report/:id', component: ReportComponent},
-  {path: 'companyselection', component: CompanyselectionComponent}
+  {path: 'companyselection/:value', component: CompanyselectionComponent}
 ];
 
 @NgModule({

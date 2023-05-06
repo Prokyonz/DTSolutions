@@ -22,7 +22,7 @@ export class CompanyselectionComponent {
   showHeaderForCompanySelect: boolean = false;
 
   ngOnInit() {
-      this.showHeaderForCompanySelect = this.activateRoute.component?.name.toLocaleLowerCase() == "companyselectioncomponent" ? true : false;
+      this.showHeaderForCompanySelect = this.activateRoute.snapshot?.params['value'] == "header" ? true : false;
       this.companies = [
           { name: 'New York', code: 'NY' },
           { name: 'Rome', code: 'RM' },

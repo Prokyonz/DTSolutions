@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
             {
               label: 'Change Company',
               icon: 'pi pi-fw pi-user-plus',
-              routerLink: "/companyselection",
+              routerLink: "/companyselection/header",
               command: () => {
                 this.sidebarVisible = false;
               }
