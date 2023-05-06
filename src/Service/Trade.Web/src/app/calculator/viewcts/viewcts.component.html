@@ -1,4 +1,4 @@
-<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" leftIconName="pi-plus" (onClickLeftIcon)="onAddIconClick();" title="{{ PageTitle }}"></app-header>
+<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" leftIconName="{{!isSaveButton ? '' : 'pi-plus'}}" (onClickLeftIcon)="onAddIconClick();" title="{{ PageTitle }}"></app-header>
 <p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <div *ngIf="showAddSection">
     <div class="panel">    
