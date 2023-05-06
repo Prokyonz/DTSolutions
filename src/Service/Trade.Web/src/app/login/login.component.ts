@@ -24,7 +24,11 @@ export class LoginComponent implements OnInit {
 <<<<<<< HEAD
 =======
   showCompanySelection = false;
+<<<<<<< HEAD
 >>>>>>> added company selection and css pdate
+=======
+  loading = false;
+>>>>>>> added loader
 
   constructor(private fb: FormBuilder, private router: Router) {
 =======
@@ -46,6 +50,7 @@ export class LoginComponent implements OnInit {
 <<<<<<< HEAD
 <<<<<<< HEAD
   onLogin() {
+<<<<<<< HEAD
 <<<<<<< HEAD
       this.router.navigate(['/dashboard']);    
 =======
@@ -104,6 +109,13 @@ export class LoginComponent implements OnInit {
 >>>>>>> Login Module and Add code in API
 =======
       this.showCompanySelection = true;
+=======
+    this.loading = true;
+      setTimeout(()=> {
+        this.loading = false;
+        this.showCompanySelection = true;
+      },2000);
+>>>>>>> added loader
       //this.router.navigate(['/dashboard']);    
 >>>>>>> added company selection and css pdate
   }

@@ -53,7 +53,11 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 =======
 import { CheckboxModule } from 'primeng/checkbox';
 import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
+<<<<<<< HEAD
 >>>>>>> added company selection and css pdate
+=======
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+>>>>>>> added loader
 
 @NgModule({
   declarations: [
@@ -113,8 +117,13 @@ import { CompanyselectionComponent } from './shared/component/companyselection/c
 >>>>>>> Update Calculator
 =======
     RadioButtonModule,
+<<<<<<< HEAD
     CheckboxModule 
 >>>>>>> added company selection and css pdate
+=======
+    CheckboxModule,
+    ProgressSpinnerModule
+>>>>>>> added loader
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]

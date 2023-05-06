@@ -121,4 +121,29 @@ body {
 .p-button:focus {
   box-shadow: none !important;
 }
+<<<<<<< HEAD
 >>>>>>> added company selection and css pdate
+=======
+
+
+.progress-spinner {
+  position: absolute;
+  z-index: 999;
+  overflow: unset;
+  margin: auto;
+  top: 45%;
+  left: 45%;
+}
+
+/* Transparent Overlay */
+.progress-spinner:before {
+content: '';
+display: block;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.30);
+}
+>>>>>>> added loader
