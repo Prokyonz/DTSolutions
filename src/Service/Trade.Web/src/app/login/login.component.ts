@@ -11,6 +11,7 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoggedIn = false;
   showCompanySelection = false;
+  loading = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.isLoggedIn = false;
@@ -22,7 +23,11 @@ export class LoginComponent {
   }
 
   onLogin() {
-      this.showCompanySelection = true;
+    this.loading = true;
+      setTimeout(()=> {
+        this.loading = false;
+        this.showCompanySelection = true;
+      },2000);
       //this.router.navigate(['/dashboard']);    
   }
 }

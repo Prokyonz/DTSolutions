@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { CompanyselectionComponent } from './shared/component/companyselection/c
     InputTextareaModule,
     FormsModule,
     RadioButtonModule,
-    CheckboxModule 
+    CheckboxModule,
+    ProgressSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
