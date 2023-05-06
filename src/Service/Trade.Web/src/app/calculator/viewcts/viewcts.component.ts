@@ -121,14 +121,26 @@ export class ViewctsComponent implements OnInit{
   ];  
 
   myfunction() {
-    if(this.showViewSection == true) {
+    if(this.showViewSection == true && this.isSaveButton) {
       this.showAddSection = true;
       this.showViewSection = false;
       this.showHomeSection = false;
       this.PageTitle = "Add Details";      
     }
-    else
+    else{
+      debugger;
+      if (!this.isSaveButton){
+        this.isSaveButton = true;
+        this.showAddSection = false;
+        this.showViewSection = false;
+        this.showHomeSection = false;
+        this.showHistory = true;
+        this.PageTitle = "History";
+      }
+      else{
       this.router.navigate(["dashboard"]);
+      }
+    }
   }
 
   showDetails() {

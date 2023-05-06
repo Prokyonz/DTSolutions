@@ -220,7 +220,7 @@
                             <th>Rate</th>
                             <th>%</th>
                             <th>Amount</th>
-                            <th>Action</th>
+                            <th *ngIf="isSaveButton">Action</th>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="body" let-item>
@@ -230,7 +230,7 @@
                             <td>{{ item.rate | number:'.2-2' }}</td>
                             <td>{{ item.percentage | number:'.2-2' }}</td>
                             <td>{{ item.amount | number:'.2-2'}}</td>
-                            <td>
+                            <td *ngIf="isSaveButton">
                                 <i class="pi text-red-500 pi-times-circle" (click)="deleteitems(item)"></i>
                             </td>
                         </tr>

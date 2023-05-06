@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     loading = false;
   rememberMe : boolean = false;  
   RememberLogin: RememberLogin = new RememberLogin;
-  constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService,) {
+  constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService) {
     this.isLoggedIn = false;
     this.loginForm = fb.group({
       username: ['', Validators.required],
