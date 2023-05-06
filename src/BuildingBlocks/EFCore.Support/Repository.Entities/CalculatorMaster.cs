@@ -11,11 +11,14 @@ namespace Repository.Entities
         public int Sr { get; }
         [Key]
         public string Id { get; set; }
+        public int SrNo { get; set; }
         public DateTime Date { get; set; }
         public string UserId { get; set; }
         public string PartyId { get; set; }
         public string DealerId { get; set; }
+        public string CompanyId { get; set; }
         public string BranchId { get; set; }
+        public string FinancialYearId { get; set; }
         public string SizeId { get; set; }
         public string NumberId { get; set; }
 
