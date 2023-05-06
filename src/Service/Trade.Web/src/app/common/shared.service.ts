@@ -22,6 +22,11 @@ export class SharedService {
     customPostApi(api: string, data: any): Observable<ApiResponse> {
         return this.httpClient.post<any>(apiUrl + api, data).pipe(map(t => t),catchError(err => throwError(err)));
     }
+
+    JsonConvert<T>(jsonString: string): T {
+        const obj = JSON.parse(jsonString);
+        return obj as T;
+    }
 }
 
 export class ApiResponse {
@@ -30,3 +35,6 @@ export class ApiResponse {
     sessage: string = '';
     data: any
 }
+
+
+  

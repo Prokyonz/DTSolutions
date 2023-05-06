@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { Message, MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
+import { RememberCompany } from '../../shared/component/companyselection/companyselection.component';
 
 interface CalculatorMaster{
   srNo: number,
@@ -96,7 +97,7 @@ export class ViewctsComponent implements OnInit{
   numbers: any[] = [];
 >>>>>>> Calculator changes
   pricelist: any[] = [];
-  comanyid: string = "ff8d3c9b-957b-46d1-b661-560ae4a2433e";
+  comanyid: string = "";
   NumberDetails: NumberDetails[] = [];
   SizeDetails: SizeDetails[] = [];
   summatydata: Summary[] = [];
@@ -162,6 +163,7 @@ export class ViewctsComponent implements OnInit{
 =======
   calculator: CalculatorMaster;
   isSaveButtopn: boolean = true;
+<<<<<<< HEAD
 >>>>>>> Add view changes
 
 <<<<<<< HEAD
@@ -190,12 +192,16 @@ export class ViewctsComponent implements OnInit{
 >>>>>>> Save done
 =======
 >>>>>>> Add
+=======
+  RememberCompany: RememberCompany = new RememberCompany();
+>>>>>>> Add Company Data On Login
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
 >>>>>>> Update Calculator
 
   }
   ngOnInit(): void {
     this.calculatorList();
+    this.getCompanyData();
   }
 
   customers: Customer[] = [
@@ -281,8 +287,15 @@ export class ViewctsComponent implements OnInit{
     this.calulateSummary();
   }
 
+  getCompanyData(){
+    const data = localStorage.getItem("companyremember");
+    if (data != null){
+      this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
+    }
+  }
+
   calculatorList(){
-    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.comanyid + "&FinancialYearId=1&FromDate=20230501&ToDate=20230520")
+    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=20230501&ToDate=20230520")
     .subscribe((data: any) => {
           this.calculatorListData = data;
           console.log(this.calculatorListData);
@@ -337,7 +350,7 @@ export class ViewctsComponent implements OnInit{
 =======
 >>>>>>> Change Message
   getparty(){
-    this.sharedService.customGetApi("Service/GetParty?companyid=" + this.comanyid).subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetParty?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
@@ -351,7 +364,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getdealer(){
-    this.sharedService.customGetApi("Service/GetDealer?companyid=" + this.comanyid).subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetDealer?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
@@ -365,7 +378,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getbranch(){
-    this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.comanyid).subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
@@ -409,7 +422,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getAllNumberPrice(){
-    this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.comanyid + "&categoryId=0").subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.RememberCompany.company.id + "&categoryId=0").subscribe((t) => {
       if (t.success == true){
        this.pricelist = t.data;
       }
@@ -656,8 +669,8 @@ export class ViewctsComponent implements OnInit{
         if (confirm("Are you sure want to save this item?")){
           const data = {
               Date: this.date,
-              CompanyId: this.comanyid,
-              FinancialYearId: '1',
+              CompanyId: this.RememberCompany.company.id,
+              FinancialYearId: this.RememberCompany.financialyear.id,
               BranchId: this.branchid.id,
               PartyId: this.partyid.id,
               BrokerId: this.dealerid.id,
