@@ -60,7 +60,7 @@
               </tr>
               <tr>
                 <td>
-                  <p-checkbox value="Remember password" inputId="rem"></p-checkbox>
+                  <p-checkbox value="Remember password" inputId="rem" [(ngModel)]="rememberMe" [binary]="true" formControlName="rememberMe"></p-checkbox>
                   <label for="rem" class="ml-2">Remember password</label>
                 </td>
               </tr>

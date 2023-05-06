@@ -18,15 +18,18 @@ namespace DiamondTrade.API.Controllers
         private readonly IPriceMaster _priceMaster;
         private readonly IPartyMaster _partyMaster;
         private readonly IBranchMaster _branchMaster;
+        private readonly ICompanyMaster _companyMaster;
+        private readonly IFinancialYearMaster _financialYearMaster;
         public ServiceController(ISizeMaster sizeMaster, INumberMaster numberMaster,
-            IPriceMaster priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster)
+            IPriceMaster priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster, ICompanyMaster companyMaster, IFinancialYearMaster financialYearMaster)
         {
             _sizeMaster = sizeMaster;
             _numberMaster = numberMaster;
             _priceMaster = priceMaster;
             _partyMaster = partyMaster;
-            _branchMaster = branchMaster;  
-
+            _branchMaster = branchMaster;
+            _companyMaster = companyMaster;
+            _financialYearMaster = financialYearMaster;
         }
 
         [Route("GetParty")]
@@ -159,6 +162,66 @@ namespace DiamondTrade.API.Controllers
             {
                 var result = await _priceMaster.GetAllPricesAsync(companyId, categoryId);
 
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetAllCompany")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetAllCompany()
+        {
+            try
+            {
+                var result = await _companyMaster.GetAllCompanyAsync();
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetAllBranch")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetAllBranch()
+        {
+            try
+            {
+                var result = await _branchMaster.GetAllBranchAsync();
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetAllFinancialYear")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetAllFinancialYear()
+        {
+            try
+            {
+                var result = await _financialYearMaster.GetAllFinancialYear();
                 return new Response<dynamic>
                 {
                     StatusCode = 200,
