@@ -6,6 +6,7 @@ import { ViewctsComponent } from './calculator/viewcts/viewcts.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CalculatorComponent } from './calculator/calculator.component';
 import { ReportComponent } from './report/report.component';
+import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path:'addcts', component:AddctsComponent},
   {path:'viewcts', component:ViewctsComponent},
   {path: 'calculator', component: CalculatorComponent},
-  {path: 'report/:id', component: ReportComponent}
+  {path: 'report/:id', component: ReportComponent},
+  {path: 'companyselection', component: CompanyselectionComponent}
 ];
 
 @NgModule({

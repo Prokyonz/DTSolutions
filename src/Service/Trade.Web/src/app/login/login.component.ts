@@ -13,6 +13,10 @@ export class LoginComponent {
   loginForm: FormGroup;
   isLoggedIn = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+  showCompanySelection = false;
+>>>>>>> added company selection and css pdate
 
   constructor(private fb: FormBuilder, private router: Router) {
 =======
@@ -28,6 +32,7 @@ export class LoginComponent {
 
 <<<<<<< HEAD
   onLogin() {
+<<<<<<< HEAD
       this.router.navigate(['/dashboard']);    
 =======
 
@@ -50,5 +55,9 @@ export class LoginComponent {
       });
     }
 >>>>>>> Login Module and Add code in API
+=======
+      this.showCompanySelection = true;
+      //this.router.navigate(['/dashboard']);    
+>>>>>>> added company selection and css pdate
   }
 }

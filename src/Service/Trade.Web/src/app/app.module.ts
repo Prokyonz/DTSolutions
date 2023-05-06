@@ -30,6 +30,7 @@ import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
+<<<<<<< HEAD
 =======
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -49,6 +50,10 @@ import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 >>>>>>> changes for merge main
+=======
+import { CheckboxModule } from 'primeng/checkbox';
+import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
+>>>>>>> added company selection and css pdate
 
 @NgModule({
   declarations: [
@@ -62,8 +67,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     ReportComponent,
 <<<<<<< HEAD
     FilterbarComponent,
+<<<<<<< HEAD
 =======
 >>>>>>> added table report
+=======
+    CompanyselectionComponent,
+>>>>>>> added company selection and css pdate
   ],
   imports: [
     BrowserModule,
@@ -88,6 +97,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     InputTextareaModule,
 <<<<<<< HEAD
     FormsModule,
+<<<<<<< HEAD
     RadioButtonModule
 =======
 =======
@@ -101,6 +111,10 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     CommonModule,
     ToastModule
 >>>>>>> Update Calculator
+=======
+    RadioButtonModule,
+    CheckboxModule 
+>>>>>>> added company selection and css pdate
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
