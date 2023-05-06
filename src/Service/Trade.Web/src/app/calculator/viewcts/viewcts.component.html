@@ -292,7 +292,7 @@
         </div>
     </p-card>
     </div>
-    <p-button *ngif="isSaveButtopn" pRipple label="Save Details" [loading]="loading" icon="pi pi-check" styleClass="p-button-success" (onClick)="saveData()"></p-button>
+    <p-button *ngIf="isSaveButton" pRipple label="Save Details" [loading]="loading" icon="pi pi-check" styleClass="p-button-success" (onClick)="saveData()"></p-button>
 </div>
 
 <div *ngIf="showHistory">

@@ -68,6 +68,7 @@ export class LoginComponent implements OnInit {
                 else{
                   localStorage.removeItem("loginremember")                 
                 }
+                this.loading = false;
                 this.showCompanySelection = true;
               //this.router.navigate(['/dashboard']);
             }

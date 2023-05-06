@@ -46,7 +46,7 @@ export class CompanyselectionComponent {
 
   RememberCompany : RememberCompany = new RememberCompany();
 
-  constructor(private router: Router, private activateRoute: ActivatedRoute, private sharedService: SharedService,){}
+  constructor(private router: Router, private activateRoute: ActivatedRoute, private sharedService: SharedService){}
 
   rememberMe : boolean = false;
 

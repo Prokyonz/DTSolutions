@@ -6,6 +6,7 @@ namespace DiamondTrade.API.Models.Request
     public class CalculatorRequest
     {
         public string CompanyId { get; set; }
+        public string FinancialYearId { get; set; }
         public DateTime Date { get; set; }
         public string BranchId { get; set; }
         public string PartyId { get; set; }

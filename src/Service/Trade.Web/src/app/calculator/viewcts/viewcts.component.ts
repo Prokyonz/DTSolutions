@@ -93,14 +93,16 @@ export class ViewctsComponent implements OnInit{
   calculatorListData: CalculatorMaster[] = [];
   note: string = '';
   calculator: CalculatorMaster;
-  isSaveButtopn: boolean = true;
+  isSaveButton: boolean = true;
   RememberCompany: RememberCompany = new RememberCompany();
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
 
   }
   ngOnInit(): void {
-    this.calculatorList();
+    debugger;
     this.getCompanyData();
+    this.calculatorList();
+    
   }
 
   customers: Customer[] = [
@@ -160,7 +162,7 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Carat item can not be empty');
       return;
     }
-    this.isSaveButtopn = true;
+    this.isSaveButton = true;
     this.PageTitle = "View Details";
     this.showAddSection = false;
     this.showViewSection = true;
@@ -173,6 +175,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getCompanyData(){
+    debugger;
     const data = localStorage.getItem("companyremember");
     if (data != null){
       this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
@@ -423,7 +426,8 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    this.isSaveButtopn = false;
+    debugger;
+    
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -458,6 +462,7 @@ export class ViewctsComponent implements OnInit{
       })
     });
     this.showDetails();
+    this.isSaveButton = false;
   }
 
   public getSizeCaratTotal(sizeId: string): number {
@@ -576,6 +581,8 @@ export class ViewctsComponent implements OnInit{
   }
   onAddIconClick() {
     this.PageTitle = "Add Details"
+    debugger;
+    this.isSaveButton = true;
     this.getparty();
     this.getdealer();
     this.getbranch();

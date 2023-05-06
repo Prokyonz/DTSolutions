@@ -72,10 +72,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     InputTextareaModule,
     HttpClientModule,
     FormsModule,
-      CommonModule,
-      RadioButtonModule,
-      CheckboxModule,
-      ProgressSpinnerModule
+    CommonModule,
+    RadioButtonModule,
+    CheckboxModule,
+    ProgressSpinnerModule
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
