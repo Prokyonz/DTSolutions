@@ -19,7 +19,8 @@ export class RememberLogin{
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   isLoggedIn = false;
-  showCompanySelection = false;
+    showCompanySelection = false;
+    loading = false;
   rememberMe : boolean = false;  
   RememberLogin: RememberLogin = new RememberLogin;
   constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService,) {
@@ -50,7 +51,8 @@ export class LoginComponent implements OnInit {
 
 
   onLogin(){
-    if (this.loginForm.valid){      
+      if (this.loginForm.valid) { 
+          this.loading = true;
       this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
       .subscribe((response: any) => {
         debugger;

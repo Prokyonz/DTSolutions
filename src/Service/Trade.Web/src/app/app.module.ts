@@ -35,6 +35,7 @@ import { FilterbarComponent } from './shared/component/filterbar/filterbar.compo
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { CompanyselectionComponent } from './shared/component/companyselection/c
     FormsModule,
       CommonModule,
       RadioButtonModule,
-      CheckboxModule
+      CheckboxModule,
+      ProgressSpinnerModule
   ],
   providers: [SharedService, AuthService],
   bootstrap: [AppComponent]
