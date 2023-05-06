@@ -36,12 +36,12 @@
       </tr>
     </table>
   </div>
-</div> -->
+</div>  -->
 
 
-<div style="height: calc(100vh); background: #1c80cf;">
+<div *ngIf="!showCompanySelection" style="height: calc(100vh); background: #1c80cf;">
   <div class="center">
-    <div class="card flex justify-content-center">
+    <div class="card justify-content-center">
       <p-card header="Login">      
           <ng-template pTemplate="content">        
             <table style="width: 100%;" [cellPadding]="5">
@@ -54,12 +54,12 @@
               <tr>
                 <td>
                   <span style="bottom: 5px; position: relative;">Password</span><br/>                                                                         
-                  <input type="password" pPassword [feedback]="false" />
+                  <input type="password" pPassword [feedback]="false" style="width: 100%;" />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <p-radioButton value="Remember password" inputId="rem"></p-radioButton>
+                  <p-checkbox value="Remember password" inputId="rem"></p-checkbox>
                   <label for="rem" class="ml-2">Remember password</label>
                 </td>
               </tr>
@@ -72,5 +72,11 @@
           </ng-template>
       </p-card>
     </div>
+  </div>
+</div>
+
+<div *ngIf="showCompanySelection" style="height: calc(100vh); background: #1c80cf;">
+  <div class="center" style="overflow-y: scroll;">
+    <app-companyselection></app-companyselection>
   </div>
 </div>

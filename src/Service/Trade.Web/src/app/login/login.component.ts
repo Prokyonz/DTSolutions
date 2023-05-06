@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class LoginComponent {
   loginForm: FormGroup;
   isLoggedIn = false;
+  showCompanySelection = false;
 
   constructor(private fb: FormBuilder, private router: Router) {
     this.isLoggedIn = false;
@@ -21,6 +22,7 @@ export class LoginComponent {
   }
 
   onLogin() {
-      this.router.navigate(['/dashboard']);    
+      this.showCompanySelection = true;
+      //this.router.navigate(['/dashboard']);    
   }
 }

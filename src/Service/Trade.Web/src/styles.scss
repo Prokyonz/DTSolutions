@@ -77,10 +77,20 @@ body {
   padding: 1.25rem !important;
 }
 
-.center > .card > p-card > .p-card {
+.center > .card > p-card > .p-card,
+.center > app-companyselection > .card > p-card > .p-card {
   box-shadow: none !important;
 }
 
-.center > .card > p-card > .p-card .p-card-content {
+.center > .card > p-card > .p-card .p-card-content,
+.center > app-companyselection > .card > p-card > .p-card .p-card-content {
   padding: 0px !important;
+}
+
+//Remove Shadow from control
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus,
+.p-dropdown:not(.p-disabled).p-focus,
+.p-inputtext:enabled:focus,
+.p-button:focus {
+  box-shadow: none !important;
 }
