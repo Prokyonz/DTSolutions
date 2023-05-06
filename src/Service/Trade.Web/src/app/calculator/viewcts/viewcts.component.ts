@@ -4,43 +4,46 @@ import { Router } from '@angular/router';
 import { Message, MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 
-interface CalclatorMaster{
+interface CalculatorMaster{
+  srNo: number,
   Date: Date,
   CompanyId: string,
   FinancialYearId: string,
   BranchId: string,
   PartyId: string,
+  PartyName: string,
   BrokerId: string,
+  BrokerName: string,
   NetCarat: number,
   Note: string,
-  SizeDetails: SizeDetails[] | null,
+  sizeDetails: SizeDetails[] | null,
   UserId: string              
 }
 
 interface NumberDetails {
-  SizeId: string,
-  NumberId: string,
-  Carat: number,
-  Rate: number,
-  NumberName: string,
-  Percentage: number,
-  Amount: number
+  sizeId: string,
+  numberId: string,
+  carat: number,
+  rate: number,
+  numberName: string,
+  percentage: number,
+  amount: number
   //sizename: string
 }
 
 interface SizeDetails{
-  SizeId: string,
-  SizeName: string,
-  TotalCarat: number,
-  NumberDetails: NumberDetails[] | null
+  sizeId: string,
+  sizeName: string,
+  totalCarat: number,
+  numberDetails: NumberDetails[]
 }
 
 interface Summary {
-  SizeId:string,
-  SizeName:string,
-  Percentage: number,
-  Amount: number,
-  TotCarat: number 
+  sizeId:string,
+  sizeName:string,
+  percentage: number,
+  amount: number,
+  totCarat: number 
 }
 
 <<<<<<< HEAD
@@ -151,10 +154,15 @@ export class ViewctsComponent implements OnInit{
   branchid: any = [];
   partyid: any = [];
   dealerid: any = [];
-  calculatorData: any = [];
+  calculatorListData: CalculatorMaster[] = [];
   note: string = '';
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> Commit
+=======
+  calculator: CalculatorMaster;
+  isSaveButtopn: boolean = true;
+>>>>>>> Add view changes
 
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -247,6 +255,7 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Carat item can not be empty');
       return;
     }
+    this.isSaveButtopn = true;
     this.PageTitle = "View Details";
     this.showAddSection = false;
     this.showViewSection = true;
@@ -254,6 +263,7 @@ export class ViewctsComponent implements OnInit{
 <<<<<<< HEAD
 <<<<<<< HEAD
     this.showHomeSection = false;
+<<<<<<< HEAD
 =======
 =======
 =======
@@ -261,19 +271,21 @@ export class ViewctsComponent implements OnInit{
 <<<<<<< HEAD
 >>>>>>> Save done
 =======
+=======
+    this.showHistory = false;
+>>>>>>> Add view changes
     this.SizeDetails.forEach(element => {
-      element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
+      element.numberDetails = this.NumberDetails.filter(e => e.sizeId == element.sizeId);
     });
 >>>>>>> Add
     this.calulateSummary();
   }
 
   calculatorList(){
-    
-    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.comanyid + "&FinancialYearId=1&FromDate=20230501&ToDate=20230501")
+    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.comanyid + "&FinancialYearId=1&FromDate=20230501&ToDate=20230520")
     .subscribe((data: any) => {
-          this.calculatorData = data;
-          console.log(this.calculatorData);
+          this.calculatorListData = data;
+          console.log(this.calculatorListData);
         }, (ex: any) => {
           this.showMessage('error',ex);
       });
@@ -284,16 +296,16 @@ export class ViewctsComponent implements OnInit{
 >>>>>>> Commit
     this.summatydata.forEach(e => {
       let filteredSize = this.NumberDetails.filter((f) => {
-        return f.SizeId == e.SizeId;
+        return f.sizeId == e.sizeId;
       });
       
       let totalAmount = filteredSize.reduce((acc, curr) => {
-        return acc + curr.Amount;
+        return acc + curr.amount;
       }, 0);      
 
-      e.Amount = totalAmount;
-      e.Percentage = (e.TotCarat / this.netcarat)*100;
-      this.summaryTotAmount = this.summaryTotAmount + e.Amount;
+      e.amount = totalAmount;
+      e.percentage = (e.totCarat / this.netcarat)*100;
+      this.summaryTotAmount = this.summaryTotAmount + e.amount;
     });
 >>>>>>> Add changes
   }
@@ -406,9 +418,9 @@ export class ViewctsComponent implements OnInit{
 
   handlesize(event: any) {
     this.selectedsize = event.value;
-    var caratData = this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id);
+    var caratData = this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id);
     if (caratData != null && caratData.length > 0){
-      this.selectedtotalcarat = caratData[0].TotalCarat;
+      this.selectedtotalcarat = caratData[0].totalCarat;
     }
     else{
       this.selectedtotalcarat = 0;
@@ -460,54 +472,54 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Number carat can not be less than or equal to zero');
       return;
     }
-    if (this.NumberDetails.filter(e => e.SizeId == this.selectedsize.id && e.NumberId == this.selectednumber.id).length > 0)
+    if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id).length > 0)
     {
       this.showMessage('error','Selected number exist in selected size.');
       return;
     }
-    if (this.SizeDetails.filter(e => e.SizeId == this.selectedsize.id).length == 0){
+    if (this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id).length == 0){
       this.SizeDetails.push({
-        SizeId : this.selectedsize.id,
-        SizeName: this.selectedsize.name,
-        TotalCarat: this.selectedtotalcarat,
-        NumberDetails: []
+        sizeId : this.selectedsize.id,
+        sizeName: this.selectedsize.name,
+        totalCarat: this.selectedtotalcarat,
+        numberDetails: []
       });
 
       this.summatydata.push({
-        SizeId: this.selectedsize.id,
-        SizeName : this.selectedsize.name,
-        Percentage : 0,
-        Amount : 0,
-        TotCarat : this.selectedtotalcarat
+        sizeId: this.selectedsize.id,
+        sizeName : this.selectedsize.name,
+        percentage : 0,
+        amount : 0,
+        totCarat : this.selectedtotalcarat
       });
     }
     else{
-      let index = this.SizeDetails.findIndex((item) => item.SizeId === this.selectedsize.id);
+      let index = this.SizeDetails.findIndex((item) => item.sizeId === this.selectedsize.id);
       if (index !== -1) {
-        this.SizeDetails[index].SizeId = this.selectedsize.id;
-        this.SizeDetails[index].SizeName = this.selectedsize.name;
-        this.SizeDetails[index].TotalCarat = this.selectedtotalcarat;
-        this.SizeDetails[index].NumberDetails = []
+        this.SizeDetails[index].sizeId = this.selectedsize.id;
+        this.SizeDetails[index].sizeName = this.selectedsize.name;
+        this.SizeDetails[index].totalCarat = this.selectedtotalcarat;
+        this.SizeDetails[index].numberDetails = []
       }
 
-      index = this.summatydata.findIndex((item) => item.SizeId === this.selectedsize.id);
+      index = this.summatydata.findIndex((item) => item.sizeId === this.selectedsize.id);
       if (index !== -1) {
-        this.summatydata[index].SizeId = this.selectedsize.id;
-        this.summatydata[index].SizeName = this.selectedsize.name;
-        this.summatydata[index].Percentage = 0;
-        this.summatydata[index].Amount = 0;
-        this.summatydata[index].TotCarat =  this.selectedtotalcarat;
+        this.summatydata[index].sizeId = this.selectedsize.id;
+        this.summatydata[index].sizeName = this.selectedsize.name;
+        this.summatydata[index].percentage = 0;
+        this.summatydata[index].amount = 0;
+        this.summatydata[index].totCarat =  this.selectedtotalcarat;
       }
     }
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
       this.NumberDetails.push({
-        SizeId : this.selectedsize.id,
-        NumberId : this.selectednumber.id,
-        Carat : this.selectedcarat,
-        Rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
-        NumberName: this.selectednumber.name,
-        Amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
-        Percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
+        sizeId : this.selectedsize.id,
+        numberId : this.selectednumber.id,
+        carat : this.selectedcarat,
+        rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
+        numberName: this.selectednumber.name,
+        amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
+        percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
     });
     this.showMessage('success','Items added successfully');
     this.selectednumber = this.numbers.filter(e => e.id == '');
@@ -517,8 +529,8 @@ export class ViewctsComponent implements OnInit{
     // }    
 >>>>>>> Update Calculator
   }
-  getItemsBySize(SizeId: string){
-    return this.NumberDetails.filter(item => item.SizeId === SizeId);
+  getItemsBySize(sizeId: string){
+    return this.NumberDetails.filter(item => item.sizeId === sizeId);
   }
 
   deleteitems(item: any){
@@ -527,12 +539,12 @@ export class ViewctsComponent implements OnInit{
       if (index >= 0){
         this.NumberDetails.splice(index, 1);
       }
-      if (this.NumberDetails.filter(e => e.SizeId == item.SizeId).length == 0){
-        var ind = this.SizeDetails.findIndex(e => e.SizeId == item.SizeId);
+      if (this.NumberDetails.filter(e => e.sizeId == item.sizeId).length == 0){
+        var ind = this.SizeDetails.findIndex(e => e.sizeId == item.sizeId);
         if (ind >= 0){
           this.SizeDetails.splice(ind,1);
         }
-        var ind1 = this.summatydata.findIndex(e => e.SizeId == item.SizeId);
+        var ind1 = this.summatydata.findIndex(e => e.sizeId == item.sizeId);
         if (ind1 >= 0){
           this.summatydata.splice(ind1,1);
         }
@@ -541,19 +553,57 @@ export class ViewctsComponent implements OnInit{
     }
   }
 
-  public getSizeCaratTotal(SizeId: string): number {
-    const sizeTotCarat = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
-      return acc + (+curr.Carat);
+  viewitem(items: any){
+    this.isSaveButtopn = false;
+    this.date = new Date(items.date);
+    this.branchid.id = items.branchId;
+    this.branchid.name = items.branchName;
+    this.dealerid.id = items.brokerId;
+    this.dealerid.name = items.brokerName;
+    this.partyid.id = items.partyId;
+    this.partyid.name = items.partyName;
+    
+    this.netcarat = items.netCarat;
+    this.note = items.note;
+    this.calculatorListData.filter(e => e.srNo == items.srNo).forEach(e => {
+      e.sizeDetails?.forEach(item => {
+        this.SizeDetails.push(item);
+        this.summatydata.push({
+          sizeId: item.sizeId,
+          sizeName : item.sizeName,
+          percentage : 0,
+          amount : 0,
+          totCarat : item.totalCarat
+        });
+        item.numberDetails.forEach(s => {
+          this.NumberDetails.push({
+            sizeId : s.sizeId,
+            numberId : s.numberId,
+            carat : s.carat,
+            rate : s.rate,
+            numberName: s.numberName,
+            amount: s.amount,
+            percentage : s.percentage
+          });
+        })
+      })
+    });
+    this.showDetails();
+  }
+
+  public getSizeCaratTotal(sizeId: string): number {
+    const sizeTotCarat = this.NumberDetails.filter(item => item.sizeId === sizeId).reduce((acc, curr) => {
+      return acc + (+curr.carat);
     }, 0);
     return sizeTotCarat;
   }
 
-  public getSizeAmountTotal(SizeId: string): number {
-    const sizeTotCarat = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
-      return acc + (+curr.Carat);
+  public getSizeAmountTotal(sizeId: string): number {
+    const sizeTotCarat = this.NumberDetails.filter(item => item.sizeId === sizeId).reduce((acc, curr) => {
+      return acc + (+curr.carat);
     }, 0);
-    const sizeTotAmount = this.NumberDetails.filter(item => item.SizeId === SizeId).reduce((acc, curr) => {
-      return acc + (+curr.Amount);
+    const sizeTotAmount = this.NumberDetails.filter(item => item.sizeId === sizeId).reduce((acc, curr) => {
+      return acc + (+curr.amount);
     }, 0);
     return sizeTotAmount/sizeTotCarat;
   }
@@ -595,13 +645,13 @@ export class ViewctsComponent implements OnInit{
     {
       let totCarat: number = 0;
       this.SizeDetails.forEach(e => {
-        totCarat = totCarat + (+e.TotalCarat);
+        totCarat = totCarat + (+e.totalCarat);
       }); 
       this.loading = true;    
       if (this.netcarat == totCarat){
         const userId = localStorage.getItem('userid');
         this.SizeDetails.forEach(element => {
-          element.NumberDetails = this.NumberDetails.filter(e => e.SizeId == element.SizeId);
+          element.numberDetails = this.NumberDetails.filter(e => e.sizeId == element.sizeId);
         });
         if (confirm("Are you sure want to save this item?")){
           const data = {
