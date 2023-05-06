@@ -36,9 +36,13 @@ export class LoginComponent implements OnInit {
   showCompanySelection = false;
   rememberMe : boolean = false;  
   RememberLogin: RememberLogin = new RememberLogin;
+<<<<<<< HEAD
 >>>>>>> Add Company Data On Login
   constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService,) {
 >>>>>>> Login Module and Add code in API
+=======
+  constructor(private fb: FormBuilder, private router: Router, private shared: SharedService, private authService: AuthService) {
+>>>>>>> Changes
     this.isLoggedIn = false;
     this.loginForm = fb.group({
       username: ['', Validators.required],
