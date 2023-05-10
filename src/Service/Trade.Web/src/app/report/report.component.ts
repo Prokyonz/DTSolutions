@@ -25,21 +25,6 @@ export class ReportComponent implements OnInit {
   reportIndex: number = 0;
   RememberCompany: RememberCompany = new RememberCompany();
   PurchaseReportList : any[];
-  //Table variables
-  customers: Customer[] = [
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-  ];
 
   loading: boolean = true;
 
@@ -71,11 +56,14 @@ export class ReportComponent implements OnInit {
   }
 
   purchseReport(){
+    this.loading = true;
     this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
     .subscribe((data: any) => {
           this.PurchaseReportList = data.data;
+          this.loading = false;
           console.log(this.PurchaseReportList);
         }, (ex: any) => {
+          this.loading = false;
           this.showMessage('error',ex);
       });
   }
