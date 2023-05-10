@@ -811,6 +811,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SplashScreen1.resx">
       <DependentUpon>SplashScreen1.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmKapanMap.resx">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
