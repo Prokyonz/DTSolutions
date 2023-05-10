@@ -57,7 +57,11 @@ import { CompanyselectionComponent } from './shared/component/companyselection/c
 >>>>>>> added company selection and css pdate
 =======
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+<<<<<<< HEAD
 >>>>>>> added loader
+=======
+import { MessageService } from 'primeng/api';
+>>>>>>> Add Report changes
 
 @NgModule({
   declarations: [
@@ -132,7 +136,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ProgressSpinnerModule
 >>>>>>> Add new changes
   ],
-  providers: [SharedService, AuthService],
+  providers: [SharedService, AuthService, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

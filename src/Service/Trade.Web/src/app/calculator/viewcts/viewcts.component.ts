@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Message, MessageService } from 'primeng/api';
+import { MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 import { RememberCompany } from '../../shared/component/companyselection/companyselection.component';
 
 interface CalculatorMaster{
   srNo: number,
   Date: Date,
-  CompanyId: string,
-  FinancialYearId: string,
-  BranchId: string,
+  companyId: string,
+  financialYearId: string,
+  branchId: string,
   PartyId: string,
   PartyName: string,
   BrokerId: string,
@@ -241,6 +241,7 @@ export class ViewctsComponent implements OnInit{
         this.showHomeSection = false;
         this.showHistory = true;
         this.PageTitle = "History";
+        this.clearForm();
       }
       else{
       this.router.navigate(["dashboard"]);
@@ -586,7 +587,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    debugger;
     
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
@@ -598,7 +598,8 @@ export class ViewctsComponent implements OnInit{
     
     this.netcarat = items.netCarat;
     this.note = items.note;
-    this.calculatorListData.filter(e => e.srNo == items.srNo).forEach(e => {
+    this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
+        e.financialYearId == items.financialYearId).forEach(e => {
       e.sizeDetails?.forEach(item => {
         this.SizeDetails.push(item);
         this.summatydata.push({
@@ -710,21 +711,7 @@ export class ViewctsComponent implements OnInit{
                   this.showHistory = true;
                   this.showViewSection = false;
                   this.PageTitle = "History";
-                  this.NumberDetails = [];
-                  this.SizeDetails = [];
-                  this.summatydata = [];
-                  this.selectednumber = this.numbers.filter(e => e.id == '');
-                  this.selectedsize = this.sizes.filter(e => e.Id == '');
-                  this.selectedcarat = 0;
-                  this.netcarat = 0;
-                  this.selectedtotalcarat = 0;
-                  this.summaryTotAmount = 0;
-                  this.date = new Date();
-                  this.branchid = this.branches.filter(e => e.id == '');
-                  this.partyid = this.party.filter(e => e.id == '');
-                  this.dealerid = this.dealers.filter(e => e.id == '');
-                  this.note = '';
-                  this.loading = false;
+                 this.clearForm();
                   this.calculatorList();
                 }
                 else{
@@ -757,5 +744,23 @@ export class ViewctsComponent implements OnInit{
 
   showMessage(type: string, message: string){
     this.messageService.add({severity: type, summary:message});
+  }
+
+  clearForm(){
+    this.NumberDetails = [];
+    this.SizeDetails = [];
+    this.summatydata = [];
+    this.selectednumber = this.numbers.filter(e => e.id == '');
+    this.selectedsize = this.sizes.filter(e => e.Id == '');
+    this.selectedcarat = 0;
+    this.netcarat = 0;
+    this.selectedtotalcarat = 0;
+    this.summaryTotAmount = 0;
+    this.date = new Date();
+    this.branchid = this.branches.filter(e => e.id == '');
+    this.partyid = this.party.filter(e => e.id == '');
+    this.dealerid = this.dealers.filter(e => e.id == '');
+    this.note = '';
+    this.loading = false;
   }
 }
