@@ -394,6 +394,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -441,6 +444,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("Carat")
                         .HasColumnType("decimal(18, 4)");
 
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
@@ -453,8 +459,14 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("DealerId")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("IsDelete")
                         .HasColumnType("bit");
+
+                    b.Property<decimal>("NetCarat")
+                        .HasColumnType("decimal(18, 4)");
 
                     b.Property<string>("NumberId")
                         .HasColumnType("nvarchar(max)");
@@ -477,6 +489,12 @@ namespace EFCore.SQL.Migrations
                         .HasAnnotation("SqlServer:IdentityIncrement", 1)
                         .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("SrNo")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("TotalCarat")
+                        .HasColumnType("decimal(18, 4)");
 
                     b.Property<string>("UpdatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -764,6 +782,9 @@ namespace EFCore.SQL.Migrations
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1317,6 +1338,9 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<decimal>("CaratLimit")
                         .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");

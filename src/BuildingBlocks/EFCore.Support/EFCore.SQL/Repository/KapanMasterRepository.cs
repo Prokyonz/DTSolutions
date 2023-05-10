@@ -49,7 +49,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<KapanMaster>> GetAllKapanAsync()
+        public async Task<List<KapanMaster>> GetAllKapanAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {

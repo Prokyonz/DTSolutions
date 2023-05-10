@@ -1,7 +1,9 @@
 ﻿using DiamondTrade.API.Models;
 using DiamondTrade.API.Models.Request;
+using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace DiamondTrade.API.Controllers
@@ -18,20 +20,32 @@ namespace DiamondTrade.API.Controllers
 
         [Route("login")]
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] Login login)
+        public async Task<Response<LoginResponseModel>> Login([FromBody] Login login)
         {
             try
             {
                 var result = await _userMaster.Login(login.UserName, login.Password);
                 if (result.UserMaster != null)
                 {
-                    LoginResponseModel loginResponseModel = new LoginResponseModel();
-                    loginResponseModel.Id = result.UserMaster.Id;
-                    return Ok(loginResponseModel);
+                    Response<LoginResponseModel> loginResponseModel = new Response<LoginResponseModel>();
+                    loginResponseModel.Data = new LoginResponseModel
+                    {
+                        Id = result.UserMaster.Id
+                    };
+                    loginResponseModel.Success = true;
+                    loginResponseModel.StatusCode = (int)HttpStatusCode.OK;
+                    return loginResponseModel;
                 }
                 else
-                    return NotFound();
-                
+                {
+                    return new Response<LoginResponseModel>
+                    {
+                        Success = false,
+                        StatusCode = (int)HttpStatusCode.NotAcceptable
+                    };
+                }
+                //return Ok(result);
+
             }
             catch
             {
@@ -39,5 +53,5 @@ namespace DiamondTrade.API.Controllers
             }
         }
     }
-  
+
 }

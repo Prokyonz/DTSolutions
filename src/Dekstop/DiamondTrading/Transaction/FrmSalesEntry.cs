@@ -418,7 +418,7 @@ namespace DiamondTrading.Transaction
         {
             //Currency
             CurrencyMasterRepository currencyMasterRepository = new CurrencyMasterRepository();
-            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync();
+            var currencyMaster = await currencyMasterRepository.GetAllCurrencyAsync(Common.LoginCompany);
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
@@ -489,7 +489,7 @@ namespace DiamondTrading.Transaction
         private async Task GetKapanDetail(bool IsNew)
         {
             KapanMasterRepository kapanMasterRepository = new KapanMasterRepository();
-            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync();
+            var kapanMaster = await kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
             repoKapan.DataSource = kapanMaster;
             repoKapan.DisplayMember = "Name";
             repoKapan.ValueMember = "Id";
@@ -2362,6 +2362,32 @@ namespace DiamondTrading.Transaction
                 _slipTransferEntries = frmSlipTransfer.SlipTransferDetails;
                 grdSlipParticularsDetails.DataSource = _slipTransferEntries;
             }
+        }
+
+        private void txtSalerCommisionPercentage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CalculateCommisionRate(true);
+            }
+        }
+
+        private void txtSalerCommisionPercentage_Leave(object sender, EventArgs e)
+        {
+            CalculateCommisionRate(true);
+        }
+
+        private void txtBrokerPercentage_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                CalculateBrokerageRate(true);
+            }
+        }
+
+        private void txtBrokerPercentage_Leave(object sender, EventArgs e)
+        {
+            CalculateBrokerageRate(true);
         }
     }
 }

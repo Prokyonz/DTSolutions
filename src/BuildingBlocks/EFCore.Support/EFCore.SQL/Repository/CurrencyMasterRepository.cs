@@ -19,11 +19,11 @@ namespace EFCore.SQL.Repository
             
         }
 
-        public async Task<List<CurrencyMaster>> GetAllCurrencyAsync()
+        public async Task<List<CurrencyMaster>> GetAllCurrencyAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.CurrencyMaster.Where(c => c.IsDelete == false).ToListAsync();
+                return await _databaseContext.CurrencyMaster.Where(c => c.IsDelete == false && c.CompanyId == CompanyId).ToListAsync();
             }
         }
 

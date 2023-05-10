@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,17 @@ namespace DiamondTrade.API
                 options.JsonSerializerOptions.MaxDepth = 10485760; // add your desired limit here
             }); ;
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()
+                               .AllowAnyHeader()
+                               .AllowAnyMethod();
+                    });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DiamondTrade.API", Version = "v1" });
@@ -46,6 +58,14 @@ namespace DiamondTrade.API
 
             services.AddScoped<IUserMaster, UserMasterRepository>();
             services.AddScoped<ICalculatorMaster, CalculatorMasterRepository>();
+            services.AddScoped<IPurchaseMaster, PurchaseMasterRepository>();
+            services.AddScoped<ISizeMaster, SizeMasterRepository>();
+            services.AddScoped<INumberMaster, NumberMasterRepository>();
+            services.AddScoped<IPriceMaster, PriceMasterRepository>();
+            services.AddScoped<IPartyMaster, PartyMasterRepository>();
+            services.AddScoped<IBranchMaster, BranchMasterRepository>();
+            services.AddScoped<ICompanyMaster, CompanyMasterRepository>();
+            services.AddScoped<IFinancialYearMaster, FinancialYearMasterRepository>();
             services.AddScoped<IPurchaseMaster, PurchaseMasterRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
@@ -62,10 +82,11 @@ namespace DiamondTrade.API
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "DiamondTrade.API v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("../swagger/v1/swagger.json", "DiamondTrade.API v1"));
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowAllOrigins");
 
             app.UseRouting();
 

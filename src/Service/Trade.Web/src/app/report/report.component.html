@@ -1,11 +1,11 @@
 <app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
-<div class="card" style="height: calc(100vh - 149px); overflow:scroll;">
+<div class="card" style="height: calc(100vh - 200px); overflow:scroll;">
     <p-table
         #dt1
-        [value]="customers"
+        [value]="PurchaseReportList"
         dataKey="id"
-        [rows]="5"
+        [rows]="50"
         [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]"
         [loading]="loading"
@@ -26,17 +26,23 @@
             <tr>
                 <th style="min-width:15rem">
                     <div class="flex align-items-center">
-                        Name
-                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                        Branch Name
+                        <p-columnFilter type="text" field="branchName" display="menu"></p-columnFilter>
                     </div>
                 </th>
                 <th style="min-width:15rem">
                     <div class="flex align-items-center">
-                        Country
-                        <p-columnFilter type="text" field="country.name" display="menu"></p-columnFilter>
+                        Party Name
+                        <p-columnFilter type="text" field="partyName" display="menu"></p-columnFilter>
                     </div>
                 </th>
-                <th style="min-width:10rem">
+                <th style="min-width:15rem">
+                    <div class="flex align-items-center">
+                        Broker Name
+                        <p-columnFilter type="text" field="brokerName" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <!-- <th style="min-width:10rem">
                     <div class="flex align-items-center">
                         Date
                         <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
@@ -53,19 +59,25 @@
                         Verified
                         <p-columnFilter type="boolean" field="verified" display="menu"></p-columnFilter>
                     </div>
-                </th>
+                </th> -->
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-customer>
+        <ng-template pTemplate="body" let-purchase>
             <tr>
                 <td>
-                    {{ customer.name }}
+                    {{ purchase.branchName }}
                 </td>
                 <td>
+                    {{ purchase.partyName }}
+                </td>
+                <td>
+                    {{ purchase.brokerName }}
+                </td>
+                <!-- <td>
                     <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
                     <span class="ml-1 vertical-align-middle">{{ customer.country }}</span>
-                </td>
-                <td>
+                </td> -->
+                <!-- <td>
                     {{ customer.date | date: 'MM/dd/yyyy' }}
                 </td>
                 <td>
@@ -73,7 +85,7 @@
                 </td>
                 <td class="text-center">
                     <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
-                </td>
+                </td> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
