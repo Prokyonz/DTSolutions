@@ -65,6 +65,9 @@ namespace DiamondTrade.API
             services.AddScoped<IPartyMaster, PartyMasterRepository>();
             services.AddScoped<IBranchMaster, BranchMasterRepository>();
             services.AddScoped<IPurchaseMaster, PurchaseMasterRepository>();
+            services.AddScoped<ISalesMaster, SalesMasterRepository>();
+            services.AddScoped<IPaymentMaster, PaymentMasterRepository>();
+            services.AddScoped<IContraEntryMaster, ContraEntryMasterRespository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
             services.AddAuthorization(option =>
