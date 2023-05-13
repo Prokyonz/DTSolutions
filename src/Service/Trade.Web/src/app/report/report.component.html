@@ -35,205 +35,46 @@
             </div>
         </ng-template> -->
         <ng-template pTemplate="header">
-            <tr >                
+            <tr>                
                 <th *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
                     <div class="flex align-items-center">
                         {{item.displayName}}
                         <p-columnFilter type="{{item.dataType}}" field="{{item.fieldName}}" display="menu"></p-columnFilter>
                     </div>
-                </th>
-                <!-- <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Slip No
-                        <p-columnFilter type="numeric" field="slipNo" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Branch Name
-                        <p-columnFilter type="text" field="branchName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Party Name
-                        <p-columnFilter type="text" field="partyName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Broker Name
-                        <p-columnFilter type="text" field="brokerName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Kapan Name
-                        <p-columnFilter type="text" field="kapanName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Net Cts
-                        <p-columnFilter type="numeric" field="netWeight" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Buy Rate
-                        <p-columnFilter type="numeric" field="buyingRate" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Less
-                        <p-columnFilter type="numeric" field="lessWeight" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        CVD Amount
-                        <p-columnFilter type="numeric" field="cvdAmount" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Due Days
-                        <p-columnFilter type="numeric" field="dueDays" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Pay Days
-                        <p-columnFilter type="numeric" field="paymentDays" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Due Date
-                        <p-columnFilter type="Date" field="dueDate" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Total
-                        <p-columnFilter type="numeric" field="total" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Remarks
-                        <p-columnFilter type="text" field="remarks" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:15rem">
-                    <div class="flex align-items-center">
-                        Message
-                        <p-columnFilter type="text" field="message" display="menu"></p-columnFilter>
-                    </div>
-                </th> -->
-                <!-- <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Date
-                        <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Balance
-                        <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter>
-                    </div>
-                </th>
-                <th style="width: 3rem">
-                    <div class="flex align-items-center">
-                        Verified
-                        <p-columnFilter type="boolean" field="verified" display="menu"></p-columnFilter>
-                    </div>
-                </th> -->
-                <th>
+                </th>                
+                <!-- <th style="min-height: 10rem;">
                     <div class="flex align-items-center">
                         Approve
                     </div>
                 </th>
-                <th>
+                <th style="min-height: 10rem;">
                     <div class="flex align-items-center">
                         Reject
                     </div>
-                </th>
+                </th> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-purchase>
             <tr>
                 <td *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
                     <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
-                    <span *ngIf="item.dataType == 'action'"><i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': item.approvalType, 'text-red-500 pi-times-circle': !item.approvalType }"></i></span>
+                    <!-- <span *ngIf="item.dataType == 'action'"><i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': item.approvalType, 'text-red-500 pi-times-circle': !item.approvalType }"></i></span> -->
                     <span *ngIf="item.dataType != 'Date'">{{ purchase[item.fieldName] }}</span>
                     
                 </td>
-                <!-- <td>
-                    {{ purchase.slipNo }}
-                </td>
-                <td>
-                    {{ purchase.branchName }}
-                </td>
-                <td>
-                    {{ purchase.partyName }}
-                </td>
-                <td>
-                    {{ purchase.brokerName }}
-                </td>
-                <td>
-                    {{ purchase.kapanName }}
-                </td>
-                <td>
-                    {{ purchase.netWeight }}
-                </td>
-                <td>
-                    {{ purchase.buyingRate }}
-                </td>
-                <td>
-                    {{ purchase.lessWeight }}
-                </td>
-                <td>
-                    {{ purchase.cvdAmount }}
-                </td>
-                <td>
-                    {{ purchase.dueDays }}
-                </td>
-                <td>
-                    {{ purchase.paymentDays }}
-                </td>
-                <td>
-                    {{ purchase.dueDate |  date: 'dd-MM-yyyy'}}
-                </td>
-                <td>
-                    {{ purchase.total }}
-                </td>
-                <td>
-                    {{ purchase.remarks }}
-                </td>
-                <td>
-                    {{ purchase.message }}
-                </td> -->
-                <!-- <td>
-                    <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
-                    <span class="ml-1 vertical-align-middle">{{ customer.country }}</span>
-                </td> -->
-                <!-- <td>
-                    {{ customer.date | date: 'MM/dd/yyyy' }}
-                </td>
-                <td>
-                    {{ customer.balance | currency: 'USD':'symbol' }}
-                </td>
-                <td class="text-center">
+                
+                <!-- <td class="text-center">
                     <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
                 </td> -->
-                <td>
-                    <p-button label="Approve" (onClick)="onApproveClick()" styleClass="p-button-success"></p-button>
+
+                <!-- (onClick)="onApproveClick()" -->
+
+                <!-- <td style="min-height: 10rem;">
+                    <p-button label="Approve"  styleClass="p-button-success"></p-button>
                 </td>
-                <td>
+                <td style="min-height: 10rem;">
                     <p-button label="Reject" styleClass="p-button-danger"></p-button>
-                </td>
+                </td> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

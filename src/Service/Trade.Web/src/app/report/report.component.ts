@@ -28,11 +28,9 @@ export class ReportComponent implements OnInit {
   reportIndex: number = 0;
   RememberCompany: RememberCompany = new RememberCompany();
   PurchaseReportList : any[];
-    columnArray: any[] = [];
-    dataArray: any[];
-    visible: boolean = false;
-
-
+  columnArray: any[] = [];
+  dataArray: any[];
+  visible: boolean = false;
   loading: boolean = true;
 
   constructor(private rote: Router, private activateRoute: ActivatedRoute,private sharedService: SharedService, private messageService: MessageService) {
@@ -40,6 +38,7 @@ export class ReportComponent implements OnInit {
     switch (this.reportIndex)
     {
       case 1:
+        this.PageTitle = "Purchase Report"
         this.columnArray = [
           {"displayName":"Date","dataType":"Date","fieldName":"date"},
           {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
@@ -56,13 +55,14 @@ export class ReportComponent implements OnInit {
           {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate"},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
+          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"}
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
-          {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
-          {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
+          // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
+          // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
         ]
         break;
       case 2:
+        this.PageTitle = "Sales Report"
         this.columnArray = [
           {"displayName":"Date","dataType":"Date","fieldName":"date"},
           {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
@@ -79,9 +79,33 @@ export class ReportComponent implements OnInit {
           {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate"},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},                   
-          {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
-        ]
+          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"}                   
+          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
+        ];
+        break;
+      case 3:
+        this.PageTitle = "Payment Report"
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate"},
+          {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},
+          {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+          {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
+          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+        ];
+        break;
+      case 4:
+        this.PageTitle = "Receipt Report"
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate"},
+          {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
+          {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},          
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+          {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
+          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+        ];
         break;
       default:
         break;
@@ -137,6 +161,28 @@ export class ReportComponent implements OnInit {
                 this.showMessage('error',ex);
             });
           break;
+        case 3:
+          this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
+        break;
+        case 4:
+          this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
+        break;
       default:
         break;
     }

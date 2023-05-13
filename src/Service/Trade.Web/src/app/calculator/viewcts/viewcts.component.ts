@@ -576,6 +576,10 @@ export class ViewctsComponent implements OnInit{
             });
         }
       }
+      else{
+        this.loading = false;
+        this.showMessage('error','Net carat and Total carat always same.');
+      }
     }
   }
   onAddIconClick() {
