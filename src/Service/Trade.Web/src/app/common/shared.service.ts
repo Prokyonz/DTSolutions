@@ -3,9 +3,10 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { environment } from '../environments';
 //import {config} from '../../assets/config/app.config';
 
-const apiUrl : string = "http://192.168.29.223/calculator/api/";
+const apiUrl : string = environment.apiURL;
 //const apiKey = config.apiKey;
 @Injectable({
     providedIn: 'root' // or specify a module where it should be provided

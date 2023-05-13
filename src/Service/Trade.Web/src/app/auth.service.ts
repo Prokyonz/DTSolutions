@@ -3,8 +3,9 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
+import { environment } from "./environments";
 
-const apiUrl : string = "http://192.168.29.223/calculator/api/Auth/login";
+const apiUrl : string = environment.apiURL + "Auth/login";
 
 @Injectable({
     providedIn: 'root' // or specify a module where it should be provided

@@ -59,7 +59,7 @@ interface Customer {
   selector: 'app-viewcts',
   templateUrl: './viewcts.component.html',
   styleUrls: ['./viewcts.component.scss'],
-  providers: [MessageService]
+  providers: []
 })
 
 export class ViewctsComponent implements OnInit{
