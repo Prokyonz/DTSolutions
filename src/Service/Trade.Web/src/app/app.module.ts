@@ -37,6 +37,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageService } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { MessageService } from 'primeng/api';
     CommonModule,
     RadioButtonModule,
     CheckboxModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DialogModule
   ],
   providers: [SharedService, AuthService, MessageService],
   bootstrap: [AppComponent]

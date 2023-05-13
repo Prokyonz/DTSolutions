@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 import { SharedService } from '../common/shared.service';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
@@ -17,7 +18,8 @@ interface Customer {
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  styleUrls: ['./report.component.scss'],
+  providers: [ConfirmationService]
 })
 
 export class ReportComponent implements OnInit {
@@ -26,8 +28,9 @@ export class ReportComponent implements OnInit {
   reportIndex: number = 0;
   RememberCompany: RememberCompany = new RememberCompany();
   PurchaseReportList : any[];
-  columnArray: any[] = []
-  dataArray: any[];
+    columnArray: any[] = [];
+    dataArray: any[];
+    visible: boolean = false;
 
 
   loading: boolean = true;
@@ -151,4 +154,8 @@ export class ReportComponent implements OnInit {
     }
   }
 
+    onApproveClick() {
+        console.log("clicked");
+        this.visible = true;
+    }
 }
