@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
 
 interface Customer {
@@ -13,13 +14,15 @@ interface Customer {
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
-  styleUrls: ['./report.component.scss']
+  styleUrls: ['./report.component.scss'],
+  providers: [ConfirmationService]
 })
 
 export class ReportComponent implements OnInit {
 
   PageTitle: string = "Purchase Report";
   reportIndex: number = 0;
+  visible: boolean = false;
 
   //Table variables
   customers: Customer[] = [
@@ -39,7 +42,7 @@ export class ReportComponent implements OnInit {
 
   loading: boolean = true;
 
-  constructor(private rote: Router, private activateRoute: ActivatedRoute) {
+  constructor(private rote: Router, private activateRoute: ActivatedRoute, private confirmationService: ConfirmationService) {
     this.reportIndex = activateRoute.snapshot.params['id'];
   }
 
@@ -62,6 +65,11 @@ export class ReportComponent implements OnInit {
 
   onSeach(event: any) {
     console.log(event);
+  }
+
+  onApproveClick() {
+    console.log("clicked");
+    this.visible = true;
   }
 
 }

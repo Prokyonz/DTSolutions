@@ -1,5 +1,17 @@
 <app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
+
+<p-dialog header="Approve Confirmation" [(visible)]="visible" [modal]="true" [dismissableMask]="true"
+         [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
+    <div>
+        <textarea rows="5" cols="5" pInputTextarea></textarea>
+    </div>
+    <div class="card flex flex-wrap gap-3 justify-content-right">
+        <p-button label="Yes" icon="pi pi-check" (onClick)="visible = false;" styleClass="p-button-success"></p-button>
+        <p-button label="No" icon="pi pi-times" (onClick)="visible = false;" styleClass="p-button-info"></p-button>
+    </div>
+</p-dialog>
+
 <div class="card" style="height: calc(100vh - 149px); overflow:scroll;">
     <p-table
         #dt1
@@ -54,6 +66,16 @@
                         <p-columnFilter type="boolean" field="verified" display="menu"></p-columnFilter>
                     </div>
                 </th>
+                <th>
+                    <div class="flex align-items-center">
+                        Approve
+                    </div>
+                </th>
+                <th>
+                    <div class="flex align-items-center">
+                        Reject
+                    </div>
+                </th>
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-customer>
@@ -73,6 +95,12 @@
                 </td>
                 <td class="text-center">
                     <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
+                </td>
+                <td>
+                    <p-button label="Approve" (onClick)="onApproveClick()" styleClass="p-button-success"></p-button>
+                </td>
+                <td>
+                    <p-button label="Reject" styleClass="p-button-danger"></p-button>
                 </td>
             </tr>
         </ng-template>
