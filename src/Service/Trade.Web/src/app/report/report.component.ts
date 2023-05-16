@@ -55,7 +55,9 @@ export class ReportComponent implements OnInit {
           {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate"},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"}
+          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
+          {"displayName":"Action","dataType":"approve","fieldName":"purId","minWidth":"10"},
+          {"displayName":"Action","dataType":"reject","fieldName":"purId","minWidth":"10"},
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
           // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
           // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
@@ -200,7 +202,8 @@ export class ReportComponent implements OnInit {
     }
   }
 
-    onApproveClick() {
+    onApproveClick(reportIndex: number, item : any) {
+      debugger;
         console.log("clicked");
         this.visible = true;
     }
