@@ -35,6 +35,7 @@ export class ReportComponent implements OnInit {
   loading: boolean = true;
   dialogReportIndex: number = 0;
   ApproveRejectComment: string = '';
+  ApproveRejectStatus: number = 0;
   reportItemId: string = '';
   firstDate: string | null = '';
   endDate: string | null = '';
@@ -63,7 +64,7 @@ export class ReportComponent implements OnInit {
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
           {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
-          {"displayName":"Status","dataType":"text","fieldName":"approvalType"},          
+          {"displayName":"Approva lStatus","dataType":"text","fieldName":"approvalType"},          
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true}
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
@@ -89,7 +90,8 @@ export class ReportComponent implements OnInit {
           {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},             
+          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},  
+          {"displayName":"Approva lStatus","dataType":"text","fieldName":"approvalType"},            
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true}              
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
@@ -104,7 +106,8 @@ export class ReportComponent implements OnInit {
           {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
           {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
           {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},          
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},  
+          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},         
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
         ];
@@ -119,6 +122,7 @@ export class ReportComponent implements OnInit {
           {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
           {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"}, 
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
         ];
@@ -155,6 +159,8 @@ export class ReportComponent implements OnInit {
     debugger;
     const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
+    this.firstDate = StartDate;
+    this.endDate = EndDate;
     this.purchseReport(StartDate, EndDate)
   }
 
@@ -223,35 +229,38 @@ export class ReportComponent implements OnInit {
     }
   }
 
-  onApproveClick(reportIndex: number, item : any) {
+  onApproveClick(reportIndex: number, item : any, status : any) {
     this.visible = true;
     this.dialogReportIndex = reportIndex;
     this.reportItemId = item;
+    this.ApproveRejectStatus = status;
   }
 
-  onApproveReject(status: number){  
+  onApproveReject(){  
     const data = {
       "ReportType":this.dialogReportIndex,
       "Id": this.reportItemId,
       "Comment": this.ApproveRejectComment,
-      "Status": status
+      "Status": this.ApproveRejectStatus
     };
     this.loading = true;
     this.sharedService.customPostApi("Report/ApproveRejectStatus",data)
     .subscribe((data: any) => {
       debugger;
           if (data.success == true){
-            if (status == 1){                  
+            if (this.ApproveRejectStatus == 1){                  
               this.showMessage('success','Approve successfully.');
             }
-            else if (status == 2){
+            else if (this.ApproveRejectStatus == 2){
               this.showMessage('success','Rejected successfully.');
             }
             this.loading = false;
             this.dialogReportIndex = 0;
             this.reportItemId = '';
             this.ApproveRejectComment = '';
-            this.ngOnInit();          
+            this.ApproveRejectStatus = 0;
+            this.purchseReport(this.firstDate, this.endDate);
+            // this.ngOnInit();          
           }
           else{
             this.loading = false;

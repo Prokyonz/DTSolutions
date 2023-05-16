@@ -2,13 +2,13 @@
 <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
 <p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <p-dialog header="Approve Confirmation" [(visible)]="visible" [modal]="true" [dismissableMask]="true"
-         [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
+         [style]="{ width: '90vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
     <div>
         <textarea rows="5" cols="5" [(ngModel)]="ApproveRejectComment"  pInputTextarea></textarea>
     </div>
-    <div class="card flex flex-wrap gap-3 justify-content-right">
-        <p-button label="Yes" icon="pi pi-check" (onClick)="onApproveReject(1);visible = false;" styleClass="p-button-success"></p-button>
-        <p-button label="No" icon="pi pi-times" (onClick)="onApproveReject(2);visible = false;" styleClass="p-button-info"></p-button>
+    <div class="card flex flex-wrap gap-3 justify-content-right" style="flex-direction: row-reverse;">
+        <p-button label="Yes" icon="pi pi-check" (onClick)="onApproveReject();visible = false;" styleClass="p-button-success"></p-button>
+        <p-button label="No" icon="pi pi-times" (onClick)="visible = false;" styleClass="p-button-info"></p-button>
     </div>
 </p-dialog>
 
@@ -58,12 +58,17 @@
                 <td *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
                     <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
                     <div *ngIf="item.displayName == 'Approve'">
-                        <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid])"></p-button>
+                        <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
                     </div>
                     <div *ngIf="item.displayName == 'Reject'">
-                        <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid])"></p-button>
+                        <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
                     </div>
-                    <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.dataType !== 'Date'">{{ purchase[item.fieldName] }}</span>                    
+                    <div *ngIf="item.displayName == 'Approval Status'">
+                        <span *ngIf="purchase[item.fieldName] == '1'">Approved</span>
+                        <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
+                        <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
+                    </div>
+                    <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date'">{{ purchase[item.fieldName] }}</span>                    
                 </td>
             </tr>
         </ng-template>

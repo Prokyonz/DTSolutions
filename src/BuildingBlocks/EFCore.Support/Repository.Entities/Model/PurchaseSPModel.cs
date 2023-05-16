@@ -47,7 +47,6 @@ namespace Repository.Entities.Model
         public double BuyingRate { get; set; }
         public string Message { get; set; }
         public string ApprovalType { get; set; }
-        public string ApprovalStatus { get; set; }
         public string Remarks { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? AdjustAmount { get; set; }

@@ -38,6 +38,18 @@ namespace DiamondTrade.API.Controllers
             {
                 var result = await _purchaseMaster.GetPurchaseReport(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
                 result = result.OrderBy(o => o.SlipNo).ToList();
+                //    .Select(o =>
+                //    {
+                //        if (o.ApprovalType == "1")
+                //            o.ApprovalStatus = "Approved";
+                //        else if (o.ApprovalType == "2")
+                //            o.ApprovalStatus = "Rejected";
+                //        else
+                //            o.ApprovalStatus = "Rejected";
+
+                //        return o;
+                //    }).
+                //    ToList();
 
                 return new Response<dynamic>
                 {
