@@ -64,7 +64,7 @@ export class ReportComponent implements OnInit {
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
           {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
-          {"displayName":"Approva lStatus","dataType":"text","fieldName":"approvalType"},          
+          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},          
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true}
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
@@ -91,7 +91,7 @@ export class ReportComponent implements OnInit {
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
           {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},  
-          {"displayName":"Approva lStatus","dataType":"text","fieldName":"approvalType"},            
+          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},            
           {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true},
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true}              
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
