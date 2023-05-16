@@ -388,8 +388,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _kapanMaster == null)
                 {
                     _kapanMasterRepository = new KapanMasterRepository();
-                    //_kapanMaster = await _kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
-                    _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync();
+                    _kapanMaster = await _kapanMasterRepository.GetAllKapanAsync(Common.LoginCompany);
                     grdKapanMaster.DataSource = _kapanMaster;
                 }
             }
