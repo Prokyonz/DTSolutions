@@ -171,7 +171,7 @@ namespace EFCore.SQL.Repository
                 using (_databaseContext = new DatabaseContext())
                 {
                     //var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "','', '" + financialYearId + "'").ToListAsync();
-                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAllKapanLagadDetails").ToListAsync();
+                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAllKapanLagadDetails '" + companyId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }
@@ -188,7 +188,7 @@ namespace EFCore.SQL.Repository
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPNumberkReportModelReport.FromSqlRaw($"GetAllNumberStockDetails").ToListAsync();
+                    var data = await _databaseContext.SPNumberkReportModelReport.FromSqlRaw($"GetAllNumberStockDetails '" + companyId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }

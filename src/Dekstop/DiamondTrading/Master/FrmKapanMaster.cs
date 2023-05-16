@@ -157,6 +157,7 @@ namespace DiamondTrading.Master
                     _EditedKapanMasterSet.CaratLimit = KapanExpense;
                     _EditedKapanMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedKapanMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedKapanMasterSet.CompanyId = Common.LoginCompany;
 
                     var Result = await _kapanMasterRepository.UpdateKapanAsync(_EditedKapanMasterSet);
 
