@@ -38,6 +38,7 @@ import { CompanyselectionComponent } from './shared/component/companyselection/c
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,7 @@ import { DialogModule } from 'primeng/dialog';
     ProgressSpinnerModule,
     DialogModule
   ],
-  providers: [SharedService, AuthService, MessageService],
+  providers: [SharedService, AuthService, MessageService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

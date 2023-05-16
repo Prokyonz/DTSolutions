@@ -5,6 +5,7 @@ import { Table } from 'primeng/table';
 import { SharedService } from '../common/shared.service';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { Message, MessageService } from 'primeng/api';
+import { DatePipe } from '@angular/common';
 import { environment } from '../environments';
 
 interface Customer {
@@ -19,7 +20,7 @@ interface Customer {
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
-  providers: [ConfirmationService]
+  providers: [ConfirmationService, MessageService]
 })
 
 export class ReportComponent implements OnInit {
@@ -32,15 +33,21 @@ export class ReportComponent implements OnInit {
   dataArray: any[];
   visible: boolean = false;
   loading: boolean = true;
+  dialogReportIndex: number = 0;
+  ApproveRejectComment: string = '';
+  reportItemId: string = '';
+  firstDate: string | null = '';
+  endDate: string | null = '';
 
-  constructor(private rote: Router, private activateRoute: ActivatedRoute,private sharedService: SharedService, private messageService: MessageService) {
+  constructor(private rote: Router, private activateRoute: ActivatedRoute,
+      private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
     this.reportIndex = +activateRoute.snapshot.params['id'];
     switch (this.reportIndex)
     {
       case 1:
         this.PageTitle = "Purchase Report"
         this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"date"},
+          {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
           {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
           {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
           {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
@@ -52,12 +59,13 @@ export class ReportComponent implements OnInit {
           {"displayName":"CVD Amt","dataType":"numeric","fieldName":"cvdAmount"},
           {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},
           {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
-          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate"},
+          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
           {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
-          {"displayName":"Action","dataType":"approve","fieldName":"purId","minWidth":"10"},
-          {"displayName":"Action","dataType":"reject","fieldName":"purId","minWidth":"10"},
+          {"displayName":"Status","dataType":"text","fieldName":"approvalType"},          
+          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true},
+          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true}
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
           // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
           // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
@@ -66,7 +74,7 @@ export class ReportComponent implements OnInit {
       case 2:
         this.PageTitle = "Sales Report"
         this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"date"},
+          {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
           {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
           {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
           {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
@@ -78,35 +86,41 @@ export class ReportComponent implements OnInit {
           {"displayName":"CVD Amount","dataType":"numeric","fieldName":"cvdAmount"},
           {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
           {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},          
-          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate"},
+          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
           {"displayName":"Total","dataType":"numeric","fieldName":"total"},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"}                   
+          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},             
+          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true},
+          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true}              
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
         ];
         break;
       case 3:
         this.PageTitle = "Payment Report"
         this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"entryDate"},
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
           {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},
           {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
           {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
           {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
-          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15"},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},          
+          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
+          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
         ];
         break;
       case 4:
         this.PageTitle = "Receipt Report"
         this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"entryDate"},
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
           {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
           {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},          
           {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
           {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
-          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15"},
+          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
+          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
         ];
         break;
       default:
@@ -117,7 +131,11 @@ export class ReportComponent implements OnInit {
   ngOnInit() {
     this.loading = false;
     this.getCompanyData();
-    this.purchseReport();
+    let currentDate = new Date(); // Get the current date
+    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
+    this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');    
+    this.purchseReport(this.firstDate, this.endDate);
   }
 
   goBack() {
@@ -134,15 +152,18 @@ export class ReportComponent implements OnInit {
   }
 
   onSeach(event: any) {
-    console.log(event);
+    debugger;
+    const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
+    const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
+    this.purchseReport(StartDate, EndDate)
   }
 
-  purchseReport(){
+  purchseReport(startDate : string | null, endDate : string | null){
     this.loading = true;
     switch (this.reportIndex)
     {
       case 1:
-        this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+        this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "")
         .subscribe((data: any) => {
               this.PurchaseReportList = data.data;
               this.loading = false;
@@ -153,7 +174,7 @@ export class ReportComponent implements OnInit {
           });
         break;
         case 2:
-          this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+          this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
           .subscribe((data: any) => {
                 this.PurchaseReportList = data.data;
                 this.loading = false;
@@ -164,7 +185,7 @@ export class ReportComponent implements OnInit {
             });
           break;
         case 3:
-          this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+          this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
           .subscribe((data: any) => {
                 this.PurchaseReportList = data.data;
                 this.loading = false;
@@ -175,7 +196,7 @@ export class ReportComponent implements OnInit {
             });
         break;
         case 4:
-          this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=2022-05-01&ToDate=2023-05-20")
+          this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
           .subscribe((data: any) => {
                 this.PurchaseReportList = data.data;
                 this.loading = false;
@@ -202,9 +223,43 @@ export class ReportComponent implements OnInit {
     }
   }
 
-    onApproveClick(reportIndex: number, item : any) {
+  onApproveClick(reportIndex: number, item : any) {
+    this.visible = true;
+    this.dialogReportIndex = reportIndex;
+    this.reportItemId = item;
+  }
+
+  onApproveReject(status: number){  
+    const data = {
+      "ReportType":this.dialogReportIndex,
+      "Id": this.reportItemId,
+      "Comment": this.ApproveRejectComment,
+      "Status": status
+    };
+    this.loading = true;
+    this.sharedService.customPostApi("Report/ApproveRejectStatus",data)
+    .subscribe((data: any) => {
       debugger;
-        console.log("clicked");
-        this.visible = true;
-    }
+          if (data.success == true){
+            if (status == 1){                  
+              this.showMessage('success','Approve successfully.');
+            }
+            else if (status == 2){
+              this.showMessage('success','Rejected successfully.');
+            }
+            this.loading = false;
+            this.dialogReportIndex = 0;
+            this.reportItemId = '';
+            this.ApproveRejectComment = '';
+            this.ngOnInit();          
+          }
+          else{
+            this.loading = false;
+            this.showMessage('error','Something went wrong...');
+          }
+        }, (ex: any) => {
+          this.loading = false;
+          this.showMessage('error',ex);
+      });
+  }
 }

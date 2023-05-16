@@ -1,14 +1,14 @@
 <app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
-
+<p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <p-dialog header="Approve Confirmation" [(visible)]="visible" [modal]="true" [dismissableMask]="true"
          [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
     <div>
-        <textarea rows="5" cols="5" pInputTextarea></textarea>
+        <textarea rows="5" cols="5" [(ngModel)]="ApproveRejectComment"  pInputTextarea></textarea>
     </div>
     <div class="card flex flex-wrap gap-3 justify-content-right">
-        <p-button label="Yes" icon="pi pi-check" (onClick)="visible = false;" styleClass="p-button-success"></p-button>
-        <p-button label="No" icon="pi pi-times" (onClick)="visible = false;" styleClass="p-button-info"></p-button>
+        <p-button label="Yes" icon="pi pi-check" (onClick)="onApproveReject(1);visible = false;" styleClass="p-button-success"></p-button>
+        <p-button label="No" icon="pi pi-times" (onClick)="onApproveReject(2);visible = false;" styleClass="p-button-info"></p-button>
     </div>
 </p-dialog>
 
@@ -19,8 +19,7 @@
         dataKey="id"
         [rows]="50"
         [showCurrentPageReport]="false"
-        [rowsPerPageOptions]="[5, 10, 25, 50]"
-        [loading]="loading"
+        [rowsPerPageOptions]="[5, 10, 25, 50]"        
         [paginator]="true"
         [scrollable]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
@@ -39,7 +38,7 @@
                 <th *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
                     <div class="flex align-items-center">
                         {{item.displayName}}
-                        <p-columnFilter type="{{item.dataType}}" field="{{item.fieldName}}" display="menu"></p-columnFilter>
+                        <p-columnFilter *ngIf="!item.ishidefilter" type="{{item.dataType}}" field="{{item.fieldName}}" display="menu"></p-columnFilter>
                     </div>
                 </th>                
                 <!-- <th style="min-height: 10rem;">
@@ -58,14 +57,13 @@
             <tr>
                 <td *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
                     <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
-                    <div *ngIf="item.dataType == 'approve'">
-                        <p-button label="Approve"  styleClass="p-button-success" (onClick)="onApproveClick(reportIndex,purchase[item.fieldName])"></p-button>
+                    <div *ngIf="item.displayName == 'Approve'">
+                        <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid])"></p-button>
                     </div>
-                    <div *ngIf="item.dataType == 'reject'">
-                        <p-button label="Reject" styleClass="p-button-danger"></p-button>
+                    <div *ngIf="item.displayName == 'Reject'">
+                        <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid])"></p-button>
                     </div>
-                    <!-- <span *ngIf="item.dataType == 'action'"><i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': item.approvalType, 'text-red-500 pi-times-circle': !item.approvalType }"></i></span> -->
-                    <span *ngIf="item.dataType != 'Date' && item.dataType != 'approve' && item.dataType != 'reject'">{{ purchase[item.fieldName] }}</span>                    
+                    <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.dataType !== 'Date'">{{ purchase[item.fieldName] }}</span>                    
                 </td>
             </tr>
         </ng-template>
@@ -76,3 +74,6 @@
         </ng-template>
     </p-table>
 </div>
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
+  </div>

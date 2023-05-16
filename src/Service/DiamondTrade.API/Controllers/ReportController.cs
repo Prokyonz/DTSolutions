@@ -1,10 +1,12 @@
-﻿using DiamondTrade.API.Models.Response;
+﻿using DiamondTrade.API.Models.Request;
+using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static DiamondTrade.API.Models.Enum.Enum;
 
 namespace DiamondTrade.API.Controllers
 {
@@ -139,25 +141,25 @@ namespace DiamondTrade.API.Controllers
         }
 
         [Route("ApproveRejectStatus")]
-        [HttpGet]
+        [HttpPost]
         //1 Approve
-        //2 Reect
-        public async Task<Response<dynamic>> ApproveRejectStatus(string Type, string Id, string Comment, int ApproveReject)
+        //2 Reject
+        public async Task<Response<dynamic>> ApproveRejectStatus(ApproveRejectRequest approveRejectRequest)
         {
             try
             {
                 bool result = false;
-                if (Type == "Purchase")
+                if (approveRejectRequest.ReportType == ReportType.Purchase)
                 {
-                    result = await _purchaseMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                    result = await _purchaseMaster.UpdateApprovalStatus(approveRejectRequest.Id, approveRejectRequest.Comment, approveRejectRequest.Status);
                 }
-                else if (Type == "Sale")
+                else if (approveRejectRequest.ReportType == ReportType.Sale)
                 {
-                    result = await _salesMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                    result = await _salesMaster.UpdateApprovalStatus(approveRejectRequest.Id, approveRejectRequest.Comment, approveRejectRequest.Status);
                 }
-                else if (Type == "Payment" || Type == "Receipt")
+                else if (approveRejectRequest.ReportType == ReportType.Payment || approveRejectRequest.ReportType == ReportType.Receipt)
                 {
-                    result = await _paymentMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                    result = await _paymentMaster.UpdateApprovalStatus(approveRejectRequest.Id, approveRejectRequest.Comment, approveRejectRequest.Status);
                 }
 
                 return new Response<dynamic>
