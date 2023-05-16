@@ -137,5 +137,40 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("ApproveRejectStatus")]
+        [HttpGet]
+        //1 Approve
+        //2 Reect
+        public async Task<Response<dynamic>> ApproveRejectStatus(string Type, string Id, string Comment, int ApproveReject)
+        {
+            try
+            {
+                bool result = false;
+                if (Type == "Purchase")
+                {
+                    result = await _purchaseMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                }
+                else if (Type == "Sale")
+                {
+                    result = await _salesMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                }
+                else if (Type == "Payment" || Type == "Receipt")
+                {
+                    result = await _paymentMaster.UpdateApprovalStatus(Id, Comment, ApproveReject);
+                }
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
