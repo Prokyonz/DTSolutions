@@ -99,6 +99,7 @@ namespace DiamondTrade.API.Controllers
                         calculatorMaster.Carat = number.Carat;
                         calculatorMaster.Percentage = number.Percentage;
                         calculatorMaster.NumberId = number.NumberId;
+                        calculatorMaster.Note = calculator.Note;
                         calculatorMasterList.Add(calculatorMaster);
                     });
                 });
