@@ -43,6 +43,7 @@ interface Summary {
   sizeId:string,
   sizeName:string,
   percentage: number,
+  rate: number,
   amount: number,
   totCarat: number 
 }
@@ -86,6 +87,7 @@ export class ViewctsComponent implements OnInit{
   selectedtotalcarat: number = 0;
   valueTextArea: string;
   summaryTotAmount = 0;
+  summaryTotRate = 0;
   date: Date = new Date();
   branchid: any = [];
   partyid: any = [];
@@ -139,7 +141,7 @@ export class ViewctsComponent implements OnInit{
         this.clearForm();
       }
       else{
-      this.router.navigate(["dashboard"]);
+        this.router.navigate(["dashboard"]);
       }
     }
   }
@@ -207,19 +209,32 @@ export class ViewctsComponent implements OnInit{
 
   calulateSummary(){
     this.summaryTotAmount = 0;
+    this.summaryTotRate = 0;
     this.summatydata.forEach(e => {
+      debugger;
       let filteredSize = this.NumberDetails.filter((f) => {
         return f.sizeId == e.sizeId;
       });
+
+      let totalCts = filteredSize.reduce((acc, curr) => {
+        return acc + +curr.carat;
+      }, 0);
       
       let totalAmount = filteredSize.reduce((acc, curr) => {
         return acc + curr.amount;
-      }, 0);      
+      }, 0);  
+      
+      // let totalRate = filteredSize.reduce((acc, curr) => {
+      //   return acc + curr.rate;
+      // }, 0);  
 
       e.amount = totalAmount;
+      e.rate = totalAmount / totalCts;
       e.percentage = (e.totCarat / this.netcarat)*100;
       this.summaryTotAmount = this.summaryTotAmount + e.amount;
+      this.summaryTotRate = this.summaryTotRate + (e.rate * e.percentage);
     });
+    this.summaryTotRate = this.summaryTotRate / 100;
   }
 
   getparty(){
@@ -376,6 +391,7 @@ export class ViewctsComponent implements OnInit{
         sizeName : this.selectedsize.name,
         percentage : 0,
         amount : 0,
+        rate: 0,
         totCarat : this.selectedtotalcarat
       });
     }
@@ -393,6 +409,7 @@ export class ViewctsComponent implements OnInit{
         this.summatydata[index].sizeId = this.selectedsize.id;
         this.summatydata[index].sizeName = this.selectedsize.name;
         this.summatydata[index].percentage = 0;
+        this.summatydata[index].rate = 0;
         this.summatydata[index].amount = 0;
         this.summatydata[index].totCarat =  this.selectedtotalcarat;
       }
@@ -405,7 +422,8 @@ export class ViewctsComponent implements OnInit{
         rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
         numberName: this.selectednumber.name,
         amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
-        percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
+        //percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
+        percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
     });
     this.showMessage('success','Items added successfully');
     this.selectednumber = this.numbers.filter(e => e.id == '');
@@ -439,7 +457,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    
+    debugger;
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -459,6 +477,7 @@ export class ViewctsComponent implements OnInit{
           sizeName : item.sizeName,
           percentage : 0,
           amount : 0,
+          rate : 0,
           totCarat : item.totalCarat
         });
         item.numberDetails.forEach(s => {

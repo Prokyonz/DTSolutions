@@ -6,7 +6,8 @@ import { SharedService } from '../common/shared.service';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { Message, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
-import { environment } from '../environments';
+import * as FileSaver from 'file-saver';
+import 'jspdf-autotable';
 
 interface Customer {
   name: string,
@@ -127,6 +128,18 @@ export class ReportComponent implements OnInit {
           {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
         ];
         break;
+      case 5:
+          this.PageTitle = "Contra Payment Report"
+          this.columnArray = [
+            {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+            {"displayName":"From Party","dataType":"text","fieldName":"fromPartyName","minWidth":"15"},
+            {"displayName":"To Party","dataType":"text","fieldName":"toPartyName","minWidth":"15"},                     
+            {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
+            {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
+            {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+            {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+          ];
+          break;
       default:
         break;
     }
@@ -212,10 +225,106 @@ export class ReportComponent implements OnInit {
                 this.showMessage('error',ex);
             });
         break;
+        case 5:
+          this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
+        break;
       default:
         break;
     }
     
+  }
+
+  exportExcel() {
+    import('xlsx').then((xlsx) => {
+        const worksheet = xlsx.utils.json_to_sheet(this.PurchaseReportList);
+        const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+        const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+        this.saveAsExcelFile(excelBuffer, 'report');
+    });
+  }
+
+  saveAsExcelFile(buffer: any, fileName: string): void {
+    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+    let EXCEL_EXTENSION = '.xlsx';
+    const data: Blob = new Blob([buffer], {
+        type: EXCEL_TYPE
+    });
+    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+  }
+
+  exportPdf() {
+    let exportColumns: any[];
+    this.columnArray = [
+      {"displayName":"Date","dataType":"Date","fieldName":"date"},
+      {"displayName":"Branch","dataType":"text","fieldName":"branchName"},
+      {"displayName":"SlipNo","dataType":"numeric","fieldName":"slipNo"},          
+      {"displayName":"Party","dataType":"text","fieldName":"partyName"},
+      {"displayName":"Broker","dataType":"text","fieldName":"brokerName"},
+      {"displayName":"Kapan","dataType":"text","fieldName":"kapanName"},
+      {"displayName":"NetCts","dataType":"numeric","fieldName":"netWeight"},
+      {"displayName":"BuyRate","dataType":"numeric","fieldName":"buyingRate"},
+      {"displayName":"Less","dataType":"numeric","fieldName":"lessWeight"},
+      {"displayName":"CVDAmt","dataType":"numeric","fieldName":"cvdAmount"},
+      {"displayName":"DueDays","dataType":"numeric","fieldName":"dueDays"},
+      {"displayName":"PayDays","dataType":"numeric","fieldName":"paymentDays"},
+      {"displayName":"DueDate","dataType":"Date","fieldName":"dueDate"},
+      {"displayName":"Total","dataType":"numeric","fieldName":"total"},      
+      {"displayName":"Status","dataType":"text","fieldName":"approvalType"},        
+    ]
+    exportColumns = this.columnArray.map((col) => (col.fieldName));
+    import('jspdf').then((jsPDF) => {
+        import('jspdf-autotable').then((x) => {
+            
+            const doc = new jsPDF.default('l', 'px', 'a4');
+
+            const styles = {
+              fontSize: 8, // Set font size to 5
+            };
+
+            const formatDate = (dateString: string) => {
+              const date = new Date(dateString);
+              const month = (date.getMonth() + 1).toString().padStart(2, '0');
+              const day = date.getDate().toString().padStart(2, '0');
+              const year = date.getFullYear();
+              return `${month}-${day}-${year}`;
+            };
+
+            let extractedData : any[] = this.PurchaseReportList.map((item) => {
+              const formattedItem = { ...item };
+              formattedItem['date'] = formatDate(item['date']); // Assuming 'Date' is the key for the date field
+              formattedItem['dueDate'] = formatDate(item['dueDate']); 
+              return formattedItem;
+            });
+
+            extractedData = extractedData.map((item) =>
+              exportColumns.map((column) => item[column])
+            );
+
+            // extractedData = extractedData.map((item) => {
+            //   const formattedItem = { ...item };
+            //   formattedItem['date'] = formatDate(item['date']); // Assuming 'Date' is the key for the date field
+            //   formattedItem['dueDate'] = formatDate(item['dueDate']); 
+            //   return formattedItem;
+            // });
+           
+            debugger;
+
+            (doc as any).autoTable({
+              head: [this.columnArray.map((col) => (col.displayName))],
+              body: extractedData,
+              styles: styles,
+            });
+            doc.save('reports.pdf');
+        });
+    });
   }
 
   showMessage(type: string, message: string){

@@ -33,6 +33,14 @@
                 </span>
             </div>
         </ng-template> -->
+
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+            </div>
+        </ng-template>
+
         <ng-template pTemplate="header">
             <tr>                
                 <th *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
