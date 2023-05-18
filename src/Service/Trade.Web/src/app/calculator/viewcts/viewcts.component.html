@@ -228,7 +228,7 @@
                             <td>{{ item.numberName }}</td>
                             <td>{{ item.carat }}</td>
                             <td>{{ item.rate | number:'.2-2' }}</td>
-                            <td>{{ item.percentage | number:'.2-2' }}</td>
+                            <td>{{ (item.carat/getSizeCaratTotal(header.sizeId)) * 100 | number:'.2-2' }}</td>
                             <td>{{ item.amount | number:'.2-2'}}</td>
                             <td *ngIf="isSaveButton">
                                 <i class="pi text-red-500 pi-times-circle" (click)="deleteitems(item)"></i>
@@ -271,20 +271,22 @@
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Size Name</th>
-                        <th>Percentage</th>
+                        <th>Carat</th>
+                        <th>Percentage</th>                        
                         <th>Rate</th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-summ>
                     <tr>
                         <td>{{ summ.sizeName }}</td>
+                        <td>{{ getSizeCaratTotal(summ.sizeId) | number:'.2-2' }}</td>
                         <td>{{ summ.percentage | number:'.2-2' }}</td>
                         <td>{{ summ.rate | number:'.2-2'}}</td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <tr>
-                        <td colspan="2" class="text-right">Totals</td>
+                        <td colspan="3" class="text-right">Totals</td>
                         <!-- <td>{{ summaryTotAmount | number:'.2-2'}}</td> -->
                         <td>{{ summaryTotRate | number:'.2-2'}}</td>
                     </tr>

@@ -107,21 +107,6 @@ export class ViewctsComponent implements OnInit{
     
   }
 
-  customers: Customer[] = [
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-    { name: 'Abhishek', country: 'India', date: '12/12/2014', balance: 25000, verified: true },
-    { name: 'Anand', country: 'India', date: '12/12/2014', balance: 28000, verified: false },
-    { name: 'Shaielsh', country: 'USA', date: '01/11/2015', balance: 45000, verified: false },
-    { name: 'Akshay', country: 'UK', date: '01/11/2017', balance: 145000, verified: false },
-  ];  
-
   myfunction() {
     if(this.showViewSection == true && this.isSaveButton) {
       this.showAddSection = true;
@@ -152,21 +137,21 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Select any date');
       return;
     }
-    if (this.branchid.id == '')
-    {
-      this.showMessage('error',"Select any branch");
-      return;
-    }
-    if (this.partyid.id == '')
-    {
-      this.showMessage('error','Select any party');
-      return;
-    }
-    if (this.dealerid.id == '')
-    {
-      this.showMessage('error','Select any broker');
-      return;
-    }
+    // if (this.branchid.id == '')
+    // {
+    //   this.showMessage('error',"Select any branch");
+    //   return;
+    // }
+    // if (this.partyid.id == '')
+    // {
+    //   this.showMessage('error','Select any party');
+    //   return;
+    // }
+    // if (this.dealerid.id == '')
+    // {
+    //   this.showMessage('error','Select any broker');
+    //   return;
+    // }
     if (this.netcarat <= 0)
     {
       this.showMessage('error','Netcarat can not be less than or equal to zero');
@@ -521,21 +506,21 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Select any date');
       return;
     }
-    if (this.branchid.id == '')
-    {
-      this.showMessage('error','Select any branch');
-      return;
-    }
-    if (this.partyid.id == '')
-    {
-      this.showMessage('error','Select any party');
-      return;
-    }
-    if (this.dealerid.id == '')
-    {
-      this.showMessage('error','Select any broker');
-      return;
-    }
+    // if (this.branchid.id == '')
+    // {
+    //   this.showMessage('error','Select any branch');
+    //   return;
+    // }
+    // if (this.partyid.id == '')
+    // {
+    //   this.showMessage('error','Select any party');
+    //   return;
+    // }
+    // if (this.dealerid.id == '')
+    // {
+    //   this.showMessage('error','Select any broker');
+    //   return;
+    // }
     if (this.netcarat <= 0)
     {
       this.showMessage('error','Netcarat can not be less than or equal to zero');
