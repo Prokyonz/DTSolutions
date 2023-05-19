@@ -151,7 +151,8 @@ export class ReportComponent implements OnInit {
     let currentDate = new Date(); // Get the current date
     currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
-    this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');    
+    this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');   
+    alert("oninit");
     this.purchseReport(this.firstDate, this.endDate);
   }
 
@@ -178,16 +179,23 @@ export class ReportComponent implements OnInit {
   }
 
   purchseReport(startDate : string | null, endDate : string | null){
+    try{
+      alert("inpurchasereport : " + this.reportIndex);
     this.loading = true;
     switch (this.reportIndex)
     {
       case 1:
-        this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "")
-        .subscribe((data: any) => {
+        alert("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "");
+          this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "")
+          .subscribe((data: any) => {
+            alert("success");
+            alert("response length : " + JSON.stringify(data));
+            alert("data length : " + data.data.length);  
               this.PurchaseReportList = data.data;
               this.loading = false;
-              console.log(this.PurchaseReportList);
             }, (ex: any) => {
+              alert("error");
+              alert(JSON.stringify(ex));
               this.loading = false;
               this.showMessage('error',ex);
           });
@@ -238,6 +246,11 @@ export class ReportComponent implements OnInit {
         break;
       default:
         break;
+    }
+    }
+    catch(e){
+      alert("Try Catch Error");
+      alert(JSON.stringify(e));
     }
     
   }
