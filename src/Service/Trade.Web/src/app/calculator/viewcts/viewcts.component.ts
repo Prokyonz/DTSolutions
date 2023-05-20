@@ -223,9 +223,10 @@ export class ViewctsComponent implements OnInit{
   getparty(){
     this.sharedService.customGetApi("Service/GetParty-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
+        debugger;
         if (t.data != null && t.data.length > 0){
           t.data = [
-            { name: '-Select-', id: '' },
+            //{ name: '-Select-', id: '' },
             ...t.data
           ];
           this.party = t.data;

@@ -32,7 +32,7 @@
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="party" optionLabel="name" [editable]="true"  [(ngModel)]="partyid" (onChange)="handleparty($event)"></p-dropdown>                            
+                                    <p-dropdown [options]="party" [editable]="true"  [(ngModel)]="partyid" [filter]="true" (onChange)="handleparty($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
