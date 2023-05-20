@@ -129,5 +129,23 @@ namespace EFCore.SQL.Repository
                 return calsulatorReport;
             }
         }
+
+        public async Task<List<string>> GetCalculatorMasterParties(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.CalculatorMaster.Where(w => w.CompanyId == companyId).Select(s => s.PartyId.ToUpper()).Distinct().ToListAsync();
+                return result;
+            }
+        }
+
+        public async Task<List<string>> GetCalculatorMasterBrokers(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.CalculatorMaster.Where(w => w.CompanyId == companyId).Select(s => s.DealerId.ToUpper()).Distinct().ToListAsync();
+                return result;
+            }
+        }
     }
 }

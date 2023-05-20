@@ -15,5 +15,7 @@ namespace EFCore.SQL.Interface
         Task<bool> UpdateCalculatorAsync(List<CalculatorMaster> calculatorMasterEntries);
         Task<bool> DeleteCalculatorAsync(int calculatorId, string branchId);
         Task<List<CalculatorSPModel>> GetCalculatorReport(string companyId, string financialYearId, string fromDate, string toDate);
+        Task<List<string>> GetCalculatorMasterParties(string companyId);
+        Task<List<string>> GetCalculatorMasterBrokers(string companyId);
     }
 }

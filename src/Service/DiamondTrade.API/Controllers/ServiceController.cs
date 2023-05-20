@@ -20,8 +20,12 @@ namespace DiamondTrade.API.Controllers
         private readonly IBranchMaster _branchMaster;
         private readonly ICompanyMaster _companyMaster;
         private readonly IFinancialYearMaster _financialYearMaster;
+        private readonly ICalculatorMaster _calculatorMaster;
+
         public ServiceController(ISizeMaster sizeMaster, INumberMaster numberMaster,
-            IPriceMaster priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster, ICompanyMaster companyMaster, IFinancialYearMaster financialYearMaster)
+            IPriceMaster priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster, ICompanyMaster companyMaster,
+            IFinancialYearMaster financialYearMaster,
+            ICalculatorMaster calculatorMaster)
         {
             _sizeMaster = sizeMaster;
             _numberMaster = numberMaster;
@@ -30,6 +34,49 @@ namespace DiamondTrade.API.Controllers
             _branchMaster = branchMaster;
             _companyMaster = companyMaster;
             _financialYearMaster = financialYearMaster;
+            _calculatorMaster = calculatorMaster;
+        }
+
+        [Route("GetParty-calculator")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPartyCalculator(string CompanyId)
+        {
+            try
+            {
+                var result = await _calculatorMaster.GetCalculatorMasterParties(CompanyId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetDealer-calculator")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetDealerCalculator(string CompanyId)
+        {
+            try
+            {
+                var result = await _calculatorMaster.GetCalculatorMasterBrokers(CompanyId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         [Route("GetParty")]
@@ -38,6 +85,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
+
                 var result = await _partyMaster.GetAllPartyAsync(CompanyId, new int[] { PartyTypeMaster.PartySale, PartyTypeMaster.PartyBuy });
 
                 return new Response<dynamic>
@@ -125,7 +173,7 @@ namespace DiamondTrade.API.Controllers
                     StatusCode = 200,
                     Success = true,
                     Data = result
-                };               
+                };
             }
             catch
             {
