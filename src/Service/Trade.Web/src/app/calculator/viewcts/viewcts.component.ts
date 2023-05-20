@@ -101,7 +101,7 @@ export class ViewctsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    debugger;
+    
     this.getCompanyData();
     this.calculatorList();
     
@@ -115,7 +115,7 @@ export class ViewctsComponent implements OnInit{
       this.PageTitle = "Add Details";      
     }
     else{
-      debugger;
+      
       if (!this.isSaveButton){
         this.isSaveButton = true;
         this.showAddSection = false;
@@ -221,7 +221,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getparty(){
-    this.sharedService.customGetApi("Service/GetParty?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetParty-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
@@ -235,7 +235,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getdealer(){
-    this.sharedService.customGetApi("Service/GetDealer?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
+    this.sharedService.customGetApi("Service/GetDealer-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
@@ -312,7 +312,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewdata(){
-    debugger;
+    
     //console.log(this.caratData);
   }
 
@@ -440,6 +440,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
+    debugger;
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -547,8 +548,8 @@ export class ViewctsComponent implements OnInit{
               CompanyId: this.RememberCompany.company.id,
               FinancialYearId: this.RememberCompany.financialyear.id,
               BranchId: this.branchid.id,
-              PartyId: this.partyid.id,
-              BrokerId: this.dealerid.id,
+              PartyId: this.partyid, //this.partyid.id, removed the property becase we are storing the actual name entered by user.
+              BrokerId: this.dealerid, //this.dealerid.id, removed the property becase we are storing the actual name entered by user.
               NetCarat: this.netcarat,
               Note: this.note,
               IsDelete: false,

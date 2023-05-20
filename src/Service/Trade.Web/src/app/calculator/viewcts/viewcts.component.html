@@ -26,20 +26,19 @@
                                 </td>    
                                 <td>   
                                     <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
-                                    <p-dropdown [options]="branches" optionLabel="name" [(ngModel)]="branchid" (onChange)="handlebranch($event)"></p-dropdown>                            
+                                    <p-dropdown [options]="branches" optionLabel="name" [(ngModel)]="branchid" (onChange)="handlebranch($event)"></p-dropdown>
                                 </td>                    
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="party" optionLabel="name" [(ngModel)]="partyid" (onChange)="handleparty($event)"></p-dropdown>                            
+                                    <p-dropdown [options]="party" optionLabel="name" [editable]="true"  [(ngModel)]="partyid" (onChange)="handleparty($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                    <p-dropdown [options]="dealers" optionLabel="name" [(ngModel)]="dealerid" (onChange)="handledealer($event)" aria-required="true"></p-dropdown>  
-                                                         
+                                    <p-dropdown [options]="dealers" optionLabel="name" [editable]="true"  [(ngModel)]="dealerid" (onChange)="handledealer($event)" aria-required="true"></p-dropdown>              
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
@@ -150,13 +149,13 @@
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;font-weight: bold;">Party</span><br/>                                                       
-                                    <span>{{partyid.name}}</span>                           
+                                    <span>{{partyid}}</span>                           
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;font-weight: bold;">Broker</span><br/>                                                       
-                                    <span>{{dealerid.name}}</span>                                                         
+                                    <span>{{dealerid}}</span>                                                         
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
