@@ -101,7 +101,7 @@ namespace DiamondTrading.Transaction
             LoadSeries(_paymentType);
             await LoadLedgers(lueCompany.EditValue.ToString());
 
-            if (_paymentType == 0)
+            if (_paymentType == 0 || _paymentType == 1)
                 await LoadBranch(lueCompany.EditValue.ToString());
         }
 
@@ -426,7 +426,7 @@ namespace DiamondTrading.Transaction
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
                     if (dtView.Count > 0)
                     {
-                        DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1");
+                        DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'");
                         if (dataRow.Length == 0)
                         {
                             var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);
@@ -450,12 +450,12 @@ namespace DiamondTrading.Transaction
                                 Common.LoginFinancialYear, Common.LoginFinancialYearName,
                                 PartyOpeningBalance, PartyOpeningBalance);
                         }
-                        
 
                         dtView.Sort = "SlipNo ASC";
 
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
-                        if (string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
+                        if (grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount) == null ||
+                            string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
                         else
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = Convert.ToBoolean(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount));
@@ -535,7 +535,7 @@ namespace DiamondTrading.Transaction
                             }
 
 
-                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1");
+                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'");
                             if (dataRow.Length == 0)
                             {
                                 var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);

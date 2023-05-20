@@ -17,6 +17,7 @@ namespace DiamondTrading
         Update,
         SaveSuccessfully,
         DeleteSuccessfully,
+        Error,
         #endregion
         #region "Access messages"
         InvalidUsername_Password,
