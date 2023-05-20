@@ -70,6 +70,7 @@ namespace DiamondTrade.API
             services.AddScoped<ISalesMaster, SalesMasterRepository>();
             services.AddScoped<IPaymentMaster, PaymentMasterRepository>();
             services.AddScoped<IContraEntryMaster, ContraEntryMasterRespository>();
+            services.AddScoped<IExpenseMaster, ExpenseMasterRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
 
             services.AddAuthorization(option =>

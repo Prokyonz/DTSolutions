@@ -18,16 +18,22 @@ namespace DiamondTrade.API.Controllers
         private readonly ISalesMaster _salesMaster;
         private readonly IPaymentMaster _paymentMaster;
         private readonly IContraEntryMaster _contraEntryMaster;
+        private readonly IExpenseMaster _expenseMaster;
+        private readonly IPartyMaster _partyMaster;
 
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
-            IContraEntryMaster contraEntryMaster)
+            IContraEntryMaster contraEntryMaster,
+            IExpenseMaster expenseMaster,
+            IPartyMaster partyMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
             _paymentMaster = paymentMaster;
             _contraEntryMaster = contraEntryMaster;
+            _expenseMaster = expenseMaster;
+            _partyMaster = partyMaster;
         }
 
         [Route("GetPurchaseReport")]
@@ -125,6 +131,94 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _contraEntryMaster.GetContraReport(CompanyId, FinancialYearId, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
+                result = result.OrderBy(o => o.EntryDate).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetExpenseReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetExpenseReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _expenseMaster.GetExpenseReport(CompanyId, FinancialYearId, FromDate.ToString("yyyy-MM-dd"), ToDate.ToString("yyyy-MM-dd"));
+                result = result.OrderBy(o => o.SrNo).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetMixedReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetMixedReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetMixedReportAsync(CompanyId, FinancialYearId, FromDate.ToString("yyyy-MM-dd"), ToDate.ToString("yyyy-MM-dd"));
+                result = result.OrderBy(o => o.CreatedDate).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetLedgerReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetLedgerReport(string CompanyId, string FinancialYearId)
+        {
+            try
+            {
+                var result = await _partyMaster.GetLedgerReport(CompanyId, FinancialYearId);
+                result = result.OrderBy(o => o.Name).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetCashBankReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetCashBankReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetCashBankReportAsync(CompanyId, FinancialYearId, FromDate.ToString("yyyy-MM-dd"), ToDate.ToString("yyyy-MM-dd"));
                 result = result.OrderBy(o => o.EntryDate).ToList();
 
                 return new Response<dynamic>
