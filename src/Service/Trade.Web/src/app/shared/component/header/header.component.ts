@@ -21,6 +21,7 @@ export class HeaderComponent implements OnInit {
         label: 'Home',
         icon: 'pi pi-fw pi-file',
         routerLink: "/dashboard",
+        expanded: false,
         command: () => {
           this.sidebarVisible = false;  
         }
@@ -36,54 +37,205 @@ export class HeaderComponent implements OnInit {
     },
     {
         label: 'Reports',        
-        expanded: true,
-        items: [
-            {
-                label: 'Purchase',
-                icon: 'pi pi-fw pi-user-plus',
-                routerLink: "/report/1",
+        expanded: false,
+        icon: 'pi pi-fw pi-chart-bar',
+        items:[
+          {
+            label: 'Transaction Report',        
+            expanded: false,
+            icon: 'pi pi-fw pi-file-o',
+            items: [
+              {
+                  label: 'Purchase',
+                  icon: 'pi pi-fw pi-shopping-cart',
+                  routerLink: "/report/1",
+                  command: () => {
+                    this.sidebarVisible = false;
+                  }
+              },
+              {
+                  label: 'Sales',
+                  icon: 'pi pi-fw pi-chart-line',
+                  routerLink: "/report/2",
+                  command: () => {
+                    this.sidebarVisible = false;
+                  }
+              },
+              {
+                  label: 'Payment',
+                  icon: 'pi pi-fw pi-money-bill',
+                  routerLink: "/report/3",
+                  command: () => {
+                    this.sidebarVisible = false;
+                  }
+              },
+              {
+                  label: 'Receipt',
+                  icon: 'pi pi-fw pi-credit-card',
+                  routerLink: "/report/4",
+                  command: () => {
+                    this.sidebarVisible = false;
+                  }
+              },
+              {
+                label: 'Contra',
+                icon: 'pi pi-fw pi-sync',
+                routerLink: "/report/5",
                 command: () => {
                   this.sidebarVisible = false;
                 }
-            },
-            {
-                label: 'Sales',
-                icon: 'pi pi-fw pi-user-minus',
-                routerLink: "/report/2",
+              },
+              {
+                label: 'Expense',
+                icon: 'pi pi-fw pi-file',
+                routerLink: "",
                 command: () => {
                   this.sidebarVisible = false;
                 }
-            },
-            {
-                label: 'Payment',
+              },
+              {
+                label: 'Loan',
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Mixed',
+                icon: 'pi pi-fw pi-refresh',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'PF',
                 icon: 'pi pi-fw pi-users',
-                routerLink: "/report/3",
+                routerLink: "",
                 command: () => {
                   this.sidebarVisible = false;
                 }
-            },
-            {
-                label: 'Receipt',
-                icon: 'pi pi-fw pi-users',
-                routerLink: "/report/4",
+              },              
+              {
+                label: 'Ledger',
+                icon: 'pi pi-fw pi-book',
+                routerLink: "",
                 command: () => {
                   this.sidebarVisible = false;
                 }
-            },
-            {
-              label: 'Contra Payment',
-              icon: 'pi pi-fw pi-users',
-              routerLink: "/report/5",
-              command: () => {
-                this.sidebarVisible = false;
+              },
+              {
+                label: 'Payable',
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Receivable',
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Cash Bank',
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Salary',
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Rejection In',
+                icon: 'pi pi-fw pi-minus-circle',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
+              },
+              {
+                label: 'Rejection Out',
+                icon: 'pi pi-fw pi-minus-circle',
+                routerLink: "",
+                command: () => {
+                  this.sidebarVisible = false;
+                }
               }
-          }
+            ]
+          },
+          {
+            label: 'Stock Report',
+            icon: 'pi pi-fw pi-chart-bar',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          },
+          {
+            label: 'Opening',
+            icon: 'pi pi-fw pi-folder-open',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          },
+          {
+            label: 'Weekly',
+            icon: 'pi pi-fw pi-calendar-plus',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          },
+          {
+            label: 'Balance',
+            icon: 'pi pi-fw pi-briefcase',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          },
+          {
+            label: 'Profit',
+            icon: 'pi pi-fw pi-money-bill',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          },
+          {
+            label: 'Kapan Lagad',
+            icon: 'pi pi-fw pi-question',
+            routerLink: "",
+            expanded: false,
+            command: () => {
+              this.sidebarVisible = false;
+            }
+          }          
         ]
-    },
+        
+      },
     {
         label: 'Settings',
-        icon: 'pi pi-spin pi-cog',
-        expanded: true,
+        icon: 'pi pi-fw pi-cog',
+        expanded: false,
         items: [
             {
               label: 'Change Company',
@@ -97,7 +249,7 @@ export class HeaderComponent implements OnInit {
     },
     {
         label: 'Logout',
-        icon: 'pi pi-fw pi-calendar',
+        icon: 'pi pi-fw pi-power-off',
         routerLink: "/login",
         command: () => {
           this.sidebarVisible = false;
