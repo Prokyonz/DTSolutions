@@ -140,6 +140,49 @@ export class ReportComponent implements OnInit {
             {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
           ];
           break;
+      case 6:
+        this.PageTitle = "Expense Report"
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+          {"displayName":"SrNo","dataType":"numeric","fieldName":"srNo"},
+          {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},                     
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},         
+        ];
+        break;
+      case 8:
+        this.PageTitle = "Mixed Report"
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+          {"displayName":"From Party Name","dataType":"text","fieldName":"fromName","minWidth":"15"},
+          {"displayName":"To Name","dataType":"text","fieldName":"toName","minWidth":"15"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"}, 
+          {"displayName":"Debit","dataType":"numeric","fieldName":"debit","minWidth":"15"},
+          {"displayName":"Credit","dataType":"numeric","fieldName":"credit","minWidth":"15"},                  
+        ];
+        break;
+      case 13:
+        this.PageTitle = "Cash Bank Report"
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+          {"displayName":"From Party","dataType":"text","fieldName":"fromParty","minWidth":"15"},
+          {"displayName":"To Party","dataType":"text","fieldName":"toParty","minWidth":"15"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"}, 
+          {"displayName":"Debit","dataType":"numeric","fieldName":"debit","minWidth":"15"},
+          {"displayName":"Credit","dataType":"numeric","fieldName":"credit","minWidth":"15"},                  
+        ];
+        break;
+      // case 10:
+      //   this.PageTitle = "Ledger Report"
+      //   this.columnArray = [
+      //     {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+      //     {"displayName":"From Party Name","dataType":"text","fieldName":"fromName","minWidth":"15"},
+      //     {"displayName":"To Name","dataType":"text","fieldName":"toName","minWidth":"15"},
+      //     {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"}, 
+      //     {"displayName":"Debit","dataType":"numeric","fieldName":"debit","minWidth":"15"},
+      //     {"displayName":"Credit","dataType":"numeric","fieldName":"credit","minWidth":"15"},                  
+      //   ];
+        break;
       default:
         break;
     }
@@ -226,6 +269,50 @@ export class ReportComponent implements OnInit {
           break;
           case 5:
             this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+          case 6:
+            this.sharedService.customGetApi("Report/GetExpenseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+          case 8:
+            this.sharedService.customGetApi("Report/GetMixedReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+          // case 10:
+          //   this.sharedService.customGetApi("Report/GetLedgerReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+          //   .subscribe((data: any) => {
+          //         this.PurchaseReportList = data.data;
+          //         this.loading = false;
+          //         console.log(this.PurchaseReportList);
+          //       }, (ex: any) => {
+          //         this.loading = false;
+          //         this.showMessage('error',ex);
+          //     });
+          // break;
+          case 13:
+            this.sharedService.customGetApi("Report/GetCashBankReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
                   this.PurchaseReportList = data.data;
                   this.loading = false;
