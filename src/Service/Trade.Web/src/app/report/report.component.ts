@@ -152,7 +152,6 @@ export class ReportComponent implements OnInit {
     currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
     this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');   
-    alert("oninit");
     this.purchseReport(this.firstDate, this.endDate);
   }
 
@@ -170,7 +169,6 @@ export class ReportComponent implements OnInit {
   }
 
   onSeach(event: any) {
-    debugger;
     const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
     this.firstDate = StartDate;
@@ -179,80 +177,71 @@ export class ReportComponent implements OnInit {
   }
 
   purchseReport(startDate : string | null, endDate : string | null){
-    try{
-      alert("inpurchasereport : " + this.reportIndex);
-    this.loading = true;
-    switch (this.reportIndex)
-    {
-      case 1:
-        alert("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "");
+    try {
+      this.loading = true;
+      switch (this.reportIndex)
+      {
+        case 1:
           this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "")
-          .subscribe((data: any) => {
-            alert("success");
-            alert("response length : " + JSON.stringify(data));
-            alert("data length : " + data.data.length);  
-              this.PurchaseReportList = data.data;
-              this.loading = false;
-            }, (ex: any) => {
-              alert("error");
-              alert(JSON.stringify(ex));
-              this.loading = false;
-              this.showMessage('error',ex);
-          });
-        break;
-        case 2:
-          this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
-          .subscribe((data: any) => {
+            .subscribe((data: any) => {
                 this.PurchaseReportList = data.data;
                 this.loading = false;
-                console.log(this.PurchaseReportList);
               }, (ex: any) => {
                 this.loading = false;
                 this.showMessage('error',ex);
             });
           break;
-        case 3:
-          this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
-          .subscribe((data: any) => {
-                this.PurchaseReportList = data.data;
-                this.loading = false;
-                console.log(this.PurchaseReportList);
-              }, (ex: any) => {
-                this.loading = false;
-                this.showMessage('error',ex);
-            });
-        break;
-        case 4:
-          this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
-          .subscribe((data: any) => {
-                this.PurchaseReportList = data.data;
-                this.loading = false;
-                console.log(this.PurchaseReportList);
-              }, (ex: any) => {
-                this.loading = false;
-                this.showMessage('error',ex);
-            });
-        break;
-        case 5:
-          this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
-          .subscribe((data: any) => {
-                this.PurchaseReportList = data.data;
-                this.loading = false;
-                console.log(this.PurchaseReportList);
-              }, (ex: any) => {
-                this.loading = false;
-                this.showMessage('error',ex);
-            });
-        break;
-      default:
-        break;
+          case 2:
+            this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            break;
+          case 3:
+            this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+          case 4:
+            this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+          case 5:
+            this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
+        default:
+          break;
+      }
     }
-    }
-    catch(e){
-      alert("Try Catch Error");
-      alert(JSON.stringify(e));
-    }
-    
+    catch(e) {
+      alert("Try catch error : " + JSON.stringify(e));
+    }    
   }
 
   exportExcel() {
@@ -345,9 +334,13 @@ export class ReportComponent implements OnInit {
   }
 
   getCompanyData(){    
-    const data = localStorage.getItem("companyremember");
-    if (data != null){
-      this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
+    try {
+      const data = localStorage.getItem("companyremember");      
+      if (data != null) {
+        this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
+      }
+    } catch(e) {
+      alert(JSON.stringify(e));
     }
   }
 

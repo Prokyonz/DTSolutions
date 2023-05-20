@@ -175,7 +175,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   getCompanyData(){
-    debugger;
     const data = localStorage.getItem("companyremember");
     if (data != null){
       this.RememberCompany = this.sharedService.JsonConvert<RememberCompany>(data)
@@ -196,7 +195,6 @@ export class ViewctsComponent implements OnInit{
     this.summaryTotAmount = 0;
     this.summaryTotRate = 0;
     this.summatydata.forEach(e => {
-      debugger;
       let filteredSize = this.NumberDetails.filter((f) => {
         return f.sizeId == e.sizeId;
       });
@@ -442,7 +440,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    debugger;
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -588,7 +585,6 @@ export class ViewctsComponent implements OnInit{
   }
   onAddIconClick() {
     this.PageTitle = "Add Details"
-    debugger;
     this.isSaveButton = true;
     this.getparty();
     this.getdealer();
