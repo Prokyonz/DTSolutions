@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 import { RememberCompany } from '../../shared/component/companyselection/companyselection.component';
+import { DatePipe } from '@angular/common';
 
 interface CalculatorMaster{
   srNo: number,
@@ -97,13 +98,19 @@ export class ViewctsComponent implements OnInit{
   calculator: CalculatorMaster;
   isSaveButton: boolean = true;
   RememberCompany: RememberCompany = new RememberCompany();
-  constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService) {
+  firstDate: string | null = '';
+  endDate: string | null = '';
+  constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService, private datePipe: DatePipe) {
 
   }
   ngOnInit(): void {
     
     this.getCompanyData();
-    this.calculatorList();
+    let currentDate = new Date(); // Get the current date
+    currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+    this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
+    this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');   
+    this.calculatorList(this.firstDate, this.endDate);
     
   }
 
@@ -181,8 +188,8 @@ export class ViewctsComponent implements OnInit{
     }
   }
 
-  calculatorList(){
-    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=20230501&ToDate=20230520")
+  calculatorList(startDate : string | null, endDate : string | null){
+    this.sharedService.customGetApi("Calculator/GetCalculatorReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + startDate + "&ToDate=" + endDate + "")
     .subscribe((data: any) => {
           this.calculatorListData = data;
           console.log(this.calculatorListData);
@@ -260,7 +267,7 @@ export class ViewctsComponent implements OnInit{
       }
     });      
   }
-  
+
   getbranch(){
     this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
@@ -327,6 +334,15 @@ export class ViewctsComponent implements OnInit{
   viewdata(){
     
     //console.log(this.caratData);
+  }
+
+  onSeach(event: any) {
+    debugger;
+    const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
+    const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
+    this.firstDate = StartDate;
+    this.endDate = EndDate;
+    this.calculatorList(StartDate, EndDate)
   }
 
   handlenumber(event: any) {
@@ -578,8 +594,8 @@ export class ViewctsComponent implements OnInit{
                   this.showHistory = true;
                   this.showViewSection = false;
                   this.PageTitle = "History";
-                 this.clearForm();
-                  this.calculatorList();
+                  this.clearForm();
+                  this.calculatorList(this.firstDate, this.endDate);
                 }
                 else{
                   this.loading = false;

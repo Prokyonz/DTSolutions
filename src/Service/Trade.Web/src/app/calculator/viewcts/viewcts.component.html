@@ -312,6 +312,7 @@
 </div>
 
 <div *ngIf="showHistory">
+    <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
     <div class="card" style="height: calc(100vh - 56px); overflow:scroll;">
         <p-table
             #dt1
