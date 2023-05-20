@@ -15,6 +15,8 @@ export class HeaderComponent implements OnInit {
   @Output() onClickMainIcon = new EventEmitter();
   @Output() onClickLeftIcon = new EventEmitter();
 
+  userName: string = "Default User";
+
   sidebarVisible!: boolean;
   items: MenuItem[] = [
     {
@@ -258,7 +260,11 @@ export class HeaderComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    
+    let userInfo = localStorage.getItem("loginremember");
+    if(userInfo != null) {
+      this.userName = JSON.parse(userInfo).username;
+    }
+
   }  
 
   iconClick() {

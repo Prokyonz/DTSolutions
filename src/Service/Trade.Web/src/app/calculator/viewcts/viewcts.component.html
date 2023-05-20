@@ -32,13 +32,13 @@
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="party" [editable]="true"  [(ngModel)]="partyid" [filter]="true" (onChange)="handleparty($event)"></p-dropdown>                            
+                                    <p-dropdown [options]="party" optionLabel="name" [editable]="true"  [(ngModel)]="partyid" [filterBy]="'name'" [filter]="true" (onChange)="handleparty($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                    <p-dropdown [options]="dealers" optionLabel="name" [editable]="true"  [(ngModel)]="dealerid" (onChange)="handledealer($event)" aria-required="true"></p-dropdown>              
+                                    <p-dropdown [options]="dealers" optionLabel="name" [editable]="true"  [(ngModel)]="dealerid" [filterBy]="'name'" [filter]="true" (onChange)="handledealer($event)" aria-required="true"></p-dropdown>              
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
@@ -149,13 +149,13 @@
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;font-weight: bold;">Party</span><br/>                                                       
-                                    <span>{{partyid}}</span>                           
+                                    <span>{{ partyid.name ?? partyid}}</span>                        
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;font-weight: bold;">Broker</span><br/>                                                       
-                                    <span>{{dealerid}}</span>                                                         
+                                    <span>{{ dealerid.name ?? dealerid}}</span>                                                         
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   

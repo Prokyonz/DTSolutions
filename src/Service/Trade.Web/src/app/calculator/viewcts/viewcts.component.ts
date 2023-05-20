@@ -221,6 +221,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   getparty(){
+    this.party = [];
     this.sharedService.customGetApi("Service/GetParty-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         debugger;
@@ -229,26 +230,37 @@ export class ViewctsComponent implements OnInit{
             //{ name: '-Select-', id: '' },
             ...t.data
           ];
-          this.party = t.data;
+
+          t.data.forEach((item: any) => {
+            this.party.push({ name: item});
+          });
+
+          //this.party = t.data;
         }
       }
     });      
   }
 
   getdealer(){
+    this.dealers = [];
     this.sharedService.customGetApi("Service/GetDealer-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){
           t.data = [
-            { name: '-Select-', id: '' },
+            //{ name: '-Select-', id: '' },
             ...t.data
           ];
-          this.dealers = t.data;
+
+          t.data.forEach((item: any) => {
+            this.dealers.push({ name: item});
+          });
+
+          //this.dealers = t.data;
         }
       }
     });      
   }
-
+  
   getbranch(){
     this.sharedService.customGetApi("Service/GetBranch?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){

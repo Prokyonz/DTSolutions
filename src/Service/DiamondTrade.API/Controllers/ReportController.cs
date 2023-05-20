@@ -42,8 +42,8 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _purchaseMaster.GetPurchaseReport(CompanyId, FinancialYearId, null, "2022-01-01", "2023-05-05").ConfigureAwait(false);
-                result = result.OrderBy(o => o.SlipNo).Take(2).ToList();
+                var result = await _purchaseMaster.GetPurchaseReport(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
+                result = result.OrderBy(o => o.SlipNo).ToList();
 
                 return new Response<dynamic>
                 {

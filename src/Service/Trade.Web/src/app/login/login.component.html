@@ -42,7 +42,10 @@
 <div *ngIf="!showCompanySelection" style="height: calc(100vh); background: #1c80cf;">
   <div class="center">
     <div class="card justify-content-center">
-      <p-card header="Login">      
+      <div style="text-align: center;">
+        <img src="../../assets/Logo.png" />      
+      </div>
+      <p-card header="">      
           <ng-template pTemplate="content">   
                 <form [formGroup]="loginForm">
             <table style="width: 100%;" [cellPadding]="5">
@@ -66,7 +69,7 @@
               </tr>
               <tr>
                 <td>
-                  <p-button label="Login" (onClick)="onLogin();" icon="pi pi-check"></p-button>
+                  <p-button label="Login" (onClick)="onLogin();"></p-button>
                 </td>
               </tr>
             </table>  

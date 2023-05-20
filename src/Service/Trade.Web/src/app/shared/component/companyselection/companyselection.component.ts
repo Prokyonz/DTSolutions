@@ -115,17 +115,17 @@ export class CompanyselectionComponent {
 
   onSaveCompanySelection() {
     debugger;
-    if (this.rememberMe){
+    //if (this.rememberMe){
       debugger;
       this.RememberCompany.company = this.SelectedCompany;
       this.RememberCompany.branch = this.SelectedBranch;
       this.RememberCompany.financialyear  = this.SelectedFinancialYear;
       this.RememberCompany.rememberme = this.rememberMe.toString();
       localStorage.setItem("companyremember", JSON.stringify(this.RememberCompany));
-    }
-    else{
-      localStorage.removeItem("companyremember");
-    }
+    //}
+    //else{
+      //localStorage.removeItem("companyremember");
+    //}
     this.router.navigate(['/dashboard']);
   }
 

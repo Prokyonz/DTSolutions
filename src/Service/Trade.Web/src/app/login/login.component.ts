@@ -47,37 +47,32 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  
-
-
   onLogin(){
       if (this.loginForm.valid) { 
           this.loading = true;
-      this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
-      .subscribe((response: any) => {
-        debugger;
-          if (response.success == true){
-            if (response.data != null){
-              localStorage.setItem("userid", response.data.id);
-                if (this.rememberMe){      
-                  this.RememberLogin.username = this.loginForm.get("username")?.value;
-                  this.RememberLogin.password = this.loginForm.get("password")?.value;
-                  this.RememberLogin.rememberme = this.rememberMe.toString(); 
-                  localStorage.setItem("loginremember", JSON.stringify(this.RememberLogin))
+          this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
+          .subscribe((response: any) => {
+            debugger;
+              if (response.success == true) {
+                if (response.data != null){
+                    localStorage.setItem("userid", response.data.id);
+                    //if (this.rememberMe) {
+                    this.RememberLogin.username = this.loginForm.get("username")?.value;
+                    this.RememberLogin.password = this.loginForm.get("password")?.value;
+                    this.RememberLogin.rememberme = this.rememberMe.toString(); 
+                    localStorage.setItem("loginremember", JSON.stringify(this.RememberLogin))
+                    //}
+                    //else{
+                      //localStorage.removeItem("loginremember")                 
+                    //}
+                    this.loading = false;
+                    this.showCompanySelection = true;
+                    //this.router.navigate(['/dashboard']);
                 }
-                else{
-                  localStorage.removeItem("loginremember")                 
-                }
-                this.loading = false;
-                this.showCompanySelection = true;
-              //this.router.navigate(['/dashboard']);
-            }
-          }
-          else{
-            localStorage.removeItem("userid");
-          }
-      }, (ex: any) => {
-      });
+              }
+          }, (ex: any) => {
+            alert("Error while login : " + ex);
+          });
     }
   }
 }
