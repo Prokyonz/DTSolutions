@@ -31,6 +31,6 @@ namespace EFCore.SQL.Interface
         Task<bool> UpdateApprovalStatus(string salesId, string message, int status);
         List<SalesChildSPModel> GetSalesChild(string salesId);
 
-        Task<List<SalesSPModel>> GetSalesTotal(string companyId, string financialYearId, string fromDate, string toDate)
+        Task<List<SalesSPModel>> GetSalesTotal(string companyId, string financialYearId, string fromDate, string toDate);
     }
 }
