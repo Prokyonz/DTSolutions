@@ -104,6 +104,15 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<PaymentSPModel>> GetPaymentOrReceiptTotal(string companyId, string financialYearId, int paymentType, string fromDate, string toDate)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '" + fromDate + "', '" + toDate + "', 1").ToListAsync();
+                return paymentRecords;
+            }
+        }
+
         public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType)
         {
             using (_databaseContext = new DatabaseContext())

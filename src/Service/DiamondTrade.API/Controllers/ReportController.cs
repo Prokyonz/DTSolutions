@@ -58,6 +58,28 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetPurchaseTotal")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPurchaseTotal(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _purchaseMaster.GetPurchaseTotal(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
+                result = result.OrderBy(o => o.SlipNo).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         [Route("GetSaleReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetSaleReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
@@ -80,6 +102,28 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetSaleTotal")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetSaleTotal(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _salesMaster.GetSalesTotal(CompanyId, FinancialYearId, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
+                result = result.OrderBy(o => o.SlipNo).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         [Route("GetPaymentReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetPaymentReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
@@ -87,6 +131,28 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _paymentMaster.GetPaymentReport(CompanyId, FinancialYearId, 0, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
+                result = result.OrderBy(o => o.EntryDate).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetPaymentOrReceiptTotal")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPaymentOrReceiptReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetPaymentOrReceiptTotal(CompanyId, FinancialYearId, 0, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
                 result = result.OrderBy(o => o.EntryDate).ToList();
 
                 return new Response<dynamic>

@@ -21,7 +21,7 @@ namespace EFCore.SQL.Interface
         Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType);
         Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType);
         Task<List<CashBankSPReport>> GetCashBankReportAsync(string companyId, string financialYearId, string fromDate, string toDate);
-
+        Task<List<PaymentSPModel>> GetPaymentOrReceiptTotal(string companyId, string financialYearId, int paymentType, string fromDate, string toDate)
         Task<bool> UpdateApprovalStatus(string paymentGroupId, string message, int status);
 
     }
