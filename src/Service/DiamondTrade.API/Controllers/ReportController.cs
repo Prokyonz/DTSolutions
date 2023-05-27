@@ -146,11 +146,11 @@ namespace DiamondTrade.API.Controllers
 
         [Route("GetPaymentOrReceiptTotal")]
         [HttpGet]
-        public async Task<Response<dynamic>> GetPaymentOrReceiptReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        public async Task<Response<dynamic>> GetPaymentOrReceiptReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate, int TransType)
         {
             try
             {
-                var result = await _paymentMaster.GetPaymentOrReceiptTotal(CompanyId, FinancialYearId, 0, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
+                var result = await _paymentMaster.GetPaymentOrReceiptTotal(CompanyId, FinancialYearId, TransType, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
 
                 return new Response<dynamic>
                 {
