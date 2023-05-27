@@ -69,6 +69,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
         public DbSet<LedgerBalanceManager> LedgerBalanceManager { get; set; }
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
+        public DbSet<DashboardSPModel> SPDashboardModel { get; set; }
 
 
 
@@ -235,6 +236,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
             modelBuilder.Entity<CalculatorSPModel>().HasNoKey();
+            modelBuilder.Entity<DashboardSPModel>().HasNoKey();
         }
     }
 }
