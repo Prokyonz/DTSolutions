@@ -20,7 +20,7 @@ namespace DiamondTrade.API.Controllers
         private readonly IContraEntryMaster _contraEntryMaster;
         private readonly IExpenseMaster _expenseMaster;
         private readonly IPartyMaster _partyMaster;
-
+        private readonly ILoanMaster _loanMaster;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
@@ -331,5 +331,70 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("GetPayableReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPayableReport(string CompanyId, string FinancialYearId)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetPayableReceivalbeReport(CompanyId, FinancialYearId, 0);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetReceivableReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetReceivableReport(string CompanyId, string FinancialYearId)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetPayableReceivalbeReport(CompanyId, FinancialYearId, 1);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        [Route("GetLoanReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetLoanReport(string CompanyId)
+        {
+            try
+            {
+                var result = await _loanMaster.GetLoanReportAsync(CompanyId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }
