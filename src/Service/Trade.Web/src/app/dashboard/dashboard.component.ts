@@ -22,18 +22,22 @@ export class DashboardComponent implements OnInit {
   salesData: any;
   paymentData: any;
   receiptData: any;
+  loading:boolean = false;
 
   constructor(private sharedService: SharedService, private messageService: MessageService,
     private datePipe: DatePipe,  @Inject(LOCALE_ID) public locale: string){}
 
   ngOnInit(): void {
-    try {
       this.getCompanyData();
       let currentDate = new Date(); // Get the current date
-      currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), -1200);
+      currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
       this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
-      this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');   
-      
+      this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.loadDashboard();
+  }
+
+  async loadDashboard() {
+    try {
       this.sharedService.customGetApi("Report/GetPurchaseTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
       .subscribe((data: any) => {
           this.purchaseData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
@@ -43,26 +47,26 @@ export class DashboardComponent implements OnInit {
             this.showMessage('error',ex);
       });
 
-      this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
+      this.sharedService.customGetApi("Report/GetSaleTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
       .subscribe((data: any) => {
-          this.salesData = data.data.totalAmount;
+          this.salesData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
             console.log("this is the first thing");
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
       });
 
-      this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
+      this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + ",&TransType=0")
       .subscribe((data: any) => {
-          this.paymentData = data.data.totalAmount;
+          this.paymentData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
       });
 
-      this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
+      this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + ",&TransType=1")
       .subscribe((data: any) => {
-          this.receiptData = data.data.totalAmount;
+          this.receiptData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
             console.log("this is the first thing");
           }, (ex: any) => {
             console.log(ex);
@@ -79,8 +83,14 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  onSeach(event:any) {
-    console.log(event);
+  async onSeach(event: any) {
+    this.loading = true;
+    const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
+    const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
+    this.firstDate = StartDate;
+    this.endDate = EndDate;
+    await this.loadDashboard();      
+    this.loading = false;    
   }
 
   showMessage(type: string, message: string){

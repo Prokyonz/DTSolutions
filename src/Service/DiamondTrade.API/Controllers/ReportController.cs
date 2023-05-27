@@ -107,7 +107,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _salesMaster.GetSalesTotal(CompanyId, FinancialYearId, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
+                var result = await _salesMaster.GetSalesTotal(CompanyId, FinancialYearId, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
 
                 return new Response<dynamic>
                 {
