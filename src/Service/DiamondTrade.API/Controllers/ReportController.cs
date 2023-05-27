@@ -334,5 +334,48 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("GetPayableReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPayableReport(string CompanyId, string FinancialYearId)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetPayableReceivalbeReport(CompanyId, FinancialYearId, 0);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetReceivableReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetReceivableReport(string CompanyId, string FinancialYearId)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetPayableReceivalbeReport(CompanyId, FinancialYearId, 1);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }
