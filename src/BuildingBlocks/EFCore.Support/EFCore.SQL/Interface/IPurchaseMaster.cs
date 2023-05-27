@@ -29,6 +29,6 @@ namespace EFCore.SQL.Interface
         Task<List<WeeklyPurchaseReport>> GetWeeklyPurchaseReportAsync(string companyId, string financialYearId);
         List<PurchaseChildSPModel> GetPurchaseDetailsAsync(string purchaseId);
 
-        Task<List<PurchaseSPModel>> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null);
+        Task<DashboardSPModel> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null);
     }
 }

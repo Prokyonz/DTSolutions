@@ -64,8 +64,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _purchaseMaster.GetPurchaseTotal(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
-                result = result.OrderBy(o => o.SlipNo).ToList();
+                var result = await _purchaseMaster.GetPurchaseTotal(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
 
                 return new Response<dynamic>
                 {
@@ -109,7 +108,6 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _salesMaster.GetSalesTotal(CompanyId, FinancialYearId, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
-                result = result.OrderBy(o => o.SlipNo).ToList();
 
                 return new Response<dynamic>
                 {
@@ -153,7 +151,6 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _paymentMaster.GetPaymentOrReceiptTotal(CompanyId, FinancialYearId, 0, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd"));
-                result = result.OrderBy(o => o.EntryDate).ToList();
 
                 return new Response<dynamic>
                 {

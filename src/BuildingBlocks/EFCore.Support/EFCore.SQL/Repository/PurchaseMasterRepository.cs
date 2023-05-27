@@ -151,12 +151,12 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<PurchaseSPModel>> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null)
+        public async Task<DashboardSPModel> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var purchaseReport = await _databaseContext.SPPurchaseModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "','" + currentWeek + "', '" + fromDate + "', '" + toDate + "',1").ToListAsync();
-                return purchaseReport;
+                var totalAmount = await _databaseContext.SPDashboardModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "','" + currentWeek + "', '" + fromDate + "', '" + toDate + "',1").ToListAsync();
+                return totalAmount.Count > 0 ? totalAmount[0]: new DashboardSPModel() { TotalAmount = 0 } ;
             }
         }
 
