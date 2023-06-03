@@ -26,7 +26,8 @@ namespace DiamondTrade.API.Controllers
             IPaymentMaster paymentMaster,
             IContraEntryMaster contraEntryMaster,
             IExpenseMaster expenseMaster,
-            IPartyMaster partyMaster)
+            IPartyMaster partyMaster,
+            ILoanMaster loanMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -34,6 +35,7 @@ namespace DiamondTrade.API.Controllers
             _contraEntryMaster = contraEntryMaster;
             _expenseMaster = expenseMaster;
             _partyMaster = partyMaster;
+            _loanMaster = loanMaster;
         }
 
         [Route("GetPurchaseReport")]
