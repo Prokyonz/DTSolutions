@@ -69,6 +69,7 @@ export class ViewctsComponent implements OnInit{
   showAddSection:boolean = false;
   showHomeSection:boolean = true;
   showHistory: boolean = true;
+  isAddIcon = true;
   PageTitle:string = "History";
   loading: boolean = false;
   branches: any[] = [];
@@ -84,6 +85,7 @@ export class ViewctsComponent implements OnInit{
   selectednumber: any;
   selectedsize: any;
   selectedcarat : number = 0;
+  selectedrate : number = 0;
   netcarat: number = 0;
   selectedtotalcarat: number = 0;
   valueTextArea: string;
@@ -129,6 +131,7 @@ export class ViewctsComponent implements OnInit{
         this.showViewSection = false;
         this.showHomeSection = false;
         this.showHistory = true;
+        this.isAddIcon = true;
         this.PageTitle = "History";
         this.clearForm();
       }
@@ -175,6 +178,7 @@ export class ViewctsComponent implements OnInit{
     this.showViewSection = true;
     this.showHomeSection = false;
     this.showHistory = false;
+    this.isAddIcon = false;
     this.SizeDetails.forEach(element => {
       element.numberDetails = this.NumberDetails.filter(e => e.sizeId == element.sizeId);
     });
@@ -331,6 +335,20 @@ export class ViewctsComponent implements OnInit{
     }
   }
 
+  handlerate(event: any) {
+    debugger;
+    var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == event.value.id);
+    this.selectedrate = (retdata != null && retdata.length > 0) ? retdata[0].price : 0;
+    // this.selectedsize = event.value;
+    // var caratData = this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id);
+    // if (caratData != null && caratData.length > 0){
+    //   this.selectedtotalcarat = caratData[0].totalCarat;
+    // }
+    // else{
+    //   this.selectedtotalcarat = 0;
+    // }
+  }
+
   viewdata(){
     
     //console.log(this.caratData);
@@ -385,6 +403,11 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Number carat can not be less than or equal to zero');
       return;
     }
+    // if (this.selectedrate <= 0)
+    // {
+    //   this.showMessage('error','Number rate can not be less than or equal to zero');
+    //   return;
+    // }
     if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id).length > 0)
     {
       this.showMessage('error','Selected number exist in selected size.');
@@ -426,20 +449,23 @@ export class ViewctsComponent implements OnInit{
         this.summatydata[index].totCarat =  this.selectedtotalcarat;
       }
     }
-    var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id);
+   
       this.NumberDetails.push({
         sizeId : this.selectedsize.id,
         numberId : this.selectednumber.id,
         carat : this.selectedcarat,
-        rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
+        //rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
+        rate : this.selectedrate,
         numberName: this.selectednumber.name,
-        amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
+        //amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
+        amount: this.selectedcarat * this.selectedrate,
         //percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
         percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
     });
     this.showMessage('success','Items added successfully');
     this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedcarat = 0;
+    this.selectedrate = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
     //   this.selectedsizeonly.push(this.selectedsize);
     // }    
@@ -592,6 +618,7 @@ export class ViewctsComponent implements OnInit{
                   this.showMessage('success',data.message);
                   this.showAddSection = false;
                   this.showHistory = true;
+                  this.isAddIcon = true;
                   this.showViewSection = false;
                   this.PageTitle = "History";
                   this.clearForm();
@@ -626,6 +653,7 @@ export class ViewctsComponent implements OnInit{
     this.showViewSection = false;
     this.showHomeSection = false;
     this.showHistory = false;
+    this.isAddIcon = false;
   }
 
   showMessage(type: string, message: string){
@@ -639,6 +667,7 @@ export class ViewctsComponent implements OnInit{
     this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedsize = this.sizes.filter(e => e.Id == '');
     this.selectedcarat = 0;
+    this.selectedrate = 0;
     this.netcarat = 0;
     this.selectedtotalcarat = 0;
     this.summaryTotAmount = 0;
