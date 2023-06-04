@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -22,6 +23,7 @@ namespace DiamondTrading.Transaction
         private readonly ContraEntryMasterRespository _contraEntryRepository;
         int _paymentType = 0;
         DataTable dtSlipDetail;
+        string PartyId = string.Empty;
 
         public FrmPaymentEntry(string PaymentType)
         {
@@ -114,6 +116,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("AutoAdjustBillAmount");
             dt.Columns.Add("PartyType");
             dt.Columns.Add("AdjustBtn");
+            dt.Columns.Add("PartyId");
             return dt;
         }
 
@@ -424,7 +427,7 @@ namespace DiamondTrading.Transaction
                 {
                     DataView dtView = new DataView(dtSlipDetail);
                     dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
-                    if (dtView.Count > 0)
+                    //if (dtView.Count > 0)
                     {
                         DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'");
                         if (dataRow.Length == 0)
@@ -490,17 +493,18 @@ namespace DiamondTrading.Transaction
                             grvPaymentDetails.SetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount, frmPaymentSlipSelect.IsAutoAdjustBillAmount);
                             this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("No slips found for selected party.");
-                        //grvPaymentDetails.FocusedRowHandle = grvPaymentDetails.FocusedRowHandle;
-                        grvPaymentDetails.FocusedColumn = colParty;
-                        return;
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("No slips found for selected party.");
+                        //    //grvPaymentDetails.FocusedRowHandle = grvPaymentDetails.FocusedRowHandle;
+                        //    grvPaymentDetails.FocusedColumn = colParty;
+                        //    return;
+                        //}
                     }
                 }
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
             }
         }
@@ -509,10 +513,13 @@ namespace DiamondTrading.Transaction
         {
             if (e.Column == colAmount && _paymentType != -1)
             {
-                if (grvPaymentDetails.GetRowCellValue(e.RowHandle, colParty).ToString() != "")
+                if (string.IsNullOrEmpty(PartyId))
+                    return;
+
+                if (grvPaymentDetails.GetRowCellValue(e.RowHandle, colPartyId).ToString() != "")
                 {
                     DataView dtView = new DataView(dtSlipDetail);
-                    dtView.RowFilter = "PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'";
+                    dtView.RowFilter = "PartyId='" + PartyId + "'";
                     //if (dtView.Count > 0)
                     {
                         decimal Value = Convert.ToDecimal(e.Value);
@@ -535,10 +542,10 @@ namespace DiamondTrading.Transaction
                             }
 
 
-                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'");
+                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + PartyId + "'");
                             if (dataRow.Length == 0)
                             {
-                                var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty).ToString(), Common.LoginCompany, Common.LoginFinancialYear);
+                                var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(PartyId, Common.LoginCompany, Common.LoginFinancialYear);
 
                                 //for (int i = 0; i < dtView.ToTable().Rows.Count; i++)
                                 //{
@@ -554,8 +561,8 @@ namespace DiamondTrading.Transaction
                                     PartyOpeningBalance = PartyOpeningBalance - allSlipRemainingBalance;
                                 }
 
-                                dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
-                                    "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
+                                dtSlipDetail.Rows.Add(0, DateTime.Now, PartyId,
+                                    "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(e.RowHandle, colBranch),
                                     Common.LoginFinancialYear, Common.LoginFinancialYearName,
                                     PartyOpeningBalance, PartyOpeningBalance, Value);
                             }
@@ -563,38 +570,6 @@ namespace DiamondTrading.Transaction
                             {
                                 dataRow[0]["Amount"] = Value;
                             }
-                            //decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(RemainAmount)", string.Empty));
-                            //if (Value > a)
-                            //{
-                            //    MessageBox.Show("Max Amount allowed for available slip is '" + a.ToString("0.000") + "'.");
-                            //    grvPaymentDetails.FocusedRowHandle = e.RowHandle;
-                            //    grvPaymentDetails.FocusedColumn = colAmount;
-                            //    grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, 0);
-                            //    return;
-                            //}
-                            //decimal TotalValue = 0;
-                            //decimal RemainValue = Value;
-                            //decimal AvailableValue = 0;
-                            //foreach (DataRowView row in dtView)
-                            //{
-                            //    if (TotalValue != Value)
-                            //    {
-                            //        AvailableValue = Convert.ToDecimal(row["RemainAmount"]);
-                            //        decimal TempValue = AvailableValue - RemainValue;
-                            //        if (TempValue <= 0)
-                            //        {
-                            //            row["Amount"] = AvailableValue;
-                            //            TotalValue += AvailableValue;
-                            //            RemainValue = TempValue * -1;
-                            //        }
-                            //        else
-                            //        {
-                            //            row["Amount"] = RemainValue;
-                            //            TotalValue += RemainValue;
-                            //            RemainValue = 0;
-                            //        }
-                            //    }
-                            //}
                         }
                     }
                 }
@@ -603,6 +578,8 @@ namespace DiamondTrading.Transaction
             {
                 try
                 {
+                    PartyId = ((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Id;
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colPartyId, ((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Id);
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colPartyType, ((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type);
                     if (((PartyMaster)repoParty.GetDataSourceRowByKeyValue(e.Value)).Type == PartyTypeMaster.Expense)
                     {
