@@ -396,5 +396,47 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetPFReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPFReport(string CompanyId,string financialYearId)
+        {
+            try
+            {
+                var result = await _purchaseMaster.GetPFReportAsync(CompanyId, financialYearId, 1);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetWeeklyPurchaseReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetWeeklyPurchaseReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _purchaseMaster.GetWeeklyPurchaseReportAsync(CompanyId, financialYearId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
     }
 }
