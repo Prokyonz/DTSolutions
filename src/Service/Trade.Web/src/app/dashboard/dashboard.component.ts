@@ -41,7 +41,6 @@ export class DashboardComponent implements OnInit {
       this.sharedService.customGetApi("Report/GetPurchaseTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
       .subscribe((data: any) => {
           this.purchaseData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
-            console.log("this is the first thing");
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
@@ -50,7 +49,6 @@ export class DashboardComponent implements OnInit {
       this.sharedService.customGetApi("Report/GetSaleTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
       .subscribe((data: any) => {
           this.salesData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
-            console.log("this is the first thing");
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
@@ -67,7 +65,6 @@ export class DashboardComponent implements OnInit {
       this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + ",&TransType=1")
       .subscribe((data: any) => {
           this.receiptData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
-            console.log("this is the first thing");
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);

@@ -98,7 +98,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Loan',
                 icon: 'pi pi-fw pi-money-bill',
-                routerLink: "",
+                routerLink: "/report/7",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -122,7 +122,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Ledger',
                 icon: 'pi pi-fw pi-book',
-                routerLink: "",
+                routerLink: "/report/10",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -130,7 +130,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Payable',
                 icon: 'pi pi-fw pi-money-bill',
-                routerLink: "",
+                routerLink: "/report/11",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -138,7 +138,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Receivable',
                 icon: 'pi pi-fw pi-money-bill',
-                routerLink: "",
+                routerLink: "/report/12",
                 command: () => {
                   this.sidebarVisible = false;
                 }
