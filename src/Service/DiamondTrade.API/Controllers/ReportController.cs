@@ -447,7 +447,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _salesMaster.GetSa(CompanyId, financialYearId);
+                var result = await _salaryMaster.GetSalaries(CompanyId, financialYearId);
 
                 return new Response<dynamic>
                 {
