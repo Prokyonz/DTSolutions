@@ -21,12 +21,14 @@ namespace DiamondTrade.API.Controllers
         private readonly IExpenseMaster _expenseMaster;
         private readonly IPartyMaster _partyMaster;
         private readonly ILoanMaster _loanMaster;
+        private readonly ISalaryMaster _salaryMaster;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
             IContraEntryMaster contraEntryMaster,
             IExpenseMaster expenseMaster,
-            IPartyMaster partyMaster)
+            IPartyMaster partyMaster,
+            ISalaryMaster salaryMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -34,6 +36,7 @@ namespace DiamondTrade.API.Controllers
             _contraEntryMaster = contraEntryMaster;
             _expenseMaster = expenseMaster;
             _partyMaster = partyMaster;
+            _salaryMaster = salaryMaster;
         }
 
         [Route("GetPurchaseReport")]
@@ -424,6 +427,27 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _purchaseMaster.GetWeeklyPurchaseReportAsync(CompanyId, financialYearId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetSalariesReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetSalariesReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _salesMaster.GetSa(CompanyId, financialYearId);
 
                 return new Response<dynamic>
                 {
