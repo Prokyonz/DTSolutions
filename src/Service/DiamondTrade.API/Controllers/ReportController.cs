@@ -22,13 +22,15 @@ namespace DiamondTrade.API.Controllers
         private readonly IPartyMaster _partyMaster;
         private readonly ILoanMaster _loanMaster;
         private readonly ISalaryMaster _salaryMaster;
+        private readonly IAccountToAssortMaster _accountToAssortMaster;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
             IContraEntryMaster contraEntryMaster,
             IExpenseMaster expenseMaster,
             IPartyMaster partyMaster,
-            ISalaryMaster salaryMaster)
+            ISalaryMaster salaryMaster,
+            IAccountToAssortMaster accountToAssortMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -37,6 +39,7 @@ namespace DiamondTrade.API.Controllers
             _expenseMaster = expenseMaster;
             _partyMaster = partyMaster;
             _salaryMaster = salaryMaster;
+            _accountToAssortMaster = accountToAssortMaster;
         }
 
         [Route("GetPurchaseReport")]
@@ -490,6 +493,27 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, profitLossReportType);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetStockReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetStockReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
 
                 return new Response<dynamic>
                 {
