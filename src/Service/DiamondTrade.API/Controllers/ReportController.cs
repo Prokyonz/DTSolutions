@@ -485,11 +485,11 @@ namespace DiamondTrade.API.Controllers
 
         [Route("GetProfitLossReport")]
         [HttpGet]
-        public async Task<Response<dynamic>> GetProfitLossReport(string CompanyId, string financialYearId, int profitLossreport)
+        public async Task<Response<dynamic>> GetProfitLossReport(string CompanyId, string financialYearId, int profitLossReportType)
         {
             try
             {
-                var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, profitLossreport);
+                var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, profitLossReportType);
 
                 return new Response<dynamic>
                 {
