@@ -462,5 +462,46 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetBalanceSheetReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetBalanceSheetReport(string CompanyId, string financialYearId, int balanceSheetType)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetBalanceSheetReportAsync(CompanyId, financialYearId, balanceSheetType);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetProfitLossReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetProfitLossReport(string CompanyId, string financialYearId, int profitLossreport)
+        {
+            try
+            {
+                var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, profitLossreport);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
