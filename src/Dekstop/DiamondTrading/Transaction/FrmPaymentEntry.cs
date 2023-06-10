@@ -162,7 +162,9 @@ namespace DiamondTrading.Transaction
                         txtSerialNo.Text = _selectedSrNo.ToString();
                         lueCompany.EditValue = _selectedCompany;
                         lueLeadger.EditValue = _editedExpenseDetails[0].fromPartyId.ToString();
-
+                        txtRemark.Text = _editedExpenseDetails[0].Remarks;
+                        grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
+                        colBranch.Visible = true;
                         for (int i = 0; i < _editedExpenseDetails.Count; i++)
                         {
                             grvPaymentDetails.AddNewRow();
@@ -173,6 +175,7 @@ namespace DiamondTrading.Transaction
                             grvPaymentDetails.SetFocusedRowCellValue(colPartyType, PartyTypeMaster.Expense);
                             grvPaymentDetails.UpdateCurrentRow();
                         }
+                        grvPaymentDetails.CellValueChanged += grvPaymentDetails_CellValueChanged;
                     }
                 }
             }
@@ -551,6 +554,7 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                if (_paymentType == 2 && _selectedSrNo > 0) return;
                 if (_paymentType != -1)
                 {
                     DataView dtView = new DataView(dtSlipDetail);
@@ -641,6 +645,8 @@ namespace DiamondTrading.Transaction
         {
             if (e.Column == colAmount && _paymentType != -1)
             {
+                if (_paymentType == 2)
+                    return;
                 if (string.IsNullOrEmpty(PartyId))
                     return;
 
