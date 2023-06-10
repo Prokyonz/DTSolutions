@@ -259,22 +259,42 @@ namespace DiamondTrading
                     stockReportModelReports = await LoadDataStock();
                     numberReportModelReports = await LoadDataNumber();
 
-                    decimal inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
-                    decimal inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
-                    decimal inwardRate = stockReportModelReports.Average(a => a.InwardRate);
+                    decimal inwardAmount = 0;
+                    decimal inwardWeight = 0;
+                    decimal inwardRate = 0;
 
-                    decimal outwardAmount = stockReportModelReports.Sum(s => s.OutwardAmount);
-                    decimal outwardWeight = stockReportModelReports.Sum(s => s.OutwardNetWeight);
-                    decimal outwardRate = stockReportModelReports.Sum(s => s.OutwardRate);
+                    decimal outwardAmount = 0;
+                    decimal outwardWeight = 0;
+                    decimal outwardRate = 0;
 
+                    if (stockReportModelReports.Count > 0)
+                    {
+                        inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
+                        inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
+                        inwardRate = stockReportModelReports.Average(a => a.InwardRate);
 
-                    decimal inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
-                    decimal inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
-                    decimal inwardRateN = numberReportModelReports.Average(a => a.InwardRate);
+                        outwardAmount = stockReportModelReports.Sum(s => s.OutwardAmount);
+                        outwardWeight = stockReportModelReports.Sum(s => s.OutwardNetWeight);
+                        outwardRate = stockReportModelReports.Sum(s => s.OutwardRate);
+                    }
 
-                    decimal outwardAmountN = numberReportModelReports.Sum(s => s.OutwardAmount);
-                    decimal outwardWeightN = numberReportModelReports.Sum(s => s.OutwardNetWeight);
-                    decimal outwardRateN = numberReportModelReports.Sum(s => s.OutwardRate);
+                    decimal inwardAmountN = 0;
+                    decimal inwardWeightN = 0;
+                    decimal inwardRateN = 0;
+
+                    decimal outwardAmountN = 0;
+                    decimal outwardWeightN = 0;
+                    decimal outwardRateN = 0;
+                    if (numberReportModelReports.Count > 0)
+                    {
+                        inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
+                        inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
+                        inwardRateN = numberReportModelReports.Average(a => a.InwardRate);
+
+                        outwardAmountN = numberReportModelReports.Sum(s => s.OutwardAmount);
+                        outwardWeightN = numberReportModelReports.Sum(s => s.OutwardNetWeight);
+                        outwardRateN = numberReportModelReports.Sum(s => s.OutwardRate);
+                    }
 
                     //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                     //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);

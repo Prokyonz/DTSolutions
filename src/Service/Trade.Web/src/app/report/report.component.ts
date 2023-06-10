@@ -257,6 +257,44 @@ export class ReportComponent implements OnInit {
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},
         ];
         break;
+      case 17:
+        this.PageTitle = "Stock Report"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Id","dataType":"numeric","fieldName":"id"},
+          {"displayName":"Type","dataType":"text","fieldName":"type","minWidth":"20"},
+          {"displayName":"Total Weight","dataType":"numeric","fieldName":"totalWeight","minWidth":"20"},
+          {"displayName":"Rate","dataType":"numeric","fieldName":"rate"},
+          {"displayName":"Total Amount","dataType":"numeric","fieldName":"totalAmount","minWidth":"20"}
+        ];
+        break;
+      case 19:
+        this.PageTitle = "Weekly Report"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Week No","dataType":"text","fieldName":"weekNo"},
+          {"displayName":"Period","dataType":"text","fieldName":"period","minWidth":"20"},
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount","minWidth":"20"}
+        ];
+        break;
+      case 20:
+        this.PageTitle = "Balance Sheet"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Col Type","dataType":"text","fieldName":"colType"},
+          {"displayName":"Account Name","dataType":"text","fieldName":"type","minWidth":"20"},
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount","minWidth":"20"}
+        ];
+        break;
+      case 21:
+        this.PageTitle = "Profit Loss Report"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Col Type","dataType":"text","fieldName":"colType"},
+          {"displayName":"Account Name","dataType":"text","fieldName":"type","minWidth":"20"},
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount","minWidth":"20"}
+        ];
+        break;
       default:
         break;
     }
@@ -451,6 +489,50 @@ export class ReportComponent implements OnInit {
                 this.showMessage('error',ex);
             });
           break;
+          case 17:
+            this.sharedService.customGetApi("Report/GetStockReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            break;
+          case 19:
+            this.sharedService.customGetApi("Report/GetWeeklyPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            break;
+            case 20:
+              this.sharedService.customGetApi("Report/GetBalanceSheetReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+              .subscribe((data: any) => {
+                    this.PurchaseReportList = data.data;
+                    this.loading = false;
+                    console.log(this.PurchaseReportList);
+                  }, (ex: any) => {
+                    this.loading = false;
+                    this.showMessage('error',ex);
+                });
+              break;
+            case 21:
+              this.sharedService.customGetApi("Report/GetProfitLossReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+              .subscribe((data: any) => {
+                    this.PurchaseReportList = data.data;
+                    this.loading = false;
+                    console.log(this.PurchaseReportList);
+                  }, (ex: any) => {
+                    this.loading = false;
+                    this.showMessage('error',ex);
+                });
+              break;
         default:
           break;
       }

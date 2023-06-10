@@ -3,7 +3,6 @@ using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static DiamondTrade.API.Models.Enum.Enum;
@@ -63,6 +62,99 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        //[Route("ExportPDFPurchaseReport")]
+        //[HttpGet]
+        //public async Task<IActionResult> ExportPDFPurchaseReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
+        //{
+        //    try
+        //    {
+        //        var result = await _purchaseMaster.GetPurchaseReport(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.Date.ToString("yyyy-MM-dd")).ConfigureAwait(false);
+        //        result = result.OrderBy(o => o.SlipNo).ToList();
+
+        //        PropertyInfo[] properties = typeof(PurchaseSPModel).GetProperties();
+
+        //        ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+        //        // Extract column names
+        //        List<string> columnNames = new List<string>();
+        //        foreach (PropertyInfo property in properties)
+        //        {
+        //            columnNames.Add(property.Name);
+        //        }
+
+        //        using (ExcelPackage excelPackage = new ExcelPackage())
+        //        {
+        //            // Create a new Excel worksheet
+        //            ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Sheet1");
+
+        //            // Set column headers
+        //            for (int col = 1; col <= columnNames.Count; col++)
+        //            {
+        //                worksheet.Cells[1, col].Value = columnNames[col - 1];
+        //            }
+
+        //            // Populate data rows
+        //            int row = 2;
+        //            foreach (PurchaseSPModel item in result)
+        //            {
+        //                for (int col = 1; col <= columnNames.Count; col++)
+        //                {
+        //                    PropertyInfo property = properties[col - 1];
+        //                    object value = property.GetValue(item);
+        //                    worksheet.Cells[row, col].Value = value;
+        //                }
+        //                row++;
+        //            }
+
+        //            // Auto-fit columns
+        //            worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+        //            // Create a new PDF document
+        //            iTextSharp.text.Document document = new iTextSharp.text.Document();
+
+        //            // Create a new PDF writer
+        //            PdfWriter writer = PdfWriter.GetInstance(document, new FileStream("path_to_temp_pdf_file.pdf", FileMode.Create));
+
+        //            // Open the PDF document
+        //            document.Open();
+
+        //            // Create a new PDF table based on the Excel data
+        //            PdfPTable table = new PdfPTable(worksheet.Dimension.Columns);
+        //            for (int i = 1; i <= worksheet.Dimension.Rows; i++)
+        //            {
+        //                for (int j = 1; j <= worksheet.Dimension.Columns; j++)
+        //                {
+        //                    PdfPCell cell = new PdfPCell(new Phrase(worksheet.Cells[i, j].Value?.ToString() ?? ""));
+        //                    table.AddCell(cell);
+        //                }
+        //            }
+
+        //            // Add the PDF table to the PDF document
+        //            document.Add(table);
+
+        //            // Close the PDF document
+        //            document.Close();
+
+        //            // Return the file path or any relevant response
+        //            return Ok("path_to_temp_pdf_file.pdf");
+        //        }
+
+        //        // Return the file path or any relevant response
+        //        //return Ok("path_to_temp_pdf_file.pdf");
+        //        //return new Response<dynamic>
+        //        //{
+        //        //    StatusCode = 200,
+        //        //    Success = true,
+        //        //    Data = result
+        //        //};
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
 
         [Route("GetPurchaseTotal")]
         [HttpGet]
@@ -471,7 +563,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _paymentMaster.GetBalanceSheetReportAsync(CompanyId, financialYearId, balanceSheetType);
+                var result = await _paymentMaster.GetBalanceSheetReportAsync(CompanyId, financialYearId, 2);
 
                 return new Response<dynamic>
                 {
@@ -492,7 +584,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, profitLossReportType);
+                var result = await _paymentMaster.GetProfitLossReportAsync(CompanyId, financialYearId, 2);
 
                 return new Response<dynamic>
                 {

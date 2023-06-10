@@ -198,7 +198,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Weekly',
             icon: 'pi pi-fw pi-calendar-plus',
-            routerLink: "",
+            routerLink: "/report/19",
             expanded: false,
             command: () => {
               this.sidebarVisible = false;
@@ -207,7 +207,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Balance',
             icon: 'pi pi-fw pi-briefcase',
-            routerLink: "",
+            routerLink: "/report/20",
             expanded: false,
             command: () => {
               this.sidebarVisible = false;
@@ -216,7 +216,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Profit',
             icon: 'pi pi-fw pi-money-bill',
-            routerLink: "",
+            routerLink: "/report/21",
             expanded: false,
             command: () => {
               this.sidebarVisible = false;
