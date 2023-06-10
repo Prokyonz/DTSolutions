@@ -114,7 +114,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'PF',
                 icon: 'pi pi-fw pi-users',
-                routerLink: "",
+                routerLink: "/report/9",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -154,7 +154,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Salary',
                 icon: 'pi pi-fw pi-money-bill',
-                routerLink: "",
+                routerLink: "/report/14",
                 command: () => {
                   this.sidebarVisible = false;
                 }

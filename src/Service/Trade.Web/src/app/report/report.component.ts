@@ -179,6 +179,22 @@ export class ReportComponent implements OnInit {
           {"displayName":"Credit","dataType":"numeric","fieldName":"credit","minWidth":"15"},                  
         ];
         break;
+      case 9:
+        this.PageTitle = "PF Report"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Type","dataType":"text","fieldName":"type"},
+          {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
+          {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"15"},
+          {"displayName":"Size","dataType":"numeric","fieldName":"size","minWidth":"15"}, 
+          {"displayName":"Number","dataType":"numeric","fieldName":"number","minWidth":"15"},
+          {"displayName":"Weight","dataType":"numeric","fieldName":"weight","minWidth":"15"},    
+          {"displayName":"Net Weight","dataType":"numeric","fieldName":"netWeight","minWidth":"15"},  
+          {"displayName":"Rate","dataType":"numeric","fieldName":"rate","minWidth":"15"},  
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount","minWidth":"15"},    
+          {"displayName":"Created Date","dataType":"Date","fieldName":"createdDate", "ishidefilter":true}             
+        ];
+        break;
       case 10:
         this.PageTitle = "Ledger Report"
         this.isFilerRequired = false;
@@ -222,7 +238,25 @@ export class ReportComponent implements OnInit {
           {"displayName":"Credit","dataType":"numeric","fieldName":"credit","minWidth":"15"},                  
         ];
         break;
-      
+      case 14:
+        this.PageTitle = "Salary Report"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Sr No","dataType":"numeric","fieldName":"srNo"},
+          {"displayName":"Sr","dataType":"numeric","fieldName":"sr"},
+          {"displayName":"To Party Name","dataType":"text","fieldName":"toPartyName","minWidth":"20"},
+          {"displayName":"Date","dataType":"Date","fieldName":"salaryMonthDateTime", "ishidefilter":true},
+          {"displayName":"Worked Days/Hrs","dataType":"numeric","fieldName":"workedDays","minWidth":"20"},
+          {"displayName":"Month","dataType":"numeric","fieldName":"workedDays"},
+          {"displayName":"OT Hrs(-)","dataType":"numeric","fieldName":"otMinusHrs"},
+          {"displayName":"OT Rate(-)","dataType":"numeric","fieldName":"otMinusRate"},
+          {"displayName":"OT Hrs(+)","dataType":"numeric","fieldName":"otPlusHrs"},
+          {"displayName":"OT Rate(+)","dataType":"numeric","fieldName":"otPlusRate"},
+          {"displayName":"Rounf(+/-)","dataType":"numeric","fieldName":"roundOfAmount"},
+          {"displayName":"Total Salary","dataType":"numeric","fieldName":"salaryAmount"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},
+        ];
+        break;
       default:
         break;
     }
@@ -351,6 +385,17 @@ export class ReportComponent implements OnInit {
                   this.showMessage('error',ex);
               });
           break;
+          case 9:
+            this.sharedService.customGetApi("Report/GetPFReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+          break;
           case 10:
             this.sharedService.customGetApi("Report/GetLedgerReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
@@ -394,6 +439,17 @@ export class ReportComponent implements OnInit {
                   this.loading = false;
                   this.showMessage('error',ex);
               });
+          break;
+          case 14:
+          this.sharedService.customGetApi("Report/GetSalariesReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
           break;
         default:
           break;
