@@ -893,6 +893,17 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabExpense)
+            {
+                string SelectedSrNo = grvExpenseMaster.GetFocusedRowCellValue("SrNo").ToString();
+
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Expense", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo));
+
+                if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)

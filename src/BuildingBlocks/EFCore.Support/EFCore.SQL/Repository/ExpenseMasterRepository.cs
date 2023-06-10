@@ -36,18 +36,32 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseId).FirstOrDefaultAsync();
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.SrNo == Convert.ToInt32(expenseId)).ToListAsync();
                 if (getExpense != null)
                 {
                     if (isPermanantDetele)
-                        _databaseContext.ExpenseDetails.Remove(getExpense);
+                        _databaseContext.ExpenseDetails.RemoveRange(getExpense);
                     else
-                        getExpense.IsDelete = true;
+                    {
+                        foreach (ExpenseDetails expenseDetails in getExpense)
+                        {
+                            expenseDetails.IsDelete = true;
+                        }
+                        _databaseContext.UpdateRange(getExpense);
+                    }
 
                     await _databaseContext.SaveChangesAsync();
                     return true;
                 }
                 return false;
+            }
+        }
+
+        public async Task<List<ExpenseDetails>> GetExpenseAsync(string companyId, string financialYearId,int srNo)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.ExpenseDetails.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.FinancialYearId == financialYearId && w.SrNo == srNo).ToListAsync();
             }
         }
 
