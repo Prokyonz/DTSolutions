@@ -506,6 +506,7 @@ export class ViewctsComponent implements OnInit{
     
     this.netcarat = items.netCarat;
     this.note = items.note;
+    debugger;
     this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
         e.financialYearId == items.financialYearId).forEach(e => {
       e.sizeDetails?.forEach(item => {
@@ -554,6 +555,7 @@ export class ViewctsComponent implements OnInit{
   
 
   saveData(){
+    debugger;
     if (this.date == null)
     {
       this.showMessage('error','Select any date');
@@ -603,8 +605,8 @@ export class ViewctsComponent implements OnInit{
               CompanyId: this.RememberCompany.company.id,
               FinancialYearId: this.RememberCompany.financialyear.id,
               BranchId: this.branchid.id,
-              PartyId: this.partyid, //this.partyid.id, removed the property becase we are storing the actual name entered by user.
-              BrokerId: this.dealerid, //this.dealerid.id, removed the property becase we are storing the actual name entered by user.
+              PartyId: this.partyid.name != null ? this.partyid.name : this.partyid, //this.partyid.id, removed the property becase we are storing the actual name entered by user.
+              BrokerId: this.dealerid.name != null ? this.dealerid.name : this.dealerid, //this.dealerid.id, removed the property becase we are storing the actual name entered by user.
               NetCarat: this.netcarat,
               Note: this.note,
               IsDelete: false,

@@ -151,7 +151,8 @@ namespace DiamondTrade.API.Controllers
                     x.NetCarat,
                     x.Note,
                     x.UserId,
-                    x.UserName
+                    x.UserName,
+                    x.SizeId // Group by SizeId as well
                 }).Select(x => new CalculatorResponseModel()
                 {
                     Date = x.Key.Date.Date,
@@ -159,7 +160,7 @@ namespace DiamondTrade.API.Controllers
                     CompanyId = x.Key.CompanyId,
                     FinancialYearId = x.Key.FinancialYearId,
                     BranchId = x.Key.BranchId,
-                    BranchName  = x.Key.BranchName,
+                    BranchName = x.Key.BranchName,
                     PartyId = x.Key.PartyId,
                     PartyName = x.Key.PartyName,
                     BrokerId = x.Key.BrokerId,
@@ -168,25 +169,25 @@ namespace DiamondTrade.API.Controllers
                     Note = x.Key.Note,
                     UserId = x.Key.UserId,
                     UserName = x.Key.UserName,
-                    SizeDetails = x.Select(s => new Models.Response.SizeDetails()
-                    {
-                        SizeId = s.SizeId,
-                        SizeName = s.SizeName,
-                        TotalCarat = s.TotalCarat,
-                        NumberDetails = new List<Models.Response.NumberDetails>()
+                    SizeDetails = x.GroupBy(s => s.SizeId)
+                        .Select(s => new Models.Response.SizeDetails()
                         {
-                            new Models.Response.NumberDetails(){
-                            SizeId = s.SizeId,
-                            NumberId = s.NumberId,
-                            Carat = s.Carat,
-                            Rate = s.Rate,
-                            NumberName = s.NumberName,
-                            Percentage = s.Percentage,
-                            Amount = s.Amount
-                            },
-                        }
-                    }).ToList()
+                            SizeId = s.Key,
+                            SizeName = s.First().SizeName, 
+                            TotalCarat = s.First().TotalCarat,
+                            NumberDetails = s.Select(n => new Models.Response.NumberDetails()
+                            {
+                                SizeId = n.SizeId,
+                                NumberId = n.NumberId,
+                                Carat = n.Carat,
+                                Rate = n.Rate,
+                                NumberName = n.NumberName,
+                                Percentage = n.Percentage,
+                                Amount = n.Amount
+                            }).ToList()
+                        }).ToList()
                 });
+
 
                 calculatorResponseModel = calculatorResponseModel.OrderByDescending(x => x.SrNo);
                 return Ok(calculatorResponseModel);
