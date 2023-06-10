@@ -235,7 +235,6 @@ export class ViewctsComponent implements OnInit{
     this.party = [];
     this.sharedService.customGetApi("Service/GetParty-calculator?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
-        debugger;
         if (t.data != null && t.data.length > 0){
           t.data = [
             //{ name: '-Select-', id: '' },
@@ -336,7 +335,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   handlerate(event: any) {
-    debugger;
     var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == event.value.id);
     this.selectedrate = (retdata != null && retdata.length > 0) ? retdata[0].price : 0;
     // this.selectedsize = event.value;
@@ -355,7 +353,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   onSeach(event: any) {
-    debugger;
     const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
     this.firstDate = StartDate;
@@ -495,7 +492,6 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
-    debugger;
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -506,7 +502,6 @@ export class ViewctsComponent implements OnInit{
     
     this.netcarat = items.netCarat;
     this.note = items.note;
-    debugger;
     this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
         e.financialYearId == items.financialYearId).forEach(e => {
       e.sizeDetails?.forEach(item => {
@@ -555,7 +550,6 @@ export class ViewctsComponent implements OnInit{
   
 
   saveData(){
-    debugger;
     if (this.date == null)
     {
       this.showMessage('error','Select any date');
