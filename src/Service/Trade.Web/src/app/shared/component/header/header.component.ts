@@ -162,7 +162,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Rejection In',
                 icon: 'pi pi-fw pi-minus-circle',
-                routerLink: "",
+                routerLink: "/report/15",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -170,7 +170,7 @@ export class HeaderComponent implements OnInit {
               {
                 label: 'Rejection Out',
                 icon: 'pi pi-fw pi-minus-circle',
-                routerLink: "",
+                routerLink: "/report/16",
                 command: () => {
                   this.sidebarVisible = false;
                 }
@@ -180,7 +180,7 @@ export class HeaderComponent implements OnInit {
           {
             label: 'Stock Report',
             icon: 'pi pi-fw pi-chart-bar',
-            routerLink: "",
+            routerLink: "/report/17",
             expanded: false,
             command: () => {
               this.sidebarVisible = false;

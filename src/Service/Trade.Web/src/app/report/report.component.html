@@ -25,6 +25,7 @@
         [paginator]="true"
         [scrollable]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
+        [globalFilterFields]="filterColumn"
         >
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
@@ -40,6 +41,10 @@
             <div class="flex">
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
+                    <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
+                </span>
             </div>
         </ng-template>
 

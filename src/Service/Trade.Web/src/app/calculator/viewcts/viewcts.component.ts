@@ -588,7 +588,7 @@ export class ViewctsComponent implements OnInit{
         totCarat = totCarat + (+e.totalCarat);
       }); 
       this.loading = true;    
-      if (this.netcarat == totCarat){
+      //if (this.netcarat == totCarat){
         const userId = localStorage.getItem('userid');
         this.SizeDetails.forEach(element => {
           element.numberDetails = this.NumberDetails.filter(e => e.sizeId == element.sizeId);
@@ -629,11 +629,11 @@ export class ViewctsComponent implements OnInit{
                 this.showMessage('error',ex);
             });
         }
-      }
-      else{
-        this.loading = false;
-        this.showMessage('error','Net carat and Total carat always same.');
-      }
+      // }
+      // else{
+      //   this.loading = false;
+      //   this.showMessage('error','Net carat and Total carat always same.');
+      // }
     }
   }
   onAddIconClick() {

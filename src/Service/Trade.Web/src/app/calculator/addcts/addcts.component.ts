@@ -84,7 +84,6 @@ export class AddctsComponent implements OnInit {
   }
   
   addCts(){
-    debugger;
     this.caratData.push({
       size: this.selectedsize,
       number: this.selectednumber,
@@ -96,7 +95,6 @@ export class AddctsComponent implements OnInit {
   }
 
   deletects(item: any){
-    debugger
     var index = this.caratData.indexOf(item);
     if (index >= 0){
       this.caratData.splice(index, 1);
@@ -114,7 +112,6 @@ export class AddctsComponent implements OnInit {
   }
 
   viewdata(){
-    debugger;
     console.log(this.caratData);
   }
 

@@ -75,6 +75,8 @@ namespace DiamondTrade.API
             services.AddScoped<ISalaryMaster, SalaryMasterRepository>();
             services.AddScoped<IAccountToAssortMaster, AccountToAssortMasterRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+            services.AddScoped<IRejectionInOutMaster,RejectionInOutMasterRepository>();
+            services.AddScoped<IKapanMaster, KapanMasterRepository>();
 
             services.AddAuthorization(option =>
             {

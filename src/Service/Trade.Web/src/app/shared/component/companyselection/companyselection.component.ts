@@ -55,7 +55,6 @@ export class CompanyselectionComponent {
       this.getCompany();
       this.getBranch();
       this.getFinancialYear();
-      debugger;
       var data = localStorage.getItem('companyremember');
       if (data != null){
         var companyData = JSON.parse(data);
@@ -114,9 +113,7 @@ export class CompanyselectionComponent {
   }
 
   onSaveCompanySelection() {
-    debugger;
     //if (this.rememberMe){
-      debugger;
       this.RememberCompany.company = this.SelectedCompany;
       this.RememberCompany.branch = this.SelectedBranch;
       this.RememberCompany.financialyear  = this.SelectedFinancialYear;

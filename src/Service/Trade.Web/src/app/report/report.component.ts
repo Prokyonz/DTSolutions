@@ -41,6 +41,7 @@ export class ReportComponent implements OnInit {
   firstDate: string | null = '';
   endDate: string | null = '';
   isFilerRequired: boolean = true;
+  filterColumn : string[]= [];
 
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
       private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
@@ -257,12 +258,51 @@ export class ReportComponent implements OnInit {
           {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},
         ];
         break;
+      case 15:
+        this.PageTitle = "Rejection In/Receive"
+        this.isFilerRequired = false;
+        this.columnArray = [
+          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+          {"displayName":"SrNo","dataType":"numeric","fieldName":"srNo"},
+          {"displayName":"Slip No","dataType":"text","fieldName":"slipNo"},
+          {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"20"},
+          {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"20"},
+          {"displayName":"Size Name","dataType":"text","fieldName":"sizeName"},
+          {"displayName":"Charni Size Name","dataType":"text","fieldName":"charniSizeName","minWidth":"20"},
+          {"displayName":"Gala Size Name","dataType":"text","fieldName":"galaSizeName","minWidth":"20"},
+          {"displayName":"Number Size Name","dataType":"text","fieldName":"numberSizeName","minWidth":"20"},
+          {"displayName":"Purity Name","dataType":"text","fieldName":"purityName","minWidth":"20"},
+          {"displayName":"Rate  ","dataType":"numeric","fieldName":"rate"},
+          {"displayName":"Carat","dataType":"numeric","fieldName":"totalCarat"},
+          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},
+        ];
+        break;
+      case 16:
+      this.PageTitle = "Rejection Out/Send"
+      this.isFilerRequired = false;
+      this.columnArray = [
+        {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+        {"displayName":"SrNo","dataType":"numeric","fieldName":"srNo"},
+        {"displayName":"Slip No","dataType":"text","fieldName":"slipNo"},
+        {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"20"},
+        {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"20"},
+        {"displayName":"Size Name","dataType":"text","fieldName":"sizeName"},
+        {"displayName":"Charni Size Name","dataType":"text","fieldName":"charniSizeName","minWidth":"20"},
+        {"displayName":"Gala Size Name","dataType":"text","fieldName":"galaSizeName","minWidth":"20"},
+        {"displayName":"Number Size Name","dataType":"text","fieldName":"numberSizeName","minWidth":"20"},
+        {"displayName":"Purity Name","dataType":"text","fieldName":"purityName","minWidth":"20"},
+        {"displayName":"Rate  ","dataType":"numeric","fieldName":"rate"},
+        {"displayName":"Carat","dataType":"numeric","fieldName":"totalCarat"},
+        {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+        {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"20"},
+      ];
+      break;
       case 17:
         this.PageTitle = "Stock Report"
         this.isFilerRequired = false;
         this.columnArray = [
-          {"displayName":"Id","dataType":"numeric","fieldName":"id"},
-          {"displayName":"Type","dataType":"text","fieldName":"type","minWidth":"20"},
+          {"displayName":"Type","dataType":"text","fieldName":"name","minWidth":"10"},
           {"displayName":"Total Weight","dataType":"numeric","fieldName":"totalWeight","minWidth":"20"},
           {"displayName":"Rate","dataType":"numeric","fieldName":"rate"},
           {"displayName":"Total Amount","dataType":"numeric","fieldName":"totalAmount","minWidth":"20"}
@@ -294,10 +334,11 @@ export class ReportComponent implements OnInit {
           {"displayName":"Account Name","dataType":"text","fieldName":"type","minWidth":"20"},
           {"displayName":"Amount","dataType":"numeric","fieldName":"amount","minWidth":"20"}
         ];
-        break;
+        break;      
       default:
         break;
     }
+    this.filterColumn = this.columnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
   }
 
   ngOnInit() {
@@ -489,6 +530,28 @@ export class ReportComponent implements OnInit {
                 this.showMessage('error',ex);
             });
           break;
+          case 15:
+          this.sharedService.customGetApi("Report/GetRejectionInReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
+          break;
+          case 16:
+          this.sharedService.customGetApi("Report/GetRejectionOutReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+          .subscribe((data: any) => {
+                this.PurchaseReportList = data.data;
+                this.loading = false;
+                console.log(this.PurchaseReportList);
+              }, (ex: any) => {
+                this.loading = false;
+                this.showMessage('error',ex);
+            });
+          break;
           case 17:
             this.sharedService.customGetApi("Report/GetStockReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
@@ -511,28 +574,28 @@ export class ReportComponent implements OnInit {
                   this.showMessage('error',ex);
               });
             break;
-            case 20:
-              this.sharedService.customGetApi("Report/GetBalanceSheetReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
-              .subscribe((data: any) => {
-                    this.PurchaseReportList = data.data;
-                    this.loading = false;
-                    console.log(this.PurchaseReportList);
-                  }, (ex: any) => {
-                    this.loading = false;
-                    this.showMessage('error',ex);
-                });
-              break;
-            case 21:
-              this.sharedService.customGetApi("Report/GetProfitLossReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
-              .subscribe((data: any) => {
-                    this.PurchaseReportList = data.data;
-                    this.loading = false;
-                    console.log(this.PurchaseReportList);
-                  }, (ex: any) => {
-                    this.loading = false;
-                    this.showMessage('error',ex);
-                });
-              break;
+          case 20:
+            this.sharedService.customGetApi("Report/GetBalanceSheetReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            break;
+          case 21:
+            this.sharedService.customGetApi("Report/GetProfitLossReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+            .subscribe((data: any) => {
+                  this.PurchaseReportList = data.data;
+                  this.loading = false;
+                  console.log(this.PurchaseReportList);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            break;
         default:
           break;
       }
@@ -615,7 +678,6 @@ export class ReportComponent implements OnInit {
             //   return formattedItem;
             // });
            
-            debugger;
 
             (doc as any).autoTable({
               head: [this.columnArray.map((col) => (col.displayName))],
@@ -659,7 +721,6 @@ export class ReportComponent implements OnInit {
     this.loading = true;
     this.sharedService.customPostApi("Report/ApproveRejectStatus",data)
     .subscribe((data: any) => {
-      debugger;
           if (data.success == true){
             if (this.ApproveRejectStatus == 1){                  
               this.showMessage('success','Approve successfully.');

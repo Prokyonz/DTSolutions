@@ -2,7 +2,9 @@
 using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Entities.Model;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using static DiamondTrade.API.Models.Enum.Enum;
@@ -22,6 +24,8 @@ namespace DiamondTrade.API.Controllers
         private readonly ILoanMaster _loanMaster;
         private readonly ISalaryMaster _salaryMaster;
         private readonly IAccountToAssortMaster _accountToAssortMaster;
+        private readonly IRejectionInOutMaster _rejectionInOutMaster;
+        private readonly IKapanMaster _kapanMaster;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
@@ -29,7 +33,9 @@ namespace DiamondTrade.API.Controllers
             IExpenseMaster expenseMaster,
             IPartyMaster partyMaster,
             ISalaryMaster salaryMaster,
-            IAccountToAssortMaster accountToAssortMaster)
+            IAccountToAssortMaster accountToAssortMaster,
+            IRejectionInOutMaster rejectionInOutMaster,
+            IKapanMaster kapanMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -39,6 +45,8 @@ namespace DiamondTrade.API.Controllers
             _partyMaster = partyMaster;
             _salaryMaster = salaryMaster;
             _accountToAssortMaster = accountToAssortMaster;
+            _rejectionInOutMaster = rejectionInOutMaster;
+            _kapanMaster = kapanMaster;
         }
 
         [Route("GetPurchaseReport")]
@@ -496,7 +504,7 @@ namespace DiamondTrade.API.Controllers
 
         [Route("GetPFReport")]
         [HttpGet]
-        public async Task<Response<dynamic>> GetPFReport(string CompanyId,string financialYearId)
+        public async Task<Response<dynamic>> GetPFReport(string CompanyId, string financialYearId)
         {
             try
             {
@@ -599,13 +607,175 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetStockKapanReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetStockKapanReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetStockNumberReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetStockNumberReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _accountToAssortMaster.GetNumberReportAsync(CompanyId, financialYearId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         [Route("GetStockReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetStockReport(string CompanyId, string financialYearId)
         {
             try
             {
-                var result = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
+                var stockReport = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
+                var numberReport = await _accountToAssortMaster.GetNumberReportAsync(CompanyId, financialYearId);
+
+                decimal inwardAmount = 0;
+                decimal inwardWeight = 0;
+                decimal inwardRate = 0;
+
+                decimal outwardAmount = 0;
+                decimal outwardWeight = 0;
+                decimal outwardRate = 0;
+
+                if (stockReport.Any())
+                {
+                    inwardAmount = stockReport.Sum(s => s.InwardAmount);
+                    inwardWeight = stockReport.Sum(s => s.InwardNetWeight);
+                    inwardRate = stockReport.Average(a => a.InwardRate);
+
+                    outwardAmount = stockReport.Sum(s => s.OutwardAmount);
+                    outwardWeight = stockReport.Sum(s => s.OutwardNetWeight);
+                    outwardRate = stockReport.Sum(s => s.OutwardRate);
+                }
+
+                decimal inwardAmountN = 0;
+                decimal inwardWeightN = 0;
+                decimal inwardRateN = 0;
+
+                decimal outwardAmountN = 0;
+                decimal outwardWeightN = 0;
+                decimal outwardRateN = 0;
+                if (numberReport.Any())
+                {
+                    inwardAmountN = numberReport.Sum(s => s.InwardAmount);
+                    inwardWeightN = numberReport.Sum(s => s.InwardNetWeight);
+                    inwardRateN = numberReport.Average(a => a.InwardRate);
+
+                    outwardAmountN = numberReport.Sum(s => s.OutwardAmount);
+                    outwardWeightN = numberReport.Sum(s => s.OutwardNetWeight);
+                    outwardRateN = numberReport.Sum(s => s.OutwardRate);
+                }
+
+                List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
+                    {
+                        new StockReportMasterGrid()
+                        {
+                            Id = 1,
+                            Name = "Kapan",
+                            Rate = Math.Round((inwardRate - outwardRate),2),
+                            TotalWeight = inwardWeight - outwardWeight,
+                            TotalAmount = inwardAmount - outwardAmount
+                        },
+                        new StockReportMasterGrid()
+                        {
+                            Id = 2,
+                            Name = "Number",
+                            Rate = Math.Round(inwardRateN - outwardRateN,2),
+                            TotalWeight = inwardWeightN - outwardWeightN,
+                            TotalAmount = inwardAmountN - outwardAmountN
+                        },
+                    };
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = stockReportMasterGrids
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetRejectionInReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetRejectionInReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _rejectionInOutMaster.GetRejectionSendReceiveReport(CompanyId, financialYearId, TransType: 1);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetRejectionOutReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetRejectionOutReport(string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _rejectionInOutMaster.GetRejectionSendReceiveReport(CompanyId, financialYearId, TransType: 2);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetKapanLagadReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetKapanLagadReport(string kapanId)
+        {
+            try
+            {
+                var result = await _kapanMaster.GetKapanLagadReport(kapanId);
 
                 return new Response<dynamic>
                 {

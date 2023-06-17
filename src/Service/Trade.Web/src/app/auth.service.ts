@@ -35,7 +35,6 @@ export class AuthService {
 
         return this.http.post<any>(apiUrl , data)
             .pipe((data: any) => {
-            debugger;
             this.isUserLoggedIn = true;
             //localStorage.setItem('AuthorizeData', JSON.stringify(data));
             return data;

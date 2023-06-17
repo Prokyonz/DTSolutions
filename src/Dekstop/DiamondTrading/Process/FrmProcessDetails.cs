@@ -298,7 +298,7 @@ namespace DiamondTrading
 
                     //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                     //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-
+                    
 
                     List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
                     {
