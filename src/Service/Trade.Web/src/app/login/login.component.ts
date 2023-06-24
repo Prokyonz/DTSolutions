@@ -53,6 +53,7 @@ export class LoginComponent implements OnInit {
           this.authService.login(this.loginForm.get("username")?.value, this.loginForm.get("password")?.value)
           .subscribe((response: any) => {
               if (response.success == true) {
+                debugger;
                 if (response.data != null){
                     localStorage.setItem("userid", response.data.id);
                     //if (this.rememberMe) {

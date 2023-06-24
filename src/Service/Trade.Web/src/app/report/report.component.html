@@ -50,12 +50,16 @@
 
         <ng-template pTemplate="header">
             <tr>                
-                <th *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
-                    <div class="flex align-items-center">
-                        {{item.displayName}}
-                        <p-columnFilter *ngIf="!item.ishidefilter" type="{{item.dataType}}" field="{{item.fieldName}}" display="menu"></p-columnFilter>
-                    </div>
-                </th>                
+                <ng-container *ngFor="let item of columnArray">
+                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
+                        <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
+                            <div class="flex align-items-center">
+                              {{item.displayName}}
+                              <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu"></p-columnFilter>
+                            </div>
+                          </th>
+                        </ng-container>
+                </ng-container>
                 <!-- <th style="min-height: 10rem;">
                     <div class="flex align-items-center">
                         Approve
@@ -70,21 +74,26 @@
         </ng-template>
         <ng-template pTemplate="body" let-purchase>
             <tr>
-                <td *ngFor="let item of columnArray" [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
-                    <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
-                    <div *ngIf="item.displayName == 'Approve'">
-                        <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
-                    </div>
-                    <div *ngIf="item.displayName == 'Reject'">
-                        <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
-                    </div>
-                    <div *ngIf="item.displayName == 'Approval Status'">
-                        <span *ngIf="purchase[item.fieldName] == '1'">Approved</span>
-                        <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
-                        <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
-                    </div>
-                    <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date'">{{ purchase[item.fieldName] }}</span>                    
-                </td>
+                <ng-container *ngFor="let item of columnArray">
+                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
+                        <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
+                            <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
+                            <div *ngIf="item.displayName == 'Approve'" [hidden]="!isApproveButton">
+                                <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
+                            </div>
+                            <div *ngIf="item.displayName == 'Reject'" [hidden]="!isApproveButton">
+                                <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
+                            </div>
+                            <div *ngIf="item.displayName == 'Approval Status'">
+                                <span *ngIf="purchase[item.fieldName] == '1'">Approved</span>
+                                <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
+                                <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
+                            </div>
+                            <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date'">{{ purchase[item.fieldName] }}</span>                    
+                        </td>
+                    </ng-container>
+                </ng-container>
+                
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">

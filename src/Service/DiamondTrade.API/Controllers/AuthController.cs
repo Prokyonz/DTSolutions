@@ -3,6 +3,9 @@ using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Internal;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -13,9 +16,11 @@ namespace DiamondTrade.API.Controllers
     public class AuthController : ControllerBase
     {
         private IUserMaster _userMaster;
-        public AuthController(IUserMaster userMaster)
+        private IApprovalPermissionMaster _approvalPermissionMaster;
+        public AuthController(IUserMaster userMaster, IApprovalPermissionMaster approvalPermissionMaster)
         {
             _userMaster = userMaster;
+            _approvalPermissionMaster = approvalPermissionMaster;
         }
 
         [Route("login")]
@@ -46,6 +51,91 @@ namespace DiamondTrade.API.Controllers
                 }
                 //return Ok(result);
 
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetPermissionList")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPermissionList(string userid)
+        {
+            List<string> permissions = new List<string>();
+            try
+            {
+                var result = await _userMaster.GetUserPermissions(userid);
+                if (result.Any())
+                {
+                    //for (int i = 0; i < result.Count; i++)
+                    //{
+                    //    switch (result[i].KeyName)
+                    //    {
+                    //        //Reports Menu - Transaction
+                    //        case "purchase_report":
+                    //        case "sales_report":
+                    //        case "payment_report":
+                    //        case "receipt_report":
+                    //        case "contra_report":
+                    //        case "expense_report":
+                    //        case "loan_report":
+                    //        case "mixed_report":
+                    //        case "process_reports":
+                    //        case "jangad_reports":
+                    //        case "stock_report":
+                    //            permissions.Add(result[i].KeyName);
+                    //            break;
+                    //    }
+                    //}
+                    return new Response<dynamic>
+                    {
+                        StatusCode = 200,
+                        Success = true,
+                        Data = result.Select(x => x.KeyName).ToList()
+                    };
+                }
+                else
+                {
+                    return new Response<dynamic>
+                    {
+                        Success = false,
+                        StatusCode = (int)HttpStatusCode.NotAcceptable
+                    };
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+
+        [Route("GetPermission")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPermission(string userid, string keyname)
+        {
+            List<string> permissions = new List<string>();
+            try
+            {
+                var result = await _approvalPermissionMaster.GetPermission();
+                if (result.Any(x => x.UserId == userid && x.KeyName == keyname))
+                {
+                    return new Response<dynamic>
+                    {
+                        StatusCode = 200,
+                        Success = true,
+                        Data = true
+                    };
+                }
+                else
+                {
+                    return new Response<dynamic>
+                    {
+                        Success = false,
+                        StatusCode = (int)HttpStatusCode.NotAcceptable
+                    };
+                }
             }
             catch
             {

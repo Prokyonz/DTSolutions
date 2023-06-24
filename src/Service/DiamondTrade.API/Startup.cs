@@ -77,6 +77,8 @@ namespace DiamondTrade.API
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
             services.AddScoped<IRejectionInOutMaster,RejectionInOutMasterRepository>();
             services.AddScoped<IKapanMaster, KapanMasterRepository>();
+            services.AddScoped<IApprovalPermissionMaster, ApprovalPermissionMasterRepository>();
+            
 
             services.AddAuthorization(option =>
             {

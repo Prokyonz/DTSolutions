@@ -42,6 +42,7 @@ export class ReportComponent implements OnInit {
   endDate: string | null = '';
   isFilerRequired: boolean = true;
   filterColumn : string[]= [];
+  isApproveButton: boolean = false;
 
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
       private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
@@ -49,86 +50,102 @@ export class ReportComponent implements OnInit {
     switch (this.reportIndex)
     {
       case 1:
-        this.PageTitle = "Purchase Report"
-        this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
-          {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
-          {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
-          {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
-          {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"15"},
-          {"displayName":"Kapan Name","dataType":"text","fieldName":"kapanName","minWidth":"15"},
-          {"displayName":"Net Cts","dataType":"numeric","fieldName":"netWeight"},
-          {"displayName":"Buy Rate","dataType":"numeric","fieldName":"buyingRate"},
-          {"displayName":"Less","dataType":"numeric","fieldName":"lessWeight"},
-          {"displayName":"CVD Amt","dataType":"numeric","fieldName":"cvdAmount"},
-          {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},
-          {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
-          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
-          {"displayName":"Total","dataType":"numeric","fieldName":"total"},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
-          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},          
-          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true},
-          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true}
-          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
-          // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
-          // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
-        ]
+        this.PageTitle = "Purchase Report";
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_report")
+        .subscribe((data: any) => {
+          this.isApproveButton = data.success;
+
+          this.columnArray = [
+            {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
+            {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
+            {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
+            {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
+            {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"15"},
+            {"displayName":"Kapan Name","dataType":"text","fieldName":"kapanName","minWidth":"15"},
+            {"displayName":"Net Cts","dataType":"numeric","fieldName":"netWeight"},
+            {"displayName":"Buy Rate","dataType":"numeric","fieldName":"buyingRate"},
+            {"displayName":"Less","dataType":"numeric","fieldName":"lessWeight"},
+            {"displayName":"CVD Amt","dataType":"numeric","fieldName":"cvdAmount"},
+            {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},
+            {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
+            {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
+            {"displayName":"Total","dataType":"numeric","fieldName":"total"},
+            {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+            {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},
+            {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},          
+            {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true},
+            {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"purId","ishidefilter":true}
+            // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
+            // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
+            // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
+          ]
+        });
         break;
       case 2:
         this.PageTitle = "Sales Report"
-        this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
-          {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
-          {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
-          {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
-          {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"15"},
-          {"displayName":"Kapan Name","dataType":"text","fieldName":"kapanName","minWidth":"15"},
-          {"displayName":"Net Cts","dataType":"numeric","fieldName":"netWeight"},
-          {"displayName":"Sale Rate","dataType":"numeric","fieldName":"saleRate"},
-          {"displayName":"Less","dataType":"numeric","fieldName":"lessWeight"},
-          {"displayName":"CVD Amount","dataType":"numeric","fieldName":"cvdAmount"},
-          {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
-          {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},          
-          {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
-          {"displayName":"Total","dataType":"numeric","fieldName":"total"},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},  
-          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},            
-          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true},
-          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true}              
-          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
-        ];
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=sales_report")
+        .subscribe((data: any) => {
+          this.isApproveButton = data.success;
+          this.columnArray = [
+            {"displayName":"Date","dataType":"Date","fieldName":"date","ishidefilter":true},
+            {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},
+            {"displayName":"Slip No","dataType":"numeric","fieldName":"slipNo"},          
+            {"displayName":"Party Name","dataType":"text","fieldName":"partyName","minWidth":"15"},
+            {"displayName":"Broker Name","dataType":"text","fieldName":"brokerName","minWidth":"15"},
+            {"displayName":"Kapan Name","dataType":"text","fieldName":"kapanName","minWidth":"15"},
+            {"displayName":"Net Cts","dataType":"numeric","fieldName":"netWeight"},
+            {"displayName":"Sale Rate","dataType":"numeric","fieldName":"saleRate"},
+            {"displayName":"Less","dataType":"numeric","fieldName":"lessWeight"},
+            {"displayName":"CVD Amount","dataType":"numeric","fieldName":"cvdAmount"},
+            {"displayName":"Pay Days","dataType":"numeric","fieldName":"paymentDays"},
+            {"displayName":"Due Days","dataType":"numeric","fieldName":"dueDays"},          
+            {"displayName":"Due Date","dataType":"Date","fieldName":"dueDate","ishidefilter":true},
+            {"displayName":"Total","dataType":"numeric","fieldName":"total"},
+            {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+            {"displayName":"Message","dataType":"text","fieldName":"message","minWidth":"15"},  
+            {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},            
+            {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true},
+            {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"id","ishidefilter":true}              
+            // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
+          ];
+        });
         break;
       case 3:
         this.PageTitle = "Payment Report"
-        this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
-          {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},
-          {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
-          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
-          {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
-          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},  
-          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},         
-          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
-          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
-        ];
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_report")
+        .subscribe((data: any) => {
+          this.isApproveButton = data.success;
+          this.columnArray = [
+            {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+            {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},
+            {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
+            {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+            {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
+            {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
+            {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},  
+            {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"},         
+            {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
+            {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
+          ];
+        });
         break;
       case 4:
         this.PageTitle = "Receipt Report"
-        this.columnArray = [
-          {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
-          {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
-          {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},          
-          {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
-          {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
-          {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
-          {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
-          {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"}, 
-          {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
-          {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
-        ];
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=receipt_report")
+        .subscribe((data: any) => {
+          this.columnArray = [
+            {"displayName":"Date","dataType":"Date","fieldName":"entryDate", "ishidefilter":true},
+            {"displayName":"From Party","dataType":"text","fieldName":"fromName","minWidth":"15"},
+            {"displayName":"To Party","dataType":"text","fieldName":"toName","minWidth":"15"},          
+            {"displayName":"Amount","dataType":"numeric","fieldName":"amount"},
+            {"displayName":"Cheque No","dataType":"text","fieldName":"chequeNo"},
+            {"displayName":"Cheque Date","dataType":"Date","fieldName":"chequeDate","minWidth":"15", "ishidefilter":true},
+            {"displayName":"Remarks","dataType":"text","fieldName":"remarks","minWidth":"15"},
+            {"displayName":"Approval Status","dataType":"text","fieldName":"approvalType"}, 
+            {"displayName":"Approve","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true},
+            {"displayName":"Reject","dataType":"text","fieldName":"approvalType","minWidth":"10","reportid":"groupId","ishidefilter":true}
+          ];
+        });
         break;
       case 5:
           this.PageTitle = "Contra Payment Report"
