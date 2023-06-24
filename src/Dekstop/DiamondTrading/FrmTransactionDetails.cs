@@ -338,7 +338,7 @@ namespace DiamondTrading
                     _contraEntryMasterRespository = new ContraEntryMasterRespository();
                     var data = await _contraEntryMasterRespository.GetContraReport(Common.LoginCompany, Common.LoginFinancialYear, dtContraFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtContraToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdContraDetails.DataSource = data;
-                    gridView5.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
+                    grvContraDetails.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ContraReport"));
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
@@ -573,7 +573,7 @@ namespace DiamondTrading
             {
                 if (exportType == ExportDataType.Excel)
                 {
-                    ExportToExcel(gridView5);
+                    ExportToExcel(grvContraDetails);
                 }
                 else if (exportType == ExportDataType.PDF)
                 {
@@ -808,7 +808,7 @@ namespace DiamondTrading
             }
             else if (xtabManager.SelectedTabPage == xtabContra)
             {
-                gridView5.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ContraReport"));
+                grvContraDetails.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("ContraReport"));
             }
             else if (xtabManager.SelectedTabPage == xtabExpense)
             {
@@ -904,6 +904,17 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabContra)
+            {
+                string SelectedSrNo = grvContraDetails.GetFocusedRowCellValue("SrNo").ToString();
+
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Contra", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo));
+
+                if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
         }
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
@@ -970,9 +981,8 @@ namespace DiamondTrading
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    string id = gridView5.GetFocusedRowCellValue(gridColumnContraId).ToString();
-
-                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(id);
+                    string SelectedSrNo = grvContraDetails.GetFocusedRowCellValue("SrNo").ToString();
+                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(Convert.ToInt32(SelectedSrNo));
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }

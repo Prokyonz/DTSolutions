@@ -8,6 +8,7 @@ namespace Repository.Entities.Model
     {
         public string ContraId { get; set;}
         public string Id { get; set; }
+        public int SrNo { get; set; }
         public string FromPartyId { get; set; }
         public string ToPartyId { get; set; }
         public string FromPartyName { get; set; }
