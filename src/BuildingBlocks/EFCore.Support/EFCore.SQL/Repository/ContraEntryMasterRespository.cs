@@ -44,14 +44,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteContraEntryAsync(string contraEntryId)
+        public async Task<bool> DeleteContraEntryAsync(int SrNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.Id == contraEntryId).FirstOrDefaultAsync();
+                var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.SrNo == SrNo).FirstOrDefaultAsync();
                 if (getContraEntry != null)
                 {
-                    var getContraEnteryDetails = await _databaseContext.ContraEntryDetails.Where(w => w.ContraEntryMasterId == contraEntryId).ToListAsync();
+                    var getContraEnteryDetails = await _databaseContext.ContraEntryDetails.Where(w => w.ContraEntryMasterId == getContraEntry.Id).ToListAsync();
 
                     if (getContraEnteryDetails != null && getContraEnteryDetails.Count > 0)
                         _databaseContext.ContraEntryDetails.RemoveRange(getContraEnteryDetails);
@@ -84,12 +84,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<ContraEntryMaster> GetContraEntryAsync(string companyId, string financialYearId, int SrNo)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.ContraEntryMaster.Where(w => w.IsDelete == false && w.CompanyId == companyId && w.FinancialYearId == financialYearId && w.SrNo == SrNo).Include("ContraEntryDetails").FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<int> GetMaxNo(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var maxCount = await _databaseContext.ContraEntryMaster.CountAsync(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId);
-                return maxCount + 1;
+                var countResult = await _databaseContext.ContraEntryMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.SrNo).FirstOrDefaultAsync();
+                if (countResult == null)
+                    return 1;
+                return countResult.SrNo + 1;
             }
         }
 

@@ -28,6 +28,7 @@ namespace DiamondTrading.Transaction
         string _selectedCompany = string.Empty;
         string _selectedFinancialYear = string.Empty;
         List<ExpenseDetails> _editedExpenseDetails = new List<ExpenseDetails>();
+        ContraEntryMaster _contraEntryMaster = new ContraEntryMaster();
 
         public FrmPaymentEntry(string PaymentType)
         {
@@ -151,7 +152,34 @@ namespace DiamondTrading.Transaction
 
             if (_selectedSrNo != 0)
             {
-                if (_paymentType == 2)
+                if (_paymentType == -1)
+                {
+                    ContraEntryMasterRespository contraEntryMasterRespository = new ContraEntryMasterRespository();
+                    _contraEntryMaster = await contraEntryMasterRespository.GetContraEntryAsync(Common.LoginCompany, Common.LoginFinancialYear,_selectedSrNo);
+
+                    if (_contraEntryMaster != null)
+                    {
+                        btnSave.Text = AppMessages.GetString(AppMessageID.Update);
+                        txtSerialNo.Text = _selectedSrNo.ToString();
+                        lueCompany.EditValue = _selectedCompany;
+                        lueLeadger.EditValue = _contraEntryMaster.ToPartyId.ToString();
+                        txtRemark.Text = _contraEntryMaster.Remarks;
+                        grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
+                        colBranch.Visible = false;
+                        for (int i = 0; i < _contraEntryMaster.ContraEntryDetails.Count; i++)
+                        {
+                            grvPaymentDetails.AddNewRow();
+
+                            //grvPaymentDetails.SetFocusedRowCellValue(colBranch, _contraEntryMaster.ContraEntryDetails[i].BranchId);
+                            grvPaymentDetails.SetFocusedRowCellValue(colParty, _contraEntryMaster.ContraEntryDetails[i].FromParty);
+                            grvPaymentDetails.SetFocusedRowCellValue(colAmount, _contraEntryMaster.ContraEntryDetails[i].Amount);
+                            grvPaymentDetails.SetFocusedRowCellValue(colPartyType, PartyTypeMaster.None);
+                            grvPaymentDetails.UpdateCurrentRow();
+                        }
+                        grvPaymentDetails.CellValueChanged += grvPaymentDetails_CellValueChanged;
+                    }
+                }
+                else if (_paymentType == 2)
                 {
                     ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
                     _editedExpenseDetails = await expenseMasterRepository.GetExpenseAsync(_selectedCompany, _selectedFinancialYear, _selectedSrNo);
@@ -308,6 +336,7 @@ namespace DiamondTrading.Transaction
                         ContraEntryMaster contraEntryMaster = new ContraEntryMaster
                         {
                             Id = contraMasterId,
+                            SrNo = Convert.ToInt32(txtSerialNo.Text),
                             BranchId = Common.LoginBranch,
                             CompanyId = lueCompany.EditValue.ToString(),
                             FinancialYearId = Common.LoginFinancialYear,
@@ -460,7 +489,58 @@ namespace DiamondTrading.Transaction
                 }
                 else
                 {
-                    if (_paymentType == 2)
+                    //Contra Entry
+                    if (_paymentType == -1)
+                    {
+                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo);
+                        string contraMasterId = Guid.NewGuid().ToString();
+                        List<ContraEntryDetails> contraEntryDetails = new List<ContraEntryDetails>();
+
+                        for (int i = 0; i < grvPaymentDetails.RowCount; i++)
+                        {
+                            ContraEntryDetails contraDetail = new ContraEntryDetails();
+                            string fromPartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString();
+                            string amount = grvPaymentDetails.GetRowCellValue(i, colAmount).ToString();
+
+                            contraDetail.Id = Guid.NewGuid().ToString();
+                            contraDetail.ContraEntryMasterId = contraMasterId;
+                            contraDetail.Amount = Convert.ToDecimal(amount);
+                            contraDetail.FromParty = fromPartyId;
+                            contraDetail.CreatedDate = DateTime.Now;
+                            contraDetail.UpdatedDate = DateTime.Now;
+                            contraDetail.CreatedBy = Common.LoginUserID;
+                            contraDetail.UpdatedBy = Common.LoginUserID;
+                            contraEntryDetails.Add(contraDetail);
+                        }
+
+                        ContraEntryMaster contraEntryMaster = new ContraEntryMaster
+                        {
+                            Id = contraMasterId,
+                            SrNo = Convert.ToInt32(txtSerialNo.Text),
+                            BranchId = Common.LoginBranch,
+                            CompanyId = lueCompany.EditValue.ToString(),
+                            FinancialYearId = Common.LoginFinancialYear,
+                            IsDelete = false,
+                            Remarks = txtRemark.Text,
+                            ToPartyId = lueLeadger.EditValue.ToString(),
+                            ContraEntryDetails = contraEntryDetails,
+                            CreatedBy = Common.LoginUserID,
+                            CreatedDate = DateTime.Now,
+                            UpdatedBy = Common.LoginUserID,
+                            UpdatedDate = DateTime.Now,
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
+                        };
+
+                        var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
+
+                        if (result != null)
+                        {
+                            Reset();
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else if (_paymentType == 2)
                     {
                         this.Cursor = Cursors.WaitCursor;
                         bool IsSucess = false;
