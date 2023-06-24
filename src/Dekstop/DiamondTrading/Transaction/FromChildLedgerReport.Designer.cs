@@ -54,15 +54,13 @@ namespace DiamondTrading.Transaction
             // 
             // gridControlChildLedgerReport
             // 
-            this.gridControlChildLedgerReport.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridControlChildLedgerReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridControlChildLedgerReport.Location = new System.Drawing.Point(0, 0);
             this.gridControlChildLedgerReport.MainView = this.grvChildLedgerReport;
             this.gridControlChildLedgerReport.Name = "gridControlChildLedgerReport";
             this.gridControlChildLedgerReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2});
-            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(973, 468);
+            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(973, 467);
             this.gridControlChildLedgerReport.TabIndex = 7;
             this.gridControlChildLedgerReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvChildLedgerReport});
@@ -206,6 +204,7 @@ namespace DiamondTrading.Transaction
             this.Name = "FromChildLedgerReport";
             this.Text = "FromChildLedgerReport";
             this.Load += new System.EventHandler(this.FromChildLedgerReport_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FromChildLedgerReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChildLedgerReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChildLedgerReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
