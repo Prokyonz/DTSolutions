@@ -32,11 +32,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false)
+        public async Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = true)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.SrNo == Convert.ToInt32(expenseId)).ToListAsync();
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseId).ToListAsync();
                 if (getExpense != null)
                 {
                     if (isPermanantDetele)

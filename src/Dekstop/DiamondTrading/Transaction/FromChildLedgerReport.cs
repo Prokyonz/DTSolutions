@@ -39,6 +39,7 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                string v = LedgerId;
                 GridView view = sender as GridView;
                 GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
                 double Total = double.Parse(view.Columns["Credit"].SummaryText);
@@ -49,6 +50,12 @@ namespace DiamondTrading.Transaction
             {
                 e.TotalValue = 0;
             }
+        }
+
+        private void FromChildLedgerReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
         }
     }
 }

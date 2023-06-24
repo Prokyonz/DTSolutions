@@ -1791,14 +1791,6 @@ namespace DiamondTrading
             }
         }
 
-        private void grvLedgerReport_RowClick(object sender, RowClickEventArgs e)
-        {
-            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).LedgerId);
-            fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetRow(e.RowHandle)).Name;
-            fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
-            fromChildLedgerReport.ShowDialog();            
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             accordionRefreshBtn_Click(sender, e);
@@ -1852,6 +1844,14 @@ namespace DiamondTrading
         private void accordionPrint_Click(object sender, EventArgs e)
         {
             ExportGridData(ExportDataType.Print);
+        }
+
+        private void grvLedgerReport_DoubleClick(object sender, EventArgs e)
+        {
+            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId);
+            fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
+            fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
+            fromChildLedgerReport.ShowDialog();
         }
     }
 }
