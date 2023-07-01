@@ -15,6 +15,7 @@ namespace Repository.Entities.Model
         public string SlipNo { get; set; }
         public string KapanId { get; set; }
         public string Name { get; set; }
+        public string PurchaseDetailsId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Weight { get; set; }

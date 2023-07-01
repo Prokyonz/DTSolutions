@@ -18,10 +18,18 @@ namespace DiamondTrading.Process
     {
         KapanMappingMasterRepository _kapanMappingMasterRepository;
         List<KapanMapping> _listKapanMapping;
+        string _SelectedSrNo = "";
         public FrmKapanMap()
         {
             InitializeComponent();
             _kapanMappingMasterRepository = new KapanMappingMasterRepository();
+        }
+
+        public FrmKapanMap(string SrNo)
+        {
+            InitializeComponent();
+            _kapanMappingMasterRepository = new KapanMappingMasterRepository();
+            _SelectedSrNo = SrNo;
         }
 
         private void FrmKapanMap_Load(object sender, EventArgs e)
@@ -31,8 +39,18 @@ namespace DiamondTrading.Process
 
             _ = LoadCompany();
             _ = GetKapanDetail();
-            _ = GetMaxSrNo(Common.LoginCompany);
-            _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch);
+
+            if (string.IsNullOrEmpty(_SelectedSrNo))
+            {
+                _ = GetMaxSrNo(Common.LoginCompany);
+                _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch, null, 0);
+            }
+            else
+            {
+                txtSerialNo.Text = _SelectedSrNo;
+                _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch, _SelectedSrNo, 1);
+                btnSave.Text = AppMessages.GetString(AppMessageID.Update);
+            }
         }
 
         private async Task LoadCompany()
@@ -72,10 +90,17 @@ namespace DiamondTrading.Process
             txtSerialNo.Text = SrNo.ToString();
         }
 
-        private async Task GetPendingKapanDetails(string companyId, string branchId)
+        private async Task GetPendingKapanDetails(string companyId, string branchId, string SrNo, int ActionType)
         {
-            _listKapanMapping = await _kapanMappingMasterRepository.GetPendingKapanMapping(companyId, branchId, Common.LoginFinancialYear.ToString());
+            _listKapanMapping = await _kapanMappingMasterRepository.GetPendingKapanMapping(companyId, branchId, Common.LoginFinancialYear.ToString(), SrNo, ActionType);
             grdPendingKapanDetails.DataSource = _listKapanMapping;
+            if (!string.IsNullOrEmpty(_SelectedSrNo) && _listKapanMapping.Any())
+            {
+                lueKapan.EditValue = _listKapanMapping.FirstOrDefault().KapanId;
+                txtRemark.Text = _listKapanMapping.FirstOrDefault().Remarks;
+                grvPendingKapanDetails.SelectAll();
+            }
+            
         }
 
         private void btnMap_Click(object sender, EventArgs e)
@@ -136,44 +161,86 @@ namespace DiamondTrading.Process
 
                 KapanMappingMaster kapanMappingMaster = null;
                 bool IsSuccess = false;
-                try
+                if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Int32[] selectedRowHandles = grvPendingKapanDetails.GetSelectedRows();
-                    for (int i = 0; i < selectedRowHandles.Length; i++)
+                    try
                     {
-                        kapanMappingMaster = new KapanMappingMaster();
-                        kapanMappingMaster.Id = Guid.NewGuid().ToString();
-                        kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
-                        kapanMappingMaster.BranchId = lueBranch.EditValue.ToString();
-                        kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
-                        kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseID).ToString();
-                        kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseDetailId).ToString();
-                        kapanMappingMaster.PurityId = null;
-                        kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
-                        kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colSlipNo).ToString();
-                        kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colTotalCts));
-                        kapanMappingMaster.CreatedDate = DateTime.Now;
-                        kapanMappingMaster.CreatedBy = Common.LoginUserID;
-                        kapanMappingMaster.UpdatedDate = DateTime.Now;
-                        kapanMappingMaster.UpdatedBy = Common.LoginUserID;
+                        Int32[] selectedRowHandles = grvPendingKapanDetails.GetSelectedRows();
+                        for (int i = 0; i < selectedRowHandles.Length; i++)
+                        {
+                            kapanMappingMaster = new KapanMappingMaster();
+                            kapanMappingMaster.Id = Guid.NewGuid().ToString();
+                            kapanMappingMaster.CompanyId = lueCompany.EditValue.ToString();
+                            kapanMappingMaster.BranchId = lueBranch.EditValue.ToString();
+                            kapanMappingMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
+                            kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseID).ToString();
+                            kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseDetailId).ToString();
+                            kapanMappingMaster.PurityId = null;
+                            kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
+                            kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colSlipNo).ToString();
+                            kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colTotalCts));
+                            kapanMappingMaster.Remarks = txtRemark.Text;
+                            kapanMappingMaster.CreatedDate = DateTime.Now;
+                            kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                            kapanMappingMaster.UpdatedDate = DateTime.Now;
+                            kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                        var Result = await _kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
-                        IsSuccess = true;
-                        //if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
-                        //{
+                            var Result = await _kapanMappingMasterRepository.AddKapanMappingAsync(kapanMappingMaster);
+                            IsSuccess = true;
+                            //if (Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(i, colCts)) > 0)
+                            //{
 
-                        //}
+                            //}
+                        }
+                    }
+                    catch
+                    {
+                        IsSuccess = false;
+                    }
+
+                    if (IsSuccess)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch
+                else
                 {
-                    IsSuccess = false;
-                }
+                    try
+                    {
+                        Int32[] selectedRowHandles = grvPendingKapanDetails.GetSelectedRows();
+                        for (int i = 0; i < selectedRowHandles.Length; i++)
+                        {
+                            kapanMappingMaster = await _kapanMappingMasterRepository.GetKapanMapDetailAsync(_SelectedSrNo);
+                            if (kapanMappingMaster != null)
+                            {
+                                kapanMappingMaster.PurchaseMasterId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseID).ToString();
+                                kapanMappingMaster.PurchaseDetailsId = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colPurchaseDetailId).ToString();
+                                kapanMappingMaster.KapanId = lueKapan.EditValue.ToString();
+                                kapanMappingMaster.SlipNo = grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colSlipNo).ToString();
+                                kapanMappingMaster.Weight = Convert.ToDecimal(grvPendingKapanDetails.GetRowCellValue(selectedRowHandles[i], colTotalCts));
+                                kapanMappingMaster.Remarks = txtRemark.Text;
+                                kapanMappingMaster.CreatedDate = DateTime.Now;
+                                kapanMappingMaster.CreatedBy = Common.LoginUserID;
+                                kapanMappingMaster.UpdatedDate = DateTime.Now;
+                                kapanMappingMaster.UpdatedBy = Common.LoginUserID;
 
-                if (IsSuccess)
-                {
-                    Reset();
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                var Result = await _kapanMappingMasterRepository.UpdateKapanMappingMasterAsync(kapanMappingMaster);
+                                IsSuccess = true;
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        IsSuccess = false;
+                    }
+
+                    if (IsSuccess)
+                    {
+                        Reset();
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.OK;
+                    }
                 }
             }
             catch (Exception Ex)
@@ -262,7 +329,8 @@ namespace DiamondTrading.Process
             _ = LoadCompany();
             _ = GetKapanDetail();
             _ = GetMaxSrNo(Common.LoginCompany);
-            _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch);
+            _ = GetPendingKapanDetails(Common.LoginCompany, Common.LoginBranch, null, 0);
+            btnSave.Text = AppMessages.GetString(AppMessageID.Save);
         }
 
         private void grvPendingKapanDetails_SelectionChanged(object sender, DevExpress.Data.SelectionChangedEventArgs e)

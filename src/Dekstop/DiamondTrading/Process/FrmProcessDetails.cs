@@ -178,6 +178,7 @@ namespace DiamondTrading
                         _kapanMappingMasterRepository = new KapanMappingMasterRepository();
                         var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
                         grdProcessMaster.DataSource = kapanData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabAssortSend)
@@ -418,25 +419,24 @@ namespace DiamondTrading
         {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                string SelectedSrNo = grvKapanMapping.GetFocusedRowCellValue("Sr").ToString();
+                string PurchaseDetailsId = grvKapanMapping.GetFocusedRowCellValue("PurchaseDetailsId").ToString();
+                string SlipNo = grvKapanMapping.GetFocusedRowCellValue("SlipNo").ToString();
+                _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                var result = await _accountToAssortMasterRepository.CheckIsKapanMapEntryProcessed(Common.LoginCompany, Common.LoginFinancialYear, PurchaseDetailsId, SlipNo);
 
-                //string SelectedGuid;
+                if(result)
+                {
+                    MessageBox.Show("You can't edit this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                //if (grdCompanyMaster.FocusedView.DetailLevel > 0)
-                //{
-                //    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                //    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
-                //} 
-                //else                 
-                //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();                
+                Process.FrmKapanMap frmKapanMap = new Process.FrmKapanMap(SelectedSrNo);
 
-
-                //Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-
-                //if (frmcompanymaster.ShowDialog() == DialogResult.OK)
-                //{
-                //    await LoadGridData(true);
-                //}
+                if (frmKapanMap.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
             {
