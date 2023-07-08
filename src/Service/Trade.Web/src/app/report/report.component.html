@@ -49,7 +49,14 @@
         </ng-template>
 
         <ng-template pTemplate="header">
-            <tr>                
+            <tr>           
+                <ng-container *ngIf="isChildReport">
+                    <th [ngStyle]="{'min-width': '2rem'}">
+                        <div class="flex align-items-center">
+                         
+                        </div>
+                      </th>
+                </ng-container>     
                 <ng-container *ngFor="let item of columnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
                         <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
@@ -72,8 +79,14 @@
                 </th> -->
             </tr>
         </ng-template>
-        <ng-template pTemplate="body" let-purchase>
+        <ng-template pTemplate="body" let-purchase let-rowIndex="rowIndex">
             <tr>
+                <!-- <td>
+                    <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
+                </td> -->
+                <ng-container *ngIf="isChildReport">
+                    <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
+                </ng-container>
                 <ng-container *ngFor="let item of columnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
                         <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
@@ -93,12 +106,93 @@
                         </td>
                     </ng-container>
                 </ng-container>
-                
+            </tr>
+            <tr *ngIf="selectedRowIndex === rowIndex">
+                <td [attr.colspan]="childTotalColumn">
+                    <div class="detail-table">
+                        <p-table  #dt2 [value]="childReportList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
+                        [globalFilterFields]="childFilterColumn">
+                        <ng-template pTemplate="caption">
+                            <div class="flex">
+                                <span class="p-input-icon-left ml-auto">
+                                    <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
+                                    <input pInputText type="text" (input)="dt2.filterGlobal(childReportSearch($event), 'contains')" placeholder="Search keyword" />
+                                </span>
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <ng-container *ngFor="let item of childColumnArray">
+                                        <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
+                                            <div class="flex align-items-center">
+                                                {{item.displayName}}
+                                                <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu"></p-columnFilter>
+                                            </div>
+                                            </th>
+                                </ng-container>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-rowData>
+                            <tr>
+                                <ng-container *ngFor="let item of childColumnArray">
+                                    <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
+                                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
+                                        <span *ngIf="item.dataType !== 'Date'">{{ rowData[item.fieldName] }}</span>                    
+                                    </td>
+                                    </ng-container>
+                            </tr>
+                        </ng-template>
+                        </p-table>
+                    </div>
+                </td>
+                <!-- <td colspan="10">
+                    <div class="detail-table">
+                        <p-table [value]="dataChild" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7']">
+                            <ng-template pTemplate="header">
+                              <tr>
+                                <th>Column 1</th>
+                                <th>Column 2</th>
+                                <th>Column 3</th>
+                                <th>Column 4</th>
+                                <th>Column 5</th>
+                                <th>Column 6</th>
+                                <th>Column 7</th>
+                              </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-rowData>
+                              <tr>
+                                <td>
+                                  <span>{{ rowData.column1 }}</span>
+                                </td>
+                                <td>
+                                  <div [innerHTML]="rowData.column2"></div>
+                                </td>
+                                <td>
+                                  <span>{{ rowData.column3 }}</span>
+                                </td>
+                                <td>
+                                    <span>{{ rowData.column4 }}</span>
+                                  </td>
+                                  <td>
+                                    <span>{{ rowData.column5 }}</span>
+                                  </td>
+                                  <td>
+                                    <span>{{ rowData.column6 }}</span>
+                                  </td>
+                                  <td>
+                                    <span>{{ rowData.column7 }}</span>
+                                  </td>
+                              </tr>
+                            </ng-template>
+                          </p-table>
+                          
+                    </div>
+                </td> -->
             </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>
-                <td colspan="10">No data found.</td>
+                <td colspan="7">No data found.</td>
             </tr>
         </ng-template>
     </p-table>

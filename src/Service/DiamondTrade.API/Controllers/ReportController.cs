@@ -544,6 +544,27 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetWeeklyPurchaseDetailReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetWeeklyPurchaseDetailReport(string currentWeek, string CompanyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _purchaseMaster.GetPurchaseReport(CompanyId, financialYearId, currentWeek);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         [Route("GetSalariesReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetSalariesReport(string CompanyId, string financialYearId)

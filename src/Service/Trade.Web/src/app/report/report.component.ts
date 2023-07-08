@@ -31,6 +31,8 @@ export class ReportComponent implements OnInit {
   RememberCompany: RememberCompany = new RememberCompany();
   PurchaseReportList : any[];
   columnArray: any[] = [];
+  childColumnArray: any[] = [];
+  childReportList : any[];
   dataArray: any[];
   visible: boolean = false;
   loading: boolean = true;
@@ -43,10 +45,29 @@ export class ReportComponent implements OnInit {
   isFilerRequired: boolean = true;
   filterColumn : string[]= [];
   isApproveButton: boolean = false;
+  selectedRowIndex: number;
+  dataChild: any[] = [];
+  isChildReport: boolean = false;
+  childTotalColumn : number = 0;
+  childFilterColumn: string[] = [];
 
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
       private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
     this.reportIndex = +activateRoute.snapshot.params['id'];
+   
+    for (let i = 1; i <= 50; i++) {
+      const dataObject = {
+        column1: `Value ${i}`,
+        column2: `<strong>Value ${i + 1}</strong>`,
+        column3: `Value ${i + 2}`,
+        column4: `Value ${i + 2}`,
+        column5: `Value ${i + 2}`,
+        column6: `Value ${i + 2}`,
+        column7: `Value ${i + 2}`,
+      };
+      this.dataChild.push(dataObject);
+    }
+    
     switch (this.reportIndex)
     {
       case 1:
@@ -318,6 +339,7 @@ export class ReportComponent implements OnInit {
       case 17:
         this.PageTitle = "Stock Report"
         this.isFilerRequired = false;
+        this.isChildReport = true;
         this.columnArray = [
           {"displayName":"Type","dataType":"text","fieldName":"name","minWidth":"10"},
           {"displayName":"Total Weight","dataType":"numeric","fieldName":"totalWeight","minWidth":"20"},
@@ -355,7 +377,7 @@ export class ReportComponent implements OnInit {
       default:
         break;
     }
-    this.filterColumn = this.columnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+    console.log("filterData:" +  this.filterColumn);
   }
 
   ngOnInit() {
@@ -616,11 +638,97 @@ export class ReportComponent implements OnInit {
         default:
           break;
       }
+      this.filterColumn = this.columnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+
     }
     catch(e) {
       alert("Try catch error : " + JSON.stringify(e));
     }    
   }
+
+  childReportSearch(event: any): string {
+    return event.target.value;
+  }
+
+  showDetail(rowIndex: number, itemData: any) {
+    debugger;
+    if (this.selectedRowIndex === rowIndex) {
+        this.childColumnArray = [];
+        this.childReportList = [];
+        this.childTotalColumn = 0;
+        this.childFilterColumn = [];
+        this.selectedRowIndex = -1; // Hide the detail table if the button is clicked again
+    } else {
+        this.selectedRowIndex = rowIndex; // Show the detail table for the selected row
+        switch(this.reportIndex){
+          case 17:
+            if (itemData.name == "Kapan")
+            {
+               this.sharedService.customGetApi("Report/GetStockKapanReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+                 .subscribe((data: any) => {
+                  this.childColumnArray = [
+                    {"displayName":"Kapan Name","dataType":"text","fieldName":"name","minWidth":"15"},
+                    {"displayName":"Branch","dataType":"text","fieldName":"branchName","minWidth":"15"},          
+                    {"displayName":"Operation Type","dataType":"text","fieldName":"party","minWidth":"15"},
+                    {"displayName":"Inward Weight","dataType":"numeric","fieldName":"inwardNetWeight"},
+                    {"displayName":"Inward Rate","dataType":"numeric","fieldName":"inwardRate"},
+                    {"displayName":"Inward Amount","dataType":"numeric","fieldName":"inwardAmount"},
+                    {"displayName":"Outward Weight","dataType":"numeric","fieldName":"outwardNetWeight"},
+                    {"displayName":"Outward Rate","dataType":"numeric","fieldName":"outwardRate"},
+                    {"displayName":"Outward Amount","dataType":"numeric","fieldName":"outwardAmount"},
+                    {"displayName":"Closing Net Weight","dataType":"numeric","fieldName":"closingNetWeight"},
+                    {"displayName":"Closing Rate","dataType":"numeric","fieldName":"closingRate"},
+                    {"displayName":"Closing Amount","dataType":"numeric","fieldName":"closingAmount"},
+                  ];
+
+                  this.childReportList = data.data;
+                  this.childTotalColumn = this.childColumnArray.length;
+                  this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+
+                  console.log(data.data);
+                }, (ex: any) => {
+                  this.loading = false;
+                  this.showMessage('error',ex);
+              });
+            }
+            else if (itemData.name == "Number")
+            {
+              this.sharedService.customGetApi("Report/GetStockNumberReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+              .subscribe((data: any) => {
+                this.childColumnArray = [
+                  {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},          
+                  {"displayName":"Size","dataType":"text","fieldName":"size","minWidth":"10"},
+                  {"displayName":"Number","dataType":"text","fieldName":"number","minWidth":"10"},
+                  {"displayName":"Operation Type","dataType":"text","fieldName":"operationType","minWidth":"15"},
+                  {"displayName":"Kapan","dataType":"text","fieldName":"kapan","minWidth":"10"},
+                  {"displayName":"Category","dataType":"text","fieldName":"category","minWidth":"10"},
+                  {"displayName":"Inward Weight","dataType":"numeric","fieldName":"inwardNetWeight"},
+                  {"displayName":"Inward Rate","dataType":"numeric","fieldName":"inwardRate"},
+                  {"displayName":"Inward Amount","dataType":"numeric","fieldName":"inwardAmount"},
+                  {"displayName":"Outward Weight","dataType":"numeric","fieldName":"outwardNetWeight"},
+                  {"displayName":"Outward Rate","dataType":"numeric","fieldName":"outwardRate"},
+                  {"displayName":"Outward Amount","dataType":"numeric","fieldName":"outwardAmount"},
+                  {"displayName":"Closing Net Weight","dataType":"numeric","fieldName":"closingNetWeight"},
+                  {"displayName":"Closing Rate","dataType":"numeric","fieldName":"closingRate"},
+                  {"displayName":"Closing Amount","dataType":"numeric","fieldName":"closingAmount"},
+                ];
+
+               this.childReportList = data.data;
+               this.childTotalColumn = this.childColumnArray.length;
+              this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+
+               console.log(data.data);
+              }, (ex: any) => {
+               this.loading = false;
+               this.showMessage('error',ex);
+              });
+            }
+            break;
+        }
+
+    }
+  }
+
 
   exportExcel() {
     import('xlsx').then((xlsx) => {
