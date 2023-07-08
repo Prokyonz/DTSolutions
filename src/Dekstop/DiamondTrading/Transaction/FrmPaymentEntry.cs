@@ -27,6 +27,7 @@ namespace DiamondTrading.Transaction
         int _selectedSrNo = 0;
         string _selectedCompany = string.Empty;
         string _selectedFinancialYear = string.Empty;
+        int _ExpenseCrDrType = 0;
         List<ExpenseDetails> _editedExpenseDetails = new List<ExpenseDetails>();
         ContraEntryMaster _contraEntryMaster = new ContraEntryMaster();
 
@@ -60,7 +61,7 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        public FrmPaymentEntry(string PaymentType, string Company, string FinancialYear, int SrNo)
+        public FrmPaymentEntry(string PaymentType, string Company, string FinancialYear, int SrNo, int CrDrType)
         {
             InitializeComponent();
 
@@ -84,7 +85,11 @@ namespace DiamondTrading.Transaction
             else if (PaymentType == "Expense")
             {
                 _paymentType = 2;
-                SetThemeColors(Color.FromArgb(250, 243, 197));
+                _ExpenseCrDrType = CrDrType;
+                if (_ExpenseCrDrType == 0)
+                    SetThemeColors(Color.FromArgb(250, 243, 197));
+                else
+                    SetThemeColors(Color.FromArgb(215, 246, 214));
                 this.Text = "Expense";
             }
             else
@@ -427,6 +432,7 @@ namespace DiamondTrading.Transaction
                                         fromPartyId = lueLeadger.EditValue.ToString(),
                                         Amount = float.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString()),
                                         IsDelete = false,
+                                        CrDrType = _paymentType,
                                         Remarks = txtRemark.Text,
                                         CreatedBy = Common.LoginUserID,
                                         CreatedDate = DateTime.Now,
@@ -547,7 +553,7 @@ namespace DiamondTrading.Transaction
                         try
                         {
                             ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
-                            await expenseMasterRepository.DeleteExpenseAsync(_selectedSrNo.ToString(), true);
+                            await expenseMasterRepository.DeleteExpenseAsync(_editedExpenseDetails[0].Id, true);
 
                             for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                             {
@@ -560,6 +566,7 @@ namespace DiamondTrading.Transaction
                                     FinancialYearId = Common.LoginFinancialYear,
                                     PartyId = grvPaymentDetails.GetRowCellValue(i, colParty).ToString(),
                                     fromPartyId = lueLeadger.EditValue.ToString(),
+                                    CrDrType = _ExpenseCrDrType,
                                     Amount = float.Parse(grvPaymentDetails.GetRowCellValue(i, colAmount).ToString()),
                                     IsDelete = false,
                                     Remarks = txtRemark.Text,
