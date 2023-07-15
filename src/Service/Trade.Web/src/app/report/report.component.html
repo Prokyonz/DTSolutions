@@ -85,7 +85,7 @@
                     <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
                 </td> -->
                 <ng-container *ngIf="isChildReport">
-                    <button type="button" pButton icon="pi pi-plus" styleClass="p-button-success" (click)="showDetail(rowIndex,purchase)"></button>
+                    <button type="button" pButton icon="pi pi-angle-down" styleClass="p-button-success" style="margin:5px;" (click)="showDetail(rowIndex,purchase)"></button>
                 </ng-container>
                 <ng-container *ngFor="let item of columnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
