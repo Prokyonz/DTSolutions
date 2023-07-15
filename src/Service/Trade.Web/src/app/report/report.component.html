@@ -85,7 +85,7 @@
                     <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
                 </td> -->
                 <ng-container *ngIf="isChildReport">
-                    <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
+                    <button type="button" pButton icon="pi pi-plus" styleClass="p-button-success" (click)="showDetail(rowIndex,purchase)"></button>
                 </ng-container>
                 <ng-container *ngFor="let item of columnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
@@ -110,16 +110,16 @@
             <tr *ngIf="selectedRowIndex === rowIndex">
                 <td [attr.colspan]="childTotalColumn">
                     <div class="detail-table">
-                        <p-table  #dt2 [value]="childReportList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]"
-                        [globalFilterFields]="childFilterColumn">
-                        <ng-template pTemplate="caption">
+                        <p-table  #dt2 [value]="childReportList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                        <!-- [globalFilterFields]="childFilterColumn"> -->
+                        <!-- <ng-template pTemplate="caption">
                             <div class="flex">
                                 <span class="p-input-icon-left ml-auto">
                                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                                     <input pInputText type="text" (input)="dt2.filterGlobal(childReportSearch($event), 'contains')" placeholder="Search keyword" />
                                 </span>
                             </div>
-                        </ng-template>
+                        </ng-template> -->
                         <ng-template pTemplate="header">
                             <tr>
                                 <ng-container *ngFor="let item of childColumnArray">

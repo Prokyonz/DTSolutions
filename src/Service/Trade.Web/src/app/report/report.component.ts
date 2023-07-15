@@ -664,7 +664,8 @@ export class ReportComponent implements OnInit {
           case 17:
             if (itemData.name == "Kapan")
             {
-               this.sharedService.customGetApi("Report/GetStockKapanReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+                this.loading = true;
+                this.sharedService.customGetApi("Report/GetStockKapanReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
                  .subscribe((data: any) => {
                   this.childColumnArray = [
                     {"displayName":"Kapan Name","dataType":"text","fieldName":"name","minWidth":"15"},
@@ -683,8 +684,8 @@ export class ReportComponent implements OnInit {
 
                   this.childReportList = data.data;
                   this.childTotalColumn = this.childColumnArray.length;
-                  this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
-
+                  //this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+                  this.loading = false;
                   console.log(data.data);
                 }, (ex: any) => {
                   this.loading = false;
@@ -693,8 +694,9 @@ export class ReportComponent implements OnInit {
             }
             else if (itemData.name == "Number")
             {
-              this.sharedService.customGetApi("Report/GetStockNumberReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
-              .subscribe((data: any) => {
+                this.loading = true;
+                this.sharedService.customGetApi("Report/GetStockNumberReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
+                .subscribe((data: any) => {
                 this.childColumnArray = [
                   {"displayName":"Branch Name","dataType":"text","fieldName":"branchName","minWidth":"15"},          
                   {"displayName":"Size","dataType":"text","fieldName":"size","minWidth":"10"},
@@ -713,14 +715,14 @@ export class ReportComponent implements OnInit {
                   {"displayName":"Closing Amount","dataType":"numeric","fieldName":"closingAmount"},
                 ];
 
-               this.childReportList = data.data;
-               this.childTotalColumn = this.childColumnArray.length;
-              this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
-
-               console.log(data.data);
+                this.childReportList = data.data;
+                this.childTotalColumn = this.childColumnArray.length;
+                //this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+                this.loading = false;
+                console.log(data.data);
               }, (ex: any) => {
-               this.loading = false;
-               this.showMessage('error',ex);
+                this.loading = false;
+                this.showMessage('error',ex);
               });
             }
             break;
