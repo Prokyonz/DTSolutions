@@ -50,14 +50,14 @@ namespace EFCore.SQL.Repository
             return kapanMappingMaster;
         }
 
-        public async Task<bool> DeleteKapanMappingAsync(string kapanMappingId)
+        public async Task<bool> DeleteKapanMappingAsync(string kapanMappingId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Id == kapanMappingId).FirstOrDefaultAsync();
-                var checkForTransferRecord = await _databaseContext.KapanMappingMaster.Where(w => w.SlipNo == getKapanRecord.SlipNo && string.IsNullOrEmpty(w.TransferEntryId) == false).ToListAsync();
+                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Sr == Convert.ToInt32(kapanMappingId) && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
+                //var checkForTransferRecord = await _databaseContext.KapanMappingMaster.Where(w => w.SlipNo == getKapanRecord.SlipNo && string.IsNullOrEmpty(w.TransferEntryId) == false).ToListAsync();
 
-                if (getKapanRecord != null && checkForTransferRecord.Count() == 0)
+                if (getKapanRecord != null)
                 {
                     _databaseContext.KapanMappingMaster.Remove(getKapanRecord);
 

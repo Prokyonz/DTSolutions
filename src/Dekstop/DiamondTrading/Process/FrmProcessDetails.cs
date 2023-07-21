@@ -512,12 +512,14 @@ namespace DiamondTrading
                     if (result)
                     {
                         MessageBox.Show("You can't delete this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Cursor = Cursors.Default;
                         return;
                     }
 
-                    result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(KapanMapId.ToString());
+                    result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedSrNo, Common.LoginFinancialYear);
                     this.Cursor = Cursors.Default;
                     MessageBox.Show("Deleted Successfully.");
+                    await LoadGridData(true);
                 }
 
                 //string SelectedGuid;
