@@ -179,6 +179,7 @@ namespace DiamondTrading
                         var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
                         grdProcessMaster.DataSource = kapanData.OrderBy(o => o.SlipNo);
                         accordionEditBtn.Visible = true;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabAssortSend)
@@ -188,6 +189,8 @@ namespace DiamondTrading
                         _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                         var salesData = await _accountToAssortMasterRepository.GetAccountToAssortSendReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "AssortSend" ? 0 : 1);
                         grdAssortSendReceiveMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabAssortReceive)
@@ -197,6 +200,8 @@ namespace DiamondTrading
                         _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                         var assortReceiveData = await _accountToAssortMasterRepository.GetAccountToAssortReceiveReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
                         gridControlAssortReceiveMaster.DataSource = assortReceiveData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabBoilSendReceive)
@@ -206,6 +211,8 @@ namespace DiamondTrading
                         _boilMasterRepository = new BoilMasterRepository();
                         var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
                         gridControlBoilSendReceiveMaster.DataSource = data;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
@@ -220,6 +227,8 @@ namespace DiamondTrading
                             gridColumn80.Visible = false;
                         else
                             gridColumn80.Visible = true;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
@@ -234,6 +243,8 @@ namespace DiamondTrading
                             gridColumn108.Visible = false;
                         else
                             gridColumn108.Visible = true;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
@@ -254,6 +265,8 @@ namespace DiamondTrading
                             gridColumn135.Visible = true;
                             gridColumn137.Visible = true;
                         }
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtraTabStockReport)
@@ -327,6 +340,9 @@ namespace DiamondTrading
 
                         gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
                     }
+
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                 }
                 else if (xtabManager.SelectedTabPage == xtraOpeningStock)
                 {
@@ -335,6 +351,9 @@ namespace DiamondTrading
                         _openingStockMasterRepositody = new OpeningStockMasterRepositody();
                         var Data = await _openingStockMasterRepositody.GetAllOpeningStockAsync(Common.LoginCompany, Common.LoginFinancialYear);
                         gridControlOpeningStock.DataSource = Data.OrderBy(o => o.SrNo);
+
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
                 }
             }
@@ -466,25 +485,39 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    string message = "";
-                    string SelectedGuid = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
+                    //string message = "";
+                    string KapanMapId = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
 
-                    if (SelectedGuid != null)
+                    //if (SelectedGuid != null)
+                    //{
+                    //    var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
+
+                    //    if (result)
+                    //    {
+                    //        await LoadGridData(true);
+                    //        message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                    //    }
+                    //    else
+                    //    {
+                    //        message = "You can not delete this record because some quantity is transfered.";
+                    //    }
+                    //}
+
+                    string SelectedSrNo = grvKapanMapping.GetFocusedRowCellValue("Sr").ToString();
+                    string PurchaseDetailsId = grvKapanMapping.GetFocusedRowCellValue("PurchaseDetailsId").ToString();
+                    string SlipNo = grvKapanMapping.GetFocusedRowCellValue("SlipNo").ToString();
+                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                    var result = await _accountToAssortMasterRepository.CheckIsKapanMapEntryProcessed(Common.LoginCompany, Common.LoginFinancialYear, PurchaseDetailsId, SlipNo);
+
+                    if (result)
                     {
-                        var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
-
-                        if (result)
-                        {
-                            await LoadGridData(true);
-                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
-                        }
-                        else
-                        {
-                            message = "You can not delete this record because some quantity is transfered.";
-                        }
+                        MessageBox.Show("You can't delete this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
+
+                    result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(KapanMapId.ToString());
                     this.Cursor = Cursors.Default;
-                    MessageBox.Show(message);
+                    MessageBox.Show("Deleted Successfully.");
                 }
 
                 //string SelectedGuid;

@@ -383,7 +383,6 @@ namespace DiamondTrading
             this.accordionEditBtn.Name = "accordionEditBtn";
             this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionEditBtn.Text = "Edit";
-            this.accordionEditBtn.Visible = false;
             this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
             // 
             // accordionDeleteBtn
@@ -392,7 +391,6 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
-            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
