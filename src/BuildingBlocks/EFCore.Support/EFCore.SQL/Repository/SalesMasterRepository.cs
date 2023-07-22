@@ -37,7 +37,7 @@ namespace EFCore.SQL.Repository
                     return salesMaster;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -341,7 +341,7 @@ namespace EFCore.SQL.Repository
                         objsalesDetailsSummary.NumberSizeId = salesDetailSummary.NumberSizeId;
                         objsalesDetailsSummary.Weight = salesDetailSummary.Weight;
                         objsalesDetailsSummary.Category = salesDetailSummary.Category;
-                        
+
                         objsalesDetailsSummary.CreatedDate = salesDetailSummary.CreatedDate;
                         objsalesDetailsSummary.CreatedBy = salesDetailSummary.CreatedBy;
                         objsalesDetailsSummary.UpdatedDate = salesDetailSummary.UpdatedDate;
@@ -416,6 +416,16 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var data = _databaseContext.SPSalesChildReport.FromSqlRaw($"GetChildSalesReport '" + salesId + "'").ToList();
+
+                return data;
+            }
+        }
+
+        public async Task<List<SalesChildSPModel>> GetSalesChildAsync(string salesId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var data = await _databaseContext.SPSalesChildReport.FromSqlRaw($"GetChildSalesReport '" + salesId + "'").ToListAsync();
 
                 return data;
             }

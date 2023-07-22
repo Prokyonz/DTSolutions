@@ -2,6 +2,7 @@
 using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Entities;
 using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,8 @@ namespace DiamondTrade.API.Controllers
             ISalaryMaster salaryMaster,
             IAccountToAssortMaster accountToAssortMaster,
             IRejectionInOutMaster rejectionInOutMaster,
-            IKapanMaster kapanMaster)
+            IKapanMaster kapanMaster,
+            ILoanMaster loanMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -43,6 +45,7 @@ namespace DiamondTrade.API.Controllers
             _contraEntryMaster = contraEntryMaster;
             _expenseMaster = expenseMaster;
             _partyMaster = partyMaster;
+            _loanMaster = loanMaster;
             _salaryMaster = salaryMaster;
             _accountToAssortMaster = accountToAssortMaster;
             _rejectionInOutMaster = rejectionInOutMaster;
@@ -71,6 +74,27 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+
+        [Route("GetPurcahseDetailReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetPurchaseDetailReport(string purchaseId)
+        {
+            try
+            {
+                var result = _purchaseMaster.GetPurchaseDetailsAsync(purchaseId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
         //[Route("ExportPDFPurchaseReport")]
         //[HttpGet]
         //public async Task<IActionResult> ExportPDFPurchaseReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
@@ -206,6 +230,28 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("GetSaleDetailReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetSaleDetailReport(string salesId)
+        {
+            try
+            {
+                var result = await _salesMaster.GetSalesChildAsync(salesId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
 
         [Route("GetSaleTotal")]
         [HttpGet]

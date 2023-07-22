@@ -151,8 +151,8 @@ namespace DiamondTrade.API.Controllers
                     x.NetCarat,
                     x.Note,
                     x.UserId,
-                    x.UserName,
-                    x.SizeId // Group by SizeId as well
+                    x.UserName
+                    //x.SizeId // Group by SizeId as well
                 }).Select(x => new CalculatorResponseModel()
                 {
                     Date = x.Key.Date.Date,

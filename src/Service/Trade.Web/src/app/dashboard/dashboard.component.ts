@@ -28,17 +28,20 @@ export class DashboardComponent implements OnInit {
     private datePipe: DatePipe,  @Inject(LOCALE_ID) public locale: string){}
 
   ngOnInit(): void {
+    debugger;
       this.getCompanyData();
       let currentDate = new Date(); // Get the current date
       currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
-      this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
-      this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      //this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
+      //this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+      this.firstDate = this.datePipe.transform(this.RememberCompany.financialyear.startDate, 'yyyy-MM-dd');
+      this.endDate = this.datePipe.transform(this.RememberCompany.financialyear.endDate, 'yyyy-MM-dd');
       this.loadDashboard();
   }
 
   async loadDashboard() {
     try {
-      this.sharedService.customGetApi("Report/GetPurchaseTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
+      this.sharedService.customGetApi("Report/GetPurchaseTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.RememberCompany.financialyear.startDate + "&ToDate=" + this.RememberCompany.financialyear.endDate + "")
       .subscribe((data: any) => {
           this.purchaseData = formatNumber(data.data.totalAmount, this.locale, '7.1-5')
           }, (ex: any) => {

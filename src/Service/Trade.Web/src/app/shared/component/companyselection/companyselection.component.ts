@@ -15,6 +15,8 @@ interface Branch{
 interface FinancialYear{
   name: string;
   id: string;
+  startDate: Date;
+  endDate: Date;
 }
 
 export class RememberCompany{

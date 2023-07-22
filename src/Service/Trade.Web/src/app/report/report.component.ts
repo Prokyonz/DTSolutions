@@ -54,23 +54,10 @@ export class ReportComponent implements OnInit {
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
     private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
     this.reportIndex = +activateRoute.snapshot.params['id'];
-
-    for (let i = 1; i <= 50; i++) {
-      const dataObject = {
-        column1: `Value ${i}`,
-        column2: `<strong>Value ${i + 1}</strong>`,
-        column3: `Value ${i + 2}`,
-        column4: `Value ${i + 2}`,
-        column5: `Value ${i + 2}`,
-        column6: `Value ${i + 2}`,
-        column7: `Value ${i + 2}`,
-      };
-      this.dataChild.push(dataObject);
-    }
-
     switch (this.reportIndex) {
       case 1:
         this.PageTitle = "Purchase Report";
+        this.isChildReport = true;
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_report")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
@@ -102,7 +89,8 @@ export class ReportComponent implements OnInit {
           });
         break;
       case 2:
-        this.PageTitle = "Sales Report"
+        this.PageTitle = "Sales Report";
+        this.isChildReport = true;
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=sales_report")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
@@ -131,7 +119,7 @@ export class ReportComponent implements OnInit {
           });
         break;
       case 3:
-        this.PageTitle = "Payment Report"
+        this.PageTitle = "Payment Report";
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_report")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
@@ -150,7 +138,7 @@ export class ReportComponent implements OnInit {
           });
         break;
       case 4:
-        this.PageTitle = "Receipt Report"
+        this.PageTitle = "Receipt Report";
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=receipt_report")
           .subscribe((data: any) => {
             this.columnArray = [
@@ -168,7 +156,8 @@ export class ReportComponent implements OnInit {
           });
         break;
       case 5:
-        this.PageTitle = "Contra Payment Report"
+        this.PageTitle = "Contra Payment Report";
+        this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
@@ -180,7 +169,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 6:
-        this.PageTitle = "Expense Report"
+        this.PageTitle = "Expense Report";
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
@@ -190,7 +179,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 7:
-        this.PageTitle = "Loan Report"
+        this.PageTitle = "Loan Report";
         this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
@@ -207,7 +196,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 8:
-        this.PageTitle = "Mixed Report"
+        this.PageTitle = "Mixed Report";
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
@@ -218,7 +207,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 9:
-        this.PageTitle = "PF Report"
+        this.PageTitle = "PF Report";
         this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Type", "dataType": "text", "fieldName": "type" },
@@ -234,7 +223,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 10:
-        this.PageTitle = "Ledger Report"
+        this.PageTitle = "Ledger Report";
         this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
@@ -244,7 +233,8 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 11:
-        this.PageTitle = "Payable Report"
+        this.PageTitle = "Payable Report";
+        this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
@@ -255,7 +245,8 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 12:
-        this.PageTitle = "Receivable Report"
+        this.PageTitle = "Receivable Report";
+        this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
@@ -266,7 +257,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 13:
-        this.PageTitle = "Cash Bank Report"
+        this.PageTitle = "Cash Bank Report";
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "From Party", "dataType": "text", "fieldName": "fromParty", "minWidth": "15" },
@@ -277,7 +268,7 @@ export class ReportComponent implements OnInit {
         ];
         break;
       case 14:
-        this.PageTitle = "Salary Report"
+        this.PageTitle = "Salary Report";
         this.isFilerRequired = false;
         this.columnArray = [
           { "displayName": "Sr No", "dataType": "numeric", "fieldName": "srNo" },
@@ -381,12 +372,15 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
+    debugger;
     this.loading = false;
     this.getCompanyData();
     let currentDate = new Date(); // Get the current date
     currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
     this.firstDate = this.datePipe.transform(currentDate, 'yyyy-MM-dd');
     this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+    this.firstDate = this.datePipe.transform(this.RememberCompany.financialyear.startDate, 'yyyy-MM-dd');
+    this.endDate = this.datePipe.transform(this.RememberCompany.financialyear.endDate, 'yyyy-MM-dd');
     this.purchseReport(this.firstDate, this.endDate);
   }
 
@@ -408,6 +402,11 @@ export class ReportComponent implements OnInit {
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
     this.firstDate = StartDate;
     this.endDate = EndDate;
+    this.childColumnArray = [];
+    this.childReportList = [];
+    this.childTotalColumn = 0;
+    this.childFilterColumn = [];
+    this.selectedRowIndex = -1;
     this.purchseReport(StartDate, EndDate)
   }
 
@@ -416,6 +415,7 @@ export class ReportComponent implements OnInit {
       this.loading = true;
       switch (this.reportIndex) {
         case 1:
+
           this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
               this.PurchaseReportList = data.data;
@@ -660,14 +660,73 @@ export class ReportComponent implements OnInit {
     } else {
       this.selectedRowIndex = rowIndex; // Show the detail table for the selected row
       switch (this.reportIndex) {
+        case 1:
+          this.loading = true;
+          this.sharedService.customGetApi("Report/GetPurcahseDetailReport?purchaseId=" + itemData.purId)
+            .subscribe((data: any) => {
+              this.childColumnArray = [
+                { "displayName": "Shape Name", "dataType": "text", "fieldName": "shapeName", "minWidth": "15" },
+                { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName", "minWidth": "15" },
+                { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "15" },
+                { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight" },
+                { "displayName": "Tip Weight", "dataType": "numeric", "fieldName": "tipWeight" },
+                { "displayName": "CVD Weight", "dataType": "numeric", "fieldName": "cvdWeight" },
+                { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
+                { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight" },
+                { "displayName": "Buying Rate", "dataType": "numeric", "fieldName": "buyingRate" },
+                { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+              ];
+              this.childReportList = data.data;
+              if (this.columnArray.length > 0)
+                this.childTotalColumn = this.columnArray.length
+              else
+                this.childTotalColumn = this.childColumnArray.length;
+              this.loading = false;
+              console.log(data.data);
+            }, (ex: any) => {
+              this.loading = false;
+              this.showMessage('error', ex);
+            });
+          break;
+        case 2:
+          this.loading = true;
+          this.sharedService.customGetApi("Report/GetSaleDetailReport?salesId=" + itemData.id)
+            .subscribe((data: any) => {
+              this.childColumnArray = [
+                { "displayName": "Shape Name", "dataType": "text", "fieldName": "shapeName", "minWidth": "15" },
+                { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName", "minWidth": "15" },
+                { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "15" },
+                { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
+                { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
+                { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
+                { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight" },
+                { "displayName": "Tip Weight", "dataType": "numeric", "fieldName": "tipWeight" },
+                { "displayName": "CVD Weight", "dataType": "numeric", "fieldName": "cvdWeight" },
+                { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
+                { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight" },
+                { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
+                { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+              ];
+              this.childReportList = data.data;
+              if (this.columnArray.length > 0)
+                this.childTotalColumn = this.columnArray.length
+              else
+                this.childTotalColumn = this.childColumnArray.length;
+              this.loading = false;
+              console.log(data.data);
+            }, (ex: any) => {
+              this.loading = false;
+              this.showMessage('error', ex);
+            });
+          break;
         case 17:
           if (itemData.name == "Kapan") {
             this.loading = true;
             this.sharedService.customGetApi("Report/GetStockKapanReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
               .subscribe((data: any) => {
                 this.childColumnArray = [
-                  { "displayName": "Kapan Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
                   { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+                  { "displayName": "Kapan Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
                   { "displayName": "Operation Type", "dataType": "text", "fieldName": "party", "minWidth": "15" },
                   { "displayName": "Inward Weight", "dataType": "numeric", "fieldName": "inwardNetWeight" },
                   { "displayName": "Inward Rate", "dataType": "numeric", "fieldName": "inwardRate" },
@@ -696,10 +755,10 @@ export class ReportComponent implements OnInit {
               .subscribe((data: any) => {
                 this.childColumnArray = [
                   { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-                  { "displayName": "Size", "dataType": "text", "fieldName": "size", "minWidth": "10" },
-                  { "displayName": "Number", "dataType": "text", "fieldName": "number", "minWidth": "10" },
-                  { "displayName": "Operation Type", "dataType": "text", "fieldName": "operationType", "minWidth": "15" },
                   { "displayName": "Kapan", "dataType": "text", "fieldName": "kapan", "minWidth": "10" },
+                  { "displayName": "Number", "dataType": "text", "fieldName": "number", "minWidth": "10" },
+                  { "displayName": "Size", "dataType": "text", "fieldName": "size", "minWidth": "10" },
+                  { "displayName": "Operation Type", "dataType": "text", "fieldName": "operationType", "minWidth": "15" },
                   { "displayName": "Category", "dataType": "text", "fieldName": "category", "minWidth": "10" },
                   { "displayName": "Inward Weight", "dataType": "numeric", "fieldName": "inwardNetWeight" },
                   { "displayName": "Inward Rate", "dataType": "numeric", "fieldName": "inwardRate" },
@@ -713,7 +772,10 @@ export class ReportComponent implements OnInit {
                 ];
 
                 this.childReportList = data.data;
-                this.childTotalColumn = this.childColumnArray.length;
+                if (this.columnArray.length > 0)
+                  this.childTotalColumn = this.columnArray.length
+                else
+                  this.childTotalColumn = this.childColumnArray.length;
                 //this.childFilterColumn = this.childColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
                 this.loading = false;
                 console.log(data.data);
@@ -744,9 +806,11 @@ export class ReportComponent implements OnInit {
                 { "displayName": "Adjust Amount", "dataType": "numeric", "fieldName": "adjustAmount" }
               ];
               this.childReportList = data.data;
-              this.childTotalColumn = this.childColumnArray.length;
+              if (this.columnArray.length > 0)
+                this.childTotalColumn = this.columnArray.length
+              else
+                this.childTotalColumn = this.childColumnArray.length;
               this.loading = false;
-              console.log(data.data);
             }, (ex: any) => {
               this.loading = false;
               this.showMessage('error', ex);
