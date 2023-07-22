@@ -126,7 +126,8 @@ namespace DiamondTrading
         FinancialYearNotSelected,
         #endregion
         AppMessageIDNotFound,
-        PasswordNotMatched
+        PasswordNotMatched,
+        ChildRecordExist
     }
 
     internal class AppMessages
@@ -444,6 +445,9 @@ namespace DiamondTrading
                 #region "Others"
                 case AppMessageID.AppMessageIDNotFound:
                     ReturnMsg = "Message ID Not Found";
+                    break;
+                case AppMessageID.ChildRecordExist:
+                    ReturnMsg = "Child record exist please delete that first and then delete this master record.";
                     break;
                 default:
                     ReturnMsg = string.Empty;
