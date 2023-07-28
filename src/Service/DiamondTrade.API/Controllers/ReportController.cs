@@ -856,5 +856,26 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("GetAllKapan")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetAllKapan(string companyId)
+        {
+            try
+            {
+                var result = await _kapanMaster.GetAllKapanAsync(companyId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
