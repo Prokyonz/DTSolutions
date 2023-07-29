@@ -27,6 +27,7 @@ namespace DiamondTrade.API.Controllers
         private readonly IAccountToAssortMaster _accountToAssortMaster;
         private readonly IRejectionInOutMaster _rejectionInOutMaster;
         private readonly IKapanMaster _kapanMaster;
+        private readonly IOpeningStockMaster _openingStockMaster;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
@@ -37,7 +38,8 @@ namespace DiamondTrade.API.Controllers
             IAccountToAssortMaster accountToAssortMaster,
             IRejectionInOutMaster rejectionInOutMaster,
             IKapanMaster kapanMaster,
-            ILoanMaster loanMaster)
+            ILoanMaster loanMaster,
+            IOpeningStockMaster openingStockMaster)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -50,6 +52,7 @@ namespace DiamondTrade.API.Controllers
             _accountToAssortMaster = accountToAssortMaster;
             _rejectionInOutMaster = rejectionInOutMaster;
             _kapanMaster = kapanMaster;
+            _openingStockMaster = openingStockMaster;
         }
 
         [Route("GetPurchaseReport")]
@@ -864,6 +867,27 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _kapanMaster.GetAllKapanAsync(companyId);
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetOpeningStockReport")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetOpeningStockReport(string companyId, string financialYearId)
+        {
+            try
+            {
+                var result = await _openingStockMaster.GetAllOpeningStockAsync(companyId, financialYearId);
 
                 return new Response<dynamic>
                 {
