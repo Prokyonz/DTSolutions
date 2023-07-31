@@ -236,7 +236,7 @@ export class HeaderComponent implements OnInit {
                   this.masterReportItems.push({
                       label: 'Opening',
                       icon: 'pi pi-fw pi-folder-open',
-                      routerLink: "",
+                      routerLink: "/report/18",
                       expanded: false,
                       command: () => {
                         this.sidebarVisible = false;
