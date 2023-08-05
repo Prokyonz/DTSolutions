@@ -98,12 +98,16 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtabPurchaseSlipPrint;
                     xtabPurchaseSlipPrint.Text = "Purchase Slip Details";
                     this.Text = "Purchase Slips Details";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "SalesSlipPrint":
                     xtabPurchaseSlipPrint.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchaseSlipPrint;
                     xtabPurchaseSlipPrint.Text = "Sales Slip Details";
                     this.Text = "Sales Slips Details";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "JangadSend":
                     xtabJangadSendReceive.PageVisible = true;
@@ -122,48 +126,64 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtraTabPFReport;
                     xtraTabPFReport.Text = "PF Report";
                     this.Text = "PF Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "LedgerReport":
                     xtraTabLedgerBalance.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabLedgerBalance;
                     xtraTabLedgerBalance.Text = "Ledger Report";
                     this.Text = "Ledger Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "WeeklyPurchaseReport":
                     xtabWeeklyPurchaseReport.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabWeeklyPurchaseReport;
                     xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
                     this.Text = "Weekly Purchase Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "Payable":
                     xtraTabPayableReceivable.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabPayableReceivable;
                     xtraTabPayableReceivable.Text = "Payable Report";
                     this.Text = "Payable Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "Receivable":
                     xtraTabPayableReceivable.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabPayableReceivable;
                     xtraTabPayableReceivable.Text = "Receivable Report";
                     this.Text = "Receivable Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "BalanceSheet":
                     xtraTabBalanceSheet.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabBalanceSheet;
                     xtraTabBalanceSheet.Text = "Balance Sheet";
                     this.Text = "Balance Sheet";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "ProfitLoss":
                     xtraTabProfitLoss.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabProfitLoss;
                     xtraTabProfitLoss.Text = "Profit & Loss";
                     this.Text = "Balance Sheet";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "CashBank":
                     xtabCashBankReport.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabCashBankReport;
                     xtabCashBankReport.Text = "Cash & Bank Report";
                     this.Text = "Cash & Bank Report";
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
                     break;
                 case "SalaryReport":
                     xtabSalaryReport.PageVisible = true;
@@ -1048,6 +1068,17 @@ namespace DiamondTrading
                     string rejectionId = gridView13.GetFocusedRowCellValue(gridColumn115).ToString();
 
                     await _rejectionInOutMasterRepository.DeleteRejectionAsync(rejectionId);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "Deleted Successfully");
+                }
+            }
+            else if(xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            {
+                if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    string jangadId = grvJangadSendReceive.GetFocusedRowCellValue(gridColumn1).ToString();
+
+                    await _JangadMasterRepository.DeleteJangadAsync(jangadId);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "Deleted Successfully");
                 }
