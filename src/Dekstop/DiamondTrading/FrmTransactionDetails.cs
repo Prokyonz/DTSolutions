@@ -1041,6 +1041,17 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
+            else if(xtabManager.SelectedTabPage == xtraTabRejectionReport)
+            {
+                if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {                    
+                    string rejectionId = gridView13.GetFocusedRowCellValue(gridColumn115).ToString();
+
+                    await _rejectionInOutMasterRepository.DeleteRejectionAsync(rejectionId);
+
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "Deleted Successfully");
+                }
+            }
             await LoadGridData(true);
         }
 
