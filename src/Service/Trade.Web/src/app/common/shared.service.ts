@@ -24,6 +24,16 @@ export class SharedService {
         return this.httpClient.post<any>(apiUrl + api, data).pipe(map(t => t),catchError(err => throwError(err)));
     }
 
+    customDownloadPostApi(api: string, data: any): Observable<Blob> {
+        return this.httpClient.post(apiUrl + api, data, { responseType: 'blob' })
+          .pipe(
+            catchError(err => {
+              // Handle errors here (e.g., log, show error message)
+              return throwError(err);
+            })
+          );
+      }
+
     JsonConvert<T>(jsonString: string): T {
         const obj = JSON.parse(jsonString);
         return obj as T;

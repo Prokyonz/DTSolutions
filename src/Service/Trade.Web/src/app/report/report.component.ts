@@ -823,107 +823,201 @@ export class ReportComponent implements OnInit {
 
 
   exportExcel() {
-    import('xlsx').then((xlsx) => {
-      const worksheet = xlsx.utils.json_to_sheet(this.PurchaseReportList);
-      const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
-      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-      this.saveAsExcelFile(excelBuffer, 'report');
-    });
-  }
+    // import('xlsx').then((xlsx) => {
+    //   const worksheet = xlsx.utils.json_to_sheet(this.PurchaseReportList);
+    //   const workbook = { Sheets: { data: worksheet }, SheetNames: ['data'] };
+    //   const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+    //   this.saveAsExcelFile(excelBuffer, 'report');
+    // });
 
-  saveAsExcelFile(buffer: any, fileName: string): void {
-    let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
-    let EXCEL_EXTENSION = '.xlsx';
-    const data: Blob = new Blob([buffer], {
-      type: EXCEL_TYPE
+    let exportColumns: any[];
+    let colArray: any[] = [];
+    switch (this.reportIndex) {
+      case 1:
+        this.loading = true;
+        colArray = [
+          { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
+          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
+          { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
+          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
+          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
+          { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
+          { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
+          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+          { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
+          { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
+          { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
+          { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
+        ];
+        break;
+      case 2:
+        colArray = [
+          { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
+          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
+          { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
+          { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
+          { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
+          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+          { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
+          { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
+          { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
+          { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
+          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
+        ];
+        break;
+      default:
+        colArray = this.columnArray;
+        break;
+      }
+    exportColumns = colArray.map((col) => (col.fieldName));
+    const formatDate = (dateString: string) => {
+      const date = new Date(dateString);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${month}-${day}-${year}`;
+    };
+
+    let extractedData: any[] = this.PurchaseReportList.map((item) => {
+      debugger;
+      const formattedItem = { ...item };
+      for (const key in formattedItem) {
+        if (formattedItem.hasOwnProperty(key) && this.isISODateString(formattedItem[key])) {
+          formattedItem[key] = formatDate(formattedItem[key]);
+        }
+      }
+      return formattedItem;
     });
-    FileSaver.saveAs(data, fileName + '_export_' + new Date().getTime() + EXCEL_EXTENSION);
+
+    extractedData = extractedData.map((item) =>
+      exportColumns.map((column) => item[column])
+    );
+
+    const data = {
+      "columnsHeaders": colArray.map((col) => (col.displayName)),
+      "rowData": extractedData
+    };
+    this.loading = true;
+    this.sharedService.customDownloadPostApi("Report/downloadexcel", data)
+      .subscribe((data: any) => {
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'exportexceldata.xlsx';
+        link.click();
+        this.loading = false;
+    }, (ex: any) => {
+      this.loading = false;
+      this.showMessage('error', ex);
+    });
+
   }
 
   exportPdf() {
     let exportColumns: any[];
-    this.columnArray = [
-      { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
-      { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
-      { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
-      { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
-      { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
-      { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
-      { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
-      { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
-      { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-      { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
-      { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
-      { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
-      { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
-      { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
-      { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
-    ]
-    exportColumns = this.columnArray.map((col) => (col.fieldName));
-    import('jspdf').then((jsPDF) => {
-      import('jspdf-autotable').then((x) => {
-
-        const doc = new jsPDF.default('l', 'px', 'a4');
-
-        const styles = {
-          fontSize: 8, // Set font size to 5
-        };
-
-        const formatDate = (dateString: string) => {
-          const date = new Date(dateString);
-          const month = (date.getMonth() + 1).toString().padStart(2, '0');
-          const day = date.getDate().toString().padStart(2, '0');
-          const year = date.getFullYear();
-          return `${month}-${day}-${year}`;
-        };
-
-        let extractedData: any[] = this.PurchaseReportList.map((item) => {
-          const formattedItem = { ...item };
-          formattedItem['date'] = formatDate(item['date']); // Assuming 'Date' is the key for the date field
-          formattedItem['dueDate'] = formatDate(item['dueDate']);
-          return formattedItem;
-        });
-
-        extractedData = extractedData.map((item) =>
-          exportColumns.map((column) => item[column])
-        );
-
-        debugger;
-
-        const data = {
-          "columnsHeaders": this.columnArray.map((col) => (col.displayName)),
-          "rowData": extractedData
-        };
+    let colArray: any[] = [];
+    switch (this.reportIndex) {
+      case 1:
         this.loading = true;
-        this.sharedService.customPostApi("Report/downloadpdf", data)
-          .subscribe((data: any) => {
-            const blob = new Blob([data], { type: 'application/pdf' });
+        colArray = [
+          { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
+          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
+          { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
+          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
+          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
+          { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
+          { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
+          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+          { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
+          { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
+          { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
+          { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
+        ];
+        break;
+      case 2:
+        colArray = [
+          { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
+          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
+          { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
+          { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
+          { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
+          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+          { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
+          { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
+          { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
+          { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
+          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
+        ];
+        break;
+      default:
+        colArray = this.columnArray;
+        break;
+      }
+    exportColumns = colArray.map((col) => (col.fieldName));
+    const formatDate = (dateString: string) => {
+      const date = new Date(dateString);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${month}-${day}-${year}`;
+    };
 
-            const blobUrl = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = blobUrl;
-            link.download = 'table.pdf';
-            link.click();
-        }, (ex: any) => {
-          this.loading = false;
-          this.showMessage('error', ex);
-        });
-        // extractedData = extractedData.map((item) => {
-        //   const formattedItem = { ...item };
-        //   formattedItem['date'] = formatDate(item['date']); // Assuming 'Date' is the key for the date field
-        //   formattedItem['dueDate'] = formatDate(item['dueDate']); 
-        //   return formattedItem;
-        // });
-
-
-        // (doc as any).autoTable({
-        //   head: [this.columnArray.map((col) => (col.displayName))],
-        //   body: extractedData,
-        //   styles: styles,
-        // });
-        // doc.save('reports.pdf');
-      });
+    let extractedData: any[] = this.PurchaseReportList.map((item) => {
+      debugger;
+      const formattedItem = { ...item };
+      for (const key in formattedItem) {
+        if (formattedItem.hasOwnProperty(key) && this.isISODateString(formattedItem[key])) {
+          formattedItem[key] = formatDate(formattedItem[key]);
+        }
+      }
+      return formattedItem;
     });
+
+    extractedData = extractedData.map((item) =>
+      exportColumns.map((column) => item[column])
+    );
+
+    const data = {
+      "columnsHeaders": colArray.map((col) => (col.displayName)),
+      "rowData": extractedData
+    };
+    this.loading = true;
+    this.sharedService.customDownloadPostApi("Report/downloadpdf", data)
+      .subscribe((data: any) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        const blobUrl = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = blobUrl;
+        link.download = 'exportpdfdata.pdf';
+        link.click();
+        this.loading = false;
+    }, (ex: any) => {
+      this.loading = false;
+      this.showMessage('error', ex);
+    });
+  }
+
+  isISODateString(value: any) {
+    return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value);
   }
 
   showMessage(type: string, message: string) {

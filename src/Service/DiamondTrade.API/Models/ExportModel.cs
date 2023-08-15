@@ -8,6 +8,6 @@ namespace DiamondTrade.API.Models
     public class ExportModel
     {
         public List<string> columnsHeaders { get; set; }
-        public List<dynamic> rowData { get; set; }
+        public List<List<dynamic>> rowData { get; set; }
     }
 }

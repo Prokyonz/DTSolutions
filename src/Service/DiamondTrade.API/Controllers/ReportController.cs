@@ -2,8 +2,11 @@
 using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
+using iText.Kernel.Geom;
+using iText.Kernel.Pdf;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using iText.Layout.Renderer;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
 using Repository.Entities.Model;
@@ -908,51 +911,46 @@ namespace DiamondTrade.API.Controllers
         }
 
         [HttpPost("downloadpdf")]
-        public async Task<IActionResult> DownloadPDF([FromBody] ExportModel exportModel)
+        public IActionResult DownloadPDF([FromBody] ExportModel exportModel)
         {
             using (MemoryStream memoryStream = new MemoryStream())
             {
-                iTextSharp.text.Document pdfDocument = new iTextSharp.text.Document();
-                PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDocument, memoryStream);
+                PdfWriter pdfWriter = new PdfWriter(memoryStream);
+                PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                pdfDocument.Open();
+                PageSize customPageSize = PageSize.A4.Rotate(); // Landscape mode
+                iText.Layout.Document document = new iText.Layout.Document(pdfDocument, customPageSize);
 
-                // Create a table with the number of columns
-                PdfPTable table = new PdfPTable(exportModel.columnsHeaders.Count);
+                document.SetMargins(0, 0, 0, 0);
 
-                // Set the column widths (you can adjust them as needed)
-                float[] columnWidths = new float[exportModel.columnsHeaders.Count];
-                for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
+                Table table = new Table(exportModel.columnsHeaders.Count);
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                float maxFontSize = CalculateMaxFontSize(exportModel.columnsHeaders.Count);
+
+                foreach (var header in exportModel.columnsHeaders)
                 {
-                    columnWidths[i] = 1f; // Equal width for each column
-                }
-                table.SetWidths(columnWidths);
-
-                // Add column headers
-                foreach (var columnHeader in exportModel.columnsHeaders)
-                {
-                    PdfPCell cell = new PdfPCell(new Phrase(columnHeader));
-                    table.AddCell(cell);
+                    table.AddHeaderCell(new Cell().Add(new Paragraph(header))
+                        .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
+                        .SetTextAlignment(TextAlignment.CENTER)
+                        .SetFontSize(maxFontSize));
                 }
 
-                int columnCount = exportModel.columnsHeaders.Count;
-                int rowIndex = 0;
-
-                while (rowIndex < exportModel.rowData.Count)
+                foreach (var row in exportModel.rowData)
                 {
-                    var rowValues = exportModel.rowData.Skip(rowIndex * columnCount).Take(columnCount);
-
-                    foreach (var cellValue in rowValues)
+                    foreach (var cellData in row)
                     {
-                        PdfPCell cell = new PdfPCell(new Phrase(cellValue?.ToString() ?? ""));
-                        table.AddCell(cell);
+                        table.AddCell(new Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetPadding(5)
+                            .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                            .SetFontSize(maxFontSize));
                     }
-
-                    rowIndex++;
                 }
 
+                document.Add(table);
 
-                pdfDocument.Add(table);
+                document.Close();
                 pdfDocument.Close();
 
                 var pdfContent = memoryStream.ToArray();
@@ -961,6 +959,63 @@ namespace DiamondTrade.API.Controllers
                 Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
 
                 return File(pdfContent, "application/pdf");
+            }
+
+        }
+
+        private float CalculateMaxFontSize(int numberOfColumns)
+        {
+            if (numberOfColumns > 15)
+            {
+                // Adjust this calculation according to your preference
+                float baseFontSize = 10f;
+                float maxColumns = 15f; // Maximum number of columns before decreasing font size
+                float fontSizeMultiplier = 1.0f - (Math.Max(0, numberOfColumns - maxColumns) * 0.1f);
+                return baseFontSize * fontSizeMultiplier;
+            }
+            else
+            {
+                return 8f;
+            }
+        }
+
+
+
+        [HttpPost("downloadexcel")]
+        public IActionResult DownloadExcel([FromBody] ExportModel exportModel)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                    // Add headers to the first row
+                    for (int columnIndex = 0; columnIndex < exportModel.columnsHeaders.Count; columnIndex++)
+                    {
+                        worksheet.Cell(1, columnIndex + 1).Value = exportModel.columnsHeaders[columnIndex];
+                    }
+
+                    // Add data rows
+                    for (int rowIndex = 0; rowIndex < exportModel.rowData.Count; rowIndex++)
+                    {
+                        for (int columnIndex = 0; columnIndex < exportModel.rowData[rowIndex].Count; columnIndex++)
+                        {
+                            string cellValue = exportModel.rowData[rowIndex][columnIndex]?.ToString() ?? "";
+                            worksheet.Cell(rowIndex + 2, columnIndex + 1).Value = cellValue;
+                        }
+                    }
+
+
+                    workbook.SaveAs(memoryStream);
+                }
+
+                var excelContent = memoryStream.ToArray();
+
+                Response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                Response.Headers.Add("Content-Disposition", "attachment; filename=table.xlsx");
+
+                return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             }
         }
 
