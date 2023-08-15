@@ -111,12 +111,14 @@ namespace DiamondTrading
                     break;
                 case "JangadSend":
                     xtabJangadSendReceive.PageVisible = true;
+                    accordionEditBtn.Visible = false;
                     xtabManager.SelectedTabPage = xtabJangadSendReceive;
                     xtabJangadSendReceive.Text = "Jangad Send";
                     this.Text = "Jangad Send";
                     break;
                 case "JangadReceive":
                     xtabJangadSendReceive.PageVisible = true;
+                    accordionEditBtn.Visible = false;
                     xtabManager.SelectedTabPage = xtabJangadSendReceive;
                     xtabJangadSendReceive.Text = "Jangad Receive";
                     this.Text = "Jangad Receive";
@@ -187,18 +189,21 @@ namespace DiamondTrading
                     break;
                 case "SalaryReport":
                     xtabSalaryReport.PageVisible = true;
+                    accordionEditBtn.Visible = false;
                     xtabManager.SelectedTabPage = xtabSalaryReport;
                     xtabSalaryReport.Text = "Salary Report";
                     this.Text = "Salary Report";
                     break;
                 case "RejectionIn":
                     xtraTabRejectionReport.PageVisible = true;
+                    accordionEditBtn.Visible = false;
                     xtabManager.SelectedTabPage = xtraTabRejectionReport;
                     xtraTabRejectionReport.Text = "Rejection In/Receive";
                     this.Text = "Rejection In/Receive";
                     break;
                 case "RejectionOut":
                     xtraTabRejectionReport.PageVisible = true;
+                    accordionEditBtn.Visible = false;
                     xtabManager.SelectedTabPage = xtraTabRejectionReport;
                     xtraTabRejectionReport.Text = "Rejection Out/Send";
                     this.Text = "Rejection Out/Send";
