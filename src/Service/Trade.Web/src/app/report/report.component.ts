@@ -888,6 +888,26 @@ export class ReportComponent implements OnInit {
           exportColumns.map((column) => item[column])
         );
 
+        debugger;
+
+        const data = {
+          "columnsHeaders": this.columnArray.map((col) => (col.displayName)),
+          "rowData": extractedData
+        };
+        this.loading = true;
+        this.sharedService.customPostApi("Report/downloadpdf", data)
+          .subscribe((data: any) => {
+            const blob = new Blob([data], { type: 'application/pdf' });
+
+            const blobUrl = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = blobUrl;
+            link.download = 'table.pdf';
+            link.click();
+        }, (ex: any) => {
+          this.loading = false;
+          this.showMessage('error', ex);
+        });
         // extractedData = extractedData.map((item) => {
         //   const formattedItem = { ...item };
         //   formattedItem['date'] = formatDate(item['date']); // Assuming 'Date' is the key for the date field
@@ -896,12 +916,12 @@ export class ReportComponent implements OnInit {
         // });
 
 
-        (doc as any).autoTable({
-          head: [this.columnArray.map((col) => (col.displayName))],
-          body: extractedData,
-          styles: styles,
-        });
-        doc.save('reports.pdf');
+        // (doc as any).autoTable({
+        //   head: [this.columnArray.map((col) => (col.displayName))],
+        //   body: extractedData,
+        //   styles: styles,
+        // });
+        // doc.save('reports.pdf');
       });
     });
   }

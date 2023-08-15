@@ -78,8 +78,8 @@ namespace DiamondTrade.API
             services.AddScoped<IRejectionInOutMaster,RejectionInOutMasterRepository>();
             services.AddScoped<IKapanMaster, KapanMasterRepository>();
             services.AddScoped<IApprovalPermissionMaster, ApprovalPermissionMasterRepository>();
-            
 
+            services.AddScoped<IOpeningStockMaster, OpeningStockMasterRepositody>();
             services.AddAuthorization(option =>
             {
                 option.AddPolicy("BasicRole", policy => policy.RequireRole("Admin, Employee"));

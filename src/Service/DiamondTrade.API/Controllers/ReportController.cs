@@ -1,12 +1,17 @@
-﻿using DiamondTrade.API.Models.Request;
+﻿using DiamondTrade.API.Models;
+using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
 using EFCore.SQL.Interface;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
 using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
 using static DiamondTrade.API.Models.Enum.Enum;
 
@@ -901,5 +906,63 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [HttpPost("downloadpdf")]
+        public async Task<IActionResult> DownloadPDF([FromBody] ExportModel exportModel)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                iTextSharp.text.Document pdfDocument = new iTextSharp.text.Document();
+                PdfWriter pdfWriter = PdfWriter.GetInstance(pdfDocument, memoryStream);
+
+                pdfDocument.Open();
+
+                // Create a table with the number of columns
+                PdfPTable table = new PdfPTable(exportModel.columnsHeaders.Count);
+
+                // Set the column widths (you can adjust them as needed)
+                float[] columnWidths = new float[exportModel.columnsHeaders.Count];
+                for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
+                {
+                    columnWidths[i] = 1f; // Equal width for each column
+                }
+                table.SetWidths(columnWidths);
+
+                // Add column headers
+                foreach (var columnHeader in exportModel.columnsHeaders)
+                {
+                    PdfPCell cell = new PdfPCell(new Phrase(columnHeader));
+                    table.AddCell(cell);
+                }
+
+                int columnCount = exportModel.columnsHeaders.Count;
+                int rowIndex = 0;
+
+                while (rowIndex < exportModel.rowData.Count)
+                {
+                    var rowValues = exportModel.rowData.Skip(rowIndex * columnCount).Take(columnCount);
+
+                    foreach (var cellValue in rowValues)
+                    {
+                        PdfPCell cell = new PdfPCell(new Phrase(cellValue?.ToString() ?? ""));
+                        table.AddCell(cell);
+                    }
+
+                    rowIndex++;
+                }
+
+
+                pdfDocument.Add(table);
+                pdfDocument.Close();
+
+                var pdfContent = memoryStream.ToArray();
+
+                Response.Headers.Add("Content-Type", "application/pdf");
+                Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
+
+                return File(pdfContent, "application/pdf");
+            }
+        }
+
     }
 }
