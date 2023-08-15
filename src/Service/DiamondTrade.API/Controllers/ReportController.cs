@@ -910,55 +910,63 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
-        [HttpPost("downloadpdf")]
+        [Route("downloadpdf")]
+        [HttpPost]
         public IActionResult DownloadPDF([FromBody] ExportModel exportModel)
         {
-            using (MemoryStream memoryStream = new MemoryStream())
+            try
             {
-                PdfWriter pdfWriter = new PdfWriter(memoryStream);
-                PdfDocument pdfDocument = new PdfDocument(pdfWriter);
-
-                PageSize customPageSize = PageSize.A4.Rotate(); // Landscape mode
-                iText.Layout.Document document = new iText.Layout.Document(pdfDocument, customPageSize);
-
-                document.SetMargins(0, 0, 0, 0);
-
-                Table table = new Table(exportModel.columnsHeaders.Count);
-                table.SetWidth(UnitValue.CreatePercentValue(100));
-
-                float maxFontSize = CalculateMaxFontSize(exportModel.columnsHeaders.Count);
-
-                foreach (var header in exportModel.columnsHeaders)
+                using (MemoryStream memoryStream = new MemoryStream())
                 {
-                    table.AddHeaderCell(new Cell().Add(new Paragraph(header))
-                        .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
-                        .SetTextAlignment(TextAlignment.CENTER)
-                        .SetFontSize(maxFontSize));
-                }
+                    PdfWriter pdfWriter = new PdfWriter(memoryStream);
+                    PdfDocument pdfDocument = new PdfDocument(pdfWriter);
 
-                foreach (var row in exportModel.rowData)
-                {
-                    foreach (var cellData in row)
+                    PageSize customPageSize = PageSize.A4.Rotate(); // Landscape mode
+                    iText.Layout.Document document = new iText.Layout.Document(pdfDocument, customPageSize);
+
+                    document.SetMargins(0, 0, 0, 0);
+
+                    Table table = new Table(exportModel.columnsHeaders.Count);
+                    table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                    float maxFontSize = CalculateMaxFontSize(exportModel.columnsHeaders.Count);
+
+                    foreach (var header in exportModel.columnsHeaders)
                     {
-                        table.AddCell(new Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                        table.AddHeaderCell(new Cell().Add(new Paragraph(header))
+                            .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
                             .SetTextAlignment(TextAlignment.CENTER)
-                            .SetPadding(5)
-                            .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
                             .SetFontSize(maxFontSize));
                     }
+
+                    foreach (var row in exportModel.rowData)
+                    {
+                        foreach (var cellData in row)
+                        {
+                            table.AddCell(new Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                                .SetTextAlignment(TextAlignment.CENTER)
+                                .SetPadding(5)
+                                .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                                .SetFontSize(maxFontSize));
+                        }
+                    }
+
+                    document.Add(table);
+
+                    document.Close();
+                    pdfDocument.Close();
+
+                    var pdfContent = memoryStream.ToArray();
+
+                    Response.Headers.Add("Content-Type", "application/pdf");
+                    Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
+
+                    return File(pdfContent, "application/pdf");
                 }
-
-                document.Add(table);
-
-                document.Close();
-                pdfDocument.Close();
-
-                var pdfContent = memoryStream.ToArray();
-
-                Response.Headers.Add("Content-Type", "application/pdf");
-                Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
-
-                return File(pdfContent, "application/pdf");
+            }
+            catch
+            {
+                throw;
             }
 
         }
@@ -979,9 +987,8 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
-
-
-        [HttpPost("downloadexcel")]
+        [Route("downloadexcel")]
+        [HttpPost]
         public IActionResult DownloadExcel([FromBody] ExportModel exportModel)
         {
             using (MemoryStream memoryStream = new MemoryStream())
