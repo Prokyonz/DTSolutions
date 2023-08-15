@@ -991,20 +991,23 @@ namespace DiamondTrade.API.Controllers
                     var worksheet = workbook.Worksheets.Add("Sheet1");
 
                     // Add headers to the first row
+                    var headerRow = worksheet.Row(1);
                     for (int columnIndex = 0; columnIndex < exportModel.columnsHeaders.Count; columnIndex++)
                     {
-                        worksheet.Cell(1, columnIndex + 1).Value = exportModel.columnsHeaders[columnIndex];
+                        headerRow.Cell(columnIndex + 1).Value = exportModel.columnsHeaders[columnIndex];
+                        headerRow.Cell(columnIndex + 1).Style.Font.Bold = true; // Make the header bold
                     }
 
                     // Add data rows
                     for (int rowIndex = 0; rowIndex < exportModel.rowData.Count; rowIndex++)
                     {
+                        var dataRow = worksheet.Row(rowIndex + 2);
                         for (int columnIndex = 0; columnIndex < exportModel.rowData[rowIndex].Count; columnIndex++)
                         {
-                            string cellValue = exportModel.rowData[rowIndex][columnIndex]?.ToString() ?? "";
-                            worksheet.Cell(rowIndex + 2, columnIndex + 1).Value = cellValue;
+                            dataRow.Cell(columnIndex + 1).Value = exportModel.rowData[rowIndex][columnIndex]?.ToString() ?? "";
                         }
                     }
+
 
 
                     workbook.SaveAs(memoryStream);
