@@ -47,6 +47,7 @@ export class HeaderComponent implements OnInit {
       this.sharedService.customGetApi("Auth/GetPermissionList?userid=" + localStorage.getItem("userid"))
       .subscribe((data: any) => {
             this.filterReport = data.data;
+            console.log(this.filterReport);
             debugger;
             if (this.filterReport.filter((e : any) => e == "calculator").length > 0){
               this.items.push({
@@ -276,11 +277,11 @@ export class HeaderComponent implements OnInit {
                       }
                     });
                 break;  
-                case 'kapanmaster_report':
+                case 'kapanlagad_report':
                   this.masterReportItems.push({
                       label: 'Kapan Lagad',
                       icon: 'pi pi-fw pi-question',
-                      routerLink: "",
+                      routerLink: "/kapan",
                       expanded: false,
                       command: () => {
                         this.sidebarVisible = false;

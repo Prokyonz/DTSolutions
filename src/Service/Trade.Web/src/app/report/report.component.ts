@@ -8,6 +8,7 @@ import { Message, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 import * as FileSaver from 'file-saver';
 import 'jspdf-autotable';
+import { Filesystem, Directory, Encoding, DownloadFileOptions } from '@capacitor/filesystem';
 
 interface Customer {
   name: string,
@@ -909,12 +910,13 @@ export class ReportComponent implements OnInit {
     this.loading = true;
     this.sharedService.customDownloadPostApi("Report/downloadexcel", data)
       .subscribe((data: any) => {
-        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-        const blobUrl = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = 'exportexceldata.xlsx';
-        link.click();
+        const options: DownloadFileOptions = {          
+          path: this.PageTitle.replaceAll(" ",'') + ".csv",
+          url: data,
+          directory: Directory.Documents,
+        };
+    
+        const downloadResult = Filesystem.downloadFile(options);
         this.loading = false;
     }, (ex: any) => {
       this.loading = false;
@@ -1003,12 +1005,15 @@ export class ReportComponent implements OnInit {
     this.loading = true;
     this.sharedService.customDownloadPostApi("Report/downloadpdf", data)
       .subscribe((data: any) => {
-        const blob = new Blob([data], { type: 'application/pdf' });
-        const blobUrl = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = blobUrl;
-        link.download = 'exportpdfdata.pdf';
-        link.click();
+        
+        const options: DownloadFileOptions = {          
+          path: this.PageTitle.replaceAll(" ",'') + ".pdf",
+          url: data,
+          directory: Directory.Documents,
+        };
+    
+        const downloadResult = Filesystem.downloadFile(options);
+
         this.loading = false;
     }, (ex: any) => {
       this.loading = false;

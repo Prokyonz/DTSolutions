@@ -39,6 +39,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { DatePipe } from '@angular/common';
+import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { DatePipe } from '@angular/common';
     ReportComponent,
     FilterbarComponent,
     CompanyselectionComponent,
+    KapanlagadComponent,
   ],
   imports: [
     BrowserModule,
