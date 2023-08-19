@@ -36,6 +36,7 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoSlipNo = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colCompanyId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,10 +50,15 @@ namespace DiamondTrading.Transaction
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.tglIsAutoMap = new DevExpress.XtraEditors.ToggleSwitch();
+            this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.lblTotalAmount = new DevExpress.XtraEditors.LabelControl();
+            this.lblRemainAmount = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSlipNo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
@@ -67,7 +73,7 @@ namespace DiamondTrading.Transaction
             this.btnCancel.Location = new System.Drawing.Point(655, 340);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
-            this.btnCancel.TabIndex = 5;
+            this.btnCancel.TabIndex = 2;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -79,7 +85,7 @@ namespace DiamondTrading.Transaction
             this.btnOk.Location = new System.Drawing.Point(574, 340);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 21);
-            this.btnOk.TabIndex = 4;
+            this.btnOk.TabIndex = 1;
             this.btnOk.Text = "&Ok";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
@@ -88,10 +94,10 @@ namespace DiamondTrading.Transaction
             this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup1.AppearanceCaption.Options.UseFont = true;
             this.grpGroup1.Controls.Add(this.grdPaymentDetails);
-            this.grpGroup1.Location = new System.Drawing.Point(12, 24);
+            this.grpGroup1.Location = new System.Drawing.Point(12, 4);
             this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(716, 307);
-            this.grpGroup1.TabIndex = 12;
+            this.grpGroup1.Size = new System.Drawing.Size(716, 327);
+            this.grpGroup1.TabIndex = 0;
             this.grpGroup1.Text = "Particulars Details";
             // 
             // grdPaymentDetails
@@ -104,8 +110,9 @@ namespace DiamondTrading.Transaction
             this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repoTxtEdit,
             this.repoParty,
-            this.repositoryItemButtonEdit1});
-            this.grdPaymentDetails.Size = new System.Drawing.Size(712, 282);
+            this.repositoryItemButtonEdit1,
+            this.repoSlipNo});
+            this.grdPaymentDetails.Size = new System.Drawing.Size(712, 302);
             this.grdPaymentDetails.TabIndex = 0;
             this.grdPaymentDetails.UseEmbeddedNavigator = true;
             this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -137,6 +144,7 @@ namespace DiamondTrading.Transaction
             this.grvPaymentDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
             this.grvPaymentDetails.OptionsView.ShowFooter = true;
             this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
+            this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
             // 
             // colDate
             // 
@@ -149,12 +157,24 @@ namespace DiamondTrading.Transaction
             // colSlipNo
             // 
             this.colSlipNo.Caption = "SlipNo";
+            this.colSlipNo.ColumnEdit = this.repoSlipNo;
             this.colSlipNo.FieldName = "SlipNo";
             this.colSlipNo.Name = "colSlipNo";
-            this.colSlipNo.OptionsColumn.AllowEdit = false;
             this.colSlipNo.Visible = true;
             this.colSlipNo.VisibleIndex = 0;
             this.colSlipNo.Width = 79;
+            // 
+            // repoSlipNo
+            // 
+            this.repoSlipNo.AutoHeight = false;
+            this.repoSlipNo.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoSlipNo.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SlipNo", "Slip No"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("GrossTotal", "Amount"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RemainAmount", "R Amount")});
+            this.repoSlipNo.Name = "repoSlipNo";
+            this.repoSlipNo.NullText = "";
             // 
             // colPartyId
             // 
@@ -271,7 +291,48 @@ namespace DiamondTrading.Transaction
             this.tglIsAutoMap.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tglIsAutoMap.Size = new System.Drawing.Size(134, 19);
             this.tglIsAutoMap.TabIndex = 13;
+            this.tglIsAutoMap.Visible = false;
             this.tglIsAutoMap.Toggled += new System.EventHandler(this.tglIsAutoMap_Toggled);
+            // 
+            // labelControl6
+            // 
+            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl6.Appearance.Options.UseFont = true;
+            this.labelControl6.Location = new System.Drawing.Point(13, 334);
+            this.labelControl6.Name = "labelControl6";
+            this.labelControl6.Size = new System.Drawing.Size(82, 16);
+            this.labelControl6.TabIndex = 14;
+            this.labelControl6.Text = "Total Amount:";
+            // 
+            // labelControl1
+            // 
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl1.Appearance.Options.UseFont = true;
+            this.labelControl1.Location = new System.Drawing.Point(13, 354);
+            this.labelControl1.Name = "labelControl1";
+            this.labelControl1.Size = new System.Drawing.Size(113, 16);
+            this.labelControl1.TabIndex = 15;
+            this.labelControl1.Text = "Remaining Amount:";
+            // 
+            // lblTotalAmount
+            // 
+            this.lblTotalAmount.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblTotalAmount.Appearance.Options.UseFont = true;
+            this.lblTotalAmount.Location = new System.Drawing.Point(132, 334);
+            this.lblTotalAmount.Name = "lblTotalAmount";
+            this.lblTotalAmount.Size = new System.Drawing.Size(7, 16);
+            this.lblTotalAmount.TabIndex = 16;
+            this.lblTotalAmount.Text = "0";
+            // 
+            // lblRemainAmount
+            // 
+            this.lblRemainAmount.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblRemainAmount.Appearance.Options.UseFont = true;
+            this.lblRemainAmount.Location = new System.Drawing.Point(132, 354);
+            this.lblRemainAmount.Name = "lblRemainAmount";
+            this.lblRemainAmount.Size = new System.Drawing.Size(7, 16);
+            this.lblRemainAmount.TabIndex = 17;
+            this.lblRemainAmount.Text = "0";
             // 
             // FrmPaymentSlipSelect
             // 
@@ -279,6 +340,10 @@ namespace DiamondTrading.Transaction
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(740, 373);
+            this.Controls.Add(this.lblRemainAmount);
+            this.Controls.Add(this.lblTotalAmount);
+            this.Controls.Add(this.labelControl1);
+            this.Controls.Add(this.labelControl6);
             this.Controls.Add(this.tglIsAutoMap);
             this.Controls.Add(this.grpGroup1);
             this.Controls.Add(this.btnCancel);
@@ -290,15 +355,18 @@ namespace DiamondTrading.Transaction
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Payment Slip Select";
+            this.Load += new System.EventHandler(this.FrmPaymentSlipSelect_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
             this.grpGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoSlipNo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tglIsAutoMap.Properties)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -324,5 +392,10 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colTAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colAAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colAmount;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoSlipNo;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.LabelControl labelControl1;
+        private DevExpress.XtraEditors.LabelControl lblTotalAmount;
+        private DevExpress.XtraEditors.LabelControl lblRemainAmount;
     }
 }

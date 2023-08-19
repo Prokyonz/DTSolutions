@@ -670,12 +670,21 @@ namespace DiamondTrading.Transaction
                             dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
                                 "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
                                 Common.LoginFinancialYear, Common.LoginFinancialYearName,
-                                PartyOpeningBalance, PartyOpeningBalance);
+                                PartyOpeningBalance, 0);
                         }
 
                         dtView.Sort = "SlipNo ASC";
 
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
+                        if (grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount) != null)
+                        {
+                            frmPaymentSlipSelect.TotalAmount = Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount).ToString());
+                        }
+                        else
+                        {
+                            frmPaymentSlipSelect.TotalAmount = 0;
+                        }
+
                         if (grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount) == null ||
                             string.IsNullOrEmpty(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAutoAdjustBillAmount).ToString()))
                             frmPaymentSlipSelect.IsAutoAdjustBillAmount = false;
@@ -785,12 +794,12 @@ namespace DiamondTrading.Transaction
                                 dtSlipDetail.Rows.Add(0, DateTime.Now, PartyId,
                                     "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(e.RowHandle, colBranch),
                                     Common.LoginFinancialYear, Common.LoginFinancialYearName,
-                                    PartyOpeningBalance, PartyOpeningBalance, Value);
+                                    PartyOpeningBalance, PartyOpeningBalance, 0);
                             }
-                            else
-                            {
-                                dataRow[0]["Amount"] = Value;
-                            }
+                            //else
+                            //{
+                            //    dataRow[0]["Amount"] = Value;
+                            //}
                         }
                     }
                 }

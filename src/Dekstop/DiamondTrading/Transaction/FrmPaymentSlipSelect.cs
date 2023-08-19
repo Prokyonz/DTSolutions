@@ -20,13 +20,43 @@ namespace DiamondTrading.Transaction
             dtSlipDetail = dtSlipDetails;
             if (!dtSlipDetail.Columns.Contains("Amount"))
                 dtSlipDetail.Columns.Add("Amount", typeof(decimal));
-            grdPaymentDetails.DataSource = dtSlipDetail;
+            grdPaymentDetails.DataSource = dtSlipDetail.Clone();
+
+            repoSlipNo.DataSource = dtSlipDetail;
+            repoSlipNo.DisplayMember = "SlipNo";
+            repoSlipNo.ValueMember = "SlipNo";
+
+            var tempTbl = dtSlipDetail.Select("Amount<>0");
+            if (tempTbl != null && tempTbl.Count() > 0)
+            {
+                DataTable tempTbl1 = tempTbl.CopyToDataTable();
+                if (tempTbl1.Rows.Count > 0)
+                {
+                    grdPaymentDetails.DataSource = tempTbl1;
+                }
+            }
+
+            grdPaymentDetails.Focus();
+
+            GetBalance();
         }
 
         public DataTable dtSlipDetail
         {
             get;
             private set;
+        }
+
+        public decimal TotalAmount
+        {
+            get;
+            set;
+        }
+
+        private decimal RemainAmount
+        {
+            get;
+            set;
         }
 
         public bool IsAutoAdjustBillAmount
@@ -56,6 +86,80 @@ namespace DiamondTrading.Transaction
         private void tglIsAutoMap_Toggled(object sender, EventArgs e)
         {
             IsAutoAdjustBillAmount = tglIsAutoMap.IsOn;
+        }
+
+        private void grvPaymentDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            try
+            {
+                if (e.Column == colSlipNo)
+                {
+                    decimal TotalAdjustedAmount = Convert.ToDecimal(colAmount.SummaryItem.SummaryValue);
+                    if (TotalAmount <= TotalAdjustedAmount)
+                    {
+                        MessageBox.Show("You can not adjust more amount as max limit fullfiled.");
+                        this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                        grvPaymentDetails.SetRowCellValue(e.RowHandle, colSlipNo, null);
+                        this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                        return;
+                    }
+
+                    decimal Amount = Convert.ToDecimal(((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[10]);
+                    decimal AdjustAmount = 0;
+
+                    if (TotalAdjustedAmount == 0)
+                        RemainAmount = TotalAmount;
+                    else
+                        RemainAmount = TotalAmount - TotalAdjustedAmount;
+
+                    if (RemainAmount <= Amount)
+                    {
+                        AdjustAmount = RemainAmount;
+                    }
+                    else
+                    {
+                        AdjustAmount = Amount;
+                    }
+
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, AdjustAmount);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colAAmount, Amount);
+
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colDate, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[1]);
+                    //grvPaymentDetails.SetRowCellValue(e.RowHandle, colSlipNo, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[4]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colPartyId, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[2]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colParty, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[3]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colCompanyId, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[5]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colBranchId, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[6]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colFinancialYearId, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[7]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colYear, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[8]);
+                    grvPaymentDetails.SetRowCellValue(e.RowHandle, colTAmount, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[9]);
+
+                    RemainAmount = RemainAmount - AdjustAmount;
+                    lblTotalAmount.Text = TotalAmount.ToString();
+                    lblRemainAmount.Text = RemainAmount.ToString();
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void FrmPaymentSlipSelect_Load(object sender, EventArgs e)
+        {
+            GetBalance();
+        }
+
+        private void GetBalance()
+        {
+            decimal TotalAdjustedAmount = Convert.ToDecimal(colAmount.SummaryItem.SummaryValue);
+            if (TotalAdjustedAmount == 0)
+                RemainAmount = TotalAmount;
+            else
+                RemainAmount = TotalAmount - TotalAdjustedAmount;
+
+            lblTotalAmount.Text = TotalAmount.ToString();
+            lblRemainAmount.Text = RemainAmount.ToString();
         }
     }
 }
