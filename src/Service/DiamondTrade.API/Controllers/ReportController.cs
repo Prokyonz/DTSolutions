@@ -8,6 +8,7 @@ using iText.Layout.Element;
 using iText.Layout.Properties;
 using iText.Layout.Renderer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Repository.Entities;
 using Repository.Entities.Model;
 using System;
@@ -36,6 +37,7 @@ namespace DiamondTrade.API.Controllers
         private readonly IRejectionInOutMaster _rejectionInOutMaster;
         private readonly IKapanMaster _kapanMaster;
         private readonly IOpeningStockMaster _openingStockMaster;
+        private readonly IConfiguration _configuration;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
@@ -47,7 +49,8 @@ namespace DiamondTrade.API.Controllers
             IRejectionInOutMaster rejectionInOutMaster,
             IKapanMaster kapanMaster,
             ILoanMaster loanMaster,
-            IOpeningStockMaster openingStockMaster)
+            IOpeningStockMaster openingStockMaster,
+            IConfiguration configuration)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -61,6 +64,7 @@ namespace DiamondTrade.API.Controllers
             _rejectionInOutMaster = rejectionInOutMaster;
             _kapanMaster = kapanMaster;
             _openingStockMaster = openingStockMaster;
+            _configuration = configuration;
         }
 
         [Route("GetPurchaseReport")]
@@ -912,10 +916,16 @@ namespace DiamondTrade.API.Controllers
 
         [Route("downloadpdf")]
         [HttpPost]
-        public IActionResult DownloadPDF([FromBody] ExportModel exportModel)
+        public async Task<Response<dynamic>> DownloadPDF([FromBody] ExportModel exportModel)
         {
             try
             {
+                string pdfDirectory = _configuration["PdfSettings:PdfDirectory"]; // Get the PDF directory from configuration
+
+                // Create the directory if it doesn't exist
+                Directory.CreateDirectory(pdfDirectory);
+
+                string pdfFilePath = System.IO.Path.Combine(pdfDirectory, "table.pdf");
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     PdfWriter pdfWriter = new PdfWriter(memoryStream);
@@ -958,10 +968,25 @@ namespace DiamondTrade.API.Controllers
 
                     var pdfContent = memoryStream.ToArray();
 
-                    Response.Headers.Add("Content-Type", "application/pdf");
-                    Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
+                    System.IO.File.WriteAllBytes(pdfFilePath, pdfContent);
 
-                    return File(pdfContent, "application/pdf");
+                    // Get the URL for the saved PDF
+                    string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+                    string pdfUrl = $"{baseUrl}/{pdfFilePath}";
+
+                    return new Response<dynamic>
+                    {
+                        StatusCode = 200,
+                        Success = true,
+                        Data = pdfUrl
+                    };
+
+                    //return Ok(new { PdfUrl = pdfUrl }); // Return the URL in the API response
+
+                    //Response.Headers.Add("Content-Type", "application/pdf");
+                    //Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
+
+                    //return File(pdfContent, "application/pdf");
                 }
             }
             catch
