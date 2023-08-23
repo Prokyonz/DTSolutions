@@ -29,6 +29,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<KapanMappingMaster> GetKapanMapDetailAsync(string SrNo)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.KapanMappingMaster.Where(s => s.Sr == Convert.ToInt32(SrNo)).FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<KapanMappingMaster> AddKapanMappingAsync(KapanMappingMaster kapanMappingMaster)
         {
             using (_databaseContext = new DatabaseContext())
@@ -42,14 +50,14 @@ namespace EFCore.SQL.Repository
             return kapanMappingMaster;
         }
 
-        public async Task<bool> DeleteKapanMappingAsync(string kapanMappingId)
+        public async Task<bool> DeleteKapanMappingAsync(string kapanMappingId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Id == kapanMappingId).FirstOrDefaultAsync();
-                var checkForTransferRecord = await _databaseContext.KapanMappingMaster.Where(w => w.SlipNo == getKapanRecord.SlipNo && string.IsNullOrEmpty(w.TransferEntryId) == false).ToListAsync();
+                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Sr == Convert.ToInt32(kapanMappingId) && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
+                //var checkForTransferRecord = await _databaseContext.KapanMappingMaster.Where(w => w.SlipNo == getKapanRecord.SlipNo && string.IsNullOrEmpty(w.TransferEntryId) == false).ToListAsync();
 
-                if (getKapanRecord != null && checkForTransferRecord.Count() == 0)
+                if (getKapanRecord != null)
                 {
                     _databaseContext.KapanMappingMaster.Remove(getKapanRecord);
 
@@ -94,13 +102,13 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<KapanMapping>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId)
+        public async Task<List<KapanMapping>> GetPendingKapanMapping(string companyId, string branchId, string financialYearId, string SrNo = null, int ActionType = 0)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPKapanMapping.FromSqlRaw($"GetPendingKapanMapping '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPKapanMapping.FromSqlRaw($"GetPendingKapanMapping '" + companyId + "', '" + branchId + "','" + financialYearId + "','" + SrNo + "'," + ActionType + "").ToListAsync();
 
                     return data;
                     //return await _databaseContext.KapanMappingMaster.Where(w => w.CompanyId == companyId && w.BranchId == branchId && w.FinancialYearId == financialYearId).ToListAsync();
@@ -117,7 +125,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanMappingMaster.Id).FirstOrDefaultAsync();
+                var getKapanRecord = await _databaseContext.KapanMappingMaster.Where(w => w.Sr == kapanMappingMaster.Sr).FirstOrDefaultAsync();
                 if (getKapanRecord != null)
                 {
                     getKapanRecord.CompanyId = kapanMappingMaster.CompanyId;
@@ -128,6 +136,7 @@ namespace EFCore.SQL.Repository
                     getKapanRecord.PurchaseMasterId = kapanMappingMaster.PurchaseMasterId;
                     getKapanRecord.PurchaseDetailsId = kapanMappingMaster.PurchaseDetailsId;
                     getKapanRecord.Weight = kapanMappingMaster.Weight;
+                    getKapanRecord.Remarks = kapanMappingMaster.Remarks;
                     getKapanRecord.UpdatedBy = kapanMappingMaster.UpdatedBy;
                     getKapanRecord.UpdatedDate = kapanMappingMaster.UpdatedDate;
 

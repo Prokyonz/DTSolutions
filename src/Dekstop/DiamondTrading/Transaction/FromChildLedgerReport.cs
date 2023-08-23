@@ -17,16 +17,18 @@ namespace DiamondTrading.Transaction
     public partial class FromChildLedgerReport : DevExpress.XtraEditors.XtraForm
     {
         public string LedgerId { get; set; }
+        public string ledgerType { get; set; }
         private PartyMasterRepository _partyMasterRepository { get; set; }
         public FromChildLedgerReport()
         {
             InitializeComponent();
         }
 
-        public FromChildLedgerReport(string ledgerId)
+        public FromChildLedgerReport(string ledgerId, string _ledgerType)
         {
             InitializeComponent();
             LedgerId = ledgerId;
+            ledgerType = _ledgerType;
         }
 
         private async void FromChildLedgerReport_Load(object sender, EventArgs e)
@@ -39,16 +41,28 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                string v = LedgerId;
                 GridView view = sender as GridView;
                 GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
                 double Total = double.Parse(view.Columns["Credit"].SummaryText);
                 double saleRate = double.Parse(view.Columns["Debit"].SummaryText);
-                e.TotalValue = Total  - saleRate;
+                if (ledgerType.ToLower() == "expense" || ledgerType.ToLower() == "party-sale")
+                {
+                    e.TotalValue = saleRate - Total;
+                }
+                else
+                    e.TotalValue = Total - saleRate;
             }
             catch (Exception)
             {
                 e.TotalValue = 0;
             }
+        }
+
+        private void FromChildLedgerReport_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+                this.Close();
         }
     }
 }

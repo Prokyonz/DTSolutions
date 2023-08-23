@@ -53,6 +53,14 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
+                return await _databaseContext.KapanMaster.Where(s => s.IsDelete == false && s.CompanyId == CompanyId).ToListAsync();
+            }
+        }
+
+        public async Task<List<KapanMaster>> GetAllKapanAsync()
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
                 return await _databaseContext.KapanMaster.Where(s => s.IsDelete == false).ToListAsync();
             }
         }
@@ -90,6 +98,7 @@ namespace EFCore.SQL.Repository
                     getKapan.IsStatus = kapanMaster.IsStatus;
                     getKapan.StartDate = kapanMaster.StartDate;
                     getKapan.EndDate = kapanMaster.EndDate;
+                    getKapan.CompanyId = kapanMaster.CompanyId;
                 }
                 await _databaseContext.SaveChangesAsync();
                 return kapanMaster;

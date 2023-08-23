@@ -294,7 +294,7 @@ namespace DiamondTrading
             this.label9 = new System.Windows.Forms.Label();
             this.dtContraFromDate = new DevExpress.XtraEditors.DateEdit();
             this.grdContraDetails = new DevExpress.XtraGrid.GridControl();
-            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.grvContraDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnEntryDateContra = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnContraId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnCId = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -308,6 +308,7 @@ namespace DiamondTrading
             this.gridColumnContraRemakrs = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnContraUpdateDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnContraUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colContraSrNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.xtabExpense = new DevExpress.XtraTab.XtraTabPage();
@@ -625,6 +626,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.gridColumn222 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -672,7 +674,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvContraDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
             this.xtabExpense.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtExpenseToDate.Properties.CalendarTimeProperties)).BeginInit();
@@ -2768,23 +2770,23 @@ namespace DiamondTrading
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdContraDetails.Location = new System.Drawing.Point(0, 38);
-            this.grdContraDetails.MainView = this.gridView5;
+            this.grdContraDetails.MainView = this.grvContraDetails;
             this.grdContraDetails.Name = "grdContraDetails";
             this.grdContraDetails.Size = new System.Drawing.Size(782, 383);
             this.grdContraDetails.TabIndex = 4;
             this.grdContraDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView5,
+            this.grvContraDetails,
             this.gridView6});
             // 
-            // gridView5
+            // grvContraDetails
             // 
-            this.gridView5.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.gridView5.Appearance.FooterPanel.Options.UseFont = true;
-            this.gridView5.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.gridView5.Appearance.GroupFooter.Options.UseFont = true;
-            this.gridView5.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
-            this.gridView5.Appearance.Row.Options.UseFont = true;
-            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.grvContraDetails.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvContraDetails.Appearance.FooterPanel.Options.UseFont = true;
+            this.grvContraDetails.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvContraDetails.Appearance.GroupFooter.Options.UseFont = true;
+            this.grvContraDetails.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvContraDetails.Appearance.Row.Options.UseFont = true;
+            this.grvContraDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnEntryDateContra,
             this.gridColumnContraId,
             this.gridColumnCId,
@@ -2797,11 +2799,12 @@ namespace DiamondTrading
             this.gridColumnContraChequeDate,
             this.gridColumnContraRemakrs,
             this.gridColumnContraUpdateDate,
-            this.gridColumnContraUpdatedBy});
-            this.gridView5.GridControl = this.grdContraDetails;
-            this.gridView5.Name = "gridView5";
-            this.gridView5.OptionsBehavior.Editable = false;
-            this.gridView5.OptionsView.ShowFooter = true;
+            this.gridColumnContraUpdatedBy,
+            this.colContraSrNo});
+            this.grvContraDetails.GridControl = this.grdContraDetails;
+            this.grvContraDetails.Name = "grvContraDetails";
+            this.grvContraDetails.OptionsBehavior.Editable = false;
+            this.grvContraDetails.OptionsView.ShowFooter = true;
             // 
             // gridColumnEntryDateContra
             // 
@@ -2844,7 +2847,7 @@ namespace DiamondTrading
             this.gridColumnContraFromPartyName.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "FromPartyName", "Total={0}")});
             this.gridColumnContraFromPartyName.Visible = true;
-            this.gridColumnContraFromPartyName.VisibleIndex = 1;
+            this.gridColumnContraFromPartyName.VisibleIndex = 2;
             this.gridColumnContraFromPartyName.Width = 131;
             // 
             // gridColumnContraToPartyName
@@ -2853,7 +2856,7 @@ namespace DiamondTrading
             this.gridColumnContraToPartyName.FieldName = "ToPartyName";
             this.gridColumnContraToPartyName.Name = "gridColumnContraToPartyName";
             this.gridColumnContraToPartyName.Visible = true;
-            this.gridColumnContraToPartyName.VisibleIndex = 2;
+            this.gridColumnContraToPartyName.VisibleIndex = 3;
             this.gridColumnContraToPartyName.Width = 115;
             // 
             // gridColumnContraAmount
@@ -2866,7 +2869,7 @@ namespace DiamondTrading
             this.gridColumnContraAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.gridColumnContraAmount.Visible = true;
-            this.gridColumnContraAmount.VisibleIndex = 5;
+            this.gridColumnContraAmount.VisibleIndex = 6;
             this.gridColumnContraAmount.Width = 81;
             // 
             // gridColumnContraChequeNo
@@ -2875,7 +2878,7 @@ namespace DiamondTrading
             this.gridColumnContraChequeNo.FieldName = "ChequeNo";
             this.gridColumnContraChequeNo.Name = "gridColumnContraChequeNo";
             this.gridColumnContraChequeNo.Visible = true;
-            this.gridColumnContraChequeNo.VisibleIndex = 3;
+            this.gridColumnContraChequeNo.VisibleIndex = 4;
             this.gridColumnContraChequeNo.Width = 76;
             // 
             // gridColumnContraChequeDate
@@ -2884,7 +2887,7 @@ namespace DiamondTrading
             this.gridColumnContraChequeDate.FieldName = "ChequeDate";
             this.gridColumnContraChequeDate.Name = "gridColumnContraChequeDate";
             this.gridColumnContraChequeDate.Visible = true;
-            this.gridColumnContraChequeDate.VisibleIndex = 4;
+            this.gridColumnContraChequeDate.VisibleIndex = 5;
             this.gridColumnContraChequeDate.Width = 76;
             // 
             // gridColumnContraRemakrs
@@ -2893,7 +2896,7 @@ namespace DiamondTrading
             this.gridColumnContraRemakrs.FieldName = "Remarks";
             this.gridColumnContraRemakrs.Name = "gridColumnContraRemakrs";
             this.gridColumnContraRemakrs.Visible = true;
-            this.gridColumnContraRemakrs.VisibleIndex = 6;
+            this.gridColumnContraRemakrs.VisibleIndex = 7;
             this.gridColumnContraRemakrs.Width = 127;
             // 
             // gridColumnContraUpdateDate
@@ -2909,6 +2912,14 @@ namespace DiamondTrading
             this.gridColumnContraUpdatedBy.FieldName = "UpdatedBy";
             this.gridColumnContraUpdatedBy.Name = "gridColumnContraUpdatedBy";
             this.gridColumnContraUpdatedBy.Width = 100;
+            // 
+            // colContraSrNo
+            // 
+            this.colContraSrNo.Caption = "SrNo";
+            this.colContraSrNo.FieldName = "SrNo";
+            this.colContraSrNo.Name = "colContraSrNo";
+            this.colContraSrNo.Visible = true;
+            this.colContraSrNo.VisibleIndex = 1;
             // 
             // gridView6
             // 
@@ -3028,7 +3039,8 @@ namespace DiamondTrading
             this.gridColumnExpenseRemarks,
             this.gridColumnExpenseUpdatedDate,
             this.gridColumnExpenseUpdatedBy,
-            this.gridColumnExpenseIdCol});
+            this.gridColumnExpenseIdCol,
+            this.gridColumn222});
             this.grvExpenseMaster.GridControl = this.grdExpenseControl;
             this.grvExpenseMaster.GroupCount = 1;
             this.grvExpenseMaster.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
@@ -4244,7 +4256,7 @@ namespace DiamondTrading
             this.grvLedgerReport.OptionsView.ShowFooter = true;
             this.grvLedgerReport.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
             new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn101, DevExpress.Data.ColumnSortOrder.Ascending)});
-            this.grvLedgerReport.RowClick += new DevExpress.XtraGrid.Views.Grid.RowClickEventHandler(this.grvLedgerReport_RowClick);
+            this.grvLedgerReport.DoubleClick += new System.EventHandler(this.grvLedgerReport_DoubleClick);
             // 
             // gridColumn98
             // 
@@ -6138,6 +6150,12 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // gridColumn222
+            // 
+            this.gridColumn222.Caption = "CrDrType";
+            this.gridColumn222.FieldName = "CrDrType";
+            this.gridColumn222.Name = "gridColumn222";
+            // 
             // FrmTransactionDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -6212,7 +6230,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtContraFromDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdContraDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvContraDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
             this.xtabExpense.ResumeLayout(false);
             this.xtabExpense.PerformLayout();
@@ -6426,7 +6444,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn44;
         private DevExpress.XtraTab.XtraTabPage xtabContra;
         private DevExpress.XtraGrid.GridControl grdContraDetails;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvContraDetails;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnContraFromPartyId;
@@ -6844,5 +6862,7 @@ namespace DiamondTrading
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToPdf;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionPrint;
+        private DevExpress.XtraGrid.Columns.GridColumn colContraSrNo;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn222;
     }
 }

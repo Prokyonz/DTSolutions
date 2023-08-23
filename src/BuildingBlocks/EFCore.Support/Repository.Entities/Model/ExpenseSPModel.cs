@@ -14,6 +14,7 @@ namespace Repository.Entities.Model
         public string BranchName { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
+        public int CrDrType { get; set; }
         public double Amount { get; set; }
         public string Remarks { get; set; }
         public DateTime? UpdatedDate { get; set; }

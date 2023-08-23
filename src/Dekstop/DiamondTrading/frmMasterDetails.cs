@@ -710,13 +710,19 @@ namespace DiamondTrading
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
             {
-                string SelectedGuid = grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupID).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                try
                 {
-                    var Result = await _lessWeightMasterRepository.DeleteLessWeightMaster(SelectedGuid);
+                    string SelectedGuid = grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupID).ToString();
+                    if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        var Result = await _lessWeightMasterRepository.DeleteLessWeightMaster(SelectedGuid);
 
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                        await LoadGridData(true);
+                    }
+                }catch
+                {
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist),"Reference Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)

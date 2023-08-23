@@ -9,6 +9,7 @@ namespace EFCore.SQL.Interface
 {
     public interface IExpenseMaster
     {
+        Task<List<ExpenseDetails>> GetExpenseAsync(string companyId, string financialYearId, int srNo);
         Task<List<ExpenseDetails>> GetAllExpenseAsync(string companyId, string branchId, string financialYearId);
         Task<List<ExpenseSPModel>> GetExpenseReport(string companyId, string financialYearId, string fromDate, string toDate);
         Task<int> GetMaxSrNoAsync(string companyId, string financialYearId);

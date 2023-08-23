@@ -29,5 +29,6 @@ namespace Repository.Entities
         public string TransferType { get; set; }
         public string TransferEntryId { get; set; }
         public double TransferCaratRate { get; set; }
+        public string Remarks { get; set; }
     }
 }

@@ -111,7 +111,6 @@ namespace DiamondTrading.Master
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
             this.txtCompanyName.Properties.Appearance.Options.UseFont = true;
-            this.txtCompanyName.Properties.BeepOnError = false;
             this.txtCompanyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtCompanyName.Size = new System.Drawing.Size(492, 26);
             this.txtCompanyName.TabIndex = 3;
@@ -375,7 +374,7 @@ namespace DiamondTrading.Master
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(935, 566);
+            this.ClientSize = new System.Drawing.Size(732, 566);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);

@@ -91,6 +91,7 @@ namespace DiamondTrading.Transaction
                         //grdPurchaseDetails.Enabled = false;
 
                         if (_editedPurchaseMaster.ApprovalType == 1)
+                        if (_editedPurchaseMaster.ApprovalType == 1)
                             pnlStatus.Appearance.BackColor = Color.FromArgb(154, 205, 50);
                         else if (_editedPurchaseMaster.ApprovalType == 2)
                             pnlStatus.Appearance.BackColor = Color.FromArgb(255, 0, 0);

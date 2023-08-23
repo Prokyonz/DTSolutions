@@ -12,10 +12,12 @@ namespace Repository.Entities.Models
         public Int64 SlipNo { get; set; }
         public string SizeId { get; set; }
         public string Size { get; set; }
+        public string KapanId { get; set; }
         public decimal NetWeight { get; set; }
         public decimal AvailableCts { get; set; }
         public decimal? Cts { get; set; }
         public string PurchaseID { get; set; }
         public string PurchaseDetailId { get; set; }
+        public string Remarks { get; set; }
     }
 }

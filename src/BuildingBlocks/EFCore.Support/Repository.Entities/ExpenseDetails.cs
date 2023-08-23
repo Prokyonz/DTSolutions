@@ -26,6 +26,7 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+        public int CrDrType { get; set; }
 
         [ForeignKey("PartyId")]
         public virtual PartyMaster PartyMaster { get; set; }

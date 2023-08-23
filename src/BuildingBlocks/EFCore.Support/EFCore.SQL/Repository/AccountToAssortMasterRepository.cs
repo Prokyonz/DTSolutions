@@ -1,11 +1,13 @@
 ﻿using EFCore.SQL.DBContext;
 using EFCore.SQL.Interface;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
 using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -171,7 +173,7 @@ namespace EFCore.SQL.Repository
                 using (_databaseContext = new DatabaseContext())
                 {
                     //var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "','', '" + financialYearId + "'").ToListAsync();
-                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAllKapanLagadDetails '" + companyId + "', '" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAllKapanLagadDetails '" + companyId + "','" + financialYearId + "'").ToListAsync();
 
                     return data;
                 }
@@ -196,6 +198,63 @@ namespace EFCore.SQL.Repository
             catch (Exception ex)
             {
                 throw;
+            }
+        }
+
+        //[Obsolete]
+        //public async Task<bool> CheckIsKapanMapEntryProcessed(string companyId, string financialYearId, string purchaseDetailsId, string slipNo)
+        //{
+        //    try
+        //    {
+        //        using (_databaseContext = new DatabaseContext())
+        //        {
+
+        //            //var data = await _databaseContext.Database.ExecuteSqlCommand($"CheckIsKapanMapEntryProcessed '" + companyId + "','" + financialYearId + "','" + purchaseDetailsId + "','" + slipNo + "'").ToListAsync();
+
+        //            var companyIdParam = new SqlParameter("@CompanyId", SqlDbType.VarChar) { Value = companyId };
+        //            var financialYearIdParam = new SqlParameter("@FinancialYearId", SqlDbType.VarChar) { Value = financialYearId };
+        //            var purchaseDetailsIdParam = new SqlParameter("@PurchaseDetailsId", SqlDbType.VarChar) { Value = purchaseDetailsId };
+        //            var slipNoParam = new SqlParameter("@SlipNo", SqlDbType.VarChar) { Value = slipNo };
+
+        //            var resultParam = new SqlParameter("@Result", SqlDbType.Int) { Direction = ParameterDirection.ReturnValue };
+
+        //            await _databaseContext.Database.ExecuteSqlCommand("EXEC @Result = CheckIsKapanMapEntryProcessed @CompanyId, @FinancialYearId, @PurchaseDetailsId, @SlipNo",
+        //                resultParam, companyIdParam, financialYearIdParam, purchaseDetailsIdParam, slipNoParam);
+
+        //            int result = (int)resultParam.Value;
+
+        //            return result == 1;
+        //        }
+        //    }
+
+
+        //    catch (Exception ex)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+        public async Task<bool> CheckIsKapanMapEntryProcessed(string companyId, string financialYearId, string purchaseDetailsId, string slipNo)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var data = await _databaseContext.AccountToAssortMaster.FromSqlRaw($"CheckIsKapanMapEntryProcessed '" + companyId + "','" + financialYearId + "','" + purchaseDetailsId + "','" + slipNo + "'").ToListAsync();
+
+                    if (data != null && data.Any() && data.Count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }

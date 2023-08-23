@@ -55,6 +55,7 @@ namespace DiamondTrading
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.xtabManager = new DevExpress.XtraTab.XtraTabControl();
             this.xtabKapanMapping = new DevExpress.XtraTab.XtraTabPage();
@@ -70,6 +71,7 @@ namespace DiamondTrading
             this.gridColumnKapanMappingKapanName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnKapanMappingWeight = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnKapanMappingUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.xtabAssortSend = new DevExpress.XtraTab.XtraTabPage();
@@ -290,7 +292,6 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -382,7 +383,6 @@ namespace DiamondTrading
             this.accordionEditBtn.Name = "accordionEditBtn";
             this.accordionEditBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionEditBtn.Text = "Edit";
-            this.accordionEditBtn.Visible = false;
             this.accordionEditBtn.Click += new System.EventHandler(this.accordionEditBtn_Click);
             // 
             // accordionDeleteBtn
@@ -391,7 +391,6 @@ namespace DiamondTrading
             this.accordionDeleteBtn.Name = "accordionDeleteBtn";
             this.accordionDeleteBtn.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionDeleteBtn.Text = "Delete";
-            this.accordionDeleteBtn.Visible = false;
             this.accordionDeleteBtn.Click += new System.EventHandler(this.accordionDeleteBtn_Click);
             // 
             // accordionRefreshBtn
@@ -409,6 +408,14 @@ namespace DiamondTrading
             this.accordionCancelButton.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             this.accordionCancelButton.Text = "Cancel";
             this.accordionCancelButton.Click += new System.EventHandler(this.accordionCancelButton_Click);
+            // 
+            // accordionExportToExcel
+            // 
+            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
+            this.accordionExportToExcel.Name = "accordionExportToExcel";
+            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionExportToExcel.Text = "Excel";
+            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -486,7 +493,8 @@ namespace DiamondTrading
             this.gridColumnKapanId,
             this.gridColumnKapanMappingKapanName,
             this.gridColumnKapanMappingWeight,
-            this.gridColumnKapanMappingUpdatedDate});
+            this.gridColumnKapanMappingUpdatedDate,
+            this.gridColumn3});
             this.grvKapanMapping.GridControl = this.grdProcessMaster;
             this.grvKapanMapping.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Weight", this.gridColumnKapanMappingWeight, "")});
@@ -577,6 +585,12 @@ namespace DiamondTrading
             this.gridColumnKapanMappingUpdatedDate.Visible = true;
             this.gridColumnKapanMappingUpdatedDate.VisibleIndex = 4;
             this.gridColumnKapanMappingUpdatedDate.Width = 105;
+            // 
+            // gridColumn3
+            // 
+            this.gridColumn3.Caption = "PurchaseDetailsId";
+            this.gridColumn3.FieldName = "PurchaseDetailsId";
+            this.gridColumn3.Name = "gridColumn3";
             // 
             // repositoryItemComboBox1
             // 
@@ -2763,14 +2777,6 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // accordionExportToExcel
-            // 
-            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
-            this.accordionExportToExcel.Name = "accordionExportToExcel";
-            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionExportToExcel.Text = "Excel";
-            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
-            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3089,5 +3095,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn grdColId;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
     }
 }

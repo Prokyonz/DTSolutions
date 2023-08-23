@@ -168,139 +168,155 @@ namespace DiamondTrading
 
         private async Task LoadGridData(bool IsForceLoad = false)
         {
-            if (xtabManager.SelectedTabPage == xtabKapanMapping)
+            try
             {
-                if (IsForceLoad || _kapanMappingMasterRepository == null)
+                this.Cursor = Cursors.WaitCursor;
+                if (xtabManager.SelectedTabPage == xtabKapanMapping)
                 {
-                    _kapanMappingMasterRepository = new KapanMappingMasterRepository();
-                    var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
-                    grdProcessMaster.DataSource = kapanData.OrderBy(o => o.SlipNo);
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabAssortSend)
-            {
-                if (IsForceLoad || _accountToAssortMasterRepository == null)
-                {
-                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    var salesData = await _accountToAssortMasterRepository.GetAccountToAssortSendReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "AssortSend" ? 0 : 1);
-                    grdAssortSendReceiveMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabAssortReceive)
-            {
-                if (IsForceLoad || _accountToAssortMasterRepository == null)
-                {
-                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    var assortReceiveData = await _accountToAssortMasterRepository.GetAccountToAssortReceiveReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
-                    gridControlAssortReceiveMaster.DataSource = assortReceiveData.OrderBy(o => o.SlipNo);
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabBoilSendReceive)
-            {
-                if (IsForceLoad || _boilMasterRepository == null)
-                {
-                    _boilMasterRepository = new BoilMasterRepository();
-                    var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
-                    gridControlBoilSendReceiveMaster.DataSource = data;
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
-            {
-                if (IsForceLoad || _charniProcessMasterRepository == null)
-                {
-                    int type = SelectedTabPage == "CharniSend" ? 0 : 1;
-                    _charniProcessMasterRepository = new CharniProcessMasterRepository();
-                    var data = await _charniProcessMasterRepository.GetCharniSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
-                    gridControlCharniReportMaster.DataSource = data;
-                    if (type == 0)
-                        gridColumn80.Visible = false;
-                    else
-                        gridColumn80.Visible = true;
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
-            {
-                if (IsForceLoad || _galaProcessMasterRepository == null)
-                {
-                    _galaProcessMasterRepository = new GalaProcessMasterRepository();
-                    int type = SelectedTabPage == "GalaSend" ? 0 : 1;
-                    var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
-                    gridControlGalaReportMaster.DataSource = data;
-                    if (type == 0)
-                        gridColumn108.Visible = false;
-                    else
-                        gridColumn108.Visible = true;
-                }
-            }
-            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
-            {
-                if (IsForceLoad || _numberProcessMasterRepository == null)
-                {
-                    int type = SelectedTabPage == "NumberSend" ? 0 : 1;
-                    _numberProcessMasterRepository = new NumberProcessMasterRepository();
-                    var data = await _numberProcessMasterRepository.GetNumberSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
-                    gridControlNumerReportMaster.DataSource = data;
-                    if (type == 0)
+                    if (IsForceLoad || _kapanMappingMasterRepository == null)
                     {
-                        gridColumn135.Visible = false;
-                        gridColumn137.Visible = false;
-                    }
-                    else
-                    {
-                        gridColumn135.Visible = true;
-                        gridColumn137.Visible = true;
+                        _kapanMappingMasterRepository = new KapanMappingMasterRepository();
+                        var kapanData = await _kapanMappingMasterRepository.GetKapanMappingReport(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                        grdProcessMaster.DataSource = kapanData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = true;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
-            }
-            else if (xtabManager.SelectedTabPage == xtraTabStockReport)
-            {
-                if (IsForceLoad || _accountToAssortMasterRepository == null)
+                else if (xtabManager.SelectedTabPage == xtabAssortSend)
                 {
-                    stockReportModelReports = await LoadDataStock();
-                    numberReportModelReports = await LoadDataNumber();
-
-                    decimal inwardAmount = 0;
-                    decimal inwardWeight = 0;
-                    decimal inwardRate = 0;
-
-                    decimal outwardAmount = 0;
-                    decimal outwardWeight = 0;
-                    decimal outwardRate = 0;
-
-                    if (stockReportModelReports.Count > 0)
+                    if (IsForceLoad || _accountToAssortMasterRepository == null)
                     {
-                        inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
-                        inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
-                        inwardRate = stockReportModelReports.Average(a => a.InwardRate);
-
-                        outwardAmount = stockReportModelReports.Sum(s => s.OutwardAmount);
-                        outwardWeight = stockReportModelReports.Sum(s => s.OutwardNetWeight);
-                        outwardRate = stockReportModelReports.Sum(s => s.OutwardRate);
+                        _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                        var salesData = await _accountToAssortMasterRepository.GetAccountToAssortSendReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "AssortSend" ? 0 : 1);
+                        grdAssortSendReceiveMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
-
-                    decimal inwardAmountN = 0;
-                    decimal inwardWeightN = 0;
-                    decimal inwardRateN = 0;
-
-                    decimal outwardAmountN = 0;
-                    decimal outwardWeightN = 0;
-                    decimal outwardRateN = 0;
-                    if (numberReportModelReports.Count > 0)
+                }
+                else if (xtabManager.SelectedTabPage == xtabAssortReceive)
+                {
+                    if (IsForceLoad || _accountToAssortMasterRepository == null)
                     {
-                        inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
-                        inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
-                        inwardRateN = numberReportModelReports.Average(a => a.InwardRate);
-
-                        outwardAmountN = numberReportModelReports.Sum(s => s.OutwardAmount);
-                        outwardWeightN = numberReportModelReports.Sum(s => s.OutwardNetWeight);
-                        outwardRateN = numberReportModelReports.Sum(s => s.OutwardRate);
+                        _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                        var assortReceiveData = await _accountToAssortMasterRepository.GetAccountToAssortReceiveReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                        gridControlAssortReceiveMaster.DataSource = assortReceiveData.OrderBy(o => o.SlipNo);
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
                     }
+                }
+                else if (xtabManager.SelectedTabPage == xtabBoilSendReceive)
+                {
+                    if (IsForceLoad || _boilMasterRepository == null)
+                    {
+                        _boilMasterRepository = new BoilMasterRepository();
+                        var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
+                        gridControlBoilSendReceiveMaster.DataSource = data;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
+                }
+                else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
+                {
+                    if (IsForceLoad || _charniProcessMasterRepository == null)
+                    {
+                        int type = SelectedTabPage == "CharniSend" ? 0 : 1;
+                        _charniProcessMasterRepository = new CharniProcessMasterRepository();
+                        var data = await _charniProcessMasterRepository.GetCharniSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
+                        gridControlCharniReportMaster.DataSource = data;
+                        if (type == 0)
+                            gridColumn80.Visible = false;
+                        else
+                            gridColumn80.Visible = true;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
+                }
+                else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
+                {
+                    if (IsForceLoad || _galaProcessMasterRepository == null)
+                    {
+                        _galaProcessMasterRepository = new GalaProcessMasterRepository();
+                        int type = SelectedTabPage == "GalaSend" ? 0 : 1;
+                        var data = await _galaProcessMasterRepository.GetGalaSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
+                        gridControlGalaReportMaster.DataSource = data;
+                        if (type == 0)
+                            gridColumn108.Visible = false;
+                        else
+                            gridColumn108.Visible = true;
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
+                }
+                else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
+                {
+                    if (IsForceLoad || _numberProcessMasterRepository == null)
+                    {
+                        int type = SelectedTabPage == "NumberSend" ? 0 : 1;
+                        _numberProcessMasterRepository = new NumberProcessMasterRepository();
+                        var data = await _numberProcessMasterRepository.GetNumberSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, type);
+                        gridControlNumerReportMaster.DataSource = data;
+                        if (type == 0)
+                        {
+                            gridColumn135.Visible = false;
+                            gridColumn137.Visible = false;
+                        }
+                        else
+                        {
+                            gridColumn135.Visible = true;
+                            gridColumn137.Visible = true;
+                        }
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
+                }
+                else if (xtabManager.SelectedTabPage == xtraTabStockReport)
+                {
+                    if (IsForceLoad || _accountToAssortMasterRepository == null)
+                    {
+                        stockReportModelReports = await LoadDataStock();
+                        numberReportModelReports = await LoadDataNumber();
 
-                    //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                    //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                    
+                        decimal inwardAmount = 0;
+                        decimal inwardWeight = 0;
+                        decimal inwardRate = 0;
 
-                    List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
+                        decimal outwardAmount = 0;
+                        decimal outwardWeight = 0;
+                        decimal outwardRate = 0;
+
+                        if (stockReportModelReports.Count > 0)
+                        {
+                            inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
+                            inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
+                            inwardRate = stockReportModelReports.Average(a => a.InwardRate);
+
+                            outwardAmount = stockReportModelReports.Sum(s => s.OutwardAmount);
+                            outwardWeight = stockReportModelReports.Sum(s => s.OutwardNetWeight);
+                            outwardRate = stockReportModelReports.Sum(s => s.OutwardRate);
+                        }
+
+                        decimal inwardAmountN = 0;
+                        decimal inwardWeightN = 0;
+                        decimal inwardRateN = 0;
+
+                        decimal outwardAmountN = 0;
+                        decimal outwardWeightN = 0;
+                        decimal outwardRateN = 0;
+                        if (numberReportModelReports.Count > 0)
+                        {
+                            inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
+                            inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
+                            inwardRateN = numberReportModelReports.Average(a => a.InwardRate);
+
+                            outwardAmountN = numberReportModelReports.Sum(s => s.OutwardAmount);
+                            outwardWeightN = numberReportModelReports.Sum(s => s.OutwardNetWeight);
+                            outwardRateN = numberReportModelReports.Sum(s => s.OutwardRate);
+                        }
+                        //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                        //var salesData = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+
+
+                        List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
                     {
                         new StockReportMasterGrid()
                         {
@@ -320,19 +336,34 @@ namespace DiamondTrading
                         },
                     };
 
-                    grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
+                        grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
 
-                    gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
+                        gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
+                    }
+
+                    accordionEditBtn.Visible = false;
+                    accordionDeleteBtn.Visible = false;
+                }
+                else if (xtabManager.SelectedTabPage == xtraOpeningStock)
+                {
+                    if (IsForceLoad || _openingStockMasterRepositody == null)
+                    {
+                        _openingStockMasterRepositody = new OpeningStockMasterRepositody();
+                        var Data = await _openingStockMasterRepositody.GetAllOpeningStockAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                        gridControlOpeningStock.DataSource = Data.OrderBy(o => o.SrNo);
+
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
                 }
             }
-            else if (xtabManager.SelectedTabPage == xtraOpeningStock)
+            catch (Exception ex)
             {
-                if (IsForceLoad || _openingStockMasterRepositody == null)
-                {
-                    _openingStockMasterRepositody = new OpeningStockMasterRepositody();
-                    var Data = await _openingStockMasterRepositody.GetAllOpeningStockAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                    gridControlOpeningStock.DataSource = Data.OrderBy(o => o.SrNo);
-                }
+                MessageBox.Show(AppMessages.GetString(AppMessageID.Error), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
             }
         }
 
@@ -407,25 +438,24 @@ namespace DiamondTrading
         {
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
-                ////Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
+                string SelectedSrNo = grvKapanMapping.GetFocusedRowCellValue("Sr").ToString();
+                string PurchaseDetailsId = grvKapanMapping.GetFocusedRowCellValue("PurchaseDetailsId").ToString();
+                string SlipNo = grvKapanMapping.GetFocusedRowCellValue("SlipNo").ToString();
+                _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                var result = await _accountToAssortMasterRepository.CheckIsKapanMapEntryProcessed(Common.LoginCompany, Common.LoginFinancialYear, PurchaseDetailsId, SlipNo);
 
-                //string SelectedGuid;
+                if(result)
+                {
+                    MessageBox.Show("You can't edit this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
-                //if (grdCompanyMaster.FocusedView.DetailLevel > 0)
-                //{
-                //    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                //    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
-                //} 
-                //else                 
-                //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();                
+                Process.FrmKapanMap frmKapanMap = new Process.FrmKapanMap(SelectedSrNo);
 
-
-                //Master.FrmCompanyMaster frmcompanymaster = new Master.FrmCompanyMaster(_companyMaster, SelectedGuid);
-
-                //if (frmcompanymaster.ShowDialog() == DialogResult.OK)
-                //{
-                //    await LoadGridData(true);
-                //}
+                if (frmKapanMap.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
             {
@@ -455,25 +485,41 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     this.Cursor = Cursors.WaitCursor;
-                    string message = "";
-                    string SelectedGuid = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
+                    //string message = "";
+                    string KapanMapId = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
 
-                    if (SelectedGuid != null)
+                    //if (SelectedGuid != null)
+                    //{
+                    //    var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
+
+                    //    if (result)
+                    //    {
+                    //        await LoadGridData(true);
+                    //        message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                    //    }
+                    //    else
+                    //    {
+                    //        message = "You can not delete this record because some quantity is transfered.";
+                    //    }
+                    //}
+
+                    string SelectedSrNo = grvKapanMapping.GetFocusedRowCellValue("Sr").ToString();
+                    string PurchaseDetailsId = grvKapanMapping.GetFocusedRowCellValue("PurchaseDetailsId").ToString();
+                    string SlipNo = grvKapanMapping.GetFocusedRowCellValue("SlipNo").ToString();
+                    _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                    var result = await _accountToAssortMasterRepository.CheckIsKapanMapEntryProcessed(Common.LoginCompany, Common.LoginFinancialYear, PurchaseDetailsId, SlipNo);
+
+                    if (result)
                     {
-                        var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
-
-                        if (result)
-                        {
-                            await LoadGridData(true);
-                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
-                        }
-                        else
-                        {
-                            message = "You can not delete this record because some quantity is transfered.";
-                        }
+                        MessageBox.Show("You can't delete this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.Cursor = Cursors.Default;
+                        return;
                     }
+
+                    result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedSrNo, Common.LoginFinancialYear);
                     this.Cursor = Cursors.Default;
-                    MessageBox.Show(message);
+                    MessageBox.Show("Deleted Successfully.");
+                    await LoadGridData(true);
                 }
 
                 //string SelectedGuid;

@@ -113,7 +113,7 @@ namespace DiamondTrading
 
             SplashScreenManager.ShowFluentSplashScreen(options, parentForm: this, useFadeIn: true, useFadeOut: true);
 
-            Thread.Sleep(3000);
+            Thread.Sleep(1000);
             SplashScreenManager.CloseForm();
             LoadRegistrySettings();
         }

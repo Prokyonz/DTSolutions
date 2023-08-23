@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230619042441_AddedNewSrNoColumnInContraEntryTable")]
+    partial class AddedNewSrNoColumnInContraEntryTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -468,9 +470,6 @@ namespace EFCore.SQL.Migrations
                     b.Property<decimal>("NetCarat")
                         .HasColumnType("decimal(18, 4)");
 
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("NumberId")
                         .HasColumnType("nvarchar(max)");
 
@@ -844,9 +843,6 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<string>("CompanyId")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("CrDrType")
-                        .HasColumnType("int");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -1302,9 +1298,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PurityId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SlipNo")
@@ -1840,80 +1833,6 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPBoilSendReceiveReportModels");
                 });
 
-            modelBuilder.Entity("Repository.Entities.Model.CalculatorSPModel", b =>
-                {
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("BranchId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BranchName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BrokerId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BrokerName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Carat")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("CompanyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FinancialYearId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("NetCarat")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("Note")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumberId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NumberName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartyId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PartyName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Percentage")
-                        .HasColumnType("decimal(18, 2)");
-
-                    b.Property<decimal>("Rate")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("SizeId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SizeName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SrNo")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("TotalCarat")
-                        .HasColumnType("decimal(18, 4)");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.ToTable("SPCalculatorModel");
-                });
-
             modelBuilder.Entity("Repository.Entities.Model.CaratCategoryType", b =>
                 {
                     b.Property<string>("Id")
@@ -2099,9 +2018,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sr")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SrNo")
                         .HasColumnType("int");
 
                     b.Property<string>("ToPartyId")
@@ -2469,9 +2385,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PurchaseDetailsId")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SlipNo")
@@ -4352,9 +4265,6 @@ namespace EFCore.SQL.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("KapanId")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("NetWeight")
                         .HasColumnType("decimal(18,2)");
 
@@ -4362,9 +4272,6 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PurchaseID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remarks")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Size")

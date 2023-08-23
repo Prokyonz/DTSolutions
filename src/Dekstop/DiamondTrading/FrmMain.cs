@@ -307,6 +307,9 @@ namespace DiamondTrading
                         barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem53.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "kapanlagad_report":
+                        barButtonItem81.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
 
                     //Reports Menu - Slip Print
                     case "purchase_slip_print":

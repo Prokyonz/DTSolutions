@@ -103,6 +103,8 @@ namespace DiamondTrading
             this.barButtonItem78 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem82 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonSalaryReport = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonRejectionInReceive = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonRejectionOutSend = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem57 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem55 = new DevExpress.XtraBars.BarButtonItem();
@@ -214,8 +216,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonRejectionInReceive = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonRejectionOutSend = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -1063,6 +1063,20 @@ namespace DiamondTrading
             this.barButtonSalaryReport.Name = "barButtonSalaryReport";
             this.barButtonSalaryReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSalaryReport_ItemClick);
             // 
+            // barButtonRejectionInReceive
+            // 
+            this.barButtonRejectionInReceive.Caption = "Rejection In/Receive";
+            this.barButtonRejectionInReceive.Id = 129;
+            this.barButtonRejectionInReceive.Name = "barButtonRejectionInReceive";
+            this.barButtonRejectionInReceive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionInReceive_ItemClick);
+            // 
+            // barButtonRejectionOutSend
+            // 
+            this.barButtonRejectionOutSend.Caption = "Rejection Out/Send";
+            this.barButtonRejectionOutSend.Id = 130;
+            this.barButtonRejectionOutSend.Name = "barButtonRejectionOutSend";
+            this.barButtonRejectionOutSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionOutSend_ItemClick);
+            // 
             // barSubItem8
             // 
             this.barSubItem8.Caption = "Slip Print";
@@ -1110,7 +1124,7 @@ namespace DiamondTrading
             // 
             // barButtonKapanDetails
             // 
-            this.barButtonKapanDetails.Caption = "Kapan Details";
+            this.barButtonKapanDetails.Caption = "Kapan Map Details";
             this.barButtonKapanDetails.Id = 100;
             this.barButtonKapanDetails.Name = "barButtonKapanDetails";
             this.barButtonKapanDetails.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonKapanDetails_ItemClick);
@@ -1970,20 +1984,6 @@ namespace DiamondTrading
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
-            // 
-            // barButtonRejectionInReceive
-            // 
-            this.barButtonRejectionInReceive.Caption = "Rejection In/Receive";
-            this.barButtonRejectionInReceive.Id = 129;
-            this.barButtonRejectionInReceive.Name = "barButtonRejectionInReceive";
-            this.barButtonRejectionInReceive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionInReceive_ItemClick);
-            // 
-            // barButtonRejectionOutSend
-            // 
-            this.barButtonRejectionOutSend.Caption = "Rejection Out/Send";
-            this.barButtonRejectionOutSend.Id = 130;
-            this.barButtonRejectionOutSend.Name = "barButtonRejectionOutSend";
-            this.barButtonRejectionOutSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionOutSend_ItemClick);
             // 
             // FrmMain
             // 
