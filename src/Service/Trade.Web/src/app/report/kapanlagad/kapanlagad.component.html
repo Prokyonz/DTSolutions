@@ -1,0 +1,99 @@
+<app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
+<div>
+    <table style="width: 100%; margin-top:10px;" [cellSpacing]="5">
+        <tr>                        
+            <td style="width: 50%;">   
+                <!-- [(ngModel)]="partyid" -->
+               <span style="bottom: 5px; position: relative;">Select Kapan</span><br/>                                                       
+               <p-dropdown [options]="allkapan" optionLabel="name.name" [editable]="true" [(ngModel)]="kapanid" (onChange)="handlekapan($event)"></p-dropdown>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>
+            </td>
+        </tr>
+    </table>
+    <div style="height: calc(100vh - 200px); overflow:scroll;">
+        <p-table [value]="inward" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">                
+                <ng-container *ngIf="inward.length > 0 || outward.length > 0 || closing.length > 0">
+                <tr>                    
+                    <th>Category</th>
+                    <th>Date</th>
+                    <th>Slip No</th>
+                    <th>Net Weight</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+                </ng-container>
+            </ng-template>
+            <ng-template pTemplate="body" let-inwardTemp>
+                <ng-container *ngIf="inward.length > 0">
+                <tr>
+                    <td>{{ inwardTemp.category }}</td>
+                    <td>{{ inwardTemp.date | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ inwardTemp.slipNo }}</td>
+                    <td>{{ inwardTemp.netWeight }}</td>
+                    <td>{{ inwardTemp.rate | currency: 'INR' }}</td>                
+                    <td>{{ inwardTemp.amount| currency: 'INR' }}</td> 
+                </tr>
+                </ng-container>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <ng-container *ngIf="inward.length > 0">
+                    <tr>
+                        <td colspan="3" class="text-right">Total</td>
+                        <td>{{ formatDecimal(TotalInwardNetWeight) }}</td>                    
+                        <td>{{ TotalInwardRate | currency: 'INR' }}</td>                    
+                        <td>{{ formatDecimal(TotalInwardAmount) | currency: 'INR' }}</td>                    
+                    </tr>
+                </ng-container>
+            </ng-template>
+        </p-table>
+
+        <p-table [value]="outward" [tableStyle]="{ 'min-width': '50rem' }" *ngIf="outward.length > 0">   
+            <ng-template pTemplate="body" let-outward>
+                <tr>
+                    <td>{{ outward.category }}</td>
+                    <td>{{ outward.date | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ outward.slipNo }}</td>
+                    <td>{{ outward.netWeight }}</td>
+                    <td>{{ outward.rate | currency: 'INR' }}</td>                
+                    <td>{{ outward.amount | currency : 'INR'}}</td> 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td colspan="3" class="text-right">Total</td>
+                    <td>{{ formatDecimal(TotalOutwardNetWeight)}}</td>                    
+                    <td>{{ TotalOutwardRate | currency: 'INR'}}</td>                    
+                    <td>{{ formatDecimal(TotalOutwardAmount) | currency: 'INR'}}</td>                    
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-table [value]="closing" [tableStyle]="{ 'min-width': '50rem' }" *ngIf="closing.length > 0">            
+            <ng-template pTemplate="body" let-closing>
+                <tr>
+                    <td>{{ closing.category }}</td>
+                    <td>{{ closing.date | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ closing.slipNo }}</td>
+                    <td>{{ closing.netWeight }}</td>
+                    <td>{{ closing.rate | currency: 'INR' }}</td>                
+                    <td>{{ closing.amount | currency: 'INR' }}</td> 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td colspan="3" class="text-right">Total</td>
+                    <td>{{ formatDecimal(TotalClosingNetWeight) }}</td>                      
+                    <td>{{ TotalClosingRate | currency: 'INR'}}</td>                    
+                    <td>{{ formatDecimal(TotalClosingAmount) | currency: 'INR'}}</td>                    
+                                      
+                </tr>
+            </ng-template>
+        </p-table>
+
+    </div>
+      
+</div>
