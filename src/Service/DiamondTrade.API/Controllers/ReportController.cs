@@ -7,6 +7,7 @@ using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
 using iText.Layout.Renderer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Repository.Entities;
@@ -38,6 +39,7 @@ namespace DiamondTrade.API.Controllers
         private readonly IKapanMaster _kapanMaster;
         private readonly IOpeningStockMaster _openingStockMaster;
         private readonly IConfiguration _configuration;
+        private readonly IWebHostEnvironment _env;
         public ReportController(IPurchaseMaster purchaseMaster,
             ISalesMaster salesMaster,
             IPaymentMaster paymentMaster,
@@ -50,7 +52,8 @@ namespace DiamondTrade.API.Controllers
             IKapanMaster kapanMaster,
             ILoanMaster loanMaster,
             IOpeningStockMaster openingStockMaster,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            IWebHostEnvironment env)
         {
             _purchaseMaster = purchaseMaster;
             _salesMaster = salesMaster;
@@ -65,6 +68,7 @@ namespace DiamondTrade.API.Controllers
             _kapanMaster = kapanMaster;
             _openingStockMaster = openingStockMaster;
             _configuration = configuration;
+            _env = env;
         }
 
         [Route("GetPurchaseReport")]
@@ -916,16 +920,19 @@ namespace DiamondTrade.API.Controllers
 
         [Route("downloadpdf")]
         [HttpPost]
-        public async Task<Response<dynamic>> DownloadPDF([FromBody] ExportModel exportModel)
+        public Response<dynamic> DownloadPDF([FromBody] ExportModel exportModel)
         {
             try
             {
-                string pdfDirectory = _configuration["PdfSettings:PdfDirectory"]; // Get the PDF directory from configuration
+                string pdfDirectory = System.IO.Path.Combine(_env.WebRootPath, "pdfs");
 
                 // Create the directory if it doesn't exist
                 Directory.CreateDirectory(pdfDirectory);
 
-                string pdfFilePath = System.IO.Path.Combine(pdfDirectory, "table.pdf");
+                string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.pdf";
+                string pdfFilePath = System.IO.Path.Combine(pdfDirectory, uniqueFilename);
+                pdfFilePath = pdfFilePath.Replace('\\', '/');
+
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
                     PdfWriter pdfWriter = new PdfWriter(memoryStream);
@@ -971,8 +978,8 @@ namespace DiamondTrade.API.Controllers
                     System.IO.File.WriteAllBytes(pdfFilePath, pdfContent);
 
                     // Get the URL for the saved PDF
-                    string baseUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-                    string pdfUrl = $"{baseUrl}/{pdfFilePath}";
+                    string pdfRelativePath = $"wwwroot/pdfs/{uniqueFilename}";
+                    string pdfUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{pdfRelativePath}";
 
                     return new Response<dynamic>
                     {
@@ -1014,8 +1021,18 @@ namespace DiamondTrade.API.Controllers
 
         [Route("downloadexcel")]
         [HttpPost]
-        public IActionResult DownloadExcel([FromBody] ExportModel exportModel)
+        public Response<dynamic> DownloadExcel([FromBody] ExportModel exportModel)
         {
+            string excelDirectory = System.IO.Path.Combine(_env.WebRootPath, "csvs");
+
+            // Create the directory if it doesn't exist
+            Directory.CreateDirectory(excelDirectory);
+
+            string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
+            string excelFilePath = System.IO.Path.Combine(excelDirectory, uniqueFilename);
+            excelFilePath = excelFilePath.Replace('\\', '/');
+
+
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 using (var workbook = new ClosedXML.Excel.XLWorkbook())
@@ -1047,10 +1064,24 @@ namespace DiamondTrade.API.Controllers
 
                 var excelContent = memoryStream.ToArray();
 
-                Response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                Response.Headers.Add("Content-Disposition", "attachment; filename=table.xlsx");
+                System.IO.File.WriteAllBytes(excelFilePath, excelContent);
 
-                return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+                // Get the URL for the saved csv
+                string csvRelativePath = $"wwwroot/csvs/{uniqueFilename}";
+                string excelUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{csvRelativePath}";
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = excelUrl
+                };
+
+                //Response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                //Response.Headers.Add("Content-Disposition", "attachment; filename=table.xlsx");
+
+                //return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             }
         }
 

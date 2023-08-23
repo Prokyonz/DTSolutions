@@ -889,7 +889,6 @@ export class ReportComponent implements OnInit {
     };
 
     let extractedData: any[] = this.PurchaseReportList.map((item) => {
-      debugger;
       const formattedItem = { ...item };
       for (const key in formattedItem) {
         if (formattedItem.hasOwnProperty(key) && this.isISODateString(formattedItem[key])) {
@@ -908,15 +907,30 @@ export class ReportComponent implements OnInit {
       "rowData": extractedData
     };
     this.loading = true;
-    this.sharedService.customDownloadPostApi("Report/downloadexcel", data)
+    this.sharedService.customPostApi("Report/downloadexcel", data)
       .subscribe((data: any) => {
         const options: DownloadFileOptions = {          
           path: this.PageTitle.replaceAll(" ",'') + ".csv",
-          url: data,
+          url: data.data,
           directory: Directory.Documents,
         };
     
-        const downloadResult = Filesystem.downloadFile(options);
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            // Check downloadResult for success
+            if (downloadResult) {
+              console.log("File downloaded successfully:", downloadResult);
+            } else {
+              console.log("File download failed.");
+            }
+
+            this.loading = false;
+          })
+          .catch(ex => {
+            console.error("Error downloading file:", ex);
+            this.loading = false;
+            this.showMessage('error', ex);
+        });
         this.loading = false;
     }, (ex: any) => {
       this.loading = false;
@@ -984,7 +998,6 @@ export class ReportComponent implements OnInit {
     };
 
     let extractedData: any[] = this.PurchaseReportList.map((item) => {
-      debugger;
       const formattedItem = { ...item };
       for (const key in formattedItem) {
         if (formattedItem.hasOwnProperty(key) && this.isISODateString(formattedItem[key])) {
@@ -1003,16 +1016,31 @@ export class ReportComponent implements OnInit {
       "rowData": extractedData
     };
     this.loading = true;
-    this.sharedService.customDownloadPostApi("Report/downloadpdf", data)
+    this.sharedService.customPostApi("Report/downloadpdf", data)
       .subscribe((data: any) => {
-        
+        debugger;
         const options: DownloadFileOptions = {          
           path: this.PageTitle.replaceAll(" ",'') + ".pdf",
-          url: data,
+          url: data.data,
           directory: Directory.Documents,
         };
     
-        const downloadResult = Filesystem.downloadFile(options);
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            // Check downloadResult for success
+            if (downloadResult) {
+              console.log("File downloaded successfully:", downloadResult);
+            } else {
+              console.log("File download failed.");
+            }
+
+            this.loading = false;
+          })
+          .catch(ex => {
+            console.error("Error downloading file:", ex);
+            this.loading = false;
+            this.showMessage('error', ex);
+        });
 
         this.loading = false;
     }, (ex: any) => {
