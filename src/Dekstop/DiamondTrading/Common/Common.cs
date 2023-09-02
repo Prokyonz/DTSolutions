@@ -38,6 +38,8 @@ namespace DiamondTrading
         public static string LoginFinancialYear = "00000000-0000-0000-0000-000000000000";
         public static string LoginFinancialYearName = "0000-0000";
 
+        public static string LoginLanguage = "1";
+
         public static string FormTitle="|| શ્રીજી ||";
         public static bool PrintPurchaseSlip = false;
         public static bool PrintPurchasePF = false;
@@ -102,6 +104,21 @@ namespace DiamondTrading
                 return dt;
             }
 
+        }
+
+        internal static DataTable GetLanguageType
+        {
+            get
+            {
+                DataTable dt = new DataTable();
+                dt.Columns.Add("Id", typeof(int));
+                dt.Columns.Add("Name", typeof(string));
+
+                dt.Rows.Add(1, "English");
+                dt.Rows.Add(2, "Chinese");
+
+                return dt;
+            }
         }
 
         internal static DataTable GetBalanceSheetType

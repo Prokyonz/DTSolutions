@@ -21,6 +21,7 @@ namespace DiamondTrading
         public const string RememberLogin = "RememberLogin";
         public const string LoginUserName = "LoginUserName";
         public const string LoginPwd = "LoginPwd";
+        public const string LoginLanguage = "LoginLanguage";
         #endregion
 
         #region "CompanyYearSelection"

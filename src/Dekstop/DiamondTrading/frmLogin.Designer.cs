@@ -42,6 +42,8 @@ namespace DiamondTrading
             this.txtUsername = new DevExpress.XtraEditors.TextEdit();
             this.txtPassword = new DevExpress.XtraEditors.TextEdit();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.lueLanguage = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
@@ -49,6 +51,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueLanguage.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // btnLogin
@@ -57,7 +60,7 @@ namespace DiamondTrading
             this.btnLogin.Appearance.Font = new System.Drawing.Font("Tahoma", 11F);
             this.btnLogin.Appearance.Options.UseBackColor = true;
             this.btnLogin.Appearance.Options.UseFont = true;
-            this.btnLogin.Location = new System.Drawing.Point(18, 179);
+            this.btnLogin.Location = new System.Drawing.Point(18, 234);
             this.btnLogin.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnLogin.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnLogin.Name = "btnLogin";
@@ -104,7 +107,7 @@ namespace DiamondTrading
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 11F);
             this.btnCancel.Appearance.Options.UseBackColor = true;
             this.btnCancel.Appearance.Options.UseFont = true;
-            this.btnCancel.Location = new System.Drawing.Point(158, 179);
+            this.btnCancel.Location = new System.Drawing.Point(158, 234);
             this.btnCancel.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnCancel.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnCancel.Name = "btnCancel";
@@ -122,6 +125,8 @@ namespace DiamondTrading
             this.panelControl2.Appearance.Options.UseBorderColor = true;
             this.panelControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelControl2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelControl2.Controls.Add(this.lueLanguage);
+            this.panelControl2.Controls.Add(this.labelControl4);
             this.panelControl2.Controls.Add(this.lblError);
             this.panelControl2.Controls.Add(this.chkRememberMe);
             this.panelControl2.Controls.Add(this.pictureEdit1);
@@ -134,13 +139,13 @@ namespace DiamondTrading
             this.panelControl2.Controls.Add(this.labelControl1);
             this.panelControl2.Location = new System.Drawing.Point(8, 10);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(307, 224);
+            this.panelControl2.Size = new System.Drawing.Size(307, 281);
             this.panelControl2.TabIndex = 0;
             // 
             // lblError
             // 
             this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(121, 156);
+            this.lblError.Location = new System.Drawing.Point(121, 211);
             this.lblError.Name = "lblError";
             this.lblError.Size = new System.Drawing.Size(170, 16);
             this.lblError.TabIndex = 7;
@@ -150,13 +155,13 @@ namespace DiamondTrading
             // 
             // chkRememberMe
             // 
-            this.chkRememberMe.Location = new System.Drawing.Point(18, 154);
+            this.chkRememberMe.Location = new System.Drawing.Point(18, 209);
             this.chkRememberMe.Name = "chkRememberMe";
             this.chkRememberMe.Properties.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
             this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
             this.chkRememberMe.Properties.Caption = "Remember Me";
             this.chkRememberMe.Size = new System.Drawing.Size(97, 18);
-            this.chkRememberMe.TabIndex = 6;
+            this.chkRememberMe.TabIndex = 7;
             // 
             // pictureEdit1
             // 
@@ -188,11 +193,36 @@ namespace DiamondTrading
             this.txtPassword.Size = new System.Drawing.Size(273, 26);
             this.txtPassword.TabIndex = 5;
             // 
-            // frmLogin
+            // labelControl4
+            // 
+            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.labelControl4.Appearance.Options.UseFont = true;
+            this.labelControl4.Location = new System.Drawing.Point(18, 156);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(53, 14);
+            this.labelControl4.TabIndex = 10;
+            this.labelControl4.Text = "Language";
+            // 
+            // lueLanguage
+            // 
+            this.lueLanguage.Location = new System.Drawing.Point(18, 176);
+            this.lueLanguage.Name = "lueLanguage";
+            this.lueLanguage.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.lueLanguage.Properties.Appearance.Options.UseFont = true;
+            this.lueLanguage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueLanguage.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Laguage Name", 100, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "LanguageId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueLanguage.Properties.NullText = "";
+            this.lueLanguage.Size = new System.Drawing.Size(273, 26);
+            this.lueLanguage.TabIndex = 6;
+            // 
+            // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 242);
+            this.ClientSize = new System.Drawing.Size(324, 299);
             this.Controls.Add(this.panelControl2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;
@@ -201,7 +231,7 @@ namespace DiamondTrading
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "frmLogin";
+            this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmLogin_KeyDown);
@@ -213,6 +243,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.txtUsername.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtPassword.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueLanguage.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -231,5 +262,7 @@ namespace DiamondTrading
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private DevExpress.XtraEditors.CheckEdit chkRememberMe;
         private System.Windows.Forms.Label lblError;
+        private DevExpress.XtraEditors.LabelControl labelControl4;
+        private DevExpress.XtraEditors.LookUpEdit lueLanguage;
     }
 }

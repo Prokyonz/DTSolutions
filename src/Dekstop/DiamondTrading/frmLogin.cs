@@ -24,6 +24,13 @@ namespace DiamondTrading
             _userMasterRepository = new UserMasterRepository();
         }
 
+        public void FillLanguageBox()
+        {
+            lueLanguage.Properties.DataSource = Common.GetLanguageType;
+            lueLanguage.Properties.DisplayMember = "Name";
+            lueLanguage.Properties.ValueMember = "Id";            
+        }
+
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -53,6 +60,7 @@ namespace DiamondTrading
                     this.Hide();
                     Common.LoginUserID = data.UserMaster.Id;
                     Common.LoginUserName = data.UserMaster.Name;
+                    Common.LoginLanguage = lueLanguage.EditValue.ToString();
                     FrmMain frmMain = new FrmMain();
                     frmMain.Show();
                 }
@@ -79,6 +87,7 @@ namespace DiamondTrading
             {
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, DataSecurity.EncryptString(txtUsername.Text,SecurityType.Password));
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, DataSecurity.EncryptString(txtPassword.Text, SecurityType.Password));
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, lueLanguage.EditValue.ToString());
             }
         }
 
@@ -89,6 +98,7 @@ namespace DiamondTrading
             { 
                 txtUsername.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, ""),SecurityType.Password);
                 txtPassword.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, ""), SecurityType.Password);
+                lueLanguage.EditValue = Convert.ToInt32(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, "1"));
                 btnLogin.Focus();
                 btnLogin.Select();
             }
@@ -115,6 +125,7 @@ namespace DiamondTrading
 
             Thread.Sleep(1000);
             SplashScreenManager.CloseForm();
+            FillLanguageBox();
             LoadRegistrySettings();
         }
 
