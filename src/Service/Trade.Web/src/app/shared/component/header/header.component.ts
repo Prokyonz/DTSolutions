@@ -47,7 +47,6 @@ export class HeaderComponent implements OnInit {
       this.sharedService.customGetApi("Auth/GetPermissionList?userid=" + localStorage.getItem("userid"))
       .subscribe((data: any) => {
             this.filterReport = data.data;
-            console.log(this.filterReport);
             debugger;
             if (this.filterReport.filter((e : any) => e == "calculator").length > 0){
               this.items.push({

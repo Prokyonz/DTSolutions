@@ -59,7 +59,7 @@ export class ReportComponent implements OnInit {
       case 1:
         this.PageTitle = "Purchase Report";
         this.isChildReport = true;
-        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_report")
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
 
@@ -92,7 +92,7 @@ export class ReportComponent implements OnInit {
       case 2:
         this.PageTitle = "Sales Report";
         this.isChildReport = true;
-        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=sales_report")
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=sales_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
@@ -121,7 +121,7 @@ export class ReportComponent implements OnInit {
         break;
       case 3:
         this.PageTitle = "Payment Report";
-        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_report")
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
@@ -140,12 +140,13 @@ export class ReportComponent implements OnInit {
         break;
       case 4:
         this.PageTitle = "Receipt Report";
-        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=receipt_report")
+        this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=receipt_approval")
           .subscribe((data: any) => {
+            this.isApproveButton = data.success;
             this.columnArray = [
               { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
               { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
+              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
               { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
               { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
               { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
@@ -175,6 +176,8 @@ export class ReportComponent implements OnInit {
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
           { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
           { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
+          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
           { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
           { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
         ];
