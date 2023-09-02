@@ -446,6 +446,28 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        [Route("GetLedgerDetail")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetLedgerDetail(string CompanyId, string FinancialYearId, string ledgerId)
+        {
+            try
+            {
+                var result = await _partyMaster.GetLedgerChildReport(CompanyId, FinancialYearId, ledgerId);
+                result = result.OrderBy(o => o.Date).ToList();
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         [Route("GetCashBankReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetCashBankReport(string CompanyId, string FinancialYearId, DateTime FromDate, DateTime ToDate)
