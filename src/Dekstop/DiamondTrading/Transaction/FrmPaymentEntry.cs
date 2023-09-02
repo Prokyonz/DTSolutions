@@ -673,6 +673,15 @@ namespace DiamondTrading.Transaction
                                 PartyOpeningBalance, 0);
                         }
 
+                        DataRow[] dataRow1 = dtSlipDetail.Select("SlipNo=-2 and PartyId='" + grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty) + "'");
+                        if (dataRow1.Length == 0)
+                        {
+                            dtSlipDetail.Rows.Add(0, DateTime.Now, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colParty),
+                                "New Refrence", "-2", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colBranch),
+                                Common.LoginFinancialYear, Common.LoginFinancialYearName,
+                                0, 0);
+                        }
+
                         dtView.Sort = "SlipNo ASC";
 
                         FrmPaymentSlipSelect frmPaymentSlipSelect = new FrmPaymentSlipSelect(dtView.ToTable());
@@ -795,6 +804,15 @@ namespace DiamondTrading.Transaction
                                     "Opening Balance", "-1", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(e.RowHandle, colBranch),
                                     Common.LoginFinancialYear, Common.LoginFinancialYearName,
                                     PartyOpeningBalance, PartyOpeningBalance, 0);
+                            }
+
+                            DataRow[] dataRow1 = dtSlipDetail.Select("SlipNo=-2 and PartyId='" + PartyId + "'");
+                            if (dataRow1.Length == 0)
+                            {
+                                dtSlipDetail.Rows.Add(0, DateTime.Now, PartyId,
+                                    "New Refrence", "-2", lueCompany.EditValue, grvPaymentDetails.GetRowCellValue(e.RowHandle, colBranch),
+                                    Common.LoginFinancialYear, Common.LoginFinancialYearName,
+                                    0, 0, 0);
                             }
                             //else
                             //{
