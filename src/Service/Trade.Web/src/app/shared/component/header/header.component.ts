@@ -133,7 +133,7 @@ export class HeaderComponent implements OnInit {
                 break;
                 case 'mixed_report':
                   this.transactionReportItems.push({
-                      label: 'Mixed',
+                      label: 'Rojmel',
                       icon: 'pi pi-fw pi-refresh',
                       routerLink: "/report/8",
                       command: () => {
