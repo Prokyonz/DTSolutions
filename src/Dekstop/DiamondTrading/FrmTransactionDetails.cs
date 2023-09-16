@@ -923,7 +923,7 @@ namespace DiamondTrading
                 string SelectedSrNo = grvExpenseMaster.GetFocusedRowCellValue("SrNo").ToString();
                 int CrDrType = Convert.ToInt32(grvExpenseMaster.GetFocusedRowCellValue("CrDrType"));
 
-                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Expense", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo),CrDrType);
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Expense", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo), CrDrType);
 
                 if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
                 {
@@ -934,7 +934,19 @@ namespace DiamondTrading
             {
                 string SelectedSrNo = grvContraDetails.GetFocusedRowCellValue("SrNo").ToString();
 
-                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Contra", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo),-1);
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Contra", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo), -1);
+
+                if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabPayment)
+            {
+                string SelectedSrNo = gridView4.GetFocusedRowCellValue("SrNo").ToString();
+                int CrDrType = Convert.ToInt32(grvExpenseMaster.GetFocusedRowCellValue("CrDrType"));
+
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Payment", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo), CrDrType);
 
                 if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
                 {

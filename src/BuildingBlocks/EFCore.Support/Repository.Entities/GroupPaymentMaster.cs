@@ -26,5 +26,6 @@ namespace Repository.Entities
         public string EntryDate { get; set; }
 
         public virtual List<PaymentMaster> PaymentMasters { get; set; }
+        public virtual List<PaymentDetails> PaymentDetails { get; set; }
     }
 }

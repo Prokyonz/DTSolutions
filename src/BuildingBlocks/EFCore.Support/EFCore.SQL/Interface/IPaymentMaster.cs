@@ -10,6 +10,7 @@ namespace EFCore.SQL.Interface
     public interface IPaymentMaster
     {
         Task<List<GroupPaymentMaster>> GetAllPaymentAsync(string companyId, string financialYearId);
+        Task<GroupPaymentMaster> GetPaymentAsync(string companyId, string financialYearId, int SrNo, int paymentType);
         Task<List<PaymentSPModel>> GetPaymentReport(string companyId, string financialYearId, int paymentType, string fromDate, string toDate);
         Task<int> GetMaxSrNoAsync(int paymentType, string companyId, string financialYearId);
         Task<GroupPaymentMaster> AddPaymentAsync(GroupPaymentMaster groupPaymentMaster);

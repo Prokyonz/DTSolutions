@@ -211,6 +211,11 @@ namespace DiamondTrading.Transaction
                         grvPaymentDetails.CellValueChanged += grvPaymentDetails_CellValueChanged;
                     }
                 }
+                else if(_paymentType == 0)
+                {
+                    var paymentDetails = await _paymentMaterRepository.GetPaymentAsync(_selectedCompany, _selectedFinancialYear, _selectedSrNo, _paymentType);
+
+                }
             }
         }
 
@@ -376,7 +381,7 @@ namespace DiamondTrading.Transaction
                             if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(i, colPartyType)) != PartyTypeMaster.Expense)
                             {
                                 string paymentMasterId = Guid.NewGuid().ToString();
-
+                                listPaymentDetails = new List<PaymentDetails>();
                                 if (dtSlipDetail.Columns.Contains("Amount"))
                                 {
                                     DataView dbView = new DataView(dtSlipDetail);
