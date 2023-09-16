@@ -295,6 +295,7 @@
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\DataSecurity.cs" />
     <Compile Include="Common\enum.cs" />
+    <Compile Include="Common\LangHelper.cs" />
     <Compile Include="Common\RegistryHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -580,6 +581,11 @@
     <Compile Include="Process\FrmKapanMap.Designer.cs">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmApproveReject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -676,7 +682,13 @@
     <EmbeddedResource Include="FrmCompanyYearSelection.resx">
       <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCompanyYearSelection.zh.resx">
+      <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.zh.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
@@ -825,6 +837,11 @@
     <EmbeddedResource Include="Process\FrmKapanMap.resx">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="strings.zh-CN.resx" />
     <EmbeddedResource Include="Transaction\FrmApproveReject.resx">
       <DependentUpon>FrmApproveReject.cs</DependentUpon>
     </EmbeddedResource>

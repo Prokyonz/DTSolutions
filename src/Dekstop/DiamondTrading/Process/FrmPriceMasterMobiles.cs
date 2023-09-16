@@ -17,14 +17,14 @@ namespace DiamondTrading.Process
     public partial class FrmPriceMasterMobiles : DevExpress.XtraEditors.XtraForm
     {
         CompanyMasterRepository _companyMasterRepository;
-        PriceMasterRepository _priceMasterRepository;
+        PriceMasterMobileRepository _priceMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
 
         public FrmPriceMasterMobiles()
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
-            _priceMasterRepository = new PriceMasterRepository();
+            _priceMasterRepository = new PriceMasterMobileRepository();
 
             LoadCompany();
             LoadCategory();
@@ -116,14 +116,14 @@ namespace DiamondTrading.Process
                 try
                 {
                     await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString(),lueCategory.EditValue.ToString());
-                    PriceMaster priceMaster;
-                    List<PriceMaster> priceMasterList = new List<PriceMaster>();
+                    PriceMasterMobile priceMaster;
+                    List<PriceMasterMobile> priceMasterList = new List<PriceMasterMobile>();
                     grvParticularsDetails.ExpandAllGroups();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
                         if (grvParticularsDetails.GetRowCellValue(i, colSizeId) != null)
                         {
-                            priceMaster = new PriceMaster();
+                            priceMaster = new PriceMasterMobile();
                             priceMaster.Id = Guid.NewGuid().ToString();
                             priceMaster.CompanyId = lueCompany.EditValue.ToString();
                             priceMaster.CategoryId = lueCategory.EditValue.ToString();
