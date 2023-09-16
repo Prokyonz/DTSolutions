@@ -20,7 +20,7 @@ namespace Repository.Entities.Model
         //public DateTime? UpdatedDate { get; set; }
         //public string UpdatedBy { get; set; }
         public DateTime? EntryDate { get; set; }
-
+        public int SrNo { get; set; }
     }
 
     public class MixedSPModel

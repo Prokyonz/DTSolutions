@@ -84,6 +84,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<GroupPaymentMaster> GetPaymentAsync(string companyId, string financialYearId, int SrNo, int paymentType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId && w.BillNo == SrNo).Include("PaymentMasters").Include("PaymentDetails").FirstOrDefaultAsync();
+            }
+        }
+
         public async Task<int> GetMaxSrNoAsync(int paymentType, string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
@@ -99,8 +107,15 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '"+ fromDate +"', '"+ toDate +"'").ToListAsync();
-                return paymentRecords;
+                try
+                {
+                    var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '" + fromDate + "', '" + toDate + "'").ToListAsync();
+                    return paymentRecords;
+                }
+                catch(Exception Ex)
+                {
+                    return null;
+                }
             }
         }
 
