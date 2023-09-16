@@ -17,6 +17,7 @@ namespace DiamondTrading
     public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
         private readonly UserMasterRepository _userMasterRepository;
+        public bool NeedsRestart { get; private set; }
 
         public FrmLogin()
         {
@@ -35,6 +36,15 @@ namespace DiamondTrading
         {
             try
             {
+                int oldSelectedLanguage = Convert.ToInt32(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, "1"));
+                if(Convert.ToInt32(lueLanguage.EditValue) != oldSelectedLanguage)
+                {
+                    SaveRegistrySettings();
+                    NeedsRestart = true;
+                    MessageBox.Show(LangHelper.GetString("LangChange"), LangHelper.GetString("LangChngeTitle"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+
                 //Set cursor position to center
                 Screen screen = Screen.FromControl(this);
                 this.Cursor = new Cursor(Cursor.Current.Handle);
@@ -110,13 +120,16 @@ namespace DiamondTrading
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
-        {
+        {             
             FluentSplashScreenOptions options = new FluentSplashScreenOptions();
             options.LogoImageOptions.Image = Properties.Resources.logo;
-            options.Title = "Diamond Trading";
-            options.Subtitle = "Diamond Tranding & Account Management Software";
-            options.RightFooter = "Starting...";
-            options.LeftFooter = "Copyright @ " + DateTime.Now.Year + " "  + Environment.NewLine + "All Rights reserved.";
+            options.Title = LangHelper.GetString("DiamondTrading"); 
+            options.Subtitle = LangHelper.GetString("SubTitle");
+            options.RightFooter = LangHelper.GetString("RightFooter");
+
+            string leftFooter = LangHelper.GetString("CopyRight") + " " +  DateTime.Now.Year + " " + Environment.NewLine + LangHelper.GetString("AllRights");
+
+            options.LeftFooter = leftFooter;
             options.LoadingIndicatorType = FluentLoadingIndicatorType.Dots;
             options.Opacity = 150;
             options.OpacityColor = Color.DodgerBlue;

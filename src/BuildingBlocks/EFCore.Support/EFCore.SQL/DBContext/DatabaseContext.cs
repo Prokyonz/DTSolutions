@@ -65,11 +65,12 @@ namespace EFCore.SQL.DBContext
         public DbSet<ApprovalPermissionMaster> ApprovalPermissionMaster { get; set; }
         public DbSet<JangadMaster> JangadMaster { get; set; }
         public DbSet<PriceMaster> PriceMaster { get; set; }
+        public DbSet<PriceMasterMobile> PriceMasterMobile { get; set; }
         public DbSet<RejectionInOutMaster> RejectionInOutMaster { get; set; }
         public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
         public DbSet<LedgerBalanceManager> LedgerBalanceManager { get; set; }
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
-
+        public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
 
 
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
@@ -125,13 +126,13 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<ChildLedgerSPModel> SPLedgerChildReport { get; set; }
         public virtual DbSet<SalaryReportSPModel> SPSalaryReport{ get; set; }
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
-        public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }
+        public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
-            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
-            //optionsBuilder.UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            optionsBuilder.UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
@@ -182,10 +183,12 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<ApprovalPermissionMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<JangadMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PriceMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<PriceMasterMobile>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<RejectionInOutMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<OpeningStockMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<LedgerBalanceManager>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CalculatorMaster>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<BillPrintModel>().Property(c => c.Id).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
@@ -231,7 +234,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
-            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
+            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
         }
     }
 }

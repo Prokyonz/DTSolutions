@@ -16,4 +16,14 @@ namespace EFCore.SQL.Interface
         Task<bool> DeletePriceAsync(string companyId, string categoryId);
         Task<List<PriceSPModel>> GetDefaultPriceList();
     }
+
+    public interface IPriceMasterMobile
+    {
+        Task<List<PriceMasterMobile>> GetAllPricesAsync(string companyId, string categoryId);
+        Task<PriceMasterMobile> GetPricesAsync(string companyId, string categoryId, string SizeId, string NumberId);
+        Task<List<PriceMasterMobile>> AddPriceAsync(List<PriceMasterMobile> priceMaster);
+        Task<PriceMasterMobile> UpdatePriceAsync(PriceMasterMobile priceMaster);
+        Task<bool> DeletePriceAsync(string companyId, string categoryId);
+        Task<List<PriceSPModel>> GetDefaultPriceList();
+    }
 }
