@@ -71,6 +71,38 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.BillNo == SrNo && w.CrDrType == paymentType).FirstOrDefaultAsync();
+                    if (paymentRecord != null)
+                    {
+                        var paymentMasterRecord = await _databaseContext.PaymentMaster.Where(x => x.GroupId == paymentRecord.Id).FirstOrDefaultAsync();
+                        if (paymentMasterRecord != null)
+                        {
+                            var paymentDetailsRecord = await _databaseContext.PaymentDetails.Where(x => x.GroupId == paymentRecord.Id).FirstOrDefaultAsync();
+                            if (paymentDetailsRecord != null)
+                            {
+                                _databaseContext.PaymentDetails.RemoveRange(paymentDetailsRecord);
+                            }
+                            _databaseContext.PaymentMaster.RemoveRange(paymentMasterRecord);
+                        }
+                        _databaseContext.GroupPaymentMaster.RemoveRange(paymentRecord);
+                        _databaseContext.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
         public void Dispose()
         {
             _databaseContext.DisposeAsync();
@@ -119,11 +151,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType)
+        public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType, int SrNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "'").ToListAsync();
+                var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "', '" + SrNo + "'").ToListAsync();
                 return PaymentPSSlipDetails;
             }
         }

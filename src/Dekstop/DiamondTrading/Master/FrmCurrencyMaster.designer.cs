@@ -29,6 +29,7 @@ namespace DiamondTrading.Master
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCurrencyMaster));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtShortName = new DevExpress.XtraEditors.TextEdit();
             this.txtRate = new DevExpress.XtraEditors.TextEdit();
@@ -48,112 +49,83 @@ namespace DiamondTrading.Master
             // 
             // groupControl1
             // 
+            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Controls.Add(this.txtShortName);
             this.groupControl1.Controls.Add(this.txtRate);
             this.groupControl1.Controls.Add(this.labelControl6);
             this.groupControl1.Controls.Add(this.labelControl4);
             this.groupControl1.Controls.Add(this.txtCurrencyName);
             this.groupControl1.Controls.Add(this.labelControl2);
-            this.groupControl1.Location = new System.Drawing.Point(9, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(345, 136);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Currency Details";
             // 
             // txtShortName
             // 
-            this.txtShortName.Location = new System.Drawing.Point(10, 99);
+            resources.ApplyResources(this.txtShortName, "txtShortName");
             this.txtShortName.Name = "txtShortName";
-            this.txtShortName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtShortName.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtShortName.Properties.Appearance.Font")));
             this.txtShortName.Properties.Appearance.Options.UseFont = true;
             this.txtShortName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtShortName.Size = new System.Drawing.Size(221, 22);
-            this.txtShortName.TabIndex = 3;
             // 
             // txtRate
             // 
-            this.txtRate.Location = new System.Drawing.Point(237, 99);
+            resources.ApplyResources(this.txtRate, "txtRate");
             this.txtRate.Name = "txtRate";
-            this.txtRate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtRate.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtRate.Properties.Appearance.Font")));
             this.txtRate.Properties.Appearance.Options.UseFont = true;
-            this.txtRate.Size = new System.Drawing.Size(97, 22);
-            this.txtRate.TabIndex = 5;
             // 
             // labelControl6
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl6, "labelControl6");
+            this.labelControl6.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl6.Appearance.Font")));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(237, 82);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(32, 14);
-            this.labelControl6.TabIndex = 4;
-            this.labelControl6.Text = "Rate*";
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl4, "labelControl4");
+            this.labelControl4.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl4.Appearance.Font")));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(10, 82);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(72, 14);
-            this.labelControl4.TabIndex = 2;
-            this.labelControl4.Text = "Short Name*";
             // 
             // txtCurrencyName
             // 
-            this.txtCurrencyName.Location = new System.Drawing.Point(10, 48);
+            resources.ApplyResources(this.txtCurrencyName, "txtCurrencyName");
             this.txtCurrencyName.Name = "txtCurrencyName";
-            this.txtCurrencyName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtCurrencyName.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtCurrencyName.Properties.Appearance.Font")));
             this.txtCurrencyName.Properties.Appearance.Options.UseFont = true;
-            this.txtCurrencyName.Properties.BeepOnError = false;
             this.txtCurrencyName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtCurrencyName.Size = new System.Drawing.Size(324, 26);
-            this.txtCurrencyName.TabIndex = 1;
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl2, "labelControl2");
+            this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(10, 30);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(38, 14);
-            this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "Name*";
             // 
             // btnCancel
             // 
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(279, 147);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 3;
-            this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(198, 147);
+            resources.ApplyResources(this.btnReset, "btnReset");
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 2;
-            this.btnReset.Text = "&Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(117, 147);
+            resources.ApplyResources(this.btnSave, "btnSave");
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 1;
-            this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // FrmCurrencyMaster
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(368, 182);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -163,8 +135,6 @@ namespace DiamondTrading.Master
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCurrencyMaster";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add/Edit Currency";
             this.Load += new System.EventHandler(this.FrmCurrencyMaster_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCurrencyMaster_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

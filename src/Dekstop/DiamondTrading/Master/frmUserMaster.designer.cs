@@ -29,6 +29,7 @@ namespace DiamondTrading.Master
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUserMaster));
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.txtUserName = new DevExpress.XtraEditors.TextEdit();
             this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
@@ -79,6 +80,7 @@ namespace DiamondTrading.Master
             // 
             // groupControl1
             // 
+            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl10);
@@ -87,102 +89,75 @@ namespace DiamondTrading.Master
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtName);
             this.groupControl1.Controls.Add(this.labelControl2);
-            this.groupControl1.Location = new System.Drawing.Point(12, 12);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(710, 137);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "User Account Details";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // txtUserName
             // 
-            this.txtUserName.Location = new System.Drawing.Point(355, 47);
+            resources.ApplyResources(this.txtUserName, "txtUserName");
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtUserName.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtUserName.Properties.Appearance.Font")));
             this.txtUserName.Properties.Appearance.Options.UseFont = true;
-            this.txtUserName.Properties.BeepOnError = false;
             this.txtUserName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtUserName.Size = new System.Drawing.Size(343, 26);
-            this.txtUserName.TabIndex = 2;
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
             // labelControl7
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl7, "labelControl7");
+            this.labelControl7.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl7.Appearance.Font")));
             this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(355, 28);
             this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(66, 14);
-            this.labelControl7.TabIndex = 11;
-            this.labelControl7.Text = "User Name*";
             // 
             // labelControl10
             // 
-            this.labelControl10.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl10, "labelControl10");
+            this.labelControl10.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl10.Appearance.Font")));
             this.labelControl10.Appearance.Options.UseFont = true;
-            this.labelControl10.Location = new System.Drawing.Point(355, 79);
             this.labelControl10.Name = "labelControl10";
-            this.labelControl10.Size = new System.Drawing.Size(103, 14);
-            this.labelControl10.TabIndex = 10;
-            this.labelControl10.Text = "Confirm Password*";
             // 
             // txtConfrmPassword
             // 
-            this.txtConfrmPassword.Location = new System.Drawing.Point(355, 99);
+            resources.ApplyResources(this.txtConfrmPassword, "txtConfrmPassword");
             this.txtConfrmPassword.Name = "txtConfrmPassword";
-            this.txtConfrmPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtConfrmPassword.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtConfrmPassword.Properties.Appearance.Font")));
             this.txtConfrmPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtConfrmPassword.Properties.BeepOnError = false;
             this.txtConfrmPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtConfrmPassword.Properties.PasswordChar = '*';
-            this.txtConfrmPassword.Size = new System.Drawing.Size(343, 26);
-            this.txtConfrmPassword.TabIndex = 4;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(6, 99);
+            resources.ApplyResources(this.txtPassword, "txtPassword");
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtPassword.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtPassword.Properties.Appearance.Font")));
             this.txtPassword.Properties.Appearance.Options.UseFont = true;
-            this.txtPassword.Properties.BeepOnError = false;
             this.txtPassword.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPassword.Properties.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(343, 26);
-            this.txtPassword.TabIndex = 3;
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl1, "labelControl1");
+            this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(6, 79);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(58, 14);
-            this.labelControl1.TabIndex = 7;
-            this.labelControl1.Text = "Password*";
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(6, 47);
+            resources.ApplyResources(this.txtName, "txtName");
             this.txtName.Name = "txtName";
-            this.txtName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtName.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtName.Properties.Appearance.Font")));
             this.txtName.Properties.Appearance.Options.UseFont = true;
-            this.txtName.Properties.BeepOnError = false;
             this.txtName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtName.Size = new System.Drawing.Size(343, 26);
-            this.txtName.TabIndex = 1;
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl2, "labelControl2");
+            this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(6, 28);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(38, 14);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Name*";
             // 
             // groupControl2
             // 
+            resources.ApplyResources(this.groupControl2, "groupControl2");
             this.groupControl2.Controls.Add(this.txtHomeNo);
             this.groupControl2.Controls.Add(this.txtMobileNo);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -191,135 +166,109 @@ namespace DiamondTrading.Master
             this.groupControl2.Controls.Add(this.txtAddress);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl4);
-            this.groupControl2.Location = new System.Drawing.Point(11, 155);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(710, 151);
-            this.groupControl2.TabIndex = 4;
-            this.groupControl2.Text = "Basic Details";
             // 
             // txtHomeNo
             // 
-            this.txtHomeNo.Location = new System.Drawing.Point(356, 119);
+            resources.ApplyResources(this.txtHomeNo, "txtHomeNo");
             this.txtHomeNo.Name = "txtHomeNo";
-            this.txtHomeNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtHomeNo.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtHomeNo.Properties.Appearance.Font")));
             this.txtHomeNo.Properties.Appearance.Options.UseFont = true;
-            this.txtHomeNo.Size = new System.Drawing.Size(343, 22);
-            this.txtHomeNo.TabIndex = 8;
             // 
             // txtMobileNo
             // 
-            this.txtMobileNo.Location = new System.Drawing.Point(7, 119);
+            resources.ApplyResources(this.txtMobileNo, "txtMobileNo");
             this.txtMobileNo.Name = "txtMobileNo";
-            this.txtMobileNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.txtMobileNo.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("txtMobileNo.Properties.Appearance.Font")));
             this.txtMobileNo.Properties.Appearance.Options.UseFont = true;
-            this.txtMobileNo.Size = new System.Drawing.Size(343, 22);
-            this.txtMobileNo.TabIndex = 7;
             // 
             // labelControl5
             // 
-            this.labelControl5.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl5, "labelControl5");
+            this.labelControl5.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl5.Appearance.Font")));
             this.labelControl5.Appearance.Options.UseFont = true;
-            this.labelControl5.Location = new System.Drawing.Point(356, 98);
             this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(51, 14);
-            this.labelControl5.TabIndex = 4;
-            this.labelControl5.Text = "Home No";
             // 
             // labelControl6
             // 
-            this.labelControl6.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl6, "labelControl6");
+            this.labelControl6.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl6.Appearance.Font")));
             this.labelControl6.Appearance.Options.UseFont = true;
-            this.labelControl6.Location = new System.Drawing.Point(7, 98);
             this.labelControl6.Name = "labelControl6";
-            this.labelControl6.Size = new System.Drawing.Size(53, 14);
-            this.labelControl6.TabIndex = 2;
-            this.labelControl6.Text = "Mobile No";
             // 
             // txtAddress2
             // 
-            this.txtAddress2.Location = new System.Drawing.Point(356, 50);
+            resources.ApplyResources(this.txtAddress2, "txtAddress2");
             this.txtAddress2.Name = "txtAddress2";
-            this.txtAddress2.Size = new System.Drawing.Size(343, 42);
-            this.txtAddress2.TabIndex = 6;
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(7, 50);
+            resources.ApplyResources(this.txtAddress, "txtAddress");
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(343, 42);
-            this.txtAddress.TabIndex = 5;
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl3, "labelControl3");
+            this.labelControl3.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl3.Appearance.Font")));
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(356, 29);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(50, 14);
-            this.labelControl3.TabIndex = 2;
-            this.labelControl3.Text = "Address2";
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 9F);
+            resources.ApplyResources(this.labelControl4, "labelControl4");
+            this.labelControl4.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl4.Appearance.Font")));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(7, 29);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(43, 14);
-            this.labelControl4.TabIndex = 0;
-            this.labelControl4.Text = "Address";
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(484, 516);
+            resources.ApplyResources(this.btnSave, "btnSave");
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 9;
-            this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(565, 516);
+            resources.ApplyResources(this.btnReset, "btnReset");
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 10;
-            this.btnReset.Text = "&Reset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnCancel
             // 
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(646, 516);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "&Cancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupControl3
             // 
+            resources.ApplyResources(this.groupControl3, "groupControl3");
             this.groupControl3.Controls.Add(this.grdPermissionDetails);
-            this.groupControl3.Location = new System.Drawing.Point(11, 312);
             this.groupControl3.Name = "groupControl3";
-            this.groupControl3.Size = new System.Drawing.Size(710, 198);
-            this.groupControl3.TabIndex = 9;
-            this.groupControl3.Text = "Permissions";
             // 
             // grdPermissionDetails
             // 
-            this.grdPermissionDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPermissionDetails.Location = new System.Drawing.Point(2, 23);
+            resources.ApplyResources(this.grdPermissionDetails, "grdPermissionDetails");
+            this.grdPermissionDetails.EmbeddedNavigator.AccessibleDescription = resources.GetString("grdPermissionDetails.EmbeddedNavigator.AccessibleDescription");
+            this.grdPermissionDetails.EmbeddedNavigator.AccessibleName = resources.GetString("grdPermissionDetails.EmbeddedNavigator.AccessibleName");
+            this.grdPermissionDetails.EmbeddedNavigator.AllowHtmlTextInToolTip = ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.AllowHtmlTextInToolTip")));
+            this.grdPermissionDetails.EmbeddedNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.Anchor")));
+            this.grdPermissionDetails.EmbeddedNavigator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.BackgroundImage")));
+            this.grdPermissionDetails.EmbeddedNavigator.BackgroundImageLayout = ((System.Windows.Forms.ImageLayout)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.BackgroundImageLayout")));
+            this.grdPermissionDetails.EmbeddedNavigator.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.ImeMode")));
+            this.grdPermissionDetails.EmbeddedNavigator.MaximumSize = ((System.Drawing.Size)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.MaximumSize")));
+            this.grdPermissionDetails.EmbeddedNavigator.TextLocation = ((DevExpress.XtraEditors.NavigatorButtonsTextLocation)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.TextLocation")));
+            this.grdPermissionDetails.EmbeddedNavigator.ToolTip = resources.GetString("grdPermissionDetails.EmbeddedNavigator.ToolTip");
+            this.grdPermissionDetails.EmbeddedNavigator.ToolTipIconType = ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.ToolTipIconType")));
+            this.grdPermissionDetails.EmbeddedNavigator.ToolTipTitle = resources.GetString("grdPermissionDetails.EmbeddedNavigator.ToolTipTitle");
             this.grdPermissionDetails.MainView = this.grvPermissionDetails;
             this.grdPermissionDetails.Name = "grdPermissionDetails";
-            this.grdPermissionDetails.Size = new System.Drawing.Size(706, 173);
-            this.grdPermissionDetails.TabIndex = 5;
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPermissionDetails,
             this.gridView6});
             // 
             // grvPermissionDetails
             // 
+            resources.ApplyResources(this.grvPermissionDetails, "grvPermissionDetails");
             this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn1,
@@ -334,27 +283,26 @@ namespace DiamondTrading.Master
             // 
             // gridColumn3
             // 
-            this.gridColumn3.Caption = "Id";
+            resources.ApplyResources(this.gridColumn3, "gridColumn3");
             this.gridColumn3.FieldName = "Id";
             this.gridColumn3.Name = "gridColumn3";
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Permission Name";
+            resources.ApplyResources(this.gridColumn1, "gridColumn1");
             this.gridColumn1.FieldName = "DisplayName";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.OptionsFilter.AllowInHeaderSearch = DevExpress.Utils.DefaultBoolean.True;
-            this.gridColumn1.Visible = true;
-            this.gridColumn1.VisibleIndex = 1;
             // 
             // gridColumn2
             // 
-            this.gridColumn2.Caption = "KeyName";
+            resources.ApplyResources(this.gridColumn2, "gridColumn2");
             this.gridColumn2.FieldName = "KeyName";
             this.gridColumn2.Name = "gridColumn2";
             // 
             // gridView6
             // 
+            resources.ApplyResources(this.gridView6, "gridView6");
             this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn43});
             this.gridView6.GridControl = this.grdPermissionDetails;
@@ -364,31 +312,27 @@ namespace DiamondTrading.Master
             // 
             // gridColumn43
             // 
-            this.gridColumn43.Caption = "Id";
+            resources.ApplyResources(this.gridColumn43, "gridColumn43");
             this.gridColumn43.FieldName = "Id";
             this.gridColumn43.Name = "gridColumn43";
             // 
             // frmUserMaster
             // 
+            resources.ApplyResources(this, "$this");
             this.Appearance.Options.UseFont = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(735, 551);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupControl2);
             this.Controls.Add(this.groupControl1);
-            this.Font = new System.Drawing.Font("Tahoma", 9F);
             this.IconOptions.ShowIcon = false;
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmUserMaster";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add New User";
             this.Load += new System.EventHandler(this.frmUserMaster_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frmUserMaster_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();

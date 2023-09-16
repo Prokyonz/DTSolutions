@@ -260,6 +260,7 @@ namespace DiamondTrading
             this.gridColumnUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnUpdatedBy = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnApprovalType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn223 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView3 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn12 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView12 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -627,7 +628,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumn223 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn224 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -2432,6 +2433,15 @@ namespace DiamondTrading
             this.gridColumnApprovalType.VisibleIndex = 8;
             this.gridColumnApprovalType.Width = 60;
             // 
+            // gridColumn223
+            // 
+            this.gridColumn223.Caption = "SrNo";
+            this.gridColumn223.FieldName = "SrNo";
+            this.gridColumn223.Name = "gridColumn223";
+            this.gridColumn223.Visible = true;
+            this.gridColumn223.VisibleIndex = 1;
+            this.gridColumn223.Width = 53;
+            // 
             // gridView3
             // 
             this.gridView3.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
@@ -2558,7 +2568,8 @@ namespace DiamondTrading
             this.gridColumnReceiptRemarks,
             this.gridColumnReceiptUpdatedDate,
             this.gridColumnReceiptUpdatedBy,
-            this.gridColumnReceiptApprovalType});
+            this.gridColumnReceiptApprovalType,
+            this.gridColumn224});
             this.gridView7.GridControl = this.grdReceiptDetails;
             this.gridView7.Name = "gridView7";
             this.gridView7.OptionsBehavior.Editable = false;
@@ -2573,7 +2584,7 @@ namespace DiamondTrading
             this.gridColumnEntyDateReceipt.Name = "gridColumnEntyDateReceipt";
             this.gridColumnEntyDateReceipt.Visible = true;
             this.gridColumnEntyDateReceipt.VisibleIndex = 0;
-            this.gridColumnEntyDateReceipt.Width = 95;
+            this.gridColumnEntyDateReceipt.Width = 57;
             // 
             // gridColumnReId
             // 
@@ -2607,8 +2618,8 @@ namespace DiamondTrading
             this.gridColumnReceiptFromParty.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "FromName", "Total={0}")});
             this.gridColumnReceiptFromParty.Visible = true;
-            this.gridColumnReceiptFromParty.VisibleIndex = 1;
-            this.gridColumnReceiptFromParty.Width = 236;
+            this.gridColumnReceiptFromParty.VisibleIndex = 2;
+            this.gridColumnReceiptFromParty.Width = 139;
             // 
             // gridColumnReceiptToParty
             // 
@@ -2616,8 +2627,8 @@ namespace DiamondTrading
             this.gridColumnReceiptToParty.FieldName = "ToName";
             this.gridColumnReceiptToParty.Name = "gridColumnReceiptToParty";
             this.gridColumnReceiptToParty.Visible = true;
-            this.gridColumnReceiptToParty.VisibleIndex = 2;
-            this.gridColumnReceiptToParty.Width = 174;
+            this.gridColumnReceiptToParty.VisibleIndex = 3;
+            this.gridColumnReceiptToParty.Width = 102;
             // 
             // gridColumnReceiptAmount
             // 
@@ -2629,8 +2640,8 @@ namespace DiamondTrading
             this.gridColumnReceiptAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
             this.gridColumnReceiptAmount.Visible = true;
-            this.gridColumnReceiptAmount.VisibleIndex = 3;
-            this.gridColumnReceiptAmount.Width = 155;
+            this.gridColumnReceiptAmount.VisibleIndex = 4;
+            this.gridColumnReceiptAmount.Width = 91;
             // 
             // gridColumnReceiptChequeNo
             // 
@@ -2638,8 +2649,8 @@ namespace DiamondTrading
             this.gridColumnReceiptChequeNo.FieldName = "ChequeNo";
             this.gridColumnReceiptChequeNo.Name = "gridColumnReceiptChequeNo";
             this.gridColumnReceiptChequeNo.Visible = true;
-            this.gridColumnReceiptChequeNo.VisibleIndex = 4;
-            this.gridColumnReceiptChequeNo.Width = 93;
+            this.gridColumnReceiptChequeNo.VisibleIndex = 5;
+            this.gridColumnReceiptChequeNo.Width = 55;
             // 
             // gridColumnReceiptChequeDate
             // 
@@ -2647,8 +2658,8 @@ namespace DiamondTrading
             this.gridColumnReceiptChequeDate.FieldName = "ChequeDate";
             this.gridColumnReceiptChequeDate.Name = "gridColumnReceiptChequeDate";
             this.gridColumnReceiptChequeDate.Visible = true;
-            this.gridColumnReceiptChequeDate.VisibleIndex = 5;
-            this.gridColumnReceiptChequeDate.Width = 93;
+            this.gridColumnReceiptChequeDate.VisibleIndex = 6;
+            this.gridColumnReceiptChequeDate.Width = 55;
             // 
             // gridColumnReceiptRemarks
             // 
@@ -2656,8 +2667,7 @@ namespace DiamondTrading
             this.gridColumnReceiptRemarks.FieldName = "Remarks";
             this.gridColumnReceiptRemarks.Name = "gridColumnReceiptRemarks";
             this.gridColumnReceiptRemarks.Visible = true;
-            this.gridColumnReceiptRemarks.VisibleIndex = 6;
-            this.gridColumnReceiptRemarks.Width = 129;
+            this.gridColumnReceiptRemarks.VisibleIndex = 7;
             // 
             // gridColumnReceiptUpdatedDate
             // 
@@ -2678,8 +2688,8 @@ namespace DiamondTrading
             this.gridColumnReceiptApprovalType.FieldName = "ApprovalType";
             this.gridColumnReceiptApprovalType.Name = "gridColumnReceiptApprovalType";
             this.gridColumnReceiptApprovalType.Visible = true;
-            this.gridColumnReceiptApprovalType.VisibleIndex = 7;
-            this.gridColumnReceiptApprovalType.Width = 86;
+            this.gridColumnReceiptApprovalType.VisibleIndex = 8;
+            this.gridColumnReceiptApprovalType.Width = 57;
             // 
             // gridView8
             // 
@@ -6158,14 +6168,14 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // gridColumn223
+            // gridColumn224
             // 
-            this.gridColumn223.Caption = "SrNo";
-            this.gridColumn223.FieldName = "SrNo";
-            this.gridColumn223.Name = "gridColumn223";
-            this.gridColumn223.Visible = true;
-            this.gridColumn223.VisibleIndex = 1;
-            this.gridColumn223.Width = 53;
+            this.gridColumn224.Caption = "SrNo";
+            this.gridColumn224.FieldName = "SrNo";
+            this.gridColumn224.Name = "gridColumn224";
+            this.gridColumn224.Visible = true;
+            this.gridColumn224.VisibleIndex = 1;
+            this.gridColumn224.Width = 54;
             // 
             // FrmTransactionDetails
             // 
@@ -6876,5 +6886,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colContraSrNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn222;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn223;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn224;
     }
 }
