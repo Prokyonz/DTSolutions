@@ -944,9 +944,21 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabPayment)
             {
                 string SelectedSrNo = gridView4.GetFocusedRowCellValue("SrNo").ToString();
-                int CrDrType = Convert.ToInt32(grvExpenseMaster.GetFocusedRowCellValue("CrDrType"));
+                int CrDrType = Convert.ToInt32(gridView4.GetFocusedRowCellValue("CrDrType"));
 
                 Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Payment", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo), CrDrType);
+
+                if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabReceipt)
+            {
+                string SelectedSrNo = gridView7.GetFocusedRowCellValue("SrNo").ToString();
+                int CrDrType = Convert.ToInt32(gridView7.GetFocusedRowCellValue("CrDrType"));
+
+                Transaction.FrmPaymentEntry frmPaymentEntry = new Transaction.FrmPaymentEntry("Receipt", Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(SelectedSrNo), CrDrType);
 
                 if (frmPaymentEntry.ShowDialog() == DialogResult.OK)
                 {
