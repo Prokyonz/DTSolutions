@@ -550,6 +550,12 @@
     <Compile Include="Reports\FrmWeeklyPurchaseDetailReport.Designer.cs">
       <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\GSTInvoice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GSTInvoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptJangadPrint.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -806,6 +812,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\FrmWeeklyPurchaseDetailReport.resx">
       <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GSTInvoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GSTInvoice.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptJangadPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
