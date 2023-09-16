@@ -80,13 +80,16 @@ namespace EFCore.SQL.Repository
                     var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.BillNo == SrNo && w.CrDrType == paymentType).FirstOrDefaultAsync();
                     if (paymentRecord != null)
                     {
-                        var paymentMasterRecord = await _databaseContext.PaymentMaster.Where(x => x.GroupId == paymentRecord.Id).FirstOrDefaultAsync();
-                        if (paymentMasterRecord != null)
+                        var paymentMasterRecord = await _databaseContext.PaymentMaster.Where(x => x.GroupId == paymentRecord.Id).ToListAsync();
+                        if (paymentMasterRecord.Any())
                         {
-                            var paymentDetailsRecord = await _databaseContext.PaymentDetails.Where(x => x.GroupId == paymentRecord.Id).FirstOrDefaultAsync();
-                            if (paymentDetailsRecord != null)
+                            foreach (var item in paymentMasterRecord)
                             {
-                                _databaseContext.PaymentDetails.RemoveRange(paymentDetailsRecord);
+                                var paymentDetailsRecord = await _databaseContext.PaymentDetails.Where(x => x.PaymentId == item.Id).ToListAsync();
+                                if (paymentDetailsRecord != null)
+                                {
+                                    _databaseContext.PaymentDetails.RemoveRange(paymentDetailsRecord);
+                                }                                
                             }
                             _databaseContext.PaymentMaster.RemoveRange(paymentMasterRecord);
                         }
