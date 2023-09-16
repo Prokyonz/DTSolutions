@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -176,6 +177,8 @@ namespace DiamondTrading.Transaction
                             txtRemark.Text = _contraEntryMaster.Remarks;
                             grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
                             colBranch.Visible = false;
+                            dtDate.EditValue = DateTime.ParseExact(_contraEntryMaster.EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture); ;
+
                             for (int i = 0; i < _contraEntryMaster.ContraEntryDetails.Count; i++)
                             {
                                 grvPaymentDetails.AddNewRow();
@@ -189,7 +192,7 @@ namespace DiamondTrading.Transaction
                             grvPaymentDetails.CellValueChanged += grvPaymentDetails_CellValueChanged;
                         }
                     }
-                    else if (_paymentType == 2)
+                    else if (_paymentType == 2) //Excepnse
                     {
                         ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
                         _editedExpenseDetails = await expenseMasterRepository.GetExpenseAsync(_selectedCompany, _selectedFinancialYear, _selectedSrNo);
@@ -202,6 +205,7 @@ namespace DiamondTrading.Transaction
                             lueLeadger.EditValue = _editedExpenseDetails[0].fromPartyId.ToString();
                             txtRemark.Text = _editedExpenseDetails[0].Remarks;
                             grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
+                            dtDate.EditValue = DateTime.ParseExact(_editedExpenseDetails[0].EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture); ;
                             colBranch.Visible = true;
                             for (int i = 0; i < _editedExpenseDetails.Count; i++)
                             {
@@ -216,7 +220,7 @@ namespace DiamondTrading.Transaction
                             grvPaymentDetails.CellValueChanged += grvPaymentDetails_CellValueChanged;
                         }
                     }
-                    else if (_paymentType == 0 || _paymentType == 1)
+                    else if (_paymentType == 0 || _paymentType == 1) //Payment / receipt
                     {
                         var _editedPaymentDetails = await _paymentMaterRepository.GetPaymentAsync(_selectedCompany, _selectedFinancialYear, _selectedSrNo, _paymentType);
                         if (_editedPaymentDetails != null)
@@ -226,6 +230,7 @@ namespace DiamondTrading.Transaction
                             lueCompany.EditValue = _selectedCompany;
                             lueLeadger.EditValue = _editedPaymentDetails.ToPartyId.ToString();
                             txtRemark.Text = _editedPaymentDetails.Remarks;
+                            dtDate.EditValue = DateTime.ParseExact(_editedPaymentDetails.EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture); ;
                             grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
                             colBranch.Visible = false;
                             for (int i = 0; i < _editedPaymentDetails?.PaymentMasters.Count; i++)
