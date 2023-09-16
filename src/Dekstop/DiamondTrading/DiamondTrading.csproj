@@ -703,6 +703,9 @@
     <EmbeddedResource Include="Master\frmCompanyMaster.zh.resx">
       <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmCurrencyMaster.zh.resx">
+      <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmUserMaster.zh.resx">
       <DependentUpon>frmUserMaster.cs</DependentUpon>
     </EmbeddedResource>
