@@ -344,6 +344,12 @@
     <Compile Include="Process\FrmChildStockReport.Designer.cs">
       <DependentUpon>FrmChildStockReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Process\FrmPriceMasterMobiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmPriceMasterMobiles.designer.cs">
+      <DependentUpon>FrmPriceMasterMobiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmProcessDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -687,6 +693,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmChildStockReport.resx">
       <DependentUpon>FrmChildStockReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmPriceMasterMobiles.resx">
+      <DependentUpon>FrmPriceMasterMobiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmProcessDetails.resx">
       <DependentUpon>FrmProcessDetails.cs</DependentUpon>

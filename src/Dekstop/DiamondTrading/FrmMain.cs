@@ -2290,5 +2290,30 @@ namespace DiamondTrading
 
             accordionControlElementMaster.Expanded = true;
         }
+
+        private void barButtonPriceMasterMobile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Process.FrmPriceMasterMobiles page = Application.OpenForms["FrmPriceMasterMobiles"] as Process.FrmPriceMasterMobiles;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Process.FrmPriceMasterMobiles frmPriceMasterMobile = new Process.FrmPriceMasterMobiles();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmPriceMasterMobile.StartPosition = FormStartPosition.Manual;
+
+            frmPriceMasterMobile.Location = new Point((w - frmPriceMasterMobile.Width - 200) / 3, (Height - frmPriceMasterMobile.Height) / 2);
+
+            frmPriceMasterMobile.ShowDialog();
+        }
     }
 }
