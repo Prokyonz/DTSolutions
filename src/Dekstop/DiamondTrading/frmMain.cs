@@ -141,6 +141,12 @@ namespace DiamondTrading
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem61.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "price_master_mobile":
+                        accordionControlElementMaster.Visible = true;
+                        accrdianElementApprovalMaster.Visible = true;
+                        barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
 
                     //Transaction Menu
 

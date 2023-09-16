@@ -1995,6 +1995,7 @@ namespace DiamondTrading
             this.barButtonPriceMasterMobile.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
                 | System.Windows.Forms.Keys.M));
             this.barButtonPriceMasterMobile.Name = "barButtonPriceMasterMobile";
+            this.barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonPriceMasterMobile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPriceMasterMobile_ItemClick);
             // 
             // FrmMain
