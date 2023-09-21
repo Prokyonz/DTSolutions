@@ -19,8 +19,10 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
 
+        [ForeignKey("GroupId")]
+        public virtual GroupPaymentMaster GroupPaymentMaster { get; set; }
+
         [ForeignKey("PaymentId")]
         public virtual PaymentMaster PaymentMaster { get; set; }
-
     }
 }

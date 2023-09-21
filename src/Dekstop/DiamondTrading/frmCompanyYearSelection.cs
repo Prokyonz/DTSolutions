@@ -31,6 +31,7 @@ namespace DiamondTrading
         {
             LoadCompany();
             LoadFinancialYear();
+            FillLanguageBox();
             LoadRegistrySettings();
         }
 
@@ -64,6 +65,8 @@ namespace DiamondTrading
                     lueBranch.EditValue = Common.LoginBranch;
                 if (Common.LoginFinancialYear != Common.DefaultGuid)
                     lueFinancialYear.EditValue = Common.LoginFinancialYear;
+                lueLanguage.EditValue = Convert.ToInt32(Common.LoginLanguage);
+
                 btnOk.Focus();
                 btnOk.Select();
             }
@@ -87,6 +90,9 @@ namespace DiamondTrading
 
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYear, lueFinancialYear.EditValue.ToString());
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginFinancialYearName, lueFinancialYear.Text);
+
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, lueLanguage.EditValue.ToString());
+                Common.LoginLanguage = lueLanguage.EditValue.ToString();
             }
         }
 
@@ -121,6 +127,14 @@ namespace DiamondTrading
             lueCompany.Properties.ValueMember = "Id";
             if (Common.RememberComapnyYearSelection == true)
                 btnOk.Focus();
+        }
+
+        public void FillLanguageBox()
+        {
+            lueLanguage.Properties.DataSource = Common.GetLanguageType;
+            lueLanguage.Properties.DisplayMember = "Name";
+            lueLanguage.Properties.ValueMember = "Id";
+            lueLanguage.EditValue = 1;
         }
 
         private async Task LoadBranch(string companyId)

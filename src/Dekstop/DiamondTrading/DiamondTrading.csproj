@@ -296,6 +296,7 @@
     <Compile Include="Common\Common.cs" />
     <Compile Include="Common\DataSecurity.cs" />
     <Compile Include="Common\enum.cs" />
+    <Compile Include="Common\LangHelper.cs" />
     <Compile Include="Common\RegistryHelper.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -344,6 +345,12 @@
     </Compile>
     <Compile Include="Process\FrmChildStockReport.Designer.cs">
       <DependentUpon>FrmChildStockReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Process\FrmPriceMasterMobiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Process\FrmPriceMasterMobiles.designer.cs">
+      <DependentUpon>FrmPriceMasterMobiles.cs</DependentUpon>
     </Compile>
     <Compile Include="Process\FrmProcessDetails.cs">
       <SubType>Form</SubType>
@@ -545,6 +552,12 @@
     <Compile Include="Reports\FrmWeeklyPurchaseDetailReport.Designer.cs">
       <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\GSTInvoice.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GSTInvoice.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\rptJangadPrint.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -574,6 +587,11 @@
     </Compile>
     <Compile Include="Process\FrmKapanMap.Designer.cs">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Transaction\FrmApproveReject.cs">
       <SubType>Form</SubType>
@@ -671,7 +689,13 @@
     <EmbeddedResource Include="FrmCompanyYearSelection.resx">
       <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmCompanyYearSelection.zh.resx">
+      <DependentUpon>FrmCompanyYearSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
+      <DependentUpon>FrmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.zh.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
@@ -683,11 +707,23 @@
     <EmbeddedResource Include="FrmOptions.resx">
       <DependentUpon>FrmOptions.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmCompanyMaster.zh.resx">
+      <DependentUpon>FrmCompanyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\FrmCurrencyMaster.zh.resx">
+      <DependentUpon>FrmCurrencyMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmUserMaster.zh.resx">
+      <DependentUpon>frmUserMaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmChildNumberReport.resx">
       <DependentUpon>FrmChildNumberReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmChildStockReport.resx">
       <DependentUpon>FrmChildStockReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Process\FrmPriceMasterMobiles.resx">
+      <DependentUpon>FrmPriceMasterMobiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Process\FrmProcessDetails.resx">
       <DependentUpon>FrmProcessDetails.cs</DependentUpon>
@@ -799,6 +835,10 @@
     <EmbeddedResource Include="Reports\FrmWeeklyPurchaseDetailReport.resx">
       <DependentUpon>FrmWeeklyPurchaseDetailReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GSTInvoice.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GSTInvoice.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptJangadPrint.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptJangadPrint.cs</LastGenOutput>
@@ -818,6 +858,11 @@
     <EmbeddedResource Include="Process\FrmKapanMap.resx">
       <DependentUpon>FrmKapanMap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="strings.zh-CN.resx" />
     <EmbeddedResource Include="Transaction\FrmApproveReject.resx">
       <DependentUpon>FrmApproveReject.cs</DependentUpon>
     </EmbeddedResource>

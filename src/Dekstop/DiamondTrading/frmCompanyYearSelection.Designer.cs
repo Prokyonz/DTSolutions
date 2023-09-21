@@ -29,20 +29,24 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCompanyYearSelection));
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.lueLanguage = new DevExpress.XtraEditors.LookUpEdit();
             this.chkRememberMe = new DevExpress.XtraEditors.CheckEdit();
             this.lueFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueLanguage.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueFinancialYear.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).BeginInit();
@@ -52,64 +56,52 @@ namespace DiamondTrading
             // 
             // labelControl3
             // 
-            this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 17F, System.Drawing.FontStyle.Bold);
+            resources.ApplyResources(this.labelControl3, "labelControl3");
+            this.labelControl3.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl3.Appearance.Font")));
             this.labelControl3.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
             this.labelControl3.Appearance.Options.UseFont = true;
             this.labelControl3.Appearance.Options.UseForeColor = true;
-            this.labelControl3.Location = new System.Drawing.Point(40, 17);
             this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(364, 28);
-            this.labelControl3.TabIndex = 1;
-            this.labelControl3.Text = "Current Company/Branch/Year";
             // 
             // labelControl2
             // 
-            this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.labelControl2, "labelControl2");
+            this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 157);
             this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(80, 16);
-            this.labelControl2.TabIndex = 6;
-            this.labelControl2.Text = "Financial Year";
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.labelControl1, "labelControl1");
+            this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 55);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(53, 16);
-            this.labelControl1.TabIndex = 2;
-            this.labelControl1.Text = "Company";
             // 
             // btnOk
             // 
+            resources.ApplyResources(this.btnOk, "btnOk");
             this.btnOk.Appearance.BackColor = System.Drawing.Color.DodgerBlue;
-            this.btnOk.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.btnOk.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("btnOk.Appearance.Font")));
             this.btnOk.Appearance.Options.UseBackColor = true;
             this.btnOk.Appearance.Options.UseFont = true;
-            this.btnOk.Location = new System.Drawing.Point(12, 232);
             this.btnOk.LookAndFeel.SkinName = "Visual Studio 2013 Light";
             this.btnOk.LookAndFeel.UseDefaultLookAndFeel = false;
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(191, 33);
-            this.btnOk.TabIndex = 9;
-            this.btnOk.Text = "Save";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // labelControl4
             // 
-            this.labelControl4.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            resources.ApplyResources(this.labelControl4, "labelControl4");
+            this.labelControl4.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl4.Appearance.Font")));
             this.labelControl4.Appearance.Options.UseFont = true;
-            this.labelControl4.Location = new System.Drawing.Point(12, 106);
             this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(39, 16);
-            this.labelControl4.TabIndex = 4;
-            this.labelControl4.Text = "Branch";
             // 
             // panelControl1
             // 
+            resources.ApplyResources(this.panelControl1, "panelControl1");
             this.panelControl1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Simple;
+            this.panelControl1.Controls.Add(this.lueLanguage);
+            this.panelControl1.Controls.Add(this.labelControl5);
             this.panelControl1.Controls.Add(this.simpleButton1);
             this.panelControl1.Controls.Add(this.chkRememberMe);
             this.panelControl1.Controls.Add(this.lueFinancialYear);
@@ -121,108 +113,113 @@ namespace DiamondTrading
             this.panelControl1.Controls.Add(this.labelControl4);
             this.panelControl1.Controls.Add(this.labelControl1);
             this.panelControl1.Controls.Add(this.labelControl2);
-            this.panelControl1.Location = new System.Drawing.Point(12, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(412, 276);
-            this.panelControl1.TabIndex = 0;
+            // 
+            // labelControl5
+            // 
+            resources.ApplyResources(this.labelControl5, "labelControl5");
+            this.labelControl5.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl5.Appearance.Font")));
+            this.labelControl5.Appearance.Options.UseFont = true;
+            this.labelControl5.Name = "labelControl5";
+            // 
+            // simpleButton1
+            // 
+            resources.ApplyResources(this.simpleButton1, "simpleButton1");
+            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.SlateGray;
+            this.simpleButton1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("simpleButton1.Appearance.Font")));
+            this.simpleButton1.Appearance.Options.UseBackColor = true;
+            this.simpleButton1.Appearance.Options.UseFont = true;
+            this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // lueLanguage
+            // 
+            resources.ApplyResources(this.lueLanguage, "lueLanguage");
+            this.lueLanguage.Name = "lueLanguage";
+            this.lueLanguage.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueLanguage.Properties.Appearance.Font")));
+            this.lueLanguage.Properties.Appearance.Options.UseFont = true;
+            this.lueLanguage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueLanguage.Properties.Buttons"))))});
+            this.lueLanguage.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns"), resources.GetString("lueLanguage.Properties.Columns1"), ((int)(resources.GetObject("lueLanguage.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueLanguage.Properties.Columns3"))), resources.GetString("lueLanguage.Properties.Columns4"), ((bool)(resources.GetObject("lueLanguage.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueLanguage.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueLanguage.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueLanguage.Properties.Columns8")))),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns9"), resources.GetString("lueLanguage.Properties.Columns10")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns11"), resources.GetString("lueLanguage.Properties.Columns12")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns13"), resources.GetString("lueLanguage.Properties.Columns14"))});
+            this.lueLanguage.Properties.NullText = resources.GetString("lueLanguage.Properties.NullText");
             // 
             // chkRememberMe
             // 
-            this.chkRememberMe.EditValue = true;
-            this.chkRememberMe.Location = new System.Drawing.Point(12, 208);
+            resources.ApplyResources(this.chkRememberMe, "chkRememberMe");
             this.chkRememberMe.Name = "chkRememberMe";
-            this.chkRememberMe.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkRememberMe.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("chkRememberMe.Properties.Appearance.Font")));
             this.chkRememberMe.Properties.Appearance.ForeColor = System.Drawing.Color.LightSlateGray;
             this.chkRememberMe.Properties.Appearance.Options.UseFont = true;
             this.chkRememberMe.Properties.Appearance.Options.UseForeColor = true;
-            this.chkRememberMe.Properties.Caption = "Remember details";
-            this.chkRememberMe.Size = new System.Drawing.Size(134, 20);
-            this.chkRememberMe.TabIndex = 8;
+            this.chkRememberMe.Properties.Caption = resources.GetString("chkRememberMe.Properties.Caption");
+            this.chkRememberMe.Properties.DisplayValueChecked = resources.GetString("chkRememberMe.Properties.DisplayValueChecked");
+            this.chkRememberMe.Properties.DisplayValueGrayed = resources.GetString("chkRememberMe.Properties.DisplayValueGrayed");
+            this.chkRememberMe.Properties.DisplayValueUnchecked = resources.GetString("chkRememberMe.Properties.DisplayValueUnchecked");
+            this.chkRememberMe.Properties.GlyphVerticalAlignment = ((DevExpress.Utils.VertAlignment)(resources.GetObject("chkRememberMe.Properties.GlyphVerticalAlignment")));
             // 
             // lueFinancialYear
             // 
-            this.lueFinancialYear.EditValue = "";
-            this.lueFinancialYear.Location = new System.Drawing.Point(12, 175);
+            resources.ApplyResources(this.lueFinancialYear, "lueFinancialYear");
             this.lueFinancialYear.Name = "lueFinancialYear";
-            this.lueFinancialYear.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueFinancialYear.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueFinancialYear.Properties.Appearance.Font")));
             this.lueFinancialYear.Properties.Appearance.Options.UseFont = true;
             this.lueFinancialYear.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueFinancialYear.Properties.Buttons"))))});
             this.lueFinancialYear.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("StartDate", "SartDate"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("EndDate", "EndDate")});
-            this.lueFinancialYear.Properties.NullText = "";
-            this.lueFinancialYear.Size = new System.Drawing.Size(385, 26);
-            this.lueFinancialYear.TabIndex = 7;
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueFinancialYear.Properties.Columns"), resources.GetString("lueFinancialYear.Properties.Columns1"), ((int)(resources.GetObject("lueFinancialYear.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueFinancialYear.Properties.Columns3"))), resources.GetString("lueFinancialYear.Properties.Columns4"), ((bool)(resources.GetObject("lueFinancialYear.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueFinancialYear.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueFinancialYear.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueFinancialYear.Properties.Columns8")))),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueFinancialYear.Properties.Columns9"), resources.GetString("lueFinancialYear.Properties.Columns10")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueFinancialYear.Properties.Columns11"), resources.GetString("lueFinancialYear.Properties.Columns12")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueFinancialYear.Properties.Columns13"), resources.GetString("lueFinancialYear.Properties.Columns14"))});
+            this.lueFinancialYear.Properties.NullText = resources.GetString("lueFinancialYear.Properties.NullText");
             // 
             // lueBranch
             // 
-            this.lueBranch.EditValue = "";
-            this.lueBranch.Location = new System.Drawing.Point(12, 124);
+            resources.ApplyResources(this.lueBranch, "lueBranch");
             this.lueBranch.Name = "lueBranch";
-            this.lueBranch.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueBranch.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueBranch.Properties.Appearance.Font")));
             this.lueBranch.Properties.Appearance.Options.UseFont = true;
             this.lueBranch.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueBranch.Properties.Buttons"))))});
             this.lueBranch.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Branch Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registration No")});
-            this.lueBranch.Properties.NullText = "";
-            this.lueBranch.Size = new System.Drawing.Size(385, 26);
-            this.lueBranch.TabIndex = 5;
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueBranch.Properties.Columns"), resources.GetString("lueBranch.Properties.Columns1"), ((int)(resources.GetObject("lueBranch.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueBranch.Properties.Columns3"))), resources.GetString("lueBranch.Properties.Columns4"), ((bool)(resources.GetObject("lueBranch.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueBranch.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueBranch.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueBranch.Properties.Columns8")))),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueBranch.Properties.Columns9"), resources.GetString("lueBranch.Properties.Columns10")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueBranch.Properties.Columns11"), resources.GetString("lueBranch.Properties.Columns12"))});
+            this.lueBranch.Properties.NullText = resources.GetString("lueBranch.Properties.NullText");
             // 
             // lueCompany
             // 
-            this.lueCompany.EditValue = "";
-            this.lueCompany.Location = new System.Drawing.Point(12, 73);
+            resources.ApplyResources(this.lueCompany, "lueCompany");
             this.lueCompany.Name = "lueCompany";
-            this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueCompany.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueCompany.Properties.Appearance.Font")));
             this.lueCompany.Properties.Appearance.Options.UseFont = true;
             this.lueCompany.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueCompany.Properties.Buttons"))))});
             this.lueCompany.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Company Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("RegistrationNo", "Registraton No")});
-            this.lueCompany.Properties.NullText = "";
-            this.lueCompany.Size = new System.Drawing.Size(385, 26);
-            this.lueCompany.TabIndex = 3;
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueCompany.Properties.Columns"), resources.GetString("lueCompany.Properties.Columns1"), ((int)(resources.GetObject("lueCompany.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueCompany.Properties.Columns3"))), resources.GetString("lueCompany.Properties.Columns4"), ((bool)(resources.GetObject("lueCompany.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueCompany.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueCompany.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueCompany.Properties.Columns8")))),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueCompany.Properties.Columns9"), resources.GetString("lueCompany.Properties.Columns10")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueCompany.Properties.Columns11"), resources.GetString("lueCompany.Properties.Columns12"))});
+            this.lueCompany.Properties.NullText = resources.GetString("lueCompany.Properties.NullText");
             this.lueCompany.EditValueChanged += new System.EventHandler(this.lookUpCompany_EditValueChanged);
             // 
             // pictureEdit1
             // 
+            resources.ApplyResources(this.pictureEdit1, "pictureEdit1");
             this.pictureEdit1.EditValue = global::DiamondTrading.Properties.Resources.DefaultSelection;
-            this.pictureEdit1.Location = new System.Drawing.Point(1, 10);
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-            this.pictureEdit1.Size = new System.Drawing.Size(40, 37);
-            this.pictureEdit1.TabIndex = 0;
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Appearance.BackColor = System.Drawing.Color.SlateGray;
-            this.simpleButton1.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
-            this.simpleButton1.Appearance.Options.UseBackColor = true;
-            this.simpleButton1.Appearance.Options.UseFont = true;
-            this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.simpleButton1.Location = new System.Drawing.Point(209, 232);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(188, 33);
-            this.simpleButton1.TabIndex = 10;
-            this.simpleButton1.Text = "Cancel";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // FrmCompanyYearSelection
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.simpleButton1;
-            this.ClientSize = new System.Drawing.Size(436, 301);
             this.Controls.Add(this.panelControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IconOptions.ShowIcon = false;
@@ -231,14 +228,13 @@ namespace DiamondTrading
             this.MinimizeBox = false;
             this.Name = "FrmCompanyYearSelection";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Company/Year Selection";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FrmCompanyYearSelection_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCompanyYearSelection_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lueLanguage.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkRememberMe.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueFinancialYear.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueBranch.Properties)).EndInit();
@@ -262,5 +258,7 @@ namespace DiamondTrading
         public DevExpress.XtraEditors.LookUpEdit lueBranch;
         private DevExpress.XtraEditors.CheckEdit chkRememberMe;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        public DevExpress.XtraEditors.LookUpEdit lueLanguage;
+        private DevExpress.XtraEditors.LabelControl labelControl5;
     }
 }

@@ -71,11 +71,59 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.BillNo == SrNo && w.CrDrType == paymentType).FirstOrDefaultAsync();
+                    if (paymentRecord != null)
+                    {
+                        var paymentMasterRecord = await _databaseContext.PaymentMaster.Where(x => x.GroupId == paymentRecord.Id).ToListAsync();
+                        if (paymentMasterRecord.Any())
+                        {
+                            foreach (var item in paymentMasterRecord)
+                            {
+                                var paymentDetailsRecord = await _databaseContext.PaymentDetails.Where(x => x.PaymentId == item.Id).ToListAsync();
+                                if (paymentDetailsRecord != null)
+                                {
+                                    _databaseContext.PaymentDetails.RemoveRange(paymentDetailsRecord);
+                                }                                
+                            }
+                            _databaseContext.PaymentMaster.RemoveRange(paymentMasterRecord);
+                        }
+                        _databaseContext.GroupPaymentMaster.RemoveRange(paymentRecord);
+                        _databaseContext.SaveChanges();
+                        return true;
+                    }
+                    return false;
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public void Dispose()
+        {
+            _databaseContext.DisposeAsync();
+        }
+
         public async Task<List<GroupPaymentMaster>> GetAllPaymentAsync(string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 return await _databaseContext.GroupPaymentMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId).Include("PaymentMasters").ToListAsync();
+            }
+        }
+
+        public async Task<GroupPaymentMaster> GetPaymentAsync(string companyId, string financialYearId, int SrNo, int paymentType)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId && w.BillNo == SrNo).Include("PaymentMasters").Include("PaymentDetails").FirstOrDefaultAsync();
             }
         }
 
@@ -94,8 +142,15 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '"+ fromDate +"', '"+ toDate +"'").ToListAsync();
-                return paymentRecords;
+                try
+                {
+                    var paymentRecords = await _databaseContext.SPPaymentModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '" + fromDate + "', '" + toDate + "'").ToListAsync();
+                    return paymentRecords;
+                }
+                catch(Exception Ex)
+                {
+                    return null;
+                }
             }
         }
 
@@ -107,12 +162,11 @@ namespace EFCore.SQL.Repository
                 return paymentRecords.Count > 0 ? paymentRecords[0] : new DashboardSPModel() { TotalAmount = 0 };
             }
         }
-
-        public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType)
+        public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType, int SrNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "'").ToListAsync();
+                var PaymentPSSlipDetails = await _databaseContext.SPPaymentPSSlipDetails.FromSqlRaw($"GetPSSlipDetailsForPayment '" + actionType + "','" + companyId + "', '" + SrNo + "'").ToListAsync();
                 return PaymentPSSlipDetails;
             }
         }

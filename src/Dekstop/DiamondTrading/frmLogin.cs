@@ -17,6 +17,7 @@ namespace DiamondTrading
     public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
         private readonly UserMasterRepository _userMasterRepository;
+        public bool NeedsRestart { get; private set; }
 
         public FrmLogin()
         {
@@ -24,10 +25,26 @@ namespace DiamondTrading
             _userMasterRepository = new UserMasterRepository();
         }
 
+        public void FillLanguageBox()
+        {
+            lueLanguage.Properties.DataSource = Common.GetLanguageType;
+            lueLanguage.Properties.DisplayMember = "Name";
+            lueLanguage.Properties.ValueMember = "Id";            
+        }
+
         private async void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
+                int oldSelectedLanguage = Convert.ToInt32(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, "1"));
+                if(Convert.ToInt32(lueLanguage.EditValue) != oldSelectedLanguage)
+                {
+                    SaveRegistrySettings();
+                    NeedsRestart = true;
+                    MessageBox.Show(LangHelper.GetString("LangChange"), LangHelper.GetString("LangChngeTitle"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+
                 //Set cursor position to center
                 Screen screen = Screen.FromControl(this);
                 this.Cursor = new Cursor(Cursor.Current.Handle);
@@ -53,6 +70,7 @@ namespace DiamondTrading
                     this.Hide();
                     Common.LoginUserID = data.UserMaster.Id;
                     Common.LoginUserName = data.UserMaster.Name;
+                    Common.LoginLanguage = lueLanguage.EditValue.ToString();
                     FrmMain frmMain = new FrmMain();
                     frmMain.Show();
                 }
@@ -79,6 +97,7 @@ namespace DiamondTrading
             {
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, DataSecurity.EncryptString(txtUsername.Text,SecurityType.Password));
                 RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, DataSecurity.EncryptString(txtPassword.Text, SecurityType.Password));
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, lueLanguage.EditValue.ToString());
             }
         }
 
@@ -89,6 +108,7 @@ namespace DiamondTrading
             { 
                 txtUsername.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginUserName, ""),SecurityType.Password);
                 txtPassword.Text = DataSecurity.DecryptString(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginPwd, ""), SecurityType.Password);
+                lueLanguage.EditValue = Convert.ToInt32(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, "1"));
                 btnLogin.Focus();
                 btnLogin.Select();
             }
@@ -100,13 +120,16 @@ namespace DiamondTrading
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
-        {
+        {             
             FluentSplashScreenOptions options = new FluentSplashScreenOptions();
             options.LogoImageOptions.Image = Properties.Resources.logo;
-            options.Title = "Diamond Trading";
-            options.Subtitle = "Diamond Tranding & Account Management Software";
-            options.RightFooter = "Starting...";
-            options.LeftFooter = "Copyright @ " + DateTime.Now.Year + " "  + Environment.NewLine + "All Rights reserved.";
+            options.Title = LangHelper.GetString("DiamondTrading"); 
+            options.Subtitle = LangHelper.GetString("SubTitle");
+            options.RightFooter = LangHelper.GetString("RightFooter");
+
+            string leftFooter = LangHelper.GetString("CopyRight") + " " +  DateTime.Now.Year + " " + Environment.NewLine + LangHelper.GetString("AllRights");
+
+            options.LeftFooter = leftFooter;
             options.LoadingIndicatorType = FluentLoadingIndicatorType.Dots;
             options.Opacity = 150;
             options.OpacityColor = Color.DodgerBlue;
@@ -115,6 +138,7 @@ namespace DiamondTrading
 
             Thread.Sleep(1000);
             SplashScreenManager.CloseForm();
+            FillLanguageBox();
             LoadRegistrySettings();
         }
 

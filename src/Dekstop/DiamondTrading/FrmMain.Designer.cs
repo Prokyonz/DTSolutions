@@ -216,6 +216,7 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.barButtonPriceMasterMobile = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -351,9 +352,10 @@ namespace DiamondTrading
             this.barButtonItem82,
             this.barButtonSalaryReport,
             this.barButtonRejectionInReceive,
-            this.barButtonRejectionOutSend});
+            this.barButtonRejectionOutSend,
+            this.barButtonPriceMasterMobile});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 131;
+            this.barManager1.MaxItemId = 132;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -404,7 +406,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem15),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem3),
             new DevExpress.XtraBars.LinkPersistInfo(this.barbtnApproval),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem61)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem61),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonPriceMasterMobile)});
             this.barSubItem1.Name = "barSubItem1";
             this.barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1985,6 +1988,16 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
+            // barButtonPriceMasterMobile
+            // 
+            this.barButtonPriceMasterMobile.Caption = "Price Master For Mobile";
+            this.barButtonPriceMasterMobile.Id = 131;
+            this.barButtonPriceMasterMobile.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+                | System.Windows.Forms.Keys.M));
+            this.barButtonPriceMasterMobile.Name = "barButtonPriceMasterMobile";
+            this.barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barButtonPriceMasterMobile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPriceMasterMobile_ItemClick);
+            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -2210,5 +2223,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonSalaryReport;
         private DevExpress.XtraBars.BarButtonItem barButtonRejectionInReceive;
         private DevExpress.XtraBars.BarButtonItem barButtonRejectionOutSend;
+        private DevExpress.XtraBars.BarButtonItem barButtonPriceMasterMobile;
     }
 }
