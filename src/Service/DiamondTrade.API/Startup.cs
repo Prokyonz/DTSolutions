@@ -64,6 +64,7 @@ namespace DiamondTrade.API
             services.AddScoped<ISizeMaster, SizeMasterRepository>();
             services.AddScoped<INumberMaster, NumberMasterRepository>();
             services.AddScoped<IPriceMaster, PriceMasterRepository>();
+            services.AddScoped<IPriceMasterMobile, PriceMasterMobileRepository>();
             services.AddScoped<IPartyMaster, PartyMasterRepository>();
             services.AddScoped<IBranchMaster, BranchMasterRepository>();
             services.AddScoped<ICompanyMaster, CompanyMasterRepository>();

@@ -15,7 +15,7 @@ namespace DiamondTrade.API.Controllers
     {
         private readonly ISizeMaster _sizeMaster;
         private readonly INumberMaster _numberMaster;
-        private readonly IPriceMaster _priceMaster;
+        private readonly IPriceMasterMobile _priceMaster;
         private readonly IPartyMaster _partyMaster;
         private readonly IBranchMaster _branchMaster;
         private readonly ICompanyMaster _companyMaster;
@@ -23,7 +23,7 @@ namespace DiamondTrade.API.Controllers
         private readonly ICalculatorMaster _calculatorMaster;
 
         public ServiceController(ISizeMaster sizeMaster, INumberMaster numberMaster,
-            IPriceMaster priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster, ICompanyMaster companyMaster,
+            IPriceMasterMobile priceMaster, IPartyMaster partyMaster, IBranchMaster branchMaster, ICompanyMaster companyMaster,
             IFinancialYearMaster financialYearMaster,
             ICalculatorMaster calculatorMaster)
         {
