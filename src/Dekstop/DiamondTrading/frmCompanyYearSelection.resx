@@ -153,6 +153,9 @@
   <data name="simpleButton1.Text" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="lueCompany.Properties.Columns12" xml:space="preserve">
+    <value>Registraton No</value>
+  </data>
   <data name="&gt;&gt;chkRememberMe.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
@@ -192,6 +195,9 @@
   <data name="lueBranch.Properties.Columns3" type="DevExpress.Utils.FormatType, DevExpress.Data.v21.2">
     <value>None</value>
   </data>
+  <data name="lueFinancialYear.Properties.Columns5" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="lueBranch.Properties.Columns1" xml:space="preserve">
     <value>Id</value>
   </data>
@@ -204,8 +210,8 @@
   <data name="lueBranch.Properties.Columns9" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="&gt;&gt;simpleButton1.Parent" xml:space="preserve">
-    <value>panelControl1</value>
+  <data name="lueFinancialYear.Properties.Columns14" xml:space="preserve">
+    <value>EndDate</value>
   </data>
   <data name="lueFinancialYear.Properties.Columns1" xml:space="preserve">
     <value>Id</value>
@@ -222,8 +228,8 @@
   <data name="lueFinancialYear.Properties.Columns13" xml:space="preserve">
     <value>EndDate</value>
   </data>
-  <data name="lueCompany.Properties.Columns7" type="DevExpress.Data.ColumnSortOrder, DevExpress.Data.v21.2">
-    <value>None</value>
+  <data name="&gt;&gt;chkRememberMe.Parent" xml:space="preserve">
+    <value>panelControl1</value>
   </data>
   <data name="&gt;&gt;pictureEdit1.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.PictureEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -237,17 +243,26 @@
   <data name="lueBranch.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <data name="&gt;&gt;lueLanguage.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;lueLanguage.Parent" xml:space="preserve">
+    <value>panelControl1</value>
+  </data>
   <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.SimpleButton, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;labelControl2.Parent" xml:space="preserve">
     <value>panelControl1</value>
   </data>
-  <data name="lueFinancialYear.Properties.Columns2" type="System.Int32, mscorlib">
-    <value>20</value>
+  <data name="lueFinancialYear.Properties.NullText" xml:space="preserve">
+    <value />
   </data>
   <data name="&gt;&gt;lueBranch.Name" xml:space="preserve">
     <value>lueBranch</value>
+  </data>
+  <data name="&gt;&gt;lueFinancialYear.Name" xml:space="preserve">
+    <value>lueFinancialYear</value>
   </data>
   <data name="labelControl1.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt</value>
@@ -260,9 +275,6 @@
   </data>
   <data name="lueCompany.Properties.Columns6" type="DevExpress.Utils.HorzAlignment, DevExpress.Data.v21.2">
     <value>Default</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>191, 33</value>
   </data>
   <data name="lueLanguage.Properties.Columns10" xml:space="preserve">
     <value>Name</value>
@@ -319,9 +331,6 @@
   <data name="lueCompany.Properties.Columns" xml:space="preserve">
     <value>Id</value>
   </data>
-  <data name="lueFinancialYear.Properties.NullText" xml:space="preserve">
-    <value />
-  </data>
   <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
     <value>btnOk</value>
   </data>
@@ -340,17 +349,11 @@
   <data name="&gt;&gt;lueCompany.Name" xml:space="preserve">
     <value>lueCompany</value>
   </data>
-  <data name="labelControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
   <data name="&gt;&gt;lueLanguage.Name" xml:space="preserve">
     <value>lueLanguage</value>
   </data>
   <data name="chkRememberMe.Size" type="System.Drawing.Size, System.Drawing">
     <value>134, 20</value>
-  </data>
-  <data name="&gt;&gt;lueBranch.ZOrder" xml:space="preserve">
-    <value>5</value>
   </data>
   <data name="&gt;&gt;pictureEdit1.Name" xml:space="preserve">
     <value>pictureEdit1</value>
@@ -367,8 +370,8 @@
   <data name="labelControl2.Text" xml:space="preserve">
     <value>Financial Year</value>
   </data>
-  <data name="&gt;&gt;lueFinancialYear.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="lueCompany.Properties.Columns5" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="labelControl5.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -388,6 +391,9 @@
   <data name="lueBranch.Properties.NullText" xml:space="preserve">
     <value />
   </data>
+  <data name="&gt;&gt;pictureEdit1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <data name="lueCompany.Properties.Columns2" type="System.Int32, mscorlib">
     <value>20</value>
   </data>
@@ -400,14 +406,11 @@
   <data name="lueCompany.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;panelControl1.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="chkRememberMe.Properties.Caption" xml:space="preserve">
     <value>Remember details</value>
   </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 284</value>
+  <data name="lueLanguage.Properties.Columns13" xml:space="preserve">
+    <value>EndDate</value>
   </data>
   <data name="&gt;&gt;pictureEdit1.Parent" xml:space="preserve">
     <value>panelControl1</value>
@@ -424,8 +427,8 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="lueLanguage.Properties.Columns13" xml:space="preserve">
-    <value>EndDate</value>
+  <data name="lueFinancialYear.Properties.Columns2" type="System.Int32, mscorlib">
+    <value>20</value>
   </data>
   <data name="lueLanguage.Properties.NullText" xml:space="preserve">
     <value />
@@ -451,6 +454,9 @@
   <data name="lueFinancialYear.Properties.Columns3" type="DevExpress.Utils.FormatType, DevExpress.Data.v21.2">
     <value>None</value>
   </data>
+  <data name="&gt;&gt;simpleButton1.Parent" xml:space="preserve">
+    <value>panelControl1</value>
+  </data>
   <data name="&gt;&gt;labelControl3.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
@@ -463,9 +469,6 @@
   </data>
   <data name="lueFinancialYear.Properties.Columns7" type="DevExpress.Data.ColumnSortOrder, DevExpress.Data.v21.2">
     <value>None</value>
-  </data>
-  <data name="lueFinancialYear.Properties.Columns14" xml:space="preserve">
-    <value>EndDate</value>
   </data>
   <data name="lueLanguage.EditValue" xml:space="preserve">
     <value />
@@ -497,14 +500,17 @@
   <data name="labelControl3.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 17pt, style=Bold</value>
   </data>
+  <data name="lueLanguage.Properties.Columns4" xml:space="preserve">
+    <value />
+  </data>
   <data name="&gt;&gt;labelControl4.Name" xml:space="preserve">
     <value>labelControl4</value>
   </data>
   <data name="lueBranch.Properties.Columns12" xml:space="preserve">
     <value>Registration No</value>
   </data>
-  <data name="&gt;&gt;pictureEdit1.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;lueFinancialYear.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="lueCompany.EditValue" xml:space="preserve">
     <value />
@@ -524,12 +530,6 @@
   <data name="&gt;&gt;labelControl5.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="chkRememberMe.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 10pt</value>
-  </data>
-  <data name="pictureEdit1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="lueLanguage.Properties.Columns14" xml:space="preserve">
     <value>EndDate</value>
   </data>
@@ -539,17 +539,17 @@
   <data name="labelControl4.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="lueCompany.Properties.Columns5" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="lueLanguage.Properties.Columns12" xml:space="preserve">
     <value>SartDate</value>
+  </data>
+  <data name="labelControl5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 210</value>
   </data>
   <data name="labelControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 16</value>
   </data>
-  <data name="&gt;&gt;chkRememberMe.Parent" xml:space="preserve">
-    <value>panelControl1</value>
+  <data name="pictureEdit1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="lueLanguage.Properties.Columns11" xml:space="preserve">
     <value>StartDate</value>
@@ -566,11 +566,11 @@
   <data name="&gt;&gt;panelControl1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="labelControl5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 210</value>
+  <data name="chkRememberMe.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 10pt</value>
   </data>
-  <data name="&gt;&gt;lueFinancialYear.Name" xml:space="preserve">
-    <value>lueFinancialYear</value>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>191, 33</value>
   </data>
   <data name="labelControl1.Text" xml:space="preserve">
     <value>Company</value>
@@ -581,8 +581,8 @@
   <data name="simpleButton1.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;lueLanguage.Parent" xml:space="preserve">
-    <value>panelControl1</value>
+  <data name="&gt;&gt;lueBranch.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;lueCompany.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.LookUpEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -608,8 +608,8 @@
   <data name="lueCompany.Properties.Columns8" type="DevExpress.Utils.DefaultBoolean, DevExpress.Data.v21.2">
     <value>Default</value>
   </data>
-  <data name="lueFinancialYear.Properties.Columns5" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="labelControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="panelControl1.Size" type="System.Drawing.Size, System.Drawing">
     <value>412, 322</value>
@@ -644,8 +644,8 @@
   <data name="lueCompany.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
-  <data name="lueLanguage.Properties.Columns4" xml:space="preserve">
-    <value />
+  <data name="&gt;&gt;panelControl1.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.PanelControl, DevExpress.Utils.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;lueFinancialYear.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.LookUpEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -686,8 +686,8 @@
   <data name="labelControl5.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt</value>
   </data>
-  <data name="lueCompany.Properties.Columns12" xml:space="preserve">
-    <value>Registraton No</value>
+  <data name="lueCompany.Properties.Columns7" type="DevExpress.Data.ColumnSortOrder, DevExpress.Data.v21.2">
+    <value>None</value>
   </data>
   <data name="simpleButton1.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 33</value>
@@ -710,13 +710,10 @@
   <data name="&gt;&gt;labelControl5.Name" xml:space="preserve">
     <value>labelControl5</value>
   </data>
-  <data name="&gt;&gt;lueLanguage.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 284</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh</value>
   </metadata>
 </root>
