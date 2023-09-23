@@ -49,6 +49,7 @@ namespace DiamondTrading
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barbtnApproval = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem61 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonPriceMasterMobile = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem2 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem18 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem19 = new DevExpress.XtraBars.BarButtonItem();
@@ -216,7 +217,7 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonPriceMasterMobile = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonGSTBillPrint = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -353,9 +354,10 @@ namespace DiamondTrading
             this.barButtonSalaryReport,
             this.barButtonRejectionInReceive,
             this.barButtonRejectionOutSend,
-            this.barButtonPriceMasterMobile});
+            this.barButtonPriceMasterMobile,
+            this.barButtonGSTBillPrint});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 132;
+            this.barManager1.MaxItemId = 133;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -568,6 +570,16 @@ namespace DiamondTrading
             this.barButtonItem61.Name = "barButtonItem61";
             this.barButtonItem61.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem61.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem61_ItemClick);
+            // 
+            // barButtonPriceMasterMobile
+            // 
+            this.barButtonPriceMasterMobile.Caption = "Price Master For Mobile";
+            this.barButtonPriceMasterMobile.Id = 131;
+            this.barButtonPriceMasterMobile.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
+                | System.Windows.Forms.Keys.M));
+            this.barButtonPriceMasterMobile.Name = "barButtonPriceMasterMobile";
+            this.barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barButtonPriceMasterMobile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPriceMasterMobile_ItemClick);
             // 
             // barSubItem2
             // 
@@ -822,7 +834,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem7),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem13),
             new DevExpress.XtraBars.LinkPersistInfo(this.barSubItem14),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem62)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem62),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonGSTBillPrint)});
             this.barSubItem4.Name = "barSubItem4";
             this.barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1988,15 +2001,13 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
-            // barButtonPriceMasterMobile
+            // barButtonGSTBillPrint
             // 
-            this.barButtonPriceMasterMobile.Caption = "Price Master For Mobile";
-            this.barButtonPriceMasterMobile.Id = 131;
-            this.barButtonPriceMasterMobile.ItemShortcut = new DevExpress.XtraBars.BarShortcut(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
-                | System.Windows.Forms.Keys.M));
-            this.barButtonPriceMasterMobile.Name = "barButtonPriceMasterMobile";
-            this.barButtonPriceMasterMobile.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-            this.barButtonPriceMasterMobile.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonPriceMasterMobile_ItemClick);
+            this.barButtonGSTBillPrint.Caption = "GST Bill Print";
+            this.barButtonGSTBillPrint.Id = 132;
+            this.barButtonGSTBillPrint.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F12);
+            this.barButtonGSTBillPrint.Name = "barButtonGSTBillPrint";
+            this.barButtonGSTBillPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonGSTBillPrint_ItemClick);
             // 
             // FrmMain
             // 
@@ -2224,5 +2235,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonRejectionInReceive;
         private DevExpress.XtraBars.BarButtonItem barButtonRejectionOutSend;
         private DevExpress.XtraBars.BarButtonItem barButtonPriceMasterMobile;
+        private DevExpress.XtraBars.BarButtonItem barButtonGSTBillPrint;
     }
 }
