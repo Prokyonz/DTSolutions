@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using CrystalDecisions.CrystalReports.Engine;
+using DiamondTrading.Reports;
 using EFCore.SQL.Repository;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Identity.Client;
 using Repository.Entities;
+using static DevExpress.XtraPrinting.Native.ExportOptionsPropertiesNames;
 
 namespace DiamondTrading.Utility
 {
@@ -57,7 +62,7 @@ namespace DiamondTrading.Utility
         private async Task LoadLastRecord()
         {
             var lastRecord = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
-            if(lastRecord.Any())
+            if (lastRecord.Any())
             {
                 txtTitle.Text = lastRecord.FirstOrDefault().Title;
                 txtGSTNo.Text = lastRecord.FirstOrDefault().GSTN;
@@ -96,7 +101,7 @@ namespace DiamondTrading.Utility
                 txtIGST.Text = lastRecord.FirstOrDefault().IGST.ToString();
                 txtTCS.Text = lastRecord.FirstOrDefault().TCS.ToString();
                 txtAmount.Text = lastRecord.FirstOrDefault().TotalAmount.ToString();
-                
+
                 txtGSTReverseCharge.Text = lastRecord.FirstOrDefault().GstOnReverseCharge.ToString();
 
 
@@ -175,9 +180,9 @@ namespace DiamondTrading.Utility
 
                     Declaration = txtDeclaration.Text,
                     AmountBeforeTax = Convert.ToDecimal(txtAmountBeforeTax.Text),
-                    SGST = Convert.ToDecimal(txtSGST.Text),                    
-                    CGST = Convert.ToDecimal(txtCGST.Text),                    
-                    IGST = Convert.ToDecimal(txtIGST.Text),                    
+                    SGST = Convert.ToDecimal(txtSGST.Text),
+                    CGST = Convert.ToDecimal(txtCGST.Text),
+                    IGST = Convert.ToDecimal(txtIGST.Text),
                     TCS = Convert.ToDecimal(txtTCS.Text),
                     TotalAmount = Convert.ToDecimal(txtAmount.Text),
 
@@ -189,10 +194,26 @@ namespace DiamondTrading.Utility
                     CompanyId = Common.LoginCompany,
                     BranchId = Common.LoginBranch,
                     FinancialYearId = Common.LoginFinancialYear,
-                    GroupId = await _gstBillPrintRepository.GetMaxGroupNo(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear)                    
+                    GroupId = await _gstBillPrintRepository.GetMaxGroupNo(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear)
                 };
 
                 await _gstBillPrintRepository.SaveBill(billModel);
+
+                // Create a BillPrintModel instance and populate it with data from your SQL table.
+                List<BillPrintModel> billData = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+
+                // Create a ReportDocument instance for your Crystal Report.
+                ReportDocument report = new ReportDocument();
+
+                // Set the path to your GSTInvoice.rpt file.
+                report.Load(Path.Combine(Application.StartupPath,"Reports", "GSTInvoice.rpt"));
+
+                // Set the report's data source to your BillPrintModel.
+                report.SetDataSource(billData);
+
+                ReportViewer viewer = new ReportViewer();
+                viewer.LoadReport(report);
+                viewer.ShowDialog();
             }
             catch (Exception Ex)
             {
