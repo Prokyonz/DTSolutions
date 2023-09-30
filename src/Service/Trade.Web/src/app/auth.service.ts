@@ -21,13 +21,6 @@ export class AuthService {
 
     public login(user: string, password: string): Observable<any> {
 
-        const httpOptions = {
-            headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8' }),
-        };
-
-        const reqParam = 'UserName=' + user
-            + '&password= ' + password;
-
         const data = {
             UserName: user,
             Password: password
