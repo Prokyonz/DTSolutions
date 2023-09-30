@@ -40,24 +40,25 @@
 
 
 <div *ngIf="!showCompanySelection" style="height: calc(100vh); background: #1c80cf;">
+  <span _ngcontent-hct-c17="" style="color: black;position: fixed;z-index: 9999;top: 95%;left: 85%;">1.0</span>
   <div class="center">
     <div class="card justify-content-center">
       <div style="text-align: center;">
-        <img src="../../assets/Logo.png" />      
+        <img src="../../assets/Logo.png" />
       </div>
-      <p-card header="">      
-          <ng-template pTemplate="content">   
-                <form [formGroup]="loginForm">
+      <p-card header="">
+        <ng-template pTemplate="content">
+          <form [formGroup]="loginForm">
             <table style="width: 100%;" [cellPadding]="5">
               <tr>
                 <td>
-                  <span style="bottom: 5px; position: relative;">Username</span><br/>                                                       
-                  <input pInputText pKeyFilter="int" style="width: 100%;" formControlName="username" required/>
+                  <span style="bottom: 5px; position: relative;">Username</span><br />
+                  <input pInputText pKeyFilter="int" style="width: 100%;" formControlName="username" required />
                 </td>
               </tr>
               <tr>
                 <td>
-                  <span style="bottom: 5px; position: relative;">Password</span><br/>                                                                         
+                  <span style="bottom: 5px; position: relative;">Password</span><br />
                   <input type="password" pPassword [feedback]="false" formControlName="password" style="width: 100%;" required />
                 </td>
               </tr>
@@ -72,9 +73,9 @@
                   <p-button label="Login" (onClick)="onLogin();"></p-button>
                 </td>
               </tr>
-            </table>  
-                    </form>
-          </ng-template>
+            </table>
+          </form>
+        </ng-template>
       </p-card>
     </div>
   </div>
