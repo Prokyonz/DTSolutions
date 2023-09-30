@@ -29,16 +29,54 @@ namespace DiamondTrading.Utility
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions16 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject61 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject62 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject63 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject64 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dtInvoiceDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.txtIFSC = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl36 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAccountNo = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
+            this.txtBankName = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAmountInWord = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
+            this.txtGSTReverseCharge = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAmount = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
+            this.txtCGST = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
+            this.txtIGST = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
+            this.txtTCS = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
+            this.txtSGST = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
+            this.txtAmountBeforeTax = new DevExpress.XtraEditors.TextEdit();
+            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
+            this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
+            this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
+            this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colBranch = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoBranch = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colAdjustAmt = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.txtShipCode = new DevExpress.XtraEditors.TextEdit();
             this.txtShipName = new DevExpress.XtraEditors.TextEdit();
@@ -91,48 +129,33 @@ namespace DiamondTrading.Utility
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
-            this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
-            this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
-            this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBranch = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoBranch = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colAdjustAmt = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
-            this.txtAmountBeforeTax = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl26 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl27 = new DevExpress.XtraEditors.LabelControl();
-            this.txtSGST = new DevExpress.XtraEditors.TextEdit();
-            this.txtTCS = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl28 = new DevExpress.XtraEditors.LabelControl();
-            this.txtIGST = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl29 = new DevExpress.XtraEditors.LabelControl();
-            this.txtCGST = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl30 = new DevExpress.XtraEditors.LabelControl();
-            this.txtAmount = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl31 = new DevExpress.XtraEditors.LabelControl();
-            this.txtGSTReverseCharge = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl32 = new DevExpress.XtraEditors.LabelControl();
-            this.txtAmountInWord = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl33 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.labelControl34 = new DevExpress.XtraEditors.LabelControl();
-            this.txtBankName = new DevExpress.XtraEditors.TextEdit();
-            this.txtAccountNo = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl35 = new DevExpress.XtraEditors.LabelControl();
-            this.txtIFSC = new DevExpress.XtraEditors.TextEdit();
-            this.labelControl36 = new DevExpress.XtraEditors.LabelControl();
+            this.xtraScrollableControl1 = new DevExpress.XtraEditors.XtraScrollableControl();
             ((System.ComponentModel.ISupportInitialize)(this.dtInvoiceDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtInvoiceDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIFSC.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountInWord.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGSTReverseCharge.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCGST.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIGST.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTCS.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSGST.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountBeforeTax.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
+            this.grpGroup1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtShipCode.Properties)).BeginInit();
@@ -164,28 +187,7 @@ namespace DiamondTrading.Utility
             ((System.ComponentModel.ISupportInitialize)(this.txtDeclaration.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
-            this.grpGroup1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountBeforeTax.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSGST.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTCS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIGST.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCGST.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGSTReverseCharge.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountInWord.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
-            this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNo.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIFSC.Properties)).BeginInit();
+            this.xtraScrollableControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dtInvoiceDate
@@ -288,10 +290,418 @@ namespace DiamondTrading.Utility
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Controls.Add(this.dtTime);
             this.panelControl1.Controls.Add(this.dtInvoiceDate);
-            this.panelControl1.Location = new System.Drawing.Point(12, 4);
+            this.panelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelControl1.Location = new System.Drawing.Point(0, 0);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(825, 774);
+            this.panelControl1.Size = new System.Drawing.Size(828, 786);
             this.panelControl1.TabIndex = 4;
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.txtIFSC);
+            this.groupControl1.Controls.Add(this.labelControl36);
+            this.groupControl1.Controls.Add(this.txtAccountNo);
+            this.groupControl1.Controls.Add(this.labelControl35);
+            this.groupControl1.Controls.Add(this.txtBankName);
+            this.groupControl1.Controls.Add(this.labelControl34);
+            this.groupControl1.Location = new System.Drawing.Point(9, 665);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(498, 100);
+            this.groupControl1.TabIndex = 71;
+            this.groupControl1.Text = "Bank Deails";
+            // 
+            // txtIFSC
+            // 
+            this.txtIFSC.Location = new System.Drawing.Point(355, 59);
+            this.txtIFSC.Name = "txtIFSC";
+            this.txtIFSC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtIFSC.Properties.Appearance.Options.UseFont = true;
+            this.txtIFSC.Size = new System.Drawing.Size(130, 26);
+            this.txtIFSC.TabIndex = 35;
+            // 
+            // labelControl36
+            // 
+            this.labelControl36.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl36.Appearance.Options.UseFont = true;
+            this.labelControl36.Location = new System.Drawing.Point(317, 65);
+            this.labelControl36.Name = "labelControl36";
+            this.labelControl36.Size = new System.Drawing.Size(32, 16);
+            this.labelControl36.TabIndex = 75;
+            this.labelControl36.Text = "IFSC:";
+            // 
+            // txtAccountNo
+            // 
+            this.txtAccountNo.Location = new System.Drawing.Point(87, 59);
+            this.txtAccountNo.Name = "txtAccountNo";
+            this.txtAccountNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtAccountNo.Properties.Appearance.Options.UseFont = true;
+            this.txtAccountNo.Size = new System.Drawing.Size(224, 26);
+            this.txtAccountNo.TabIndex = 34;
+            // 
+            // labelControl35
+            // 
+            this.labelControl35.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl35.Appearance.Options.UseFont = true;
+            this.labelControl35.Location = new System.Drawing.Point(12, 65);
+            this.labelControl35.Name = "labelControl35";
+            this.labelControl35.Size = new System.Drawing.Size(69, 16);
+            this.labelControl35.TabIndex = 73;
+            this.labelControl35.Text = "Account No:";
+            // 
+            // txtBankName
+            // 
+            this.txtBankName.Location = new System.Drawing.Point(87, 27);
+            this.txtBankName.Name = "txtBankName";
+            this.txtBankName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtBankName.Properties.Appearance.Options.UseFont = true;
+            this.txtBankName.Size = new System.Drawing.Size(398, 26);
+            this.txtBankName.TabIndex = 33;
+            // 
+            // labelControl34
+            // 
+            this.labelControl34.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl34.Appearance.Options.UseFont = true;
+            this.labelControl34.Location = new System.Drawing.Point(8, 33);
+            this.labelControl34.Name = "labelControl34";
+            this.labelControl34.Size = new System.Drawing.Size(73, 16);
+            this.labelControl34.TabIndex = 59;
+            this.labelControl34.Text = "Bank Name :";
+            // 
+            // txtAmountInWord
+            // 
+            this.txtAmountInWord.Location = new System.Drawing.Point(121, 509);
+            this.txtAmountInWord.Name = "txtAmountInWord";
+            this.txtAmountInWord.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
+            this.txtAmountInWord.Properties.Appearance.Options.UseFont = true;
+            this.txtAmountInWord.Size = new System.Drawing.Size(375, 26);
+            this.txtAmountInWord.TabIndex = 24;
+            // 
+            // labelControl33
+            // 
+            this.labelControl33.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl33.Appearance.Options.UseFont = true;
+            this.labelControl33.Location = new System.Drawing.Point(6, 515);
+            this.labelControl33.Name = "labelControl33";
+            this.labelControl33.Size = new System.Drawing.Size(109, 16);
+            this.labelControl33.TabIndex = 59;
+            this.labelControl33.Text = "Amount In Words :";
+            // 
+            // txtGSTReverseCharge
+            // 
+            this.txtGSTReverseCharge.EditValue = "0";
+            this.txtGSTReverseCharge.Location = new System.Drawing.Point(669, 701);
+            this.txtGSTReverseCharge.Name = "txtGSTReverseCharge";
+            this.txtGSTReverseCharge.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGSTReverseCharge.Properties.Appearance.Options.UseFont = true;
+            this.txtGSTReverseCharge.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtGSTReverseCharge.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtGSTReverseCharge.Size = new System.Drawing.Size(150, 26);
+            this.txtGSTReverseCharge.TabIndex = 32;
+            // 
+            // labelControl32
+            // 
+            this.labelControl32.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl32.Appearance.Options.UseFont = true;
+            this.labelControl32.Location = new System.Drawing.Point(516, 704);
+            this.labelControl32.Name = "labelControl32";
+            this.labelControl32.Size = new System.Drawing.Size(146, 16);
+            this.labelControl32.TabIndex = 69;
+            this.labelControl32.Text = "GST on Reverse Charge :";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.EditValue = "0";
+            this.txtAmount.Location = new System.Drawing.Point(669, 669);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmount.Properties.Appearance.Options.UseFont = true;
+            this.txtAmount.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtAmount.Size = new System.Drawing.Size(150, 26);
+            this.txtAmount.TabIndex = 31;
+            // 
+            // labelControl31
+            // 
+            this.labelControl31.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl31.Appearance.Options.UseFont = true;
+            this.labelControl31.Location = new System.Drawing.Point(576, 672);
+            this.labelControl31.Name = "labelControl31";
+            this.labelControl31.Size = new System.Drawing.Size(86, 16);
+            this.labelControl31.TabIndex = 67;
+            this.labelControl31.Text = "Total Amount :";
+            // 
+            // txtCGST
+            // 
+            this.txtCGST.EditValue = "0";
+            this.txtCGST.Location = new System.Drawing.Point(669, 573);
+            this.txtCGST.Name = "txtCGST";
+            this.txtCGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCGST.Properties.Appearance.Options.UseFont = true;
+            this.txtCGST.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtCGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtCGST.Size = new System.Drawing.Size(150, 26);
+            this.txtCGST.TabIndex = 28;
+            // 
+            // labelControl30
+            // 
+            this.labelControl30.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl30.Appearance.Options.UseFont = true;
+            this.labelControl30.Location = new System.Drawing.Point(621, 579);
+            this.labelControl30.Name = "labelControl30";
+            this.labelControl30.Size = new System.Drawing.Size(41, 16);
+            this.labelControl30.TabIndex = 65;
+            this.labelControl30.Text = "CGST :";
+            // 
+            // txtIGST
+            // 
+            this.txtIGST.EditValue = "0";
+            this.txtIGST.Location = new System.Drawing.Point(669, 605);
+            this.txtIGST.Name = "txtIGST";
+            this.txtIGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIGST.Properties.Appearance.Options.UseFont = true;
+            this.txtIGST.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtIGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtIGST.Size = new System.Drawing.Size(150, 26);
+            this.txtIGST.TabIndex = 29;
+            // 
+            // labelControl29
+            // 
+            this.labelControl29.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl29.Appearance.Options.UseFont = true;
+            this.labelControl29.Location = new System.Drawing.Point(625, 611);
+            this.labelControl29.Name = "labelControl29";
+            this.labelControl29.Size = new System.Drawing.Size(37, 16);
+            this.labelControl29.TabIndex = 63;
+            this.labelControl29.Text = "IGST :";
+            // 
+            // txtTCS
+            // 
+            this.txtTCS.EditValue = "0";
+            this.txtTCS.Location = new System.Drawing.Point(669, 637);
+            this.txtTCS.Name = "txtTCS";
+            this.txtTCS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTCS.Properties.Appearance.Options.UseFont = true;
+            this.txtTCS.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtTCS.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtTCS.Size = new System.Drawing.Size(150, 26);
+            this.txtTCS.TabIndex = 30;
+            // 
+            // labelControl28
+            // 
+            this.labelControl28.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl28.Appearance.Options.UseFont = true;
+            this.labelControl28.Location = new System.Drawing.Point(629, 643);
+            this.labelControl28.Name = "labelControl28";
+            this.labelControl28.Size = new System.Drawing.Size(33, 16);
+            this.labelControl28.TabIndex = 61;
+            this.labelControl28.Text = "TCS :";
+            // 
+            // txtSGST
+            // 
+            this.txtSGST.EditValue = "0";
+            this.txtSGST.Location = new System.Drawing.Point(669, 541);
+            this.txtSGST.Name = "txtSGST";
+            this.txtSGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSGST.Properties.Appearance.Options.UseFont = true;
+            this.txtSGST.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtSGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtSGST.Size = new System.Drawing.Size(150, 26);
+            this.txtSGST.TabIndex = 27;
+            // 
+            // labelControl27
+            // 
+            this.labelControl27.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl27.Appearance.Options.UseFont = true;
+            this.labelControl27.Location = new System.Drawing.Point(621, 547);
+            this.labelControl27.Name = "labelControl27";
+            this.labelControl27.Size = new System.Drawing.Size(41, 16);
+            this.labelControl27.TabIndex = 59;
+            this.labelControl27.Text = "SGST :";
+            // 
+            // txtAmountBeforeTax
+            // 
+            this.txtAmountBeforeTax.EditValue = "0";
+            this.txtAmountBeforeTax.Location = new System.Drawing.Point(668, 509);
+            this.txtAmountBeforeTax.Name = "txtAmountBeforeTax";
+            this.txtAmountBeforeTax.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAmountBeforeTax.Properties.Appearance.Options.UseFont = true;
+            this.txtAmountBeforeTax.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtAmountBeforeTax.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtAmountBeforeTax.Size = new System.Drawing.Size(150, 26);
+            this.txtAmountBeforeTax.TabIndex = 25;
+            // 
+            // labelControl26
+            // 
+            this.labelControl26.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl26.Appearance.Options.UseFont = true;
+            this.labelControl26.Location = new System.Drawing.Point(502, 515);
+            this.labelControl26.Name = "labelControl26";
+            this.labelControl26.Size = new System.Drawing.Size(160, 16);
+            this.labelControl26.TabIndex = 51;
+            this.labelControl26.Text = "Total Amount Before Tax* :";
+            // 
+            // grpGroup1
+            // 
+            this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpGroup1.AppearanceCaption.Options.UseFont = true;
+            this.grpGroup1.Controls.Add(this.grdPaymentDetails);
+            this.grpGroup1.Location = new System.Drawing.Point(11, 325);
+            this.grpGroup1.Name = "grpGroup1";
+            this.grpGroup1.Size = new System.Drawing.Size(809, 174);
+            this.grpGroup1.TabIndex = 49;
+            this.grpGroup1.Text = "Particulars Details";
+            // 
+            // grdPaymentDetails
+            // 
+            this.grdPaymentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdPaymentDetails.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdPaymentDetails.Location = new System.Drawing.Point(2, 23);
+            this.grdPaymentDetails.MainView = this.grvPaymentDetails;
+            this.grdPaymentDetails.Name = "grdPaymentDetails";
+            this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repoTxtEdit,
+            this.repoParty,
+            this.repositoryItemButtonEdit1,
+            this.repoBranch,
+            this.repoAdjustAmt});
+            this.grdPaymentDetails.Size = new System.Drawing.Size(805, 149);
+            this.grdPaymentDetails.TabIndex = 0;
+            this.grdPaymentDetails.UseEmbeddedNavigator = true;
+            this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvPaymentDetails});
+            // 
+            // grvPaymentDetails
+            // 
+            this.grvPaymentDetails.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.grvPaymentDetails.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
+            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseFont = true;
+            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseForeColor = true;
+            this.grvPaymentDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
+            this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colParty,
+            this.colAmount,
+            this.colAutoAdjustBillAmount,
+            this.colPartyType,
+            this.colBranch,
+            this.colAdjustAmt,
+            this.colPartyId});
+            this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
+            this.grvPaymentDetails.Name = "grvPaymentDetails";
+            this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
+            this.grvPaymentDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
+            this.grvPaymentDetails.OptionsView.ShowFooter = true;
+            this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
+            // 
+            // colParty
+            // 
+            this.colParty.Caption = "Particulars";
+            this.colParty.ColumnEdit = this.repoParty;
+            this.colParty.FieldName = "Party";
+            this.colParty.Name = "colParty";
+            this.colParty.Visible = true;
+            this.colParty.VisibleIndex = 0;
+            this.colParty.Width = 639;
+            // 
+            // repoParty
+            // 
+            this.repoParty.AutoHeight = false;
+            this.repoParty.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoParty.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Category"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CategoryId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repoParty.Name = "repoParty";
+            this.repoParty.NullText = "";
+            // 
+            // colAmount
+            // 
+            this.colAmount.Caption = "Amount";
+            this.colAmount.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.Name = "colAmount";
+            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 2;
+            this.colAmount.Width = 290;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.repositoryItemButtonEdit1.MaskSettings.Set("mask", "f");
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
+            // colAutoAdjustBillAmount
+            // 
+            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
+            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
+            // 
+            // colPartyType
+            // 
+            this.colPartyType.Caption = "PartyType";
+            this.colPartyType.FieldName = "PartyType";
+            this.colPartyType.Name = "colPartyType";
+            // 
+            // colBranch
+            // 
+            this.colBranch.Caption = "Branch";
+            this.colBranch.ColumnEdit = this.repoBranch;
+            this.colBranch.FieldName = "Branch";
+            this.colBranch.Name = "colBranch";
+            this.colBranch.Visible = true;
+            this.colBranch.VisibleIndex = 1;
+            this.colBranch.Width = 84;
+            // 
+            // repoBranch
+            // 
+            this.repoBranch.AutoHeight = false;
+            this.repoBranch.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repoBranch.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.repoBranch.Name = "repoBranch";
+            this.repoBranch.NullText = "";
+            // 
+            // colAdjustAmt
+            // 
+            this.colAdjustAmt.Caption = "-";
+            this.colAdjustAmt.ColumnEdit = this.repoAdjustAmt;
+            this.colAdjustAmt.FieldName = "AdjustBtn";
+            this.colAdjustAmt.Name = "colAdjustAmt";
+            this.colAdjustAmt.Visible = true;
+            this.colAdjustAmt.VisibleIndex = 3;
+            this.colAdjustAmt.Width = 48;
+            // 
+            // repoAdjustAmt
+            // 
+            this.repoAdjustAmt.AutoHeight = false;
+            editorButtonImageOptions1.Image = global::DiamondTrading.Properties.Resources.edit_16;
+            this.repoAdjustAmt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repoAdjustAmt.Name = "repoAdjustAmt";
+            this.repoAdjustAmt.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // colPartyId
+            // 
+            this.colPartyId.Caption = "PartyId";
+            this.colPartyId.FieldName = "PartyId";
+            this.colPartyId.Name = "colPartyId";
+            // 
+            // repoTxtEdit
+            // 
+            this.repoTxtEdit.AutoHeight = false;
+            this.repoTxtEdit.BeepOnError = true;
+            this.repoTxtEdit.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.repoTxtEdit.MaskSettings.Set("mask", "f");
+            this.repoTxtEdit.Name = "repoTxtEdit";
             // 
             // panelControl3
             // 
@@ -834,412 +1244,14 @@ namespace DiamondTrading.Utility
             this.dtTime.Size = new System.Drawing.Size(88, 20);
             this.dtTime.TabIndex = 5;
             // 
-            // grpGroup1
-            // 
-            this.grpGroup1.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpGroup1.AppearanceCaption.Options.UseFont = true;
-            this.grpGroup1.Controls.Add(this.grdPaymentDetails);
-            this.grpGroup1.Location = new System.Drawing.Point(11, 325);
-            this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(809, 174);
-            this.grpGroup1.TabIndex = 49;
-            this.grpGroup1.Text = "Particulars Details";
-            // 
-            // grdPaymentDetails
-            // 
-            this.grdPaymentDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grdPaymentDetails.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grdPaymentDetails.Location = new System.Drawing.Point(2, 23);
-            this.grdPaymentDetails.MainView = this.grvPaymentDetails;
-            this.grdPaymentDetails.Name = "grdPaymentDetails";
-            this.grdPaymentDetails.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repoTxtEdit,
-            this.repoParty,
-            this.repositoryItemButtonEdit1,
-            this.repoBranch,
-            this.repoAdjustAmt});
-            this.grdPaymentDetails.Size = new System.Drawing.Size(805, 149);
-            this.grdPaymentDetails.TabIndex = 0;
-            this.grdPaymentDetails.UseEmbeddedNavigator = true;
-            this.grdPaymentDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.grvPaymentDetails});
-            // 
-            // grvPaymentDetails
-            // 
-            this.grvPaymentDetails.Appearance.HeaderPanel.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.grvPaymentDetails.Appearance.HeaderPanel.ForeColor = System.Drawing.Color.Black;
-            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseFont = true;
-            this.grvPaymentDetails.Appearance.HeaderPanel.Options.UseForeColor = true;
-            this.grvPaymentDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
-            this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colParty,
-            this.colAmount,
-            this.colAutoAdjustBillAmount,
-            this.colPartyType,
-            this.colBranch,
-            this.colAdjustAmt,
-            this.colPartyId});
-            this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
-            this.grvPaymentDetails.Name = "grvPaymentDetails";
-            this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
-            this.grvPaymentDetails.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Top;
-            this.grvPaymentDetails.OptionsView.ShowFooter = true;
-            this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
-            // 
-            // colParty
-            // 
-            this.colParty.Caption = "Particulars";
-            this.colParty.ColumnEdit = this.repoParty;
-            this.colParty.FieldName = "Party";
-            this.colParty.Name = "colParty";
-            this.colParty.Visible = true;
-            this.colParty.VisibleIndex = 0;
-            this.colParty.Width = 639;
-            // 
-            // repoParty
-            // 
-            this.repoParty.AutoHeight = false;
-            this.repoParty.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoParty.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Category"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "CategoryId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoParty.Name = "repoParty";
-            this.repoParty.NullText = "";
-            // 
-            // colAmount
-            // 
-            this.colAmount.Caption = "Amount";
-            this.colAmount.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.colAmount.FieldName = "Amount";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
-            this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 2;
-            this.colAmount.Width = 290;
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.repositoryItemButtonEdit1.MaskSettings.Set("mask", "f");
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            // 
-            // colAutoAdjustBillAmount
-            // 
-            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
-            // 
-            // colPartyType
-            // 
-            this.colPartyType.Caption = "PartyType";
-            this.colPartyType.FieldName = "PartyType";
-            this.colPartyType.Name = "colPartyType";
-            // 
-            // colBranch
-            // 
-            this.colBranch.Caption = "Branch";
-            this.colBranch.ColumnEdit = this.repoBranch;
-            this.colBranch.FieldName = "Branch";
-            this.colBranch.Name = "colBranch";
-            this.colBranch.Visible = true;
-            this.colBranch.VisibleIndex = 1;
-            this.colBranch.Width = 84;
-            // 
-            // repoBranch
-            // 
-            this.repoBranch.AutoHeight = false;
-            this.repoBranch.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
-            this.repoBranch.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Name"),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "Id", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
-            this.repoBranch.Name = "repoBranch";
-            this.repoBranch.NullText = "";
-            // 
-            // colAdjustAmt
-            // 
-            this.colAdjustAmt.Caption = "-";
-            this.colAdjustAmt.ColumnEdit = this.repoAdjustAmt;
-            this.colAdjustAmt.FieldName = "AdjustBtn";
-            this.colAdjustAmt.Name = "colAdjustAmt";
-            this.colAdjustAmt.Visible = true;
-            this.colAdjustAmt.VisibleIndex = 3;
-            this.colAdjustAmt.Width = 48;
-            // 
-            // repoAdjustAmt
-            // 
-            this.repoAdjustAmt.AutoHeight = false;
-            editorButtonImageOptions16.Image = global::DiamondTrading.Properties.Resources.edit_16;
-            this.repoAdjustAmt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions16, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject61, serializableAppearanceObject62, serializableAppearanceObject63, serializableAppearanceObject64, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
-            this.repoAdjustAmt.Name = "repoAdjustAmt";
-            this.repoAdjustAmt.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // colPartyId
-            // 
-            this.colPartyId.Caption = "PartyId";
-            this.colPartyId.FieldName = "PartyId";
-            this.colPartyId.Name = "colPartyId";
-            // 
-            // repoTxtEdit
-            // 
-            this.repoTxtEdit.AutoHeight = false;
-            this.repoTxtEdit.BeepOnError = true;
-            this.repoTxtEdit.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.repoTxtEdit.MaskSettings.Set("mask", "f");
-            this.repoTxtEdit.Name = "repoTxtEdit";
-            // 
-            // txtAmountBeforeTax
-            // 
-            this.txtAmountBeforeTax.EditValue = "0";
-            this.txtAmountBeforeTax.Location = new System.Drawing.Point(668, 509);
-            this.txtAmountBeforeTax.Name = "txtAmountBeforeTax";
-            this.txtAmountBeforeTax.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmountBeforeTax.Properties.Appearance.Options.UseFont = true;
-            this.txtAmountBeforeTax.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtAmountBeforeTax.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtAmountBeforeTax.Size = new System.Drawing.Size(150, 26);
-            this.txtAmountBeforeTax.TabIndex = 25;
-            // 
-            // labelControl26
-            // 
-            this.labelControl26.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl26.Appearance.Options.UseFont = true;
-            this.labelControl26.Location = new System.Drawing.Point(502, 515);
-            this.labelControl26.Name = "labelControl26";
-            this.labelControl26.Size = new System.Drawing.Size(160, 16);
-            this.labelControl26.TabIndex = 51;
-            this.labelControl26.Text = "Total Amount Before Tax* :";
-            // 
-            // labelControl27
-            // 
-            this.labelControl27.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl27.Appearance.Options.UseFont = true;
-            this.labelControl27.Location = new System.Drawing.Point(621, 547);
-            this.labelControl27.Name = "labelControl27";
-            this.labelControl27.Size = new System.Drawing.Size(41, 16);
-            this.labelControl27.TabIndex = 59;
-            this.labelControl27.Text = "SGST :";
-            // 
-            // txtSGST
-            // 
-            this.txtSGST.EditValue = "0";
-            this.txtSGST.Location = new System.Drawing.Point(669, 541);
-            this.txtSGST.Name = "txtSGST";
-            this.txtSGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSGST.Properties.Appearance.Options.UseFont = true;
-            this.txtSGST.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtSGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtSGST.Size = new System.Drawing.Size(150, 26);
-            this.txtSGST.TabIndex = 27;
-            // 
-            // txtTCS
-            // 
-            this.txtTCS.EditValue = "0";
-            this.txtTCS.Location = new System.Drawing.Point(669, 637);
-            this.txtTCS.Name = "txtTCS";
-            this.txtTCS.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTCS.Properties.Appearance.Options.UseFont = true;
-            this.txtTCS.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtTCS.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtTCS.Size = new System.Drawing.Size(150, 26);
-            this.txtTCS.TabIndex = 30;
-            // 
-            // labelControl28
-            // 
-            this.labelControl28.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl28.Appearance.Options.UseFont = true;
-            this.labelControl28.Location = new System.Drawing.Point(629, 643);
-            this.labelControl28.Name = "labelControl28";
-            this.labelControl28.Size = new System.Drawing.Size(33, 16);
-            this.labelControl28.TabIndex = 61;
-            this.labelControl28.Text = "TCS :";
-            // 
-            // txtIGST
-            // 
-            this.txtIGST.EditValue = "0";
-            this.txtIGST.Location = new System.Drawing.Point(669, 605);
-            this.txtIGST.Name = "txtIGST";
-            this.txtIGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIGST.Properties.Appearance.Options.UseFont = true;
-            this.txtIGST.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtIGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtIGST.Size = new System.Drawing.Size(150, 26);
-            this.txtIGST.TabIndex = 29;
-            // 
-            // labelControl29
-            // 
-            this.labelControl29.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl29.Appearance.Options.UseFont = true;
-            this.labelControl29.Location = new System.Drawing.Point(625, 611);
-            this.labelControl29.Name = "labelControl29";
-            this.labelControl29.Size = new System.Drawing.Size(37, 16);
-            this.labelControl29.TabIndex = 63;
-            this.labelControl29.Text = "IGST :";
-            // 
-            // txtCGST
-            // 
-            this.txtCGST.EditValue = "0";
-            this.txtCGST.Location = new System.Drawing.Point(669, 573);
-            this.txtCGST.Name = "txtCGST";
-            this.txtCGST.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCGST.Properties.Appearance.Options.UseFont = true;
-            this.txtCGST.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtCGST.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtCGST.Size = new System.Drawing.Size(150, 26);
-            this.txtCGST.TabIndex = 28;
-            // 
-            // labelControl30
-            // 
-            this.labelControl30.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl30.Appearance.Options.UseFont = true;
-            this.labelControl30.Location = new System.Drawing.Point(621, 579);
-            this.labelControl30.Name = "labelControl30";
-            this.labelControl30.Size = new System.Drawing.Size(41, 16);
-            this.labelControl30.TabIndex = 65;
-            this.labelControl30.Text = "CGST :";
-            // 
-            // txtAmount
-            // 
-            this.txtAmount.EditValue = "0";
-            this.txtAmount.Location = new System.Drawing.Point(669, 669);
-            this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtAmount.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtAmount.TabIndex = 31;
-            // 
-            // labelControl31
-            // 
-            this.labelControl31.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl31.Appearance.Options.UseFont = true;
-            this.labelControl31.Location = new System.Drawing.Point(576, 672);
-            this.labelControl31.Name = "labelControl31";
-            this.labelControl31.Size = new System.Drawing.Size(86, 16);
-            this.labelControl31.TabIndex = 67;
-            this.labelControl31.Text = "Total Amount :";
-            // 
-            // txtGSTReverseCharge
-            // 
-            this.txtGSTReverseCharge.EditValue = "0";
-            this.txtGSTReverseCharge.Location = new System.Drawing.Point(669, 701);
-            this.txtGSTReverseCharge.Name = "txtGSTReverseCharge";
-            this.txtGSTReverseCharge.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGSTReverseCharge.Properties.Appearance.Options.UseFont = true;
-            this.txtGSTReverseCharge.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtGSTReverseCharge.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtGSTReverseCharge.Size = new System.Drawing.Size(150, 26);
-            this.txtGSTReverseCharge.TabIndex = 32;
-            // 
-            // labelControl32
-            // 
-            this.labelControl32.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl32.Appearance.Options.UseFont = true;
-            this.labelControl32.Location = new System.Drawing.Point(516, 704);
-            this.labelControl32.Name = "labelControl32";
-            this.labelControl32.Size = new System.Drawing.Size(146, 16);
-            this.labelControl32.TabIndex = 69;
-            this.labelControl32.Text = "GST on Reverse Charge :";
-            // 
-            // txtAmountInWord
-            // 
-            this.txtAmountInWord.Location = new System.Drawing.Point(121, 509);
-            this.txtAmountInWord.Name = "txtAmountInWord";
-            this.txtAmountInWord.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtAmountInWord.Properties.Appearance.Options.UseFont = true;
-            this.txtAmountInWord.Size = new System.Drawing.Size(375, 26);
-            this.txtAmountInWord.TabIndex = 24;
-            // 
-            // labelControl33
-            // 
-            this.labelControl33.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl33.Appearance.Options.UseFont = true;
-            this.labelControl33.Location = new System.Drawing.Point(6, 515);
-            this.labelControl33.Name = "labelControl33";
-            this.labelControl33.Size = new System.Drawing.Size(109, 16);
-            this.labelControl33.TabIndex = 59;
-            this.labelControl33.Text = "Amount In Words :";
-            // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.txtIFSC);
-            this.groupControl1.Controls.Add(this.labelControl36);
-            this.groupControl1.Controls.Add(this.txtAccountNo);
-            this.groupControl1.Controls.Add(this.labelControl35);
-            this.groupControl1.Controls.Add(this.txtBankName);
-            this.groupControl1.Controls.Add(this.labelControl34);
-            this.groupControl1.Location = new System.Drawing.Point(9, 665);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(498, 100);
-            this.groupControl1.TabIndex = 71;
-            this.groupControl1.Text = "Bank Deails";
-            // 
-            // labelControl34
-            // 
-            this.labelControl34.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl34.Appearance.Options.UseFont = true;
-            this.labelControl34.Location = new System.Drawing.Point(8, 33);
-            this.labelControl34.Name = "labelControl34";
-            this.labelControl34.Size = new System.Drawing.Size(73, 16);
-            this.labelControl34.TabIndex = 59;
-            this.labelControl34.Text = "Bank Name :";
-            // 
-            // txtBankName
-            // 
-            this.txtBankName.Location = new System.Drawing.Point(87, 27);
-            this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtBankName.Properties.Appearance.Options.UseFont = true;
-            this.txtBankName.Size = new System.Drawing.Size(398, 26);
-            this.txtBankName.TabIndex = 33;
-            // 
-            // txtAccountNo
-            // 
-            this.txtAccountNo.Location = new System.Drawing.Point(87, 59);
-            this.txtAccountNo.Name = "txtAccountNo";
-            this.txtAccountNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtAccountNo.Properties.Appearance.Options.UseFont = true;
-            this.txtAccountNo.Size = new System.Drawing.Size(224, 26);
-            this.txtAccountNo.TabIndex = 34;
-            // 
-            // labelControl35
-            // 
-            this.labelControl35.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl35.Appearance.Options.UseFont = true;
-            this.labelControl35.Location = new System.Drawing.Point(12, 65);
-            this.labelControl35.Name = "labelControl35";
-            this.labelControl35.Size = new System.Drawing.Size(69, 16);
-            this.labelControl35.TabIndex = 73;
-            this.labelControl35.Text = "Account No:";
-            // 
-            // txtIFSC
-            // 
-            this.txtIFSC.Location = new System.Drawing.Point(355, 59);
-            this.txtIFSC.Name = "txtIFSC";
-            this.txtIFSC.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.txtIFSC.Properties.Appearance.Options.UseFont = true;
-            this.txtIFSC.Size = new System.Drawing.Size(130, 26);
-            this.txtIFSC.TabIndex = 35;
-            // 
-            // labelControl36
-            // 
-            this.labelControl36.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl36.Appearance.Options.UseFont = true;
-            this.labelControl36.Location = new System.Drawing.Point(317, 65);
-            this.labelControl36.Name = "labelControl36";
-            this.labelControl36.Size = new System.Drawing.Size(32, 16);
-            this.labelControl36.TabIndex = 75;
-            this.labelControl36.Text = "IFSC:";
+            // xtraScrollableControl1
+            // 
+            this.xtraScrollableControl1.Controls.Add(this.panelControl1);
+            this.xtraScrollableControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraScrollableControl1.Location = new System.Drawing.Point(0, 0);
+            this.xtraScrollableControl1.Name = "xtraScrollableControl1";
+            this.xtraScrollableControl1.Size = new System.Drawing.Size(828, 786);
+            this.xtraScrollableControl1.TabIndex = 5;
             // 
             // FrmGSTBillEntry
             // 
@@ -1247,8 +1259,8 @@ namespace DiamondTrading.Utility
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(848, 786);
-            this.Controls.Add(this.panelControl1);
+            this.ClientSize = new System.Drawing.Size(828, 786);
+            this.Controls.Add(this.xtraScrollableControl1);
             this.IconOptions.ShowIcon = false;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -1264,6 +1276,29 @@ namespace DiamondTrading.Utility
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            this.groupControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIFSC.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtBankName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountInWord.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtGSTReverseCharge.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtCGST.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtIGST.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtTCS.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSGST.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtAmountBeforeTax.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
+            this.grpGroup1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -1297,29 +1332,7 @@ namespace DiamondTrading.Utility
             ((System.ComponentModel.ISupportInitialize)(this.txtDeclaration.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).EndInit();
-            this.grpGroup1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountBeforeTax.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtSGST.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtTCS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIGST.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtCGST.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtGSTReverseCharge.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAmountInWord.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
-            this.groupControl1.ResumeLayout(false);
-            this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBankName.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtAccountNo.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtIFSC.Properties)).EndInit();
+            this.xtraScrollableControl1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1420,5 +1433,6 @@ namespace DiamondTrading.Utility
         private DevExpress.XtraEditors.LabelControl labelControl35;
         private DevExpress.XtraEditors.TextEdit txtIFSC;
         private DevExpress.XtraEditors.LabelControl labelControl36;
+        private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
     }
 }
