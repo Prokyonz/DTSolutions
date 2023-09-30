@@ -117,47 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="labelControl3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 28</value>
-  </data>
-  <data name="labelControl3.Text" xml:space="preserve">
-    <value>当前公司/分支/年份</value>
-  </data>
-  <data name="labelControl2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 17</value>
-  </data>
-  <data name="labelControl2.Text" xml:space="preserve">
-    <value>财政年度</value>
-  </data>
-  <data name="labelControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 17</value>
-  </data>
-  <data name="labelControl1.Text" xml:space="preserve">
-    <value>公司</value>
-  </data>
-  <data name="btnOk.Text" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="labelControl4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 17</value>
-  </data>
-  <data name="labelControl4.Text" xml:space="preserve">
-    <value>分支</value>
-  </data>
-  <data name="labelControl5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>28, 17</value>
-  </data>
-  <data name="labelControl5.Text" xml:space="preserve">
-    <value>语言</value>
-  </data>
-  <data name="simpleButton1.Text" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="chkRememberMe.Properties.Caption" xml:space="preserve">
-    <value>记住详情</value>
-  </data>
-  <data name="chkRememberMe.Size" type="System.Drawing.Size, System.Drawing">
-    <value>134, 21</value>
-  </data>
 </root>

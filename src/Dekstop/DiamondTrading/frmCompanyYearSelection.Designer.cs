@@ -36,9 +36,9 @@ namespace DiamondTrading
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
+            this.lueLanguage = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
-            this.lueLanguage = new DevExpress.XtraEditors.LookUpEdit();
             this.chkRememberMe = new DevExpress.XtraEditors.CheckEdit();
             this.lueFinancialYear = new DevExpress.XtraEditors.LookUpEdit();
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
@@ -115,6 +115,21 @@ namespace DiamondTrading
             this.panelControl1.Controls.Add(this.labelControl2);
             this.panelControl1.Name = "panelControl1";
             // 
+            // lueLanguage
+            // 
+            resources.ApplyResources(this.lueLanguage, "lueLanguage");
+            this.lueLanguage.Name = "lueLanguage";
+            this.lueLanguage.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueLanguage.Properties.Appearance.Font")));
+            this.lueLanguage.Properties.Appearance.Options.UseFont = true;
+            this.lueLanguage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueLanguage.Properties.Buttons"))))});
+            this.lueLanguage.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns"), resources.GetString("lueLanguage.Properties.Columns1"), ((int)(resources.GetObject("lueLanguage.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueLanguage.Properties.Columns3"))), resources.GetString("lueLanguage.Properties.Columns4"), ((bool)(resources.GetObject("lueLanguage.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueLanguage.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueLanguage.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueLanguage.Properties.Columns8")))),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns9"), resources.GetString("lueLanguage.Properties.Columns10")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns11"), resources.GetString("lueLanguage.Properties.Columns12")),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns13"), resources.GetString("lueLanguage.Properties.Columns14"))});
+            this.lueLanguage.Properties.NullText = resources.GetString("lueLanguage.Properties.NullText");
+            // 
             // labelControl5
             // 
             resources.ApplyResources(this.labelControl5, "labelControl5");
@@ -132,21 +147,6 @@ namespace DiamondTrading
             this.simpleButton1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
-            // 
-            // lueLanguage
-            // 
-            resources.ApplyResources(this.lueLanguage, "lueLanguage");
-            this.lueLanguage.Name = "lueLanguage";
-            this.lueLanguage.Properties.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("lueLanguage.Properties.Appearance.Font")));
-            this.lueLanguage.Properties.Appearance.Options.UseFont = true;
-            this.lueLanguage.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(((DevExpress.XtraEditors.Controls.ButtonPredefines)(resources.GetObject("lueLanguage.Properties.Buttons"))))});
-            this.lueLanguage.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns"), resources.GetString("lueLanguage.Properties.Columns1"), ((int)(resources.GetObject("lueLanguage.Properties.Columns2"))), ((DevExpress.Utils.FormatType)(resources.GetObject("lueLanguage.Properties.Columns3"))), resources.GetString("lueLanguage.Properties.Columns4"), ((bool)(resources.GetObject("lueLanguage.Properties.Columns5"))), ((DevExpress.Utils.HorzAlignment)(resources.GetObject("lueLanguage.Properties.Columns6"))), ((DevExpress.Data.ColumnSortOrder)(resources.GetObject("lueLanguage.Properties.Columns7"))), ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("lueLanguage.Properties.Columns8")))),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns9"), resources.GetString("lueLanguage.Properties.Columns10")),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns11"), resources.GetString("lueLanguage.Properties.Columns12")),
-            new DevExpress.XtraEditors.Controls.LookUpColumnInfo(resources.GetString("lueLanguage.Properties.Columns13"), resources.GetString("lueLanguage.Properties.Columns14"))});
-            this.lueLanguage.Properties.NullText = resources.GetString("lueLanguage.Properties.NullText");
             // 
             // chkRememberMe
             // 
