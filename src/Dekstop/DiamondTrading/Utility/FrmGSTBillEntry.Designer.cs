@@ -29,11 +29,11 @@ namespace DiamondTrading.Utility
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions2 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject5 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject6 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject7 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject8 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.dtInvoiceDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -65,18 +65,20 @@ namespace DiamondTrading.Utility
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
             this.grdPaymentDetails = new DevExpress.XtraGrid.GridControl();
             this.grvPaymentDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colParty = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDesc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHSNCode = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colUOM = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colQty = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colAutoAdjustBillAmount = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colPartyType = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colBranch = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoBranch = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
-            this.colAdjustAmt = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
-            this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRate = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDiscount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTaxableValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repoBranch = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.txtShipCode = new DevExpress.XtraEditors.TextEdit();
             this.txtShipName = new DevExpress.XtraEditors.TextEdit();
@@ -151,11 +153,11 @@ namespace DiamondTrading.Utility
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtShipCode.Properties)).BeginInit();
@@ -290,9 +292,9 @@ namespace DiamondTrading.Utility
             this.panelControl1.Controls.Add(this.labelControl8);
             this.panelControl1.Controls.Add(this.dtTime);
             this.panelControl1.Controls.Add(this.dtInvoiceDate);
-            this.panelControl1.Location = new System.Drawing.Point(12, 3);
+            this.panelControl1.Location = new System.Drawing.Point(12, -135);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(856, 808);
+            this.panelControl1.Size = new System.Drawing.Size(859, 780);
             this.panelControl1.TabIndex = 4;
             // 
             // groupControl1
@@ -578,13 +580,15 @@ namespace DiamondTrading.Utility
             this.grvPaymentDetails.Appearance.Row.Font = new System.Drawing.Font("Tahoma", 10F);
             this.grvPaymentDetails.Appearance.Row.Options.UseFont = true;
             this.grvPaymentDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colParty,
+            this.colDesc,
+            this.colHSNCode,
+            this.colUOM,
+            this.colQty,
+            this.colRate,
             this.colAmount,
-            this.colAutoAdjustBillAmount,
-            this.colPartyType,
-            this.colBranch,
-            this.colAdjustAmt,
-            this.colPartyId});
+            this.colDiscount,
+            this.colTaxableValue,
+            this.colTotal});
             this.grvPaymentDetails.GridControl = this.grdPaymentDetails;
             this.grvPaymentDetails.Name = "grvPaymentDetails";
             this.grvPaymentDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -592,15 +596,119 @@ namespace DiamondTrading.Utility
             this.grvPaymentDetails.OptionsView.ShowFooter = true;
             this.grvPaymentDetails.OptionsView.ShowGroupPanel = false;
             // 
-            // colParty
+            // colDesc
             // 
-            this.colParty.Caption = "Particulars";
-            this.colParty.ColumnEdit = this.repoParty;
-            this.colParty.FieldName = "Party";
-            this.colParty.Name = "colParty";
-            this.colParty.Visible = true;
-            this.colParty.VisibleIndex = 0;
-            this.colParty.Width = 639;
+            this.colDesc.Caption = "Product Description";
+            this.colDesc.FieldName = "ProductDescription";
+            this.colDesc.MinWidth = 250;
+            this.colDesc.Name = "colDesc";
+            this.colDesc.Visible = true;
+            this.colDesc.VisibleIndex = 0;
+            this.colDesc.Width = 250;
+            // 
+            // colHSNCode
+            // 
+            this.colHSNCode.Caption = "HSN Code";
+            this.colHSNCode.FieldName = "HSNCode";
+            this.colHSNCode.MinWidth = 80;
+            this.colHSNCode.Name = "colHSNCode";
+            this.colHSNCode.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
+            this.colHSNCode.Visible = true;
+            this.colHSNCode.VisibleIndex = 1;
+            this.colHSNCode.Width = 91;
+            // 
+            // colUOM
+            // 
+            this.colUOM.Caption = "UOM";
+            this.colUOM.FieldName = "UOM";
+            this.colUOM.MinWidth = 70;
+            this.colUOM.Name = "colUOM";
+            this.colUOM.Visible = true;
+            this.colUOM.VisibleIndex = 2;
+            // 
+            // colQty
+            // 
+            this.colQty.Caption = "Qty";
+            this.colQty.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colQty.FieldName = "Qty";
+            this.colQty.MinWidth = 70;
+            this.colQty.Name = "colQty";
+            this.colQty.Visible = true;
+            this.colQty.VisibleIndex = 3;
+            // 
+            // repositoryItemButtonEdit1
+            // 
+            this.repositoryItemButtonEdit1.AutoHeight = false;
+            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.repositoryItemButtonEdit1.MaskSettings.Set("mask", "f");
+            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
+            // 
+            // colRate
+            // 
+            this.colRate.Caption = "Rate";
+            this.colRate.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colRate.FieldName = "Rate";
+            this.colRate.MinWidth = 70;
+            this.colRate.Name = "colRate";
+            this.colRate.Visible = true;
+            this.colRate.VisibleIndex = 4;
+            this.colRate.Width = 80;
+            // 
+            // colAmount
+            // 
+            this.colAmount.Caption = "Amount";
+            this.colAmount.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colAmount.FieldName = "Amount";
+            this.colAmount.MinWidth = 100;
+            this.colAmount.Name = "colAmount";
+            this.colAmount.Visible = true;
+            this.colAmount.VisibleIndex = 5;
+            this.colAmount.Width = 114;
+            // 
+            // colDiscount
+            // 
+            this.colDiscount.Caption = "Discount";
+            this.colDiscount.FieldName = "Discount";
+            this.colDiscount.MinWidth = 50;
+            this.colDiscount.Name = "colDiscount";
+            this.colDiscount.Visible = true;
+            this.colDiscount.VisibleIndex = 6;
+            this.colDiscount.Width = 60;
+            // 
+            // colTaxableValue
+            // 
+            this.colTaxableValue.Caption = "TaxableValue";
+            this.colTaxableValue.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colTaxableValue.FieldName = "TaxableValue";
+            this.colTaxableValue.MinWidth = 100;
+            this.colTaxableValue.Name = "colTaxableValue";
+            this.colTaxableValue.Visible = true;
+            this.colTaxableValue.VisibleIndex = 7;
+            this.colTaxableValue.Width = 114;
+            // 
+            // colTotal
+            // 
+            this.colTotal.Caption = "Total";
+            this.colTotal.ColumnEdit = this.repositoryItemButtonEdit1;
+            this.colTotal.FieldName = "Total";
+            this.colTotal.MinWidth = 100;
+            this.colTotal.Name = "colTotal";
+            this.colTotal.Visible = true;
+            this.colTotal.VisibleIndex = 8;
+            this.colTotal.Width = 116;
+            // 
+            // repoTxtEdit
+            // 
+            this.repoTxtEdit.AutoHeight = false;
+            this.repoTxtEdit.BeepOnError = true;
+            this.repoTxtEdit.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
+            this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
+            this.repoTxtEdit.MaskSettings.Set("mask", "f");
+            this.repoTxtEdit.Name = "repoTxtEdit";
             // 
             // repoParty
             // 
@@ -613,50 +721,6 @@ namespace DiamondTrading.Utility
             this.repoParty.Name = "repoParty";
             this.repoParty.NullText = "";
             // 
-            // colAmount
-            // 
-            this.colAmount.Caption = "Amount";
-            this.colAmount.ColumnEdit = this.repositoryItemButtonEdit1;
-            this.colAmount.FieldName = "Amount";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Amount", "{0:0.##}")});
-            this.colAmount.Visible = true;
-            this.colAmount.VisibleIndex = 2;
-            this.colAmount.Width = 290;
-            // 
-            // repositoryItemButtonEdit1
-            // 
-            this.repositoryItemButtonEdit1.AutoHeight = false;
-            this.repositoryItemButtonEdit1.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton()});
-            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.repositoryItemButtonEdit1.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.repositoryItemButtonEdit1.MaskSettings.Set("mask", "f");
-            this.repositoryItemButtonEdit1.Name = "repositoryItemButtonEdit1";
-            // 
-            // colAutoAdjustBillAmount
-            // 
-            this.colAutoAdjustBillAmount.Caption = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.FieldName = "AutoAdjustBillAmount";
-            this.colAutoAdjustBillAmount.Name = "colAutoAdjustBillAmount";
-            // 
-            // colPartyType
-            // 
-            this.colPartyType.Caption = "PartyType";
-            this.colPartyType.FieldName = "PartyType";
-            this.colPartyType.Name = "colPartyType";
-            // 
-            // colBranch
-            // 
-            this.colBranch.Caption = "Branch";
-            this.colBranch.ColumnEdit = this.repoBranch;
-            this.colBranch.FieldName = "Branch";
-            this.colBranch.Name = "colBranch";
-            this.colBranch.Visible = true;
-            this.colBranch.VisibleIndex = 1;
-            this.colBranch.Width = 84;
-            // 
             // repoBranch
             // 
             this.repoBranch.AutoHeight = false;
@@ -668,39 +732,14 @@ namespace DiamondTrading.Utility
             this.repoBranch.Name = "repoBranch";
             this.repoBranch.NullText = "";
             // 
-            // colAdjustAmt
-            // 
-            this.colAdjustAmt.Caption = "-";
-            this.colAdjustAmt.ColumnEdit = this.repoAdjustAmt;
-            this.colAdjustAmt.FieldName = "AdjustBtn";
-            this.colAdjustAmt.Name = "colAdjustAmt";
-            this.colAdjustAmt.Visible = true;
-            this.colAdjustAmt.VisibleIndex = 3;
-            this.colAdjustAmt.Width = 48;
-            // 
             // repoAdjustAmt
             // 
             this.repoAdjustAmt.AutoHeight = false;
-            editorButtonImageOptions2.Image = global::DiamondTrading.Properties.Resources.edit_16;
+            editorButtonImageOptions4.Image = global::DiamondTrading.Properties.Resources.edit_16;
             this.repoAdjustAmt.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions2, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject5, serializableAppearanceObject6, serializableAppearanceObject7, serializableAppearanceObject8, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repoAdjustAmt.Name = "repoAdjustAmt";
             this.repoAdjustAmt.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
-            // 
-            // colPartyId
-            // 
-            this.colPartyId.Caption = "PartyId";
-            this.colPartyId.FieldName = "PartyId";
-            this.colPartyId.Name = "colPartyId";
-            // 
-            // repoTxtEdit
-            // 
-            this.repoTxtEdit.AutoHeight = false;
-            this.repoTxtEdit.BeepOnError = true;
-            this.repoTxtEdit.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
-            this.repoTxtEdit.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
-            this.repoTxtEdit.MaskSettings.Set("mask", "f");
-            this.repoTxtEdit.Name = "repoTxtEdit";
             // 
             // panelControl3
             // 
@@ -1293,11 +1332,11 @@ namespace DiamondTrading.Utility
             this.grpGroup1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdPaymentDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPaymentDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoParty)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoBranch)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repoAdjustAmt)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.repoTxtEdit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             this.panelControl3.PerformLayout();
@@ -1397,17 +1436,17 @@ namespace DiamondTrading.Utility
         private DevExpress.XtraEditors.GroupControl grpGroup1;
         private DevExpress.XtraGrid.GridControl grdPaymentDetails;
         private DevExpress.XtraGrid.Views.Grid.GridView grvPaymentDetails;
-        private DevExpress.XtraGrid.Columns.GridColumn colParty;
+        private DevExpress.XtraGrid.Columns.GridColumn colDesc;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoParty;
-        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colHSNCode;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit1;
-        private DevExpress.XtraGrid.Columns.GridColumn colAutoAdjustBillAmount;
-        private DevExpress.XtraGrid.Columns.GridColumn colPartyType;
-        private DevExpress.XtraGrid.Columns.GridColumn colBranch;
+        private DevExpress.XtraGrid.Columns.GridColumn colUOM;
+        private DevExpress.XtraGrid.Columns.GridColumn colQty;
+        private DevExpress.XtraGrid.Columns.GridColumn colRate;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoBranch;
-        private DevExpress.XtraGrid.Columns.GridColumn colAdjustAmt;
+        private DevExpress.XtraGrid.Columns.GridColumn colAmount;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoAdjustAmt;
-        private DevExpress.XtraGrid.Columns.GridColumn colPartyId;
+        private DevExpress.XtraGrid.Columns.GridColumn colDiscount;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
         private DevExpress.XtraEditors.TextEdit txtAmountBeforeTax;
         private DevExpress.XtraEditors.LabelControl labelControl26;
@@ -1433,5 +1472,7 @@ namespace DiamondTrading.Utility
         private DevExpress.XtraEditors.TextEdit txtIFSC;
         private DevExpress.XtraEditors.LabelControl labelControl36;
         private DevExpress.XtraEditors.XtraScrollableControl xtraScrollableControl1;
+        private DevExpress.XtraGrid.Columns.GridColumn colTaxableValue;
+        private DevExpress.XtraGrid.Columns.GridColumn colTotal;
     }
 }

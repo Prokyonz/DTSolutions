@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using CrystalDecisions.CrystalReports.Engine;
+using DevExpress.Printing.Core.PdfExport.Metafile;
 using DiamondTrading.Reports;
 using EFCore.SQL.Repository;
 using Microsoft.EntityFrameworkCore.Internal;
@@ -108,6 +110,9 @@ namespace DiamondTrading.Utility
                 txtBankName.Text = lastRecord.FirstOrDefault().BankName;
                 txtAccountNo.Text = lastRecord.FirstOrDefault().AccountNo;
                 txtIFSC.Text = lastRecord.FirstOrDefault().IFSC;
+
+                DataTable dt = CreateDataTable(lastRecord.FirstOrDefault());
+                grdPaymentDetails.DataSource = dt;
             }
         }
 
@@ -145,59 +150,92 @@ namespace DiamondTrading.Utility
             //lueParty.Properties.ValueMember = "Id";
         }
 
+        private DataTable CreateDataTable(BillPrintModel billPrintModel)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ProductDescription", billPrintModel.ProductDescription.GetType());
+            dt.Columns.Add("HSNCode", billPrintModel.HSNCode.GetType());
+            dt.Columns.Add("UOM", billPrintModel.UOM.GetType());
+            dt.Columns.Add("Qty", billPrintModel.Qty.GetType());
+            dt.Columns.Add("Rate", billPrintModel.Rate.GetType());
+            dt.Columns.Add("Amount", billPrintModel.Amount.GetType());
+            dt.Columns.Add("Discount", billPrintModel.Discount.GetType());
+            dt.Columns.Add("TaxableValue", billPrintModel.TaxableValue.GetType());
+            dt.Columns.Add("Total", billPrintModel.TotalAmount.GetType());
+
+            dt.Rows.Add(billPrintModel.ProductDescription, billPrintModel.HSNCode, billPrintModel.UOM, billPrintModel.Qty, billPrintModel.Rate,
+                billPrintModel.Amount, billPrintModel.Discount, billPrintModel.TaxableValue, billPrintModel.TotalAmount);
+            return dt;
+        }
+
         private async void btnSave_Click(object sender, EventArgs e)
         {
             try
             {
-                var billModel = new BillPrintModel
+                int groupId = await _gstBillPrintRepository.GetMaxGroupNo(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                 {
-                    Title = txtTitle.Text,
-                    GSTN = txtGSTNo.Text,
-                    PAN = txtPanNo.Text,
-                    InvoiceNo = txtInvoiceNo.Text,
-                    InvoiceDate = dtInvoiceDate.DateTime,
-                    DateOfSupply = dtSupplyDate.DateTime,
-                    PlaceOfSupply = txtSupplyPlace.Text,
-                    Terms = txtTerms.Text,
-                    State = txtState.Text,
-                    Code = txtCode.Text,
-                    ReverseCharge = txtReverseCharges.Text,
-                    TCSApplicable = txtTCSApplicable.Text,
+                    var billModel = new BillPrintModel
+                    {
+                        Title = txtTitle.Text,
+                        GSTN = txtGSTNo.Text,
+                        PAN = txtPanNo.Text,
+                        InvoiceNo = txtInvoiceNo.Text,
+                        InvoiceDate = dtInvoiceDate.DateTime,
+                        DateOfSupply = dtSupplyDate.DateTime,
+                        PlaceOfSupply = txtSupplyPlace.Text,
+                        Terms = txtTerms.Text,
+                        State = txtState.Text,
+                        Code = txtCode.Text,
+                        ReverseCharge = txtReverseCharges.Text,
+                        TCSApplicable = txtTCSApplicable.Text,
 
-                    BillPartyName = txtBillParty.Text,
-                    BillPartyAddress = txtBillAddress.Text,
-                    BillPartyGSTIN = txtBillGST.Text,
-                    BillPartyPAN = txtBillPan.Text,
-                    BillPartyState = txtBillState.Text,
-                    BillPartyCode = txtBillCode.Text,
+                        BillPartyName = txtBillParty.Text,
+                        BillPartyAddress = txtBillAddress.Text,
+                        BillPartyGSTIN = txtBillGST.Text,
+                        BillPartyPAN = txtBillPan.Text,
+                        BillPartyState = txtBillState.Text,
+                        BillPartyCode = txtBillCode.Text,
 
-                    ShipPartyName = txtShipName.Text,
-                    ShipPartyAddress = txtShipAddress.Text,
-                    ShipPartyGSTIN = txtShipGST.Text,
-                    ShipPartyPAN = txtShipPAN.Text,
-                    ShipPartyState = txtShipState.Text,
-                    ShipPartyCode = txtShipCode.Text,
+                        ShipPartyName = txtShipName.Text,
+                        ShipPartyAddress = txtShipAddress.Text,
+                        ShipPartyGSTIN = txtShipGST.Text,
+                        ShipPartyPAN = txtShipPAN.Text,
+                        ShipPartyState = txtShipState.Text,
+                        ShipPartyCode = txtShipCode.Text,
 
-                    Declaration = txtDeclaration.Text,
-                    AmountBeforeTax = Convert.ToDecimal(txtAmountBeforeTax.Text),
-                    SGST = Convert.ToDecimal(txtSGST.Text),
-                    CGST = Convert.ToDecimal(txtCGST.Text),
-                    IGST = Convert.ToDecimal(txtIGST.Text),
-                    TCS = Convert.ToDecimal(txtTCS.Text),
-                    TotalAmount = Convert.ToDecimal(txtAmount.Text),
+                        Declaration = txtDeclaration.Text,
+                        AmountBeforeTax = Convert.ToDecimal(txtAmountBeforeTax.Text),
+                        SGST = Convert.ToDecimal(txtSGST.Text),
+                        CGST = Convert.ToDecimal(txtCGST.Text),
+                        IGST = Convert.ToDecimal(txtIGST.Text),
+                        TCS = Convert.ToDecimal(txtTCS.Text),
+                        TotalAmount = Convert.ToDecimal(txtAmount.Text),
 
-                    GstOnReverseCharge = Convert.ToDecimal(txtGSTReverseCharge.Text),
+                        GstOnReverseCharge = Convert.ToDecimal(txtGSTReverseCharge.Text),
 
-                    BankName = txtBankName.Text,
-                    AccountNo = txtAccountNo.Text,
-                    IFSC = txtIFSC.Text,
-                    CompanyId = Common.LoginCompany,
-                    BranchId = Common.LoginBranch,
-                    FinancialYearId = Common.LoginFinancialYear,
-                    GroupId = await _gstBillPrintRepository.GetMaxGroupNo(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear)
-                };
 
-                await _gstBillPrintRepository.SaveBill(billModel);
+                        BankName = txtBankName.Text,
+                        AccountNo = txtAccountNo.Text,
+                        IFSC = txtIFSC.Text,
+                        CompanyId = Common.LoginCompany,
+                        BranchId = Common.LoginBranch,
+                        FinancialYearId = Common.LoginFinancialYear,
+                        GroupId = groupId
+                    };
+
+                    billModel.ProductDescription = grvPaymentDetails.GetRowCellDisplayText(i, colDesc);
+                    billModel.HSNCode = grvPaymentDetails.GetRowCellDisplayText(i, colHSNCode);
+                    billModel.UOM = grvPaymentDetails.GetRowCellDisplayText(i, colUOM);
+                    billModel.Qty = grvPaymentDetails.GetRowCellValue(i, colQty) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colQty));
+                    billModel.Rate = grvPaymentDetails.GetRowCellValue(i, colRate) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colRate));
+                    billModel.Amount = grvPaymentDetails.GetRowCellValue(i, colAmount) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colAmount));
+                    billModel.TaxableValue = grvPaymentDetails.GetRowCellValue(i, colTaxableValue) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colTaxableValue));
+                    billModel.Discount = grvPaymentDetails.GetRowCellValue(i, colDiscount) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colDiscount));
+                    billModel.TotalRow = grvPaymentDetails.GetRowCellValue(i, colTotal) == DBNull.Value ? 0 : Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(i, colTotal));
+                    await _gstBillPrintRepository.SaveBill(billModel);
+                }
+
 
                 // Create a BillPrintModel instance and populate it with data from your SQL table.
                 List<BillPrintModel> billData = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
@@ -206,7 +244,7 @@ namespace DiamondTrading.Utility
                 ReportDocument report = new ReportDocument();
 
                 // Set the path to your GSTInvoice.rpt file.
-                report.Load(Path.Combine(Application.StartupPath,"Reports", "GSTInvoice.rpt"));
+                report.Load(Path.Combine(Application.StartupPath, "Reports", "GSTInvoice.rpt"));
 
                 // Set the report's data source to your BillPrintModel.
                 report.SetDataSource(billData);
