@@ -36,6 +36,23 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public bool DBTest()
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    _databaseContext.Database.OpenConnection();
+                    _databaseContext.Database.CloseConnection();
+                    return true;
+                }
+            }
+            catch(Exception e)
+            {
+                throw;
+            }
+        }
+
         public async Task<bool> DeleteUserAsync(string userId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())

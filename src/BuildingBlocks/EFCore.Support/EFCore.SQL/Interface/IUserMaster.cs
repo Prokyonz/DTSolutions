@@ -1,13 +1,16 @@
 ﻿using EFCore.SQL.Models;
 using Repository.Entities;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EFCore.SQL.Interface
 {
-    public interface IUserMaster
+    public interface ICommon
+    {
+        bool DBTest();        
+    }
+
+    public interface IUserMaster : ICommon
     {
         Task<LoginResponse> Login(string userId, string password);
         Task<List<PermissionMaster>> GetAllPermissions();

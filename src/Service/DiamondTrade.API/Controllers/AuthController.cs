@@ -1,8 +1,10 @@
 ﻿using DiamondTrade.API.Models;
 using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
+using DocumentFormat.OpenXml.Spreadsheet;
 using EFCore.SQL.Interface;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +23,20 @@ namespace DiamondTrade.API.Controllers
         {
             _userMaster = userMaster;
             _approvalPermissionMaster = approvalPermissionMaster;
+        }
+
+        [Route("ping")]
+        [HttpGet]
+        public bool Ping()
+        {
+            return true;
+        }
+
+        [Route("pingDB")]
+        [HttpGet]
+        public bool PingDB()
+        {
+            return _userMaster.DBTest();
         }
 
         [Route("login")]
