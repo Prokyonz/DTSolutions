@@ -153,15 +153,15 @@ namespace DiamondTrading.Utility
         private DataTable CreateDataTable(BillPrintModel billPrintModel)
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("ProductDescription", billPrintModel.ProductDescription.GetType());
-            dt.Columns.Add("HSNCode", billPrintModel.HSNCode.GetType());
-            dt.Columns.Add("UOM", billPrintModel.UOM.GetType());
-            dt.Columns.Add("Qty", billPrintModel.Qty.GetType());
-            dt.Columns.Add("Rate", billPrintModel.Rate.GetType());
-            dt.Columns.Add("Amount", billPrintModel.Amount.GetType());
-            dt.Columns.Add("Discount", billPrintModel.Discount.GetType());
-            dt.Columns.Add("TaxableValue", billPrintModel.TaxableValue.GetType());
-            dt.Columns.Add("Total", billPrintModel.TotalAmount.GetType());
+            dt.Columns.Add("ProductDescription", typeof(string));
+            dt.Columns.Add("HSNCode", typeof(string));
+            dt.Columns.Add("UOM", typeof(int));
+            dt.Columns.Add("Qty", typeof(int));
+            dt.Columns.Add("Rate", typeof(int));
+            dt.Columns.Add("Amount", typeof(int));
+            dt.Columns.Add("Discount", typeof(int));
+            dt.Columns.Add("TaxableValue", typeof(int));
+            dt.Columns.Add("Total", typeof(int));
 
             dt.Rows.Add(billPrintModel.ProductDescription, billPrintModel.HSNCode, billPrintModel.UOM, billPrintModel.Qty, billPrintModel.Rate,
                 billPrintModel.Amount, billPrintModel.Discount, billPrintModel.TaxableValue, billPrintModel.TotalAmount);
