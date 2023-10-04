@@ -236,9 +236,19 @@ namespace DiamondTrading.Utility
                     await _gstBillPrintRepository.SaveBill(billModel);
                 }
 
+                MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
                 // Create a BillPrintModel instance and populate it with data from your SQL table.
                 List<BillPrintModel> billData = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+
+                this.Cursor = Cursors.Default;
 
                 // Create a ReportDocument instance for your Crystal Report.
                 ReportDocument report = new ReportDocument();
@@ -253,16 +263,7 @@ namespace DiamondTrading.Utility
                 viewer.LoadReport(report);
                 viewer.ShowDialog();
             }
-            catch (Exception Ex)
-            {
-                MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                this.Cursor = Cursors.Default;
-            }
-            MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            
 
             //bool IsSucess = false;
             //try
