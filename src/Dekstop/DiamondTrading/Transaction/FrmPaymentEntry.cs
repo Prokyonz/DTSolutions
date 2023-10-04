@@ -151,7 +151,17 @@ namespace DiamondTrading.Transaction
                 if (string.IsNullOrEmpty(lastselectedDate))
                     dtDate.EditValue = DateTime.Now;
                 else
-                    dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
+                {
+                    try
+                    {
+                        dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
+                    }
+                    catch (Exception)
+                    {
+                        dtDate.EditValue = DateTime.Now;
+                    }
+                }
+                
                 dtTime.EditValue = DateTime.Now;
                 colBranch.Visible = false;
                 await LoadCompany();

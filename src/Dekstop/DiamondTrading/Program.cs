@@ -24,7 +24,8 @@ namespace DiamondTrading
             if (languageMode == 2)
                 cultureInfo = "zh-CN";
         
-            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureInfo);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo(cultureInfo); 
+            Thread.CurrentThread.CurrentCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy";
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(cultureInfo);
 
             Application.EnableVisualStyles();
