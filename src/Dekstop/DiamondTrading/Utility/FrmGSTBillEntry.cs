@@ -211,17 +211,22 @@ namespace DiamondTrading.Utility
                         IGST = Convert.ToDecimal(txtIGST.Text),
                         TCS = Convert.ToDecimal(txtTCS.Text),
                         TotalAmount = Convert.ToDecimal(txtAmount.Text),
+                        
 
                         GstOnReverseCharge = Convert.ToDecimal(txtGSTReverseCharge.Text),
-
-
+                        
                         BankName = txtBankName.Text,
                         AccountNo = txtAccountNo.Text,
                         IFSC = txtIFSC.Text,
                         CompanyId = Common.LoginCompany,
                         BranchId = Common.LoginBranch,
                         FinancialYearId = Common.LoginFinancialYear,
-                        GroupId = groupId
+                        GroupId = groupId,
+                        FinalTotal = Convert.ToDecimal(txtAmount.Text),
+                        TaxableValue = 5000,
+                        TotalTaxValue = 5000,
+                        TotalGridAmount = 25000,
+                        SrNo = (i + 1).ToString()
                     };
 
                     billModel.ProductDescription = grvPaymentDetails.GetRowCellDisplayText(i, colDesc);

@@ -333,6 +333,11 @@
     <Compile Include="FrmOptions.Designer.cs">
       <DependentUpon>FrmOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="karmajew_DiamondTradingLiveDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>karmajew_DiamondTradingLiveDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Process\FrmChildNumberReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -924,6 +929,17 @@
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="karmajew_DiamondTradingLiveDataSet.xsc">
+      <DependentUpon>karmajew_DiamondTradingLiveDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="karmajew_DiamondTradingLiveDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>karmajew_DiamondTradingLiveDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="karmajew_DiamondTradingLiveDataSet.xss">
+      <DependentUpon>karmajew_DiamondTradingLiveDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
