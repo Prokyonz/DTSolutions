@@ -29,8 +29,8 @@ namespace DiamondTrading
 
         private void FrmCompanyYearSelection_Load(object sender, EventArgs e)
         {
-            LoadCompany();
-            LoadFinancialYear();
+            _=LoadCompany();
+            _=LoadFinancialYear();
             FillLanguageBox();
             LoadRegistrySettings();
         }
@@ -39,8 +39,15 @@ namespace DiamondTrading
         {
             if (!CheckValidation())
                 return;
-
+            
+            int oldSelectedLanguage = Convert.ToInt32(RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.LoginLanguage, "1"));
             SaveRegistrySettings();
+            if (Convert.ToInt32(lueLanguage.EditValue) != oldSelectedLanguage)
+            {                                
+                MessageBox.Show(LangHelper.GetString("LangChange"), LangHelper.GetString("LangChngeTitle"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.Restart();
+            }
+
             Common.LoginCompany = lueCompany.EditValue.ToString();
             Common.LoginCompanyName = lueCompany.Text;
 

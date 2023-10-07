@@ -44,13 +44,13 @@ namespace DiamondTrading.Utility
             dtTime.EditValue = DateTime.Now;
 
             _ = LoadLastRecord();
-            _ = LoadParty();
+            //_ = LoadParty();
 
-            _ = LoadCompany();
+            //_ = LoadCompany();
 
-            _ = GetMaxSrNo();
+            //_ = GetMaxSrNo();
 
-            _ = LoadCashank();
+            //_ = LoadCashank();
 
             //lueReceiveFrom.Properties.DataSource = Common.GetLoanType();
             //lueReceiveFrom.Properties.DisplayMember = "Name";
@@ -111,6 +111,8 @@ namespace DiamondTrading.Utility
                 txtAccountNo.Text = lastRecord.FirstOrDefault().AccountNo;
                 txtIFSC.Text = lastRecord.FirstOrDefault().IFSC;
 
+                txtAmountInWord.Text = lastRecord.FirstOrDefault().AmountInWords;
+
                 DataTable dt = CreateDataTable(lastRecord.FirstOrDefault());
                 grdPaymentDetails.DataSource = dt;
             }
@@ -155,14 +157,14 @@ namespace DiamondTrading.Utility
             DataTable dt = new DataTable();
             dt.Columns.Add("ProductDescription", typeof(string));
             dt.Columns.Add("HSNCode", typeof(string));
-            dt.Columns.Add("UOM", typeof(int));
+            dt.Columns.Add("UOM", typeof(string));
             dt.Columns.Add("Qty", typeof(int));
             dt.Columns.Add("Rate", typeof(int));
             dt.Columns.Add("Amount", typeof(int));
             dt.Columns.Add("Discount", typeof(int));
             dt.Columns.Add("TaxableValue", typeof(int));
             dt.Columns.Add("Total", typeof(int));
-
+            
             dt.Rows.Add(billPrintModel.ProductDescription, billPrintModel.HSNCode, billPrintModel.UOM, billPrintModel.Qty, billPrintModel.Rate,
                 billPrintModel.Amount, billPrintModel.Discount, billPrintModel.TaxableValue, billPrintModel.TotalAmount);
             return dt;
@@ -211,10 +213,10 @@ namespace DiamondTrading.Utility
                         IGST = Convert.ToDecimal(txtIGST.Text),
                         TCS = Convert.ToDecimal(txtTCS.Text),
                         TotalAmount = Convert.ToDecimal(txtAmount.Text),
-                        
+                        AmountInWords = txtAmountInWord.Text,
 
                         GstOnReverseCharge = Convert.ToDecimal(txtGSTReverseCharge.Text),
-                        
+
                         BankName = txtBankName.Text,
                         AccountNo = txtAccountNo.Text,
                         IFSC = txtIFSC.Text,
@@ -250,25 +252,32 @@ namespace DiamondTrading.Utility
             }
             finally
             {
-                // Create a BillPrintModel instance and populate it with data from your SQL table.
-                List<BillPrintModel> billData = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
+                try
+                {
+                    // Create a BillPrintModel instance and populate it with data from your SQL table.
+                    List<BillPrintModel> billData = await _gstBillPrintRepository.GetLastRecord(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear);
 
-                this.Cursor = Cursors.Default;
+                    this.Cursor = Cursors.Default;
 
-                // Create a ReportDocument instance for your Crystal Report.
-                ReportDocument report = new ReportDocument();
+                    // Create a ReportDocument instance for your Crystal Report.
+                    ReportDocument report = new ReportDocument();
 
-                // Set the path to your GSTInvoice.rpt file.
-                report.Load(Path.Combine(Application.StartupPath, "Reports", "GSTInvoice.rpt"));
+                    // Set the path to your GSTInvoice.rpt file.
+                    report.Load(Path.Combine(Application.StartupPath, "Reports", "GSTInvoice.rpt"));
 
-                // Set the report's data source to your BillPrintModel.
-                report.SetDataSource(billData);
+                    // Set the report's data source to your BillPrintModel.
+                    report.SetDataSource(billData);
 
-                ReportViewer viewer = new ReportViewer();
-                viewer.LoadReport(report);
-                viewer.ShowDialog();
+                    ReportViewer viewer = new ReportViewer();
+                    viewer.LoadReport(report);
+                    viewer.ShowDialog();
+                }
+                catch (Exception iEX)
+                {
+                    MessageBox.Show(iEX.Message + " | " + iEX.StackTrace, "Error", MessageBoxButtons.OK);
+                }
             }
-            
+
 
             //bool IsSucess = false;
             //try
