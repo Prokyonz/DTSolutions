@@ -167,7 +167,7 @@ namespace DiamondTrading
         }
 
         private async Task LoadGridData(bool IsForceLoad = false)
-        {
+        {            
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -355,14 +355,14 @@ namespace DiamondTrading
                         accordionEditBtn.Visible = false;
                         accordionDeleteBtn.Visible = false;
                     }
-                }
+                }                
             }
             catch (Exception ex)
-            {
+            {                
                 MessageBox.Show(AppMessages.GetString(AppMessageID.Error), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
-            {
+            {                
                 this.Cursor = Cursors.Default;
             }
         }

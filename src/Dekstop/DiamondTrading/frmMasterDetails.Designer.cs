@@ -153,8 +153,9 @@ namespace DiamondTrading
             this.accordionDeleteBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionRefreshBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.accordionCancelButton = new DevExpress.XtraBars.Navigation.AccordionControlElement();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -1373,6 +1374,14 @@ namespace DiamondTrading
             this.accordionCancelButton.Text = "Cancel";
             this.accordionCancelButton.Click += new System.EventHandler(this.accordionCancelButton_Click);
             // 
+            // accordionExportToExcel
+            // 
+            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
+            this.accordionExportToExcel.Name = "accordionExportToExcel";
+            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
+            this.accordionExportToExcel.Text = "Excel";
+            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
@@ -1388,13 +1397,9 @@ namespace DiamondTrading
             this.tableLayoutPanel1.Size = new System.Drawing.Size(826, 440);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
-            // accordionExportToExcel
+            // splashScreenManager1
             // 
-            this.accordionExportToExcel.ImageOptions.Image = global::DiamondTrading.Properties.Resources.ibook_24;
-            this.accordionExportToExcel.Name = "accordionExportToExcel";
-            this.accordionExportToExcel.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
-            this.accordionExportToExcel.Text = "Excel";
-            this.accordionExportToExcel.Click += new System.EventHandler(this.accordionExportToExcel_Click);
+            this.splashScreenManager1.ClosingDelay = 500;
             // 
             // FrmMasterDetails
             // 
@@ -1594,5 +1599,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn colUserUpdatedDate;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }
