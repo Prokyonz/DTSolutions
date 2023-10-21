@@ -819,9 +819,12 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
+                    if (Result)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                        await LoadGridData(true);
+                    }else
+                        MessageBox.Show("You can not delete this kapan. Please delete all mapping first and then try to delete.","Error", MessageBoxButtons.OK);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
