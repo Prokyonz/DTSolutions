@@ -327,6 +327,7 @@ namespace DiamondTrading
             this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpensePartyId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseToPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnExpenseFromPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnExpenseUpdatedDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -629,7 +630,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
-            this.gridColumnExpenseFromPartyName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -3125,6 +3126,15 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, DevExpress.Data.SummaryMode.Selection, "PartyName", "SUM={0:0.##}")});
             this.gridColumnExpenseToPartyName.Visible = true;
             this.gridColumnExpenseToPartyName.VisibleIndex = 1;
+            // 
+            // gridColumnExpenseFromPartyName
+            // 
+            this.gridColumnExpenseFromPartyName.Caption = "From Party Name";
+            this.gridColumnExpenseFromPartyName.FieldName = "FromPartyName";
+            this.gridColumnExpenseFromPartyName.Name = "gridColumnExpenseFromPartyName";
+            this.gridColumnExpenseFromPartyName.Visible = true;
+            this.gridColumnExpenseFromPartyName.VisibleIndex = 3;
+            this.gridColumnExpenseFromPartyName.Width = 155;
             // 
             // gridColumnExpenseAmount
             // 
@@ -6179,14 +6189,9 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
-            // gridColumnExpenseFromPartyName
+            // splashScreenManager1
             // 
-            this.gridColumnExpenseFromPartyName.Caption = "From Party Name";
-            this.gridColumnExpenseFromPartyName.FieldName = "FromPartyName";
-            this.gridColumnExpenseFromPartyName.Name = "gridColumnExpenseFromPartyName";
-            this.gridColumnExpenseFromPartyName.Visible = true;
-            this.gridColumnExpenseFromPartyName.VisibleIndex = 3;
-            this.gridColumnExpenseFromPartyName.Width = 155;
+            this.splashScreenManager1.ClosingDelay = 500;
             // 
             // FrmTransactionDetails
             // 
@@ -6899,5 +6904,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn223;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn224;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnExpenseFromPartyName;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

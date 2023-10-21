@@ -972,9 +972,11 @@ namespace DiamondTrading
             _ = LoadGridData();
         }
 
-        private void accordionRefreshBtn_Click(object sender, EventArgs e)
+        private async void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
-            _ = LoadGridData(true);
+            splashScreenManager1.ShowWaitForm();
+            await LoadGridData(true);
+            splashScreenManager1.CloseWaitForm();
         }
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)

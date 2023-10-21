@@ -292,6 +292,7 @@ namespace DiamondTrading
             this.btnApprove = new DevExpress.XtraBars.BarButtonItem();
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -2777,6 +2778,10 @@ namespace DiamondTrading
             this.popupMenu1.Manager = this.barManager1;
             this.popupMenu1.Name = "popupMenu1";
             // 
+            // splashScreenManager1
+            // 
+            this.splashScreenManager1.ClosingDelay = 500;
+            // 
             // FrmProcessDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3096,5 +3101,6 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
+        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }
