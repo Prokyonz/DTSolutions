@@ -10,7 +10,7 @@ namespace Repository.Entities.Model
         public string Id { get; set; }
         public string CompanyId { get; set; }
         public string FinancialYearId { get; set; }
-        public long SlipNo { get; set; }
+        public string SlipNo { get; set; }
         public string KapanId { get; set; }
         public string Kapan { get; set; }
         public string ShapeId { get; set; }
@@ -24,5 +24,6 @@ namespace Repository.Entities.Model
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Available { get; set; }
         public double Rate { get; set; }
+        public string ProcessType { get; set; }
     }
 }

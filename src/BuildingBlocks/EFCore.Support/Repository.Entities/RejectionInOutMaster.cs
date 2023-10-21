@@ -44,5 +44,7 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public string ProcessType { get; set; }
+        public string KapanId { get; set; }
     }
 }

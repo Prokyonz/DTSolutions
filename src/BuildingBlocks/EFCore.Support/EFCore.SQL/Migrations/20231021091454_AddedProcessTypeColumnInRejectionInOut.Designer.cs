@@ -4,14 +4,16 @@ using EFCore.SQL.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EFCore.SQL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231021091454_AddedProcessTypeColumnInRejectionInOut")]
+    partial class AddedProcessTypeColumnInRejectionInOut
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -3507,9 +3509,6 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("KapanId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProcessType")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("PurityId")
                         .HasColumnType("nvarchar(max)");
 
@@ -3531,8 +3530,8 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("SizeId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SlipNo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<long>("SlipNo")
+                        .HasColumnType("bigint");
 
                     b.ToTable("SPRejectionSendReceiveModel");
                 });
@@ -5518,9 +5517,6 @@ namespace EFCore.SQL.Migrations
 
                     b.Property<byte[]>("Image3")
                         .HasColumnType("varbinary(max)");
-
-                    b.Property<string>("KapanId")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumberSizeId")
                         .HasColumnType("nvarchar(max)");
