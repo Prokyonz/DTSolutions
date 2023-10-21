@@ -33,6 +33,12 @@ export class KapanlagadComponent implements OnInit {
   TotalClosingRate: number = 0;
   TotalClosingNetWeight: number = 0;
 
+  profitLossPercentage = 0;
+  perCtsValue = 0;
+
+  profitLossAndPerCtsData: any; // Define the property with the appropriate type
+
+
   constructor(private rote: Router, private activateRoute: ActivatedRoute, private messageService: MessageService, 
     private sharedService: SharedService, private datePipe: DatePipe) {
 
@@ -82,50 +88,137 @@ export class KapanlagadComponent implements OnInit {
   }
 
   showDetails(){
-    debugger;
     this.sharedService.customGetApi("Report/GetKapanLagadReport?kapanId=" + this.kapanid.name.id).subscribe((t) => {
       if (t.success == true){
         console.log(t.data);
         this.kapandata = t.data;
         this.inward = this.kapandata.filter(f=>f.category.toLowerCase() == "inward");
-
+        if (this.inward.length > 0){
+          this.profitLossAndPerCtsData = {
+            profitLossPercentage: this.inward[0].profitLossPer,
+            perCtsValue: this.inward[0].inwardAvg
+          };
+          
+        }
         this.TotalInwardAmount = this.inward.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.amount;
-        }, 0);
-        this.TotalInwardRate = this.inward.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.rate;
-        }, 0);
-        this.TotalInwardNetWeight = this.inward.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.netWeight;
+          if (currentObject.amount !== null && currentObject.amount !== undefined) {
+            return accumulator + currentObject.amount;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
         
+        this.TotalInwardRate = this.inward.reduce((accumulator, currentObject) => {
+          if (currentObject.rate !== null && currentObject.rate !== undefined) {
+            return accumulator + currentObject.rate;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
+        }, 0);
+        
+        this.TotalInwardNetWeight = this.inward.reduce((accumulator, currentObject) => {
+          if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
+            return accumulator + currentObject.netWeight;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
+        }, 0);
+        
+        
         this.outward = this.kapandata.filter(f=>f.category.toLowerCase() == "outward");        
-
-        this.TotalOutwardAmount = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.amount;
+        if (this.outward.length > 0){
+          this.profitLossAndPerCtsData = {
+            profitLossPercentage: this.outward[0].profitLossPer,
+            perCtsValue: this.outward[0].inwardAvg
+          };          
+        }
+        this.TotalOutwardAmount = this.outward.reduce((accumulator, currentObject) => {
+          if (currentObject.amount !== null && currentObject.amount !== undefined) {
+            return accumulator + currentObject.amount;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
-        this.TotalOutwardRate = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.rate;
+        
+        this.TotalOutwardRate = this.outward.reduce((accumulator, currentObject) => {
+          if (currentObject.rate !== null && currentObject.rate !== undefined) {
+            return accumulator + currentObject.rate;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
-        this.TotalOutwardNetWeight = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.netWeight;
+        
+        this.TotalOutwardNetWeight = this.outward.reduce((accumulator, currentObject) => {
+          if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
+            return accumulator + currentObject.netWeight;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
 
 
         this.closing = this.kapandata.filter(f=>f.category.toLowerCase() == "closing");
-
+        if (this.closing.length > 0){
+          this.profitLossAndPerCtsData = {
+            profitLossPercentage: this.closing[0].profitLossPer,
+            perCtsValue: this.closing[0].inwardAvg
+          };          
+        }
         this.TotalClosingAmount = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.amount;
+          if (currentObject.amount !== null && currentObject.amount !== undefined) {
+            return accumulator + currentObject.amount;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
+        
         this.TotalClosingRate = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.rate;
+          if (currentObject.rate !== null && currentObject.rate !== undefined) {
+            return accumulator + currentObject.rate;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
+        
         this.TotalClosingNetWeight = this.closing.reduce((accumulator, currentObject) => {
-          return accumulator + currentObject.netWeight;
+          if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
+            return accumulator + currentObject.netWeight;
+          } else {
+            return accumulator; // Skip null or undefined values
+          }
         }, 0);
         //this.groupDataByCategory();
       }
     });
+  }
+
+  calculateTotal(items: any[], field: string): number {
+    return items.reduce((total, item) => total + (item[field] || 0), 0);
+  }
+
+  groupAndCalculateTotals(data: any[]): any[] {
+    debugger;
+    const groupedData: { [key: string]: any } = {};
+
+    for (const item of data) {
+      const size = item.size || 'N/A'; // Use 'N/A' if 'size' is missing
+      if (!groupedData[size]) {
+        groupedData[size] = {
+          size: size,
+          netWeightTotal: 0,
+          rateTotal: 0,
+          amountTotal: 0,
+          items: [],
+        };
+      }
+
+      groupedData[size].items.push(item);
+      groupedData[size].netWeightTotal += item.netWeight;
+      groupedData[size].rateTotal += item.rate;
+      groupedData[size].amountTotal += item.amount;
+    }
+
+    return Object.values(groupedData);
   }
 
   groupDataByCategory() {

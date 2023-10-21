@@ -28,7 +28,6 @@ export class DashboardComponent implements OnInit {
     private datePipe: DatePipe,  @Inject(LOCALE_ID) public locale: string){}
 
   ngOnInit(): void {
-    debugger;
       this.getCompanyData();
       let currentDate = new Date(); // Get the current date
       currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);

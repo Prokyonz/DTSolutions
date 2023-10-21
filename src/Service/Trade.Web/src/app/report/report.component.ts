@@ -395,7 +395,6 @@ export class ReportComponent implements OnInit {
   }
 
   ngOnInit() {
-    debugger;
     this.loading = false;
     this.getCompanyData();
     let currentDate = new Date(); // Get the current date
@@ -1076,7 +1075,6 @@ export class ReportComponent implements OnInit {
     this.loading = true;
     this.sharedService.customPostApi("Report/downloadpdf", data)
       .subscribe((data: any) => {
-        debugger;
         const options: DownloadFileOptions = {          
           path: this.PageTitle.replaceAll(" ",'') + ".pdf",
           url: data.data,
