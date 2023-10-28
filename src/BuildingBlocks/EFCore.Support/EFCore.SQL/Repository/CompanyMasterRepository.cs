@@ -37,7 +37,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCompanyAsync(string CompanyId)
+        public async Task<bool> DeleteCompanyAsync(string CompanyId, int action)
         {
             using (_databaseContext = new DatabaseContext())
             {

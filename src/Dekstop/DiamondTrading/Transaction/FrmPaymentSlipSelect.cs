@@ -94,6 +94,21 @@ namespace DiamondTrading.Transaction
             {
                 if (e.Column == colSlipNo)
                 {
+                    var selectedSlipDetails = (DataTable)grdPaymentDetails.DataSource;
+                    if (selectedSlipDetails != null && selectedSlipDetails.Rows.Count > 0)
+                    {
+                        string SlipNo = grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colSlipNo).ToString();
+                        var isSlipAdded = selectedSlipDetails.Select("SlipNo = '" + SlipNo + "'");
+                        if (isSlipAdded != null && isSlipAdded.Count() > 0)
+                        {
+                            MessageBox.Show("Slip already added on list, you can not add same slip again.");
+                            this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                            grvPaymentDetails.SetRowCellValue(e.RowHandle, colSlipNo, null);
+                            this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                            return;
+                        }
+                    }
+
                     decimal TotalAdjustedAmount = Convert.ToDecimal(colAmount.SummaryItem.SummaryValue);
                     if (TotalAmount <= TotalAdjustedAmount)
                     {
@@ -121,6 +136,7 @@ namespace DiamondTrading.Transaction
                         AdjustAmount = Amount;
                     }
 
+                    this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, AdjustAmount);
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colAAmount, Amount);
 
@@ -133,10 +149,24 @@ namespace DiamondTrading.Transaction
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colFinancialYearId, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[7]);
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colYear, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[8]);
                     grvPaymentDetails.SetRowCellValue(e.RowHandle, colTAmount, ((System.Data.DataRowView)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Row.ItemArray[9]);
+                    this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
 
                     RemainAmount = RemainAmount - AdjustAmount;
                     lblTotalAmount.Text = TotalAmount.ToString();
                     lblRemainAmount.Text = RemainAmount.ToString();
+                }
+                else if (e.Column == colAmount)
+                {
+                    grvPaymentDetails.UpdateCurrentRow();
+                    decimal TotalAdjustedAmount = Convert.ToDecimal(colAmount.SummaryItem.SummaryValue);
+                    if (TotalAmount < TotalAdjustedAmount)
+                    {
+                        MessageBox.Show("You can not adjust more amount as max limit fullfiled.");
+                        this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                        grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, 0);
+                        this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                        return;
+                    }
                 }
             }
             catch
