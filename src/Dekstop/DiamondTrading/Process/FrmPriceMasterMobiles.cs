@@ -19,7 +19,7 @@ namespace DiamondTrading.Process
         CompanyMasterRepository _companyMasterRepository;
         PriceMasterMobileRepository _priceMasterRepository;
         List<BoilProcessSend> ListAssortmentProcessSend;
-
+        DataTable dt = null;
         public FrmPriceMasterMobiles()
         {
             InitializeComponent();
@@ -28,6 +28,9 @@ namespace DiamondTrading.Process
 
             LoadCompany();
             LoadCategory();
+            dt = GetDTColumnsforParticularDetails();
+            GetMobileData();
+            grdData.DataSource = dt;
         }
 
         private void LoadCategory()
@@ -74,16 +77,15 @@ namespace DiamondTrading.Process
         private static DataTable GetDTColumnsforParticularDetails()
         {
             DataTable dt = new DataTable();
-            dt.Columns.Add("SizeId");
+            dt.Columns.Add("No");
             dt.Columns.Add("Size");
-            dt.Columns.Add("NumberId");
             dt.Columns.Add("Number");
-            dt.Columns.Add("Rate");
+            dt.Columns.Add("Price");
             return dt;
         }
 
         private void grvParticularsDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {            
+        {
         }
 
         private bool CheckValidation()
@@ -94,10 +96,10 @@ namespace DiamondTrading.Process
                 lueCompany.Focus();
                 return false;
             }
-            else if (grvParticularsDetails.RowCount == 0)
+            else if (gvData.RowCount == 0)
             {
                 MessageBox.Show("Please select Particulars Details", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                grvParticularsDetails.Focus();
+                gvData.Focus();
                 return false;
             }
             return true;
@@ -115,27 +117,26 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
-                    await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString(),lueCategory.EditValue.ToString());
+                    await _priceMasterRepository.DeletePriceAsync(lueCompany.EditValue.ToString(), lueCategory.EditValue.ToString());
                     PriceMasterMobile priceMaster;
                     List<PriceMasterMobile> priceMasterList = new List<PriceMasterMobile>();
-                    grvParticularsDetails.ExpandAllGroups();
-                    for (int i = 0; i < grvParticularsDetails.RowCount; i++)
+                    for (int i = 0; i < gvData.RowCount; i++)
                     {
-                        if (grvParticularsDetails.GetRowCellValue(i, colSizeId) != null)
+                        if (gvData.GetRowCellValue(i, colSize) != null && gvData.GetRowCellValue(i, colNumber) != null)
                         {
                             priceMaster = new PriceMasterMobile();
                             priceMaster.Id = Guid.NewGuid().ToString();
                             priceMaster.CompanyId = lueCompany.EditValue.ToString();
                             priceMaster.CategoryId = lueCategory.EditValue.ToString();
-                            priceMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
-                            priceMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
-                            priceMaster.Price = decimal.Parse(grvParticularsDetails.GetRowCellValue(i, colPrice).ToString());
+                            priceMaster.SizeName = gvData.GetRowCellValue(i, colSize).ToString();
+                            priceMaster.NumberName = gvData.GetRowCellValue(i, colNumber).ToString();
+                            priceMaster.Price = decimal.Parse(gvData.GetRowCellValue(i, colPrice).ToString());
                             priceMaster.CreatedBy = Common.LoginUserID;
                             priceMaster.CreatedDate = DateTime.Now;
                             priceMaster.UpdatedBy = Common.LoginUserID;
                             priceMaster.UpdatedDate = DateTime.Now;
 
-                            priceMasterList.Insert(i,priceMaster);
+                            priceMasterList.Insert(i, priceMaster);
                         }
                     }
 
@@ -145,7 +146,7 @@ namespace DiamondTrading.Process
                         IsSuccess = true;
                     }
                 }
-                catch(Exception Ex)
+                catch (Exception Ex)
                 {
                     IsSuccess = false;
                 }
@@ -170,12 +171,12 @@ namespace DiamondTrading.Process
         {
             LoadCompany();
             LoadCategory();
-            grdParticularsDetails.DataSource = null;
+            grdData.DataSource = null;
             ListAssortmentProcessSend = null;
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             lueCompany.EditValue = null;
-            repoSlipNo.DataSource = null;;
+            //repoSlipNo.DataSource = null;;
 
             lueCompany.Select();
             lueCompany.Focus();
@@ -191,43 +192,78 @@ namespace DiamondTrading.Process
             Common.MoveToNextControl(sender, e, this);
         }
 
-        private async void lueCompany_EditValueChanged(object sender, EventArgs e)
+        private void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
-            await GetPriceDetails();
+            GetMobileData();
         }
 
-        private async Task GetPriceDetails()
+        private async void GetMobileData()
         {
-            if (lueCompany.EditValue != null && lueCategory.EditValue != null)
+            var defaultPriceList = await _priceMasterRepository.GetMobileData();
+            int index = 1;
+            defaultPriceList.ToList().ForEach(x =>
             {
-                var defaultPriceList = await _priceMasterRepository.GetDefaultPriceList();
-                DataTable dtDefaultList = Common.ToDataTable(defaultPriceList);
-                grdParticularsDetails.DataSource = dtDefaultList;
+                dt.Rows.Add(index, x.SizeName, x.NumberName, x.Price);
+                index++;
+            });
+        }
 
-                var priceList = await _priceMasterRepository.GetAllPricesAsync(lueCompany.EditValue.ToString(), lueCategory.EditValue.ToString());
-                if (priceList != null)
+
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtNumber.Text.Trim()) || string.IsNullOrEmpty(txtPrice.Text) || string.IsNullOrEmpty(txtSize.Text.Trim()))
+            {
+                MessageBox.Show(this, "Please fill the missing value among Price/Number/Size.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (decimal.TryParse(txtPrice.Text.Trim(), out decimal price))
+            {
+                if (_priceMasterRepository.CheckDuplicateEntry(txtSize.Text.Trim(), txtNumber.Text.Trim(), price))
                 {
-                    var priceDetail = priceList.Where(x => x.Price > 0).ToList();
-                    DataView dtView = new DataView(dtDefaultList);
-                    if (dtView.Count > 0)
-                    {
-                        for (int i = 0; i < priceDetail.Count; i++)
-                        {
-                            dtView.RowFilter = "SizeId='" + priceDetail[i].SizeId + "' and NumberId='" + priceDetail[i].NumberId + "'";
-                            if (dtView.Count > 0)
-                            {
-                                dtView[0].Row["Price"] = priceDetail[i].Price;
-                            }
-                            dtView.RowFilter = string.Empty;
-                        }
-                    }
+                    MessageBox.Show(this, "Price/Number/Size Combination already exist.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
+            else
+            {
+                MessageBox.Show(this, "Price is not correct.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (btnAdd.Text == "&Add")
+            {
+                int newRowHandle = gvData.GetRowHandle(gvData.DataRowCount);
+                dt.Rows.Add(newRowHandle + 1, txtSize.Text, txtNumber.Text, txtPrice.Text);
+                grdData.DataSource = dt;
+                txtSize.Text = string.Empty;
+                txtPrice.Text = string.Empty;
+                txtNumber.Text = string.Empty;
+            }
+            else
+            {
+                DataRow selectedRow = gvData.GetDataRow(gvData.FocusedRowHandle);
+                selectedRow["Size"] = txtSize.Text;
+                selectedRow["Price"] = txtPrice.Text;
+                selectedRow["Number"] = txtNumber.Text;
+
+                txtSize.Text = string.Empty;
+                txtPrice.Text = string.Empty;
+                txtNumber.Text = string.Empty;
+                gvData.RefreshData();
+            }
+            btnAdd.Text = "&Add";
         }
 
-        private async void lueCategory_EditValueChanged(object sender, EventArgs e)
+        private void gvData_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
         {
-            await GetPriceDetails();
+            // When a cell in the grid is clicked, load the cell's value into the textbox
+            if (e.RowHandle >= 0)
+            {
+                btnAdd.Text = "Update";
+                txtSize.Text = gvData.GetRowCellValue(e.RowHandle, "Size").ToString();
+                txtPrice.Text = gvData.GetRowCellValue(e.RowHandle, "Price").ToString();
+                txtNumber.Text = gvData.GetRowCellValue(e.RowHandle, "Number").ToString();
+            }
         }
     }
 }
