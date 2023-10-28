@@ -56,12 +56,12 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<PriceMasterMobile> GetPricesAsync(string companyId, string categoryId, string SizeId, string NumberId)
+        public async Task<PriceMasterMobile> GetPricesAsync(string companyId, string categoryId, string Size, string Number)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 var getRecords = await _databaseContext.PriceMasterMobile.Where(s => s.CompanyId == companyId && s.CategoryId == categoryId
-                                    && s.SizeName == SizeId && s.NumberName == NumberId).FirstOrDefaultAsync();
+                                    && s.SizeName == Size && s.NumberName == Number).FirstOrDefaultAsync();
                 return getRecords;
             }
         }
@@ -110,6 +110,23 @@ namespace EFCore.SQL.Repository
             {
                 var defaultPriceList = _databaseContext.PriceMasterMobile.Any(x => x.SizeName == size && x.Price == price && x.NumberName == number);
                 return defaultPriceList;
+            }
+        }
+
+        public async Task<List<string>> GetAllSizesAsync()
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getRecords = await _databaseContext.PriceMasterMobile.Select(x => x.SizeName).Distinct().ToListAsync();
+                return getRecords;
+            }
+        }
+
+        public async Task<List<string>> GetAllNumberAsync()
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PriceMasterMobile.Select(s => s.NumberName).Distinct().ToListAsync();
             }
         }
     }

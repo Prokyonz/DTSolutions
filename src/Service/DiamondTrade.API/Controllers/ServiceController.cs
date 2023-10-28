@@ -147,7 +147,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _sizeMaster.GetAllSizeAsync();
+                var result = await _priceMaster.GetAllSizesAsync();
                 return new Response<dynamic>
                 {
                     StatusCode = 200,
@@ -167,7 +167,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _numberMaster.GetAllNumberAsync();
+                var result = await _priceMaster.GetAllNumberAsync();
                 return new Response<dynamic>
                 {
                     StatusCode = 200,

@@ -25,5 +25,7 @@ namespace EFCore.SQL.Interface
         Task<PriceMasterMobile> UpdatePriceAsync(PriceMasterMobile priceMaster);
         Task<bool> DeletePriceAsync(string companyId, string categoryId);
         Task<List<PriceSPModel>> GetDefaultPriceList();
+        Task<List<string>> GetAllSizesAsync();
+        Task<List<string>> GetAllNumberAsync();
     }
 }
