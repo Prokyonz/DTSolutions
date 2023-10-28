@@ -913,6 +913,7 @@ namespace DiamondTrading.Transaction
                     string RowId = grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colRowId).ToString();
                     DataView dtView = new DataView(dtSlipDetail);
                     dtView.RowFilter = "PartyId='" + PartyId + "'";
+
                     //if (dtView.Count > 0)
                     {
                         decimal Value = Convert.ToDecimal(e.Value);
@@ -941,7 +942,27 @@ namespace DiamondTrading.Transaction
                             }
 
 
-                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + PartyId + "' and RowId='"+RowId+"'");
+                            //DataRow[] dataRowTemp = dtSlipDetail.Select("PartyId='" + PartyId + "' and RowId='"+RowId+"'");
+                            //if (dataRowTemp.Length > 0)
+                            //{
+                            //    DataView dataViewTemp = new DataView(dataRowTemp.CopyToDataTable());
+                            //    decimal SlipAdjustedAmount = Convert.ToDecimal(dataViewTemp.ToTable().Compute("SUM(Amount)", string.Empty));
+                            //    decimal RowAmount = 0;
+                            //    if (grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount) != null)
+                            //    {
+                            //        RowAmount = Convert.ToDecimal(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colAmount));
+                            //    }
+                            //    if (SlipAdjustedAmount > RowAmount)
+                            //    {
+                            //        MessageBox.Show("Amount should not be less then adjusted slip amount, please remove the adjusted Slip's if you wants to reduce amount. .");
+                            //        this.grvPaymentDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                            //        grvPaymentDetails.SetRowCellValue(e.RowHandle, colAmount, null);
+                            //        this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
+                            //        return;
+                            //    }
+                            //}
+
+                            DataRow[] dataRow = dtSlipDetail.Select("SlipNo=-1 and PartyId='" + PartyId + "' and RowId='" + RowId + "'");
                             if (dataRow.Length == 0)
                             {
                                 var PartyOpeningBalance = await _partyMasterRepository.GetPartyBalance(PartyId, Common.LoginCompany, Common.LoginFinancialYear);
