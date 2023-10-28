@@ -147,6 +147,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("Rate");
             dt.Columns.Add("Amount");
             dt.Columns.Add("SlipNo1");
+            dt.Columns.Add("ProcessType");
             return dt;
         }
 
@@ -176,6 +177,7 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colSlipNo1, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).SlipNo);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colkapanId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Rate);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colProcessType, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ProcessType);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -243,10 +245,11 @@ namespace DiamondTrading.Process
                 bool IsSuccess = false;
                 try
                 {
-                    string RejectionInOutId = Guid.NewGuid().ToString();
+                    string RejectionInOutId = string.Empty;
                     RejectionInOutMaster rejectionInOutMaster = new RejectionInOutMaster();
                     for (int i = 0; i < grvParticularsDetails.RowCount; i++)
                     {
+                        RejectionInOutId = Guid.NewGuid().ToString();
                         rejectionInOutMaster = new RejectionInOutMaster();
                         rejectionInOutMaster.Id = RejectionInOutId;
                         rejectionInOutMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
@@ -273,6 +276,8 @@ namespace DiamondTrading.Process
                         rejectionInOutMaster.CreatedBy = Common.LoginUserID;
                         rejectionInOutMaster.UpdatedDate = DateTime.Now;
                         rejectionInOutMaster.UpdatedBy = Common.LoginUserID;
+                        rejectionInOutMaster.ProcessType = grvParticularsDetails.GetRowCellValue(i, colProcessType).ToString();
+                        rejectionInOutMaster.KapanId = grvParticularsDetails.GetRowCellValue(i, colkapanId).ToString();
 
                         var Result = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster);
                         IsSuccess = true;

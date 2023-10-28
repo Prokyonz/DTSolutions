@@ -61,7 +61,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var getRecords = await _databaseContext.PriceMasterMobile.Where(s => s.CompanyId == companyId && s.CategoryId == categoryId
-                                    && s.SizeId == SizeId && s.NumberId == NumberId).FirstOrDefaultAsync();
+                                    && s.SizeName == SizeId && s.NumberName == NumberId).FirstOrDefaultAsync();
                 return getRecords;
             }
         }
@@ -74,8 +74,8 @@ namespace EFCore.SQL.Repository
                 if (getRecords != null)
                 {
                     getRecords.CategoryId = priceMaster.CategoryId;
-                    getRecords.SizeId = priceMaster.SizeId;
-                    getRecords.NumberId = priceMaster.NumberId;
+                    getRecords.SizeName = priceMaster.SizeName;
+                    getRecords.NumberName = priceMaster.NumberName;
                     getRecords.Price = priceMaster.Price;
                     getRecords.UpdatedDate = DateTime.Now;
                     getRecords.UpdatedBy = priceMaster.UpdatedBy;
@@ -91,6 +91,24 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var defaultPriceList = await _databaseContext.PriceSPModel.FromSqlRaw($"GetDefaultSizeNumberDetailsForPriceMaster").ToListAsync();
+                return defaultPriceList;
+            }
+        }
+
+        public async Task<List<PriceMasterMobile>> GetMobileData()
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var defaultPriceList = await _databaseContext.PriceMasterMobile.FromSqlRaw($"Select * from PriceMasterMobile").ToListAsync();
+                return defaultPriceList;
+            }
+        }
+
+        public bool CheckDuplicateEntry(string size, string number, decimal price)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var defaultPriceList = _databaseContext.PriceMasterMobile.Any(x => x.SizeName == size && x.Price == price && x.NumberName == number);
                 return defaultPriceList;
             }
         }

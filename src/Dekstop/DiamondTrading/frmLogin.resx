@@ -153,10 +153,6 @@
   <data name="&gt;&gt;chkRememberMe.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.CheckEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-  <data name="lueLanguage.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v21.2">
-    <value>Combo</value>
-  </data>
   <data name="labelControl3.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -253,14 +249,11 @@
   <data name="&gt;&gt;lblError.Name" xml:space="preserve">
     <value>lblError</value>
   </data>
-  <data name="txtUsername.Size" type="System.Drawing.Size, System.Drawing">
-    <value>273, 26</value>
-  </data>
   <data name="chkRememberMe.Properties.DisplayValueUnchecked" xml:space="preserve">
     <value />
   </data>
-  <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 234</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
     <value>158, 234</value>
@@ -268,6 +261,9 @@
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
+  </data>
+  <data name="&gt;&gt;labelControl2.Type" xml:space="preserve">
+    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;chkRememberMe.Name" xml:space="preserve">
     <value>chkRememberMe</value>
@@ -332,9 +328,6 @@
   <data name="panelControl2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="lueLanguage.Properties.Columns12" type="DevExpress.Utils.FormatType, DevExpress.Data.v21.2">
     <value>None</value>
   </data>
@@ -352,9 +345,6 @@
   </data>
   <data name="&gt;&gt;pictureEdit1.Parent" xml:space="preserve">
     <value>panelControl2</value>
-  </data>
-  <data name="btnLogin.Text" xml:space="preserve">
-    <value>Sign-In Now</value>
   </data>
   <data name="labelControl4.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 9pt</value>
@@ -392,6 +382,9 @@
   <data name="lblError.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>TopRight</value>
   </data>
+  <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 234</value>
+  </data>
   <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
     <value>panelControl2</value>
   </data>
@@ -401,14 +394,15 @@
   <data name="&gt;&gt;labelControl2.Name" xml:space="preserve">
     <value>labelControl2</value>
   </data>
-  <data name="pictureEdit1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 9</value>
+  <assembly alias="DevExpress.Utils.v21.2" name="DevExpress.Utils.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+  <data name="lueLanguage.Properties.Buttons" type="DevExpress.XtraEditors.Controls.ButtonPredefines, DevExpress.Utils.v21.2">
+    <value>Combo</value>
   </data>
   <data name="txtUsername.Properties.Appearance.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
   </data>
-  <data name="&gt;&gt;labelControl2.Type" xml:space="preserve">
-    <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="txtUsername.Size" type="System.Drawing.Size, System.Drawing">
+    <value>273, 26</value>
   </data>
   <data name="labelControl3.Text" xml:space="preserve">
     <value>Login To Your Account</value>
@@ -440,6 +434,9 @@
   <data name="lblError.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="pictureEdit1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>11, 9</value>
+  </data>
   <data name="pictureEdit1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -449,8 +446,8 @@
   <data name="labelControl2.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="panelControl2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
+  <data name="labelControl4.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -500,9 +497,6 @@
   <data name="&gt;&gt;labelControl2.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
-  <data name="labelControl4.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
   <data name="&gt;&gt;labelControl4.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.LabelControl, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
@@ -520,6 +514,9 @@
   </data>
   <data name="panelControl2.Location" type="System.Drawing.Point, System.Drawing">
     <value>8, 10</value>
+  </data>
+  <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
   <data name="&gt;&gt;lueLanguage.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -545,17 +542,17 @@
   <data name="&gt;&gt;txtUsername.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.TextEdit, DevExpress.XtraEditors.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
+  <data name="panelControl2.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
   <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 124</value>
   </data>
-  <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="btnLogin.Text" xml:space="preserve">
+    <value>Sign-In Now</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>zh</value>
   </metadata>
   <metadata name="behaviorManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>

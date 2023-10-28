@@ -17,7 +17,7 @@ namespace DiamondTrading
     public partial class FrmLogin : DevExpress.XtraEditors.XtraForm
     {
         private readonly UserMasterRepository _userMasterRepository;
-        public bool NeedsRestart { get; private set; }
+        public bool NeedsRestart { get; set; }
 
         public FrmLogin()
         {

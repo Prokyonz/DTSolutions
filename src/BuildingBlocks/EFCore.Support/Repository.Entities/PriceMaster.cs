@@ -31,8 +31,8 @@ namespace Repository.Entities
         public string Id { get; set; }
         public string CompanyId { get; set; }
         public string CategoryId { get; set; }
-        public string SizeId { get; set; }
-        public string NumberId { get; set; }
+        public string SizeName { get; set; }
+        public string NumberName { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Price { get; set; }

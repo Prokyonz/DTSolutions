@@ -59,6 +59,10 @@ namespace Repository.Entities
         public decimal TotalGridAmount { get; set; }
         public decimal TotalTaxValue { get; set; }
         public decimal FinalTotal { get;set; }
+        public string CompanyId { get; set; }
+        public string  BranchId { get; set; }
+        public string FinancialYearId { get; set; }
+        public string AmountInWords { get; set; }
 
     }
 }

@@ -34,16 +34,21 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
-                if (getKapan != null)
+                var count = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanId).CountAsync();
+                var openingCount = await _databaseContext.OpeningStockMaster.Where(w => w.KapanId == kapanId).CountAsync();
+                if ((count + openingCount) == 0)
                 {
-                    if (isPermanantDetele)
-                        _databaseContext.KapanMaster.Remove(getKapan);
-                    else
-                        getKapan.IsDelete = true;
+                    var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
+                    if (getKapan != null)
+                    {
+                        if (isPermanantDetele)
+                            _databaseContext.KapanMaster.Remove(getKapan);
+                        else
+                            getKapan.IsDelete = true;
 
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
+                        await _databaseContext.SaveChangesAsync();
+                        return true;
+                    }
                 }
                 return false;
             }

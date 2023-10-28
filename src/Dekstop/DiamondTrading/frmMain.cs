@@ -2321,5 +2321,31 @@ namespace DiamondTrading
 
             frmPriceMasterMobile.ShowDialog();
         }
+
+        private void barButtonGSTBillPrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            accordionControl1.ExpandElement(accordionControlProcess);
+            Utility.FrmGSTBillEntry page = Application.OpenForms["FrmGSTBillEntry"] as Utility.FrmGSTBillEntry;
+            if (page != null)
+            {
+                page.Close();
+            }
+
+            Utility.FrmGSTBillEntry frmGSTBillEntry = new Utility.FrmGSTBillEntry();
+
+            Screen screen = Screen.FromControl(this);
+
+            int x = screen.Bounds.X;
+            int y = screen.Bounds.Y;
+            int w = screen.Bounds.Width;
+            int h = screen.Bounds.Height;
+
+
+            frmGSTBillEntry.StartPosition = FormStartPosition.Manual;
+
+            frmGSTBillEntry.Location = new Point((w - frmGSTBillEntry.Width - 200) / 3, (Height - frmGSTBillEntry.Height) / 2);
+
+            frmGSTBillEntry.ShowDialog();
+        }
     }
 }

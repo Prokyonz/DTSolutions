@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraSplashScreen;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
@@ -9,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -671,10 +673,9 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
+            splashScreenManager1.ShowWaitForm();
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
-            {
-                //Guid SelectedGuid = Guid.Parse(tlCompanyMaster.GetFocusedRowCellValue(Id).ToString());
-
+            {                
                 string SelectedGuid;
                 string tempCompanyName = "";
 
@@ -814,15 +815,18 @@ namespace DiamondTrading
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
-            {
+            {                                
                 string SelectedGuid = grvKapanMaster.GetFocusedRowCellValue(colKapanId).ToString();
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
+                    if (Result)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                        await LoadGridData(true);
+                    }else
+                        MessageBox.Show("You can not delete this kapan. Please delete all mapping first and then try to delete.","Error", MessageBoxButtons.OK);
+                }                
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
             {
@@ -852,6 +856,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            splashScreenManager1.CloseWaitForm();
         }
 
         private void grvLessGroupWeightMaster_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e)
