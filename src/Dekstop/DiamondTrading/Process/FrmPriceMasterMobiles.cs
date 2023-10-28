@@ -330,9 +330,10 @@ namespace DiamondTrading.Process
             for (int rowHandle = 0; rowHandle < gridView.RowCount; rowHandle++)
             {
                 object cellSize = gridView.GetRowCellValue(rowHandle, colSize);
-                object cellNumber = gridView.GetRowCellValue(rowHandle, colSize);
-                object cellPrice = gridView.GetRowCellValue(rowHandle, colSize);
-                if (cellNumber.Equals(nuuber) && cellSize.Equals(size) && cellPrice.Equals(price))
+                object cellNumber = gridView.GetRowCellValue(rowHandle, colNumber);
+                object cellPrice = gridView.GetRowCellValue(rowHandle, colPrice);
+                _ = decimal.TryParse(cellPrice.ToString(), out decimal priceCell);
+                if (cellNumber.Equals(nuuber) && cellSize.Equals(size) && priceCell.Equals(price))
                 {
                     return true; // Value exists in the column
                 }
