@@ -55,6 +55,7 @@ namespace DiamondTrading.Process
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.lueCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
@@ -119,7 +120,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.MaskSettings.Set("mask", "d");
             this.dtDate.Size = new System.Drawing.Size(88, 22);
-            this.dtDate.TabIndex = 2;
+            this.dtDate.TabIndex = 4;
             // 
             // dtTime
             // 
@@ -144,7 +145,7 @@ namespace DiamondTrading.Process
             this.dtTime.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
             this.dtTime.Properties.MaskSettings.Set("mask", "t");
             this.dtTime.Size = new System.Drawing.Size(88, 20);
-            this.dtTime.TabIndex = 3;
+            this.dtTime.TabIndex = 5;
             // 
             // labelControl8
             // 
@@ -153,7 +154,7 @@ namespace DiamondTrading.Process
             this.labelControl8.Location = new System.Drawing.Point(409, 40);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 16);
-            this.labelControl8.TabIndex = 1;
+            this.labelControl8.TabIndex = 3;
             this.labelControl8.Text = "Date* :";
             // 
             // grpGroup1
@@ -195,7 +196,6 @@ namespace DiamondTrading.Process
             this.gvData.Name = "gvData";
             this.gvData.OptionsBehavior.Editable = false;
             this.gvData.OptionsView.ShowGroupPanel = false;
-            this.gvData.RowCellClick += new DevExpress.XtraGrid.Views.Grid.RowCellClickEventHandler(this.gvData_RowCellClick);
             // 
             // colIndex
             // 
@@ -250,6 +250,7 @@ namespace DiamondTrading.Process
             this.txtPrice.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtPrice.Size = new System.Drawing.Size(100, 20);
             this.txtPrice.TabIndex = 5;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
             // labelControl4
             // 
@@ -321,7 +322,7 @@ namespace DiamondTrading.Process
             this.labelControl6.Location = new System.Drawing.Point(13, 44);
             this.labelControl6.Name = "labelControl6";
             this.labelControl6.Size = new System.Drawing.Size(70, 16);
-            this.labelControl6.TabIndex = 4;
+            this.labelControl6.TabIndex = 1;
             this.labelControl6.Text = "Company* :";
             // 
             // lueCompany
@@ -337,7 +338,7 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "PartyID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueCompany.Properties.NullText = "";
             this.lueCompany.Size = new System.Drawing.Size(233, 22);
-            this.lueCompany.TabIndex = 5;
+            this.lueCompany.TabIndex = 2;
             this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
             // 
             // panelControl1
@@ -381,12 +382,24 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Category* :";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Appearance.Options.UseFont = true;
+            this.btnDelete.Location = new System.Drawing.Point(251, 460);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 21);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // FrmPriceMasterMobiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(582, 490);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -450,5 +463,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colNumber;
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colIndex;
+        private DevExpress.XtraEditors.SimpleButton btnDelete;
     }
 }

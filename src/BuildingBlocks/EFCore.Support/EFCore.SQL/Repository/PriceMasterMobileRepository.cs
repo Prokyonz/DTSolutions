@@ -112,5 +112,20 @@ namespace EFCore.SQL.Repository
                 return defaultPriceList;
             }
         }
+
+
+        public async Task<bool> DeletePriceMasterEntryForMobileAsync(string size, string number, decimal price)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPrice = await _databaseContext.PriceMasterMobile.Where(x => x.SizeName == size && x.Price == price && x.NumberName == number).ToListAsync();
+                if (getPrice != null)
+                {
+                    _databaseContext.PriceMasterMobile.RemoveRange(getPrice);
+                }
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }
+        }
     }
 }
