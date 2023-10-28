@@ -37,17 +37,20 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCompanyAsync(string CompanyId, int action)
+        public async Task<int> DeleteCompanyAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
-                if (getCompany != null)
-                {
-                    getCompany.IsDelete = true;
-                }
-                await _databaseContext.SaveChangesAsync();
-                return true;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + CompanyId + "',1").ToListAsync();
+                return resultCount[0].Status;
+
+                //var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
+                //if (getCompany != null)
+                //{
+                //    getCompany.IsDelete = true;
+                //}
+                //await _databaseContext.SaveChangesAsync();
+                //return true;
             }
         }
 

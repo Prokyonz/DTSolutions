@@ -127,12 +127,13 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<SalaryReportSPModel> SPSalaryReport{ get; set; }
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
         public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
+        public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
-            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
-            optionsBuilder.UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTradingLive;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+            //optionsBuilder.UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {            
@@ -235,6 +236,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
         }
     }
 }

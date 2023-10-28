@@ -38,23 +38,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteNumberAsync(string numberId, bool isPermanantDetele = false)
+        public async Task<int> DeleteNumberAsync(string numberId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getNumber = await _databaseContext.NumberMaster.Where(s => s.Id == numberId).FirstOrDefaultAsync();
-                if (getNumber != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.NumberMaster.Remove(getNumber);
-                    else
-                        getNumber.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + numberId + "',9").ToListAsync();
+                return resultCount[0].Status;
+                //var getNumber = await _databaseContext.NumberMaster.Where(s => s.Id == numberId).FirstOrDefaultAsync();
+                //if (getNumber != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.NumberMaster.Remove(getNumber);
+                //    else
+                //        getNumber.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                    return true;
-                }
+                //    return true;
+                //}
 
-                return false;
+                //return false;
             }
         }
 

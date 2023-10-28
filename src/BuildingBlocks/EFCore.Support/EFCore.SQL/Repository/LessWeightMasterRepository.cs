@@ -28,18 +28,20 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteLessWeightMaster(string lessWeightMasterId, bool isPermanantDelete = false)
+        public async Task<int> DeleteLessWeightMaster(string lessWeightMasterId, bool isPermanantDelete = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMasterId).FirstOrDefaultAsync();
-                if (getLessWeightRecord != null)
-                {
-                    _databaseContext.LessWeightMasters.Remove(getLessWeightRecord);
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
-                }
-                return false;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + lessWeightMasterId + "',12").ToListAsync();
+                return resultCount[0].Status;
+                //var getLessWeightRecord = await _databaseContext.LessWeightMasters.Where(w => w.Id == lessWeightMasterId).FirstOrDefaultAsync();
+                //if (getLessWeightRecord != null)
+                //{
+                //    _databaseContext.LessWeightMasters.Remove(getLessWeightRecord);
+                //    await _databaseContext.SaveChangesAsync();
+                //    return true;
+                //}
+                //return false;
             }
         }
 

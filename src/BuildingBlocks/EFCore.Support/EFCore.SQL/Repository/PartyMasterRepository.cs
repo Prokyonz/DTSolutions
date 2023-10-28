@@ -32,23 +32,26 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeletePartyAsync(string partyId, bool isPermanantDetele = false)
+        public async Task<int> DeletePartyAsync(string partyId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyId).FirstOrDefaultAsync();
-                if (getParty != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.PartyMaster.Remove(getParty);
-                    else
-                        getParty.IsDelete = true;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + partyId + "',4").ToListAsync();
+                return resultCount[0].Status;
+                //var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyId).FirstOrDefaultAsync();
+                //if (getParty != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.PartyMaster.Remove(getParty);
+                //    else
+                //        getParty.IsDelete = true;
 
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
-                }                
+                //    await _databaseContext.SaveChangesAsync();
+                //    return true;
+                //}                
             }
-            return false;
+            return 0;
+            //return false;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync()

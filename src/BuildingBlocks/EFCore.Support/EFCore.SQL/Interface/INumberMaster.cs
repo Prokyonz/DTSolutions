@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<NumberMaster>> GetAllNumberAsync();
         Task<NumberMaster> AddNumberAsync(NumberMaster numberMaster);
         Task<NumberMaster> UpdateNumberAsync(NumberMaster numberMaster);
-        Task<bool> DeleteNumberAsync(string numberId, bool isPermanantDetele = false);
+        Task<int> DeleteNumberAsync(string numberId, bool isPermanantDetele = false);
     }
 }

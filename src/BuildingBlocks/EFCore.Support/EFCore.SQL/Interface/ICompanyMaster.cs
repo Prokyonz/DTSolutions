@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<CompanyMaster>> GetAllCompanyAsync();
         Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster);
         Task<CompanyMaster> UpdateCompanyAsync(CompanyMaster companyMaster);
-        Task<bool> DeleteCompanyAsync(string CompanyId, int action);
+        Task<int> DeleteCompanyAsync(string CompanyId);
     }  
 }

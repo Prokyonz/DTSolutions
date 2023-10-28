@@ -38,23 +38,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteGalaAsync(string galaId, bool isPermanantDetele = false)
+        public async Task<int> DeleteGalaAsync(string galaId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
-                if (getGala != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.GalaMaster.Remove(getGala);
-                    else
-                        getGala.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + galaId + "',8").ToListAsync();
+                return resultCount[0].Status;
+                //var getGala = await _databaseContext.GalaMaster.Where(s => s.Id == galaId).FirstOrDefaultAsync();
+                //if (getGala != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.GalaMaster.Remove(getGala);
+                //    else
+                //        getGala.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                    return true;
-                }
+                //    return true;
+                //}
 
-                return false;
+                //return false;
             }
         }
 

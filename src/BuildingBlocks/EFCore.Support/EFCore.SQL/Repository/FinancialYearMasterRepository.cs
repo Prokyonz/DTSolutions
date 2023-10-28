@@ -29,22 +29,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteFinancialYearAsync(string financialYearId, bool isPermanantDetele = false)
+        public async Task<int> DeleteFinancialYearAsync(string financialYearId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.IsDelete == false && s.Id == financialYearId).FirstOrDefaultAsync();
-                if (getFinancialYear != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.FinancialYearMaster.Remove(getFinancialYear);
-                    else
-                        getFinancialYear.IsDelete = true;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + financialYearId + "',3").ToListAsync();
+                return resultCount[0].Status;
 
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
-                }
-                return false;
+                //var getFinancialYear = await _databaseContext.FinancialYearMaster.Where(s => s.IsDelete == false && s.Id == financialYearId).FirstOrDefaultAsync();
+                //if (getFinancialYear != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.FinancialYearMaster.Remove(getFinancialYear);
+                //    else
+                //        getFinancialYear.IsDelete = true;
+
+                //    await _databaseContext.SaveChangesAsync();
+                //    return true;
+                //}
+                //return false;
             }
         }
 

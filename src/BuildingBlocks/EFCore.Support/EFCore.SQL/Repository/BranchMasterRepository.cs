@@ -37,19 +37,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteBranchAsync(string branchId)
+        public async Task<int> DeleteBranchAsync(string branchId)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 try
                 {
-                    var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchId).FirstOrDefaultAsync();
-                    if (getBranch != null)
-                    {
-                        getBranch.IsDelete = true;
-                    }
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
+                    var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + branchId + "',2").ToListAsync();
+                    return resultCount[0].Status;
+
+                    //var getBranch = await _databaseContext.BranchMaster.Where(s => s.Id == branchId).FirstOrDefaultAsync();
+                    //if (getBranch != null)
+                    //{
+                    //    getBranch.IsDelete = true;
+                    //}
+                    //await _databaseContext.SaveChangesAsync();
+                    //return true;
                 }
                 catch (Exception)
                 {

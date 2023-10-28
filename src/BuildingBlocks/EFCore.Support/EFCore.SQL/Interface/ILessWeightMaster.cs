@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<LessWeightMaster>> GetLessWeightMasters();
         Task<LessWeightMaster> AddLessWeightMaster(LessWeightMaster lessWeightMaster);
         Task<LessWeightMaster> UpdateLessWeightMaster(LessWeightMaster lessWeightMaster);
-        Task<bool> DeleteLessWeightMaster(string lessWeightMasterId, bool isPermanantDelete = false);
+        Task<int> DeleteLessWeightMaster(string lessWeightMasterId, bool isPermanantDelete = false);
     }
 }

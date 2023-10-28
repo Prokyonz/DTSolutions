@@ -38,23 +38,26 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteSizeAsync(string purityId, bool isPermanantDetele = false)
+        public async Task<int> DeleteSizeAsync(string sizeId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
-                if (getSize != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.SizeMaster.Remove(getSize);
-                    else
-                        getSize.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + sizeId + "',5").ToListAsync();
+                return resultCount[0].Status;
 
-                    return true;
-                }
+                //var getSize = await _databaseContext.SizeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
+                //if (getSize != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.SizeMaster.Remove(getSize);
+                //    else
+                //        getSize.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                return false;
+                //    return true;
+                //}
+
+                //return false;
             }
         }
 
