@@ -1,4 +1,7 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraGrid;
+using DevExpress.XtraGrid.Views.Grid;
+using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using Repository.Entities.Models;
@@ -29,8 +32,9 @@ namespace DiamondTrading.Process
             LoadCompany();
             LoadCategory();
             dt = GetDTColumnsforParticularDetails();
-            GetMobileData();
             grdData.DataSource = dt;
+
+            RefreshMobileData();
         }
 
         private void LoadCategory()
@@ -96,6 +100,13 @@ namespace DiamondTrading.Process
                 lueCompany.Focus();
                 return false;
             }
+
+            if (lueCategory.EditValue == null)
+            {
+                MessageBox.Show("Please select Category", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lueCategory.Focus();
+                return false;
+            }
             else if (gvData.RowCount == 0)
             {
                 MessageBox.Show("Please select Particulars Details", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -154,6 +165,7 @@ namespace DiamondTrading.Process
                 if (IsSuccess)
                 {
                     Reset();
+                    RefreshMobileData();
                     MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -194,21 +206,21 @@ namespace DiamondTrading.Process
 
         private void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
-            GetMobileData();
+            RefreshMobileData();
         }
 
-        private async void GetMobileData()
+        private async void RefreshMobileData()
         {
             var defaultPriceList = await _priceMasterRepository.GetMobileData();
             int index = 1;
+            dt.Rows.Clear();
             defaultPriceList.ToList().ForEach(x =>
             {
                 dt.Rows.Add(index, x.SizeName, x.NumberName, x.Price);
                 index++;
             });
+            grdData.DataSource = dt;
         }
-
-
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -232,12 +244,19 @@ namespace DiamondTrading.Process
             }
             if (btnAdd.Text == "&Add")
             {
-                int newRowHandle = gvData.GetRowHandle(gvData.DataRowCount);
-                dt.Rows.Add(newRowHandle + 1, txtSize.Text, txtNumber.Text, txtPrice.Text);
-                grdData.DataSource = dt;
-                txtSize.Text = string.Empty;
-                txtPrice.Text = string.Empty;
-                txtNumber.Text = string.Empty;
+                if (!CheckValueExists(txtSize.Text, txtNumber.Text, txtPrice.Text))
+                {
+                    int newRowHandle = gvData.GetRowHandle(gvData.DataRowCount);
+                    dt.Rows.Add(newRowHandle + 1, txtSize.Text, txtNumber.Text, txtPrice.Text);
+                    grdData.DataSource = dt;
+                    txtSize.Text = string.Empty;
+                    txtPrice.Text = string.Empty;
+                    txtNumber.Text = string.Empty;
+                    if (MessageBox.Show(this, "Do you want to add more?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        ActiveControl = txtSize;
+                    }
+                }
             }
             else
             {
@@ -254,15 +273,89 @@ namespace DiamondTrading.Process
             btnAdd.Text = "&Add";
         }
 
-        private void gvData_RowCellClick(object sender, DevExpress.XtraGrid.Views.Grid.RowCellClickEventArgs e)
+        private void gvData_DoubleClick(object sender, EventArgs e)
         {
+            GridView view = sender as GridView;
+            if (view == null)
+                return;
             // When a cell in the grid is clicked, load the cell's value into the textbox
-            if (e.RowHandle >= 0)
+            GridHitInfo info = view.CalcHitInfo(view.GridControl.PointToClient(MousePosition));
+
+            if (info.InRow)
             {
+                // Check if a row was double-clicked
+                int rowHandle = info.RowHandle;
+
                 btnAdd.Text = "Update";
-                txtSize.Text = gvData.GetRowCellValue(e.RowHandle, "Size").ToString();
-                txtPrice.Text = gvData.GetRowCellValue(e.RowHandle, "Price").ToString();
-                txtNumber.Text = gvData.GetRowCellValue(e.RowHandle, "Number").ToString();
+                txtSize.Text = gvData.GetRowCellValue(rowHandle, "Size").ToString();
+                txtPrice.Text = gvData.GetRowCellValue(rowHandle, "Price").ToString();
+                txtNumber.Text = gvData.GetRowCellValue(rowHandle, "Number").ToString();
+            }
+        }
+
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            string size = gvData.GetRowCellValue(gvData.FocusedRowHandle, "Size").ToString();
+            _ = decimal.TryParse(gvData.GetRowCellValue(gvData.FocusedRowHandle, "Price").ToString(), out decimal price);
+            string number = gvData.GetRowCellValue(gvData.FocusedRowHandle, "Number").ToString();
+            if (MessageBox.Show(this, "Are you sure to delete selected record?", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Question) == DialogResult.OK)
+            {
+                bool isSuccess = await _priceMasterRepository.DeletePriceMasterEntryForMobileAsync(size, number, price);
+                if (isSuccess)
+                {
+                    MessageBox.Show(this, "Record deleted successfully", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    RefreshMobileData();
+                }
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Check if the pressed key is a digit (0-9), a decimal point, or a backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)Keys.Back)
+            {
+                // Prevent the input of any other characters
+                e.Handled = true;
+            }
+
+            // If the input contains a decimal point, make sure it's entered only once
+            if (e.KeyChar == '.' && (sender as TextEdit).Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool ValueExistsInColumn(GridView gridView, string size, string nuuber, decimal price)
+        {
+            for (int rowHandle = 0; rowHandle < gridView.RowCount; rowHandle++)
+            {
+                object cellSize = gridView.GetRowCellValue(rowHandle, colSize);
+                object cellNumber = gridView.GetRowCellValue(rowHandle, colSize);
+                object cellPrice = gridView.GetRowCellValue(rowHandle, colSize);
+                if (cellNumber.Equals(nuuber) && cellSize.Equals(size) && cellPrice.Equals(price))
+                {
+                    return true; // Value exists in the column
+                }
+            }
+            return false; // Value does not exist in the column
+        }
+
+        // Example of how to use the function:
+        private bool CheckValueExists(string sizeToCheck, string numberToCheck, string priceToCheck)
+        {
+            // Get the GridView
+            GridView gridView = grdData.MainView as GridView;
+
+            _ = decimal.TryParse(priceToCheck, out decimal price);
+
+            if (ValueExistsInColumn(gridView, sizeToCheck, numberToCheck, price))
+            {
+                MessageBox.Show("Value exists.");
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
