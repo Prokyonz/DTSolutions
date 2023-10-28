@@ -90,7 +90,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var defaultPriceList = await _databaseContext.PriceSPModel.FromSqlRaw($"GetDefaultSizeNumberDetailsForPriceMaster").ToListAsync();
+                var defaultPriceList = await _databaseContext.PriceSPModel.FromSqlRaw($"Select * from PriceMasterMobile").ToListAsync();
                 return defaultPriceList;
             }
         }
