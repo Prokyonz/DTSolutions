@@ -17,11 +17,11 @@ namespace EFCore.SQL.Repository
 
         public BoilMasterRepository()
         {
-            
+
         }
         public async Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster)
         {
-            using(_databaseContext = new DatabaseContext())
+            using (_databaseContext = new DatabaseContext())
             {
                 if (boilMaster.Id == null)
                     boilMaster.Id = Guid.NewGuid().ToString();
@@ -33,18 +33,49 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteBoilAsync(string boilMasterId, string slipNo)
+        public async Task<bool> DeleteBoilAsync(string boilMasterId, string slipNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 var findBoilReceiveRecord = await _databaseContext.BoilProcessMaster.Where(w => w.SlipNo.Contains("," + slipNo + ",") && w.BoilType == 1).ToListAsync();
-                if (findBoilReceiveRecord.Any())                
+                if (findBoilReceiveRecord.Any())
                     return false;
-                 else
+                else
                 {
                     var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
+
                     if (getReccord != null)
                     {
+                        if (isValidateOnly)
+                            return true;
+
+                        _databaseContext.BoilProcessMaster.Remove(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteBoilAsync(int boilNo, bool isValidateOnly = false)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var findCharniSendRecord = await _databaseContext.CharniProcessMaster.Where(w=>w.BoilJangadNo == boilNo).ToListAsync();
+                if (findCharniSendRecord.Any())
+                    return false;
+                else
+                {
+                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.BoilNo == boilNo).FirstOrDefaultAsync();
+
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
+                        
                         _databaseContext.BoilProcessMaster.Remove(getReccord);
                         await _databaseContext.SaveChangesAsync();
 
@@ -85,8 +116,8 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var getRecord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMaster.Id).FirstOrDefaultAsync();
-                
-                if(getRecord != null)
+
+                if (getRecord != null)
                 {
                     getRecord.BoilCategoy = boilMaster.BoilCategoy;
                     getRecord.BoilType = boilMaster.BoilType;

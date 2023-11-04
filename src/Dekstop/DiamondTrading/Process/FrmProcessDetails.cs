@@ -604,7 +604,34 @@ namespace DiamondTrading
                         else
                         {
                             messageBoxIcon = MessageBoxIcon.Error;
-                            message = "You can not delete this record because child record is available in boil send.";
+                            message = "You can not delete this record because child record is available in boil receive.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabBoilSendReceive && SelectedTabPage == "BoilReceive")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int boilNo = Convert.ToInt32(gridViewBoilSendReceiveMaster.GetFocusedRowCellValue(gridColumnBoilNo).ToString());
+                    if (boilNo > 0)
+                    {
+                        var result = await _boilMasterRepository.DeleteBoilAsync(boilNo); //Check entry in receive
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in charni send.";
                         }
                     }
                     this.Cursor = Cursors.Default;
