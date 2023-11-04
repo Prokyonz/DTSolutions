@@ -1,4 +1,5 @@
 ﻿using DevExpress.Utils;
+
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
@@ -228,7 +229,7 @@ namespace DiamondTrading
                         else
                             gridColumn80.Visible = true;
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabGalaSendReceive)
@@ -487,22 +488,7 @@ namespace DiamondTrading
                 {
                     this.Cursor = Cursors.WaitCursor;
                     //string message = "";
-                    string KapanMapId = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();
-
-                    //if (SelectedGuid != null)
-                    //{
-                    //    var result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedGuid.ToString());
-
-                    //    if (result)
-                    //    {
-                    //        await LoadGridData(true);
-                    //        message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
-                    //    }
-                    //    else
-                    //    {
-                    //        message = "You can not delete this record because some quantity is transfered.";
-                    //    }
-                    //}
+                    string KapanMapId = grvKapanMapping.GetFocusedRowCellValue(gridColumnKapanMapingId).ToString();              
 
                     string SelectedSrNo = grvKapanMapping.GetFocusedRowCellValue("Sr").ToString();
                     string PurchaseDetailsId = grvKapanMapping.GetFocusedRowCellValue("PurchaseDetailsId").ToString();
@@ -523,28 +509,6 @@ namespace DiamondTrading
                     MessageBox.Show("Deleted Successfully.", "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
                     await LoadGridData(true);
                 }
-
-                //string SelectedGuid;
-                //string tempCompanyName = "";
-
-                //if (grdCompanyMaster.FocusedView.DetailLevel > 0)
-                //{
-                //    GridView tempChild = ((GridView)grdCompanyMaster.FocusedView);
-                //    SelectedGuid = tempChild.GetFocusedRowCellValue("Id").ToString();
-                //    tempCompanyName = tempChild.GetFocusedRowCellValue("Name").ToString();
-                //}
-                //else
-                //{
-                //    SelectedGuid = grvCompanyMaster.GetFocusedRowCellValue("Id").ToString();
-                //    tempCompanyName = grvCompanyMaster.GetFocusedRowCellValue("Name").ToString();
-                //}
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                //{
-                //    var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
-
-                //    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                //    await LoadGridData(true);
-                //}
             }
             else if (xtabManager.SelectedTabPage == xtabAssortSend)
             {
@@ -573,15 +537,7 @@ namespace DiamondTrading
                     }
                     this.Cursor = Cursors.Default;
                     MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
-                }
-                //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
-                //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                //{
-                //    var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
-
-                //    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                //    await LoadGridData(true);
-                //}
+                }                
             }
             else if (xtabManager.SelectedTabPage == xtabBoilSendReceive && SelectedTabPage == "BoilSend")
             {
@@ -632,6 +588,34 @@ namespace DiamondTrading
                         {
                             messageBoxIcon = MessageBoxIcon.Error;
                             message = "You can not delete this record because child record is available in charni send.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive && SelectedTabPage == "CharniSend")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int charniNo = Convert.ToInt32(gridViewCharniReportMaster.GetFocusedRowCellValue(gridColumnCharniNo).ToString());
+
+                    if (charniNo > 0)
+                    {
+                        var result = await _charniProcessMasterRepository.DeleteCharniProcessAsync(charniNo); //Check entry in receive
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in charni receive.";
                         }
                     }
                     this.Cursor = Cursors.Default;

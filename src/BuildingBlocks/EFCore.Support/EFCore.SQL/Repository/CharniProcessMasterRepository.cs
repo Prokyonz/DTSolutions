@@ -32,13 +32,22 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCharniProcessAsync(string charniProcessMasterId)
+        public async Task<bool> DeleteCharniProcessAsync(int charniNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.Id == charniProcessMasterId).FirstOrDefaultAsync();
+                var findRecordInCharniReceive = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo && w.CharniType == 1).ToListAsync(); //Check in charni receive
+
+                if (findRecordInCharniReceive.Any())
+                    return false;
+
+                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo).FirstOrDefaultAsync();
+
                 if (getReccord == null)
                 {
+                    if (isValidateOnly)
+                        return true;
+
                     _databaseContext.CharniProcessMaster.Remove(getReccord);
                     await _databaseContext.SaveChangesAsync();
 
