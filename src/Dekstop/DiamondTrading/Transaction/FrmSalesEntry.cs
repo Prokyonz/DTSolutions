@@ -422,7 +422,13 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
-            lueCurrencyType.EditValue = "8cb0a7f4-5a1b-4cd1-a03f-9ba4dd79ad90";
+            
+            var defaultcurrency = currencyMaster.Where(x => x.ShortName.ToLower().Contains("inr")).FirstOrDefault();
+            if (defaultcurrency != null)
+            {
+                //lueCurrencyType.EditValue = "8cb0a7f4-5a1b-4cd1-a03f-9ba4dd79ad90";
+                lueCurrencyType.EditValue = defaultcurrency.Id;
+            }
         }
 
         #endregion
@@ -666,6 +672,7 @@ namespace DiamondTrading.Transaction
                     {
                         await GetSalerList();
                         lueSaler.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueSaler.BackColor = default;
                     }
                 }
                 else if (ControlName == lueParty.Name)
@@ -677,6 +684,7 @@ namespace DiamondTrading.Transaction
                     {
                         await GetPartyList();
                         lueParty.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueParty.BackColor = default;
                     }
                 }
                 else if (ControlName == lueBroker.Name)
@@ -688,6 +696,7 @@ namespace DiamondTrading.Transaction
                     {
                         await GetBrokerList();
                         lueBroker.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueBroker.BackColor = default;
                     }
                 }
             }
@@ -1181,11 +1190,11 @@ namespace DiamondTrading.Transaction
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
 
-            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
-            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
-            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
-            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
-            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0");
+            grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0");
         }
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -1475,6 +1484,8 @@ namespace DiamondTrading.Transaction
                             txtBrokerPercentage.Text = "";
                         }
                     }
+
+                    SetGridViewFocus();
                 }
             }
             catch
@@ -2388,6 +2399,19 @@ namespace DiamondTrading.Transaction
         private void txtBrokerPercentage_Leave(object sender, EventArgs e)
         {
             CalculateBrokerageRate(true);
+        }
+
+        private void SetGridViewFocus()
+        {
+            if (grvPurchaseDetails.VisibleColumns.Count > 0)
+            {
+                if (this.ActiveControl.GetType() != typeof(DevExpress.XtraGrid.GridControl))
+                {
+                    grvPurchaseDetails.Focus();
+                    SendKeys.Send("{TAB}");
+                    grvPurchaseDetails.FocusedColumn = colCategory;
+                }
+            }
         }
     }
 }

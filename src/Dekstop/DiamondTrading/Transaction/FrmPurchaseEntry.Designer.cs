@@ -756,7 +756,7 @@ namespace DiamondTrading.Transaction
             this.repoKapan,
             this.repoTxtEdit});
             this.grdPurchaseDetails.Size = new System.Drawing.Size(1061, 161);
-            this.grdPurchaseDetails.TabIndex = 17;
+            this.grdPurchaseDetails.TabIndex = 0;
             this.grdPurchaseDetails.UseEmbeddedNavigator = true;
             this.grdPurchaseDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvPurchaseDetails});

@@ -88,6 +88,7 @@ namespace DiamondTrading
             this.barButtonItem59 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem60 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem62 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonGSTBillPrint = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem5 = new DevExpress.XtraBars.BarSubItem();
             this.barSubItem6 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem23 = new DevExpress.XtraBars.BarButtonItem();
@@ -217,7 +218,6 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
-            this.barButtonGSTBillPrint = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -930,6 +930,14 @@ namespace DiamondTrading
             this.barButtonItem62.Name = "barButtonItem62";
             this.barButtonItem62.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem62.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem62_ItemClick);
+            // 
+            // barButtonGSTBillPrint
+            // 
+            this.barButtonGSTBillPrint.Caption = "GST Bill Print";
+            this.barButtonGSTBillPrint.Id = 132;
+            this.barButtonGSTBillPrint.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F12);
+            this.barButtonGSTBillPrint.Name = "barButtonGSTBillPrint";
+            this.barButtonGSTBillPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonGSTBillPrint_ItemClick);
             // 
             // barSubItem5
             // 
@@ -1996,18 +2004,11 @@ namespace DiamondTrading
             this.pictureEdit1.Name = "pictureEdit1";
             this.pictureEdit1.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            this.pictureEdit1.Properties.ShowMenu = false;
             this.pictureEdit1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
             this.pictureEdit1.Size = new System.Drawing.Size(762, 497);
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
-            // 
-            // barButtonGSTBillPrint
-            // 
-            this.barButtonGSTBillPrint.Caption = "GST Bill Print";
-            this.barButtonGSTBillPrint.Id = 132;
-            this.barButtonGSTBillPrint.ItemShortcut = new DevExpress.XtraBars.BarShortcut(System.Windows.Forms.Keys.F12);
-            this.barButtonGSTBillPrint.Name = "barButtonGSTBillPrint";
-            this.barButtonGSTBillPrint.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonGSTBillPrint_ItemClick);
             // 
             // FrmMain
             // 
