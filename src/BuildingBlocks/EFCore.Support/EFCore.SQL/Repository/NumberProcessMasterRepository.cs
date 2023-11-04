@@ -33,11 +33,15 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteNumberProcessAsync(string numberProcessMasterId)
+        public async Task<bool> DeleteNumberProcessAsync(int numberNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.NumberProcessMaster.Where(w => w.Id == numberProcessMasterId).FirstOrDefaultAsync();
+                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.JangadNo == numberNo && w.NumberProcessType == 1).ToListAsync();
+                if (findBoilReceiveRecord.Any())
+                    return false;
+
+                var getReccord = await _databaseContext.NumberProcessMaster.Where(w => w.NumberNo == numberNo).FirstOrDefaultAsync();
                 if (getReccord == null)
                 {
                     _databaseContext.NumberProcessMaster.Remove(getReccord);

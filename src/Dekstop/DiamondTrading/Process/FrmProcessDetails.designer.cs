@@ -180,7 +180,7 @@ namespace DiamondTrading
             this.gridColumn75 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn76 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn77 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn78 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnCharniReceiveSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn79 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn80 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn81 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -196,7 +196,7 @@ namespace DiamondTrading
             this.xtabGalaSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlGalaReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewGalaReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn88 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnGalaNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn89 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn90 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn91 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -209,7 +209,7 @@ namespace DiamondTrading
             this.gridColumn98 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn99 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn100 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn101 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnGalaReceiveSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn102 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn103 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn104 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -224,7 +224,7 @@ namespace DiamondTrading
             this.xtabNumberSendReceive = new DevExpress.XtraTab.XtraTabPage();
             this.gridControlNumerReportMaster = new DevExpress.XtraGrid.GridControl();
             this.gridViewNumberReportMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.gridColumn26 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnNumberNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn111 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn112 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn113 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -237,7 +237,7 @@ namespace DiamondTrading
             this.gridColumn120 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn121 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn122 = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn123 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnNumberSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn124 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn125 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn136 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -1512,7 +1512,7 @@ namespace DiamondTrading
             this.gridColumn75,
             this.gridColumn76,
             this.gridColumn77,
-            this.gridColumn78,
+            this.gridColumnCharniReceiveSlipNo,
             this.gridColumn79,
             this.gridColumn80,
             this.gridColumn81,
@@ -1634,14 +1634,14 @@ namespace DiamondTrading
             this.gridColumn77.VisibleIndex = 6;
             this.gridColumn77.Width = 47;
             // 
-            // gridColumn78
+            // gridColumnCharniReceiveSlipNo
             // 
-            this.gridColumn78.Caption = "Slip No";
-            this.gridColumn78.FieldName = "SlipNo";
-            this.gridColumn78.Name = "gridColumn78";
-            this.gridColumn78.Visible = true;
-            this.gridColumn78.VisibleIndex = 2;
-            this.gridColumn78.Width = 59;
+            this.gridColumnCharniReceiveSlipNo.Caption = "Slip No";
+            this.gridColumnCharniReceiveSlipNo.FieldName = "SlipNo";
+            this.gridColumnCharniReceiveSlipNo.Name = "gridColumnCharniReceiveSlipNo";
+            this.gridColumnCharniReceiveSlipNo.Visible = true;
+            this.gridColumnCharniReceiveSlipNo.VisibleIndex = 2;
+            this.gridColumnCharniReceiveSlipNo.Width = 59;
             // 
             // gridColumn79
             // 
@@ -1771,7 +1771,7 @@ namespace DiamondTrading
             this.gridViewGalaReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewGalaReportMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewGalaReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn88,
+            this.gridColumnGalaNo,
             this.gridColumn89,
             this.gridColumn90,
             this.gridColumn91,
@@ -1784,7 +1784,7 @@ namespace DiamondTrading
             this.gridColumn98,
             this.gridColumn99,
             this.gridColumn100,
-            this.gridColumn101,
+            this.gridColumnGalaReceiveSlipNo,
             this.gridColumn102,
             this.gridColumn103,
             this.gridColumn104,
@@ -1806,17 +1806,17 @@ namespace DiamondTrading
             this.gridViewGalaReportMaster.OptionsBehavior.Editable = false;
             this.gridViewGalaReportMaster.OptionsView.ShowFooter = true;
             this.gridViewGalaReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn88, DevExpress.Data.ColumnSortOrder.Descending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnGalaNo, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gridViewGalaReportMaster.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridViewGalaReportMaster_CellMerge);
             // 
-            // gridColumn88
+            // gridColumnGalaNo
             // 
-            this.gridColumn88.Caption = "Sr No";
-            this.gridColumn88.FieldName = "GalaNo";
-            this.gridColumn88.Name = "gridColumn88";
-            this.gridColumn88.Visible = true;
-            this.gridColumn88.VisibleIndex = 1;
-            this.gridColumn88.Width = 57;
+            this.gridColumnGalaNo.Caption = "Sr No";
+            this.gridColumnGalaNo.FieldName = "GalaNo";
+            this.gridColumnGalaNo.Name = "gridColumnGalaNo";
+            this.gridColumnGalaNo.Visible = true;
+            this.gridColumnGalaNo.VisibleIndex = 1;
+            this.gridColumnGalaNo.Width = 57;
             // 
             // gridColumn89
             // 
@@ -1908,14 +1908,14 @@ namespace DiamondTrading
             this.gridColumn100.VisibleIndex = 6;
             this.gridColumn100.Width = 45;
             // 
-            // gridColumn101
+            // gridColumnGalaReceiveSlipNo
             // 
-            this.gridColumn101.Caption = "Slip No";
-            this.gridColumn101.FieldName = "SlipNo";
-            this.gridColumn101.Name = "gridColumn101";
-            this.gridColumn101.Visible = true;
-            this.gridColumn101.VisibleIndex = 2;
-            this.gridColumn101.Width = 53;
+            this.gridColumnGalaReceiveSlipNo.Caption = "Slip No";
+            this.gridColumnGalaReceiveSlipNo.FieldName = "SlipNo";
+            this.gridColumnGalaReceiveSlipNo.Name = "gridColumnGalaReceiveSlipNo";
+            this.gridColumnGalaReceiveSlipNo.Visible = true;
+            this.gridColumnGalaReceiveSlipNo.VisibleIndex = 2;
+            this.gridColumnGalaReceiveSlipNo.Width = 53;
             // 
             // gridColumn102
             // 
@@ -2040,7 +2040,7 @@ namespace DiamondTrading
             this.gridViewNumberReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewNumberReportMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewNumberReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.gridColumn26,
+            this.gridColumnNumberNo,
             this.gridColumn111,
             this.gridColumn112,
             this.gridColumn113,
@@ -2053,7 +2053,7 @@ namespace DiamondTrading
             this.gridColumn120,
             this.gridColumn121,
             this.gridColumn122,
-            this.gridColumn123,
+            this.gridColumnNumberSlipNo,
             this.gridColumn124,
             this.gridColumn125,
             this.gridColumn136,
@@ -2077,17 +2077,17 @@ namespace DiamondTrading
             this.gridViewNumberReportMaster.OptionsBehavior.Editable = false;
             this.gridViewNumberReportMaster.OptionsView.ShowFooter = true;
             this.gridViewNumberReportMaster.SortInfo.AddRange(new DevExpress.XtraGrid.Columns.GridColumnSortInfo[] {
-            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumn26, DevExpress.Data.ColumnSortOrder.Descending)});
+            new DevExpress.XtraGrid.Columns.GridColumnSortInfo(this.gridColumnNumberNo, DevExpress.Data.ColumnSortOrder.Descending)});
             this.gridViewNumberReportMaster.CellMerge += new DevExpress.XtraGrid.Views.Grid.CellMergeEventHandler(this.gridViewNumberReportMaster_CellMerge);
             // 
-            // gridColumn26
+            // gridColumnNumberNo
             // 
-            this.gridColumn26.Caption = "Sr No";
-            this.gridColumn26.FieldName = "NumberNo";
-            this.gridColumn26.Name = "gridColumn26";
-            this.gridColumn26.Visible = true;
-            this.gridColumn26.VisibleIndex = 1;
-            this.gridColumn26.Width = 57;
+            this.gridColumnNumberNo.Caption = "Sr No";
+            this.gridColumnNumberNo.FieldName = "NumberNo";
+            this.gridColumnNumberNo.Name = "gridColumnNumberNo";
+            this.gridColumnNumberNo.Visible = true;
+            this.gridColumnNumberNo.VisibleIndex = 1;
+            this.gridColumnNumberNo.Width = 57;
             // 
             // gridColumn111
             // 
@@ -2179,14 +2179,14 @@ namespace DiamondTrading
             this.gridColumn122.VisibleIndex = 6;
             this.gridColumn122.Width = 48;
             // 
-            // gridColumn123
+            // gridColumnNumberSlipNo
             // 
-            this.gridColumn123.Caption = "Slip No";
-            this.gridColumn123.FieldName = "SlipNo";
-            this.gridColumn123.Name = "gridColumn123";
-            this.gridColumn123.Visible = true;
-            this.gridColumn123.VisibleIndex = 2;
-            this.gridColumn123.Width = 53;
+            this.gridColumnNumberSlipNo.Caption = "Slip No";
+            this.gridColumnNumberSlipNo.FieldName = "SlipNo";
+            this.gridColumnNumberSlipNo.Name = "gridColumnNumberSlipNo";
+            this.gridColumnNumberSlipNo.Visible = true;
+            this.gridColumnNumberSlipNo.VisibleIndex = 2;
+            this.gridColumnNumberSlipNo.Width = 53;
             // 
             // gridColumn124
             // 
@@ -2998,7 +2998,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn75;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn76;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn77;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn78;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCharniReceiveSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn79;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn80;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn81;
@@ -3010,7 +3010,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Views.Grid.GridView gridView8;
         private DevExpress.XtraGrid.GridControl gridControlGalaReportMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewGalaReportMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn88;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnGalaNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn89;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn90;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn91;
@@ -3023,7 +3023,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn98;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn99;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn100;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn101;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnGalaReceiveSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn102;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn103;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn104;
@@ -3032,7 +3032,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn107;
         private DevExpress.XtraGrid.GridControl gridControlNumerReportMaster;
         private DevExpress.XtraGrid.Views.Grid.GridView gridViewNumberReportMaster;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn26;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNumberNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn111;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn112;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn113;
@@ -3045,7 +3045,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn120;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn121;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn122;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn123;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnNumberSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn124;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn125;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn126;

@@ -69,14 +69,14 @@ namespace EFCore.SQL.Repository
                     return false;
                 else
                 {
-                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.BoilNo == boilNo).FirstOrDefaultAsync();
+                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.JangadNo == boilNo).ToListAsync();
 
                     if (getReccord != null)
                     {
                         if (isValidateOnly)
                             return true;
                         
-                        _databaseContext.BoilProcessMaster.Remove(getReccord);
+                        _databaseContext.BoilProcessMaster.RemoveRange(getReccord);
                         await _databaseContext.SaveChangesAsync();
 
                         return true;

@@ -245,7 +245,7 @@ namespace DiamondTrading
                         else
                             gridColumn108.Visible = true;
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabNumberSendReceive)
@@ -267,7 +267,7 @@ namespace DiamondTrading
                             gridColumn137.Visible = true;
                         }
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtraTabStockReport)
@@ -616,6 +616,149 @@ namespace DiamondTrading
                         {
                             messageBoxIcon = MessageBoxIcon.Error;
                             message = "You can not delete this record because child record is available in charni receive.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if(xtabManager.SelectedTabPage == xtabCjharniSendReceive && SelectedTabPage == "CharniReceive")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int charniNo = Convert.ToInt32(gridViewCharniReportMaster.GetFocusedRowCellValue(gridColumnCharniNo).ToString());
+                    string slipNo = gridViewCharniReportMaster.GetFocusedRowCellValue(gridColumnCharniReceiveSlipNo).ToString();
+
+                    if (charniNo > 0)
+                    {
+                        var result = await _charniProcessMasterRepository.DeleteCharniReceiveAsync(slipNo, charniNo); //Check entry in gala send
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in gala send.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive && SelectedTabPage == "GalaSend")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int galaNo = Convert.ToInt32(gridViewGalaReportMaster.GetFocusedRowCellValue(gridColumnGalaNo).ToString());
+
+                    if (galaNo > 0)
+                    {
+                        var result = await _galaProcessMasterRepository.DeleteGalaProcessAsync(galaNo); //Check entry in receive
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in gala receive.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabGalaSendReceive && SelectedTabPage == "GalaReceive")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int galaJangadNo = Convert.ToInt32(gridViewGalaReportMaster.GetFocusedRowCellValue(gridColumnGalaNo).ToString());
+                    string slipNo = gridViewGalaReportMaster.GetFocusedRowCellValue(gridColumnNumberSlipNo).ToString();
+
+                    if (galaJangadNo > 0)
+                    {
+                        var result = await _galaProcessMasterRepository.DeleteGalaReceiveProcessAsync(slipNo, galaJangadNo); //Check entry in gala send
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in number send.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive && SelectedTabPage == "NumberSend")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int galaNo = Convert.ToInt32(gridViewNumberReportMaster.GetFocusedRowCellValue(gridColumnNumberNo).ToString());
+
+                    if (galaNo > 0)
+                    {
+                        var result = await _numberProcessMasterRepository.DeleteNumberProcessAsync(galaNo); //Check entry in receive
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in number receive.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
+            }
+            else if (xtabManager.SelectedTabPage == xtabNumberSendReceive && SelectedTabPage == "NumberReceive")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+
+                    int galaJangadNo = Convert.ToInt32(gridViewNumberReportMaster.GetFocusedRowCellValue(gridColumnNumberNo).ToString());
+                    string slipNo = gridViewNumberReportMaster.GetFocusedRowCellValue(gridColumnNumbers).ToString();
+
+                    if (galaJangadNo > 0)
+                    {
+                        var result = await _galaProcessMasterRepository.DeleteGalaReceiveProcessAsync(slipNo, galaJangadNo); //Check entry in gala send
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in assort receive.";
                         }
                     }
                     this.Cursor = Cursors.Default;

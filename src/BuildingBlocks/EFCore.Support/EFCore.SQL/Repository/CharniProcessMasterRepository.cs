@@ -58,6 +58,33 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> DeleteCharniReceiveAsync(string slipNo, int charniNo, bool isValidateOnly = false)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var findCharniSendRecord = await _databaseContext.GalaProcessMaster.Where(w => w.SlipNo.Contains(","+slipNo + ",") && w.JangadNo == charniNo).ToListAsync();
+                if (findCharniSendRecord.Any())
+                    return false;
+                else
+                {
+                    var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo).ToListAsync();
+
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
+
+                        _databaseContext.CharniProcessMaster.RemoveRange(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
         public async Task<List<CharniProcessMaster>> GetCharniProcessAsync(string companyId, string branchId, string financialYearId, int charniType)
         {
             using (_databaseContext = new DatabaseContext())

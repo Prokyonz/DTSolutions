@@ -12,7 +12,7 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId, int galaProcessType);
         Task<GalaProcessMaster> AddGalaProcessAsync(GalaProcessMaster galaProcessMaster);
         Task<GalaProcessMaster> UpdateGalaProcessAsync(GalaProcessMaster galaProcessMaster);
-        Task<bool> DeleteGalaProcessAsync(string galaProcessMasterId);
+        Task<bool> DeleteGalaProcessAsync(int galaNo, bool isValidateOnly = false);
         Task<List<GalaProcessSend>> GetGalaSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<GalaProcessReceive>> GetGalaReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId);
         Task<List<GalaProcessSendReceiveReportModel>> GetGalaSendReceiveReports(string companyId, string branchId, string financialYearId, int galaProcessType);
