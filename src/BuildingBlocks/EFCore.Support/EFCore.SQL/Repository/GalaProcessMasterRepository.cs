@@ -42,8 +42,8 @@ namespace EFCore.SQL.Repository
                     return false;
                 else
                 {
-                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.GalaNo == galaNo).FirstOrDefaultAsync();
-                    if (getReccord == null)
+                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.GalaNo == galaNo && w.GalaProcessType == 0).FirstOrDefaultAsync();
+                    if (getReccord != null)
                     {
                         if (isValidateOnly)
                             return true;
@@ -63,13 +63,17 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.SlipNo.Contains("," + slipNo + ",") && w.JangadNo == galaJangadNo).ToListAsync();
+                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.NumberProcessType == 0).ToListAsync();
                 if (findBoilReceiveRecord.Any())
                     return false;
                 else
                 {
-                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaJangadNo).ToListAsync();
-                    if (getReccord == null)
+                    var checkInAssortReceive = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.GalaProcessType == 2).ToListAsync();
+                    if (checkInAssortReceive.Any())
+                        return false;
+
+                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.GalaProcessType == 1).ToListAsync();
+                    if (getReccord != null)
                     {
                         if (isValidateOnly)
                             return true;

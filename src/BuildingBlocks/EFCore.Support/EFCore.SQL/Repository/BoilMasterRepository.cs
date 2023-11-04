@@ -42,7 +42,7 @@ namespace EFCore.SQL.Repository
                     return false;
                 else
                 {
-                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
+                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId && w.BoilType == 0).FirstOrDefaultAsync();
 
                     if (getReccord != null)
                     {
@@ -64,12 +64,16 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var findCharniSendRecord = await _databaseContext.CharniProcessMaster.Where(w=>w.BoilJangadNo == boilNo).ToListAsync();
+                var findCharniSendRecord = await _databaseContext.CharniProcessMaster.Where(w=>w.BoilJangadNo == boilNo && w.CharniType == 0).ToListAsync();
                 if (findCharniSendRecord.Any())
-                    return false;
+                    return false;                
                 else
                 {
-                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.JangadNo == boilNo).ToListAsync();
+                    var checkInAssortReceive = await _databaseContext.BoilProcessMaster.Where(w => w.JangadNo == boilNo && w.BoilType == 2).ToListAsync();
+                    if (checkInAssortReceive.Any())
+                        return false;
+
+                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.JangadNo == boilNo && w.BoilType == 1).ToListAsync();
 
                     if (getReccord != null)
                     {

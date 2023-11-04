@@ -41,9 +41,9 @@ namespace EFCore.SQL.Repository
                 if (findRecordInCharniReceive.Any())
                     return false;
 
-                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo).FirstOrDefaultAsync();
+                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo && w.CharniType == 0).FirstOrDefaultAsync();
 
-                if (getReccord == null)
+                if (getReccord != null)
                 {
                     if (isValidateOnly)
                         return true;
@@ -62,12 +62,16 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var findCharniSendRecord = await _databaseContext.GalaProcessMaster.Where(w => w.SlipNo.Contains(","+slipNo + ",") && w.JangadNo == charniNo).ToListAsync();
+                var findCharniSendRecord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == charniNo && w.GalaProcessType == 0).ToListAsync();
                 if (findCharniSendRecord.Any())
                     return false;
                 else
                 {
-                    var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo).ToListAsync();
+                    var checkInAssortReceive = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo && w.CharniType == 2).ToListAsync();
+                    if (checkInAssortReceive.Any())
+                        return false;
+
+                    var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo && w.CharniType == 1).ToListAsync();
 
                     if (getReccord != null)
                     {

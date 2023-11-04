@@ -12,7 +12,8 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId, int numberProcessType);
         Task<NumberProcessMaster> AddNumberProcessAsync(NumberProcessMaster numberProcessMaster);
         Task<NumberProcessMaster> UpdateNumberProcessAsync(NumberProcessMaster numberProcessMaste);
-        Task<bool> DeleteNumberProcessAsync(int numberNo);
+        Task<bool> DeleteNumberProcessAsync(int numberNo, bool isValidateOnly = false);
+        Task<bool> DeleteNumberReceiveProcessAsync(string slipNo, int numberNo, bool isValidateOnly = false);
         Task<List<NumberProcessSend>> GetNumberSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<NumberProcessReceive>> GetNumberReceiveDetails(string ReceiveFrom, string companyId, string branchId, string financialYearId);
         Task<List<NumberProcessSendReceiveReportModel>> GetNumberSendReceiveReports(string companyId, string branchId, string financialYearId, int numberProcessType);
