@@ -190,7 +190,7 @@ namespace DiamondTrading
                         var salesData = await _accountToAssortMasterRepository.GetAccountToAssortSendReportAsync(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "AssortSend" ? 0 : 1);
                         grdAssortSendReceiveMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabAssortReceive)
@@ -212,7 +212,7 @@ namespace DiamondTrading
                         var data = await _boilMasterRepository.GetBoilSendReceiveReports(Common.LoginCompany, Common.LoginBranch, Common.LoginFinancialYear, SelectedTabPage == "BoilSend" ? 0 : 1);
                         gridControlBoilSendReceiveMaster.DataSource = data;
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
                 else if (xtabManager.SelectedTabPage == xtabCjharniSendReceive)
@@ -475,11 +475,12 @@ namespace DiamondTrading
 
         private void accordionRefreshBtn_Click(object sender, EventArgs e)
         {
-            //_ = LoadGridData(true);
+            _ = LoadGridData(true);
         }
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
+            MessageBoxIcon messageBoxIcon = MessageBoxIcon.Information;
             if (xtabManager.SelectedTabPage == xtabKapanMapping)
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
@@ -511,14 +512,15 @@ namespace DiamondTrading
 
                     if (result)
                     {
-                        MessageBox.Show("You can't delete this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        messageBoxIcon = MessageBoxIcon.Error;
+                        MessageBox.Show("You can't delete this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
                         this.Cursor = Cursors.Default;
                         return;
                     }
 
                     result = await _kapanMappingMasterRepository.DeleteKapanMappingAsync(SelectedSrNo, Common.LoginFinancialYear);
                     this.Cursor = Cursors.Default;
-                    MessageBox.Show("Deleted Successfully.");
+                    MessageBox.Show("Deleted Successfully.", "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
                     await LoadGridData(true);
                 }
 
@@ -553,6 +555,7 @@ namespace DiamondTrading
                     string SelectedGuid = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendId).ToString();
                     string AccountToAssortChildId = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnChildId).ToString();
                     string slipNo = grvAssortSendReceiveMaster.GetFocusedRowCellValue(gridColumnAssortSendSlipNo).ToString();
+                   
                     if (SelectedGuid != null && AccountToAssortChildId != null)
                     {
                         var result = await _accountToAssortMasterRepository.DeleteAccountToAssortAsync(SelectedGuid.ToString(), AccountToAssortChildId, slipNo);
@@ -564,11 +567,12 @@ namespace DiamondTrading
                         }
                         else
                         {
+                            messageBoxIcon = MessageBoxIcon.Error;
                             message = "You can not delete this record because child record is available in boil send.";
                         }
                     }
                     this.Cursor = Cursors.Default;
-                    MessageBox.Show(message);
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
                 }
                 //string SelectedGuid = grvBranchMaster.GetFocusedRowCellValue(colBranchId).ToString();
                 //if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
@@ -578,6 +582,34 @@ namespace DiamondTrading
                 //    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 //    await LoadGridData(true);
                 //}
+            }
+            else if (xtabManager.SelectedTabPage == xtabBoilSendReceive && SelectedTabPage == "BoilSend")
+            {
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    this.Cursor = Cursors.WaitCursor;
+                    string message = "";
+                    string SelectedGuid = gridViewBoilSendReceiveMaster.GetFocusedRowCellValue(gridColumnBoilSendId).ToString();
+                    
+                    string slipNo = gridViewBoilSendReceiveMaster.GetFocusedRowCellValue(gridColumnBoilSlipNo).ToString();
+                    if (SelectedGuid != null && !string.IsNullOrWhiteSpace(slipNo))
+                    {
+                        var result = await _boilMasterRepository.DeleteBoilAsync(SelectedGuid.ToString(), slipNo); //Check entry in receive
+
+                        if (result)
+                        {
+                            await LoadGridData(true);
+                            message = AppMessages.GetString(AppMessageID.DeleteSuccessfully);
+                        }
+                        else
+                        {
+                            messageBoxIcon = MessageBoxIcon.Error;
+                            message = "You can not delete this record because child record is available in boil send.";
+                        }
+                    }
+                    this.Cursor = Cursors.Default;
+                    MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                }
             }
         }
 

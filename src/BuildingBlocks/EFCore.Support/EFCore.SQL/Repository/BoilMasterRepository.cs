@@ -33,17 +33,23 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteBoilAsync(string boilMasterId)
+        public async Task<bool> DeleteBoilAsync(string boilMasterId, string slipNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
-                if(getReccord == null)
+                var findBoilReceiveRecord = await _databaseContext.BoilProcessMaster.Where(w => w.SlipNo.Contains("," + slipNo + ",") && w.BoilType == 1).ToListAsync();
+                if (findBoilReceiveRecord.Any())                
+                    return false;
+                 else
                 {
-                    _databaseContext.BoilProcessMaster.Remove(getReccord);
-                    await _databaseContext.SaveChangesAsync();
+                    var getReccord = await _databaseContext.BoilProcessMaster.Where(w => w.Id == boilMasterId).FirstOrDefaultAsync();
+                    if (getReccord != null)
+                    {
+                        _databaseContext.BoilProcessMaster.Remove(getReccord);
+                        await _databaseContext.SaveChangesAsync();
 
-                    return true;
+                        return true;
+                    }
                 }
 
                 return false;

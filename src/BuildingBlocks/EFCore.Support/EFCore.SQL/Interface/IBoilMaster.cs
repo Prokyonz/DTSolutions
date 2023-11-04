@@ -12,7 +12,7 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(string companyId, string branchId, string financialYearId, int boilTpe);
         Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster);
         Task<BoilProcessMaster> UpdateBoilAsync(BoilProcessMaster boilMaster);
-        Task<bool> DeleteBoilAsync(string boilMasterId);
+        Task<bool> DeleteBoilAsync(string boilMasterId, string slipNo);
 
         Task<List<BoilProcessSend>> GetBoilSendToDetails(string companyId, string branchId, string financialYearId);
         Task<List<BoilProcessReceive>> GetBoilReceiveToDetails(string ReceivedFromId, string companyId, string branchId, string financialYearId);
