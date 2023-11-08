@@ -673,6 +673,8 @@ namespace DiamondTrading.Transaction
                         await GetSalerList();
                         lueSaler.EditValue = frmPartyMaster.CreatedLedgerID;
                         lueSaler.BackColor = default;
+                        lueSaler.Tag = lueSaler.BackColor;
+                        lueSaler.Focus();
                     }
                 }
                 else if (ControlName == lueParty.Name)
@@ -685,6 +687,8 @@ namespace DiamondTrading.Transaction
                         await GetPartyList();
                         lueParty.EditValue = frmPartyMaster.CreatedLedgerID;
                         lueParty.BackColor = default;
+                        lueParty.Tag = lueParty.BackColor;
+                        lueParty.Focus();
                     }
                 }
                 else if (ControlName == lueBroker.Name)
@@ -697,6 +701,8 @@ namespace DiamondTrading.Transaction
                         await GetBrokerList();
                         lueBroker.EditValue = frmPartyMaster.CreatedLedgerID;
                         lueBroker.BackColor = default;
+                        lueBroker.Tag = lueBroker.BackColor;
+                        lueBroker.Focus();
                     }
                 }
             }
