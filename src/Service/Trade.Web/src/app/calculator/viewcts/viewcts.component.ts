@@ -335,7 +335,7 @@ export class ViewctsComponent implements OnInit{
   handlesize(event: any) {
     debugger;
     this.selectedsize = event.value;
-    var caratData = this.SizeDetails.filter(e => e == this.selectedsize);
+    var caratData = this.SizeDetails.filter(e => e.sizeId == this.selectedsize);
     if (caratData != null && caratData.length > 0){
       this.selectedtotalcarat = caratData[0].totalCarat;
     }
@@ -343,13 +343,22 @@ export class ViewctsComponent implements OnInit{
       this.selectedtotalcarat = 0;
     }
     //this.getnumber();
-    this.sharedService.customGetApi("Service/GetPriceBySize?size=" +  encodeURIComponent(this.selectedsize) + "&companyid=" + this.RememberCompany.company.id).subscribe((t) => {
-      if (t.success == true){
-        if (t.data != null && t.data.length > 0){
-          this.numbers = t.data;
+    
+      this.sharedService.customGetApi("Service/GetPriceBySize?size=" +  encodeURIComponent(this.selectedsize) + "&companyid=" + this.RememberCompany.company.id).subscribe((t) => {
+        if (t.success == true){
+          if (t.data != null && t.data.length > 0){
+            this.numbers = t.data;
+            if (this.NumberDetails != null && this.NumberDetails.length > 0 && this.NumberDetails.filter(e => e.sizeId == this.selectedsize).length > 0){
+              this.NumberDetails.filter(e => e.sizeId == this.selectedsize).forEach(e => {
+                debugger;
+                this.numbers.find(z => z.numberName == e.numberId).carat = e.carat;
+                this.numbers.find(z => z.numberName == e.numberId).price = e.rate;
+              });
+            }
+          }
         }
-      }
-    });     
+      });    
+    
   }
 
   calculateTotal(item: any) {
@@ -454,15 +463,16 @@ export class ViewctsComponent implements OnInit{
         }
     }
 
-
+    this.NumberDetails = this.NumberDetails.filter(item => item.sizeId !== this.selectedsize);
     this.numbers.forEach(e => {
+      debugger;
       if (e.carat != 0){
         this.NumberDetails.push({
           sizeId : this.selectedsize,
-          numberId : e.number,
+          numberId : e.numberName,
           carat : e.carat,
           rate : e.price,
-          numberName: e.number,
+          numberName: e.numberName,
           amount: e.total,
           //sizename: this.selectedsize,
           percentage : (e.carat / this.selectedtotalcarat) * 100
@@ -470,7 +480,7 @@ export class ViewctsComponent implements OnInit{
       }
     });
 
-    
+    this.numbers = [];
 
     // if (this.selectednumber.id == '')
     // {
@@ -545,6 +555,8 @@ export class ViewctsComponent implements OnInit{
     
 
     this.showMessage('success','Items added successfully');
+    this.selectedtotalcarat = 0;
+    this.selectedsize = "--select--"
     //this.selectednumber = this.numbers.filter(e => e.id == '');
     //this.selectedcarat = 0;
     //this.selectedrate = 0;
