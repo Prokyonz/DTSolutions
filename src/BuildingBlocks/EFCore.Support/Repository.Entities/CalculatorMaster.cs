@@ -19,8 +19,8 @@ namespace Repository.Entities
         public string CompanyId { get; set; }
         public string BranchId { get; set; }
         public string FinancialYearId { get; set; }
-        public string SizeName { get; set; }
-        public string Number { get; set; }
+        public string SizeId { get; set; }
+        public string NumberId { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal NetCarat { get; set; }

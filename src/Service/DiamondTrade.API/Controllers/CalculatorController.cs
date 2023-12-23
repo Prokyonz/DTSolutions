@@ -90,7 +90,7 @@ namespace DiamondTrade.API.Controllers
                         calculatorMaster.Date = calculator.Date;
                         calculatorMaster.CreatedDate = DateTime.Now;
                         calculatorMaster.CreatedBy = calculator.UserId;
-                        calculatorMaster.SizeName = x.SizeId;
+                        calculatorMaster.SizeId = x.SizeId;
                         calculatorMaster.NetCarat = calculator.NetCarat;
                         calculatorMaster.TotalCarat = x.TotalCarat;
                         calculatorMaster.IsDelete = false;
@@ -98,7 +98,7 @@ namespace DiamondTrade.API.Controllers
                         calculatorMaster.Amount = number.Amount;
                         calculatorMaster.Carat = number.Carat;
                         calculatorMaster.Percentage = number.Percentage;
-                        calculatorMaster.Number = number.NumberId;
+                        calculatorMaster.NumberId = number.NumberId;
                         calculatorMaster.Note = calculator.Note;
                         calculatorMasterList.Add(calculatorMaster);
                     });
