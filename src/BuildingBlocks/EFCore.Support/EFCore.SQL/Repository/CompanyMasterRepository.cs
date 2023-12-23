@@ -53,7 +53,10 @@ namespace EFCore.SQL.Repository
 
         public void Dispose()
         {
-            _databaseContext.DisposeAsync();
+            if (_databaseContext != null)
+            {
+                _databaseContext.DisposeAsync();
+            }
         }
 
         public async Task<List<CompanyMaster>> GetAllCompanyAsync()

@@ -27,5 +27,6 @@ namespace EFCore.SQL.Interface
         Task<List<PriceSPModel>> GetDefaultPriceList();
         Task<List<string>> GetAllSizesAsync();
         Task<List<string>> GetAllNumberAsync();
+        Task<List<PriceMasterMobile>> GetPriceBySize(string size, string CompanyId);
     }
 }

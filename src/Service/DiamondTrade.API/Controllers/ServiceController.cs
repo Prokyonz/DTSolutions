@@ -4,6 +4,7 @@ using EFCore.SQL.Repository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Entities;
+using System;
 using System.Threading.Tasks;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -168,6 +169,26 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _priceMaster.GetAllNumberAsync();
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [Route("GetPriceBySize")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetNumber(string size,string companyId)
+        {
+            try
+            {
+                var result = await _priceMaster.GetPriceBySize(Uri.UnescapeDataString(size), companyId);
                 return new Response<dynamic>
                 {
                     StatusCode = 200,

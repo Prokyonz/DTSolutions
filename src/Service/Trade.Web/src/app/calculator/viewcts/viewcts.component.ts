@@ -24,7 +24,7 @@ interface CalculatorMaster{
 
 interface NumberDetails {
   sizeId: string,
-  numberId: string,
+  //numberId: string,
   carat: number,
   rate: number,
   numberName: string,
@@ -82,7 +82,7 @@ export class ViewctsComponent implements OnInit{
   NumberDetails: NumberDetails[] = [];
   SizeDetails: SizeDetails[] = [];
   summatydata: Summary[] = [];
-  selectednumber: any;
+  //selectednumber: any;
   selectedsize: any;
   selectedcarat : number = 0;
   selectedrate : number = 0;
@@ -290,7 +290,7 @@ export class ViewctsComponent implements OnInit{
         if (t.success == true){
           if (t.data != null && t.data.length > 0){          
             t.data = [
-              { name: '-Select-', id: '' },
+              '--select--',
               ...t.data
             ];
           }
@@ -300,17 +300,25 @@ export class ViewctsComponent implements OnInit{
   }
 
   getnumber(){
-    this.sharedService.customGetApi("Service/GetNumber").subscribe((t) => {
+    // this.sharedService.customGetApi("Service/GetNumber").subscribe((t) => {
+    //   if (t.success == true){
+    //     if (t.success == true){
+    //       if (t.data != null && t.data.length > 0){          
+    //         t.data = [
+    //           '--select--',
+    //           ...t.data
+    //         ];
+    //       }
+    //     }
+    //     this.numbers = t.data;
+    //   }
+    // });
+    
+    this.sharedService.customGetApi("Service/GetPriceBySize?size=" + this.selectedsize + "&companyid=" + this.RememberCompany.company.id).subscribe((t) => {
       if (t.success == true){
-        if (t.success == true){
-          if (t.data != null && t.data.length > 0){          
-            t.data = [
-              { name: '-Select-', id: '' },
-              ...t.data
-            ];
-          }
+        if (t.data != null && t.data.length > 0){
+          this.numbers = t.data;
         }
-        this.numbers = t.data;
       }
     });      
   }
@@ -318,25 +326,35 @@ export class ViewctsComponent implements OnInit{
   getAllNumberPrice(){
     this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.RememberCompany.company.id + "&categoryId=0").subscribe((t) => {
       if (t.success == true){
+        debugger;
        this.pricelist = t.data;
       }
     });      
   }
 
   handlesize(event: any) {
+    debugger;
     this.selectedsize = event.value;
-    var caratData = this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id);
+    var caratData = this.SizeDetails.filter(e => e == this.selectedsize);
     if (caratData != null && caratData.length > 0){
       this.selectedtotalcarat = caratData[0].totalCarat;
     }
     else{
       this.selectedtotalcarat = 0;
     }
+    //this.getnumber();
+    this.sharedService.customGetApi("Service/GetPriceBySize?size=" +  encodeURIComponent(this.selectedsize) + "&companyid=" + this.RememberCompany.company.id).subscribe((t) => {
+      if (t.success == true){
+        if (t.data != null && t.data.length > 0){
+          this.numbers = t.data;
+        }
+      }
+    });     
   }
 
   handlerate(event: any) {
-    var retdata = this.pricelist.filter(e => e.sizeId == this.selectedsize.id && e.numberId == event.value.id);
-    this.selectedrate = (retdata != null && retdata.length > 0) ? retdata[0].price : 0;
+    // var retdata = this.pricelist.filter(e => e.sizeName == this.selectedsize && e.numberId == event.value.id);
+    // this.selectedrate = (retdata != null && retdata.length > 0) ? retdata[0].price : 0;
     // this.selectedsize = event.value;
     // var caratData = this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id);
     // if (caratData != null && caratData.length > 0){
@@ -360,9 +378,9 @@ export class ViewctsComponent implements OnInit{
     this.calculatorList(StartDate, EndDate)
   }
 
-  handlenumber(event: any) {
-    this.selectednumber = event.value.number;
-  }
+  // handlenumber(event: any) {
+  //   this.selectednumber = event.value.number;
+  // }
   handleparty(event: any){
     this.partyid = event.value;
   }
@@ -390,11 +408,11 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Size total carat can not be less than or equal to zero');
       return;
     }
-    if (this.selectednumber.id == '')
-    {
-      this.showMessage('error','Select any number');
-      return;
-    }
+    // if (this.selectednumber.id == '')
+    // {
+    //   this.showMessage('error','Select any number');
+    //   return;
+    // }
     if (this.selectedcarat <= 0)
     {
       this.showMessage('error','Number carat can not be less than or equal to zero');
@@ -405,7 +423,10 @@ export class ViewctsComponent implements OnInit{
     //   this.showMessage('error','Number rate can not be less than or equal to zero');
     //   return;
     // }
-    if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id && e.numberId == this.selectednumber.id).length > 0)
+
+    // && e.numberId == this.selectednumber.id
+
+    if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id).length > 0)
     {
       this.showMessage('error','Selected number exist in selected size.');
       return;
@@ -449,18 +470,18 @@ export class ViewctsComponent implements OnInit{
    
       this.NumberDetails.push({
         sizeId : this.selectedsize.id,
-        numberId : this.selectednumber.id,
+        //numberId : this.selectednumber.id,
         carat : this.selectedcarat,
         //rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
         rate : this.selectedrate,
-        numberName: this.selectednumber.name,
+        numberName: '',
         //amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
         amount: this.selectedcarat * this.selectedrate,
         //percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
         percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
     });
     this.showMessage('success','Items added successfully');
-    this.selectednumber = this.numbers.filter(e => e.id == '');
+    //this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedcarat = 0;
     this.selectedrate = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
@@ -517,7 +538,7 @@ export class ViewctsComponent implements OnInit{
         item.numberDetails.forEach(s => {
           this.NumberDetails.push({
             sizeId : s.sizeId,
-            numberId : s.numberId,
+            //numberId : s.numberId,
             carat : s.carat,
             rate : s.rate,
             numberName: s.numberName,
@@ -643,7 +664,7 @@ export class ViewctsComponent implements OnInit{
     this.getdealer();
     this.getbranch();
     this.getsize();
-    this.getnumber();
+    //this.getnumber();
     this.getAllNumberPrice();
     this.showAddSection = true;
     this.showViewSection = false;
@@ -660,7 +681,7 @@ export class ViewctsComponent implements OnInit{
     this.NumberDetails = [];
     this.SizeDetails = [];
     this.summatydata = [];
-    this.selectednumber = this.numbers.filter(e => e.id == '');
+    //this.selectednumber = this.numbers.filter(e => e.id == '');
     this.selectedsize = this.sizes.filter(e => e.Id == '');
     this.selectedcarat = 0;
     this.selectedrate = 0;

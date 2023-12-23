@@ -129,5 +129,13 @@ namespace EFCore.SQL.Repository
                 return await _databaseContext.PriceMasterMobile.Select(s => s.NumberName).Distinct().ToListAsync();
             }
         }
+
+        public async Task<List<PriceMasterMobile>> GetPriceBySize(string size, string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.PriceMasterMobile.Where(s => s.SizeName == size && s.CompanyId == companyId).ToListAsync();
+            }
+        }
     }
 }

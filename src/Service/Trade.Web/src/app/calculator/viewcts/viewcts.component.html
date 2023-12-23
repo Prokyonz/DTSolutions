@@ -68,7 +68,7 @@
                     <tr style="border-bottom: 1px groove red;">
                         <td style="width: 50%;">   
                             <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
-                            <p-dropdown [options]="sizes" optionLabel="name" (onChange)="handlesize($event)" [(ngModel)] = "selectedsize"></p-dropdown>                            
+                            <p-dropdown [options]="sizes" (onChange)="handlesize($event)" [(ngModel)] = "selectedsize"></p-dropdown>                            
                         </td>
                         <td style="width:50%;">   
                             <span style="bottom: 5px; position: relative;">Total Carats</span><br/>                                                       
@@ -79,26 +79,26 @@
                         <td colspan="2">   
                             <p-panel header="Number Details">
                                 <table style="width:100%;">
-                                    <tr>
-                                        <td colspan="2">   
-                                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                                            <p-dropdown [options]="numbers" optionLabel="name" (onChange)="handlerate($event)" [(ngModel)] = "selectednumber"></p-dropdown>  
-                                        </td>                                                                                 
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 50%;">
-                                            <br/>
+                                    <tr *ngFor="let item of numbers">
+                                        <td>   
+                                            <span style="bottom: 5px; position: relative;">Number</span><br/>         
+                                            <input pInputText [(ngModel)]="item.numberName"  style="width: 100%;" />                                              
+                                            <!-- <p-dropdown [options]="numbers" (onChange)="handlerate($event)" [(ngModel)] = "selectednumber"></p-dropdown>   -->
+                                        </td>    
+                                        <td>
                                             <span style="bottom: 5px; position: relative;">CTS</span><br/>                                                       
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedcarat"/>
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" />
                                         </td>
-                                        <td style="width: 50%;">
-                                            <br/>
+                                        <td>
                                             <span style="bottom: 5px; position: relative;">Rate</span><br/>                                                       
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedrate"/>
-                                        </td>
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" />
+                                        </td>                                                                             
                                     </tr>
+                                    <!-- <tr>
+                                        
+                                    </tr> -->
                                     <tr>
-                                        <td colspan="2" style="vertical-align: bottom;">     
+                                        <td colspan="3" style="vertical-align: bottom;">     
                                             <span></span><br/>                                                
                                             <p-button label="Add Item" (onClick)="addItems()"></p-button>                         
                                         </td>
