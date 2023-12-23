@@ -27,6 +27,7 @@ namespace Repository.Entities
     public class PriceMasterMobile
     {
         private int _carat = 0;
+        private int _total = 0;
         public int Sr { get; }
         [Key]
         public string Id { get; set; }
@@ -47,6 +48,13 @@ namespace Repository.Entities
         {
             get { return _carat; }
             set { value = _carat; }
+        }
+
+        [NotMapped]
+        public decimal Total
+        {
+            get { return _total; }
+            set { value = _total; }
         }
     }
 }

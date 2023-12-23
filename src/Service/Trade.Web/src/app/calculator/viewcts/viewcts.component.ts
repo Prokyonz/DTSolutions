@@ -77,7 +77,7 @@ export class ViewctsComponent implements OnInit{
   dealers: any[] = [];
   sizes: any[] = [];
   numbers: any[] = [];
-  pricelist: any[] = [];
+  //pricelist: any[] = [];
   comanyid: string = "";
   NumberDetails: NumberDetails[] = [];
   SizeDetails: SizeDetails[] = [];
@@ -323,14 +323,14 @@ export class ViewctsComponent implements OnInit{
     });      
   }
 
-  getAllNumberPrice(){
-    this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.RememberCompany.company.id + "&categoryId=0").subscribe((t) => {
-      if (t.success == true){
-        debugger;
-       this.pricelist = t.data;
-      }
-    });      
-  }
+  // getAllNumberPrice(){
+  //   this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.RememberCompany.company.id + "&categoryId=0").subscribe((t) => {
+  //     if (t.success == true){
+  //       debugger;
+  //      this.pricelist = t.data;
+  //     }
+  //   });      
+  // }
 
   handlesize(event: any) {
     debugger;
@@ -350,6 +350,11 @@ export class ViewctsComponent implements OnInit{
         }
       }
     });     
+  }
+
+  calculateTotal(item: any) {
+    // Assuming you want to calculate the total based on CTS and Rate
+    item.total = item.carat * item.price;
   }
 
   handlerate(event: any) {
@@ -398,7 +403,7 @@ export class ViewctsComponent implements OnInit{
   }
   
   addItems(){
-    if (this.selectedsize.id == '')
+    if (this.selectedsize == null || this.selectedsize == '')
     {
       this.showMessage('error','Select any size');
       return;
@@ -408,16 +413,67 @@ export class ViewctsComponent implements OnInit{
       this.showMessage('error','Size total carat can not be less than or equal to zero');
       return;
     }
+    if (this.numbers != null && this.numbers.length > 0 && this.numbers.filter(e => e.carat == 0 ).length == this.numbers.length){
+      this.showMessage('error','select any number');
+      return;
+    }
+    if (this.SizeDetails.filter(e => e.sizeId == this.selectedsize).length == 0){
+      this.SizeDetails.push({
+        sizeId : this.selectedsize,
+        sizeName: this.selectedsize,
+        totalCarat: this.selectedtotalcarat,
+        numberDetails: []
+      });
+
+      this.summatydata.push({
+        sizeId: this.selectedsize,
+        sizeName : this.selectedsize,
+        percentage : 0,
+        amount : 0,
+        rate: 0,
+        totCarat : this.selectedtotalcarat
+      });
+    }
+    else{
+        let index = this.SizeDetails.findIndex((item) => item.sizeId === this.selectedsize);
+        if (index !== -1) {
+          this.SizeDetails[index].sizeId = this.selectedsize;
+          this.SizeDetails[index].sizeName = this.selectedsize;
+          this.SizeDetails[index].totalCarat = this.selectedtotalcarat;
+          this.SizeDetails[index].numberDetails = []
+        }
+  
+        index = this.summatydata.findIndex((item) => item.sizeId === this.selectedsize);
+        if (index !== -1) {
+          this.summatydata[index].sizeId = this.selectedsize;
+          this.summatydata[index].sizeName = this.selectedsize;
+          this.summatydata[index].percentage = 0;
+          this.summatydata[index].rate = 0;
+          this.summatydata[index].amount = 0;
+          this.summatydata[index].totCarat =  this.selectedtotalcarat;
+        }
+    }
+
+    this.NumberDetails.push({
+      sizeId : this.selectedsize,
+      //numberId : this.selectednumber.id,
+      carat : this.selectedcarat,
+      rate : this.selectedrate,
+      numberName: '',
+      amount: this.selectedcarat * this.selectedrate,
+      percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
+    });
+
     // if (this.selectednumber.id == '')
     // {
     //   this.showMessage('error','Select any number');
     //   return;
     // }
-    if (this.selectedcarat <= 0)
-    {
-      this.showMessage('error','Number carat can not be less than or equal to zero');
-      return;
-    }
+    // if (this.selectedcarat <= 0)
+    // {
+    //   this.showMessage('error','Number carat can not be less than or equal to zero');
+    //   return;
+    // }
     // if (this.selectedrate <= 0)
     // {
     //   this.showMessage('error','Number rate can not be less than or equal to zero');
@@ -426,64 +482,64 @@ export class ViewctsComponent implements OnInit{
 
     // && e.numberId == this.selectednumber.id
 
-    if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id).length > 0)
-    {
-      this.showMessage('error','Selected number exist in selected size.');
-      return;
-    }
-    if (this.SizeDetails.filter(e => e.sizeId == this.selectedsize.id).length == 0){
-      this.SizeDetails.push({
-        sizeId : this.selectedsize.id,
-        sizeName: this.selectedsize.name,
-        totalCarat: this.selectedtotalcarat,
-        numberDetails: []
-      });
+    // if (this.NumberDetails.filter(e => e.sizeId == this.selectedsize.id).length > 0)
+    // {
+    //   this.showMessage('error','Selected number exist in selected size.');
+    //   return;
+    // }
+    // if (this.SizeDetails.filter(e => e.sizeId == this.selectedsize).length == 0){
+    //   this.SizeDetails.push({
+    //     sizeId : this.selectedsize.id,
+    //     sizeName: this.selectedsize.name,
+    //     totalCarat: this.selectedtotalcarat,
+    //     numberDetails: []
+    //   });
 
-      this.summatydata.push({
-        sizeId: this.selectedsize.id,
-        sizeName : this.selectedsize.name,
-        percentage : 0,
-        amount : 0,
-        rate: 0,
-        totCarat : this.selectedtotalcarat
-      });
-    }
-    else{
-      let index = this.SizeDetails.findIndex((item) => item.sizeId === this.selectedsize.id);
-      if (index !== -1) {
-        this.SizeDetails[index].sizeId = this.selectedsize.id;
-        this.SizeDetails[index].sizeName = this.selectedsize.name;
-        this.SizeDetails[index].totalCarat = this.selectedtotalcarat;
-        this.SizeDetails[index].numberDetails = []
-      }
+    //   this.summatydata.push({
+    //     sizeId: this.selectedsize.id,
+    //     sizeName : this.selectedsize.name,
+    //     percentage : 0,
+    //     amount : 0,
+    //     rate: 0,
+    //     totCarat : this.selectedtotalcarat
+    //   });
+    // }
+    // else{
+    //   let index = this.SizeDetails.findIndex((item) => item.sizeId === this.selectedsize.id);
+    //   if (index !== -1) {
+    //     this.SizeDetails[index].sizeId = this.selectedsize.id;
+    //     this.SizeDetails[index].sizeName = this.selectedsize.name;
+    //     this.SizeDetails[index].totalCarat = this.selectedtotalcarat;
+    //     this.SizeDetails[index].numberDetails = []
+    //   }
 
-      index = this.summatydata.findIndex((item) => item.sizeId === this.selectedsize.id);
-      if (index !== -1) {
-        this.summatydata[index].sizeId = this.selectedsize.id;
-        this.summatydata[index].sizeName = this.selectedsize.name;
-        this.summatydata[index].percentage = 0;
-        this.summatydata[index].rate = 0;
-        this.summatydata[index].amount = 0;
-        this.summatydata[index].totCarat =  this.selectedtotalcarat;
-      }
-    }
+    //   index = this.summatydata.findIndex((item) => item.sizeId === this.selectedsize.id);
+    //   if (index !== -1) {
+    //     this.summatydata[index].sizeId = this.selectedsize.id;
+    //     this.summatydata[index].sizeName = this.selectedsize.name;
+    //     this.summatydata[index].percentage = 0;
+    //     this.summatydata[index].rate = 0;
+    //     this.summatydata[index].amount = 0;
+    //     this.summatydata[index].totCarat =  this.selectedtotalcarat;
+    //   }
+    // }
    
-      this.NumberDetails.push({
-        sizeId : this.selectedsize.id,
-        //numberId : this.selectednumber.id,
-        carat : this.selectedcarat,
-        //rate : (retdata != null && retdata.length > 0) ? retdata[0].price : 0,
-        rate : this.selectedrate,
-        numberName: '',
-        //amount: this.selectedcarat * ((retdata != null && retdata.length > 0) ? retdata[0].price : 0),
-        amount: this.selectedcarat * this.selectedrate,
-        //percentage : (retdata != null && retdata.length > 0) ? (this.selectedcarat / (retdata[0].price)) * 100 : 0
-        percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
-    });
+    // this.NumberDetails.push({
+    //   sizeId : this.selectedsize.id,
+    //   //numberId : this.selectednumber.id,
+    //   carat : this.selectedcarat,
+    //   rate : this.selectedrate,
+    //   numberName: '',
+    //   amount: this.selectedcarat * this.selectedrate,
+    //   percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
+    // });
+    debugger;
+    
+
     this.showMessage('success','Items added successfully');
     //this.selectednumber = this.numbers.filter(e => e.id == '');
-    this.selectedcarat = 0;
-    this.selectedrate = 0;
+    //this.selectedcarat = 0;
+    //this.selectedrate = 0;
     // if (this.selectedsizeonly.findIndex((s: any) => s == this.selectedsize) < 0){
     //   this.selectedsizeonly.push(this.selectedsize);
     // }    
@@ -665,7 +721,7 @@ export class ViewctsComponent implements OnInit{
     this.getbranch();
     this.getsize();
     //this.getnumber();
-    this.getAllNumberPrice();
+    //this.getAllNumberPrice();
     this.showAddSection = true;
     this.showViewSection = false;
     this.showHomeSection = false;

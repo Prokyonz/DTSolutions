@@ -87,12 +87,16 @@
                                         </td>    
                                         <td>
                                             <span style="bottom: 5px; position: relative;">CTS</span><br/>                                                       
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" />
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" (ngModelChange)="calculateTotal(item)" />
                                         </td>
                                         <td>
                                             <span style="bottom: 5px; position: relative;">Rate</span><br/>                                                       
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" />
-                                        </td>                                                                             
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" (ngModelChange)="calculateTotal(item)" />
+                                        </td> 
+                                        <!-- <td>
+                                            <span style="bottom: 5px; position: relative;">Total</span><br/>                                                       
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.total"  />
+                                        </td>                                                                              -->
                                     </tr>
                                     <!-- <tr>
                                         
