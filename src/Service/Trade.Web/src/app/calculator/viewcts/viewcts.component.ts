@@ -24,7 +24,7 @@ interface CalculatorMaster{
 
 interface NumberDetails {
   sizeId: string,
-  //numberId: string,
+  numberId: string,
   carat: number,
   rate: number,
   numberName: string,
@@ -454,15 +454,23 @@ export class ViewctsComponent implements OnInit{
         }
     }
 
-    this.NumberDetails.push({
-      sizeId : this.selectedsize,
-      //numberId : this.selectednumber.id,
-      carat : this.selectedcarat,
-      rate : this.selectedrate,
-      numberName: '',
-      amount: this.selectedcarat * this.selectedrate,
-      percentage : (this.selectedcarat / this.selectedtotalcarat) * 100
+
+    this.numbers.forEach(e => {
+      if (e.carat != 0){
+        this.NumberDetails.push({
+          sizeId : this.selectedsize,
+          numberId : e.number,
+          carat : e.carat,
+          rate : e.price,
+          numberName: e.number,
+          amount: e.total,
+          //sizename: this.selectedsize,
+          percentage : (e.carat / this.selectedtotalcarat) * 100
+        });
+      }
     });
+
+    
 
     // if (this.selectednumber.id == '')
     // {
@@ -594,7 +602,7 @@ export class ViewctsComponent implements OnInit{
         item.numberDetails.forEach(s => {
           this.NumberDetails.push({
             sizeId : s.sizeId,
-            //numberId : s.numberId,
+            numberId : s.numberId,
             carat : s.carat,
             rate : s.rate,
             numberName: s.numberName,
