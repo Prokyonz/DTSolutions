@@ -162,6 +162,7 @@ export class ViewctsComponent implements OnInit{
     //   this.showMessage('error','Select any broker');
     //   return;
     // }
+    debugger;
     if (this.netcarat <= 0)
     {
       this.showMessage('error','Netcarat can not be less than or equal to zero');
@@ -169,7 +170,7 @@ export class ViewctsComponent implements OnInit{
     }
     if (this.NumberDetails.length == 0)
     {
-      this.showMessage('error','Carat item can not be empty');
+      this.showMessage('error','Number details can not be empty');
       return;
     }
     this.isSaveButton = true;
@@ -323,6 +324,10 @@ export class ViewctsComponent implements OnInit{
     });      
   }
 
+  isAnyCaratGreaterThanZero(): boolean {
+    return this.numbers.some(item => item.carat > 0);
+  }
+
   // getAllNumberPrice(){
   //   this.sharedService.customGetApi("Service/GetAllNumberPrice?companyId=" + this.RememberCompany.company.id + "&categoryId=0").subscribe((t) => {
   //     if (t.success == true){
@@ -353,6 +358,7 @@ export class ViewctsComponent implements OnInit{
                 debugger;
                 this.numbers.find(z => z.numberName == e.numberId).carat = e.carat;
                 this.numbers.find(z => z.numberName == e.numberId).price = e.rate;
+                this.numbers.find(z => z.numberName == e.numberId).total = e.amount;
               });
             }
           }
@@ -423,7 +429,7 @@ export class ViewctsComponent implements OnInit{
       return;
     }
     if (this.numbers != null && this.numbers.length > 0 && this.numbers.filter(e => e.carat == 0 ).length == this.numbers.length){
-      this.showMessage('error','select any number');
+      this.showMessage('error','add carat in any number');
       return;
     }
     if (this.SizeDetails.filter(e => e.sizeId == this.selectedsize).length == 0){
@@ -466,7 +472,7 @@ export class ViewctsComponent implements OnInit{
     this.NumberDetails = this.NumberDetails.filter(item => item.sizeId !== this.selectedsize);
     this.numbers.forEach(e => {
       debugger;
-      if (e.carat != 0){
+      if (e.carat > 0){
         this.NumberDetails.push({
           sizeId : this.selectedsize,
           numberId : e.numberName,
@@ -589,6 +595,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   viewitem(items: any){
+    debugger;
     this.date = new Date(items.date);
     this.branchid.id = items.branchId;
     this.branchid.name = items.branchName;
@@ -601,11 +608,11 @@ export class ViewctsComponent implements OnInit{
     this.note = items.note;
     this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
         e.financialYearId == items.financialYearId).forEach(e => {
-      e.sizeDetails?.forEach(item => {
+        e.sizeDetails?.forEach(item => {
         this.SizeDetails.push(item);
         this.summatydata.push({
           sizeId: item.sizeId,
-          sizeName : item.sizeName,
+          sizeName : item.sizeId,
           percentage : 0,
           amount : 0,
           rate : 0,
@@ -617,7 +624,7 @@ export class ViewctsComponent implements OnInit{
             numberId : s.numberId,
             carat : s.carat,
             rate : s.rate,
-            numberName: s.numberName,
+            numberName: s.numberId,
             amount: s.amount,
             percentage : s.percentage
           });

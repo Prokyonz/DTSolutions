@@ -75,22 +75,30 @@
                             <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedtotalcarat"/>                            
                         </td>                        
                     </tr>
-                    <tr>
+                    <tr *ngIf="numbers.length > 0"> 
                         <td colspan="2">   
                             <p-panel header="Number Details">
-                                <table style="width:100%;">
+                                <table style="width:100%;" >
+                                    <tr>
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">Number</span><br/>       
+                                        </th>
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">CTS</span><br/>              
+                                        </th>
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">Rate</span><br/>       
+                                        </th>
+                                    </tr>
                                     <tr *ngFor="let item of numbers">
                                         <td>   
-                                            <span style="bottom: 5px; position: relative;">Number</span><br/>         
-                                            <input pInputText [(ngModel)]="item.numberName"  style="width: 100%;" />                                              
+                                            <input pInputText [(ngModel)]="item.numberName"  style="width: 100%;"  [readonly]="true"/>                                              
                                             <!-- <p-dropdown [options]="numbers" (onChange)="handlerate($event)" [(ngModel)] = "selectednumber"></p-dropdown>   -->
                                         </td>    
                                         <td>
-                                            <span style="bottom: 5px; position: relative;">CTS</span><br/>                                                       
                                             <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" (ngModelChange)="calculateTotal(item)" />
                                         </td>
                                         <td>
-                                            <span style="bottom: 5px; position: relative;">Rate</span><br/>                                                       
                                             <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" (ngModelChange)="calculateTotal(item)" />
                                         </td> 
                                         <!-- <td>
@@ -104,7 +112,7 @@
                                     <tr>
                                         <td colspan="3" style="vertical-align: bottom;">     
                                             <span></span><br/>                                                
-                                            <p-button label="Add Item" (onClick)="addItems()"></p-button>                         
+                                            <p-button label="Add Item" (onClick)="addItems()" [disabled]="!isAnyCaratGreaterThanZero()"></p-button>                         
                                         </td>
                                     </tr>
                                 </table>
