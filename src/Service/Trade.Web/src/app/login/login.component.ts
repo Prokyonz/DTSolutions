@@ -70,6 +70,7 @@ export class LoginComponent implements OnInit {
                 }
               }
           }, (ex: any) => {
+            this.loading = false;
             alert("Error while login : " + JSON.stringify(ex));
           });
     }
