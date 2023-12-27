@@ -134,7 +134,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.PriceMasterMobile.Where(s => s.SizeName == size && s.CompanyId == companyId).ToListAsync();
+                return await _databaseContext.PriceMasterMobile.Where(s => s.SizeName == size && s.CompanyId == companyId).OrderBy(x => x.NumberName).ToListAsync();
             }
         }
     }
