@@ -291,7 +291,7 @@ export class ViewctsComponent implements OnInit{
         if (t.success == true){
           if (t.data != null && t.data.length > 0){          
             t.data = [
-              '--select--',
+              '-Select-',
               ...t.data
             ];
           }
@@ -562,7 +562,7 @@ export class ViewctsComponent implements OnInit{
 
     this.showMessage('success','Items added successfully');
     this.selectedtotalcarat = 0;
-    this.selectedsize = "--select--"
+    this.selectedsize = "-Select-"
     //this.selectednumber = this.numbers.filter(e => e.id == '');
     //this.selectedcarat = 0;
     //this.selectedrate = 0;

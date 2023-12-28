@@ -23,7 +23,8 @@ export class DashboardComponent implements OnInit {
   paymentData: any;
   receiptData: any;
   loading:boolean = false;
-
+  filterReport: any;
+  showDashboard: boolean = false;
   constructor(private sharedService: SharedService, private messageService: MessageService,
     private datePipe: DatePipe,  @Inject(LOCALE_ID) public locale: string){}
 
@@ -35,6 +36,22 @@ export class DashboardComponent implements OnInit {
       //this.endDate = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
       this.firstDate = this.datePipe.transform(this.RememberCompany.financialyear.startDate, 'yyyy-MM-dd');
       this.endDate = this.datePipe.transform(this.RememberCompany.financialyear.endDate, 'yyyy-MM-dd');
+
+      let userInfo = localStorage.getItem("loginremember");
+
+      if(userInfo != null) {
+        let userName = JSON.parse(userInfo).username;
+        this.sharedService.customGetApi("Auth/GetPermissionList?userid=" + localStorage.getItem("userid"))
+        .subscribe((data: any) => {
+              this.filterReport = data.data;
+              if (this.filterReport.filter((e : any) => e == "mobile_dashboard").length > 0){
+                this.showDashboard = true;
+              }              
+            }, (ex: any) => {
+              this.loading = false;
+          });
+      }
+
       this.loadDashboard();
   }
 

@@ -96,10 +96,10 @@
                                             <!-- <p-dropdown [options]="numbers" (onChange)="handlerate($event)" [(ngModel)] = "selectednumber"></p-dropdown>   -->
                                         </td>    
                                         <td>
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" (ngModelChange)="calculateTotal(item)" />
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" (ngModelChange)="calculateTotal(item)" inputmode="decimal" />
                                         </td>
                                         <td>
-                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" (ngModelChange)="calculateTotal(item)" />
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" (ngModelChange)="calculateTotal(item)" inputmode="decimal" />
                                         </td> 
                                         <!-- <td>
                                             <span style="bottom: 5px; position: relative;">Total</span><br/>                                                       
@@ -368,6 +368,12 @@
                             <p-columnFilter type="number" field="netCarat" display="menu"></p-columnFilter>
                         </div>
                     </th> 
+                    <th style="min-width: 10rem">
+                        <div class="flex align-items-center">
+                            User
+                            <p-columnFilter field="userName" display="menu"></p-columnFilter>
+                        </div>
+                    </th> 
                     <th>
                         <div class="flex align-items-center">
                             Action
@@ -394,6 +400,9 @@
                     </td>        
                     <td>
                         {{ calculatorData.netCarat  }}
+                    </td>   
+                    <td>
+                        {{ calculatorData.userName  }}
                     </td>            
                     <td>
                         <i class="pi text-blue-500 pi-search" (click)="viewitem(calculatorData)"></i>

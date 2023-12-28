@@ -1,4 +1,11 @@
 <app-header [showSideBar]="true" title="Dashboard" iconName="pi-align-justify" leftIconName=""></app-header>
+
+
+<ng-template #noDashboardMessage>
+    <p>You have nothing to show.</p>
+  </ng-template>
+
+<div class="panel" *ngIf="showDashboard; else noDashboardMessage">
 <!-- <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar> -->
 
 <div class="panel">
@@ -50,6 +57,7 @@
             <span class="amount">{{ receiptData }}</span>
         </p-card>
     </div>
+</div>
 </div>
 <div class="progress-spinner" *ngIf="loading">
     <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
