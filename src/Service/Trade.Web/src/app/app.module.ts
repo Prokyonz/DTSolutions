@@ -40,6 +40,7 @@ import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
 import { DatePipe } from '@angular/common';
 import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
+import { BalancesheetComponent } from './report/balancesheet/balancesheet.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
     FilterbarComponent,
     CompanyselectionComponent,
     KapanlagadComponent,
+    BalancesheetComponent,
   ],
   imports: [
     BrowserModule,
