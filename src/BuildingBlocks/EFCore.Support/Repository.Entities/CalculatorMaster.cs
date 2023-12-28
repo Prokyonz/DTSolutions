@@ -41,5 +41,8 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsDelete { get; set; }
+
+        [NotMapped]
+        public string User { get; set; }
     }
 }

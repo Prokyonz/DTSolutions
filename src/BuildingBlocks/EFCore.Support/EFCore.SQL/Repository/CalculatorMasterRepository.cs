@@ -69,7 +69,12 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.CalculatorMaster.Where(s => s.IsDelete == false && s.CompanyId == CompanyId).ToListAsync();
+                var list = await _databaseContext.CalculatorMaster.Where(s => s.IsDelete == false && s.CompanyId == CompanyId).ToListAsync();
+                list.ForEach(x =>
+                {
+                    x.User = _databaseContext.UserMaster.Where(c => c.Id == x.CreatedBy).Select(c => c.UserName).FirstOrDefault();
+                });
+                return list;
             }
         }
 

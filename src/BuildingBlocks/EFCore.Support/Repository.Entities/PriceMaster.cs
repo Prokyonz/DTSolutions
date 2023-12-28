@@ -26,7 +26,6 @@ namespace Repository.Entities
 
     public class PriceMasterMobile
     {
-        private int _carat = 0;
         private int _total = 0;
         public int Sr { get; }
         [Key]
@@ -44,11 +43,8 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
 
         [NotMapped]
-        public decimal Carat
-        {
-            get { return _carat; }
-            set { value = _carat; }
-        }
+        public decimal? Carat { get; set; }
+       
 
         [NotMapped]
         public decimal Total
