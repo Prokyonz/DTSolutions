@@ -291,7 +291,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _companyMaster == null)
                 {
                     _companyMasterRepository = new CompanyMasterRepository();
-                    _companyMaster = await _companyMasterRepository.GetAllCompanyAsync();
+                    _companyMaster = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
                     grdCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
                 }
             }
