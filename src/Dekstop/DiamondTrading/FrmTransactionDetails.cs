@@ -440,10 +440,12 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _partyMasterRepository == null)
                 {
+                    splashScreenManager1.ShowWaitForm();
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlLedgerReport.DataSource = data;
                     grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
+                    splashScreenManager1.CloseWaitForm();
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
