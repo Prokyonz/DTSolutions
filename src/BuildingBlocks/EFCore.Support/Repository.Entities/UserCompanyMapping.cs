@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
@@ -14,5 +15,8 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual UserMaster UserMaster { get; set; }
     }
 }

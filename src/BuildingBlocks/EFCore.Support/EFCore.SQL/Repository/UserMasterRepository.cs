@@ -139,7 +139,14 @@ namespace EFCore.SQL.Repository
                         _databaseContext.UserPermissionChild.RemoveRange(getAllPermisson);
                     }
 
+                    if(userMaster.UserCompanyMappings != null)
+                    {
+                        var getAllCompanyMappings = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userMaster.Id).ToListAsync();
+                        _databaseContext.UserCompanyMappings.RemoveRange(getAllCompanyMappings);
+                    }
+
                     getUser.UserPermissionChilds = userMaster.UserPermissionChilds;
+                    getUser.UserCompanyMappings = userMaster.UserCompanyMappings;
 
                     //await _databaseContext.UserPermissionDetail.AddRangeAsync(userMaster.UserPermissionDetails);
                 }

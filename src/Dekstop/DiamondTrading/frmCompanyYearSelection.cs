@@ -128,7 +128,7 @@ namespace DiamondTrading
 
         private async Task LoadCompany()
         {
-            var companies = await _companyMasterRepository.GetAllCompanyAsync();//await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
+            var companies = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
             lueCompany.Properties.DataSource = companies;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";

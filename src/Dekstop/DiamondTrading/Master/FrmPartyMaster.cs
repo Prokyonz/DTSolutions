@@ -176,7 +176,7 @@ namespace DiamondTrading.Master
             try
             {
                 CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
-                var CompanyList = await companyMasterRepository.GetAllCompanyAsync();
+                var CompanyList = await companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
 
                 if (CompanyList != null)
                 {
