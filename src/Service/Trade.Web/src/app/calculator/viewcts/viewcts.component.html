@@ -376,9 +376,14 @@
                     </th> 
                     <th>
                         <div class="flex align-items-center">
-                            Action
+                            View
                         </div>
                     </th>
+                    <!-- <th>
+                        <div class="flex align-items-center">
+                            Edit
+                        </div>
+                    </th> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-calculatorData>
@@ -407,11 +412,14 @@
                     <td>
                         <i class="pi text-blue-500 pi-search" (click)="viewitem(calculatorData)"></i>
                     </td>
+                    <!-- <td>
+                        <i class="pi text-blue-500 pi-pencil" (click)="edititem(calculatorData)"></i>
+                    </td> -->
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="4">No Data found.</td>
+                    <td colspan="6">No Data found.</td>
                 </tr>
             </ng-template>
         </p-table>

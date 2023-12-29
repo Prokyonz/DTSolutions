@@ -355,7 +355,6 @@ export class ViewctsComponent implements OnInit{
             this.numbers = t.data;
             if (this.NumberDetails != null && this.NumberDetails.length > 0 && this.NumberDetails.filter(e => e.sizeId == this.selectedsize).length > 0){
               this.NumberDetails.filter(e => e.sizeId == this.selectedsize).forEach(e => {
-                debugger;
                 this.numbers.find(z => z.numberName == e.numberId).carat = e.carat;
                 this.numbers.find(z => z.numberName == e.numberId).price = e.rate;
                 this.numbers.find(z => z.numberName == e.numberId).total = e.amount;
@@ -592,6 +591,51 @@ export class ViewctsComponent implements OnInit{
       }
       this.calulateSummary();
     }
+  }
+
+  edititem(items: any){
+    debugger;
+    this.onAddIconClick();  
+    this.PageTitle = "Edit Item";
+    // setTimeout(() => {
+      this.date = new Date(items.date);
+      this.branchid.id = items.branchId;
+      this.branchid.name = items.branchName;
+      this.dealerid.id = items.brokerId;
+      this.dealerid.name = items.brokerName;
+      this.partyid.id = items.partyId;
+      this.partyid.name = items.partyName;
+      
+      this.netcarat = items.netCarat;
+      this.note = items.note;
+
+      this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
+        e.financialYearId == items.financialYearId).forEach(e => {
+          e.sizeDetails?.forEach(item => {
+            this.SizeDetails.push(item);
+            this.summatydata.push({
+              sizeId: item.sizeId,
+              sizeName : item.sizeId,
+              percentage : 0,
+              amount : 0,
+              rate : 0,
+              totCarat : item.totalCarat
+            });
+            item.numberDetails.forEach(s => {
+              this.NumberDetails.push({
+                sizeId : s.sizeId,
+                numberId : s.numberId,
+                carat : s.carat,
+                rate : s.rate,
+                numberName: s.numberId,
+                amount: s.amount,
+                percentage : s.percentage
+              });
+            });
+        });
+    });
+    // }, 2000);
+    
   }
 
   viewitem(items: any){
