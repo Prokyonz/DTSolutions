@@ -73,7 +73,8 @@ export class CompanyselectionComponent {
   }
 
   getCompany(){
-    this.sharedService.customGetApi("Service/GetAllCompany").subscribe((t) => {
+    let userId=localStorage.getItem("userid");
+    this.sharedService.customGetApi("Service/GetAllCompany?userId=" + userId).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){         
           this.Company = t.data;

@@ -14,7 +14,7 @@ namespace EFCore.SQL.Repository
         private DatabaseContext _databaseContext;
         public CompanyMasterRepository()
         {
-            
+
         }
         public async Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster)
         {
@@ -84,7 +84,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s=>s.CompanyId).ToListAsync();
+                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s => s.CompanyId).ToListAsync();
 
                 return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).ToListAsync();
             }

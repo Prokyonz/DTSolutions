@@ -53,7 +53,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteUserAsync(string userId, bool isPermanantDetele = false)
+        public async Task<int> DeleteUserAsync(string userId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {

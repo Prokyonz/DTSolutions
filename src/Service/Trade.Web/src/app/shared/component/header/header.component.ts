@@ -24,6 +24,12 @@ export class HeaderComponent implements OnInit {
 
   transactionReportItems: MenuItem[] = [];
   masterReportItems: MenuItem[] = [];
+  adminReportItems: MenuItem[] = [];
+  stockReportItems: MenuItem[] = [];
+  approvalReportItems: MenuItem[] = [];
+  accountingReportItems: MenuItem[] = [];
+  employeeReportItems: MenuItem[] = [];
+  outstandingReportItems: MenuItem[] = [];
 
   items: MenuItem[] = [
     {
@@ -49,7 +55,7 @@ export class HeaderComponent implements OnInit {
             this.filterReport = data.data;
             if (this.filterReport.filter((e : any) => e == "calculator").length > 0){
               this.items.push({
-                label: 'Calculator',
+                label: 'Average',
                 icon: 'pi pi-fw pi-calculator',
                 routerLink: "/viewcts",
                 expanded: false,
@@ -60,68 +66,8 @@ export class HeaderComponent implements OnInit {
             }
             this.filterReport.forEach((e: any) => {
               switch (e){
-                case 'purchase_report':
-                  this.transactionReportItems.push({
-                      label: 'Purchase',
-                      icon: 'pi pi-fw pi-shopping-cart',
-                      routerLink: "/report/1",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'sales_report':
-                this.transactionReportItems.push({
-                    label: 'Sales',
-                    icon: 'pi pi-fw pi-chart-line',
-                    routerLink: "/report/2",
-                    command: () => {
-                      this.sidebarVisible = false;
-                    }
-                  });
-                break;
-                case 'payment_report':
-                  this.transactionReportItems.push({
-                      label: 'Payment',
-                      icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/3",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'receipt_report':
-                  this.transactionReportItems.push({
-                      label: 'Receipt',
-                      icon: 'pi pi-fw pi-credit-card',
-                      routerLink: "/report/4",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'contra_report':
-                this.transactionReportItems.push({
-                    label: 'Contra',
-                    icon: 'pi pi-fw pi-sync',
-                    routerLink: "/report/5",
-                    command: () => {
-                      this.sidebarVisible = false;
-                    }
-                  });
-                break;
-                case 'expense_report':
-                  this.transactionReportItems.push({
-                      label: 'Expense',
-                      icon: 'pi pi-fw pi-file',
-                      routerLink: "/report/6",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
                 case 'loan_report':
-                  this.transactionReportItems.push({
+                  this.adminReportItems.push({
                       label: 'Loan',
                       icon: 'pi pi-fw pi-money-bill',
                       routerLink: "/report/7",
@@ -130,131 +76,8 @@ export class HeaderComponent implements OnInit {
                       }
                     });
                 break;
-                case 'mixed_report':
-                  this.transactionReportItems.push({
-                      label: 'Rojmel',
-                      icon: 'pi pi-fw pi-refresh',
-                      routerLink: "/report/8",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'pf_report':
-                  this.transactionReportItems.push({
-                      label: 'PF',
-                      icon: 'pi pi-fw pi-users',
-                      routerLink: "/report/9",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'ledger_report':
-                  this.transactionReportItems.push({
-                      label: 'Ledger',
-                      icon: 'pi pi-fw pi-book',
-                      routerLink: "/report/10",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'payable_report':
-                  this.transactionReportItems.push({
-                      label: 'Payable',
-                      icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/11",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'receivable_report':
-                  this.transactionReportItems.push({
-                      label: 'Receivable',
-                      icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/12",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'cashbank_report':
-                  this.transactionReportItems.push({
-                      label: 'Cash Bank',
-                      icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/13",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'salary_report':
-                  this.transactionReportItems.push({
-                      label: 'Salary',
-                      icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/14",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'rejectionin_report':
-                  this.transactionReportItems.push({
-                      label: 'Rejection In',
-                      icon: 'pi pi-fw pi-minus-circle',
-                      routerLink: "/report/15",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'rejectionout_report':
-                  this.transactionReportItems.push({
-                      label: 'Rejection Out',
-                      icon: 'pi pi-fw pi-minus-circle',
-                      routerLink: "/report/16",
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'stock_report':
-                  this.masterReportItems.push({
-                      label: 'Stock Report',
-                      icon: 'pi pi-fw pi-chart-bar',
-                      routerLink: "/report/17",
-                      expanded: false,
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'openingstock_report':
-                  this.masterReportItems.push({
-                      label: 'Opening',
-                      icon: 'pi pi-fw pi-folder-open',
-                      routerLink: "/report/18",
-                      expanded: false,
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
-                case 'weekly_report':
-                  this.masterReportItems.push({
-                      label: 'Weekly',
-                      icon: 'pi pi-fw pi-calendar-plus',
-                      routerLink: "/report/19",
-                      expanded: false,
-                      command: () => {
-                        this.sidebarVisible = false;
-                      }
-                    });
-                break;
                 case 'balance_report':
-                  this.masterReportItems.push({
+                  this.adminReportItems.push({
                       label: 'Balance',
                       icon: 'pi pi-fw pi-briefcase',
                       routerLink: "/balancesheet",
@@ -265,7 +88,7 @@ export class HeaderComponent implements OnInit {
                     });
                 break;
                 case 'profit_report':
-                  this.masterReportItems.push({
+                  this.adminReportItems.push({
                       label: 'Profit',
                       icon: 'pi pi-fw pi-money-bill',
                       routerLink: "/report/21",
@@ -275,8 +98,50 @@ export class HeaderComponent implements OnInit {
                       }
                     });
                 break;  
+                case 'stock_report':
+                  this.stockReportItems.push({
+                      label: 'Stock Report',
+                      icon: 'pi pi-fw pi-chart-bar',
+                      routerLink: "/report/17",
+                      expanded: false,
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'openingstock_report':
+                  this.stockReportItems.push({
+                      label: 'Opening',
+                      icon: 'pi pi-fw pi-folder-open',
+                      routerLink: "/report/18",
+                      expanded: false,
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'rejectionin_report':
+                  this.stockReportItems.push({
+                      label: 'Rejection In',
+                      icon: 'pi pi-fw pi-minus-circle',
+                      routerLink: "/report/15",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'rejectionout_report':
+                  this.stockReportItems.push({
+                      label: 'Rejection Out',
+                      icon: 'pi pi-fw pi-minus-circle',
+                      routerLink: "/report/16",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
                 case 'kapanlagad_report':
-                  this.masterReportItems.push({
+                  this.stockReportItems.push({
                       label: 'Kapan Lagad',
                       icon: 'pi pi-fw pi-question',
                       routerLink: "/kapan",
@@ -286,6 +151,147 @@ export class HeaderComponent implements OnInit {
                       }
                     });
                 break;  
+                case 'purchase_report':
+                  this.approvalReportItems.push({
+                      label: 'Purchase',
+                      icon: 'pi pi-fw pi-shopping-cart',
+                      routerLink: "/report/1",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'sales_report':
+                this.approvalReportItems.push({
+                    label: 'Sales',
+                    icon: 'pi pi-fw pi-chart-line',
+                    routerLink: "/report/2",
+                    command: () => {
+                      this.sidebarVisible = false;
+                    }
+                  });
+                break;
+                case 'payment_report':
+                  this.approvalReportItems.push({
+                      label: 'Payment',
+                      icon: 'pi pi-fw pi-money-bill',
+                      routerLink: "/report/3",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'receipt_report':
+                  this.approvalReportItems.push({
+                      label: 'Receipt',
+                      icon: 'pi pi-fw pi-credit-card',
+                      routerLink: "/report/4",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'contra_report':
+                this.approvalReportItems.push({
+                    label: 'Contra',
+                    icon: 'pi pi-fw pi-sync',
+                    routerLink: "/report/5",
+                    command: () => {
+                      this.sidebarVisible = false;
+                    }
+                  });
+                break;
+                case 'expense_report':
+                  this.approvalReportItems.push({
+                      label: 'Expense',
+                      icon: 'pi pi-fw pi-file',
+                      routerLink: "/report/6",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'cashbank_report':
+                  this.accountingReportItems.push({
+                      label: 'Cash Bank',
+                      icon: 'pi pi-fw pi-money-bill',
+                      routerLink: "/report/13",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'pf_report':
+                  this.accountingReportItems.push({
+                      label: 'PF',
+                      icon: 'pi pi-fw pi-users',
+                      routerLink: "/report/9",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'ledger_report':
+                  this.accountingReportItems.push({
+                      label: 'Ledger',
+                      icon: 'pi pi-fw pi-book',
+                      routerLink: "/report/10",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'mixed_report':
+                  this.accountingReportItems.push({
+                      label: 'Rojmel',
+                      icon: 'pi pi-fw pi-refresh',
+                      routerLink: "/report/8",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'weekly_report':
+                  this.accountingReportItems.push({
+                      label: 'Weekly',
+                      icon: 'pi pi-fw pi-calendar-plus',
+                      routerLink: "/report/19",
+                      expanded: false,
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;     
+                case 'salary_report':
+                  this.employeeReportItems.push({
+                      label: 'Salary',
+                      icon: 'pi pi-fw pi-money-bill',
+                      routerLink: "/report/14",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'payable_report':
+                  this.outstandingReportItems.push({
+                      label: 'Payable',
+                      icon: 'pi pi-fw pi-money-bill',
+                      routerLink: "/report/11",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
+                case 'receivable_report':
+                  this.outstandingReportItems.push({
+                      label: 'Receivable',
+                      icon: 'pi pi-fw pi-money-bill',
+                      routerLink: "/report/12",
+                      command: () => {
+                        this.sidebarVisible = false;
+                      }
+                    });
+                break;
                 default:
                   break;
                   
@@ -298,10 +304,40 @@ export class HeaderComponent implements OnInit {
                 icon: 'pi pi-fw pi-chart-bar',
                 items: [
                   {
-                    label: 'Transaction Report',        
+                    label: 'Admin Reports',        
                     expanded: false,
                     icon: 'pi pi-fw pi-file-o',
-                    items: this.transactionReportItems
+                    items: this.adminReportItems
+                  },
+                  {
+                    label: 'Stock Reports',        
+                    expanded: false,
+                    icon: 'pi pi-fw pi-file-o',
+                    items: this.stockReportItems
+                  },
+                  {
+                    label: 'Approval Reports',        
+                    expanded: false,
+                    icon: 'pi pi-fw pi-file-o',
+                    items: this.approvalReportItems
+                  },
+                  {
+                    label: 'Accounting Reports',        
+                    expanded: false,
+                    icon: 'pi pi-fw pi-file-o',
+                    items: this.accountingReportItems
+                  },
+                  {
+                    label: 'Employee Reports',        
+                    expanded: false,
+                    icon: 'pi pi-fw pi-file-o',
+                    items: this.employeeReportItems
+                  },
+                  {
+                    label: 'Outstanding Reports',        
+                    expanded: false,
+                    icon: 'pi pi-fw pi-file-o',
+                    items: this.outstandingReportItems
                   },
                   ... this.masterReportItems
                 ]
