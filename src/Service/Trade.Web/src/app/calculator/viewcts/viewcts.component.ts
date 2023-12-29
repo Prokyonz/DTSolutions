@@ -16,7 +16,7 @@ interface CalculatorMaster{
   PartyName: string,
   BrokerId: string,
   BrokerName: string,
-  NetCarat: number,
+  NetCarat: number | null,
   Note: string,
   sizeDetails: SizeDetails[] | null,
   UserId: string              
@@ -86,8 +86,8 @@ export class ViewctsComponent implements OnInit{
   selectedsize: any;
   selectedcarat : number = 0;
   selectedrate : number = 0;
-  netcarat: number = 0;
-  selectedtotalcarat: number = 0;
+  netcarat: any;
+  selectedtotalcarat: any;
   valueTextArea: string;
   summaryTotAmount = 0;
   summaryTotRate = 0;
@@ -345,7 +345,7 @@ export class ViewctsComponent implements OnInit{
       this.selectedtotalcarat = caratData[0].totalCarat;
     }
     else{
-      this.selectedtotalcarat = 0;
+      this.selectedtotalcarat = null;
     }
     //this.getnumber();
     
@@ -768,8 +768,8 @@ export class ViewctsComponent implements OnInit{
     this.selectedsize = this.sizes.filter(e => e.Id == '');
     this.selectedcarat = 0;
     this.selectedrate = 0;
-    this.netcarat = 0;
-    this.selectedtotalcarat = 0;
+    this.netcarat = null;
+    this.selectedtotalcarat = null;
     this.summaryTotAmount = 0;
     this.date = new Date();
     this.branchid = this.branches.filter(e => e.id == '');
