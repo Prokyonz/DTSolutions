@@ -77,6 +77,16 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<CompanyMaster>> GetUserCompanyMappingAsync(string userId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s=>s.CompanyId).ToListAsync();
+
+                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).ToListAsync();
+            }
+        }
+
         public async Task<CompanyMaster> UpdateCompanyAsync(CompanyMaster companyMaster)
         {
             using (_databaseContext = new DatabaseContext())
