@@ -1050,6 +1050,7 @@ namespace DiamondTrading
             this.barButtonItem74.Caption = "PF Report";
             this.barButtonItem74.Id = 119;
             this.barButtonItem74.Name = "barButtonItem74";
+            this.barButtonItem74.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem74.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem74_ItemClick);
             // 
             // barButtonItem75
@@ -1057,6 +1058,7 @@ namespace DiamondTrading
             this.barButtonItem75.Caption = "Ledger Report";
             this.barButtonItem75.Id = 120;
             this.barButtonItem75.Name = "barButtonItem75";
+            this.barButtonItem75.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem75.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem75_ItemClick);
             // 
             // barButtonItem77
@@ -1064,6 +1066,7 @@ namespace DiamondTrading
             this.barButtonItem77.Caption = "Payables Report";
             this.barButtonItem77.Id = 122;
             this.barButtonItem77.Name = "barButtonItem77";
+            this.barButtonItem77.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem77.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem77_ItemClick);
             // 
             // barButtonItem78
@@ -1071,6 +1074,7 @@ namespace DiamondTrading
             this.barButtonItem78.Caption = "Receivable Report";
             this.barButtonItem78.Id = 123;
             this.barButtonItem78.Name = "barButtonItem78";
+            this.barButtonItem78.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem78.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem78_ItemClick);
             // 
             // barButtonItem82
@@ -1078,6 +1082,7 @@ namespace DiamondTrading
             this.barButtonItem82.Caption = "Cash Bank Report";
             this.barButtonItem82.Id = 127;
             this.barButtonItem82.Name = "barButtonItem82";
+            this.barButtonItem82.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem82.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem82_ItemClick);
             // 
             // barButtonSalaryReport
@@ -1085,6 +1090,7 @@ namespace DiamondTrading
             this.barButtonSalaryReport.Caption = "Salary Report";
             this.barButtonSalaryReport.Id = 128;
             this.barButtonSalaryReport.Name = "barButtonSalaryReport";
+            this.barButtonSalaryReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonSalaryReport.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonSalaryReport_ItemClick);
             // 
             // barButtonRejectionInReceive
@@ -1092,6 +1098,7 @@ namespace DiamondTrading
             this.barButtonRejectionInReceive.Caption = "Rejection In/Receive";
             this.barButtonRejectionInReceive.Id = 129;
             this.barButtonRejectionInReceive.Name = "barButtonRejectionInReceive";
+            this.barButtonRejectionInReceive.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonRejectionInReceive.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionInReceive_ItemClick);
             // 
             // barButtonRejectionOutSend
@@ -1099,6 +1106,7 @@ namespace DiamondTrading
             this.barButtonRejectionOutSend.Caption = "Rejection Out/Send";
             this.barButtonRejectionOutSend.Id = 130;
             this.barButtonRejectionOutSend.Name = "barButtonRejectionOutSend";
+            this.barButtonRejectionOutSend.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonRejectionOutSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionOutSend_ItemClick);
             // 
             // barSubItem8
@@ -1260,6 +1268,7 @@ namespace DiamondTrading
             this.barButtonItem73.Caption = "Opening Stock Report";
             this.barButtonItem73.Id = 118;
             this.barButtonItem73.Name = "barButtonItem73";
+            this.barButtonItem73.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem73.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem73_ItemClick_1);
             // 
             // barButtonItem76
@@ -1267,6 +1276,7 @@ namespace DiamondTrading
             this.barButtonItem76.Caption = "Weekly Purchase Report";
             this.barButtonItem76.Id = 121;
             this.barButtonItem76.Name = "barButtonItem76";
+            this.barButtonItem76.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem76.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem76_ItemClick);
             // 
             // barButtonItem79
@@ -1274,6 +1284,7 @@ namespace DiamondTrading
             this.barButtonItem79.Caption = "Balance Sheet";
             this.barButtonItem79.Id = 124;
             this.barButtonItem79.Name = "barButtonItem79";
+            this.barButtonItem79.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem79.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem79_ItemClick);
             // 
             // barButtonItem80
@@ -1281,6 +1292,7 @@ namespace DiamondTrading
             this.barButtonItem80.Caption = "Profit Loss";
             this.barButtonItem80.Id = 125;
             this.barButtonItem80.Name = "barButtonItem80";
+            this.barButtonItem80.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem80.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem80_ItemClick);
             // 
             // barButtonItem81
@@ -1288,6 +1300,7 @@ namespace DiamondTrading
             this.barButtonItem81.Caption = "Kapan Lagad";
             this.barButtonItem81.Id = 126;
             this.barButtonItem81.Name = "barButtonItem81";
+            this.barButtonItem81.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonItem81.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem81_ItemClick);
             // 
             // barButtonItem17
