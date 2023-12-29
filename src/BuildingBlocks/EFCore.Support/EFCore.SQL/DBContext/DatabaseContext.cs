@@ -2,10 +2,6 @@
 using Repository.Entities;
 using Repository.Entities.Model;
 using Repository.Entities.Models;
-using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace EFCore.SQL.DBContext
 {
@@ -70,6 +66,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<OpeningStockMaster> OpeningStockMaster { get; set; }
         public DbSet<LedgerBalanceManager> LedgerBalanceManager { get; set; }
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
+        public DbSet<UserCompanyMapping> UserCompanyMappings { get; set; }
         public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
 
 
@@ -190,6 +187,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<LedgerBalanceManager>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CalculatorMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BillPrintModel>().Property(c => c.Id).UseIdentityColumn();
+            modelBuilder.Entity<UserCompanyMapping>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
