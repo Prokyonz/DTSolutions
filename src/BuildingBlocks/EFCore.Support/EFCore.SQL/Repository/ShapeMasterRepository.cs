@@ -38,23 +38,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteShapeAsync(string purityId, bool isPermanantDetele = false)
+        public async Task<int> DeleteShapeAsync(string shapeId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
-                if (getShape != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.ShapeMaster.Remove(getShape);
-                    else
-                        getShape.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + shapeId + "',7").ToListAsync();
+                return resultCount[0].Status;
+                //var getShape = await _databaseContext.ShapeMaster.Where(s => s.Id == purityId).FirstOrDefaultAsync();
+                //if (getShape != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.ShapeMaster.Remove(getShape);
+                //    else
+                //        getShape.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                    return true;
-                }
+                //    return true;
+                //}
 
-                return false;
+                //return false;
             }
         }
 

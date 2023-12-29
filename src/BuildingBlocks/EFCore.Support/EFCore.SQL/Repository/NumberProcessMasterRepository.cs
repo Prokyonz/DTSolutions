@@ -33,20 +33,52 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteNumberProcessAsync(string numberProcessMasterId)
+        public async Task<bool> DeleteNumberProcessAsync(int numberNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.NumberProcessMaster.Where(w => w.Id == numberProcessMasterId).FirstOrDefaultAsync();
-                if (getReccord == null)
+                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.JangadNo == numberNo && w.NumberProcessType == 1).ToListAsync();
+                if (findBoilReceiveRecord.Any())
+                    return false;
+                else
                 {
-                    _databaseContext.NumberProcessMaster.Remove(getReccord);
-                    await _databaseContext.SaveChangesAsync();
+                    var getReccord = await _databaseContext.NumberProcessMaster.Where(w => w.NumberNo == numberNo && w.NumberProcessType == 0).FirstOrDefaultAsync();
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
 
-                    return true;
+                        _databaseContext.NumberProcessMaster.Remove(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
+
+                    return false;
                 }
+            }
+        }
 
-                return false;
+        public async Task<bool> DeleteNumberReceiveProcessAsync(string slipNo, int numberNo, bool isValidateOnly = false)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.JangadNo == numberNo && w.NumberProcessType == 2).ToListAsync();
+                if (findBoilReceiveRecord.Any())
+                    return false;
+                else
+                {
+                    var getReccord = await _databaseContext.NumberProcessMaster.Where(w => w.NumberNo == numberNo && w.NumberProcessType == 1).ToListAsync();
+                    if (getReccord != null)
+                    {
+                        _databaseContext.NumberProcessMaster.RemoveRange(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
+
+                    return false;
+                }
             }
         }
 

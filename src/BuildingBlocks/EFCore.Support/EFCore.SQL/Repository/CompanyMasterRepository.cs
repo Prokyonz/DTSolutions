@@ -37,17 +37,20 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCompanyAsync(string CompanyId)
+        public async Task<int> DeleteCompanyAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
-                if (getCompany != null)
-                {
-                    getCompany.IsDelete = true;
-                }
-                await _databaseContext.SaveChangesAsync();
-                return true;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + CompanyId + "',1").ToListAsync();
+                return resultCount[0].Status;
+
+                //var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == CompanyId).FirstOrDefaultAsync();
+                //if (getCompany != null)
+                //{
+                //    getCompany.IsDelete = true;
+                //}
+                //await _databaseContext.SaveChangesAsync();
+                //return true;
             }
         }
 
@@ -74,6 +77,16 @@ namespace EFCore.SQL.Repository
             {
                 List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
                 return companyMasters;
+            }
+        }
+
+        public async Task<List<CompanyMaster>> GetUserCompanyMappingAsync(string userId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s=>s.CompanyId).ToListAsync();
+
+                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).ToListAsync();
             }
         }
 

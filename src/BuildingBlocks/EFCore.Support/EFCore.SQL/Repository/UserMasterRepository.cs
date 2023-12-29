@@ -57,17 +57,19 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getUser = await _databaseContext.UserMaster.Where(s => s.Id == userId).FirstOrDefaultAsync();
-                if (getUser != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.UserMaster.Remove(getUser);
-                    else
-                        getUser.IsDelete = true;
-                }
-                await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + userId + "',13").ToListAsync();
+                return resultCount[0].Status;
+                //var getUser = await _databaseContext.UserMaster.Where(s => s.Id == userId).FirstOrDefaultAsync();
+                //if (getUser != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.UserMaster.Remove(getUser);
+                //    else
+                //        getUser.IsDelete = true;
+                //}
+                //await _databaseContext.SaveChangesAsync();
 
-                return true;
+                //return true;
             }
         }
 
@@ -106,7 +108,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 LoginResponse loginResponse = new LoginResponse();
-                loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.UserName == userId && w.Password == password && w.IsDelete == false).Include("UserPermissionChilds").FirstOrDefaultAsync();
+                loginResponse.UserMaster = await _databaseContext.UserMaster.Where(w => w.UserName == userId && w.Password == password && w.IsDelete == false).Include("UserPermissionChilds").Include("UserCompanyMappings").FirstOrDefaultAsync();
                 if (loginResponse.UserMaster != null)
                 {
                     //loginResponse.UserRoleMasters = await _databaseContext.UserRoleMaster.Where(w => w.UserId == loginResponse.UserMaster.Id).ToListAsync();

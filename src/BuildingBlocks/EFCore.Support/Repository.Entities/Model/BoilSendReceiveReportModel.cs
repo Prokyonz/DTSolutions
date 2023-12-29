@@ -7,7 +7,7 @@ namespace Repository.Entities.Model
 {
     public class BoilSendReceiveReportModel
     {
-        //public string Id { get; set; }
+        public string BoilSendId { get; set; }
         public int BoilType { get; set; }
         public int BoilNo { get; set; }
         //public int Sr { get; set; }

@@ -39,23 +39,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCurrencyAsync(string currencyId, bool isPermanantDetele = false)
+        public async Task<int> DeleteCurrencyAsync(string currencyId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyId).FirstOrDefaultAsync();
-                if (getCurrency != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.CurrencyMaster.Remove(getCurrency);
-                    else
-                        getCurrency.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + currencyId + "',10").ToListAsync();
+                return resultCount[0].Status;
+                //var getCurrency = await _databaseContext.CurrencyMaster.Where(s => s.Id == currencyId).FirstOrDefaultAsync();
+                //if (getCurrency != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.CurrencyMaster.Remove(getCurrency);
+                //    else
+                //        getCurrency.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                    return true;
-                }
+                //    return true;
+                //}
 
-                return false;
+                //return false;
             }
         }
 

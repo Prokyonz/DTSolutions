@@ -323,7 +323,13 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
-            lueCurrencyType.EditValue = "8cb0a7f4-5a1b-4cd1-a03f-9ba4dd79ad90";
+
+            var defaultcurrency = currencyMaster.Where(x => x.ShortName.ToLower().Contains("inr")).FirstOrDefault();
+            if (defaultcurrency != null)
+            {
+                //lueCurrencyType.EditValue = "8cb0a7f4-5a1b-4cd1-a03f-9ba4dd79ad90";
+                lueCurrencyType.EditValue = defaultcurrency.Id;
+            }
         }
 
         private async Task FillCombos()
@@ -520,6 +526,9 @@ namespace DiamondTrading.Transaction
                     {
                         await GetBuyerList();
                         lueBuyer.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueBuyer.BackColor = default;
+                        lueBuyer.Tag = lueBuyer.BackColor;
+                        lueBuyer.Focus();
                     }
                 }
                 else if (ControlName == lueParty.Name)
@@ -531,6 +540,9 @@ namespace DiamondTrading.Transaction
                     {
                         await GetPartyList();
                         lueParty.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueParty.BackColor = default;
+                        lueParty.Tag = lueParty.BackColor;
+                        lueParty.Focus();
                     }
                 }
                 else if (ControlName == lueBroker.Name)
@@ -542,6 +554,9 @@ namespace DiamondTrading.Transaction
                     {
                         await GetBrokerList();
                         lueBroker.EditValue = frmPartyMaster.CreatedLedgerID;
+                        lueBroker.BackColor = default;
+                        lueBroker.Tag = lueBroker.BackColor;
+                        lueBroker.Focus();
                     }
                 }
             }
@@ -723,7 +738,7 @@ namespace DiamondTrading.Transaction
                     CalculateRejectionValue(false, e.RowHandle);
                 }
 
-                FinalCalculation(e.RowHandle);
+                FinalCalculation(e.RowHandle, false);
             }
             catch
             {
@@ -739,15 +754,15 @@ namespace DiamondTrading.Transaction
         {
             //BeginInvoke(new Action(() =>
             //{
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
+                //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
+                //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
+                //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
 
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
-            //    grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0");
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0");
             //}));
         }
 
@@ -801,7 +816,7 @@ namespace DiamondTrading.Transaction
             //    grvPurchaseDetails.FocusedRowHandle = e.RowHandle;
             //    grvPurchaseDetails.FocusedColumn = colKapan;
             //    e.Valid = false;
-            //}
+            //}         
             else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCarat).ToString().Trim().Length == 0))
             {
                 e.ErrorText = "Please enter Carat detail.";
@@ -968,11 +983,18 @@ namespace DiamondTrading.Transaction
             }
         }
 
-        private void FinalCalculation(int GridRowIndex)
+        private async void FinalCalculation(int GridRowIndex, bool isBranchChange = false)
         {
             try
             {
                 this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                if(isBranchChange)
+                {
+                    decimal TipWeight = Convert.ToDecimal(lueBranch.GetColumnValue("TipWeight"));
+                    decimal CVDWeight = Convert.ToDecimal(lueBranch.GetColumnValue("CVDWeight"));
+                    await GetLessWeightDetailBasedOnCity(lueBranch.GetColumnValue("LessWeightId").ToString(), Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat)), GridRowIndex, TipWeight, CVDWeight);
+                }
+
                 decimal Carat = 0;
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat).ToString().Length != 0)
                     Carat = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat));
@@ -1152,6 +1174,8 @@ namespace DiamondTrading.Transaction
                             txtBrokerPer.Text = "";
                         }
                     }
+
+                    SetGridViewFocus();
                 }
             }
             catch
@@ -1736,6 +1760,14 @@ namespace DiamondTrading.Transaction
         private async void lueBranch_EditValueChanged(object sender, EventArgs e)
         {
             await GetPurchaseNo(false);
+
+            if (grvPurchaseDetails.RowCount != 0)
+            {
+                for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+                {
+                    FinalCalculation(i, true);
+                }
+            }
         }
 
         private async void lueCompany_EditValueChanged(object sender, EventArgs e)
@@ -1780,6 +1812,19 @@ namespace DiamondTrading.Transaction
             {
                 _slipTransferEntries = frmSlipTransfer.SlipTransferDetails;
                 grdSlipParticularsDetails.DataSource = _slipTransferEntries;
+            }
+        }
+
+        private void SetGridViewFocus() 
+        {
+            if (grvPurchaseDetails.VisibleColumns.Count > 0)
+            {
+                if (this.ActiveControl.GetType() != typeof(DevExpress.XtraGrid.GridControl))
+                {
+                    grvPurchaseDetails.Focus();
+                    SendKeys.Send("{TAB}");
+                    grvPurchaseDetails.FocusedColumn = colShape;
+                }
             }
         }
     }

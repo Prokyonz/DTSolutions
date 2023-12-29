@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<PurityMaster>> GetAllPurityAsync(bool isDeleteInclude = false);
         Task<PurityMaster> AddPurityAsync(PurityMaster purityMaster);
         Task<PurityMaster> UpdatePurityAsync(PurityMaster purityMaster);
-        Task<bool> DeletePurityAsync(string purityId, bool isPermanantDetele = false);
+        Task<int> DeletePurityAsync(string purityId, bool isPermanantDetele = false);
     }
 }

@@ -313,9 +313,66 @@ namespace DiamondTrading
                         barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem53.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "pf_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem74.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "ledger_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem75.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "payable_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem77.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "receivable_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem78.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "cashbank_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem82.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "salary_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonSalaryReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "rejectionin_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonRejectionInReceive.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "barButtonRejectionOutSend":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem78.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
                     case "kapanlagad_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem81.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "openingstock_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem73.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "weekly_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem76.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "balance_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem79.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
+                    case "profit_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem80.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;                    
 
                     //Reports Menu - Slip Print
                     case "purchase_slip_print":

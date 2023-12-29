@@ -11,6 +11,6 @@ namespace EFCore.SQL.Interface
         Task<List<BranchMaster>> GetAllBranchAsync(string companyId);
         Task<BranchMaster> AddBranchAsync(BranchMaster branchMaster);
         Task<BranchMaster> UpdateBranchAsync(BranchMaster branchMaster);
-        Task<bool> DeleteBranchAsync(string branchId);
+        Task<int> DeleteBranchAsync(string branchId);
     }
 }

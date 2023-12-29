@@ -39,23 +39,25 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false)
+        public async Task<int> DeleteBrokerageAsync(string brokerageId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageId).FirstOrDefaultAsync();
-                if (getBrokerage != null)
-                {
-                    if (isPermanantDetele)
-                        _databaseContext.BrokerageMaster.Remove(getBrokerage);
-                    else
-                        getBrokerage.IsDelete = true;
-                    await _databaseContext.SaveChangesAsync();
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + brokerageId + "',11").ToListAsync();
+                return resultCount[0].Status;
+                //var getBrokerage = await _databaseContext.BrokerageMaster.Where(b => b.Id == brokerageId).FirstOrDefaultAsync();
+                //if (getBrokerage != null)
+                //{
+                //    if (isPermanantDetele)
+                //        _databaseContext.BrokerageMaster.Remove(getBrokerage);
+                //    else
+                //        getBrokerage.IsDelete = true;
+                //    await _databaseContext.SaveChangesAsync();
 
-                    return true;
-                }
+                //    return true;
+                //}
 
-                return false;
+                //return false;
             }
         }
 

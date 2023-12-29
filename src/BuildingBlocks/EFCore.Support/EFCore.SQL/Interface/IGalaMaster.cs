@@ -10,6 +10,6 @@ namespace EFCore.SQL.Interface
         Task<List<GalaMaster>> GetAllGalaAsync();
         Task<GalaMaster> AddGalaAsync(GalaMaster shapeMaster);
         Task<GalaMaster> UpdateGalaAsync(GalaMaster shapeMaster);
-        Task<bool> DeleteGalaAsync(string galaId, bool isPermanantDetele = false);
+        Task<int> DeleteGalaAsync(string galaId, bool isPermanantDetele = false);
     }
 }

@@ -33,17 +33,56 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteGalaProcessAsync(string galaProcessMasterId)
+        public async Task<bool> DeleteGalaProcessAsync(int galaNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.Id == galaProcessMasterId).FirstOrDefaultAsync();
-                if (getReccord == null)
+                var findBoilReceiveRecord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaNo && w.GalaProcessType == 1).ToListAsync();
+                if (findBoilReceiveRecord.Any())
+                    return false;
+                else
                 {
-                    _databaseContext.GalaProcessMaster.Remove(getReccord);
-                    await _databaseContext.SaveChangesAsync();
+                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.GalaNo == galaNo && w.GalaProcessType == 0).FirstOrDefaultAsync();
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
 
-                    return true;
+                        _databaseContext.GalaProcessMaster.Remove(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteGalaReceiveProcessAsync(string slipNo, int galaJangadNo, bool isValidateOnly = false)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var findBoilReceiveRecord = await _databaseContext.NumberProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.NumberProcessType == 0).ToListAsync();
+                if (findBoilReceiveRecord.Any())
+                    return false;
+                else
+                {
+                    var checkInAssortReceive = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.GalaProcessType == 2).ToListAsync();
+                    if (checkInAssortReceive.Any())
+                        return false;
+
+                    var getReccord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == galaJangadNo && w.GalaProcessType == 1).ToListAsync();
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
+
+                        _databaseContext.GalaProcessMaster.RemoveRange(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
                 }
 
                 return false;

@@ -673,7 +673,7 @@ namespace DiamondTrading
 
         private async void accordionDeleteBtn_Click(object sender, EventArgs e)
         {
-            splashScreenManager1.ShowWaitForm();
+            //splashScreenManager1.ShowWaitForm();
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {                
                 string SelectedGuid;
@@ -693,9 +693,15 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), tempCompanyName), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _companyMasterRepository.DeleteCompanyAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
@@ -704,9 +710,163 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBranchCofirmation), grvBranchMaster.GetFocusedRowCellValue(colBranchName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _branchMasterRepository.DeleteBranchAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
+            {
+                string SelectedGuid = grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _financialYearMasterRepository.DeleteFinancialYearAsync(SelectedGuid);
 
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
+                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     await LoadGridData(true);
+                }
+            }
+
+            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
+            {
+                string SelectedGuid = grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
+            {
+                string SelectedGuid = grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
+            {
+                string SelectedGuid = grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _purityMasterRepository.DeletePurityAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
+            {
+                string SelectedGuid = grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteShapeConfirmation), grvShapeMaster.GetFocusedRowCellValue(colShapeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _shapeMasterRepository.DeleteShapeAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
+            {
+                string SelectedGuid = grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _galaMasterRepository.DeleteGalaAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
+            {
+                string SelectedGuid = grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
+            {
+                string SelectedGuid = grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _currencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
+                }
+            }
+            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
+            {
+                string SelectedGuid = grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString();
+                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabLessWeightGroupMaster)
@@ -717,101 +877,19 @@ namespace DiamondTrading
                     if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCompanyCofirmation), grvLessGroupWeightMaster.GetFocusedRowCellValue(colLessWeightGroupName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                     {
                         var Result = await _lessWeightMasterRepository.DeleteLessWeightMaster(SelectedGuid);
-
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                        await LoadGridData(true);
+                        if (Result > 0)
+                        {
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            await LoadGridData(true);
+                        }
                     }
                 }catch
                 {
                     MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist),"Reference Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabShapeMaster)
-            {
-                string SelectedGuid = grvShapeMaster.GetFocusedRowCellValue(colShapeId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteShapeConfirmation), grvShapeMaster.GetFocusedRowCellValue(colShapeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _shapeMasterRepository.DeleteShapeAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabPurityMaster)
-            {
-                string SelectedGuid = grvPurityMaster.GetFocusedRowCellValue(colPurityId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePurityConfirmation), grvPurityMaster.GetFocusedRowCellValue(colPurityName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _purityMasterRepository.DeletePurityAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
-            {
-                string SelectedGuid = grvSizeMaster.GetFocusedRowCellValue(colSizeId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteSizeConfirmation), grvSizeMaster.GetFocusedRowCellValue(colSizeName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _sizeMasterRepository.DeleteSizeAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabGalaMaster)
-            {
-                string SelectedGuid = grvGalaMaster.GetFocusedRowCellValue(colGalaId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteGalaConfirmation), grvGalaMaster.GetFocusedRowCellValue(colGalaName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _galaMasterRepository.DeleteGalaAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabNumberMaster)
-            {
-                string SelectedGuid = grvNumberMaster.GetFocusedRowCellValue(colNumberId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteNumberConfirmation), grvNumberMaster.GetFocusedRowCellValue(colNumberName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _numberMasterRepository.DeleteNumberAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabFinancialYearMaster)
-            {
-                string SelectedGuid = grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteFinancialYearConfirmation), grvFinancialYearMaster.GetFocusedRowCellValue(colFinancialYearName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _financialYearMasterRepository.DeleteFinancialYearAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabBrokerageMaster)
-            {
-                string SelectedGuid = grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteBrokerageConfirmation), grvBrokerageMaster.GetFocusedRowCellValue(colBrokerageName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _brokerageMasterRepository.DeleteBrokerageAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabCurrencyMaster)
-            {
-                string SelectedGuid = grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteCurrencyConfirmation), grvCurrencyMaster.GetFocusedRowCellValue(colCurrencyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _currencyMasterRepository.DeleteCurrencyAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabKapanMaster)
@@ -820,25 +898,16 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteKapanConfirmation), grvKapanMaster.GetFocusedRowCellValue(colKapanName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _kapanMasterRepository.DeleteKapanAsync(SelectedGuid);
-                    if (Result)
+                    if (Result > 0)
                     {
-                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                        await LoadGridData(true);
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }else
-                        MessageBox.Show("You can not delete this kapan. Please delete all mapping first and then try to delete.","Error", MessageBoxButtons.OK);
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }                                           
                 }                
-            }
-            else if (xtabMasterDetails.SelectedTabPage == xtabLedgerMaster)
-            {
-                string SelectedGuid = grvPartyMaster.GetFocusedRowCellValue(colPartyId).ToString();
-                if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeletePartyCofirmation), grvPartyMaster.GetFocusedRowCellValue(colPartyName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {
-                    var Result = await _partyMasterRepository.DeletePartyAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
-                }
-            }
+            }            
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)
             {
                 string SelectedGuid = grvUserMaster.GetFocusedRowCellValue(colUserID).ToString();
@@ -851,12 +920,18 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DeleteUserCofirmation), grvUserMaster.GetFocusedRowCellValue(colUserName).ToString()), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     var Result = await _userMasterRepository.DeleteUserAsync(SelectedGuid);
-
-                    MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                    await LoadGridData(true);
+                    if (Result > 0)
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.ChildRecordExist), "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "SUCCESS", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        await LoadGridData(true);
+                    }
                 }
             }
-            splashScreenManager1.CloseWaitForm();
+            //splashScreenManager1.CloseWaitForm();
         }
 
         private void grvLessGroupWeightMaster_MasterRowEmpty(object sender, DevExpress.XtraGrid.Views.Grid.MasterRowEmptyEventArgs e)

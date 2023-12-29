@@ -32,17 +32,57 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCharniProcessAsync(string charniProcessMasterId)
+        public async Task<bool> DeleteCharniProcessAsync(int charniNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.Id == charniProcessMasterId).FirstOrDefaultAsync();
-                if (getReccord == null)
+                var findRecordInCharniReceive = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo && w.CharniType == 1).ToListAsync(); //Check in charni receive
+
+                if (findRecordInCharniReceive.Any())
+                    return false;
+
+                var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.CharniNo == charniNo && w.CharniType == 0).FirstOrDefaultAsync();
+
+                if (getReccord != null)
                 {
+                    if (isValidateOnly)
+                        return true;
+
                     _databaseContext.CharniProcessMaster.Remove(getReccord);
                     await _databaseContext.SaveChangesAsync();
 
                     return true;
+                }
+
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteCharniReceiveAsync(string slipNo, int charniNo, bool isValidateOnly = false)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var findCharniSendRecord = await _databaseContext.GalaProcessMaster.Where(w => w.JangadNo == charniNo && w.GalaProcessType == 0).ToListAsync();
+                if (findCharniSendRecord.Any())
+                    return false;
+                else
+                {
+                    var checkInAssortReceive = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo && w.CharniType == 2).ToListAsync();
+                    if (checkInAssortReceive.Any())
+                        return false;
+
+                    var getReccord = await _databaseContext.CharniProcessMaster.Where(w => w.JangadNo == charniNo && w.CharniType == 1).ToListAsync();
+
+                    if (getReccord != null)
+                    {
+                        if (isValidateOnly)
+                            return true;
+
+                        _databaseContext.CharniProcessMaster.RemoveRange(getReccord);
+                        await _databaseContext.SaveChangesAsync();
+
+                        return true;
+                    }
                 }
 
                 return false;

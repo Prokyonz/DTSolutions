@@ -30,27 +30,29 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteKapanAsync(string kapanId, bool isPermanantDetele = false)
+        public async Task<int> DeleteKapanAsync(string kapanId, bool isPermanantDetele = false)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var count = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanId).CountAsync();
-                var openingCount = await _databaseContext.OpeningStockMaster.Where(w => w.KapanId == kapanId).CountAsync();
-                if ((count + openingCount) == 0)
-                {
-                    var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
-                    if (getKapan != null)
-                    {
-                        if (isPermanantDetele)
-                            _databaseContext.KapanMaster.Remove(getKapan);
-                        else
-                            getKapan.IsDelete = true;
+                var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + kapanId + "',14").ToListAsync();
+                return resultCount[0].Status;
+                //var count = await _databaseContext.KapanMappingMaster.Where(w => w.KapanId == kapanId).CountAsync();
+                //var openingCount = await _databaseContext.OpeningStockMaster.Where(w => w.KapanId == kapanId).CountAsync();
+                //if ((count + openingCount) == 0)
+                //{
+                //    var getKapan = await _databaseContext.KapanMaster.Where(s => s.Id == kapanId).FirstOrDefaultAsync();
+                //    if (getKapan != null)
+                //    {
+                //        if (isPermanantDetele)
+                //            _databaseContext.KapanMaster.Remove(getKapan);
+                //        else
+                //            getKapan.IsDelete = true;
 
-                        await _databaseContext.SaveChangesAsync();
-                        return true;
-                    }
-                }
-                return false;
+                //        await _databaseContext.SaveChangesAsync();
+                //        return true;
+                //    }
+                //}
+                //return false;
             }
         }
 

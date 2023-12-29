@@ -246,11 +246,11 @@ namespace DiamondTrade.API.Controllers
 
         [Route("GetAllCompany")]
         [HttpGet]
-        public async Task<Response<dynamic>> GetAllCompany()
+        public async Task<Response<dynamic>> GetAllCompany(string userId)
         {
             try
             {
-                var result = await _companyMaster.GetAllCompanyAsync();
+                var result = await _companyMaster.GetUserCompanyMappingAsync(userId);
                 return new Response<dynamic>
                 {
                     StatusCode = 200,
@@ -263,6 +263,9 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+
+        
 
         [Route("GetAllBranch")]
         [HttpGet]

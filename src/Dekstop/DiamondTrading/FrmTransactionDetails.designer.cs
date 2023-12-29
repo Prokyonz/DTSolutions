@@ -5519,7 +5519,7 @@ namespace DiamondTrading
             this.colCashBankDebit.FieldName = "Debit";
             this.colCashBankDebit.Name = "colCashBankDebit";
             this.colCashBankDebit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{n}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Debit", "{0:n}")});
             this.colCashBankDebit.Visible = true;
             this.colCashBankDebit.VisibleIndex = 4;
             this.colCashBankDebit.Width = 112;
@@ -5532,7 +5532,7 @@ namespace DiamondTrading
             this.colCashBankCredit.FieldName = "Credit";
             this.colCashBankCredit.Name = "colCashBankCredit";
             this.colCashBankCredit.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{n}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Credit", "{0:n}")});
             this.colCashBankCredit.Visible = true;
             this.colCashBankCredit.VisibleIndex = 5;
             this.colCashBankCredit.Width = 105;

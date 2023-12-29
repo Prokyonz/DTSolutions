@@ -18,6 +18,6 @@ namespace EFCore.SQL.Interface
         Task<List<UserMaster>> GetAllUserAsync();
         Task<UserMaster> AddUserAsync(UserMaster userMaster);
         Task<UserMaster> UpdateUserAsync(UserMaster userMaster);
-        Task<bool> DeleteUserAsync(string userId, bool isPermanantDetele  = false);        
+        Task<int> DeleteUserAsync(string userId, bool isPermanantDetele  = false);        
     }
 }
