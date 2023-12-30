@@ -59,6 +59,13 @@ namespace DiamondTrading.Master
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView6 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn43 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.grdCompanyAccessPermission = new DevExpress.XtraGrid.GridControl();
+            this.grvCompanyAccessPermission = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtUserName.Properties)).BeginInit();
@@ -76,11 +83,15 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyAccessPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCompanyAccessPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
-            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Controls.Add(this.txtUserName);
             this.groupControl1.Controls.Add(this.labelControl7);
             this.groupControl1.Controls.Add(this.labelControl10);
@@ -89,6 +100,7 @@ namespace DiamondTrading.Master
             this.groupControl1.Controls.Add(this.labelControl1);
             this.groupControl1.Controls.Add(this.txtName);
             this.groupControl1.Controls.Add(this.labelControl2);
+            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
@@ -103,16 +115,16 @@ namespace DiamondTrading.Master
             // 
             // labelControl7
             // 
-            resources.ApplyResources(this.labelControl7, "labelControl7");
             this.labelControl7.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl7.Appearance.Font")));
             this.labelControl7.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl7, "labelControl7");
             this.labelControl7.Name = "labelControl7";
             // 
             // labelControl10
             // 
-            resources.ApplyResources(this.labelControl10, "labelControl10");
             this.labelControl10.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl10.Appearance.Font")));
             this.labelControl10.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl10, "labelControl10");
             this.labelControl10.Name = "labelControl10";
             // 
             // txtConfrmPassword
@@ -135,9 +147,9 @@ namespace DiamondTrading.Master
             // 
             // labelControl1
             // 
-            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
             this.labelControl1.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Name = "labelControl1";
             // 
             // txtName
@@ -150,14 +162,13 @@ namespace DiamondTrading.Master
             // 
             // labelControl2
             // 
-            resources.ApplyResources(this.labelControl2, "labelControl2");
             this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
             this.labelControl2.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl2, "labelControl2");
             this.labelControl2.Name = "labelControl2";
             // 
             // groupControl2
             // 
-            resources.ApplyResources(this.groupControl2, "groupControl2");
             this.groupControl2.Controls.Add(this.txtHomeNo);
             this.groupControl2.Controls.Add(this.txtMobileNo);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -166,6 +177,7 @@ namespace DiamondTrading.Master
             this.groupControl2.Controls.Add(this.txtAddress);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl4);
+            resources.ApplyResources(this.groupControl2, "groupControl2");
             this.groupControl2.Name = "groupControl2";
             // 
             // txtHomeNo
@@ -184,16 +196,16 @@ namespace DiamondTrading.Master
             // 
             // labelControl5
             // 
-            resources.ApplyResources(this.labelControl5, "labelControl5");
             this.labelControl5.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl5.Appearance.Font")));
             this.labelControl5.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl5, "labelControl5");
             this.labelControl5.Name = "labelControl5";
             // 
             // labelControl6
             // 
-            resources.ApplyResources(this.labelControl6, "labelControl6");
             this.labelControl6.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl6.Appearance.Font")));
             this.labelControl6.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl6, "labelControl6");
             this.labelControl6.Name = "labelControl6";
             // 
             // txtAddress2
@@ -208,16 +220,16 @@ namespace DiamondTrading.Master
             // 
             // labelControl3
             // 
-            resources.ApplyResources(this.labelControl3, "labelControl3");
             this.labelControl3.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl3.Appearance.Font")));
             this.labelControl3.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl3, "labelControl3");
             this.labelControl3.Name = "labelControl3";
             // 
             // labelControl4
             // 
-            resources.ApplyResources(this.labelControl4, "labelControl4");
             this.labelControl4.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl4.Appearance.Font")));
             this.labelControl4.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl4, "labelControl4");
             this.labelControl4.Name = "labelControl4";
             // 
             // btnSave
@@ -234,32 +246,20 @@ namespace DiamondTrading.Master
             // 
             // btnCancel
             // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // groupControl3
             // 
-            resources.ApplyResources(this.groupControl3, "groupControl3");
             this.groupControl3.Controls.Add(this.grdPermissionDetails);
+            resources.ApplyResources(this.groupControl3, "groupControl3");
             this.groupControl3.Name = "groupControl3";
             // 
             // grdPermissionDetails
             // 
             resources.ApplyResources(this.grdPermissionDetails, "grdPermissionDetails");
-            this.grdPermissionDetails.EmbeddedNavigator.AccessibleDescription = resources.GetString("grdPermissionDetails.EmbeddedNavigator.AccessibleDescription");
-            this.grdPermissionDetails.EmbeddedNavigator.AccessibleName = resources.GetString("grdPermissionDetails.EmbeddedNavigator.AccessibleName");
-            this.grdPermissionDetails.EmbeddedNavigator.AllowHtmlTextInToolTip = ((DevExpress.Utils.DefaultBoolean)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.AllowHtmlTextInToolTip")));
-            this.grdPermissionDetails.EmbeddedNavigator.Anchor = ((System.Windows.Forms.AnchorStyles)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.Anchor")));
-            this.grdPermissionDetails.EmbeddedNavigator.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.BackgroundImage")));
-            this.grdPermissionDetails.EmbeddedNavigator.BackgroundImageLayout = ((System.Windows.Forms.ImageLayout)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.BackgroundImageLayout")));
-            this.grdPermissionDetails.EmbeddedNavigator.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.ImeMode")));
-            this.grdPermissionDetails.EmbeddedNavigator.MaximumSize = ((System.Drawing.Size)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.MaximumSize")));
-            this.grdPermissionDetails.EmbeddedNavigator.TextLocation = ((DevExpress.XtraEditors.NavigatorButtonsTextLocation)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.TextLocation")));
-            this.grdPermissionDetails.EmbeddedNavigator.ToolTip = resources.GetString("grdPermissionDetails.EmbeddedNavigator.ToolTip");
-            this.grdPermissionDetails.EmbeddedNavigator.ToolTipIconType = ((DevExpress.Utils.ToolTipIconType)(resources.GetObject("grdPermissionDetails.EmbeddedNavigator.ToolTipIconType")));
-            this.grdPermissionDetails.EmbeddedNavigator.ToolTipTitle = resources.GetString("grdPermissionDetails.EmbeddedNavigator.ToolTipTitle");
             this.grdPermissionDetails.MainView = this.grvPermissionDetails;
             this.grdPermissionDetails.Name = "grdPermissionDetails";
             this.grdPermissionDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -268,7 +268,6 @@ namespace DiamondTrading.Master
             // 
             // grvPermissionDetails
             // 
-            resources.ApplyResources(this.grvPermissionDetails, "grvPermissionDetails");
             this.grvPermissionDetails.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn3,
             this.gridColumn1,
@@ -302,7 +301,6 @@ namespace DiamondTrading.Master
             // 
             // gridView6
             // 
-            resources.ApplyResources(this.gridView6, "gridView6");
             this.gridView6.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn43});
             this.gridView6.GridControl = this.grdPermissionDetails;
@@ -316,12 +314,70 @@ namespace DiamondTrading.Master
             this.gridColumn43.FieldName = "Id";
             this.gridColumn43.Name = "gridColumn43";
             // 
+            // groupControl4
+            // 
+            this.groupControl4.Controls.Add(this.grdCompanyAccessPermission);
+            resources.ApplyResources(this.groupControl4, "groupControl4");
+            this.groupControl4.Name = "groupControl4";
+            // 
+            // grdCompanyAccessPermission
+            // 
+            resources.ApplyResources(this.grdCompanyAccessPermission, "grdCompanyAccessPermission");
+            this.grdCompanyAccessPermission.MainView = this.grvCompanyAccessPermission;
+            this.grdCompanyAccessPermission.Name = "grdCompanyAccessPermission";
+            this.grdCompanyAccessPermission.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvCompanyAccessPermission,
+            this.gridView2});
+            // 
+            // grvCompanyAccessPermission
+            // 
+            this.grvCompanyAccessPermission.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn4,
+            this.gridColumn5});
+            this.grvCompanyAccessPermission.GridControl = this.grdCompanyAccessPermission;
+            this.grvCompanyAccessPermission.Name = "grvCompanyAccessPermission";
+            this.grvCompanyAccessPermission.OptionsBehavior.Editable = false;
+            this.grvCompanyAccessPermission.OptionsDetail.EnableMasterViewMode = false;
+            this.grvCompanyAccessPermission.OptionsSelection.MultiSelect = true;
+            this.grvCompanyAccessPermission.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            this.grvCompanyAccessPermission.OptionsView.ShowAutoFilterRow = true;
+            this.grvCompanyAccessPermission.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn4
+            // 
+            resources.ApplyResources(this.gridColumn4, "gridColumn4");
+            this.gridColumn4.FieldName = "Id";
+            this.gridColumn4.Name = "gridColumn4";
+            // 
+            // gridColumn5
+            // 
+            resources.ApplyResources(this.gridColumn5, "gridColumn5");
+            this.gridColumn5.FieldName = "Name";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.OptionsFilter.AllowInHeaderSearch = DevExpress.Utils.DefaultBoolean.True;
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7});
+            this.gridView2.GridControl = this.grdCompanyAccessPermission;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn7
+            // 
+            resources.ApplyResources(this.gridColumn7, "gridColumn7");
+            this.gridColumn7.FieldName = "Id";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
             // frmUserMaster
             // 
-            resources.ApplyResources(this, "$this");
             this.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
+            this.Controls.Add(this.groupControl4);
             this.Controls.Add(this.groupControl3);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
@@ -354,6 +410,11 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.grdPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvPermissionDetails)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyAccessPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCompanyAccessPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -389,5 +450,12 @@ namespace DiamondTrading.Master
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn1;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn2;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraGrid.GridControl grdCompanyAccessPermission;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvCompanyAccessPermission;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
     }
 }

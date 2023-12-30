@@ -45,6 +45,8 @@ namespace DiamondTrading.Master
 
             await GetPermissions();
 
+            await LoadCompany();
+
             if (string.IsNullOrEmpty(_selectedUser) == false)
             {
                 _EditedUserMasterSet = _UserMasters.Where(c => c.Id == _selectedUser).FirstOrDefault();
@@ -74,8 +76,26 @@ namespace DiamondTrading.Master
                             grvPermissionDetails.SelectRow(grvPermissionDetails.LocateByValue("Id", permissionList[i].PermissionMasterId));
                         }
                     }
+
+                    CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+                    var companyPermissionList = await companyMasterRepository.GetUserCompanyMappingAsync(_EditedUserMasterSet.Id);
+
+                    if (companyPermissionList != null)
+                    {
+                        for (int i = 0; i < companyPermissionList.Count; i++)
+                        {
+                            grvCompanyAccessPermission.SelectRow(grvCompanyAccessPermission.LocateByValue("Id", companyPermissionList[i].Id));
+                        }
+                    }
                 }
             }            
+        }
+
+        private async Task LoadCompany()
+        {
+            CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
+            var companies = await companyMasterRepository.GetAllCompanyAsync();
+            grdCompanyAccessPermission.DataSource = companies;
         }
 
         private async Task GetListForDepedendeFields()
@@ -167,7 +187,8 @@ namespace DiamondTrading.Master
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
-                        UserPermissionChilds = GetSelectedPermissions(tempId)
+                        UserPermissionChilds = GetSelectedPermissions(tempId),
+                        UserCompanyMappings = GetSelectedCompanyPermissions(tempId)
                     };
 
                     var Result = await _UserMasterRepository.AddUserAsync(UserMaster);
@@ -210,6 +231,7 @@ namespace DiamondTrading.Master
                     //_EditedUserMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedUserMasterSet.UpdatedDate = DateTime.Now;
                     _EditedUserMasterSet.UserPermissionChilds = GetSelectedPermissions(_EditedUserMasterSet.Id);
+                    _EditedUserMasterSet.UserCompanyMappings = GetSelectedCompanyPermissions(_EditedUserMasterSet.Id);
 
 
                     var Result = await _UserMasterRepository.UpdateUserAsync(_EditedUserMasterSet);
@@ -255,6 +277,29 @@ namespace DiamondTrading.Master
                 }
             }
             return userPermissionDetails;
+        }
+
+        private List<UserCompanyMapping> GetSelectedCompanyPermissions(string UserId)
+        {
+            List<UserCompanyMapping> userCompanyMappings = new List<UserCompanyMapping>();
+            if (grvCompanyAccessPermission.GetSelectedRows().Count() > 0)
+            {
+                Int32[] selectedRowHandles = grvCompanyAccessPermission.GetSelectedRows();
+                UserCompanyMapping userCompanyMapping = null;
+                for (int i = 0; i < selectedRowHandles.Length; i++)
+                {
+                    userCompanyMapping = new UserCompanyMapping();
+                    userCompanyMapping.Id = Guid.NewGuid().ToString();
+                    userCompanyMapping.UserId = UserId;
+                    userCompanyMapping.CompanyId = grvCompanyAccessPermission.GetRowCellValue(selectedRowHandles[i], "Id").ToString();
+                    userCompanyMapping.CreatedDate = DateTime.Now;
+                    userCompanyMapping.UpdatedDate = DateTime.Now;
+                    userCompanyMapping.CreatedBy = Common.LoginUserID;
+                    userCompanyMapping.UpdatedBy = Common.LoginUserID;
+                    userCompanyMappings.Add(userCompanyMapping);
+                }
+            }
+            return userCompanyMappings;
         }
 
         private bool CheckValidation()
