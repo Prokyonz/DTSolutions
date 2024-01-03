@@ -43,7 +43,7 @@
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
                                 <span style="bottom: 5px; position: relative;">Carats</span><br/>                                                       
-                                <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)]="netcarat"/>     
+                                <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)]="netcarat" inputmode="decimal"/>     
                                          
                             </td>
                         </table>
@@ -72,7 +72,7 @@
                         </td>
                         <td style="width:50%;">   
                             <span style="bottom: 5px; position: relative;">Total Carats</span><br/>                                                       
-                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedtotalcarat"/>                            
+                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedtotalcarat" inputmode="decimal"/>                            
                         </td>                        
                     </tr>
                     <tr *ngIf="numbers.length > 0"> 
