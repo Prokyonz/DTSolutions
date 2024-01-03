@@ -20,6 +20,7 @@ using System.Windows.Forms;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
 using DevExpress.XtraGrid;
+using DevExpress.XtraSplashScreen;
 
 namespace DiamondTrading
 {
@@ -305,8 +306,8 @@ namespace DiamondTrading
 
             ActiveTab();
             try
-            {
-                await LoadGridData(true);
+            {                
+                await LoadGridData(true);                
             }
             catch(Exception ex)
             {
@@ -440,12 +441,12 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _partyMasterRepository == null)
                 {
-                    splashScreenManager1.ShowWaitForm();
+                    //splashScreenManager1.ShowWaitForm();
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlLedgerReport.DataSource = data;
                     grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
-                    splashScreenManager1.CloseWaitForm();
+                    //splashScreenManager1.CloseWaitForm();
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
@@ -971,7 +972,7 @@ namespace DiamondTrading
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            _ = LoadGridData();
+            //_ = LoadGridData();
         }
 
         private async void accordionRefreshBtn_Click(object sender, EventArgs e)

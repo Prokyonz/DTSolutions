@@ -649,6 +649,7 @@ namespace DiamondTrading
             // 
             this.xtabAssortSend.Controls.Add(this.grdAssortSendReceiveMaster);
             this.xtabAssortSend.Name = "xtabAssortSend";
+            this.xtabAssortSend.PageVisible = false;
             this.xtabAssortSend.Size = new System.Drawing.Size(764, 411);
             this.xtabAssortSend.Text = "Assort Send";
             // 
@@ -906,6 +907,7 @@ namespace DiamondTrading
             // 
             this.xtabAssortReceive.Controls.Add(this.gridControlAssortReceiveMaster);
             this.xtabAssortReceive.Name = "xtabAssortReceive";
+            this.xtabAssortReceive.PageVisible = false;
             this.xtabAssortReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabAssortReceive.Text = "Assort Receive";
             // 
@@ -1196,6 +1198,7 @@ namespace DiamondTrading
             // 
             this.xtabBoilSendReceive.Controls.Add(this.gridControlBoilSendReceiveMaster);
             this.xtabBoilSendReceive.Name = "xtabBoilSendReceive";
+            this.xtabBoilSendReceive.PageVisible = false;
             this.xtabBoilSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabBoilSendReceive.Text = "Boil Send";
             // 
@@ -1474,6 +1477,7 @@ namespace DiamondTrading
             // 
             this.xtabCjharniSendReceive.Controls.Add(this.gridControlCharniReportMaster);
             this.xtabCjharniSendReceive.Name = "xtabCjharniSendReceive";
+            this.xtabCjharniSendReceive.PageVisible = false;
             this.xtabCjharniSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabCjharniSendReceive.Text = "Charni Send";
             // 
@@ -1748,6 +1752,7 @@ namespace DiamondTrading
             // 
             this.xtabGalaSendReceive.Controls.Add(this.gridControlGalaReportMaster);
             this.xtabGalaSendReceive.Name = "xtabGalaSendReceive";
+            this.xtabGalaSendReceive.PageVisible = false;
             this.xtabGalaSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabGalaSendReceive.Text = "Gala Send";
             // 
@@ -2017,6 +2022,7 @@ namespace DiamondTrading
             // 
             this.xtabNumberSendReceive.Controls.Add(this.gridControlNumerReportMaster);
             this.xtabNumberSendReceive.Name = "xtabNumberSendReceive";
+            this.xtabNumberSendReceive.PageVisible = false;
             this.xtabNumberSendReceive.Size = new System.Drawing.Size(764, 411);
             this.xtabNumberSendReceive.Text = "Number Send";
             // 
@@ -2303,6 +2309,7 @@ namespace DiamondTrading
             // 
             this.xtraTabStockReport.Controls.Add(this.grdStockReportMaster);
             this.xtraTabStockReport.Name = "xtraTabStockReport";
+            this.xtraTabStockReport.PageVisible = false;
             this.xtraTabStockReport.Size = new System.Drawing.Size(764, 411);
             this.xtraTabStockReport.Text = "Stock Report";
             // 
@@ -2507,6 +2514,7 @@ namespace DiamondTrading
             // 
             this.xtraOpeningStock.Controls.Add(this.gridControlOpeningStock);
             this.xtraOpeningStock.Name = "xtraOpeningStock";
+            this.xtraOpeningStock.PageVisible = false;
             this.xtraOpeningStock.Size = new System.Drawing.Size(764, 411);
             this.xtraOpeningStock.Text = "Opening Stock";
             // 

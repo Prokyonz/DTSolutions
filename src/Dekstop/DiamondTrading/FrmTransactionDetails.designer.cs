@@ -2141,6 +2141,7 @@ namespace DiamondTrading
             this.xtabSales.Controls.Add(this.dtSalesFromDate);
             this.xtabSales.Controls.Add(this.grdSalesTransactonMaster);
             this.xtabSales.Name = "xtabSales";
+            this.xtabSales.PageVisible = false;
             this.xtabSales.Size = new System.Drawing.Size(778, 420);
             this.xtabSales.Text = "Sales Details";
             // 
@@ -2211,6 +2212,7 @@ namespace DiamondTrading
             this.xtabPayment.Controls.Add(this.dtPaymentFromDate);
             this.xtabPayment.Controls.Add(this.grdPaymentDetails);
             this.xtabPayment.Name = "xtabPayment";
+            this.xtabPayment.PageVisible = false;
             this.xtabPayment.Size = new System.Drawing.Size(778, 420);
             this.xtabPayment.Text = "Payment Details";
             // 
@@ -2473,6 +2475,7 @@ namespace DiamondTrading
             this.xtabReceipt.Controls.Add(this.dtReceiptFromDate);
             this.xtabReceipt.Controls.Add(this.grdReceiptDetails);
             this.xtabReceipt.Name = "xtabReceipt";
+            this.xtabReceipt.PageVisible = false;
             this.xtabReceipt.Size = new System.Drawing.Size(778, 420);
             this.xtabReceipt.Text = "Receipt Details";
             // 
@@ -2726,6 +2729,7 @@ namespace DiamondTrading
             this.xtabContra.Controls.Add(this.dtContraFromDate);
             this.xtabContra.Controls.Add(this.grdContraDetails);
             this.xtabContra.Name = "xtabContra";
+            this.xtabContra.PageVisible = false;
             this.xtabContra.Size = new System.Drawing.Size(778, 420);
             this.xtabContra.Text = "Contra Details";
             // 
@@ -2968,6 +2972,7 @@ namespace DiamondTrading
             this.xtabExpense.Controls.Add(this.dtExpenseFromDate);
             this.xtabExpense.Controls.Add(this.grdExpenseControl);
             this.xtabExpense.Name = "xtabExpense";
+            this.xtabExpense.PageVisible = false;
             this.xtabExpense.Size = new System.Drawing.Size(778, 420);
             this.xtabExpense.Text = "Expense Details";
             // 
@@ -3202,6 +3207,7 @@ namespace DiamondTrading
             // 
             this.xtabLoan.Controls.Add(this.gridControlLoan);
             this.xtabLoan.Name = "xtabLoan";
+            this.xtabLoan.PageVisible = false;
             this.xtabLoan.Size = new System.Drawing.Size(778, 420);
             this.xtabLoan.Text = "Loan Details";
             // 
@@ -3427,6 +3433,7 @@ namespace DiamondTrading
             this.xtabMixed.Controls.Add(this.dtMixedFromDate);
             this.xtabMixed.Controls.Add(this.gridControlMixed);
             this.xtabMixed.Name = "xtabMixed";
+            this.xtabMixed.PageVisible = false;
             this.xtabMixed.Size = new System.Drawing.Size(778, 420);
             this.xtabMixed.Text = "Mixed Report";
             // 
@@ -3657,6 +3664,7 @@ namespace DiamondTrading
             // 
             this.xtabPurchaseSlipPrint.Controls.Add(this.grdPurchaseSlipDetails);
             this.xtabPurchaseSlipPrint.Name = "xtabPurchaseSlipPrint";
+            this.xtabPurchaseSlipPrint.PageVisible = false;
             this.xtabPurchaseSlipPrint.Size = new System.Drawing.Size(778, 420);
             this.xtabPurchaseSlipPrint.Text = "Purchase Slip Print";
             // 
@@ -3809,6 +3817,7 @@ namespace DiamondTrading
             // 
             this.xtabJangadSendReceive.Controls.Add(this.gridControlJangadSendReceive);
             this.xtabJangadSendReceive.Name = "xtabJangadSendReceive";
+            this.xtabJangadSendReceive.PageVisible = false;
             this.xtabJangadSendReceive.Size = new System.Drawing.Size(778, 420);
             this.xtabJangadSendReceive.Text = "Jangad Details";
             // 
@@ -4033,6 +4042,7 @@ namespace DiamondTrading
             // 
             this.xtraTabPFReport.Controls.Add(this.gridControlPFReport);
             this.xtraTabPFReport.Name = "xtraTabPFReport";
+            this.xtraTabPFReport.PageVisible = false;
             this.xtraTabPFReport.Size = new System.Drawing.Size(778, 420);
             this.xtraTabPFReport.Text = "PF Report";
             // 
@@ -4257,6 +4267,7 @@ namespace DiamondTrading
             // 
             this.xtraTabLedgerBalance.Controls.Add(this.gridControlLedgerReport);
             this.xtraTabLedgerBalance.Name = "xtraTabLedgerBalance";
+            this.xtraTabLedgerBalance.PageVisible = false;
             this.xtraTabLedgerBalance.Size = new System.Drawing.Size(778, 420);
             this.xtraTabLedgerBalance.Text = "Ledger Report";
             // 
@@ -4369,6 +4380,7 @@ namespace DiamondTrading
             // 
             this.xtabWeeklyPurchaseReport.Controls.Add(this.splitContainerControl1);
             this.xtabWeeklyPurchaseReport.Name = "xtabWeeklyPurchaseReport";
+            this.xtabWeeklyPurchaseReport.PageVisible = false;
             this.xtabWeeklyPurchaseReport.Size = new System.Drawing.Size(778, 420);
             this.xtabWeeklyPurchaseReport.Text = "Weekly Purchase Report";
             // 
@@ -4937,6 +4949,7 @@ namespace DiamondTrading
             // 
             this.xtraTabPayableReceivable.Controls.Add(this.gridControlPayableReceivable);
             this.xtraTabPayableReceivable.Name = "xtraTabPayableReceivable";
+            this.xtraTabPayableReceivable.PageVisible = false;
             this.xtraTabPayableReceivable.Size = new System.Drawing.Size(778, 420);
             this.xtraTabPayableReceivable.Text = "Payable";
             // 
@@ -5089,6 +5102,7 @@ namespace DiamondTrading
             this.xtraTabBalanceSheet.Controls.Add(this.lueBalanceSheetType);
             this.xtraTabBalanceSheet.Controls.Add(this.gridControlBalanceSheet);
             this.xtraTabBalanceSheet.Name = "xtraTabBalanceSheet";
+            this.xtraTabBalanceSheet.PageVisible = false;
             this.xtraTabBalanceSheet.Size = new System.Drawing.Size(778, 420);
             this.xtraTabBalanceSheet.Text = "Balance Sheet";
             // 
@@ -5225,6 +5239,7 @@ namespace DiamondTrading
             this.xtraTabProfitLoss.Controls.Add(this.lueProfitLossType);
             this.xtraTabProfitLoss.Controls.Add(this.gridControlProfitLoss);
             this.xtraTabProfitLoss.Name = "xtraTabProfitLoss";
+            this.xtraTabProfitLoss.PageVisible = false;
             this.xtraTabProfitLoss.Size = new System.Drawing.Size(778, 420);
             this.xtraTabProfitLoss.Text = "Profit And Loss Report";
             // 
@@ -5364,6 +5379,7 @@ namespace DiamondTrading
             this.xtabCashBankReport.Controls.Add(this.dtCashBankFromDate);
             this.xtabCashBankReport.Controls.Add(this.gridControlCashBank);
             this.xtabCashBankReport.Name = "xtabCashBankReport";
+            this.xtabCashBankReport.PageVisible = false;
             this.xtabCashBankReport.Size = new System.Drawing.Size(778, 420);
             this.xtabCashBankReport.Text = "Cash Bank Report";
             // 
@@ -5549,6 +5565,7 @@ namespace DiamondTrading
             // 
             this.xtabSalaryReport.Controls.Add(this.gridControlSalaryReport);
             this.xtabSalaryReport.Name = "xtabSalaryReport";
+            this.xtabSalaryReport.PageVisible = false;
             this.xtabSalaryReport.Size = new System.Drawing.Size(778, 420);
             this.xtabSalaryReport.Text = "Salary Report";
             // 
@@ -5835,6 +5852,7 @@ namespace DiamondTrading
             // 
             this.xtraTabRejectionReport.Controls.Add(this.gridControlRejectionReport);
             this.xtraTabRejectionReport.Name = "xtraTabRejectionReport";
+            this.xtraTabRejectionReport.PageVisible = false;
             this.xtraTabRejectionReport.Size = new System.Drawing.Size(778, 420);
             this.xtraTabRejectionReport.Text = "Rejection Report";
             // 

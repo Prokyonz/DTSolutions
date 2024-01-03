@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -217,10 +217,10 @@ namespace DiamondTrading
             // grdLessGroupWeightMaster
             // 
             this.grdLessGroupWeightMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode3.LevelTemplate = this.grdLessWeightGroupDetailMaster;
-            gridLevelNode3.RelationName = "Level1";
+            gridLevelNode1.LevelTemplate = this.grdLessWeightGroupDetailMaster;
+            gridLevelNode1.RelationName = "Level1";
             this.grdLessGroupWeightMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode3});
+            gridLevelNode1});
             this.grdLessGroupWeightMaster.Location = new System.Drawing.Point(0, 0);
             this.grdLessGroupWeightMaster.MainView = this.grvLessGroupWeightMaster;
             this.grdLessGroupWeightMaster.Name = "grdLessGroupWeightMaster";
@@ -346,10 +346,10 @@ namespace DiamondTrading
             // grdCompanyMaster
             // 
             this.grdCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.grdChildCompanyMaster;
-            gridLevelNode1.RelationName = "Child";
+            gridLevelNode2.LevelTemplate = this.grdChildCompanyMaster;
+            gridLevelNode2.RelationName = "Child";
             this.grdCompanyMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.grdCompanyMaster.Location = new System.Drawing.Point(0, 0);
             this.grdCompanyMaster.MainView = this.grvCompanyMaster;
             this.grdCompanyMaster.Name = "grdCompanyMaster";
@@ -1232,6 +1232,7 @@ namespace DiamondTrading
             // 
             this.xtabUserMaster.Controls.Add(this.grdUserMaster);
             this.xtabUserMaster.Name = "xtabUserMaster";
+            this.xtabUserMaster.PageVisible = false;
             this.xtabUserMaster.Size = new System.Drawing.Size(764, 411);
             this.xtabUserMaster.Text = "User Master";
             // 
