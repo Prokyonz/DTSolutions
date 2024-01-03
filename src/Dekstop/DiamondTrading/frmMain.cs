@@ -348,6 +348,11 @@ namespace DiamondTrading
                         barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonRejectionInReceive.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "rejectionout_report":
+                        barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonRejectionOutSend.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
                     case "barButtonRejectionOutSend":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
