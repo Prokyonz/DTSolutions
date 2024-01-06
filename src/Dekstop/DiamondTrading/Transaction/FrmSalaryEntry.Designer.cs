@@ -29,6 +29,7 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -71,6 +72,7 @@ namespace DiamondTrading.Transaction
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
             this.lueLeadger = new DevExpress.XtraEditors.LookUpEdit();
             this.txtLedgerBalance = new DevExpress.XtraEditors.TextEdit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -615,6 +617,10 @@ namespace DiamondTrading.Transaction
             this.txtLedgerBalance.TabIndex = 10;
             this.txtLedgerBalance.Visible = false;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmSalaryEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -707,5 +713,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colOTMinusRate;
         private DevExpress.XtraGrid.Columns.GridColumn colOTPlusAmount;
         private DevExpress.XtraGrid.Columns.GridColumn colOTMinusAmount;
+        private System.Windows.Forms.Timer timer1;
     }
 }

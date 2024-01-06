@@ -29,6 +29,7 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.txtSlipNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -50,6 +51,7 @@ namespace DiamondTrading.Transaction
             this.repositoryItemButtonEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colPercentage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDays = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.repoParty = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
@@ -61,7 +63,7 @@ namespace DiamondTrading.Transaction
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.colTotal = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipNo.Properties)).BeginInit();
@@ -348,6 +350,19 @@ namespace DiamondTrading.Transaction
             this.colDays.VisibleIndex = 3;
             this.colDays.Width = 56;
             // 
+            // colTotal
+            // 
+            this.colTotal.Caption = "Total";
+            this.colTotal.ColumnEdit = this.repositoryItemTextEdit1;
+            this.colTotal.FieldName = "Total";
+            this.colTotal.Name = "colTotal";
+            this.colTotal.OptionsColumn.AllowEdit = false;
+            this.colTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:0.##}")});
+            this.colTotal.Visible = true;
+            this.colTotal.VisibleIndex = 4;
+            this.colTotal.Width = 96;
+            // 
             // repoTxtEdit
             // 
             this.repoTxtEdit.AutoHeight = false;
@@ -484,18 +499,9 @@ namespace DiamondTrading.Transaction
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // colTotal
+            // timer1
             // 
-            this.colTotal.Caption = "Total";
-            this.colTotal.ColumnEdit = this.repositoryItemTextEdit1;
-            this.colTotal.FieldName = "Total";
-            this.colTotal.Name = "colTotal";
-            this.colTotal.OptionsColumn.AllowEdit = false;
-            this.colTotal.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", "{0:0.##}")});
-            this.colTotal.Visible = true;
-            this.colTotal.VisibleIndex = 4;
-            this.colTotal.Width = 96;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmSlipTransfer
             // 
@@ -576,5 +582,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn colPercentage;
         private DevExpress.XtraGrid.Columns.GridColumn colDays;
         private DevExpress.XtraGrid.Columns.GridColumn colTotal;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -161,8 +161,8 @@ namespace DiamondTrading.Transaction
                         dtDate.EditValue = DateTime.Now;
                     }
                 }
-                
-                dtTime.EditValue = DateTime.Now;
+
+                timer1.Start();
                 colBranch.Visible = false;
                 await LoadCompany();
                 LoadSeries(_paymentType);
@@ -1098,6 +1098,11 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

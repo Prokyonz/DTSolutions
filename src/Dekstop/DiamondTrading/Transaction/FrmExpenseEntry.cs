@@ -48,7 +48,7 @@ namespace DiamondTrading.Transaction
                 dtDate.EditValue = DateTime.Now;
             else
                 dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             _ = GetMaxSrNo();
             _ = LoadCompany();
@@ -261,6 +261,11 @@ namespace DiamondTrading.Transaction
                     grvPaymentDetails.SetFocusedRowCellValue(colParty, frmPartyMaster.CreatedLedgerID.ToString());
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

@@ -263,6 +263,7 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
+            timer1.Start();
             isLoading = false;
         }
 
@@ -1826,6 +1827,11 @@ namespace DiamondTrading.Transaction
                     grvPurchaseDetails.FocusedColumn = colShape;
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

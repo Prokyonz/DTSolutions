@@ -45,7 +45,7 @@ namespace DiamondTrading.Transaction
         private async void FrmSalaryEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
             await LoadCompany();
             LoadSeries();
             await LoadLedgers(lueCompany.EditValue.ToString());
@@ -424,6 +424,11 @@ namespace DiamondTrading.Transaction
             }
 
             return true;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }
