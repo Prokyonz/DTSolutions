@@ -74,6 +74,7 @@ namespace DiamondTrading.Transaction
 
             if (string.IsNullOrEmpty(_selectedSalesId) == false)
             {
+                this.Cursor = Cursors.WaitCursor;
                 _editedSalesMaster = await _salesMasterRepository.GetSalesAsync(_selectedSalesId);
                 //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_editedSalesMaster != null)
@@ -283,7 +284,12 @@ namespace DiamondTrading.Transaction
                         this.lueSaler.EditValueChanged += new System.EventHandler(this.lueSaler_EditValueChanged);
                         this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
                         this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
+                        this.Cursor = Cursors.Default;
                     }
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
                 }
             }
             timer1.Start();

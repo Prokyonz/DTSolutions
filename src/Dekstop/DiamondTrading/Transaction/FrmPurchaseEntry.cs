@@ -73,9 +73,8 @@ namespace DiamondTrading.Transaction
 
             if (string.IsNullOrEmpty(_selectedPurchaseId) == false)
             {
-                Console.WriteLine("1 :"+DateTime.Now);
+                this.Cursor = Cursors.WaitCursor;
                 _editedPurchaseMaster = await _purchaseMasterRepository.GetPurchaseAsync(_selectedPurchaseId);
-                Console.WriteLine("2 :" + DateTime.Now);
                 //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_editedPurchaseMaster != null)
                 {
@@ -260,7 +259,12 @@ namespace DiamondTrading.Transaction
                         this.lueBuyer.EditValueChanged += new System.EventHandler(this.lueBuyer_EditValueChanged);
                         this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
                         this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
+                        this.Cursor = Cursors.Default;
                     }
+                }
+                else
+                {
+                    this.Cursor = Cursors.Default;
                 }
             }
             timer1.Start();
@@ -1832,6 +1836,11 @@ namespace DiamondTrading.Transaction
         private void timer1_Tick(object sender, EventArgs e)
         {
             dtTime.EditValue = DateTime.Now;
+        }
+
+        private void tglSlip_Toggled(object sender, EventArgs e)
+        {
+            
         }
     }
 }

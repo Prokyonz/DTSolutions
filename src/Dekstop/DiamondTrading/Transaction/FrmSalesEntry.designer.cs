@@ -1354,6 +1354,7 @@ namespace DiamondTrading.Transaction
             this.tglPF.EditValue = true;
             this.tglPF.Location = new System.Drawing.Point(765, 506);
             this.tglPF.Name = "tglPF";
+            this.tglPF.Properties.AllowThumbAnimation = false;
             this.tglPF.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tglPF.Properties.Appearance.Options.UseFont = true;
             this.tglPF.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.Center;
@@ -1378,6 +1379,7 @@ namespace DiamondTrading.Transaction
             this.tglSlip.EditValue = true;
             this.tglSlip.Location = new System.Drawing.Point(705, 506);
             this.tglSlip.Name = "tglSlip";
+            this.tglSlip.Properties.AllowThumbAnimation = false;
             this.tglSlip.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.tglSlip.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tglSlip.Properties.Appearance.Options.UseBackColor = true;
