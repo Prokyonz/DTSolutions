@@ -1078,6 +1078,7 @@ namespace DiamondTrading.Transaction
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(12, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(264, 43);
             this.txtRemark.TabIndex = 18;
             this.txtRemark.EditValueChanged += new System.EventHandler(this.txtRemark_EditValueChanged);

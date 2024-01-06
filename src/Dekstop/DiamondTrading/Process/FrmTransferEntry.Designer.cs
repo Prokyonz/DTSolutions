@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
@@ -105,6 +106,7 @@ namespace DiamondTrading.Process
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -248,6 +250,7 @@ namespace DiamondTrading.Process
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(737, 85);
             this.txtRemark.TabIndex = 0;
             // 
@@ -1037,6 +1040,10 @@ namespace DiamondTrading.Process
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmTransferEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1179,5 +1186,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailsId;
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseMasterId;
         private DevExpress.XtraGrid.Columns.GridColumn colCategoryType;
+        private System.Windows.Forms.Timer timer1;
     }
 }

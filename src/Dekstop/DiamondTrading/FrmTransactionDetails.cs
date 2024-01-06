@@ -1719,7 +1719,7 @@ namespace DiamondTrading
                 GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
                 double Total = double.Parse(view.Columns["GrossTotal"].SummaryText);
                 double saleRate = double.Parse(view.Columns["NetWeight"].SummaryText);
-                e.TotalValue = Total / saleRate;
+                e.TotalValue = (Total / saleRate).ToString("0");
             }
             catch (Exception)
             {
@@ -1738,7 +1738,7 @@ namespace DiamondTrading
                         case DevExpress.Data.CustomSummaryProcess.Finalize:
                             decimal Total = Convert.ToDecimal(gridColumnGrossTotal.SummaryItem.SummaryValue);
                             decimal BuyRate = Convert.ToDecimal(NetWeight.SummaryItem.SummaryValue);
-                            e.TotalValue = (Total / BuyRate).ToString();
+                            e.TotalValue = (Total / BuyRate).ToString("0");
                             break;
                     }
                 }

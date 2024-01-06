@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -54,6 +55,7 @@ namespace DiamondTrading.Process
             this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colRate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colProcessType = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -71,7 +73,7 @@ namespace DiamondTrading.Process
             this.lueBroker = new DevExpress.XtraEditors.LookUpEdit();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.grpDocuments = new DevExpress.XtraEditors.GroupControl();
-            this.colProcessType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
@@ -222,6 +224,7 @@ namespace DiamondTrading.Process
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(306, 85);
             this.txtRemark.TabIndex = 0;
             // 
@@ -398,6 +401,12 @@ namespace DiamondTrading.Process
             this.colAmount.Visible = true;
             this.colAmount.VisibleIndex = 4;
             this.colAmount.Width = 112;
+            // 
+            // colProcessType
+            // 
+            this.colProcessType.Caption = "Process Type";
+            this.colProcessType.FieldName = "ProcessType";
+            this.colProcessType.Name = "colProcessType";
             // 
             // repoPayType
             // 
@@ -608,11 +617,9 @@ namespace DiamondTrading.Process
             this.grpDocuments.TabIndex = 16;
             this.grpDocuments.Text = "Documents";
             // 
-            // colProcessType
+            // timer1
             // 
-            this.colProcessType.Caption = "Process Type";
-            this.colProcessType.FieldName = "ProcessType";
-            this.colProcessType.Name = "colProcessType";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmRejectionSendReceive
             // 
@@ -714,5 +721,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraEditors.GroupControl grpDocuments;
         private DevExpress.XtraGrid.Columns.GridColumn colProcessType;
+        private System.Windows.Forms.Timer timer1;
     }
 }

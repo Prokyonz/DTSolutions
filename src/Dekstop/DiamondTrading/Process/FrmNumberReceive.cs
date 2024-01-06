@@ -31,7 +31,7 @@ namespace DiamondTrading.Process
         private async void FrmNumberReceive_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             SetThemeColors(Color.FromArgb(215, 246, 214));
 
@@ -373,6 +373,11 @@ namespace DiamondTrading.Process
             {
                 lblRemainingWeight.Text = "0";
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

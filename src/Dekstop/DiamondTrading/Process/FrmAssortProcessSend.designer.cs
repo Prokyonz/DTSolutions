@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -60,6 +61,7 @@ namespace DiamondTrading.Process
             this.colPurityId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPurchaseDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colSlipNo1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStockId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -68,7 +70,7 @@ namespace DiamondTrading.Process
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
             this.txtSerialNo = new DevExpress.XtraEditors.TextEdit();
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
-            this.colStockId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup2)).BeginInit();
             this.grpGroup2.SuspendLayout();
@@ -474,6 +476,12 @@ namespace DiamondTrading.Process
             this.colSlipNo1.FieldName = "SlipNo1";
             this.colSlipNo1.Name = "colSlipNo1";
             // 
+            // colStockId
+            // 
+            this.colStockId.Caption = "StockId";
+            this.colStockId.FieldName = "StockId";
+            this.colStockId.Name = "colStockId";
+            // 
             // repoPayType
             // 
             this.repoPayType.AutoHeight = false;
@@ -577,11 +585,9 @@ namespace DiamondTrading.Process
             this.dtDate.Size = new System.Drawing.Size(88, 22);
             this.dtDate.TabIndex = 4;
             // 
-            // colStockId
+            // timer1
             // 
-            this.colStockId.Caption = "StockId";
-            this.colStockId.FieldName = "StockId";
-            this.colStockId.Name = "colStockId";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmAssortProcessSend
             // 
@@ -675,5 +681,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailsId;
         private DevExpress.XtraGrid.Columns.GridColumn colSlipNo1;
         private DevExpress.XtraGrid.Columns.GridColumn colStockId;
+        private System.Windows.Forms.Timer timer1;
     }
 }

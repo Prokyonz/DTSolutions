@@ -1148,13 +1148,15 @@ namespace DiamondTrading
             // gridColumnPurBuyingRate
             // 
             this.gridColumnPurBuyingRate.Caption = "Buy Rate";
+            this.gridColumnPurBuyingRate.DisplayFormat.FormatString = "0.00";
+            this.gridColumnPurBuyingRate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumnPurBuyingRate.FieldName = "BuyingRate";
             this.gridColumnPurBuyingRate.Name = "gridColumnPurBuyingRate";
             this.gridColumnPurBuyingRate.OptionsColumn.AllowEdit = false;
             this.gridColumnPurBuyingRate.OptionsColumn.AllowGroup = DevExpress.Utils.DefaultBoolean.True;
             this.gridColumnPurBuyingRate.OptionsColumn.ReadOnly = true;
             this.gridColumnPurBuyingRate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom)});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "BuyingRate", "0.00")});
             this.gridColumnPurBuyingRate.Visible = true;
             this.gridColumnPurBuyingRate.VisibleIndex = 7;
             this.gridColumnPurBuyingRate.Width = 58;
@@ -1232,6 +1234,8 @@ namespace DiamondTrading
             // NetWeight
             // 
             this.NetWeight.Caption = "Net Cts";
+            this.NetWeight.DisplayFormat.FormatString = "0.00";
+            this.NetWeight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.NetWeight.FieldName = "NetWeight";
             this.NetWeight.Name = "NetWeight";
             this.NetWeight.OptionsColumn.AllowEdit = false;
@@ -1265,6 +1269,8 @@ namespace DiamondTrading
             // gridColumn114
             // 
             this.gridColumn114.Caption = "Less";
+            this.gridColumn114.DisplayFormat.FormatString = "0.00";
+            this.gridColumn114.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn114.FieldName = "LessWeight";
             this.gridColumn114.Name = "gridColumn114";
             this.gridColumn114.OptionsColumn.AllowEdit = false;
@@ -1764,12 +1770,14 @@ namespace DiamondTrading
             // gridColumn20
             // 
             this.gridColumn20.Caption = "Sale Rate";
+            this.gridColumn20.DisplayFormat.FormatString = "0.00";
+            this.gridColumn20.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn20.FieldName = "SaleRate";
             this.gridColumn20.Name = "gridColumn20";
             this.gridColumn20.OptionsColumn.AllowEdit = false;
             this.gridColumn20.OptionsColumn.ReadOnly = true;
             this.gridColumn20.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Custom, "SaleRate", "{0:0.##}")});
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "SaleRate", "0.00")});
             this.gridColumn20.Visible = true;
             this.gridColumn20.VisibleIndex = 7;
             this.gridColumn20.Width = 55;
@@ -1858,6 +1866,8 @@ namespace DiamondTrading
             // gridColumn117
             // 
             this.gridColumn117.Caption = "Net Cts";
+            this.gridColumn117.DisplayFormat.FormatString = "0.00";
+            this.gridColumn117.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn117.FieldName = "NetWeight";
             this.gridColumn117.Name = "gridColumn117";
             this.gridColumn117.OptionsColumn.AllowEdit = false;
@@ -1871,6 +1881,8 @@ namespace DiamondTrading
             // gridColumn118
             // 
             this.gridColumn118.Caption = "Less";
+            this.gridColumn118.DisplayFormat.FormatString = "0.00";
+            this.gridColumn118.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn118.FieldName = "LessWeight";
             this.gridColumn118.Name = "gridColumn118";
             this.gridColumn118.OptionsColumn.AllowEdit = false;

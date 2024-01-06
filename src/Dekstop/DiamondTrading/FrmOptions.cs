@@ -66,6 +66,11 @@ namespace DiamondTrading
                 #endregion
 
                 #region "Advanced"
+                if (checkEditClearReportLayout.Checked)
+                {
+                    RegistryHelper.DeleteSettings();
+                }
+
                 Common.PrintPurchaseSlip = chkPrintSlip.Checked;
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.PrintPurchaseSlip, chkPrintSlip.Checked.ToString());
 
@@ -94,6 +99,7 @@ namespace DiamondTrading
         private void FrmOptions_Load(object sender, EventArgs e)
         {
             LoadRegistry();
+            EnableDisableApplyButton(false);
         }
 
         private void txtFormTitle_TextChanged(object sender, EventArgs e)
@@ -118,10 +124,7 @@ namespace DiamondTrading
 
         private void checkEditClearReportLayout_CheckedChanged(object sender, EventArgs e)
         {
-            if(checkEditClearReportLayout.Checked)
-            {
-                RegistryHelper.DeleteSettings();
-            }
+            EnableDisableApplyButton(true);
         }
 
         private void groupControl3_Paint(object sender, PaintEventArgs e)

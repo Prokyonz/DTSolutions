@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
@@ -45,6 +46,8 @@ namespace DiamondTrading.Process
             this.labelControl6 = new DevExpress.XtraEditors.LabelControl();
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.grpGroup1 = new DevExpress.XtraEditors.GroupControl();
+            this.lblRemainingWeight = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
             this.grdParticularsDetails = new DevExpress.XtraGrid.GridControl();
             this.grvParticularsDetails = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.colSize = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -63,8 +66,7 @@ namespace DiamondTrading.Process
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
-            this.labelControl7 = new DevExpress.XtraEditors.LabelControl();
-            this.lblRemainingWeight = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
@@ -308,6 +310,26 @@ namespace DiamondTrading.Process
             this.grpGroup1.TabIndex = 19;
             this.grpGroup1.Text = "Particulars Details";
             // 
+            // lblRemainingWeight
+            // 
+            this.lblRemainingWeight.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.lblRemainingWeight.Appearance.Options.UseFont = true;
+            this.lblRemainingWeight.Location = new System.Drawing.Point(129, 219);
+            this.lblRemainingWeight.Name = "lblRemainingWeight";
+            this.lblRemainingWeight.Size = new System.Drawing.Size(7, 16);
+            this.lblRemainingWeight.TabIndex = 12;
+            this.lblRemainingWeight.Text = "0";
+            // 
+            // labelControl7
+            // 
+            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.labelControl7.Appearance.Options.UseFont = true;
+            this.labelControl7.Location = new System.Drawing.Point(10, 219);
+            this.labelControl7.Name = "labelControl7";
+            this.labelControl7.Size = new System.Drawing.Size(113, 16);
+            this.labelControl7.TabIndex = 11;
+            this.labelControl7.Text = "Remaining Weight :";
+            // 
             // grdParticularsDetails
             // 
             this.grdParticularsDetails.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -428,6 +450,7 @@ namespace DiamondTrading.Process
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
             this.txtRemark.TabIndex = 0;
             // 
@@ -453,7 +476,6 @@ namespace DiamondTrading.Process
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -486,7 +508,6 @@ namespace DiamondTrading.Process
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -537,25 +558,9 @@ namespace DiamondTrading.Process
             this.btnSave.Text = "&Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // labelControl7
+            // timer1
             // 
-            this.labelControl7.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.labelControl7.Appearance.Options.UseFont = true;
-            this.labelControl7.Location = new System.Drawing.Point(10, 219);
-            this.labelControl7.Name = "labelControl7";
-            this.labelControl7.Size = new System.Drawing.Size(113, 16);
-            this.labelControl7.TabIndex = 11;
-            this.labelControl7.Text = "Remaining Weight :";
-            // 
-            // lblRemainingWeight
-            // 
-            this.lblRemainingWeight.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
-            this.lblRemainingWeight.Appearance.Options.UseFont = true;
-            this.lblRemainingWeight.Location = new System.Drawing.Point(129, 219);
-            this.lblRemainingWeight.Name = "lblRemainingWeight";
-            this.lblRemainingWeight.Size = new System.Drawing.Size(7, 16);
-            this.lblRemainingWeight.TabIndex = 12;
-            this.lblRemainingWeight.Text = "0";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmCharniReceive
             // 
@@ -645,5 +650,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoTxtEdit;
         private DevExpress.XtraEditors.LabelControl lblRemainingWeight;
         private DevExpress.XtraEditors.LabelControl labelControl7;
+        private System.Windows.Forms.Timer timer1;
     }
 }

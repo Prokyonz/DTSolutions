@@ -39,7 +39,7 @@ namespace DiamondTrading.Process
         private async void FrmAssortProcessSend_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             SetThemeColors(Color.FromArgb(250, 243, 197));
 
@@ -332,6 +332,11 @@ namespace DiamondTrading.Process
                 repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                 repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }
