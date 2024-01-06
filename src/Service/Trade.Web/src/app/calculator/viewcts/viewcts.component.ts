@@ -405,6 +405,7 @@ export class ViewctsComponent implements OnInit{
   }
 
   handlebranch(event: any){
+    debugger;
     this.branchid = event.value;
   }
 
@@ -593,50 +594,75 @@ export class ViewctsComponent implements OnInit{
     }
   }
 
-  edititem(items: any){
-    debugger;
+  edititem(items: any) {
     this.onAddIconClick();  
     this.PageTitle = "Edit Item";
-    // setTimeout(() => {
+  
+    setTimeout(() => {
       this.date = new Date(items.date);
-      this.branchid.id = items.branchId;
-      this.branchid.name = items.branchName;
-      this.dealerid.id = items.brokerId;
-      this.dealerid.name = items.brokerName;
-      this.partyid.id = items.partyId;
-      this.partyid.name = items.partyName;
-      
       this.netcarat = items.netCarat;
       this.note = items.note;
+  
+      setTimeout(() => {
+        this.partyid = items.partyName;
+        this.dealerid = items.brokerName;
+        //this.partyid.id = items.partyId;
+        this.branchid.id = items.branchId;
+        this.branchid.name = items.branchName;
+        // this.dealerid.id = items.brokerId;
+        // this.dealerid.name = items.brokerName;
 
-      this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
-        e.financialYearId == items.financialYearId).forEach(e => {
-          e.sizeDetails?.forEach(item => {
-            this.SizeDetails.push(item);
-            this.summatydata.push({
-              sizeId: item.sizeId,
-              sizeName : item.sizeId,
-              percentage : 0,
-              amount : 0,
-              rate : 0,
-              totCarat : item.totalCarat
-            });
-            item.numberDetails.forEach(s => {
-              this.NumberDetails.push({
-                sizeId : s.sizeId,
-                numberId : s.numberId,
-                carat : s.carat,
-                rate : s.rate,
-                numberName: s.numberId,
-                amount: s.amount,
-                percentage : s.percentage
+
+        this.calculatorListData.filter(e => e.srNo == items.srNo && e.companyId == items.companyId && e.branchId == items.branchId &&
+          e.financialYearId == items.financialYearId).forEach(e => {
+            debugger;
+            this.selectedsize =  e.sizeDetails != null ? (e.sizeDetails.length > 0 ? e.sizeDetails[0].sizeId : '') : '';
+            this.selectedtotalcarat = e.sizeDetails != null ? (e.sizeDetails.length > 0 ? e.sizeDetails[0].totalCarat : '') : '';
+            e.sizeDetails?.forEach(item => {
+              
+              this.SizeDetails.push(item);
+              this.summatydata.push({
+                sizeId: item.sizeId,
+                sizeName: item.sizeId,
+                percentage: 0,
+                amount: 0,
+                rate: 0,
+                totCarat: item.totalCarat
               });
-            });
+              item.numberDetails.forEach(s => {
+                this.NumberDetails.push({
+                  sizeId: s.sizeId,
+                  numberId: s.numberId,
+                  carat: s.carat,
+                  rate: s.rate,
+                  numberName: s.numberId,
+                  amount: s.amount,
+                  percentage: s.percentage
+                });
+              });
+          });           
         });
-    });
-    // }, 2000);
-    
+        
+        this.sharedService.customGetApi("Service/GetPriceBySize?size=" +  encodeURIComponent(this.selectedsize) + "&companyid=" + this.RememberCompany.company.id).subscribe((t) => {
+          if (t.success == true){
+            if (t.data != null && t.data.length > 0){
+              this.numbers = t.data;
+              if (this.NumberDetails != null && this.NumberDetails.length > 0 && this.NumberDetails.filter(e => e.sizeId == this.selectedsize).length > 0){
+                this.NumberDetails.filter(f => f.sizeId == this.selectedsize).forEach(f => {
+                  this.numbers.find(z => z.numberName == f.numberId).carat = f.carat;
+                  this.numbers.find(z => z.numberName == f.numberId).price = f.rate;
+                  this.numbers.find(z => z.numberName == f.numberId).total = f.amount;
+                });
+              }
+            }
+          }
+        });
+
+
+      }, 1000); // Adjust the delay as needed
+    }, 500);
   }
+  
 
   viewitem(items: any){
     debugger;
