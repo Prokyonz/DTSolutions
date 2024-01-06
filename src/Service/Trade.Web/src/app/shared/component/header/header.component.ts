@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
   sidebarVisible!: boolean;
 
-  transactionReportItems: MenuItem[] = [];
   masterReportItems: MenuItem[] = [];
   adminReportItems: MenuItem[] = [];
   stockReportItems: MenuItem[] = [];
@@ -298,11 +297,13 @@ export class HeaderComponent implements OnInit {
               }
             });
             if (this.filterReport.length  > 0){
-              this.items.push({
-                label: 'Reports',        
-                expanded: false,
-                icon: 'pi pi-fw pi-chart-bar',
-                items: [
+              this.items.push(
+                //{
+                // label: 'Reports',        
+                // expanded: false,
+                // icon: 'pi pi-fw pi-chart-bar',
+                // items: 
+                // [
                   {
                     label: 'Admin Reports',        
                     expanded: false,
@@ -340,8 +341,9 @@ export class HeaderComponent implements OnInit {
                     items: this.outstandingReportItems
                   },
                   ... this.masterReportItems
-                ]
-              });
+                //]
+              //}
+              );
             }
             this.items.push({
                 label: 'Settings',

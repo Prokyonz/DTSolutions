@@ -135,7 +135,7 @@ namespace DiamondTrade.API.Controllers
             try
             {
                 var result = await _approvalPermissionMaster.GetPermission();
-                if (result.Any(x => x.UserId == userid && x.KeyName == keyname))
+                if (result.Any(x => x.UserId.Contains(userid) && x.KeyName == keyname))
                 {
                     return new Response<dynamic>
                     {

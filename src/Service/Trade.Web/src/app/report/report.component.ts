@@ -61,24 +61,26 @@ export class ReportComponent implements OnInit {
         this.isChildReport = true;
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_approval")
           .subscribe((data: any) => {
+            debugger;
             this.isApproveButton = data.success;
 
             this.columnArray = [
               { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
               { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
               { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
               { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
               { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-              { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+              { "displayName": "Buyer Name", "dataType": "text", "fieldName": "buyerName", "minWidth": "15" },
               { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
               { "displayName": "Buy Rate", "dataType": "numeric", "fieldName": "buyingRate" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+              { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount" },
               { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
               { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
-              { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true },
               { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+              { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true },
               { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
               { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
@@ -125,6 +127,7 @@ export class ReportComponent implements OnInit {
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
+            debugger;
             this.columnArray = [
               { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
               { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },

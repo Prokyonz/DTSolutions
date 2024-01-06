@@ -88,6 +88,7 @@ export class KapanlagadComponent implements OnInit {
   }
 
   showDetails(){
+    this.loading = true;
     this.sharedService.customGetApi("Report/GetKapanLagadReport?kapanId=" + this.kapanid.name.id).subscribe((t) => {
       if (t.success == true){
         console.log(t.data);
@@ -187,9 +188,17 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
+        this.loading = true;
         //this.groupDataByCategory();
       }
+    },(ex: any) => {
+      this.loading = false;
+      this.showMessage('error', ex);
     });
+  }
+
+  showMessage(type: string, message: string) {
+    this.messageService.add({ severity: type, summary: message });
   }
 
   calculateTotal(items: any[], field: string): number {
