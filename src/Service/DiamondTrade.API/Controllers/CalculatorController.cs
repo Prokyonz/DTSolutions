@@ -23,7 +23,7 @@ namespace DiamondTrade.API.Controllers
 
         [Route("Delete")]
         [HttpPost]
-        public async Task<IActionResult> Delete(int calculatorId,string branchId)
+        public async Task<IActionResult> Delete(int calculatorId, string branchId)
         {
             try
             {
@@ -71,11 +71,18 @@ namespace DiamondTrade.API.Controllers
 
         [Route("Add")]
         [HttpPost]
-        public async Task<Response<List<CalculatorMaster>>> Add(CalculatorRequest calculator)
+        public async Task<Response<List<CalculatorMaster>>> Add(CalculatorRequest calculator, int calculatorId = 0, bool isEdit = false)
         {
             try
             {
+
+
                 var calculatorMasterList = new List<CalculatorMaster>();
+
+                if (isEdit)
+                {
+                    await _calculatorMaster.DeleteCalculatorAsync(calculatorId, calculator.BranchId);
+                }
 
                 calculator.SizeDetails.ForEach(x =>
                 {
@@ -173,7 +180,7 @@ namespace DiamondTrade.API.Controllers
                         .Select(s => new Models.Response.SizeDetails()
                         {
                             SizeId = s.Key,
-                            SizeName = s.First().SizeName, 
+                            SizeName = s.First().SizeName,
                             TotalCarat = s.First().TotalCarat,
                             NumberDetails = s.Select(n => new Models.Response.NumberDetails()
                             {
@@ -192,7 +199,7 @@ namespace DiamondTrade.API.Controllers
                 calculatorResponseModel = calculatorResponseModel.OrderByDescending(x => x.SrNo);
                 return Ok(calculatorResponseModel);
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 throw;
             }
