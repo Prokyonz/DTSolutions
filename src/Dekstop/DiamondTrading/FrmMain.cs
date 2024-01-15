@@ -269,6 +269,12 @@ namespace DiamondTrading
                         barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem62.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
+                    case "gst_bill_print":
+                        accordionControlUtility.Visible = true;
+                        accordionControlOptions.Visible = true;
+                        barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonGSTBillPrint.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        break;
 
 
                     //Reports Menu - Transaction
