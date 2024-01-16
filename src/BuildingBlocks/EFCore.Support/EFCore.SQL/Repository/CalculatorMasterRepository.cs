@@ -65,12 +65,31 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> DeleteCalculatorHistoryAsync( string branchId, string companyId, string finYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => 
+                s.BranchId == branchId
+                && s.CompanyId == companyId
+                && s.FinancialYearId == finYearId 
+                && !s.IsDelete).ToListAsync();
+                if (getCalculator != null)
+                {
+                    _databaseContext.CalculatorMaster.RemoveRange(getCalculator);
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public async Task<List<CalculatorMaster>> GetAllCalculatorAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
             {
                 var list = await _databaseContext.CalculatorMaster.Where(s => s.IsDelete == false && s.CompanyId == CompanyId).ToListAsync();
-               
+
                 return list;
             }
         }
