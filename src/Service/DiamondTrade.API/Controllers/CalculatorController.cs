@@ -71,7 +71,7 @@ namespace DiamondTrade.API.Controllers
 
         [Route("Add")]
         [HttpPost]
-        public async Task<Response<List<CalculatorMaster>>> Add(CalculatorRequest calculator,  bool isEdit = false)
+        public async Task<Response<List<CalculatorMaster>>> Add(CalculatorRequest calculator)
         {
             try
             {
@@ -79,9 +79,9 @@ namespace DiamondTrade.API.Controllers
 
                 var calculatorMasterList = new List<CalculatorMaster>();
 
-                if (isEdit)
+                if (calculator.SrNo > 0)
                 {
-                    await _calculatorMaster.DeleteCalculatorHistoryAsync(calculator.BranchId, calculator.CompanyId, calculator.FinancialYearId);
+                    await _calculatorMaster.DeleteCalculatorHistoryAsync(calculator.BranchId, calculator.CompanyId, calculator.FinancialYearId, calculator.SrNo);
                 }
 
                 calculator.SizeDetails.ForEach(x =>

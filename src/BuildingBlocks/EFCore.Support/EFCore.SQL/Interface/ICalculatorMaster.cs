@@ -18,6 +18,6 @@ namespace EFCore.SQL.Interface
         Task<List<string>> GetCalculatorMasterParties(string companyId);
         Task<List<string>> GetCalculatorMasterBrokers(string companyId);
 
-        Task<bool> DeleteCalculatorHistoryAsync(string branchId, string companyId, string finYearId)
+        Task<bool> DeleteCalculatorHistoryAsync(string branchId, string companyId, string finYearId, int srNo);
     }
 }

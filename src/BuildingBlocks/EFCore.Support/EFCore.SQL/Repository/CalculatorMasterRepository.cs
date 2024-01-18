@@ -65,11 +65,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteCalculatorHistoryAsync( string branchId, string companyId, string finYearId)
+        public async Task<bool> DeleteCalculatorHistoryAsync( string branchId, string companyId, string finYearId, int srNo)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => 
+                var getCalculator = await _databaseContext.CalculatorMaster.Where(s => s.SrNo == srNo &&
                 s.BranchId == branchId
                 && s.CompanyId == companyId
                 && s.FinancialYearId == finYearId 
