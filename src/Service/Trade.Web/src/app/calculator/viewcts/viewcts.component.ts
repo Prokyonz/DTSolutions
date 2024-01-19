@@ -102,6 +102,7 @@ export class ViewctsComponent implements OnInit{
   RememberCompany: RememberCompany = new RememberCompany();
   firstDate: string | null = '';
   endDate: string | null = '';
+  srNo: number = 0;
   constructor(private router: Router, private messageService: MessageService, private sharedService: SharedService, private datePipe: DatePipe) {
 
   }
@@ -597,12 +598,12 @@ export class ViewctsComponent implements OnInit{
   edititem(items: any) {
     this.onAddIconClick();  
     this.PageTitle = "Edit Item";
-  
+    this.srNo = items.srNo;
     setTimeout(() => {
       this.date = new Date(items.date);
       this.netcarat = items.netCarat;
       this.note = items.note;
-  
+      
       setTimeout(() => {
         this.partyid = items.partyName;
         this.dealerid = items.brokerName;
@@ -769,6 +770,7 @@ export class ViewctsComponent implements OnInit{
         });
         if (confirm("Are you sure want to save this item?")){
           const data = {
+              SrNo: this.srNo,
               Date: this.date,
               CompanyId: this.RememberCompany.company.id,
               FinancialYearId: this.RememberCompany.financialyear.id,
@@ -847,5 +849,6 @@ export class ViewctsComponent implements OnInit{
     this.dealerid = this.dealers.filter(e => e.id == '');
     this.note = '';
     this.loading = false;
+    this.srNo = 0;
   }
 }
