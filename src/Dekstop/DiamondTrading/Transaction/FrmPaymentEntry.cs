@@ -1090,7 +1090,9 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
+                //if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
+                if(Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) == PartyTypeMaster.PartyBuy
+                    || Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) == PartyTypeMaster.PartySale)
                 {
                     if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                     {
