@@ -474,8 +474,9 @@ namespace DiamondTrading.Transaction
                             CreatedDate = DateTime.Now,
                             UpdatedBy = Common.LoginUserID,
                             UpdatedDate = DateTime.Now,
-                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
-                        };
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),                            
+                            EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
+                    };
 
                         var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
 
@@ -531,7 +532,8 @@ namespace DiamondTrading.Transaction
                             CreatedDate = DateTime.Now,
                             UpdatedBy = Common.LoginUserID,
                             UpdatedDate = DateTime.Now,
-                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                            EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
                         };
 
                         var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
@@ -727,7 +729,8 @@ namespace DiamondTrading.Transaction
                     UpdatedBy = Common.LoginUserID,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
-                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
+                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                    EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
                 };
 
                 var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
