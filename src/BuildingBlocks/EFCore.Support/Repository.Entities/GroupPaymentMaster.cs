@@ -24,6 +24,7 @@ namespace Repository.Entities
         public string Message { get; set; }
         public int ApprovalType { get; set; }
         public string EntryDate { get; set; }
+        public string EntryTime { get; set; }
 
         public virtual List<PaymentMaster> PaymentMasters { get; set; }
         public virtual List<PaymentDetails> PaymentDetails { get; set; }

@@ -21,6 +21,7 @@ namespace Repository.Entities
         public int DuratonType { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        public string EntryTime { get; set; }
 
         [Column(TypeName = "decimal(18, 2)")]
         public decimal InterestRate { get; set; }
