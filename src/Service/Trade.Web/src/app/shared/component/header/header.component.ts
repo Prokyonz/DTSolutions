@@ -90,7 +90,7 @@ export class HeaderComponent implements OnInit {
                   this.adminReportItems.push({
                       label: 'Profit',
                       icon: 'pi pi-fw pi-money-bill',
-                      routerLink: "/report/21",
+                      routerLink: "/profitloss",
                       expanded: false,
                       command: () => {
                         this.sidebarVisible = false;

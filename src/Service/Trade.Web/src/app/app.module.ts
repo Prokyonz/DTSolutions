@@ -41,6 +41,7 @@ import { DialogModule } from 'primeng/dialog';
 import { DatePipe } from '@angular/common';
 import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
 import { BalancesheetComponent } from './report/balancesheet/balancesheet.component';
+import { ProfitlossComponent } from './report/profitloss/profitloss.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { BalancesheetComponent } from './report/balancesheet/balancesheet.compon
     CompanyselectionComponent,
     KapanlagadComponent,
     BalancesheetComponent,
+    ProfitlossComponent,
   ],
   imports: [
     BrowserModule,
