@@ -1026,6 +1026,7 @@
     <Content Include="bin\Debug\x64\SNI.pdb" />
     <Content Include="bin\Debug\x86\SNI.dll" />
     <Content Include="bin\Debug\x86\SNI.pdb" />
+    <Content Include="DBBackup\livedbBackup.sql" />
     <Content Include="ExeRefrence\AForge.Controls.dll" />
     <Content Include="ExeRefrence\AForge.Video.DirectShow.dll" />
     <Content Include="ExeRefrence\AForge.Video.dll" />
