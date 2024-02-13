@@ -47,6 +47,9 @@ namespace DiamondTrading
         public const string SalaryTotalDayHours = "SalaryTotalDayHours";
         public const string SalaryPlusOTRatePerHour = "SalaryPlusOTRatePerHour";
         public const string SalaryMinusOTRatePerHour = "SalaryMinusOTRatePerHour";
+
+        public const string SlipPrinterName = "SlipPrinterName";
+
         #endregion "FrmOther"
 
         public static void DeleteSettings()

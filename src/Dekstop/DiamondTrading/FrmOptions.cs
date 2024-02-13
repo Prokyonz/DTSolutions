@@ -54,6 +54,8 @@ namespace DiamondTrading
             txtDayHours.Text = Common.SalaryTotalDayHours.ToString();
             txtPlusOTHourRate.Text = Common.SalaryPlusOTRatePerHour.ToString();
             txtMinusOTHourRate.Text = Common.SalaryMinusOTRatePerHour.ToString();
+
+            txtSlipPrinterName.Text = Common.SlipPrinterName.ToString();
         }
 
         private void SaveSettings()
@@ -92,6 +94,11 @@ namespace DiamondTrading
 
                 Common.SalaryMinusOTRatePerHour = Convert.ToDecimal(txtMinusOTHourRate.Text);
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryMinusOTRatePerHour, txtMinusOTHourRate.Text);
+                #endregion
+
+                #region "Other"
+                Common.SlipPrinterName = txtSlipPrinterName.Text;
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SlipPrinterName, txtSlipPrinterName.Text);
                 #endregion
             }
         }
@@ -135,6 +142,11 @@ namespace DiamondTrading
         private void radioGroup1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtSlipPrinterName_TextChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
         }
     }
 }

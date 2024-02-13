@@ -41,6 +41,7 @@ namespace DiamondTrading
         public static string LoginLanguage = "1";
 
         public static string FormTitle="|| શ્રીજી ||";
+        
         public static bool PrintPurchaseSlip = false;
         public static bool PrintPurchasePF = false;
         public static bool AllowToSelectPurchaseDueDate = false;
@@ -49,6 +50,9 @@ namespace DiamondTrading
         public static decimal SalaryTotalDayHours = 0;
         public static decimal SalaryPlusOTRatePerHour = 0;
         public static decimal SalaryMinusOTRatePerHour = 0;
+        
+        public static string SlipPrinterName = "";
+
 
         public static List<UserPermissionChild> UserPermissionChildren
         {
@@ -179,7 +183,10 @@ namespace DiamondTrading
                 SalaryTotalDayHours = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryTotalDayHours, "0"));
                 SalaryPlusOTRatePerHour = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryPlusOTRatePerHour, "0"));
                 SalaryMinusOTRatePerHour = Convert.ToDecimal(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryMinusOTRatePerHour, "0"));
+
+                SlipPrinterName = RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.SlipPrinterName, "");
                 #endregion "FrmOption"
+
             }
             catch (Exception Ex)
             {

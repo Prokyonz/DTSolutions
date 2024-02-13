@@ -53,6 +53,9 @@ namespace DiamondTrading
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.txtSlipPrinterName = new DevExpress.XtraEditors.TextEdit();
+            this.billPrintModelTableAdapter1 = new DiamondTrading.karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtabGeneral.SuspendLayout();
@@ -71,6 +74,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).BeginInit();
+            this.xtabOther.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -303,6 +310,7 @@ namespace DiamondTrading
             // 
             // xtabOther
             // 
+            this.xtabOther.Controls.Add(this.groupControl4);
             this.xtabOther.Name = "xtabOther";
             this.xtabOther.Size = new System.Drawing.Size(296, 321);
             this.xtabOther.Text = "Other";
@@ -344,6 +352,29 @@ namespace DiamondTrading
             this.btnOk.Text = "&OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // groupControl4
+            // 
+            this.groupControl4.Controls.Add(this.txtSlipPrinterName);
+            this.groupControl4.Location = new System.Drawing.Point(3, 5);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(290, 60);
+            this.groupControl4.TabIndex = 2;
+            this.groupControl4.Text = "Slip Printer Name";
+            // 
+            // txtSlipPrinterName
+            // 
+            this.txtSlipPrinterName.Location = new System.Drawing.Point(5, 26);
+            this.txtSlipPrinterName.Name = "txtSlipPrinterName";
+            this.txtSlipPrinterName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSlipPrinterName.Properties.Appearance.Options.UseFont = true;
+            this.txtSlipPrinterName.Size = new System.Drawing.Size(280, 26);
+            this.txtSlipPrinterName.TabIndex = 3;
+            this.txtSlipPrinterName.TextChanged += new System.EventHandler(this.txtSlipPrinterName_TextChanged);
+            // 
+            // billPrintModelTableAdapter1
+            // 
+            this.billPrintModelTableAdapter1.ClearBeforeFill = true;
+            // 
             // FrmOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -381,6 +412,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).EndInit();
+            this.xtabOther.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,5 +446,8 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.TextEdit txtPlusOTHourRate;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtDayHours;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraEditors.TextEdit txtSlipPrinterName;
+        private karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter billPrintModelTableAdapter1;
     }
 }
