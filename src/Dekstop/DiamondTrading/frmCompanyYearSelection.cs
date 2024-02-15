@@ -66,11 +66,11 @@ namespace DiamondTrading
             chkRememberMe.Checked = Common.RememberComapnyYearSelection;
             if (chkRememberMe.Checked)
             {
-                if (Common.LoginCompany != Common.DefaultGuid)
+                //if (Common.LoginCompany != Common.DefaultGuid)
                     lueCompany.EditValue = Common.LoginCompany;
-                if (Common.LoginBranch != Common.DefaultGuid)
+                //if (Common.LoginBranch != Common.DefaultGuid)
                     lueBranch.EditValue = Common.LoginBranch;
-                if (Common.LoginFinancialYear != Common.DefaultGuid)
+                //if (Common.LoginFinancialYear != Common.DefaultGuid)
                     lueFinancialYear.EditValue = Common.LoginFinancialYear;
                 lueLanguage.EditValue = Convert.ToInt32(Common.LoginLanguage);
 
