@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using static DiamondTrade.API.Models.Enum.Enum;
 
@@ -1045,14 +1046,40 @@ namespace DiamondTrade.API.Controllers
         [HttpPost]
         public Response<dynamic> DownloadExcel([FromBody] ExportModel exportModel)
         {
-            string excelDirectory = System.IO.Path.Combine(_env.WebRootPath, "csvs");
+            string excelDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
 
             // Create the directory if it doesn't exist
-            Directory.CreateDirectory(excelDirectory);
+            // Impersonate a user with sufficient permissions
+
+            try
+            {
+                WindowsIdentity identity = WindowsIdentity.GetCurrent();
+                if (identity != null && identity.IsAuthenticated && identity.IsGuest == false)
+                {
+                    // Check if the current user has the necessary permissions
+                    if (!Directory.Exists(excelDirectory))
+                    {
+                        WindowsIdentity.RunImpersonated(identity.AccessToken, () =>
+                        {
+                            Directory.CreateDirectory(excelDirectory);
+                            Console.WriteLine("Directory created successfully.");
+                        });
+                    }
+                    else
+                    {
+                        Console.WriteLine("Directory already exists.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+            
 
             string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
             string excelFilePath = System.IO.Path.Combine(excelDirectory, uniqueFilename);
-            excelFilePath = excelFilePath.Replace('\\', '/');
+            //excelFilePath = excelFilePath.Replace('\\', '/');
 
 
             using (MemoryStream memoryStream = new MemoryStream())
@@ -1079,8 +1106,6 @@ namespace DiamondTrade.API.Controllers
                         }
                     }
 
-
-
                     workbook.SaveAs(memoryStream);
                 }
 
@@ -1090,7 +1115,7 @@ namespace DiamondTrade.API.Controllers
 
 
                 // Get the URL for the saved csv
-                string csvRelativePath = $"wwwroot/csvs/{uniqueFilename}";
+                string csvRelativePath = $"diamondapi/wwwroot/csvs/{uniqueFilename}";
                 string excelUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{csvRelativePath}";
 
                 return new Response<dynamic>
@@ -1099,11 +1124,6 @@ namespace DiamondTrade.API.Controllers
                     Success = true,
                     Data = excelUrl
                 };
-
-                //Response.Headers.Add("Content-Type", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                //Response.Headers.Add("Content-Disposition", "attachment; filename=table.xlsx");
-
-                //return File(excelContent, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
             }
         }
 
