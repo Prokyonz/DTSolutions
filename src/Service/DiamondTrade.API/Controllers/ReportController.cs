@@ -947,14 +947,14 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                string pdfDirectory = System.IO.Path.Combine(_env.WebRootPath, "pdfs");
+                string pdfDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
 
                 // Create the directory if it doesn't exist
-                Directory.CreateDirectory(pdfDirectory);
+               // Directory.CreateDirectory(pdfDirectory);
 
                 string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.pdf";
                 string pdfFilePath = System.IO.Path.Combine(pdfDirectory, uniqueFilename);
-                pdfFilePath = pdfFilePath.Replace('\\', '/');
+                //pdfFilePath = pdfFilePath.Replace('\\', '/');
 
                 using (MemoryStream memoryStream = new MemoryStream())
                 {
@@ -1001,7 +1001,7 @@ namespace DiamondTrade.API.Controllers
                     System.IO.File.WriteAllBytes(pdfFilePath, pdfContent);
 
                     // Get the URL for the saved PDF
-                    string pdfRelativePath = $"wwwroot/pdfs/{uniqueFilename}";
+                    string pdfRelativePath = $"diamondapi/csvs/{uniqueFilename}";
                     string pdfUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{pdfRelativePath}";
 
                     return new Response<dynamic>
@@ -1010,13 +1010,6 @@ namespace DiamondTrade.API.Controllers
                         Success = true,
                         Data = pdfUrl
                     };
-
-                    //return Ok(new { PdfUrl = pdfUrl }); // Return the URL in the API response
-
-                    //Response.Headers.Add("Content-Type", "application/pdf");
-                    //Response.Headers.Add("Content-Disposition", "attachment; filename=table.pdf");
-
-                    //return File(pdfContent, "application/pdf");
                 }
             }
             catch
@@ -1051,30 +1044,30 @@ namespace DiamondTrade.API.Controllers
             // Create the directory if it doesn't exist
             // Impersonate a user with sufficient permissions
 
-            try
-            {
-                WindowsIdentity identity = WindowsIdentity.GetCurrent();
-                if (identity != null && identity.IsAuthenticated && identity.IsGuest == false)
-                {
-                    // Check if the current user has the necessary permissions
-                    if (!Directory.Exists(excelDirectory))
-                    {
-                        WindowsIdentity.RunImpersonated(identity.AccessToken, () =>
-                        {
-                            Directory.CreateDirectory(excelDirectory);
-                            Console.WriteLine("Directory created successfully.");
-                        });
-                    }
-                    else
-                    {
-                        Console.WriteLine("Directory already exists.");
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
+            //try
+            //{
+            //    WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            //    if (identity != null && identity.IsAuthenticated && identity.IsGuest == false)
+            //    {
+            //        // Check if the current user has the necessary permissions
+            //        if (!Directory.Exists(excelDirectory))
+            //        {
+            //            WindowsIdentity.RunImpersonated(identity.AccessToken, () =>
+            //            {
+            //                Directory.CreateDirectory(excelDirectory);
+            //                Console.WriteLine("Directory created successfully.");
+            //            });
+            //        }
+            //        else
+            //        {
+            //            Console.WriteLine("Directory already exists.");
+            //        }
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("Error: " + ex.Message);
+            //}
             
 
             string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
@@ -1115,7 +1108,7 @@ namespace DiamondTrade.API.Controllers
 
 
                 // Get the URL for the saved csv
-                string csvRelativePath = $"diamondapi/wwwroot/csvs/{uniqueFilename}";
+                string csvRelativePath = $"diamondapi/csvs/{uniqueFilename}";
                 string excelUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{csvRelativePath}";
 
                 return new Response<dynamic>
