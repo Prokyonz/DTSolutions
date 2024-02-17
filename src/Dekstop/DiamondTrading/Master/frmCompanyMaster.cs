@@ -1,13 +1,9 @@
-﻿using DevExpress.XtraEditors;
-using EFCore.SQL.Repository;
+﻿using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +12,7 @@ namespace DiamondTrading.Master
     public partial class FrmCompanyMaster : DevExpress.XtraEditors.XtraForm
     {
         private readonly CompanyMasterRepository _companyMasterRepository;
+        private readonly UserMasterRepository _userMasterRepository;
         private readonly List<CompanyMaster> _companyMasters;
         private CompanyMaster _EditedCompnayMasterSet;
         private string _selectedCompany;
@@ -24,6 +21,7 @@ namespace DiamondTrading.Master
         {
             InitializeComponent();
             _companyMasterRepository = new CompanyMasterRepository();
+            _userMasterRepository = new UserMasterRepository();
             this._companyMasters = companyMasters;
         }
 
@@ -162,8 +160,44 @@ namespace DiamondTrading.Master
 
                     if (Result != null)
                     {
+                        //Update crrent user company assignment
+                        var user = await _userMasterRepository.GetUserById(Common.LoginUserID.ToString());
+                        
+                        user.UserCompanyMappings.Add(new UserCompanyMapping
+                        {
+                            Id = Guid.NewGuid().ToString(),
+                            UserId = user.Id,
+                            CompanyId = Result.Id,
+                            CreatedDate = DateTime.Now,
+                            UpdatedDate = DateTime.Now,
+                            CreatedBy = Common.LoginUserID,
+                            UpdatedBy = Common.LoginUserID
+                        });
+
+                        await _userMasterRepository.UpdateUserAsync(user);
+
+                        // Assign company to admin
+                        if(user.Name.ToString() != "admin")
+                        {
+                            var details = await _userMasterRepository.GetUserByName("admin");
+
+                            details.UserCompanyMappings.Add(new UserCompanyMapping
+                            {
+                                Id = Guid.NewGuid().ToString(),
+                                UserId = details.Id,
+                                CompanyId = Result.Id,
+                                CreatedDate = DateTime.Now,
+                                UpdatedDate = DateTime.Now,
+                                CreatedBy = Common.LoginUserID,
+                                UpdatedBy = Common.LoginUserID
+                            });
+
+                            await _userMasterRepository.UpdateUserAsync(details);
+                        }
+
                         Reset();
                         MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                     }
                 }
                 else
