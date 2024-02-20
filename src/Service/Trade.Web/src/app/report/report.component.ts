@@ -1200,9 +1200,9 @@ export class ReportComponent implements OnInit {
           .then(downloadResult => {
             // Check downloadResult for success
             if (downloadResult) {
-              console.log("File downloaded successfully:", downloadResult);
+              this.showMessage('Success', "File downloaded successfully.");
             } else {
-              console.log("File download failed.");
+              this.showMessage('Error',"File download failed.");
             }
 
             this.loading = false;
@@ -1530,15 +1530,14 @@ export class ReportComponent implements OnInit {
           .then(downloadResult => {
             // Check downloadResult for success
             if (downloadResult) {
-              console.log("File downloaded successfully:", downloadResult);
+              this.showMessage('Success', "File downloaded successfully.");
             } else {
-              console.log("File download failed.");
+              this.showMessage('Error',"File download failed.");
             }
 
             this.loading = false;
           })
           .catch(ex => {
-            console.error("Error downloading file:", ex);
             this.loading = false;
             this.showMessage('error', ex);
         });
