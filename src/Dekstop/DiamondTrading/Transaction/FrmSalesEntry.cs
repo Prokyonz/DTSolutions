@@ -849,6 +849,9 @@ namespace DiamondTrading.Transaction
                             LessWeight = g.Sum(x => x.LessWeight)
                         });
 
+                        if (_salesItemObj.KapanItemList == null)
+                            _salesItemObj.KapanItemList = listKapanProcess1.Where(x => x.AvailableWeight > 0).ToList();
+
                         listKapanProcess1 = listKapanProcess1.Where(x => x.AvailableWeight > 0);
                         repoShape.DataSource = listKapanProcess1.ToList();
                         repoShape.DisplayMember = "Shape";
@@ -1150,11 +1153,13 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                         }
 
-                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Boil.ToString())
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Kapan.ToString() 
+                            && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Boil.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                         }
-                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Kapan.ToString()
+                            && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Number.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colNumberSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).NumberSizeId);
                             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
@@ -1169,7 +1174,8 @@ namespace DiamondTrading.Transaction
                                 grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRate, PriceRate.Price);
                             }
                         }
-                        else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
+                        else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Kapan.ToString()
+                            && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Gala.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colGalaSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).GalaNumberId);
                         }
