@@ -98,7 +98,7 @@ namespace DiamondTrading.Utility
                     CreatedDate = DateTime.Now,
                     DuratonType = (int)lueDuration.EditValue,
                     EndDate = dateEnd.DateTime,
-                    StartDate  = dateStart.DateTime,
+                    StartDate = dateStart.DateTime,
                     InterestRate = decimal.Parse(txtInterestRate.Text),
                     IsDelete = false,
                     LoanType = int.Parse(lueReceiveFrom.EditValue.ToString()),
@@ -106,7 +106,9 @@ namespace DiamondTrading.Utility
                     Remarks = txtRemark.Text,
                     TotalInterest = decimal.Parse(txtTotalInterest.Text),
                     UpdatedBy = Common.LoginUserID,
-                    UpdatedDate = DateTime.Now
+                    UpdatedDate = DateTime.Now,
+                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                    EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),
                 };
 
                 await _loanMasterRepository.AddLoanAsync(loanMaster);
@@ -171,27 +173,27 @@ namespace DiamondTrading.Utility
         {
             int lueDurations = Convert.ToInt32(lueDuration.EditValue.ToString());
 
-            if(lueDurations == 1) //Daily
+            if (lueDurations == 1) //Daily
             {
                 dateStart.DateTime = DateTime.Now;
                 dateEnd.DateTime = DateTime.Now;
             }
-            else if(lueDurations == 2) //Monthly
+            else if (lueDurations == 2) //Monthly
             {
                 dateStart.DateTime = DateTime.Now;
                 dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(1);
-            } 
-            else if(lueDurations == 3) // 3 Month
+            }
+            else if (lueDurations == 3) // 3 Month
             {
                 dateStart.DateTime = DateTime.Now;
                 dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(3);
             }
-            else if(lueDurations == 4) //6 Month 
+            else if (lueDurations == 4) //6 Month 
             {
                 dateStart.DateTime = DateTime.Now;
                 dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(6);
             }
-            else if(lueDurations == 5) //12 Month
+            else if (lueDurations == 5) //12 Month
             {
                 dateStart.DateTime = DateTime.Now;
                 dateEnd.DateTime = new DateTime(DateTime.Now.Ticks).AddMonths(12);
