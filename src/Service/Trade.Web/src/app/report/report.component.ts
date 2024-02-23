@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -25,8 +25,10 @@ interface Customer {
   providers: [ConfirmationService, MessageService]
 })
 
+
 export class ReportComponent implements OnInit {
 
+  @ViewChild('dt1') dataTable: Table; // Assuming your p-table component has a template reference variable named 'dataTable'
   PageTitle: string = "Purchase Report";
   reportIndex: number = 0;
   RememberCompany: RememberCompany = new RememberCompany();
@@ -51,7 +53,7 @@ export class ReportComponent implements OnInit {
   isChildReport: boolean = false;
   childTotalColumn: number = 0;
   childFilterColumn: string[] = [];
-
+  
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
     private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
     this.reportIndex = +activateRoute.snapshot.params['id'];
@@ -1161,6 +1163,13 @@ export class ReportComponent implements OnInit {
         break;
       }
     exportColumns = colArray.map((col) => (col.fieldName));
+
+     // Get filtered data from the grid (assuming the grid has a method to get filtered data)
+  
+     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+      this.PurchaseReportList = this.dataTable.filteredValue;
+    }
+
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -1490,6 +1499,11 @@ export class ReportComponent implements OnInit {
         colArray = this.columnArray;
         break;
       }
+
+      if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+        this.PurchaseReportList = this.dataTable.filteredValue;
+      }
+      
     exportColumns = colArray.map((col) => (col.fieldName));
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
