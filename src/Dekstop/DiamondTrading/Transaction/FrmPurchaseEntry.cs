@@ -54,6 +54,23 @@ namespace DiamondTrading.Transaction
 
         private async void FrmPurchaseEntry_Load(object sender, EventArgs e)
         {
+            this.Cursor = Cursors.WaitCursor;
+            string lastselectedDate = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.PurchaseDateSelection, "");
+
+            if (string.IsNullOrEmpty(lastselectedDate))
+                dtDate.EditValue = DateTime.Now;
+            else
+            {
+                try
+                {
+                    dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
+                }
+                catch (Exception)
+                {
+                    dtDate.EditValue = DateTime.Now;
+                }
+            }
+
             isLoading = true;
             lblFormTitle.Text = Common.FormTitle;
             SetSelectionBackColor();
@@ -269,6 +286,7 @@ namespace DiamondTrading.Transaction
             }
             timer1.Start();
             isLoading = false;
+            this.Cursor = Cursors.Default;
         }
 
         private async Task LoadCompany()
@@ -339,7 +357,7 @@ namespace DiamondTrading.Transaction
 
         private async Task FillCombos()
         {
-            dtDate.EditValue = DateTime.Now;
+            //dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             dtPayDate.EditValue = DateTime.Now;
 
@@ -1361,6 +1379,8 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.PurchaseDateSelection, dtDate.DateTime.ToString());
+
                 this.Cursor = Cursors.WaitCursor;
                 if (!CheckValidation())
                     return;
