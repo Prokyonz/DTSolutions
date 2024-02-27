@@ -55,7 +55,7 @@ export class CompanyselectionComponent {
   ngOnInit() {
       this.showHeaderForCompanySelect = this.activateRoute.snapshot?.params['value'] == "header" ? true : false;
       this.getCompany();
-      // this.getBranch();
+      this.getBranch();
       this.getFinancialYear();
       var data = localStorage.getItem('companyremember');
       if (data != null){
@@ -84,13 +84,26 @@ export class CompanyselectionComponent {
   }
 
   getBranch(){
+    if(this.SelectedCompany!=null)
+    {
     this.sharedService.customGetApi("Service/GetAllBranchByCompanyId?companyId=" + this.SelectedCompany.id).subscribe((t) => {
       if (t.success == true){
         if (t.data != null && t.data.length > 0){          
           this.Branch = t.data;
         }
       }
-    });      
+    });
+  }    
+  else
+  {
+    this.sharedService.customGetApi("Service/GetAllBranch").subscribe((t) => {
+      if (t.success == true){
+        if (t.data != null && t.data.length > 0){          
+          this.Branch = t.data;
+        }
+      }
+    });
+  }  
   }
 
   getFinancialYear(){
