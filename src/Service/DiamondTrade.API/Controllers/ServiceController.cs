@@ -306,5 +306,25 @@ namespace DiamondTrade.API.Controllers
                 throw;
             }
         }
+
+        [Route("GetAllBranchByCompanyId")]
+        [HttpGet]
+        public async Task<Response<dynamic>> GetAllBranchByCompanyId(string companyId)
+        {
+            try
+            {
+                var result = await _branchMaster.GetAllBranchByCompanyIdAsync(companyId);
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = result
+                };
+            }
+            catch
+            {
+                throw;
+            }
+        }
     }
 }
