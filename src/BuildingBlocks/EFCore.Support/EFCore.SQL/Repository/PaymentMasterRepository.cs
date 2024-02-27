@@ -131,7 +131,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
+                var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.BillNo).FirstOrDefaultAsync();
                 if (countResult == null)
                     return 1;
                 return countResult.BillNo + 1;
