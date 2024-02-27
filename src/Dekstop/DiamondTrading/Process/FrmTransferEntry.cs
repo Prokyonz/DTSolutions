@@ -1033,7 +1033,8 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                if (row["KapanType"].ToString().Equals("KapanMapped"))
+                                if (!dtView.Table.Columns.Contains("KapanType") || 
+                                    (dtView.Table.Columns.Contains("KapanType") && row["KapanType"].ToString().Equals("KapanMapped")))
                                 {
                                     kapanMappingMaster = new KapanMappingMaster();
                                     kapanMappingMaster.Id = Guid.NewGuid().ToString();
