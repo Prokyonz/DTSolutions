@@ -57,6 +57,31 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<bool> DeleteSrNoAllExpenseAsync(int SrNo, bool isPermanantDetele = true)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.SrNo == SrNo).ToListAsync();
+                if (getExpense != null)
+                {
+                    if (isPermanantDetele)
+                        _databaseContext.ExpenseDetails.RemoveRange(getExpense);
+                    else
+                    {
+                        foreach (ExpenseDetails expenseDetails in getExpense)
+                        {
+                            expenseDetails.IsDelete = true;
+                        }
+                        _databaseContext.UpdateRange(getExpense);
+                    }
+
+                    await _databaseContext.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public async Task<List<ExpenseDetails>> GetExpenseAsync(string companyId, string financialYearId,int srNo)
         {
             using (_databaseContext = new DatabaseContext())

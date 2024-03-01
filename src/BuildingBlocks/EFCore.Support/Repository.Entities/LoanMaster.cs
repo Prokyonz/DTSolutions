@@ -39,6 +39,7 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public string FinancialYearId { get; set; }
 
     }
 }

@@ -16,6 +16,7 @@ namespace EFCore.SQL.Interface
         Task<ExpenseDetails> AddExpenseAsync(ExpenseDetails expenseDetails);
         Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails);
         Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false);
+        Task<bool> DeleteSrNoAllExpenseAsync(int SrNo, bool isPermanantDetele = true);
         Task<bool> UpdateBalanceAsync(string partyId, string fromParty, decimal amount);
     }
 }

@@ -109,6 +109,7 @@ namespace DiamondTrading.Utility
                     UpdatedDate = DateTime.Now,
                     EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
                     EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),
+                    FinancialYearId = Common.LoginFinancialYear
                 };
 
                 await _loanMasterRepository.AddLoanAsync(loanMaster);

@@ -215,7 +215,7 @@ namespace DiamondTrading.Transaction
                             lueLeadger.EditValue = _editedExpenseDetails[0].fromPartyId.ToString();
                             txtRemark.Text = _editedExpenseDetails[0].Remarks;
                             grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
-                            dtDate.EditValue = DateTime.ParseExact(_editedExpenseDetails[0].EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture); ;
+                            dtDate.EditValue = DateTime.ParseExact(_editedExpenseDetails[0].EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture);
                             colBranch.Visible = true;
                             for (int i = 0; i < _editedExpenseDetails.Count; i++)
                             {
@@ -418,11 +418,15 @@ namespace DiamondTrading.Transaction
                     CrDr = "Dr";
                 }
                 txtLedgerBalance.Text = result.ToString("0.00") + " " + CrDr;
-                for (int i = grvPaymentDetails.RowCount; i >= 0 ; i--)
+
+                if (_selectedSrNo == 0)
                 {
-                    grvPaymentDetails.DeleteRow(i);
+                    for (int i = grvPaymentDetails.RowCount; i >= 0; i--)
+                    {
+                        grvPaymentDetails.DeleteRow(i);
+                    }
+                    await LoadLedgers(lueCompany.EditValue.ToString());
                 }
-                await LoadLedgers(lueCompany.EditValue.ToString());
             }
         }
 
@@ -557,7 +561,7 @@ namespace DiamondTrading.Transaction
                         try
                         {
                             ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
-                            await expenseMasterRepository.DeleteExpenseAsync(_editedExpenseDetails[0].Id, true);
+                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, true);
 
                             for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                             {
