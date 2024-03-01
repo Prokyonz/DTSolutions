@@ -418,6 +418,11 @@ namespace DiamondTrading.Transaction
                     CrDr = "Dr";
                 }
                 txtLedgerBalance.Text = result.ToString("0.00") + " " + CrDr;
+                for (int i = grvPaymentDetails.RowCount; i >= 0 ; i--)
+                {
+                    grvPaymentDetails.DeleteRow(i);
+                }
+                await LoadLedgers(lueCompany.EditValue.ToString());
             }
         }
 

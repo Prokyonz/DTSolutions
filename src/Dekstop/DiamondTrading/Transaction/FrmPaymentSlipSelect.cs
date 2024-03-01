@@ -127,7 +127,7 @@ namespace DiamondTrading.Transaction
                     else
                         RemainAmount = TotalAmount - TotalAdjustedAmount;
 
-                    if (RemainAmount <= Amount)
+                    if (RemainAmount <= Amount || Amount <= 0)
                     {
                         AdjustAmount = RemainAmount;
                     }
@@ -167,6 +167,8 @@ namespace DiamondTrading.Transaction
                         this.grvPaymentDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPaymentDetails_CellValueChanged);
                         return;
                     }
+                    RemainAmount = TotalAmount - TotalAdjustedAmount;
+                    lblRemainAmount.Text = RemainAmount.ToString();
                 }
             }
             catch
