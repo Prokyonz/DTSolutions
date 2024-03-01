@@ -69,10 +69,10 @@ namespace DiamondTrading.Master
             this.pnl4 = new DevExpress.XtraEditors.PanelControl();
             this.txtOpeningBalance = new DevExpress.XtraEditors.TextEdit();
             this.labelControl13 = new DevExpress.XtraEditors.LabelControl();
-            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             this.pnl5 = new System.Windows.Forms.Panel();
             this.lueCrDr = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl15 = new DevExpress.XtraEditors.LabelControl();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.luePartyType.Properties)).BeginInit();
@@ -103,10 +103,10 @@ namespace DiamondTrading.Master
             ((System.ComponentModel.ISupportInitialize)(this.pnl4)).BeginInit();
             this.pnl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
-            this.groupControl4.SuspendLayout();
             this.pnl5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCrDr.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupControl1
@@ -403,12 +403,12 @@ namespace DiamondTrading.Master
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.pnl3, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnl2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.pnl1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnl4, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.pnl5, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnl4, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.pnl5, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 23);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -541,10 +541,10 @@ namespace DiamondTrading.Master
             this.pnl4.Controls.Add(this.txtOpeningBalance);
             this.pnl4.Controls.Add(this.labelControl13);
             this.pnl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl4.Location = new System.Drawing.Point(463, 3);
+            this.pnl4.Location = new System.Drawing.Point(536, 3);
             this.pnl4.Name = "pnl4";
             this.pnl4.Padding = new System.Windows.Forms.Padding(0, 0, 3, 0);
-            this.pnl4.Size = new System.Drawing.Size(139, 48);
+            this.pnl4.Size = new System.Drawing.Size(167, 48);
             this.pnl4.TabIndex = 3;
             // 
             // txtOpeningBalance
@@ -559,7 +559,7 @@ namespace DiamondTrading.Master
             this.txtOpeningBalance.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtOpeningBalance.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtOpeningBalance.Properties.MaskSettings.Set("mask", "f");
-            this.txtOpeningBalance.Size = new System.Drawing.Size(136, 26);
+            this.txtOpeningBalance.Size = new System.Drawing.Size(164, 26);
             this.txtOpeningBalance.TabIndex = 1;
             // 
             // labelControl13
@@ -572,23 +572,14 @@ namespace DiamondTrading.Master
             this.labelControl13.TabIndex = 0;
             this.labelControl13.Text = "Opening Balance*";
             // 
-            // groupControl4
-            // 
-            this.groupControl4.Controls.Add(this.tableLayoutPanel1);
-            this.groupControl4.Location = new System.Drawing.Point(12, 154);
-            this.groupControl4.Name = "groupControl4";
-            this.groupControl4.Size = new System.Drawing.Size(710, 79);
-            this.groupControl4.TabIndex = 1;
-            this.groupControl4.Text = "Ledger Sub Details";
-            // 
             // pnl5
             // 
             this.pnl5.Controls.Add(this.lueCrDr);
             this.pnl5.Controls.Add(this.labelControl15);
             this.pnl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnl5.Location = new System.Drawing.Point(608, 3);
+            this.pnl5.Location = new System.Drawing.Point(463, 3);
             this.pnl5.Name = "pnl5";
-            this.pnl5.Size = new System.Drawing.Size(95, 48);
+            this.pnl5.Size = new System.Drawing.Size(67, 48);
             this.pnl5.TabIndex = 4;
             // 
             // lueCrDr
@@ -603,7 +594,7 @@ namespace DiamondTrading.Master
             this.lueCrDr.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Name", "Cr/Dr")});
             this.lueCrDr.Properties.NullText = "";
-            this.lueCrDr.Size = new System.Drawing.Size(95, 26);
+            this.lueCrDr.Size = new System.Drawing.Size(67, 26);
             this.lueCrDr.TabIndex = 3;
             // 
             // labelControl15
@@ -615,6 +606,15 @@ namespace DiamondTrading.Master
             this.labelControl15.Size = new System.Drawing.Size(28, 14);
             this.labelControl15.TabIndex = 2;
             this.labelControl15.Text = "Cr/Dr";
+            // 
+            // groupControl4
+            // 
+            this.groupControl4.Controls.Add(this.tableLayoutPanel1);
+            this.groupControl4.Location = new System.Drawing.Point(12, 154);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(710, 79);
+            this.groupControl4.TabIndex = 1;
+            this.groupControl4.Text = "Ledger Sub Details";
             // 
             // FrmPartyMaster
             // 
@@ -677,11 +677,11 @@ namespace DiamondTrading.Master
             this.pnl4.ResumeLayout(false);
             this.pnl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtOpeningBalance.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
-            this.groupControl4.ResumeLayout(false);
             this.pnl5.ResumeLayout(false);
             this.pnl5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCrDr.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
