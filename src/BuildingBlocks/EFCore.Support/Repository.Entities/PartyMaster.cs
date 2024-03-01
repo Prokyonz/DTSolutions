@@ -33,6 +33,7 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public int CRDRType { get; set; } // 0-Debit, 1-Credit
 
         [ForeignKey("CompanyId")]
         public virtual CompanyMaster CompanyMaster { get; set; }

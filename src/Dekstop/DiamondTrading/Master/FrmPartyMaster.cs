@@ -78,6 +78,28 @@ namespace DiamondTrading.Master
             if (_partyMasters == null)
                 _partyMasters = await _partyMasterRepository.GetAllPartyAsync();
 
+            DataTable dt = new DataTable();
+            dt.Columns.Add("Name");
+            dt.Columns.Add("Id");
+            
+            DataRow dr = dt.NewRow();
+            dr["Id"] = 0;
+            dr["Name"] = "Dr";
+
+            DataRow dr1 = dt.NewRow();
+            dr1["Id"] = 1;
+            dr1["Name"] = "Cr";
+
+            dt.Rows.Add(dr);
+            dt.Rows.Add(dr1);
+
+            lueCrDr.Properties.DataSource = dt;
+            lueCrDr.Properties.DisplayMember = "Name";
+            lueCrDr.Properties.ValueMember = "Id";
+            lueCrDr.EditValue = "1";
+
+            lueCompany.EditValue = Common.LoginCompany;
+
             await GetListForDepedendeFields();
 
             if (LedgerType == PartyTypeMaster.Buyer)
@@ -165,6 +187,7 @@ namespace DiamondTrading.Master
                     txtPancardNo.Text = _EditedPartyMasterSet.PancardNo;
                     txtAadharcardNo.Text = _EditedPartyMasterSet.AadharCardNo;
                     txtSalary.Text = _EditedPartyMasterSet.Salary.ToString();
+                    lueCrDr.EditValue = _EditedPartyMasterSet.CRDRType.ToString();
                 }
             }
 
@@ -270,6 +293,7 @@ namespace DiamondTrading.Master
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
+                        CRDRType = Convert.ToInt32(lueCrDr.EditValue)
                     };
 
                     if (Convert.ToInt32(luePartyType.EditValue) == PartyTypeMaster.Employee)
@@ -340,6 +364,7 @@ namespace DiamondTrading.Master
                         _EditedPartyMasterSet.Salary = 0;
                     _EditedPartyMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedPartyMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedPartyMasterSet.CRDRType = Convert.ToInt32(lueCrDr.EditValue);
 
                     var Result = await _partyMasterRepository.UpdatePartyAsync(_EditedPartyMasterSet);
 

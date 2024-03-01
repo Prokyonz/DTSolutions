@@ -236,6 +236,7 @@ namespace EFCore.SQL.Repository
                     getParty.AadharCardNo = partyMaster.AadharCardNo;
                     getParty.UpdatedDate = partyMaster.UpdatedDate;
                     getParty.UpdatedBy = partyMaster.UpdatedBy;
+                    getParty.CRDRType = partyMaster.CRDRType;
                 }
                 await _databaseContext.SaveChangesAsync();
                 return partyMaster;
