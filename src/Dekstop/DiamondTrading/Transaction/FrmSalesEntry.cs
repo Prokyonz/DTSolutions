@@ -838,7 +838,8 @@ namespace DiamondTrading.Transaction
                             Weight = g.Weight,
                             Id = g.KapanId + g.SizeId + g.ShapeId + g.PurityId,
                             SlipNo = g.SlipNo
-                        }).GroupBy(r => new {
+                        }).GroupBy(r => new
+                        {
                             r.Kapan,
                             r.KapanId,
                             r.Purity,
@@ -888,7 +889,7 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
                     }
-                    if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
+                    else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Charni.ToString())
                     {
                         repoShape.Columns["CharniSize"].Visible = true;
                         repoShape.Columns["GalaSize"].Visible = false;
@@ -1020,7 +1021,7 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
 
-                        repoCharniSize.DataSource = listNumberProcess1.Where(x=>x.CharniSizeId!=null).Select(x => new { x.CharniSizeId, x.CharniSize }).Distinct().ToList();
+                        repoCharniSize.DataSource = listNumberProcess1.Where(x => x.CharniSizeId != null).Select(x => new { x.CharniSizeId, x.CharniSize }).Distinct().ToList();
                         repoCharniSize.DisplayMember = "CharniSize";
                         repoCharniSize.ValueMember = "CharniSizeId";
 
@@ -1169,7 +1170,7 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colKapan, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                         }
 
-                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Kapan.ToString() 
+                        if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Kapan.ToString()
                             && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() != CategoryMaster.Boil.ToString())
                         {
                             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCharniSize, ((Repository.Entities.Model.SalesItemDetails)repoShape.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
@@ -1205,10 +1206,10 @@ namespace DiamondTrading.Transaction
                 {
                     CalculateRejectionValue(false, e.RowHandle);
                 }
-                 
+
                 FinalCalculation(e.RowHandle);
             }
-            catch(Exception Ex)
+            catch (Exception Ex)
             {
                 this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             }
@@ -1224,12 +1225,13 @@ namespace DiamondTrading.Transaction
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
-
+            this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0");
+            this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
         }
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
