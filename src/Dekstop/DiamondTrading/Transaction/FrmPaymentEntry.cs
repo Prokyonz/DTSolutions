@@ -419,7 +419,7 @@ namespace DiamondTrading.Transaction
                 }
                 txtLedgerBalance.Text = result.ToString("0.00") + " " + CrDr;
 
-                if (_selectedSrNo == 0)
+                if (_selectedSrNo == 0 && grvPaymentDetails.RowCount > 0)
                 {
                     for (int i = grvPaymentDetails.RowCount; i >= 0; i--)
                     {
