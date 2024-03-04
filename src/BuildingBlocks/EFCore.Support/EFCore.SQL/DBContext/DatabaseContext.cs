@@ -234,7 +234,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
-            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();
+            modelBuilder.Entity<SalesSPModel>().HasNoKey();
         }
     }
 }
