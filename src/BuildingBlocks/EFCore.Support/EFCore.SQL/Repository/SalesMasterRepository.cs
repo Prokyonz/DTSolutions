@@ -28,7 +28,10 @@ namespace EFCore.SQL.Repository
                     if (salesMaster.Id == null)
                         salesMaster.Id = Guid.NewGuid().ToString();
 
-                    var existingSlipNo = await _databaseContext.SalesMaster.Where(w=>w.SlipNo == salesMaster.SlipNo).FirstOrDefaultAsync();
+                    var existingSlipNo = await _databaseContext.SalesMaster.Where(w => w.CompanyId == salesMaster.CompanyId
+                    && w.FinancialYearId == salesMaster.FinancialYearId && !w.IsDelete
+                    && w.SlipNo == salesMaster.SlipNo).FirstOrDefaultAsync();
+
                     if (existingSlipNo != null)
                         throw new Exception("Slipno already exist. You can not enter same slipno again.");
 

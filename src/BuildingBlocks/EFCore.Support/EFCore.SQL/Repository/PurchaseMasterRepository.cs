@@ -177,7 +177,9 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.SlipNo == purchaseMaster.SlipNo && w.Id != purchaseMaster.Id).FirstOrDefaultAsync();
+                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == purchaseMaster.CompanyId 
+                && w.FinancialYearId == purchaseMaster.FinancialYearId && !w.IsDelete
+                && w.SlipNo == purchaseMaster.SlipNo && w.Id != purchaseMaster.Id).FirstOrDefaultAsync();
                 if (existingSlipNo != null)
                     throw new Exception("Slipno already exist. You can not enter same slipno again.");
 
