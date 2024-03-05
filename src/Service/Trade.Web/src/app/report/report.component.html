@@ -19,10 +19,9 @@
         #dt1
         [value]="PurchaseReportList"
         dataKey="id"
-        [rows]="50"
+        [rows]="10"
         [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]"        
-        [paginator]="true"
         [scrollable]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
         [globalFilterFields]="filterColumn"
@@ -106,7 +105,7 @@
                             <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal'">{{ purchase[item.fieldName] }}</span>                    
                             <span *ngIf="item.dataType !== 'Decimal'">
                                 <ng-template #stringValue>
-                                    {{  purchase[item.fieldName] | number: '1.3-3' }}
+                                    {{  purchase[item.fieldName] | number: '1.3-2' }}
                                 </ng-template>
                             </span>
                             
@@ -116,8 +115,8 @@
             </tr>
             <tr *ngIf="selectedRowIndex === rowIndex">
                 <td [attr.colspan]="childTotalColumn">
-                    <div class="detail-table">
-                        <p-table  #dt2 [value]="childReportList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+                    <div class="detail-table" style="max-height: 500px; overflow-y: auto;">
+                        <p-table  #dt2 [value]="childReportList"  [scrollable]="true"  [rows]="5" [rowsPerPageOptions]="[10]">
                         <!-- [globalFilterFields]="childFilterColumn"> -->
                         <!-- <ng-template pTemplate="caption">
                             <div class="flex">
