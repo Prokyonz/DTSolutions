@@ -1343,15 +1343,15 @@ namespace DiamondTrading.Transaction
             {
                 this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                 decimal Carat = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat).ToString().Length != 0)
                     Carat = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat));
 
                 decimal TipCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight).ToString().Length != 0)
                     TipCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight));
 
                 decimal CVDCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
                 {
                     CVDCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight));
                     if (CVDCts <= 0)
@@ -1362,11 +1362,11 @@ namespace DiamondTrading.Transaction
                 }
 
                 decimal RejCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)
                     RejCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts));
 
                 decimal LessCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts).ToString().Length != 0)
                     LessCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts));
 
                 ItemRunningWeight = Carat - TipCts - CVDCts - RejCts - LessCts;
@@ -1376,12 +1376,12 @@ namespace DiamondTrading.Transaction
 
                 decimal Amount = 0;
                 decimal FinalAmount = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate).ToString().Trim().Length > 0)
                 {
                     Amount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate));
                     FinalAmount = ItemRunningWeight * Amount;
                 }
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer).ToString().Trim().Length > 0)
                 {
                     decimal LessPer = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer));
                     if (LessPer < 0)
@@ -1391,7 +1391,7 @@ namespace DiamondTrading.Transaction
 
                     grvPurchaseDetails.SetRowCellValue(GridRowIndex, colDisAmount, LessAmt);
                 }
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
                 {
                     decimal CVDCharge = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge));
                     //CVDCharge *= Carat;
