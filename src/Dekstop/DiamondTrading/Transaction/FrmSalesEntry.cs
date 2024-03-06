@@ -2474,5 +2474,10 @@ namespace DiamondTrading.Transaction
         {
             dtTime.EditValue = DateTime.Now;
         }
+
+        private void labelControl10_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
