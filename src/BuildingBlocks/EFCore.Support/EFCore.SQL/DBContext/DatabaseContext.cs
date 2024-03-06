@@ -236,6 +236,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
             modelBuilder.Entity<ValidationSPModel>().HasNoKey();
             modelBuilder.Entity<SalesSPModel>().HasNoKey();
+            modelBuilder.Entity<SlipDetailPrintSPModel>().HasNoKey();
         }
     }
 }
