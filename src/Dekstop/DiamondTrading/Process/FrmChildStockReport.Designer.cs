@@ -162,8 +162,6 @@ namespace DiamondTrading.Process
             this.InwardRateCol.Caption = "Inward Rate";
             this.InwardRateCol.FieldName = "InwardRate";
             this.InwardRateCol.Name = "InwardRateCol";
-            this.InwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "InwardRate", "{0:0.##}")});
             this.InwardRateCol.Visible = true;
             this.InwardRateCol.VisibleIndex = 4;
             this.InwardRateCol.Width = 69;
@@ -195,8 +193,6 @@ namespace DiamondTrading.Process
             this.OutwardRateCol.Caption = "Outward Rate";
             this.OutwardRateCol.FieldName = "OutwardRate";
             this.OutwardRateCol.Name = "OutwardRateCol";
-            this.OutwardRateCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
-            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "OutwardRate", "{0:0.##}")});
             this.OutwardRateCol.Visible = true;
             this.OutwardRateCol.VisibleIndex = 7;
             this.OutwardRateCol.Width = 74;

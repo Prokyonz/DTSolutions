@@ -293,7 +293,7 @@ namespace DiamondTrading.Process
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }
