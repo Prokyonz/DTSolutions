@@ -55,11 +55,17 @@ export class DashboardComponent implements OnInit {
       this.loadDashboard();
   }
 
+  // Function to format the number in Indian numbering system
+formatIndianNumber(amount: number): string {
+  const formatter = new Intl.NumberFormat('en-IN');
+  return formatter.format(amount);
+}
+
   async loadDashboard() {
     try {
       this.sharedService.customGetApi("Report/GetPurchaseTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.RememberCompany.financialyear.startDate + "&ToDate=" + this.RememberCompany.financialyear.endDate + "")
       .subscribe((data: any) => {
-          this.purchaseData = formatNumber(data.data.totalAmount, this.locale, '8.3-5')
+          this.purchaseData = this.formatIndianNumber(data.data.totalAmount);
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
@@ -67,7 +73,7 @@ export class DashboardComponent implements OnInit {
 
       this.sharedService.customGetApi("Report/GetSaleTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + "")
       .subscribe((data: any) => {
-          this.salesData = formatNumber(data.data.totalAmount, this.locale, '8.3-5')
+          this.salesData = this.formatIndianNumber(data.data.totalAmount);
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
@@ -75,7 +81,7 @@ export class DashboardComponent implements OnInit {
 
       this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + ",&TransType=0")
       .subscribe((data: any) => {
-          this.paymentData = formatNumber(data.data.totalAmount, this.locale, '8.3-5')
+          this.paymentData = this.formatIndianNumber(data.data.totalAmount);
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);
@@ -83,7 +89,7 @@ export class DashboardComponent implements OnInit {
 
       this.sharedService.customGetApi("Report/GetPaymentOrReceiptTotal?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id +"&FromDate=" + this.firstDate + "&ToDate=" + this.endDate + ",&TransType=1")
       .subscribe((data: any) => {
-          this.receiptData = formatNumber(data.data.totalAmount, this.locale, '8.3-5')
+          this.receiptData = this.formatIndianNumber(data.data.totalAmount);
           }, (ex: any) => {
             console.log(ex);
             this.showMessage('error',ex);

@@ -40,8 +40,8 @@
                     <td>{{ inwardTemp.slipNo }}</td>
                     <td>{{ inwardTemp.party }}</td>
                     <td>{{ inwardTemp.netWeight?.toFixed(2) || 0 }}</td>
-                    <td>{{ inwardTemp.rate?.toFixed(2) || 0 | currency: 'INR'}}</td>
-                    <td>{{ inwardTemp.amount?.toFixed(2) || 0 | currency: 'INR'}}</td>
+                    <td>{{ formatIndianNumber(inwardTemp.rate?.toFixed(2))}}</td>
+                    <td>{{ formatIndianNumber(inwardTemp.amount?.toFixed(2)) }}</td>
                 </tr>
                 </ng-container>
             </ng-template>
@@ -49,9 +49,9 @@
                 <ng-container *ngIf="inward.length > 0">
                     <tr>
                         <td colspan="3" class="text-right">Total</td>
-                        <td>{{ formatDecimal(TotalInwardNetWeight) | currency: 'INR' }}</td>                    
-                        <td>{{ TotalInwardRate | currency: 'INR' }}</td>                    
-                        <td>{{ formatDecimal(TotalInwardAmount) | currency: 'INR' }}</td>                    
+                        <td>{{ formatDecimal(TotalInwardNetWeight) }}</td>                    
+                        <td>{{ formatIndianNumber(TotalInwardRate) }}</td>                    
+                        <td>{{ formatIndianNumber(TotalInwardAmount) }}</td>                    
                     </tr>
                 </ng-container>
             </ng-template>
@@ -72,16 +72,16 @@
                     <td>{{ item.operationType }}</td>
                     <td>{{ (item.netWeight / group.netWeightTotal * 100).toFixed(2) }}%</td>
                     <td>{{ item.netWeight?.toFixed(2) || 0 }}</td>
-                    <td>{{ item.rate?.toFixed(2) || 0 | currency: 'INR' }}</td>
-                    <td>{{ item.amount?.toFixed(2) || 0 | currency: 'INR' }}</td>
+                    <td>{{ formatIndianNumber(item.rate?.toFixed(2)) }}</td>
+                    <td>{{ formatIndianNumber(item.amount?.toFixed(2)) }}</td>
 
                   </tr>
                   <ng-container *ngIf="lastItem">
                     <tr>
                         <td colspan="3" class="text-right" style="font-weight: bold;">Total</td>
-                        <td style="font-weight: bold;">{{ (group.netWeightTotal).toFixed(2)}}</td>
-                        <td style="font-weight: bold;">{{ group.rateTotal | currency: 'INR' }}</td>
-                        <td style="font-weight: bold;">{{ group.amountTotal | currency: 'INR' }}</td>
+                        <td style="font-weight: bold;">{{ (group.netWeightTotal).toFixed(2) }}</td>
+                        <td style="font-weight: bold;">{{ formatIndianNumber(group.rateTotal) }}</td>
+                        <td style="font-weight: bold;">{{ formatIndianNumber(group.amountTotal) }}</td>
                       </tr>
                   </ng-container>
                 </ng-container>
@@ -101,8 +101,8 @@
                     <td></td>
                     <td></td>
                     <td>{{ closing.netWeight?.toFixed(2) || 0 }}</td>
-                    <td>{{ closing.rate?.toFixed(2) || 0 | currency: 'INR' }}</td>
-                    <td>{{ closing.amount?.toFixed(2) || 0 | currency: 'INR' }}</td>
+                    <td>{{ formatIndianNumber(closing.rate?.toFixed(2)) }}</td>
+                    <td>{{ formatIndianNumber(closing.amount?.toFixed(2)) }}</td>
 
                 </tr>
             </ng-template>
@@ -112,8 +112,8 @@
                     <td></td>
                     <td class="text-right">Total</td>
                     <td>{{ formatDecimal(TotalClosingNetWeight) }}</td>                      
-                    <td>{{ TotalClosingRate | currency: 'INR'}}</td>                    
-                    <td>{{ formatDecimal(TotalClosingAmount) | currency: 'INR'}}</td>                          
+                    <td>{{ formatIndianNumber(TotalClosingRate) }}</td>                    
+                    <td>{{ formatIndianNumber(TotalClosingAmount) }}</td>                          
                 </tr>
             </ng-template>
         </p-table>
@@ -128,4 +128,4 @@
 </div>
 <div class="progress-spinner" *ngIf="loading">
     <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
-  </div>
+</div>

@@ -13,9 +13,9 @@
             <ng-template pTemplate="body" let-row>
                     <tr>
                         <td>{{ row.DebitColType }}</td>
-                        <td>{{ row.DebitAmount != null ? (row.DebitAmount?.toFixed(2) || 0 | currency: 'INR') : '' }}</td>
+                        <td>{{ row.DebitAmount != null ? formatIndianNumber(row.DebitAmount?.toFixed(2)) : '' }}</td>
                         <td>{{ row.CreditColType }}</td>
-                        <td>{{ row.CreditAmount != null ? (row.CreditAmount?.toFixed(2) || 0 | currency: 'INR') : '' }}</td>
+                        <td>{{ row.CreditAmount != null ? formatIndianNumber(row.CreditAmount?.toFixed(2)) : ''}}</td>
                     </tr>
             </ng-template>
             <ng-template pTemplate="footer">
@@ -24,13 +24,13 @@
                         Total
                     </td>
                     <td>
-                        {{totalDebitAmount?.toFixed(2) || 0 | currency: 'INR'}}
+                        {{ formatIndianNumber(totalDebitAmount?.toFixed(2)) }}
                     </td>
                     <td>
 
                     </td>
                     <td>
-                        {{totalCreditAmount?.toFixed(2) || 0 | currency: 'INR'}}
+                        {{ formatIndianNumber(totalCreditAmount?.toFixed(2)) }}
                     </td>
                 </tr>
             </ng-template>

@@ -254,4 +254,9 @@ export class KapanlagadComponent implements OnInit {
       .map(item => item[key])
       .reduce((sum, value) => sum + value, 0);
   }
+
+  formatIndianNumber(amount: number): string {
+    const formatter = new Intl.NumberFormat('en-IN');
+    return '₹' +formatter.format(amount);
+  }
 }

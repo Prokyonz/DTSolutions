@@ -1589,6 +1589,11 @@ export class ReportComponent implements OnInit {
     this.ApproveRejectStatus = status;
   }
 
+  formatIndianNumber(amount: number): string {
+    const formatter = new Intl.NumberFormat('en-IN' , { maximumFractionDigits: 2 });
+    return '₹' +formatter.format(amount);
+  }
+
   onApproveReject() {
     const data = {
       "ReportType": this.dialogReportIndex,

@@ -97,4 +97,9 @@ export class BalancesheetComponent {
     this.messageService.add({ severity: type, summary: message });
   }
 
+  formatIndianNumber(amount: number): string {
+    const formatter = new Intl.NumberFormat('en-IN');
+    return '₹' +formatter.format(amount);
+  }
+
 }
