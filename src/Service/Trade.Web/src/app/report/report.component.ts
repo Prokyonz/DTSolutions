@@ -1209,9 +1209,9 @@ export class ReportComponent implements OnInit {
           .then(downloadResult => {
             // Check downloadResult for success
             if (downloadResult) {
-              this.showMessage('Success', "File downloaded successfully.");
+              alert( "File downloaded successfully.");
             } else {
-              this.showMessage('Error',"File download failed.");
+              alert("File download failed.");
             }
 
             this.loading = false;
@@ -1219,12 +1219,12 @@ export class ReportComponent implements OnInit {
           .catch(ex => {
             console.error("Error downloading file:", ex);
             this.loading = false;
-            this.showMessage('error', ex);
+            alert( ex);
         });
         this.loading = false;
     }, (ex: any) => {
       this.loading = false;
-      this.showMessage('error', ex);
+      alert( ex);
     });
 
   }
@@ -1544,22 +1544,22 @@ export class ReportComponent implements OnInit {
           .then(downloadResult => {
             // Check downloadResult for success
             if (downloadResult) {
-              this.showMessage('Success', "File downloaded successfully.");
+              alert( "File downloaded successfully.");
             } else {
-              this.showMessage('Error',"File download failed.");
+              alert("File download failed.");
             }
 
             this.loading = false;
           })
           .catch(ex => {
             this.loading = false;
-            this.showMessage('error', ex);
+            alert( ex);
         });
 
         this.loading = false;
     }, (ex: any) => {
       this.loading = false;
-      this.showMessage('error', ex);
+      alert(ex);
     });
   }
 
