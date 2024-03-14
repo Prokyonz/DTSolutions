@@ -156,7 +156,8 @@ namespace DiamondTrading
                 if (Msg.Trim().Length != 0)
                     return Msg;
                 else
-                    throw new Exception("ARS:1 " + " " + AppMessages.GetString(AppMessageID.AppMessageIDNotFound) + " " + ResNameID.ToString() + "\n\n" + ex.Message);
+                    return string.Empty;
+                    //throw new Exception("ARS:1 " + " " + AppMessages.GetString(AppMessageID.AppMessageIDNotFound) + " " + ResNameID.ToString() + "\n\n" + ex.Message);
             }
         }
 

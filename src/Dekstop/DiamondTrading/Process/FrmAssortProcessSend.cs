@@ -39,6 +39,7 @@ namespace DiamondTrading.Process
         private async void FrmAssortProcessSend_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
             timer1.Start();
 
             SetThemeColors(Color.FromArgb(250, 243, 197));
