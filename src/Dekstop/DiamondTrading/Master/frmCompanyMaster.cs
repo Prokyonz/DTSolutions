@@ -1,10 +1,13 @@
-﻿using EFCore.SQL.Repository;
+﻿using DevExpress.XtraEditors;
+using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace DiamondTrading.Master
@@ -16,6 +19,7 @@ namespace DiamondTrading.Master
         private readonly List<CompanyMaster> _companyMasters;
         private CompanyMaster _EditedCompnayMasterSet;
         private string _selectedCompany;
+        DataTable dtCompanyPermissionDetails = new DataTable();
 
         public FrmCompanyMaster(List<CompanyMaster> companyMasters)
         {
@@ -35,8 +39,10 @@ namespace DiamondTrading.Master
 
         private async void frmCompanyMaster_Load(object sender, EventArgs e)
         {
+            GetCompanyPermissionDefaultDetails();
+
             await GetParentCompanyList();
-            
+
             if (string.IsNullOrEmpty(_selectedCompany) == false)
             {
                 _EditedCompnayMasterSet = _companyMasters.Where(c => c.Id == _selectedCompany).FirstOrDefault();
@@ -56,6 +62,29 @@ namespace DiamondTrading.Master
                     txtRegistrationNo.Text = _EditedCompnayMasterSet.RegistrationNo;
                 }
             }
+        }
+
+        private void GetCompanyPermissionDefaultDetails()
+        {
+            dtCompanyPermissionDetails = new DataTable();
+            dtCompanyPermissionDetails.Columns.Add("PermissionGroup", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("Permission", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("Purchase", typeof(bool));
+            dtCompanyPermissionDetails.Columns.Add("Sale", typeof(bool));
+
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Shape", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Purity", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Tip", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "(-) Cts", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD A", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Number", false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Category", false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", false, false);
+
+            grdCompanyAccessPermission.DataSource = dtCompanyPermissionDetails;
         }
 
         private async Task GetParentCompanyList()
@@ -261,6 +290,34 @@ namespace DiamondTrading.Master
             }
 
             return true;
+        }
+
+        private void grvCompanyAccessPermission_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if(e.Column == colPurchaseIsCheck)
+            {
+                if(grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+        }
+
+        private void grvCompanyAccessPermission_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            //if (e.Column == colPurchaseIsCheck)
+            //{
+            //    if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale")
+            //    {
+            //        e.RepositoryItem.ReadOnly = true;
+            //        e.RepositoryItem.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        e.RepositoryItem.ReadOnly = false;
+            //        e.RepositoryItem.Enabled = true;
+            //    }
+            //}
         }
     }
 }
