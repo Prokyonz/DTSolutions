@@ -38,7 +38,7 @@
                 </span>
             </div>
         </ng-template> -->
-
+        
         <ng-template pTemplate="caption">
             <div class="flex">
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
@@ -202,6 +202,16 @@
                     </div>
                 </td> -->
             </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>    
+                <td>&nbsp;</td>
+                <td *ngFor="let col of columnArray">
+                    <div *ngIf="col.fieldName === 'total' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts'">
+                         {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
+                    </div>
+                </td>
+              </tr>
         </ng-template>
         <ng-template pTemplate="emptymessage">
             <tr>

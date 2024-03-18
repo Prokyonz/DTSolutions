@@ -1,25 +1,24 @@
-﻿using DiamondTrade.API.Models;
+﻿using Aspose.Cells;
+using DiamondTrade.API.Models;
 using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
+using DocumentFormat.OpenXml.Spreadsheet;
 using EFCore.SQL.Interface;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
 using iText.Layout.Properties;
-using iText.Layout.Renderer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Repository.Entities;
 using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection.Metadata;
-using System.Security.Principal;
 using System.Threading.Tasks;
 using static DiamondTrade.API.Models.Enum.Enum;
+using Table = iText.Layout.Element.Table;
 
 namespace DiamondTrade.API.Controllers
 {
@@ -950,7 +949,7 @@ namespace DiamondTrade.API.Controllers
                 string pdfDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
 
                 // Create the directory if it doesn't exist
-               // Directory.CreateDirectory(pdfDirectory);
+                // Directory.CreateDirectory(pdfDirectory);
 
                 string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.pdf";
                 string pdfFilePath = System.IO.Path.Combine(pdfDirectory, uniqueFilename);
@@ -973,7 +972,7 @@ namespace DiamondTrade.API.Controllers
 
                     foreach (var header in exportModel.columnsHeaders)
                     {
-                        table.AddHeaderCell(new Cell().Add(new Paragraph(header))
+                        table.AddHeaderCell(new iText.Layout.Element.Cell().Add(new Paragraph(header))
                             .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
                             .SetTextAlignment(TextAlignment.CENTER)
                             .SetFontSize(maxFontSize));
@@ -983,7 +982,7 @@ namespace DiamondTrade.API.Controllers
                     {
                         foreach (var cellData in row)
                         {
-                            table.AddCell(new Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                            table.AddCell(new iText.Layout.Element.Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
                                 .SetTextAlignment(TextAlignment.CENTER)
                                 .SetPadding(5)
                                 .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
@@ -1068,7 +1067,7 @@ namespace DiamondTrade.API.Controllers
             //{
             //    Console.WriteLine("Error: " + ex.Message);
             //}
-            
+
 
             string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
             string excelFilePath = System.IO.Path.Combine(excelDirectory, uniqueFilename);
@@ -1099,12 +1098,26 @@ namespace DiamondTrade.API.Controllers
                         }
                     }
 
+                    // Add footer totals
+                    var footerRow = worksheet.Row(exportModel.rowData.Count + 2);
+                    foreach (var footerItem in exportModel.footerTotals)
+                    {
+                        footerRow.Cell(1).Value = "Total";
+
+                        int columnIndex = exportModel.columnsHeaders.IndexOf(footerItem.Key);
+                        if (columnIndex != -1)
+                        {
+                            footerRow.Cell(columnIndex + 1).Value = Math.Round(Convert.ToDecimal(footerItem.Value), 2).ToString();
+                            // Optionally, you can apply formatting to the footer cells
+                        }
+                    }
                     workbook.SaveAs(memoryStream);
                 }
 
                 var excelContent = memoryStream.ToArray();
 
                 System.IO.File.WriteAllBytes(excelFilePath, excelContent);
+
 
 
                 // Get the URL for the saved csv
@@ -1119,6 +1132,5 @@ namespace DiamondTrade.API.Controllers
                 };
             }
         }
-
     }
 }
