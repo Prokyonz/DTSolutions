@@ -1520,7 +1520,17 @@ export class ReportComponent implements OnInit {
     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
       this.PurchaseReportList = this.dataTable.filteredValue;
     }
-
+        // Calculate footer totals
+ const footerTotals : any = [];
+ 
+ for (const col of this.columnArray) {    
+  let m: any = {};  
+  if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total' ) {
+      m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
+      m["value"] = this.calculateColumnSum(col.fieldName);
+      footerTotals.push(m);
+    }
+  }
     exportColumns = colArray.map((col) => (col.fieldName));
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
@@ -1546,8 +1556,11 @@ export class ReportComponent implements OnInit {
 
     const data = {
       "columnsHeaders": colArray.map((col) => (col.displayName)),
-      "rowData": extractedData
+      "rowData": extractedData,
+      "footerTotals": footerTotals
     };
+    debugger;
+
     this.loading = true;
     this.sharedService.customPostApi("Report/downloadpdf", data)
       .subscribe((data: any) => {

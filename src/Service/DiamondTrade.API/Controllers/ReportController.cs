@@ -1,8 +1,6 @@
-﻿using Aspose.Cells;
-using DiamondTrade.API.Models;
+﻿using DiamondTrade.API.Models;
 using DiamondTrade.API.Models.Request;
 using DiamondTrade.API.Models.Response;
-using DocumentFormat.OpenXml.Spreadsheet;
 using EFCore.SQL.Interface;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
@@ -987,6 +985,25 @@ namespace DiamondTrade.API.Controllers
                                 .SetPadding(5)
                                 .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
                                 .SetFontSize(maxFontSize));
+                        }
+                    }
+
+                    // Add column footers with totals
+                    for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
+                    {
+                        var columnName = exportModel.columnsHeaders[i];
+                        string total = exportModel.footerTotals.FirstOrDefault(ft => ft.Key == columnName)?.Value.ToString() ?? string.Empty;
+                        if (!string.IsNullOrWhiteSpace(total))
+                        {
+                            table.AddFooterCell(new iText.Layout.Element.Cell().Add(new Paragraph($"Total : {Math.Round(Convert.ToDecimal(total), 2)}"))
+                                .SetTextAlignment(TextAlignment.CENTER)
+                                .SetPadding(5)
+                                .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                                .SetFontSize(maxFontSize));
+                        }
+                        else
+                        {
+                            table.AddFooterCell(new iText.Layout.Element.Cell());
                         }
                     }
 
