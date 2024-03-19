@@ -1434,7 +1434,7 @@ namespace DiamondTrading
 
             frmTransferEntry.StartPosition = FormStartPosition.Manual;
 
-            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 200) / 3, (Height - frmTransferEntry.Height) / 2);
+            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 100) / 3, (Height - frmTransferEntry.Height) / 2);
 
             frmTransferEntry.ShowDialog();
         }
