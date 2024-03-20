@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.UI.WebControls;
@@ -60,6 +61,22 @@ namespace DiamondTrading.Master
                     txtGSTNo.Text = _EditedCompnayMasterSet.GSTNo;
                     txtPancardNo.Text = _EditedCompnayMasterSet.PanCardNo;
                     txtRegistrationNo.Text = _EditedCompnayMasterSet.RegistrationNo;
+
+                    if (_EditedCompnayMasterSet.CompanyOptions.Count > 0)
+                    {
+                        for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                        {
+                            string PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                            string PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+
+                            var result = _EditedCompnayMasterSet.CompanyOptions.Where(x => x.PermissionGroupName == PermissionGroupName && x.PermissionName == PermissionName).FirstOrDefault();
+                            if(result != null)
+                            {
+                                grvCompanyAccessPermission.SetRowCellValue(i, colPurchaseIsCheck, result.IsPurchase);
+                                grvCompanyAccessPermission.SetRowCellValue(i, colSaleIsCheck, result.IsSales);
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -161,6 +178,25 @@ namespace DiamondTrading.Master
                 {
                     string tempId = Guid.NewGuid().ToString();
 
+                    List<CompanyOptions> companyOptionsList = new List<CompanyOptions>();
+                    CompanyOptions companyOptions = new CompanyOptions();
+                    for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                    {
+                        companyOptions = new CompanyOptions();
+                        companyOptions.Id = Guid.NewGuid().ToString();
+                        companyOptions.CompanyMasterId = tempId;
+                        companyOptions.PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                        companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+                        companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
+                        companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.PermissionStatus = true;
+                        companyOptions.CreatedBy = Common.LoginUserID;
+                        companyOptions.CreatedDate = DateTime.Now;
+                        companyOptions.UpdatedBy = Common.LoginUserID;
+                        companyOptions.UpdatedDate = DateTime.Now;
+                        companyOptionsList.Add(companyOptions);
+                    }
+
                     CompanyMaster companyMaster = new CompanyMaster
                     {
                         Id = tempId,
@@ -180,6 +216,7 @@ namespace DiamondTrading.Master
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
+                        CompanyOptions = companyOptionsList,
                     };
 
                     if (companyMaster.Type == Common.DefaultGuid)
@@ -231,6 +268,25 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
+                    List<CompanyOptions> companyOptionsList = new List<CompanyOptions>();
+                    CompanyOptions companyOptions = new CompanyOptions();
+                    for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                    {
+                        companyOptions = new CompanyOptions();
+                        companyOptions.Id = Guid.NewGuid().ToString();
+                        companyOptions.CompanyMasterId = _EditedCompnayMasterSet.Id;
+                        companyOptions.PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                        companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+                        companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
+                        companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.PermissionStatus = true;
+                        companyOptions.CreatedBy = Common.LoginUserID;
+                        companyOptions.CreatedDate = DateTime.Now;
+                        companyOptions.UpdatedBy = Common.LoginUserID;
+                        companyOptions.UpdatedDate = DateTime.Now;
+                        companyOptionsList.Add(companyOptions);
+                    }
+
                     _EditedCompnayMasterSet.Type = lueCompanyType.EditValue.ToString();
                     _EditedCompnayMasterSet.Name = txtCompanyName.Text;
                     _EditedCompnayMasterSet.Address = txtAddress.Text;
@@ -244,6 +300,7 @@ namespace DiamondTrading.Master
                     _EditedCompnayMasterSet.RegistrationNo = txtRegistrationNo.Text;
                     _EditedCompnayMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedCompnayMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedCompnayMasterSet.CompanyOptions = companyOptionsList;
 
                     if (_EditedCompnayMasterSet.Type == Common.DefaultGuid)
                         _EditedCompnayMasterSet.Type = null;
@@ -318,6 +375,28 @@ namespace DiamondTrading.Master
             //        e.RepositoryItem.Enabled = true;
             //    }
             //}
+        }
+
+        private void repositoryItemCheckEdit1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
+            //{
+            //    if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale")
+            //    {
+            //        e.Cancel = true;
+            //    }
+            //}
+        }
+
+        private void grvCompanyAccessPermission_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale")
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

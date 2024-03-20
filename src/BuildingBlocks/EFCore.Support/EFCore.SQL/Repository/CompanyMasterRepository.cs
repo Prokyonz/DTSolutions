@@ -84,7 +84,7 @@ namespace EFCore.SQL.Repository
             {
                 var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s => s.CompanyId).ToListAsync();
 
-                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).ToListAsync();
+                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).Include("CompanyOptions").ToListAsync();
             }
         }
 

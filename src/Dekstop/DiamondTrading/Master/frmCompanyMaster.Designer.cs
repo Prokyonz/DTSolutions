@@ -339,6 +339,7 @@ namespace DiamondTrading.Master
             this.grvCompanyAccessPermission.OptionsView.ShowGroupPanel = false;
             this.grvCompanyAccessPermission.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvCompanyAccessPermission_RowCellStyle);
             this.grvCompanyAccessPermission.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grvCompanyAccessPermission_CustomRowCellEdit);
+            this.grvCompanyAccessPermission.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grvCompanyAccessPermission_ShowingEditor);
             // 
             // colPermissionName
             // 
@@ -358,6 +359,7 @@ namespace DiamondTrading.Master
             // 
             resources.ApplyResources(this.repositoryItemCheckEdit1, "repositoryItemCheckEdit1");
             this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.repositoryItemCheckEdit1.Validating += new System.ComponentModel.CancelEventHandler(this.repositoryItemCheckEdit1_Validating);
             // 
             // colSaleIsCheck
             // 
