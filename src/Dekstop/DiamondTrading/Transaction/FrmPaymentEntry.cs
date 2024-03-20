@@ -121,11 +121,12 @@ namespace DiamondTrading.Transaction
                 var PaymentSrNo = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
                 int SrNo = 0;
                 SrNo = PaymentSrNo;
-                //var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
-                //if (PaymentSrNo >= ExpenseSrNo)
-                //    SrNo = PaymentSrNo;
-                //else
-                //    SrNo = ExpenseSrNo;
+                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
+
+                if (PaymentSrNo >= ExpenseSrNo)
+                    SrNo = PaymentSrNo;
+                else
+                    SrNo = ExpenseSrNo;
 
                 txtSerialNo.Text = SrNo.ToString();
             }
