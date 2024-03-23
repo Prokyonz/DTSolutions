@@ -506,7 +506,7 @@ namespace DiamondTrading.Transaction
                     //Contra Entry
                     if (_paymentType == -1)
                     {
-                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo);
+                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo,Common.LoginCompany, Common.LoginFinancialYear);
                         string contraMasterId = Guid.NewGuid().ToString();
                         List<ContraEntryDetails> contraEntryDetails = new List<ContraEntryDetails>();
 
@@ -562,7 +562,7 @@ namespace DiamondTrading.Transaction
                         try
                         {
                             ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
-                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, true);
+                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, Common.LoginCompany, Common.LoginFinancialYear, true);
 
                             for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                             {

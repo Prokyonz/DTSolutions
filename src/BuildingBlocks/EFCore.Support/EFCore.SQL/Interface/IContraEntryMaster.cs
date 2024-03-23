@@ -15,6 +15,6 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxNo(string companyId, string financialYearId);
         Task<ContraEntryMaster> AddContraEntryAsync(ContraEntryMaster contraEntryMaster);
         Task<ContraEntryMaster> UpdateContraEntryAsync(ContraEntryMaster contraEntryMaster);
-        Task<bool> DeleteContraEntryAsync(int SrNo);        
+        Task<bool> DeleteContraEntryAsync(int SrNo, string companyId, string financialYearId);        
     }
 }
