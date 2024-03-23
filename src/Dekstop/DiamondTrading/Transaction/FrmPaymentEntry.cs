@@ -608,7 +608,7 @@ namespace DiamondTrading.Transaction
                     }
                     else if(_paymentType == 0 || _paymentType == 1)
                     {
-                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType);
+                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType, Common.LoginCompany, Common.LoginFinancialYear);
                         if (isDelete)
                         {
                             await SavePaymentReceipt();

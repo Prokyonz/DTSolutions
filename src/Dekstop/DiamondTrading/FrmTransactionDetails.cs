@@ -1048,7 +1048,7 @@ namespace DiamondTrading
                 {
                     string id = gridView7.GetFocusedRowCellValue(gridColumnReceiptGroupId).ToString();
 
-                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id, Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1059,7 +1059,7 @@ namespace DiamondTrading
                 {
                     string id = gridView4.GetFocusedRowCellValue(gridColumnGroupId).ToString();
 
-                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id, Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
