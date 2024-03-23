@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTabbedMdi;
 using DiamondTrading.Master;
 using EFCore.SQL.Repository;
 using Repository.Entities;
@@ -648,6 +649,21 @@ namespace DiamondTrading
 
         }
 
+        private XtraMdiTabPage GetActiveTab(string title)
+        {
+            XtraMdiTabPage tabPageToActivate = null;
+            foreach (XtraMdiTabPage tabPage in xtraTabbedMdiManager1.Pages)
+            {
+                if (tabPage.Text == "Purchase Details") // Replace "YourTabTitle" with the title of your tab
+                {
+                    tabPageToActivate = tabPage;
+                    break;
+                }
+            }
+
+            return tabPageToActivate;
+        }
+
         private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
@@ -658,17 +674,23 @@ namespace DiamondTrading
             //    //barManager1.ForceInitialize();
             //    //page.SelectedTabPage = PageRequested;
             //    //page.ActiveTab();
-            //    //page.BringToFront();
+            //    //page.BringToFront();                
             //}
+            var tab = GetActiveTab("Purchase Details");
 
-            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
-            frmMasterDetails.SelectedTabPage = "Purchase";
-            frmMasterDetails.MdiParent = this;
-            frmMasterDetails.Show();
-            frmMasterDetails.BringToFront();
+            if (tab == null)
+            {
+                FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+                frmMasterDetails.SelectedTabPage = "Purchase";
+                frmMasterDetails.MdiParent = this;
+                frmMasterDetails.Show();
+                frmMasterDetails.BringToFront();
 
-            accordionControlElementMaster.Expanded = true;
-
+                accordionControlElementMaster.Expanded = true;
+            } else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
             //OpenMasterDetailsForm("Purchase");
         }
 
