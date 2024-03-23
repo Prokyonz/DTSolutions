@@ -22,6 +22,11 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
+                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.SlipNo == purchaseMaster.SlipNo && w.CompanyId == purchaseMaster.CompanyId && 
+                w.FinancialYearId == purchaseMaster.FinancialYearId && !w.IsDelete).FirstOrDefaultAsync();
+                if (existingSlipNo != null)
+                    throw new Exception("Slipno already exist. You can not enter same slipno again.");
+
                 if (purchaseMaster.Id == null)
                     purchaseMaster.Id = Guid.NewGuid().ToString();
 
@@ -173,6 +178,12 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
+                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == purchaseMaster.CompanyId 
+                && w.FinancialYearId == purchaseMaster.FinancialYearId && !w.IsDelete
+                && w.SlipNo == purchaseMaster.SlipNo && w.Id != purchaseMaster.Id).FirstOrDefaultAsync();
+                if (existingSlipNo != null)
+                    throw new Exception("Slipno already exist. You can not enter same slipno again.");
+
                 var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == purchaseMaster.Id && s.IsDelete == false).Include("PurchaseDetails").FirstOrDefaultAsync();
 
                 if (getPurchase != null)

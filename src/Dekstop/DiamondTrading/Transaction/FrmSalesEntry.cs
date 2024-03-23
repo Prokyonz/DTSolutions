@@ -163,70 +163,82 @@ namespace DiamondTrading.Transaction
 
                         EditedSalesDetails = tempEditedSalesDetails.ToList();
 
-                        for (int i = 0; i < EditedSalesDetails.Count; i++)
+                        try
                         {
-                            grvPurchaseDetails.AddNewRow();
-
-                            //grvPurchaseDetails.SetFocusedRowCellValue(colShape, Common.DefaultShape);
-                            //grvPurchaseDetails.SetFocusedRowCellValue(colSize, Common.DefaultSize);
-                            //grvPurchaseDetails.SetFocusedRowCellValue(colPurity, Common.DefaultPurity);
-
-                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
-                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
-                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
-                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
-                            //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
-
-                            grvPurchaseDetails.SetFocusedRowCellValue(colSalesDetailId, EditedSalesDetails[i].Id);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCategory, EditedSalesDetails[i].Category);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
-                            try
+                            this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                            for (int i = 0; i < EditedSalesDetails.Count; i++)
                             {
-                                var Shape = ((List<SalesItemDetails>)repoShape.DataSource).Where(x => x.ShapeId == EditedSalesDetails[i].ShapeId).FirstOrDefault();
-                                if (Shape != null)
+                                grvPurchaseDetails.AddNewRow();
+
+                                //grvPurchaseDetails.SetFocusedRowCellValue(colShape, Common.DefaultShape);
+                                //grvPurchaseDetails.SetFocusedRowCellValue(colSize, Common.DefaultSize);
+                                //grvPurchaseDetails.SetFocusedRowCellValue(colPurity, Common.DefaultPurity);
+
+                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
+                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
+                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
+                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
+                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+
+                                grvPurchaseDetails.SetFocusedRowCellValue(colSalesDetailId, EditedSalesDetails[i].Id);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCategory, EditedSalesDetails[i].Category);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
+                                try
                                 {
-                                    grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                    var Shape = ((List<SalesItemDetails>)repoShape.DataSource).Where(x => x.ShapeId == EditedSalesDetails[i].ShapeId).FirstOrDefault();
+                                    if (Shape != null)
+                                    {
+                                        grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                    }
                                 }
-                            }
-                            catch
-                            {
-                                var Shape = ((List<ShapeMaster>)repoShape.DataSource).Where(x => x.Id == EditedSalesDetails[i].ShapeId).FirstOrDefault();
-                                if (Shape != null)
+                                catch
                                 {
-                                    grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                    var Shape = ((List<ShapeMaster>)repoShape.DataSource).Where(x => x.Id == EditedSalesDetails[i].ShapeId).FirstOrDefault();
+                                    if (Shape != null)
+                                    {
+                                        grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                    }
                                 }
+
+                                grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
+
+                                grvPurchaseDetails.SetFocusedRowCellValue(colShapeId, EditedSalesDetails[i].ShapeId);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedSalesDetails[i].SizeId);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedSalesDetails[i].PurityId);
+
+                                if (EditedSalesDetails[i].CharniSizeId != null && EditedSalesDetails[i].CharniSizeId != Common.DefaultGuid)
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCharniSize, EditedSalesDetails[i].CharniSizeId);
+                                if (EditedSalesDetails[i].GalaSizeId != null && EditedSalesDetails[i].GalaSizeId != Common.DefaultGuid)
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colGalaSize, EditedSalesDetails[i].GalaSizeId);
+                                if (EditedSalesDetails[i].NumberSizeId != null && EditedSalesDetails[i].NumberSizeId != Common.DefaultGuid)
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colNumberSize, EditedSalesDetails[i].NumberSizeId);
+
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCarat, EditedSalesDetails[i].Weight);
+
+                                grvPurchaseDetails.SetFocusedRowCellValue(colTipWeight, EditedSalesDetails[i].TIPWeight);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDWeight, EditedSalesDetails[i].CVDWeight);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colRejPer, EditedSalesDetails[i].RejectedPercentage);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colRejCts, EditedSalesDetails[i].RejectedWeight);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colLessCts, EditedSalesDetails[i].LessWeight);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colDisPer, EditedSalesDetails[i].LessDiscountPercentage);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colDisAmount, EditedSalesDetails[i].LessWeightDiscount);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colNetCts, EditedSalesDetails[i].NetWeight);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colRate, EditedSalesDetails[i].SaleRate);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDCharge, EditedSalesDetails[i].CVDCharge);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDAmount, EditedSalesDetails[i].CVDAmount);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colAmount, EditedSalesDetails[i].Amount);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCurrRate, EditedSalesDetails[i].CurrencyRate);
+                                grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
+                                grvPurchaseDetails.UpdateCurrentRow();
                             }
+                        }
+                        catch(Exception Ex)
+                        {
 
-                            grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
-
-                            grvPurchaseDetails.SetFocusedRowCellValue(colShapeId, EditedSalesDetails[i].ShapeId);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedSalesDetails[i].SizeId);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedSalesDetails[i].PurityId);
-
-                            if (EditedSalesDetails[i].CharniSizeId != null && EditedSalesDetails[i].CharniSizeId != Common.DefaultGuid)
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCharniSize, EditedSalesDetails[i].CharniSizeId);
-                            if (EditedSalesDetails[i].GalaSizeId != null && EditedSalesDetails[i].GalaSizeId != Common.DefaultGuid)
-                                grvPurchaseDetails.SetFocusedRowCellValue(colGalaSize, EditedSalesDetails[i].GalaSizeId);
-                            if (EditedSalesDetails[i].NumberSizeId != null && EditedSalesDetails[i].NumberSizeId != Common.DefaultGuid)
-                                grvPurchaseDetails.SetFocusedRowCellValue(colNumberSize, EditedSalesDetails[i].NumberSizeId);
-
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCarat, EditedSalesDetails[i].Weight);
-
-                            grvPurchaseDetails.SetFocusedRowCellValue(colTipWeight, EditedSalesDetails[i].TIPWeight);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCVDWeight, EditedSalesDetails[i].CVDWeight);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colRejPer, EditedSalesDetails[i].RejectedPercentage);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colRejCts, EditedSalesDetails[i].RejectedWeight);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colLessCts, EditedSalesDetails[i].LessWeight);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colDisPer, EditedSalesDetails[i].LessDiscountPercentage);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colDisAmount, EditedSalesDetails[i].LessWeightDiscount);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colNetCts, EditedSalesDetails[i].NetWeight);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colRate, EditedSalesDetails[i].SaleRate);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCVDCharge, EditedSalesDetails[i].CVDCharge);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCVDAmount, EditedSalesDetails[i].CVDAmount);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colAmount, EditedSalesDetails[i].Amount);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCurrRate, EditedSalesDetails[i].CurrencyRate);
-                            grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
-                            grvPurchaseDetails.UpdateCurrentRow();
+                        }
+                        finally
+                        {
+                            this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                         }
 
                         if (!string.IsNullOrEmpty(_editedSalesMaster.TransferParentId))
@@ -793,9 +805,10 @@ namespace DiamondTrading.Transaction
         {
             try
             {
+                this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                 if (e.Column == colCategory)
                 {
-                    this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                    //this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                     if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCategory).ToString() == CategoryMaster.Kapan.ToString())
                     {
                         repoShape.Columns["CharniSize"].Visible = false;
@@ -1111,7 +1124,7 @@ namespace DiamondTrading.Transaction
                         repoKapan.DisplayMember = "Kapan";
                         repoKapan.ValueMember = "KapanId";
                     }
-                    this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                    //this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                 }
                 else if (e.Column == colCharniSize)
                 {
@@ -1211,6 +1224,10 @@ namespace DiamondTrading.Transaction
             }
             catch (Exception Ex)
             {
+                //this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+            }
+            finally
+            {
                 this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             }
         }
@@ -1287,7 +1304,7 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                //this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                 if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejPer).ToString().Trim().Length == 0)
                     grvPurchaseDetails.SetRowCellValue(GridRowIndex, colRejPer, "0");
                 decimal RunningWeightBeforeRejection = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat)) - Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight)) - Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight));
@@ -1333,7 +1350,7 @@ namespace DiamondTrading.Transaction
             }
             finally
             {
-                this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                //this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             }
         }
 
@@ -1341,17 +1358,17 @@ namespace DiamondTrading.Transaction
         {
             try
             {
-                this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                //this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
                 decimal Carat = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat).ToString().Length != 0)
                     Carat = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCarat));
 
                 decimal TipCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight).ToString().Length != 0)
                     TipCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colTipWeight));
 
                 decimal CVDCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight).ToString().Length != 0)
                 {
                     CVDCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDWeight));
                     if (CVDCts <= 0)
@@ -1362,11 +1379,11 @@ namespace DiamondTrading.Transaction
                 }
 
                 decimal RejCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts).ToString().Length != 0)
                     RejCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRejCts));
 
                 decimal LessCts = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts).ToString().Length != 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts).ToString().Length != 0)
                     LessCts = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colLessCts));
 
                 ItemRunningWeight = Carat - TipCts - CVDCts - RejCts - LessCts;
@@ -1376,12 +1393,12 @@ namespace DiamondTrading.Transaction
 
                 decimal Amount = 0;
                 decimal FinalAmount = 0;
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate).ToString().Trim().Length > 0)
                 {
                     Amount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colRate));
                     FinalAmount = ItemRunningWeight * Amount;
                 }
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer).ToString().Trim().Length > 0)
                 {
                     decimal LessPer = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colDisPer));
                     if (LessPer < 0)
@@ -1391,7 +1408,7 @@ namespace DiamondTrading.Transaction
 
                     grvPurchaseDetails.SetRowCellValue(GridRowIndex, colDisAmount, LessAmt);
                 }
-                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
+                if (grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge) != null && grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge).ToString().Trim().Length > 0)
                 {
                     decimal CVDCharge = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(GridRowIndex, colCVDCharge));
                     //CVDCharge *= Carat;
@@ -1420,7 +1437,7 @@ namespace DiamondTrading.Transaction
             }
             finally
             {
-                this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                //this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             }
         }
 
@@ -2456,6 +2473,11 @@ namespace DiamondTrading.Transaction
         private void timer1_Tick(object sender, EventArgs e)
         {
             dtTime.EditValue = DateTime.Now;
+        }
+
+        private void labelControl10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

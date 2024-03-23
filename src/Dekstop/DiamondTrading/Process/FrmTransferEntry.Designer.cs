@@ -153,19 +153,19 @@ namespace DiamondTrading.Process
             // 
             this.txtSerialNo.EditValue = "0";
             this.txtSerialNo.Enabled = false;
-            this.txtSerialNo.Location = new System.Drawing.Point(75, 63);
+            this.txtSerialNo.Location = new System.Drawing.Point(76, 10);
             this.txtSerialNo.Name = "txtSerialNo";
             this.txtSerialNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSerialNo.Properties.Appearance.Options.UseFont = true;
             this.txtSerialNo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
-            this.txtSerialNo.Size = new System.Drawing.Size(97, 24);
+            this.txtSerialNo.Size = new System.Drawing.Size(143, 24);
             this.txtSerialNo.TabIndex = 7;
             // 
             // labelControl8
             // 
             this.labelControl8.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl8.Appearance.Options.UseFont = true;
-            this.labelControl8.Location = new System.Drawing.Point(910, 64);
+            this.labelControl8.Location = new System.Drawing.Point(1266, 61);
             this.labelControl8.Name = "labelControl8";
             this.labelControl8.Size = new System.Drawing.Size(43, 16);
             this.labelControl8.TabIndex = 3;
@@ -175,7 +175,7 @@ namespace DiamondTrading.Process
             // 
             this.dtTime.EditValue = null;
             this.dtTime.Enabled = false;
-            this.dtTime.Location = new System.Drawing.Point(960, 84);
+            this.dtTime.Location = new System.Drawing.Point(1316, 81);
             this.dtTime.Name = "dtTime";
             this.dtTime.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtTime.Properties.Appearance.Options.UseFont = true;
@@ -199,7 +199,7 @@ namespace DiamondTrading.Process
             // dtDate
             // 
             this.dtDate.EditValue = null;
-            this.dtDate.Location = new System.Drawing.Point(960, 62);
+            this.dtDate.Location = new System.Drawing.Point(1316, 59);
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
@@ -216,7 +216,7 @@ namespace DiamondTrading.Process
             this.btnCancel.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Appearance.Options.UseFont = true;
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(998, 533);
+            this.btnCancel.Location = new System.Drawing.Point(1346, 585);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 21);
             this.btnCancel.TabIndex = 3;
@@ -226,7 +226,7 @@ namespace DiamondTrading.Process
             // 
             this.btnReset.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReset.Appearance.Options.UseFont = true;
-            this.btnReset.Location = new System.Drawing.Point(917, 533);
+            this.btnReset.Location = new System.Drawing.Point(1265, 585);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 21);
             this.btnReset.TabIndex = 2;
@@ -236,7 +236,7 @@ namespace DiamondTrading.Process
             // 
             this.btnSave.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Appearance.Options.UseFont = true;
-            this.btnSave.Location = new System.Drawing.Point(836, 533);
+            this.btnSave.Location = new System.Drawing.Point(1184, 585);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 21);
             this.btnSave.TabIndex = 1;
@@ -251,7 +251,7 @@ namespace DiamondTrading.Process
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
             this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtRemark.Size = new System.Drawing.Size(737, 85);
+            this.txtRemark.Size = new System.Drawing.Size(907, 85);
             this.txtRemark.TabIndex = 0;
             // 
             // panelControl1
@@ -271,7 +271,7 @@ namespace DiamondTrading.Process
             this.panelControl1.Controls.Add(this.grpGroup2);
             this.panelControl1.Location = new System.Drawing.Point(12, 2);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(1060, 523);
+            this.panelControl1.Size = new System.Drawing.Size(1409, 577);
             this.panelControl1.TabIndex = 0;
             // 
             // lueTransferBy
@@ -306,27 +306,27 @@ namespace DiamondTrading.Process
             this.grpGroup7.Controls.Add(this.Image3);
             this.grpGroup7.Controls.Add(this.Image2);
             this.grpGroup7.Controls.Add(this.Image1);
-            this.grpGroup7.Location = new System.Drawing.Point(774, 384);
+            this.grpGroup7.Location = new System.Drawing.Point(944, 451);
             this.grpGroup7.Name = "grpGroup7";
-            this.grpGroup7.Size = new System.Drawing.Size(274, 121);
+            this.grpGroup7.Size = new System.Drawing.Size(458, 121);
             this.grpGroup7.TabIndex = 12;
             this.grpGroup7.Text = "Documents";
             // 
             // Image3
             // 
-            this.Image3.Location = new System.Drawing.Point(185, 29);
+            this.Image3.Location = new System.Drawing.Point(308, 29);
             this.Image3.Name = "Image3";
             this.Image3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.Image3.Size = new System.Drawing.Size(85, 85);
+            this.Image3.Size = new System.Drawing.Size(145, 85);
             this.Image3.TabIndex = 2;
             this.Image3.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image3_MouseDoubleClick);
             // 
             // Image2
             // 
-            this.Image2.Location = new System.Drawing.Point(96, 29);
+            this.Image2.Location = new System.Drawing.Point(157, 30);
             this.Image2.Name = "Image2";
             this.Image2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.Image2.Size = new System.Drawing.Size(85, 85);
+            this.Image2.Size = new System.Drawing.Size(145, 85);
             this.Image2.TabIndex = 1;
             this.Image2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image2_MouseDoubleClick);
             // 
@@ -335,13 +335,13 @@ namespace DiamondTrading.Process
             this.Image1.Location = new System.Drawing.Point(7, 29);
             this.Image1.Name = "Image1";
             this.Image1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
-            this.Image1.Size = new System.Drawing.Size(85, 85);
+            this.Image1.Size = new System.Drawing.Size(145, 85);
             this.Image1.TabIndex = 0;
             this.Image1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Image1_MouseDoubleClick);
             // 
             // lueCompany
             // 
-            this.lueCompany.Location = new System.Drawing.Point(401, 31);
+            this.lueCompany.Location = new System.Drawing.Point(100, 55);
             this.lueCompany.Name = "lueCompany";
             this.lueCompany.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueCompany.Properties.Appearance.Options.UseFont = true;
@@ -360,7 +360,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(334, 34);
+            this.labelControl1.Location = new System.Drawing.Point(33, 58);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(62, 16);
             this.labelControl1.TabIndex = 1;
@@ -370,7 +370,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl12.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl12.Appearance.Options.UseFont = true;
-            this.labelControl12.Location = new System.Drawing.Point(11, 65);
+            this.labelControl12.Location = new System.Drawing.Point(12, 12);
             this.labelControl12.Name = "labelControl12";
             this.labelControl12.Size = new System.Drawing.Size(61, 16);
             this.labelControl12.TabIndex = 6;
@@ -383,7 +383,7 @@ namespace DiamondTrading.Process
             this.grpGroup1.Controls.Add(this.grdTransferItemDetails);
             this.grpGroup1.Location = new System.Drawing.Point(11, 111);
             this.grpGroup1.Name = "grpGroup1";
-            this.grpGroup1.Size = new System.Drawing.Size(1037, 271);
+            this.grpGroup1.Size = new System.Drawing.Size(1393, 334);
             this.grpGroup1.TabIndex = 10;
             this.grpGroup1.Text = "Particulars Details";
             // 
@@ -414,7 +414,7 @@ namespace DiamondTrading.Process
             this.repoBranchT,
             this.repoTextRate,
             this.repoCaratCategory});
-            this.grdTransferItemDetails.Size = new System.Drawing.Size(1033, 246);
+            this.grdTransferItemDetails.Size = new System.Drawing.Size(1389, 309);
             this.grdTransferItemDetails.TabIndex = 0;
             this.grdTransferItemDetails.UseEmbeddedNavigator = true;
             this.grdTransferItemDetails.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1020,7 +1020,7 @@ namespace DiamondTrading.Process
             this.lblFormTitle.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.Vertical;
             this.lblFormTitle.Location = new System.Drawing.Point(0, 2);
             this.lblFormTitle.Name = "lblFormTitle";
-            this.lblFormTitle.Size = new System.Drawing.Size(1061, 23);
+            this.lblFormTitle.Size = new System.Drawing.Size(1409, 23);
             this.lblFormTitle.TabIndex = 0;
             this.lblFormTitle.Text = "|| શ્રીજી ||";
             this.lblFormTitle.UseMnemonic = false;
@@ -1030,9 +1030,9 @@ namespace DiamondTrading.Process
             this.grpGroup2.AppearanceCaption.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpGroup2.AppearanceCaption.Options.UseFont = true;
             this.grpGroup2.Controls.Add(this.txtRemark);
-            this.grpGroup2.Location = new System.Drawing.Point(11, 384);
+            this.grpGroup2.Location = new System.Drawing.Point(11, 451);
             this.grpGroup2.Name = "grpGroup2";
-            this.grpGroup2.Size = new System.Drawing.Size(757, 121);
+            this.grpGroup2.Size = new System.Drawing.Size(927, 121);
             this.grpGroup2.TabIndex = 11;
             this.grpGroup2.Text = "Remark";
             // 
@@ -1049,7 +1049,7 @@ namespace DiamondTrading.Process
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1084, 563);
+            this.ClientSize = new System.Drawing.Size(1433, 618);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);

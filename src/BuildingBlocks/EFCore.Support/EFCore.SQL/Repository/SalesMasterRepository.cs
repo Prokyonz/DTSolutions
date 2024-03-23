@@ -28,6 +28,13 @@ namespace EFCore.SQL.Repository
                     if (salesMaster.Id == null)
                         salesMaster.Id = Guid.NewGuid().ToString();
 
+                    var existingSlipNo = await _databaseContext.SalesMaster.Where(w => w.CompanyId == salesMaster.CompanyId
+                    && w.FinancialYearId == salesMaster.FinancialYearId && !w.IsDelete
+                    && w.SlipNo == salesMaster.SlipNo).FirstOrDefaultAsync();
+
+                    if (existingSlipNo != null)
+                        throw new Exception("Slipno already exist. You can not enter same slipno again.");
+
                     //var ledgerRecord = await _databaseContext.PartyMaster.Where(w => w.Id == salesMaster.PartyId).FirstOrDefaultAsync();
 
                     //ledgerRecord.OpeningBalance = ledgerRecord.OpeningBalance + (decimal)salesMaster.Total;
@@ -48,9 +55,12 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
+                
                 if (salesRecord != null)
                 {
-                    var childEntry = await _databaseContext.PaymentDetails.Where(w => w.SlipNo == salesRecord.SlipNo.ToString()).ToListAsync();
+                    var salesDetails = await _databaseContext.SalesDetails.Where(w => w.SalesId == salesRecord.Id).FirstOrDefaultAsync();
+
+                    var childEntry = await _databaseContext.PaymentDetails.Where(w => w.PurchaseId == salesDetails.Id.ToString()).ToListAsync();
 
                     if (childEntry.Any())
                     {
@@ -153,6 +163,12 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
+                var existingSlipNo = await _databaseContext.SalesMaster.Where(w => w.SlipNo == salesMaster.SlipNo 
+                && w.CompanyId == salesMaster.CompanyId && w.FinancialYearId == salesMaster.FinancialYearId
+                && w.Id != salesMaster.Id).FirstOrDefaultAsync();
+                if (existingSlipNo != null)
+                    throw new Exception("Slipno already exist. You can not enter same slipno again.");
+
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).Include("SalesDetails").FirstOrDefaultAsync();
                 if (salesRecord != null)
                 {

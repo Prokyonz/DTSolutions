@@ -138,6 +138,12 @@ namespace DiamondTrading.Utility
             txtNetAmount.Text = "";
             txtTotalInterest.Text = "";
             txtRemark.Text = "";
+            lueReceiveFrom.EditValue = null;
+            lueParty.EditValue = null;
+            lueCashBank.EditValue = null;
+            lueDuration.EditValue = null;
+            dateStart.EditValue = null;
+            dateEnd.EditValue = null;
             lueReceiveFrom.Focus();
         }
 
