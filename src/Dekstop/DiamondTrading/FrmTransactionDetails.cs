@@ -1027,7 +1027,7 @@ namespace DiamondTrading
                 {
                     string id = grvExpenseMaster.GetFocusedRowCellValue(gridColumnExpenseSrNo).ToString();
 
-                    bool result = await _expenseMasterRepository.DeleteSrNoAllExpenseAsync(Convert.ToInt32(id), true);
+                    bool result = await _expenseMasterRepository.DeleteSrNoAllExpenseAsync(Convert.ToInt32(id), Common.LoginCompany, Common.LoginFinancialYear, true);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1037,7 +1037,7 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string SelectedSrNo = grvContraDetails.GetFocusedRowCellValue("SrNo").ToString();
-                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(Convert.ToInt32(SelectedSrNo));
+                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(Convert.ToInt32(SelectedSrNo), Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
