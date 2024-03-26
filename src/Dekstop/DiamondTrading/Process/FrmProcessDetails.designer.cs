@@ -483,7 +483,7 @@ namespace DiamondTrading
             this.grvKapanMapping.Appearance.FooterPanel.Options.UseFont = true;
             this.grvKapanMapping.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvKapanMapping.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvKapanMapping.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvKapanMapping.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvKapanMapping.Appearance.Row.Options.UseFont = true;
             this.grvKapanMapping.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnKapanMapingId,
@@ -672,7 +672,7 @@ namespace DiamondTrading
             this.grvAssortSendReceiveMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.grvAssortSendReceiveMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvAssortSendReceiveMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvAssortSendReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvAssortSendReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvAssortSendReceiveMaster.Appearance.Row.Options.UseFont = true;
             this.grvAssortSendReceiveMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnAssortSendId,
@@ -930,7 +930,7 @@ namespace DiamondTrading
             this.grvAssortReceiveMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.grvAssortReceiveMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvAssortReceiveMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvAssortReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvAssortReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grvAssortReceiveMaster.Appearance.Row.Options.UseFont = true;
             this.grvAssortReceiveMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnAssortReceiveId,
@@ -1221,7 +1221,7 @@ namespace DiamondTrading
             this.gridViewBoilSendReceiveMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.gridViewBoilSendReceiveMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewBoilSendReceiveMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.gridViewBoilSendReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewBoilSendReceiveMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewBoilSendReceiveMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewBoilSendReceiveMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnBoilNo,
@@ -1500,7 +1500,7 @@ namespace DiamondTrading
             this.gridViewCharniReportMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.gridViewCharniReportMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewCharniReportMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.gridViewCharniReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewCharniReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewCharniReportMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewCharniReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnCharniNo,
@@ -1773,7 +1773,7 @@ namespace DiamondTrading
             this.gridViewGalaReportMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.gridViewGalaReportMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewGalaReportMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.gridViewGalaReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewGalaReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewGalaReportMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewGalaReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnGalaNo,
@@ -2043,7 +2043,7 @@ namespace DiamondTrading
             this.gridViewNumberReportMaster.Appearance.FooterPanel.Options.UseFont = true;
             this.gridViewNumberReportMaster.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewNumberReportMaster.Appearance.GroupFooter.Options.UseFont = true;
-            this.gridViewNumberReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridViewNumberReportMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridViewNumberReportMaster.Appearance.Row.Options.UseFont = true;
             this.gridViewNumberReportMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumnNumberNo,
@@ -2334,7 +2334,7 @@ namespace DiamondTrading
             this.gvStockReport.Appearance.FooterPanel.Options.UseFont = true;
             this.gvStockReport.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.gvStockReport.Appearance.GroupFooter.Options.UseFont = true;
-            this.gvStockReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.gvStockReport.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.gvStockReport.Appearance.Row.Options.UseFont = true;
             this.gvStockReport.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdColId,
@@ -2538,7 +2538,7 @@ namespace DiamondTrading
             this.grvOpeningStock.Appearance.FooterPanel.Options.UseFont = true;
             this.grvOpeningStock.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
             this.grvOpeningStock.Appearance.GroupFooter.Options.UseFont = true;
-            this.grvOpeningStock.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvOpeningStock.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvOpeningStock.Appearance.Row.Options.UseFont = true;
             this.grvOpeningStock.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn153,
