@@ -572,14 +572,14 @@ namespace DiamondTrading.Process
                     if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         //grvTransferItemDetails.Columns["ShapeT"].Visible = false;
-                        colSizeT.Visible = false;
+                        //colSizeT.Visible = false;
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 1);
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         //grvTransferItemDetails.Columns["ShapeT"].Visible = true;
-                        colSizeT.Visible = true;
+                        //colSizeT.Visible = true;
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
                     }

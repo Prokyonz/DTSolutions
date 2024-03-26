@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTabbedMdi;
 using DiamondTrading.Master;
 using EFCore.SQL.Repository;
 using Repository.Entities;
@@ -677,42 +678,63 @@ namespace DiamondTrading
 
         }
 
+        private XtraMdiTabPage GetActiveTab(string title)
+        {
+            XtraMdiTabPage tabPageToActivate = null;
+            foreach (XtraMdiTabPage tabPage in xtraTabbedMdiManager1.Pages)
+            {
+                if (tabPage.Text == "Purchase Details") // Replace "YourTabTitle" with the title of your tab
+                {
+                    tabPageToActivate = tabPage;
+                    break;
+                }
+            }
+
+            return tabPageToActivate;
+        }
+
         private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();                
+            //}
+            var tab = GetActiveTab("Purchase Details");
+
+            if (tab == null)
             {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
+                FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+                frmMasterDetails.SelectedTabPage = "Purchase";
+                frmMasterDetails.MdiParent = this;
+                frmMasterDetails.Show();
+                frmMasterDetails.BringToFront();
+
+                accordionControlElementMaster.Expanded = true;
+            } else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
             }
-
-            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
-            frmMasterDetails.SelectedTabPage = "Purchase";
-            frmMasterDetails.MdiParent = this;
-            frmMasterDetails.Show();
-            frmMasterDetails.BringToFront();
-
-            accordionControlElementMaster.Expanded = true;
-
             //OpenMasterDetailsForm("Purchase");
         }
 
         private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Sales";
@@ -915,15 +937,15 @@ namespace DiamondTrading
         private void OpenMasterDetailsForm(string PageRequested)
         {
             panelControl1.SendToBack();
-            FrmMasterDetails page = Application.OpenForms["frmMasterDetails"] as FrmMasterDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmMasterDetails page = Application.OpenForms["frmMasterDetails"] as FrmMasterDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmMasterDetails frmMasterDetails = new FrmMasterDetails();
             frmMasterDetails.SelectedTabPage = PageRequested;
@@ -937,15 +959,15 @@ namespace DiamondTrading
         private void OpenTransactionDetailsForm(string PageRequested)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["FrmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["FrmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmTransactionDetails = new FrmTransactionDetails();
             frmTransactionDetails.SelectedTabPage = PageRequested;
@@ -1463,7 +1485,7 @@ namespace DiamondTrading
 
             frmTransferEntry.StartPosition = FormStartPosition.Manual;
 
-            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 200) / 3, (Height - frmTransferEntry.Height) / 2);
+            frmTransferEntry.Location = new Point((w - frmTransferEntry.Width - 100) / 3, (Height - frmTransferEntry.Height) / 2);
 
             frmTransferEntry.ShowDialog();
         }
@@ -1476,15 +1498,15 @@ namespace DiamondTrading
         private void barButtonItem44_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Payment";
@@ -1499,15 +1521,15 @@ namespace DiamondTrading
         private void barButtonItem46_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Contra";
@@ -1521,15 +1543,15 @@ namespace DiamondTrading
         private void barButtonItem45_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Receipt";
@@ -1569,15 +1591,15 @@ namespace DiamondTrading
         private void barButtonItem47_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Expense";
@@ -1668,15 +1690,15 @@ namespace DiamondTrading
         private void barButtonItem52_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Loan";
@@ -1695,15 +1717,15 @@ namespace DiamondTrading
         private void barButtonItem53_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Mixed";
@@ -1717,15 +1739,15 @@ namespace DiamondTrading
         private void barButtonItem55_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "SalesSlipPrint";
@@ -1756,15 +1778,15 @@ namespace DiamondTrading
         private void barButtonItem57_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "PurchaseSlipPrint";
@@ -1848,11 +1870,11 @@ namespace DiamondTrading
 
         private void barButtonItem61_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Process.FrmPriceMaster page = Application.OpenForms["FrmPriceMaster"] as Process.FrmPriceMaster;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //Process.FrmPriceMaster page = Application.OpenForms["FrmPriceMaster"] as Process.FrmPriceMaster;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             Process.FrmPriceMaster frmPriceMaster = new Process.FrmPriceMaster();
 
@@ -1874,11 +1896,11 @@ namespace DiamondTrading
         private void barButtonItem62_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlProcess);
-            Utility.FrmOpeningStock page = Application.OpenForms["FrmOpeningStock"] as Utility.FrmOpeningStock;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //Utility.FrmOpeningStock page = Application.OpenForms["FrmOpeningStock"] as Utility.FrmOpeningStock;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             Utility.FrmOpeningStock frmOpeningStock = new Utility.FrmOpeningStock();
 
@@ -1900,15 +1922,15 @@ namespace DiamondTrading
         private void barButtonKapanDetails_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "Kapan";
@@ -1922,15 +1944,15 @@ namespace DiamondTrading
         private void barButtonAssortSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "AssortSend";
@@ -1944,15 +1966,15 @@ namespace DiamondTrading
         private void barButtonIAssortReceive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "AssortReceive";
@@ -1966,11 +1988,11 @@ namespace DiamondTrading
         private void barButtonBoilSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "BoilSend";
@@ -1984,11 +2006,11 @@ namespace DiamondTrading
         private void barButtonBoilReceive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "BoilReceive";
@@ -2002,11 +2024,11 @@ namespace DiamondTrading
         private void barButtonItem64_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "CharniSend";
@@ -2020,11 +2042,11 @@ namespace DiamondTrading
         private void barButtonItem65_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "CharniReceive";
@@ -2038,11 +2060,11 @@ namespace DiamondTrading
         private void barButtonItem66_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "GalaSend";
@@ -2056,11 +2078,11 @@ namespace DiamondTrading
         private void barButtonItem67_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "GalaReceive";
@@ -2074,11 +2096,11 @@ namespace DiamondTrading
         private void barButtonItem68_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "NumberSend";
@@ -2092,11 +2114,11 @@ namespace DiamondTrading
         private void barButtonItem69_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "NumberReceive";
@@ -2110,11 +2132,11 @@ namespace DiamondTrading
         private void barButtonItem71_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "JangadSend";
@@ -2128,11 +2150,11 @@ namespace DiamondTrading
         private void barButtonItem72_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "JangadReceive";
@@ -2146,11 +2168,11 @@ namespace DiamondTrading
         private void barButtonItem73_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "StockReport";
@@ -2164,11 +2186,11 @@ namespace DiamondTrading
         private void barButtonItem73_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "OpeningStockReport";
@@ -2182,11 +2204,11 @@ namespace DiamondTrading
         private void barButtonItem74_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "PFReport";
@@ -2200,11 +2222,11 @@ namespace DiamondTrading
         private void barButtonItem75_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "LedgerReport";
@@ -2218,11 +2240,11 @@ namespace DiamondTrading
         private void barButtonItem76_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "WeeklyPurchaseReport";
@@ -2236,11 +2258,11 @@ namespace DiamondTrading
         private void barButtonItem77_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Payable";
@@ -2254,11 +2276,11 @@ namespace DiamondTrading
         private void barButtonItem78_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Receivable";
@@ -2272,11 +2294,11 @@ namespace DiamondTrading
         private void barButtonItem79_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "BalanceSheet";
@@ -2290,11 +2312,11 @@ namespace DiamondTrading
         private void barButtonItem80_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "ProfitLoss";
@@ -2308,11 +2330,11 @@ namespace DiamondTrading
         private void barButtonItem81_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            Reports.FrmKapanLagadReport page = Application.OpenForms["FrmKapanLagadReport"] as Reports.FrmKapanLagadReport;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //Reports.FrmKapanLagadReport page = Application.OpenForms["FrmKapanLagadReport"] as Reports.FrmKapanLagadReport;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             Reports.FrmKapanLagadReport frmKapanLagadReport = new Reports.FrmKapanLagadReport();
             frmKapanLagadReport.MdiParent = this;
@@ -2325,11 +2347,11 @@ namespace DiamondTrading
         private void barButtonItem82_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "CashBank";
@@ -2343,11 +2365,11 @@ namespace DiamondTrading
         private void barButtonSalaryReport_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "SalaryReport";
@@ -2361,11 +2383,11 @@ namespace DiamondTrading
         private void barButtonRejectionInReceive_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "RejectionIn";
@@ -2379,11 +2401,11 @@ namespace DiamondTrading
         private void barButtonRejectionOutSend_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "RejectionOut";
@@ -2396,11 +2418,11 @@ namespace DiamondTrading
 
         private void barButtonPriceMasterMobile_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Process.FrmPriceMasterMobiles page = Application.OpenForms["FrmPriceMasterMobiles"] as Process.FrmPriceMasterMobiles;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //Process.FrmPriceMasterMobiles page = Application.OpenForms["FrmPriceMasterMobiles"] as Process.FrmPriceMasterMobiles;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             Process.FrmPriceMasterMobiles frmPriceMasterMobile = new Process.FrmPriceMasterMobiles();
 
@@ -2422,11 +2444,11 @@ namespace DiamondTrading
         private void barButtonGSTBillPrint_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlProcess);
-            Utility.FrmGSTBillEntry page = Application.OpenForms["FrmGSTBillEntry"] as Utility.FrmGSTBillEntry;
-            if (page != null)
-            {
-                page.Close();
-            }
+            //Utility.FrmGSTBillEntry page = Application.OpenForms["FrmGSTBillEntry"] as Utility.FrmGSTBillEntry;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
             Utility.FrmGSTBillEntry frmGSTBillEntry = new Utility.FrmGSTBillEntry();
 
@@ -2444,5 +2466,11 @@ namespace DiamondTrading
 
             frmGSTBillEntry.ShowDialog();
         }
-    }
+
+        private void FrmMain_MdiChildActivate(object sender, EventArgs e)
+        {
+            if (this.MdiChildren.Length <= 0)
+                panelControl1.BringToFront();           
+        }
+    }   
 }

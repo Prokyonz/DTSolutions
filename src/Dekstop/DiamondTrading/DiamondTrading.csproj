@@ -604,6 +604,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="strings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.zh-CN.resx</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmApproveReject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -880,7 +885,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="strings.zh-CN.resx" />
+    <EmbeddedResource Include="strings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmApproveReject.resx">
       <DependentUpon>FrmApproveReject.cs</DependentUpon>
     </EmbeddedResource>

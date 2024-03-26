@@ -119,9 +119,10 @@ namespace DiamondTrading.Transaction
             {
                 ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
                 var PaymentSrNo = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
-
-                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
                 int SrNo = 0;
+                SrNo = PaymentSrNo;
+                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
+
                 if (PaymentSrNo >= ExpenseSrNo)
                     SrNo = PaymentSrNo;
                 else
@@ -505,7 +506,7 @@ namespace DiamondTrading.Transaction
                     //Contra Entry
                     if (_paymentType == -1)
                     {
-                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo);
+                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo,Common.LoginCompany, Common.LoginFinancialYear);
                         string contraMasterId = Guid.NewGuid().ToString();
                         List<ContraEntryDetails> contraEntryDetails = new List<ContraEntryDetails>();
 
@@ -561,7 +562,7 @@ namespace DiamondTrading.Transaction
                         try
                         {
                             ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
-                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, true);
+                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, Common.LoginCompany, Common.LoginFinancialYear, true);
 
                             for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                             {
@@ -608,7 +609,7 @@ namespace DiamondTrading.Transaction
                     }
                     else if(_paymentType == 0 || _paymentType == 1)
                     {
-                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType);
+                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType, Common.LoginCompany, Common.LoginFinancialYear);
                         if (isDelete)
                         {
                             await SavePaymentReceipt();

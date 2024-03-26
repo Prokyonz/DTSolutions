@@ -32,11 +32,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = true)
+        public async Task<bool> DeleteExpenseAsync(string expenseId, string companyId, string financialYearId, bool isPermanantDetele = true)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseId).ToListAsync();
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.Id == expenseId && w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
                 if (getExpense != null)
                 {
                     if (isPermanantDetele)
@@ -57,11 +57,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteSrNoAllExpenseAsync(int SrNo, bool isPermanantDetele = true)
+        public async Task<bool> DeleteSrNoAllExpenseAsync(int SrNo, string companyId, string financialYearId, bool isPermanantDetele = true)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.SrNo == SrNo).ToListAsync();
+                var getExpense = await _databaseContext.ExpenseDetails.Where(w => w.SrNo == SrNo && w.CompanyId == companyId && w.FinancialYearId == financialYearId).ToListAsync();
                 if (getExpense != null)
                 {
                     if (isPermanantDetele)
