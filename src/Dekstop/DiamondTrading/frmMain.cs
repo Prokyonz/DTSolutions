@@ -17,11 +17,14 @@ namespace DiamondTrading
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
         UserMasterRepository userMasterRepository;
+        bool IsAllowProcess = true;
+        public static FrmMain currentInstance;
         #region "FormEvents"
 
         public FrmMain()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            currentInstance = this;
         }
 
         private void accordionControlElement15_Click(object sender, EventArgs e)
@@ -35,8 +38,20 @@ namespace DiamondTrading
             OpenMasterDetailsForm("CompanyMaster");
         }
 
-        private async Task CheckPermission()
+        public async Task CheckPermission()
         {
+            if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+            {
+                var isAllowProcess = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Other" && x.PermissionName == "AllowProcess").FirstOrDefault();
+                if (isAllowProcess != null)
+                {
+                    if (isAllowProcess.IsOther)
+                        IsAllowProcess = true;
+                    else
+                        IsAllowProcess = false;
+                }
+            }
+
             userMasterRepository = new UserMasterRepository();
             Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
 
@@ -51,7 +66,7 @@ namespace DiamondTrading
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
-                    case "branch_master":                        
+                    case "branch_master":
                         accordionControlElementMaster.Visible = true;
                         accrdianElementBranchMaster.Visible = true;
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -383,7 +398,7 @@ namespace DiamondTrading
                     case "profit_report":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem80.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        break;                    
+                        break;
 
                     //Reports Menu - Slip Print
                     case "purchase_slip_print":
@@ -411,6 +426,20 @@ namespace DiamondTrading
                         barButtonItemStockReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                 }
+            }
+
+            if (!IsAllowProcess)
+            {
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 
         }
