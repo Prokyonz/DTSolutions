@@ -430,15 +430,15 @@ namespace DiamondTrading
 
             if (!IsAllowProcess)
             {
-                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 

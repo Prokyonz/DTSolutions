@@ -74,6 +74,7 @@ namespace DiamondTrading.Master
                             {
                                 grvCompanyAccessPermission.SetRowCellValue(i, colPurchaseIsCheck, result.IsPurchase);
                                 grvCompanyAccessPermission.SetRowCellValue(i, colSaleIsCheck, result.IsSales);
+                                grvCompanyAccessPermission.SetRowCellValue(i, colOtherIsCheck, result.IsOther);
                             }
                         }
                     }
@@ -194,6 +195,7 @@ namespace DiamondTrading.Master
                         companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
                         companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
                         companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.IsOther= Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colOtherIsCheck));
                         companyOptions.PermissionStatus = true;
                         companyOptions.CreatedBy = Common.LoginUserID;
                         companyOptions.CreatedDate = DateTime.Now;
@@ -284,6 +286,7 @@ namespace DiamondTrading.Master
                         companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
                         companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
                         companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.IsOther = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colOtherIsCheck));
                         companyOptions.PermissionStatus = true;
                         companyOptions.CreatedBy = Common.LoginUserID;
                         companyOptions.CreatedDate = DateTime.Now;
