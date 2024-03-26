@@ -100,6 +100,7 @@ namespace DiamondTrading.Master
             dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", false, false);
             dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", false, false);
             dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", false, false);
+            dtCompanyPermissionDetails.Rows.Add("Purchase", "Allow Process", false, false);
 
             grdCompanyAccessPermission.DataSource = dtCompanyPermissionDetails;
         }
@@ -358,6 +359,13 @@ namespace DiamondTrading.Master
                     e.Appearance.BackColor = Color.LightGray;
                 }
             }
+            else if (e.Column == colSaleIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Purchase")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
         }
 
         private void grvCompanyAccessPermission_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
@@ -393,6 +401,13 @@ namespace DiamondTrading.Master
             if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
             {
                 if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale")
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (grvCompanyAccessPermission.FocusedColumn == colSaleIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Purchase")
                 {
                     e.Cancel = true;
                 }

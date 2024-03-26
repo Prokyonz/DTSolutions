@@ -30,6 +30,7 @@ namespace DiamondTrading.Transaction
         private PurchaseDetails _editedPurchaseDetails;
         private bool isLoading = false;
         private List<SlipTransferEntry> _slipTransferEntries;
+        private List<CompanyMaster> _companyList;
 
         public FrmPurchaseEntry()
         {
@@ -189,6 +190,7 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.SetFocusedRowCellValue(colShape, EditedPurchaseDetail[i].ShapeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedPurchaseDetail[i].SizeId);
                             grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedPurchaseDetail[i].PurityId);
+                            grvPurchaseDetails.SetFocusedRowCellValue(colNumber, EditedPurchaseDetail[i].NumberId);
 
                             grvPurchaseDetails.SetFocusedRowCellValue(colCarat, EditedPurchaseDetail[i].Weight);
 
@@ -292,8 +294,8 @@ namespace DiamondTrading.Transaction
         private async Task LoadCompany()
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
-            var companies = await companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
-            lueCompany.Properties.DataSource = companies;
+            _companyList = await companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
+            lueCompany.Properties.DataSource = _companyList;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
 
@@ -394,6 +396,9 @@ namespace DiamondTrading.Transaction
 
             //Kapan
             await GetKapanDetail();
+
+            //NumberSize
+            await GetNumberSizeDetail();
         }
 
         private async Task GetBuyerList()
@@ -484,6 +489,16 @@ namespace DiamondTrading.Transaction
             repoKapan.DataSource = kapanMaster;
             repoKapan.DisplayMember = "Name";
             repoKapan.ValueMember = "Id";
+        }
+
+        private async Task GetNumberSizeDetail()
+        {
+            NumberMasterRepository numberMasterRepository = new NumberMasterRepository();
+            var numberSizeMaster = await numberMasterRepository.GetAllNumberAsync();
+
+            repoNumber.DataSource = numberSizeMaster;
+            repoNumber.DisplayMember = "Name";
+            repoNumber.ValueMember = "Id";
         }
 
         public async Task GetPurchaseNo(bool updateSlip = true)
@@ -668,6 +683,7 @@ namespace DiamondTrading.Transaction
             dt.Columns.Add("DisAmount");
             dt.Columns.Add("CVDAmount");
             dt.Columns.Add("PurchaseDetailId");
+            dt.Columns.Add("Number");
             return dt;
         }
 
@@ -1401,6 +1417,7 @@ namespace DiamondTrading.Transaction
                         purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
                         purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
                         purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                        purchaseDetails.NumberId = grvPurchaseDetails.GetRowCellValue(i, colNumber).ToString();
 
                         purchaseDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
                         purchaseDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
@@ -1801,6 +1818,80 @@ namespace DiamondTrading.Transaction
 
             await LoadBranch(lueCompany.EditValue.ToString());
 
+            var CurrentSelectedCompany = _companyList.Where(x => x.Id == lueCompany.EditValue.ToString());
+            if (CurrentSelectedCompany.Any() && CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+            {
+                var IsShape = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                if (IsShape != null)
+                {
+                    if (IsShape.IsPurchase)
+                        colShape.Visible = true;
+                    else
+                        colShape.Visible = false;
+                }
+
+                var IsPurity = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                if (IsPurity != null)
+                {
+                    if (IsPurity.IsPurchase)
+                        colPurity.Visible = true;
+                    else
+                        colPurity.Visible = false;
+                }
+
+                var IsTip = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                if (IsTip != null)
+                {
+                    if (IsTip.IsPurchase)
+                        colTipWeight.Visible = true;
+                    else
+                        colTipWeight.Visible = false;
+                }
+
+                var IsCVD = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                if (IsCVD != null)
+                {
+                    if (IsCVD.IsPurchase)
+                        colCVDWeight.Visible = true;
+                    else
+                        colCVDWeight.Visible = false;
+                }
+
+                var IsLessCts = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                if (IsLessCts != null)
+                {
+                    if (IsLessCts.IsPurchase)
+                        colLessCts.Visible = true;
+                    else
+                        colLessCts.Visible = false;
+                }
+
+                var IsCVDCharge = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                if (IsCVDCharge != null)
+                {
+                    if (IsCVDCharge.IsPurchase)
+                        colCVDCharge.Visible = true;
+                    else
+                        colCVDCharge.Visible = false;
+                }
+
+                var IsNumber = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                if(IsNumber != null)
+                {
+                    if (IsNumber.IsPurchase)
+                        colNumber.Visible = true;
+                    else
+                        colNumber.Visible = false;
+                }
+                else
+                {
+                    colNumber.Visible = false;
+                } 
+            }
+            else
+            {
+                colNumber.Visible = false;
+            }
             //await FillCombos();
         }
 

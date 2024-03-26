@@ -17,11 +17,14 @@ namespace DiamondTrading
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
         UserMasterRepository userMasterRepository;
+        bool IsAllowProcess = true;
+        public static FrmMain currentInstance;
         #region "FormEvents"
 
         public FrmMain()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            currentInstance = this;
         }
 
         private void accordionControlElement15_Click(object sender, EventArgs e)
@@ -35,8 +38,20 @@ namespace DiamondTrading
             OpenMasterDetailsForm("CompanyMaster");
         }
 
-        private async Task CheckPermission()
+        public async Task CheckPermission()
         {
+            if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+            {
+                var isAllowProcess = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Purchase" && x.PermissionName == "Allow Process").FirstOrDefault();
+                if (isAllowProcess != null)
+                {
+                    if (isAllowProcess.IsPurchase)
+                        IsAllowProcess = true;
+                    else
+                        IsAllowProcess = false;
+                }
+            }
+
             userMasterRepository = new UserMasterRepository();
             Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
 
@@ -206,24 +221,64 @@ namespace DiamondTrading
                         barButtonItem21.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "assort_process":
-                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        if (IsAllowProcess)
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                            barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        }
+                        else
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                            barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
                         break;
                     case "boil_process":
-                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        if (IsAllowProcess)
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                            barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        }
+                        else
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                            barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
                         break;
                     case "charni_process":
-                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        if (IsAllowProcess)
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                            barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        }
+                        else
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                            barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
                         break;
                     case "gala_process":
-                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        if (IsAllowProcess)
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                            barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        }
+                        else
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                            barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
                         break;
                     case "number_process":
-                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        if (IsAllowProcess)
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                            barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        }
+                        else
+                        {
+                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                            barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                        }
                         break;
 
                     //Utility Menu
