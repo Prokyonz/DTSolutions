@@ -86,21 +86,25 @@ namespace DiamondTrading.Master
             dtCompanyPermissionDetails = new DataTable();
             dtCompanyPermissionDetails.Columns.Add("PermissionGroup", typeof(string));
             dtCompanyPermissionDetails.Columns.Add("Permission", typeof(string));
-            dtCompanyPermissionDetails.Columns.Add("Purchase", typeof(bool));
+            dtCompanyPermissionDetails.Columns.Add("DisplayName", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("Purchase", typeof(bool)); 
             dtCompanyPermissionDetails.Columns.Add("Sale", typeof(bool));
+            dtCompanyPermissionDetails.Columns.Add("Other", typeof(bool));
 
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Shape", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Purity", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Tip", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "(-) Cts", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD A", false, false);
-            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Number", false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Category", false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", false, false);
-            dtCompanyPermissionDetails.Rows.Add("Purchase", "Allow Process", false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Shape", "Shape", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Purity", "Purity", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Tip", "Tip", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD", "CVD", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "(-) Cts", "(-) Cts", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD A", "CVD A", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Number", "Number", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Category", "Category", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", "Kapan", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", "Charni Size", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", "Gala Size", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "AllowProcess", "Allow Process", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "KapanLagad", "Kapan Lagad", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "GSTBillPrint", "GST Bill Print", false, false, false);
 
             grdCompanyAccessPermission.DataSource = dtCompanyPermissionDetails;
         }
@@ -352,16 +356,24 @@ namespace DiamondTrading.Master
 
         private void grvCompanyAccessPermission_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
-            if(e.Column == colPurchaseIsCheck)
+            if (e.Column == colPurchaseIsCheck)
             {
-                if(grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale")
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale"
+                    || grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Other")
                 {
                     e.Appearance.BackColor = Color.LightGray;
                 }
             }
             else if (e.Column == colSaleIsCheck)
             {
-                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Purchase")
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+            else if (e.Column == colOtherIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() != "Other")
                 {
                     e.Appearance.BackColor = Color.LightGray;
                 }
@@ -400,14 +412,22 @@ namespace DiamondTrading.Master
         {
             if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
             {
-                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale")
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale"
+                    || grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Other")
                 {
                     e.Cancel = true;
                 }
             }
-            else if (grvCompanyAccessPermission.FocusedColumn == colSaleIsCheck)
+            if (grvCompanyAccessPermission.FocusedColumn == colSaleIsCheck)
             {
-                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Purchase")
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (grvCompanyAccessPermission.FocusedColumn == colOtherIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() != "Other")
                 {
                     e.Cancel = true;
                 }

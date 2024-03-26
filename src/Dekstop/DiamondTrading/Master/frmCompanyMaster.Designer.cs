@@ -67,6 +67,7 @@ namespace DiamondTrading.Master
             this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
             this.colSaleIsCheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colPermissionGroup = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOtherIsCheck = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
@@ -332,7 +333,8 @@ namespace DiamondTrading.Master
             this.colPermissionName,
             this.colPurchaseIsCheck,
             this.colSaleIsCheck,
-            this.colPermissionGroup});
+            this.colPermissionGroup,
+            this.colOtherIsCheck});
             this.grvCompanyAccessPermission.GridControl = this.grdCompanyAccessPermission;
             this.grvCompanyAccessPermission.Name = "grvCompanyAccessPermission";
             this.grvCompanyAccessPermission.OptionsDetail.EnableMasterViewMode = false;
@@ -373,6 +375,13 @@ namespace DiamondTrading.Master
             resources.ApplyResources(this.colPermissionGroup, "colPermissionGroup");
             this.colPermissionGroup.FieldName = "PermissionGroup";
             this.colPermissionGroup.Name = "colPermissionGroup";
+            // 
+            // colOtherIsCheck
+            // 
+            resources.ApplyResources(this.colOtherIsCheck, "colOtherIsCheck");
+            this.colOtherIsCheck.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colOtherIsCheck.FieldName = "Other";
+            this.colOtherIsCheck.Name = "colOtherIsCheck";
             // 
             // gridView2
             // 
@@ -484,5 +493,6 @@ namespace DiamondTrading.Master
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraGrid.Columns.GridColumn colPermissionGroup;
+        private DevExpress.XtraGrid.Columns.GridColumn colOtherIsCheck;
     }
 }

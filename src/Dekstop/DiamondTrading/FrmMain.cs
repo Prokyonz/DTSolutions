@@ -42,10 +42,10 @@ namespace DiamondTrading
         {
             if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
             {
-                var isAllowProcess = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Purchase" && x.PermissionName == "Allow Process").FirstOrDefault();
+                var isAllowProcess = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Other" && x.PermissionName == "AllowProcess").FirstOrDefault();
                 if (isAllowProcess != null)
                 {
-                    if (isAllowProcess.IsPurchase)
+                    if (isAllowProcess.IsOther)
                         IsAllowProcess = true;
                     else
                         IsAllowProcess = false;
@@ -66,7 +66,7 @@ namespace DiamondTrading
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
-                    case "branch_master":                        
+                    case "branch_master":
                         accordionControlElementMaster.Visible = true;
                         accrdianElementBranchMaster.Visible = true;
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -221,64 +221,24 @@ namespace DiamondTrading
                         barButtonItem21.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "assort_process":
-                        if (IsAllowProcess)
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                            barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        }
-                        else
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                            barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                        }
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "boil_process":
-                        if (IsAllowProcess)
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                            barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        }
-                        else
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                            barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                        }
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "charni_process":
-                        if (IsAllowProcess)
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                            barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        }
-                        else
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                            barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                        }
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "gala_process":
-                        if (IsAllowProcess)
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                            barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        }
-                        else
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                            barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                        }
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "number_process":
-                        if (IsAllowProcess)
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                            barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        }
-                        else
-                        {
-                            barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                            barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                        }
+                        barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
 
                     //Utility Menu
@@ -438,7 +398,7 @@ namespace DiamondTrading
                     case "profit_report":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem80.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        break;                    
+                        break;
 
                     //Reports Menu - Slip Print
                     case "purchase_slip_print":
@@ -466,6 +426,20 @@ namespace DiamondTrading
                         barButtonItemStockReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                 }
+            }
+
+            if (!IsAllowProcess)
+            {
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 
         }

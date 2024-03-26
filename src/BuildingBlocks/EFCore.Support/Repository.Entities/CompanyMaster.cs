@@ -43,6 +43,7 @@ namespace Repository.Entities
         public string CompanyMasterId { get; set; }
         public bool IsPurchase { get; set; }
         public bool IsSales { get; set; }
+        public bool IsOther { get; set; }
         public string PermissionGroupName { get; set; }
         public string PermissionName { get; set; }
         public bool PermissionStatus { get; set; }

@@ -912,7 +912,7 @@
     <value>2, 23</value>
   </data>
   <data name="colPermissionName.Caption" xml:space="preserve">
-    <value>Permission</value>
+    <value>DisplayName</value>
   </data>
   <data name="colPermissionName.Visible" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -921,7 +921,7 @@
     <value>0</value>
   </data>
   <data name="colPermissionName.Width" type="System.Int32, mscorlib">
-    <value>364</value>
+    <value>481</value>
   </data>
   <data name="colPurchaseIsCheck.Caption" xml:space="preserve">
     <value>Purchase</value>
@@ -936,7 +936,7 @@
     <value>1</value>
   </data>
   <data name="colPurchaseIsCheck.Width" type="System.Int32, mscorlib">
-    <value>122</value>
+    <value>145</value>
   </data>
   <data name="colSaleIsCheck.Caption" xml:space="preserve">
     <value>Sale</value>
@@ -948,10 +948,22 @@
     <value>2</value>
   </data>
   <data name="colSaleIsCheck.Width" type="System.Int32, mscorlib">
-    <value>124</value>
+    <value>131</value>
   </data>
   <data name="colPermissionGroup.Caption" xml:space="preserve">
     <value>Permission Group</value>
+  </data>
+  <data name="colOtherIsCheck.Caption" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="colOtherIsCheck.Visible" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="colOtherIsCheck.VisibleIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="colOtherIsCheck.Width" type="System.Int32, mscorlib">
+    <value>149</value>
   </data>
   <data name="grdCompanyAccessPermission.Size" type="System.Drawing.Size, System.Drawing">
     <value>346, 198</value>
@@ -1050,6 +1062,12 @@
     <value>colPermissionGroup</value>
   </data>
   <data name="&gt;&gt;colPermissionGroup.Type" xml:space="preserve">
+    <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  </data>
+  <data name="&gt;&gt;colOtherIsCheck.Name" xml:space="preserve">
+    <value>colOtherIsCheck</value>
+  </data>
+  <data name="&gt;&gt;colOtherIsCheck.Type" xml:space="preserve">
     <value>DevExpress.XtraGrid.Columns.GridColumn, DevExpress.XtraGrid.v21.2, Version=21.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;gridView2.Name" xml:space="preserve">
