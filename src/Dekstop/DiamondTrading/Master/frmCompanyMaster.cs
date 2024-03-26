@@ -324,6 +324,7 @@ namespace DiamondTrading.Master
 
                 if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "["+this.Text+"]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
+                    await FrmMain.currentInstance.CheckPermission();
                     this.DialogResult = DialogResult.OK;
                 }
             }
