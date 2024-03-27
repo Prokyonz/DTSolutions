@@ -870,7 +870,7 @@ namespace DiamondTrading.Transaction
                 grvPurchaseDetails.FocusedColumn = colCarat;
                 e.Valid = false;
             }
-            else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight).ToString().Trim().Length == 0))
+            else if (colTipWeight.Visible && (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colTipWeight).ToString().Trim().Length == 0)))
             {
                 e.ErrorText = "Please enter Tip Weight detail.";
                 grvPurchaseDetails.FocusedRowHandle = e.RowHandle;
@@ -898,7 +898,7 @@ namespace DiamondTrading.Transaction
                 grvPurchaseDetails.FocusedColumn = colRejCts;
                 e.Valid = false;
             }
-            else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts).ToString().Trim().Length == 0))
+            else if (colLessCts.Visible && (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colLessCts).ToString().Trim().Length == 0)))
             {
                 e.ErrorText = "Please enter Less Weight detail.";
                 grvPurchaseDetails.FocusedRowHandle = e.RowHandle;
@@ -926,7 +926,7 @@ namespace DiamondTrading.Transaction
                 grvPurchaseDetails.FocusedColumn = colDisPer;
                 e.Valid = false;
             }
-            else if (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge).ToString().Trim().Length == 0))
+            else if (colCVDCharge.Visible && (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge) == null || (grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge) != null && grvPurchaseDetails.GetRowCellValue(e.RowHandle, colCVDCharge).ToString().Trim().Length == 0)))
             {
                 e.ErrorText = "Please enter CVD charge detail.";
                 grvPurchaseDetails.FocusedRowHandle = e.RowHandle;
