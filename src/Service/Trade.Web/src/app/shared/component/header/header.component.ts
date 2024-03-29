@@ -15,7 +15,6 @@ export class HeaderComponent implements OnInit {
   @Input() showSideBar:boolean = false;
   @Output() onClickMainIcon = new EventEmitter();
   @Output() onClickLeftIcon = new EventEmitter();
-
   userName: string = "Default User";
   loading: boolean = true;
   filterReport: any;
@@ -33,7 +32,7 @@ export class HeaderComponent implements OnInit {
   items: MenuItem[] = [
     {
         label: 'Home',
-        icon: 'pi pi-fw pi-file',
+        icon: 'pi pi-fw pi-home',
         routerLink: "/dashboard",
         expanded: false,
         command: () => {
@@ -68,7 +67,7 @@ export class HeaderComponent implements OnInit {
                 case 'loan_report':
                   this.adminReportItems.push({
                       label: 'Loan',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-credit-card',
                       routerLink: "/report/7",
                       command: () => {
                         this.sidebarVisible = false;
@@ -89,7 +88,7 @@ export class HeaderComponent implements OnInit {
                 case 'profit_report':
                   this.adminReportItems.push({
                       label: 'Profit',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-chart-line',
                       routerLink: "/profitloss",
                       expanded: false,
                       command: () => {
@@ -100,7 +99,7 @@ export class HeaderComponent implements OnInit {
                 case 'stock_report':
                   this.stockReportItems.push({
                       label: 'Stock Report',
-                      icon: 'pi pi-fw pi-chart-bar',
+                      icon: 'pi pi-fw pi-table',
                       routerLink: "/report/17",
                       expanded: false,
                       command: () => {
@@ -122,7 +121,7 @@ export class HeaderComponent implements OnInit {
                 case 'rejectionin_report':
                   this.stockReportItems.push({
                       label: 'Rejection In',
-                      icon: 'pi pi-fw pi-minus-circle',
+                      icon: 'pi pi-fw pi-plus-circle',
                       routerLink: "/report/15",
                       command: () => {
                         this.sidebarVisible = false;
@@ -142,7 +141,7 @@ export class HeaderComponent implements OnInit {
                 case 'kapanlagad_report':
                   this.stockReportItems.push({
                       label: 'Kapan Lagad',
-                      icon: 'pi pi-fw pi-question',
+                      icon: 'pi pi-fw pi-calendar',
                       routerLink: "/kapan",
                       expanded: false,
                       command: () => {
@@ -173,7 +172,7 @@ export class HeaderComponent implements OnInit {
                 case 'payment_report':
                   this.approvalReportItems.push({
                       label: 'Payment',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-wallet',
                       routerLink: "/report/3",
                       command: () => {
                         this.sidebarVisible = false;
@@ -183,7 +182,7 @@ export class HeaderComponent implements OnInit {
                 case 'receipt_report':
                   this.approvalReportItems.push({
                       label: 'Receipt',
-                      icon: 'pi pi-fw pi-credit-card',
+                      icon: 'pi pi-fw pi-file',
                       routerLink: "/report/4",
                       command: () => {
                         this.sidebarVisible = false;
@@ -203,7 +202,7 @@ export class HeaderComponent implements OnInit {
                 case 'expense_report':
                   this.approvalReportItems.push({
                       label: 'Expense',
-                      icon: 'pi pi-fw pi-file',
+                      icon: 'pi pi-fw pi-chart-bar',
                       routerLink: "/report/6",
                       command: () => {
                         this.sidebarVisible = false;
@@ -213,7 +212,7 @@ export class HeaderComponent implements OnInit {
                 case 'cashbank_report':
                   this.accountingReportItems.push({
                       label: 'Cash Bank',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-book',
                       routerLink: "/report/13",
                       command: () => {
                         this.sidebarVisible = false;
@@ -223,7 +222,7 @@ export class HeaderComponent implements OnInit {
                 case 'pf_report':
                   this.accountingReportItems.push({
                       label: 'PF',
-                      icon: 'pi pi-fw pi-users',
+                      icon: 'pi pi-fw pi-globe',
                       routerLink: "/report/9",
                       command: () => {
                         this.sidebarVisible = false;
@@ -243,7 +242,7 @@ export class HeaderComponent implements OnInit {
                 case 'mixed_report':
                   this.accountingReportItems.push({
                       label: 'Rojmel',
-                      icon: 'pi pi-fw pi-refresh',
+                      icon: 'pi pi-fw pi-list',
                       routerLink: "/report/8",
                       command: () => {
                         this.sidebarVisible = false;
@@ -264,7 +263,7 @@ export class HeaderComponent implements OnInit {
                 case 'salary_report':
                   this.employeeReportItems.push({
                       label: 'Salary',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-users',
                       routerLink: "/report/14",
                       command: () => {
                         this.sidebarVisible = false;
@@ -284,7 +283,7 @@ export class HeaderComponent implements OnInit {
                 case 'receivable_report':
                   this.outstandingReportItems.push({
                       label: 'Receivable',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-dollar',
                       routerLink: "/report/12",
                       command: () => {
                         this.sidebarVisible = false;
@@ -352,7 +351,7 @@ export class HeaderComponent implements OnInit {
                 items: [
                     {
                       label: 'Change Company',
-                      icon: 'pi pi-fw pi-user-plus',
+                      icon: 'pi pi-fw pi-building',
                       routerLink: "/companyselection/header",
                       command: () => {
                         this.sidebarVisible = false;
@@ -384,4 +383,6 @@ export class HeaderComponent implements OnInit {
   leftIconClick() {
     this.onClickLeftIcon.emit();
   }
+
+
 }

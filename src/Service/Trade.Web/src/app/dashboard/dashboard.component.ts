@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter, Output } from '@angular/core';
 import { SharedService } from '../common/shared.service';
 import { Message, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { LOCALE_ID, NgModule } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,8 +12,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent implements OnInit {
-
+export class DashboardComponent implements OnInit {  
   dashboardData: any;
   firstDate: string | null = '';
   endDate: string | null = '';
@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
   highlightedRowIndex: number = 0;
   filterReport: any[] = [];
   showDashboard: boolean = false;
+  showFirstPanel: boolean = true;
+  showSecondPanel: boolean = false;
   constructor(private sharedService: SharedService, private messageService: MessageService,
     private datePipe: DatePipe,  @Inject(LOCALE_ID) public locale: string){}
 
@@ -57,7 +59,7 @@ export class DashboardComponent implements OnInit {
               this.loading = false;
           });
       }
-
+      this.showFirstPanel =true;
       // this.loadDashboard();
      
   }
@@ -118,14 +120,20 @@ formatIndianNumber(amount: number): string {
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
     this.firstDate = StartDate;
     this.endDate = EndDate;
-    await this.loadDashboard();      
+    this.showFirstPanel = true;
+    await this.geDashBoardData();      
     this.loading = false;    
   }
 
   rowClicked(rowIndex: number, itemIndex: number): void {
     this.rowClickedIndex = rowIndex;
     this.rowClickedItemIndex = itemIndex;
-    // You can use the selected row data for additional functionality.
+  }
+
+  backFunction() {
+    this.showFirstPanel=true;
+    this.showSecondPanel=false;
+    window.location.href = '/dashboard';
   }
  
   showMessage(type: string, message: string){
@@ -154,9 +162,9 @@ formatIndianNumber(amount: number): string {
                 case 'loan_report':
                   this.dashBoardReportItems.push({
                       label: 'Loan',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-credit-card',
                       routerLink: "/report/7",
-                     
+                      index: 20
                     });
                 break;
                 case 'balance_report':
@@ -165,25 +173,25 @@ formatIndianNumber(amount: number): string {
                       icon: 'pi pi-fw pi-briefcase',
                       routerLink: "/balancesheet",
                       expanded: false,
-                    
+                      index: 17
                     });
                 break;
                 case 'profit_report':
                   this.dashBoardReportItems.push({
                       label: 'Profit',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-chart-line',
                       routerLink: "/profitloss",
                       expanded: false,
-                      
+                      index: 18
                     });
                 break;  
                 case 'stock_report':
                   this.dashBoardReportItems.push({
-                      label: 'Stock Report',
-                      icon: 'pi pi-fw pi-chart-bar',
+                      label: 'Stock',
+                      icon: 'pi pi-fw pi-table',
                       routerLink: "/report/17",
                       expanded: false,
-                     
+                      index: 13
                     });
                 break;
                 case 'openingstock_report':
@@ -192,32 +200,32 @@ formatIndianNumber(amount: number): string {
                       icon: 'pi pi-fw pi-folder-open',
                       routerLink: "/report/18",
                       expanded: false,
-                      
+                      index: 12
                     });
                 break;
                 case 'rejectionin_report':
                   this.dashBoardReportItems.push({
-                      label: 'Rejection In',
-                      icon: 'pi pi-fw pi-minus-circle',
+                      label: 'Reject In',
+                      icon: 'pi pi-fw pi-plus-circle',
                       routerLink: "/report/15",
-                     
+                      index: 14
                     });
                 break;
                 case 'rejectionout_report':
                   this.dashBoardReportItems.push({
-                      label: 'Rejection Out',
+                      label: 'Reject Out',
                       icon: 'pi pi-fw pi-minus-circle',
                       routerLink: "/report/16",
-                     
+                      index: 15
                     });
                 break;
                 case 'kapanlagad_report':
                   this.dashBoardReportItems.push({
-                      label: 'Kapan Lagad',
-                      icon: 'pi pi-fw pi-question',
+                      label: 'Kapan',
+                      icon: 'pi pi-fw pi-calendar',
                       routerLink: "/kapan",
                       expanded: false,
-                      
+                      index: 21
                     });
                 break;  
                 case 'purchase_report':
@@ -225,7 +233,7 @@ formatIndianNumber(amount: number): string {
                       label: 'Purchase',
                       icon: 'pi pi-fw pi-shopping-cart',
                       routerLink: "/report/1",
-                     
+                      index: 0
                     });
                 break;
                 case 'sales_report':
@@ -233,22 +241,23 @@ formatIndianNumber(amount: number): string {
                     label: 'Sales',
                     icon: 'pi pi-fw pi-chart-line',
                     routerLink: "/report/2",
-                    
+                    index: 1
                   });
                 break;
                 case 'payment_report':
                   this.dashBoardReportItems.push({
                       label: 'Payment',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-wallet',
                       routerLink: "/report/3",
+                      index: 4
                     });
                 break;
                 case 'receipt_report':
                   this.dashBoardReportItems.push({
                       label: 'Receipt',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-file',
                       routerLink: "/report/4",
-                     
+                      index: 5
                     });
                 break;
                 case 'contra_report':
@@ -256,28 +265,31 @@ formatIndianNumber(amount: number): string {
                     label: 'Contra',
                     icon: 'pi pi-fw pi-sync',
                     routerLink: "/report/5",
+                    index: 6
                   });
                 break;
                 case 'expense_report':
                   this.dashBoardReportItems.push({
                       label: 'Expense',
-                      icon: 'pi pi-fw pi-file',
+                      icon: 'pi pi-fw pi-chart-bar',
                       routerLink: "/report/6",
+                      index: 9
                     });
                 break;
                 case 'cashbank_report':
                   this.dashBoardReportItems.push({
                       label: 'Cash Bank',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-book',
                       routerLink: "/report/13",
+                      index: 10
                     });
                 break;
                 case 'pf_report':
                   this.dashBoardReportItems.push({
                       label: 'PF',
-                      icon: 'pi pi-fw pi-users',
+                      icon: 'pi pi-fw pi-globe',
                       routerLink: "/report/9",
-                     
+                      index: 22
                     });
                 break;
                 case 'ledger_report':
@@ -285,14 +297,15 @@ formatIndianNumber(amount: number): string {
                       label: 'Ledger',
                       icon: 'pi pi-fw pi-book',
                       routerLink: "/report/10",
-                     
+                      index: 19
                     });
                 break;
                 case 'mixed_report':
                   this.dashBoardReportItems.push({
                       label: 'Rojmel',
-                      icon: 'pi pi-fw pi-refresh',
+                      icon: 'pi pi-fw pi-list',
                       routerLink: "/report/8",
+                      index: 8
                     });
                 break;
                 case 'weekly_report':
@@ -301,14 +314,15 @@ formatIndianNumber(amount: number): string {
                       icon: 'pi pi-fw pi-calendar-plus',
                       routerLink: "/report/19",
                       expanded: false,
-                     
+                      index: 11
                     });
                 break;     
                 case 'salary_report':
                   this.dashBoardReportItems.push({
                       label: 'Salary',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-users',
                       routerLink: "/report/14",
+                      index: 7
                     });
                 break;
                 case 'payable_report':
@@ -316,14 +330,15 @@ formatIndianNumber(amount: number): string {
                       label: 'Payable',
                       icon: 'pi pi-fw pi-money-bill',
                       routerLink: "/report/11",
-                    
+                      index: 2
                     });
                 break;
                 case 'receivable_report':
                   this.dashBoardReportItems.push({
                       label: 'Receivable',
-                      icon: 'pi pi-fw pi-money-bill',
+                      icon: 'pi pi-fw pi-dollar-sign',
                       routerLink: "/report/12",
+                      index: 3
                     });
                 break;
                 default:
@@ -334,21 +349,44 @@ formatIndianNumber(amount: number): string {
               label: 'Average',
               icon: 'pi pi-fw pi-calculator',
               routerLink: "/viewcts",
+              index: 16
+            });
+            this.dashBoardReportItems.push({
+              label: 'Overview',
+              icon: 'pi pi-fw pi-eye',
+              routerLink: "/login",
+              index: 23
             });
             this.dashBoardReportItems.push({
               label: 'Company',
-              icon: 'pi pi-fw pi-user-plus',
+              icon: 'pi pi-fw pi-building',
               routerLink: "/companyselection/header",
+              index: 24
             });
-            this.dashBoardReportItems.push({
-              label: 'Logout',
-              icon: 'pi pi-fw pi-power-off',
-              routerLink: "/login",
-            });
+
+            // this.dashBoardReportItems.push({
+            //   label: 'Logout',
+            //   icon: 'pi pi-fw pi-power-off',
+            //   routerLink: "/login",
+            // });
+               // Sorting dashBoardReportItems by index
+             this.dashBoardReportItems.sort((a, b) => a.index - b.index);
             this.loading = false;
           }, (ex: any) => {
             this.loading = false;
         });
+}
+
+togglePanel(label: string): void {
+  if (label === 'Overview') {
+    this.loadDashboard();
+    this.showFirstPanel = !this.showFirstPanel; // Toggle the panel
+    this.showSecondPanel = !this.showFirstPanel;
+  }
+}
+onLogoutClick(): void{
+  debugger;
+  window.location.href = '/login';
 }
 
 get rowDataList() {
