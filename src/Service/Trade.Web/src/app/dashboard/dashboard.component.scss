@@ -3,85 +3,76 @@
     padding: 8px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-}
-.custom-design {
+  }
+  
+  .custom-design {
     width: 100%;
     border-color: rgb(100, 181, 246);
     border-left-width: 4px;
     border-left-style: solid;
-    box-shadow: 3px 5px #00000005,0 0 2px #0000000d,0 1px 4px #00000014 !important;
-}
-
-.amount {
+    box-shadow: 3px 5px #00000005, 0 0 2px #0000000d, 0 1px 4px #00000014 !important;
+  }
+  
+  .amount {
     font-size: 35px;
-}
-
-.header {
+  }
+  
+  .header {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 0.5rem;
-}
-
-.custom-amount {
-    font-size: 30px;
-}
-
-.dashboard-container {
+  }
+  
+  .custom-amount {font-size: 30px;
+  }
+  
+  .dashboard-container {
     display: flex;
     flex-wrap: wrap;
   }
   
   .dashboard-row {
-    display: flex;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   
   .dashboard-cell {
-    display: flex;
-    justify-content: center;
-    width: 33.3333%;
-    padding: 10px;
-    box-sizing: border-box;
+    width: calc(33.33% - 20px); /* Adjust as needed, considering margins */
+    margin-bottom: 20px; /* Adjust spacing between rows */
   }
   
   .dashboard-item {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    min-width: 120px;
-    height: 120px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    text-align: center;
     text-decoration: none;
-    color: inherit;
   }
-  
-  .dashboard-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-
-  :host ::ng-deep .dashboard-container .dashboard-icon i {
-    font-size: 3rem;
-  }
-
   
   .dashboard-label {
     font-size: 1rem;
     font-weight: bold;
   }
   
+  .dashboard-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .big-icon i {
+    font-size: 2rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .big-icon i:hover {
+    transform: scale(2);
+  }
+  
   @media (max-width: 768px) {
     .dashboard-cell {
-      width: 50%;
+      width: calc(50% - 20px); /* Two items per row on smaller screens */
     }
   }
   
-  @media (max-width: 576px) {
-    .dashboard-cell {
-      width: 100%;
-    }
-  }
+  
+  

@@ -331,10 +331,28 @@ formatIndianNumber(amount: number): string {
                   break;
               }
             });
+            this.dashBoardReportItems.push({
+              label: 'Average',
+              icon: 'pi pi-fw pi-calculator',
+              routerLink: "/viewcts",
+            });
+            this.dashBoardReportItems.push({
+              label: 'Company',
+              icon: 'pi pi-fw pi-user-plus',
+              routerLink: "/companyselection/header",
+            });
+            this.dashBoardReportItems.push({
+              label: 'Logout',
+              icon: 'pi pi-fw pi-power-off',
+              routerLink: "/login",
+            });
             this.loading = false;
           }, (ex: any) => {
             this.loading = false;
         });
 }
 
+get rowDataList() {
+  return Array(Math.floor(this.dashBoardReportItems.length / 2));
+}
 }
