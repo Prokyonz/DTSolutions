@@ -25,3 +25,63 @@
 .custom-amount {
     font-size: 30px;
 }
+
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .dashboard-row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .dashboard-cell {
+    display: flex;
+    justify-content: center;
+    width: 33.3333%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  
+  .dashboard-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .dashboard-icon {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+
+  :host ::ng-deep .dashboard-container .dashboard-icon i {
+    font-size: 3rem;
+  }
+
+  
+  .dashboard-label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-cell {
+      width: 50%;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .dashboard-cell {
+      width: 100%;
+    }
+  }

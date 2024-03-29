@@ -10,14 +10,26 @@
 
 <div class="panel" *ngIf="showDashboard; else noDashboardMessage">
 <!-- <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar> -->
-
-<div class="panel">
+<div class="dashboard-container">
+    <div class="dashboard-row" *ngFor="let row of dashBoardReportItems; let i = index;">
+      <div class="dashboard-cell" *ngIf="i < (dashBoardReportItems.length / 3) * 3">
+        <a class="dashboard-item" [routerLink]="row.routerLink">
+          <div class="dashboard-icon">
+            <i [ngClass]="row.icon"></i>
+          </div>
+          <div class="dashboard-label">
+            {{ row.label }}
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+<!-- <div class="panel">
     <div class="card flex justify-content-center">
         <p-card subheader="" class="custom-design">
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Purchase</b>
             </ng-template>
-            <!-- <i class="pi pi-inr custom-amount"></i> -->
             <span class="custom-amount">₹</span>
             <span class="amount">{{  purchaseData  }}</span>
         </p-card>
@@ -29,7 +41,6 @@
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Sales</b>
             </ng-template>
-            <!-- <i class="pi pi-inr custom-amount"></i> -->
             <span class="custom-amount">₹</span>
             <span class="amount">{{ salesData }}</span>
         </p-card>
@@ -42,7 +53,6 @@
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Payment</b>
             </ng-template>
-            <!-- <i class="pi pi-inr custom-amount"></i> -->
             <span class="custom-amount">₹</span>
             <span class="amount">{{ paymentData }}</span>
         </p-card>
@@ -55,12 +65,11 @@
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Receipt</b>
             </ng-template>
-            <!-- <i class="pi pi-inr custom-amount"></i> -->
             <span class="custom-amount">₹</span>
             <span class="amount">{{ receiptData }}</span>
         </p-card>
     </div>
-</div>
+</div>  -->
 </div>
 <div class="progress-spinner" *ngIf="loading">
     <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
