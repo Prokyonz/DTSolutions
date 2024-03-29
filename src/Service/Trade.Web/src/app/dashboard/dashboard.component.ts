@@ -4,7 +4,6 @@ import { Message, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { LOCALE_ID, NgModule } from '@angular/core';
-import { formatNumber } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -247,7 +246,7 @@ formatIndianNumber(amount: number): string {
                 case 'receipt_report':
                   this.dashBoardReportItems.push({
                       label: 'Receipt',
-                      icon: 'pi pi-fw pi-credit-card',
+                      icon: 'pi pi-fw pi-money-bill',
                       routerLink: "/report/4",
                      
                     });

@@ -7,7 +7,7 @@
   
   .custom-design {
     width: 100%;
-    border-color: rgb(100, 181, 246);
+    border-color: rgb(57, 145, 216);
     border-left-width: 4px;
     border-left-style: solid;
     box-shadow: 3px 5px #00000005, 0 0 2px #0000000d, 0 1px 4px #00000014 !important;
@@ -29,17 +29,24 @@
   .dashboard-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
   }
   
   .dashboard-row {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distribute items evenly */
   }
   
   .dashboard-cell {
-    width: calc(33.33% - 20px); /* Adjust as needed, considering margins */
+    flex: 1;
     margin-bottom: 20px; /* Adjust spacing between rows */
+  }
+  
+  .dashboard-cell-center {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center items horizontally */
   }
   
   .dashboard-item {
@@ -55,7 +62,7 @@
   }
   
   .dashboard-icon {
-    font-size: 2rem;
+    font-size: 3rem;
     margin-bottom: 10px;
   }
   
@@ -70,9 +77,7 @@
   
   @media (max-width: 768px) {
     .dashboard-cell {
-      width: calc(50% - 20px); /* Two items per row on smaller screens */
+      width: 50%; /* Two items per row on smaller screens */
     }
   }
-  
-  
   

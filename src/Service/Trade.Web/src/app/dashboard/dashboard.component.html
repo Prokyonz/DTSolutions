@@ -11,44 +11,46 @@
 <div class="panel" *ngIf="showDashboard; else noDashboardMessage">
 <!-- <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar> -->
 <div class="panel">
-    <div class="dashboard-container">
-      <ng-container *ngFor="let rowData of dashBoardReportItems; let i = index">
-        <div class="dashboard-row" *ngIf="i % 3 === 0 || i === 0">
-          <div class="dashboard-cell">
-            <a class="dashboard-item" [routerLink]="rowData.routerLink">
-              <div class="dashboard-icon big-icon">
-                <i [ngClass]="rowData.icon"></i>
-              </div>
-              <div class="dashboard-label">
-                {{ rowData.label }}
-              </div>
-            </a>
-          </div>
-          <div class="dashboard-cell" *ngIf="i + 1 < dashBoardReportItems.length">
-            <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 1].routerLink">
-              <div class="dashboard-icon big-icon">
-                <i [ngClass]="dashBoardReportItems[i + 1].icon"></i>
-              </div>
-              <div class="dashboard-label">
-                {{ dashBoardReportItems[i + 1].label }}
-              </div>
-            </a>
-          </div>
-          <div class="dashboard-cell" *ngIf="i + 2 < dashBoardReportItems.length">
-            <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 2].routerLink">
-              <div class="dashboard-icon big-icon">
-                <i [ngClass]="dashBoardReportItems[i + 2].icon"></i>
-              </div>
-              <div class="dashboard-label">
-                {{ dashBoardReportItems[i + 2].label }}
-              </div>
-            </a>
-          </div>
+  <div class="dashboard-container">
+    <ng-container *ngFor="let rowData of dashBoardReportItems; let i = index">
+      <div class="dashboard-row" *ngIf="i % 3 === 0 || i === 0">
+        <div class="dashboard-cell">
+          <a class="dashboard-item" [routerLink]="rowData.routerLink">
+            <div class="dashboard-icon big-icon">
+              <i [ngClass]="rowData.icon"></i>
+            </div>
+            <div class="dashboard-label">
+              {{ rowData.label }}
+            </div>
+          </a>
         </div>
-      </ng-container>
-    </div>
+        <div class="dashboard-cell" *ngIf="i + 1 < dashBoardReportItems.length">
+          <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 1].routerLink">
+            <div class="dashboard-icon big-icon">
+              <i [ngClass]="dashBoardReportItems[i + 1].icon"></i>
+            </div>
+            <div class="dashboard-label">
+              {{ dashBoardReportItems[i + 1].label }}
+            </div>
+          </a>
+        </div>
+        <div class="dashboard-cell" *ngIf="i + 2 < dashBoardReportItems.length">
+          <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 2].routerLink">
+            <div class="dashboard-icon big-icon">
+              <i [ngClass]="dashBoardReportItems[i + 2].icon"></i>
+            </div>
+            <div class="dashboard-label">
+              {{ dashBoardReportItems[i + 2].label }}
+            </div>
+          </a>
+        </div>
+        <!-- If the last row contains only one item, center it -->
+        <!-- <div class="dashboard-cell-center" *ngIf="dashBoardReportItems.length % 3 === 1 && i === dashBoardReportItems.length - 1"></div>-->
+      </div> 
+    </ng-container>
   </div>
-  
+</div>
+ 
 <!-- <div class="panel">
     <div class="card flex justify-content-center">
         <p-card subheader="" class="custom-design">
