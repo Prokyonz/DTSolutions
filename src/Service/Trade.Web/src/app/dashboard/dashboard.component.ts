@@ -336,7 +336,7 @@ formatIndianNumber(amount: number): string {
                 case 'receivable_report':
                   this.dashBoardReportItems.push({
                       label: 'Receivable',
-                      icon: 'pi pi-fw pi-dollar-sign',
+                      icon: 'pi pi-fw pi-dollar',
                       routerLink: "/report/12",
                       index: 3
                     });
