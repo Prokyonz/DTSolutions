@@ -2418,8 +2418,8 @@ namespace DiamondTrading
 
         private void FrmMain_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length <= 0)
-                panelControl1.BringToFront();           
+            //if (this.MdiChildren.Length <= 0)
+                //panelControl1.BringToFront();           
         }
     }   
 }
