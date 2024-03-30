@@ -36,6 +36,7 @@ namespace DiamondTrading.Process
         private void FrmTransferEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
+            dtTime.EditValue = DateTime.Now;
             timer1.Start();
 
             LoadTransferItemDetails();
