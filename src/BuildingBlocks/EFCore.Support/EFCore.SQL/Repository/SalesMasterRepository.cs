@@ -44,7 +44,7 @@ namespace EFCore.SQL.Repository
                     return salesMaster;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -55,7 +55,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesId).FirstOrDefaultAsync();
-                
+
                 if (salesRecord != null)
                 {
                     var salesDetails = await _databaseContext.SalesDetails.Where(w => w.SalesId == salesRecord.Id).FirstOrDefaultAsync();
@@ -159,95 +159,119 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster)
+        public async Task<SalesMaster> UpdateSalesAsync(SalesMaster salesMaster, DatabaseContext _databaseContext)
         {
-            using (_databaseContext = new DatabaseContext())
+            if(_databaseContext != null)
             {
-                var existingSlipNo = await _databaseContext.SalesMaster.Where(w => w.SlipNo == salesMaster.SlipNo 
-                && w.CompanyId == salesMaster.CompanyId && w.FinancialYearId == salesMaster.FinancialYearId
-                && w.Id != salesMaster.Id).FirstOrDefaultAsync();
-                if (existingSlipNo != null)
-                    throw new Exception("Slipno already exist. You can not enter same slipno again.");
-
-                var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).Include("SalesDetails").FirstOrDefaultAsync();
-                if (salesRecord != null)
+                return await UpdateSalesDetails(salesMaster, _databaseContext);
+            }
+            else
+            {
+                using (_databaseContext = new DatabaseContext())
                 {
-                    salesRecord.CompanyId = salesMaster.CompanyId;
-                    salesRecord.BranchId = salesMaster.BranchId;
-                    salesRecord.PartyId = salesMaster.PartyId;
-                    salesRecord.SalerId = salesMaster.SalerId;
-                    salesRecord.CurrencyId = salesMaster.CurrencyId;
-                    //salesRecord.FinancialYearId = salesRecord.FinancialYearId;
-                    salesRecord.BrokerageId = salesMaster.BrokerageId;
-
-                    salesRecord.CurrencyRate = salesMaster.CurrencyRate;
-                    salesRecord.SaleBillNo = salesMaster.SaleBillNo;
-                    salesRecord.SlipNo = salesMaster.SlipNo;
-                    salesRecord.TransactionType = salesMaster.TransactionType;
-                    salesRecord.Date = salesMaster.Date;
-                    salesRecord.Time = salesMaster.Time;
-                    salesRecord.DayName = salesMaster.DayName;
-                    salesRecord.PartyLastBalanceWhileSale = salesMaster.PartyLastBalanceWhileSale;
-                    salesRecord.BrokerPercentage = salesMaster.BrokerPercentage;
-
-                    salesRecord.BrokerAmount = salesMaster.BrokerAmount;
-                    salesRecord.RoundUpAmount = salesMaster.RoundUpAmount;
-                    salesRecord.Total = salesMaster.Total;
-                    salesRecord.GrossTotal = salesMaster.GrossTotal;
-                    salesRecord.DueDays = salesMaster.DueDays;
-                    salesRecord.DueDate = salesMaster.DueDate;
-                    salesRecord.PaymentDays = salesMaster.PaymentDays;
-                    salesRecord.PaymentDueDate = salesMaster.PaymentDueDate;
-                    salesRecord.IsSlip = salesMaster.IsSlip;
-                    salesRecord.IsPF = salesMaster.IsPF;
-                    salesRecord.TransferParentId = salesMaster.TransferParentId;
-
-                    salesRecord.CommissionToPartyId = salesMaster.CommissionToPartyId;
-                    salesRecord.CommissionPercentage = salesMaster.CommissionPercentage;
-                    salesRecord.CommissionAmount = salesMaster.CommissionAmount;
-                    salesRecord.Image1 = salesMaster.Image1;
-                    salesRecord.Image2 = salesMaster.Image2;
-                    salesRecord.Image3 = salesMaster.Image3;
-                    salesRecord.AllowSlipPrint = salesMaster.AllowSlipPrint;
-                    salesRecord.IsDelete = salesMaster.IsDelete;
-                    salesRecord.Remarks = salesMaster.Remarks;
-                    salesRecord.UpdatedDate = salesMaster.UpdatedDate;
-                    salesRecord.UpdatedBy = salesMaster.UpdatedBy;
-                    salesRecord.ApprovalType = salesMaster.ApprovalType;
-                    salesRecord.Message = salesMaster.Message;
-
-                    if (salesMaster.SalesDetails != null)
-                    {
-                        _databaseContext.SalesDetails.RemoveRange(salesRecord.SalesDetails);
-
-                        await _databaseContext.SalesDetails.AddRangeAsync(salesMaster.SalesDetails);
-                    }
-
-                    await _databaseContext.SaveChangesAsync();
+                    return await UpdateSalesDetails(salesMaster, _databaseContext);
                 }
-                return salesMaster;
             }
         }
 
-        public async Task<bool> DeleteSalesDetailRangeAsync(List<SalesDetails> salesDetails)
+        private async Task<SalesMaster> UpdateSalesDetails(SalesMaster salesMaster, DatabaseContext _databaseContext)
         {
-            using (_databaseContext = new DatabaseContext())
+            var existingSlipNo = await _databaseContext.SalesMaster.Where(w => w.SlipNo == salesMaster.SlipNo
+                                && w.CompanyId == salesMaster.CompanyId && w.FinancialYearId == salesMaster.FinancialYearId
+                                && w.Id != salesMaster.Id).FirstOrDefaultAsync();
+            if (existingSlipNo != null)
+                throw new Exception("Slipno already exist. You can not enter same slipno again.");
+
+            var salesRecord = await _databaseContext.SalesMaster.Where(w => w.Id == salesMaster.Id && w.IsDelete == false).Include("SalesDetails").FirstOrDefaultAsync();
+            if (salesRecord != null)
             {
-                if (salesDetails != null)
+                salesRecord.CompanyId = salesMaster.CompanyId;
+                salesRecord.BranchId = salesMaster.BranchId;
+                salesRecord.PartyId = salesMaster.PartyId;
+                salesRecord.SalerId = salesMaster.SalerId;
+                salesRecord.CurrencyId = salesMaster.CurrencyId;
+                //salesRecord.FinancialYearId = salesRecord.FinancialYearId;
+                salesRecord.BrokerageId = salesMaster.BrokerageId;
+
+                salesRecord.CurrencyRate = salesMaster.CurrencyRate;
+                salesRecord.SaleBillNo = salesMaster.SaleBillNo;
+                salesRecord.SlipNo = salesMaster.SlipNo;
+                salesRecord.TransactionType = salesMaster.TransactionType;
+                salesRecord.Date = salesMaster.Date;
+                salesRecord.Time = salesMaster.Time;
+                salesRecord.DayName = salesMaster.DayName;
+                salesRecord.PartyLastBalanceWhileSale = salesMaster.PartyLastBalanceWhileSale;
+                salesRecord.BrokerPercentage = salesMaster.BrokerPercentage;
+
+                salesRecord.BrokerAmount = salesMaster.BrokerAmount;
+                salesRecord.RoundUpAmount = salesMaster.RoundUpAmount;
+                salesRecord.Total = salesMaster.Total;
+                salesRecord.GrossTotal = salesMaster.GrossTotal;
+                salesRecord.DueDays = salesMaster.DueDays;
+                salesRecord.DueDate = salesMaster.DueDate;
+                salesRecord.PaymentDays = salesMaster.PaymentDays;
+                salesRecord.PaymentDueDate = salesMaster.PaymentDueDate;
+                salesRecord.IsSlip = salesMaster.IsSlip;
+                salesRecord.IsPF = salesMaster.IsPF;
+                salesRecord.TransferParentId = salesMaster.TransferParentId;
+
+                salesRecord.CommissionToPartyId = salesMaster.CommissionToPartyId;
+                salesRecord.CommissionPercentage = salesMaster.CommissionPercentage;
+                salesRecord.CommissionAmount = salesMaster.CommissionAmount;
+                salesRecord.Image1 = salesMaster.Image1;
+                salesRecord.Image2 = salesMaster.Image2;
+                salesRecord.Image3 = salesMaster.Image3;
+                salesRecord.AllowSlipPrint = salesMaster.AllowSlipPrint;
+                salesRecord.IsDelete = salesMaster.IsDelete;
+                salesRecord.Remarks = salesMaster.Remarks;
+                salesRecord.UpdatedDate = salesMaster.UpdatedDate;
+                salesRecord.UpdatedBy = salesMaster.UpdatedBy;
+                salesRecord.ApprovalType = salesMaster.ApprovalType;
+                salesRecord.Message = salesMaster.Message;
+
+                if (salesMaster.SalesDetails != null)
                 {
-                    for (int i = 0; i < salesDetails.Count; i++)
-                    {
-                        var getSalesDetailsSummary = await _databaseContext.SalesDetailsSummary.Where(s => s.SalesDetailsId == salesDetails[i].Id).ToListAsync();
-                        _databaseContext.SalesDetailsSummary.RemoveRange(getSalesDetailsSummary);
-                        await _databaseContext.SaveChangesAsync();
-                    }
-                    _databaseContext.SalesDetails.RemoveRange(salesDetails);
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
+                    _databaseContext.SalesDetails.RemoveRange(salesRecord.SalesDetails);
+
+                    await _databaseContext.SalesDetails.AddRangeAsync(salesMaster.SalesDetails);
                 }
-                else
-                    return false;
+
+                await _databaseContext.SaveChangesAsync();
             }
+            return salesMaster;
+        }
+
+        public async Task<bool> DeleteSalesDetailRangeAsync(List<SalesDetails> salesDetails, DatabaseContext _databaseContext = null)
+        {
+            if (_databaseContext != null)
+            {
+                return await DeleteSalesDetailsRange(salesDetails, _databaseContext);
+            }
+            else
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    return await DeleteSalesDetailsRange(salesDetails, _databaseContext);
+                }
+            }
+        }
+
+        private static async Task<bool> DeleteSalesDetailsRange(List<SalesDetails> salesDetails, DatabaseContext _databaseContext)
+        {
+            if (salesDetails != null)
+            {
+                for (int i = 0; i < salesDetails.Count; i++)
+                {
+                    var getSalesDetailsSummary = await _databaseContext.SalesDetailsSummary.Where(s => s.SalesDetailsId == salesDetails[i].Id).ToListAsync();
+                    _databaseContext.SalesDetailsSummary.RemoveRange(getSalesDetailsSummary);
+                    await _databaseContext.SaveChangesAsync();
+                }
+                _databaseContext.SalesDetails.RemoveRange(salesDetails);
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }
+            else
+                return false;
         }
 
         public async Task<bool> DeleteSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
@@ -265,58 +289,70 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> AddSalesDetailRangeAsync(List<SalesDetails> salesDetails)
+        public async Task<bool> AddSalesDetailRangeAsync(List<SalesDetails> salesDetails, DatabaseContext dbContext)
         {
-            using (_databaseContext = new DatabaseContext())
+            if (dbContext != null)
             {
-                if (salesDetails != null)
-                {
-                    List<SalesDetails> salesDetailsList = new List<SalesDetails>();
-                    SalesDetails objsalesDetails;
-                    foreach (SalesDetails salesDetail in salesDetails)
-                    {
-                        objsalesDetails = new SalesDetails();
-                        objsalesDetails.Id = salesDetail.Id;
-                        objsalesDetails.SalesId = salesDetail.SalesId;
-                        objsalesDetails.Category = salesDetail.Category;
-                        objsalesDetails.KapanId = salesDetail.KapanId;
-                        objsalesDetails.ShapeId = salesDetail.ShapeId;
-                        objsalesDetails.SizeId = salesDetail.SizeId;
-                        objsalesDetails.PurityId = salesDetail.PurityId;
-                        objsalesDetails.CharniSizeId = salesDetail.CharniSizeId;
-                        objsalesDetails.GalaSizeId = salesDetail.GalaSizeId;
-                        objsalesDetails.NumberSizeId = salesDetail.NumberSizeId;
-                        objsalesDetails.Weight = salesDetail.Weight;
-                        objsalesDetails.TIPWeight = salesDetail.TIPWeight;
-                        objsalesDetails.CVDWeight = salesDetail.CVDWeight;
-                        objsalesDetails.RejectedPercentage = salesDetail.RejectedPercentage;
-                        objsalesDetails.RejectedWeight = salesDetail.RejectedWeight;
-                        objsalesDetails.LessWeight = salesDetail.LessWeight;
-                        objsalesDetails.LessDiscountPercentage = salesDetail.LessDiscountPercentage;
-                        objsalesDetails.LessWeightDiscount = salesDetail.LessWeightDiscount;
-                        objsalesDetails.NetWeight = salesDetail.NetWeight;
-                        objsalesDetails.SaleRate = salesDetail.SaleRate;
-                        objsalesDetails.CVDCharge = salesDetail.CVDCharge;
-                        objsalesDetails.CVDAmount = salesDetail.CVDAmount;
-                        objsalesDetails.Amount = salesDetail.Amount;
-                        objsalesDetails.CurrencyRate = salesDetail.CurrencyRate;
-                        objsalesDetails.CurrencyAmount = salesDetail.CurrencyAmount;
-                        objsalesDetails.IsTransfer = salesDetail.IsTransfer;
-                        objsalesDetails.TransferParentId = salesDetail.TransferParentId;
-                        objsalesDetails.CreatedDate = salesDetail.CreatedDate;
-                        objsalesDetails.CreatedBy = salesDetail.CreatedBy;
-                        objsalesDetails.UpdatedDate = salesDetail.UpdatedDate;
-                        objsalesDetails.UpdatedBy = salesDetail.UpdatedBy;
-
-                        salesDetailsList.Add(objsalesDetails);
-                    }
-                    await _databaseContext.SalesDetails.AddRangeAsync(salesDetailsList);
-                    await _databaseContext.SaveChangesAsync();
-                    return true;
-                }
-                else
-                    return false;
+                return await AddSalesDetailRange(salesDetails, dbContext);
             }
+            else
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    return await AddSalesDetailRange(salesDetails, _databaseContext);
+                }
+            }
+        }
+
+        private async Task<bool> AddSalesDetailRange(List<SalesDetails> salesDetails, DatabaseContext _databaseContext)
+        {
+            if (salesDetails != null)
+            {
+                List<SalesDetails> salesDetailsList = new List<SalesDetails>();
+                SalesDetails objsalesDetails;
+                foreach (SalesDetails salesDetail in salesDetails)
+                {
+                    objsalesDetails = new SalesDetails();
+                    objsalesDetails.Id = salesDetail.Id;
+                    objsalesDetails.SalesId = salesDetail.SalesId;
+                    objsalesDetails.Category = salesDetail.Category;
+                    objsalesDetails.KapanId = salesDetail.KapanId;
+                    objsalesDetails.ShapeId = salesDetail.ShapeId;
+                    objsalesDetails.SizeId = salesDetail.SizeId;
+                    objsalesDetails.PurityId = salesDetail.PurityId;
+                    objsalesDetails.CharniSizeId = salesDetail.CharniSizeId;
+                    objsalesDetails.GalaSizeId = salesDetail.GalaSizeId;
+                    objsalesDetails.NumberSizeId = salesDetail.NumberSizeId;
+                    objsalesDetails.Weight = salesDetail.Weight;
+                    objsalesDetails.TIPWeight = salesDetail.TIPWeight;
+                    objsalesDetails.CVDWeight = salesDetail.CVDWeight;
+                    objsalesDetails.RejectedPercentage = salesDetail.RejectedPercentage;
+                    objsalesDetails.RejectedWeight = salesDetail.RejectedWeight;
+                    objsalesDetails.LessWeight = salesDetail.LessWeight;
+                    objsalesDetails.LessDiscountPercentage = salesDetail.LessDiscountPercentage;
+                    objsalesDetails.LessWeightDiscount = salesDetail.LessWeightDiscount;
+                    objsalesDetails.NetWeight = salesDetail.NetWeight;
+                    objsalesDetails.SaleRate = salesDetail.SaleRate;
+                    objsalesDetails.CVDCharge = salesDetail.CVDCharge;
+                    objsalesDetails.CVDAmount = salesDetail.CVDAmount;
+                    objsalesDetails.Amount = salesDetail.Amount;
+                    objsalesDetails.CurrencyRate = salesDetail.CurrencyRate;
+                    objsalesDetails.CurrencyAmount = salesDetail.CurrencyAmount;
+                    objsalesDetails.IsTransfer = salesDetail.IsTransfer;
+                    objsalesDetails.TransferParentId = salesDetail.TransferParentId;
+                    objsalesDetails.CreatedDate = salesDetail.CreatedDate;
+                    objsalesDetails.CreatedBy = salesDetail.CreatedBy;
+                    objsalesDetails.UpdatedDate = salesDetail.UpdatedDate;
+                    objsalesDetails.UpdatedBy = salesDetail.UpdatedBy;
+
+                    salesDetailsList.Add(objsalesDetails);
+                }
+                await _databaseContext.SalesDetails.AddRangeAsync(salesDetailsList);
+                await _databaseContext.SaveChangesAsync();
+                return true;
+            }
+            else
+                return false;
         }
 
         public async Task<bool> AddSalesDetailSummaryRangeAsync(List<SalesDetailsSummary> salesDetailsSummary)
@@ -348,7 +384,7 @@ namespace EFCore.SQL.Repository
                         objsalesDetailsSummary.NumberSizeId = salesDetailSummary.NumberSizeId;
                         objsalesDetailsSummary.Weight = salesDetailSummary.Weight;
                         objsalesDetailsSummary.Category = salesDetailSummary.Category;
-                        
+
                         objsalesDetailsSummary.CreatedDate = salesDetailSummary.CreatedDate;
                         objsalesDetailsSummary.CreatedBy = salesDetailSummary.CreatedBy;
                         objsalesDetailsSummary.UpdatedDate = salesDetailSummary.UpdatedDate;
@@ -365,13 +401,40 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId)
+        public async Task<List<SalesItemDetails>> GetSalesItemDetails(int ActionType, string companyId, string branchId, string financialYearId, DatabaseContext _databaseContext=null)
+        {
+            try
+            {
+                if (_databaseContext != null)
+                {
+                    return await GetSalesItemDetail(ActionType, companyId, branchId, financialYearId, _databaseContext);
+                }
+                else
+                {
+                    using (_databaseContext = new DatabaseContext())
+                    {
+                        return await GetSalesItemDetail(ActionType, companyId, branchId, financialYearId, _databaseContext);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private async Task<List<SalesItemDetails>> GetSalesItemDetail(int ActionType, string companyId, string branchId, string financialYearId, DatabaseContext _databaseContext)
+        {
+            return await _databaseContext.SalesItemDetails.FromSqlRaw($"GetSalesItemDetails '" + ActionType + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+        }
+
+        public List<SalesItemDetails> GetSalesItemDetails1(int ActionType, string companyId, string branchId, string financialYearId)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SalesItemDetails.FromSqlRaw($"GetSalesItemDetails '" + ActionType + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                    var data = _databaseContext.SalesItemDetails.FromSqlRaw($"GetSalesItemDetails '" + ActionType + "','" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToList();
 
                     return data;
                 }
