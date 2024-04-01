@@ -37,6 +37,7 @@ namespace DiamondTrading
 
         private async Task CheckPermission()
         {
+
             userMasterRepository = new UserMasterRepository();
             Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
 
@@ -2418,8 +2419,8 @@ namespace DiamondTrading
 
         private void FrmMain_MdiChildActivate(object sender, EventArgs e)
         {
-            if (this.MdiChildren.Length <= 0)
-                panelControl1.BringToFront();           
+            //if (this.MdiChildren.Length <= 0)
+                //panelControl1.BringToFront();           
         }
     }   
 }
