@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -211,16 +211,18 @@ namespace DiamondTrading
             // 
             // grdLessWeightGroupDetailMaster
             // 
+            this.grdLessWeightGroupDetailMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdLessWeightGroupDetailMaster.Appearance.Row.Options.UseFont = true;
             this.grdLessWeightGroupDetailMaster.GridControl = this.grdLessGroupWeightMaster;
             this.grdLessWeightGroupDetailMaster.Name = "grdLessWeightGroupDetailMaster";
             // 
             // grdLessGroupWeightMaster
             // 
             this.grdLessGroupWeightMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode1.LevelTemplate = this.grdLessWeightGroupDetailMaster;
-            gridLevelNode1.RelationName = "Level1";
+            gridLevelNode2.LevelTemplate = this.grdLessWeightGroupDetailMaster;
+            gridLevelNode2.RelationName = "Level1";
             this.grdLessGroupWeightMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode1});
+            gridLevelNode2});
             this.grdLessGroupWeightMaster.Location = new System.Drawing.Point(0, 0);
             this.grdLessGroupWeightMaster.MainView = this.grvLessGroupWeightMaster;
             this.grdLessGroupWeightMaster.Name = "grdLessGroupWeightMaster";
@@ -233,7 +235,7 @@ namespace DiamondTrading
             // 
             // grvLessGroupWeightMaster
             // 
-            this.grvLessGroupWeightMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvLessGroupWeightMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvLessGroupWeightMaster.Appearance.Row.Options.UseFont = true;
             this.grvLessGroupWeightMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colLessWeightGroupID,
@@ -270,6 +272,8 @@ namespace DiamondTrading
             // 
             // grdChildCompanyMaster
             // 
+            this.grdChildCompanyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grdChildCompanyMaster.Appearance.Row.Options.UseFont = true;
             this.grdChildCompanyMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn8,
             this.gridColumn9,
@@ -346,10 +350,10 @@ namespace DiamondTrading
             // grdCompanyMaster
             // 
             this.grdCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.grdChildCompanyMaster;
-            gridLevelNode2.RelationName = "Child";
+            gridLevelNode3.LevelTemplate = this.grdChildCompanyMaster;
+            gridLevelNode3.RelationName = "Child";
             this.grdCompanyMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode3});
             this.grdCompanyMaster.Location = new System.Drawing.Point(0, 0);
             this.grdCompanyMaster.MainView = this.grvCompanyMaster;
             this.grdCompanyMaster.Name = "grdCompanyMaster";
@@ -361,6 +365,8 @@ namespace DiamondTrading
             // 
             // grvCompanyMaster
             // 
+            this.grvCompanyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grvCompanyMaster.Appearance.Row.Options.UseFont = true;
             this.grvCompanyMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.gridColumn1,
             this.gridColumn2,
@@ -466,7 +472,7 @@ namespace DiamondTrading
             // 
             // grvBranchMaster
             // 
-            this.grvBranchMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvBranchMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvBranchMaster.Appearance.Row.Options.UseFont = true;
             this.grvBranchMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colBranchId,
@@ -573,7 +579,7 @@ namespace DiamondTrading
             // 
             // grvShapeMaster
             // 
-            this.grvShapeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvShapeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvShapeMaster.Appearance.Row.Options.UseFont = true;
             this.grvShapeMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colShapeId,
@@ -629,7 +635,7 @@ namespace DiamondTrading
             // 
             // grvPurityMaster
             // 
-            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvPurityMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvPurityMaster.Appearance.Row.Options.UseFont = true;
             this.grvPurityMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPurityId,
@@ -685,7 +691,7 @@ namespace DiamondTrading
             // 
             // grvSizeMaster
             // 
-            this.grvSizeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvSizeMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvSizeMaster.Appearance.Row.Options.UseFont = true;
             this.grvSizeMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colSizeId,
@@ -741,7 +747,7 @@ namespace DiamondTrading
             // 
             // grvGalaMaster
             // 
-            this.grvGalaMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvGalaMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvGalaMaster.Appearance.Row.Options.UseFont = true;
             this.grvGalaMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colGalaId,
@@ -797,7 +803,7 @@ namespace DiamondTrading
             // 
             // grvNumberMaster
             // 
-            this.grvNumberMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvNumberMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvNumberMaster.Appearance.Row.Options.UseFont = true;
             this.grvNumberMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colNumberId,
@@ -853,7 +859,7 @@ namespace DiamondTrading
             // 
             // grvFinancialYearMaster
             // 
-            this.grvFinancialYearMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvFinancialYearMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvFinancialYearMaster.Appearance.Row.Options.UseFont = true;
             this.grvFinancialYearMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colFinancialYearId,
@@ -928,7 +934,7 @@ namespace DiamondTrading
             // 
             // grvBrokerageMaster
             // 
-            this.grvBrokerageMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvBrokerageMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvBrokerageMaster.Appearance.Row.Options.UseFont = true;
             this.grvBrokerageMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colBrokerageId,
@@ -993,7 +999,7 @@ namespace DiamondTrading
             // 
             // grvCurrencyMaster
             // 
-            this.grvCurrencyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvCurrencyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvCurrencyMaster.Appearance.Row.Options.UseFont = true;
             this.grvCurrencyMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colCurrencyId,
@@ -1071,7 +1077,7 @@ namespace DiamondTrading
             // 
             // grvKapanMaster
             // 
-            this.grvKapanMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvKapanMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvKapanMaster.Appearance.Row.Options.UseFont = true;
             this.grvKapanMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colKapanId,
@@ -1165,7 +1171,7 @@ namespace DiamondTrading
             // 
             // grvPartyMaster
             // 
-            this.grvPartyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvPartyMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvPartyMaster.Appearance.Row.Options.UseFont = true;
             this.grvPartyMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colPartyId,
@@ -1251,7 +1257,7 @@ namespace DiamondTrading
             // 
             // grvUserMaster
             // 
-            this.grvUserMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.grvUserMaster.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
             this.grvUserMaster.Appearance.Row.Options.UseFont = true;
             this.grvUserMaster.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.colUserID,

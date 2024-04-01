@@ -44,11 +44,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteContraEntryAsync(int SrNo)
+        public async Task<bool> DeleteContraEntryAsync(int SrNo, string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.SrNo == SrNo).FirstOrDefaultAsync();
+                var getContraEntry = await _databaseContext.ContraEntryMaster.Where(w => w.SrNo == SrNo && w.CompanyId == companyId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
                 if (getContraEntry != null)
                 {
                     var getContraEnteryDetails = await _databaseContext.ContraEntryDetails.Where(w => w.ContraEntryMasterId == getContraEntry.Id).ToListAsync();

@@ -54,25 +54,37 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> UpdateSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries)
+        public async Task<bool> UpdateSlipTransferEntryAsync(List<SlipTransferEntry> slipTransferEntries, DatabaseContext _databaseContext = null)
         {
-            using (_databaseContext = new DatabaseContext())
+            if(_databaseContext != null)
             {
-                if (slipTransferEntries.Count > 0)
-                {
-                    var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == slipTransferEntries[0].SrNo && w.SlipType == slipTransferEntries[0].SlipType && w.FinancialYearId == slipTransferEntries[0].FinancialYearId).ToListAsync();
-                    _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
-
-                    //Add New updated records to the database
-
-                    await _databaseContext.SlipTransferEntry.AddRangeAsync(slipTransferEntries);
-
-                    await _databaseContext.SaveChangesAsync();
-
-                    return true;
-                }
-                return false;
+                return await UpdateSlipTransferEntry(slipTransferEntries, _databaseContext);
             }
+            else
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    return await UpdateSlipTransferEntry(slipTransferEntries, _databaseContext);
+                }
+            }
+        }
+
+        private async Task<bool> UpdateSlipTransferEntry(List<SlipTransferEntry> slipTransferEntries, DatabaseContext _databaseContext)
+        {
+            if (slipTransferEntries.Count > 0)
+            {
+                var slipEntry = await _databaseContext.SlipTransferEntry.Where(w => w.SrNo == slipTransferEntries[0].SrNo && w.SlipType == slipTransferEntries[0].SlipType && w.FinancialYearId == slipTransferEntries[0].FinancialYearId).ToListAsync();
+                _databaseContext.SlipTransferEntry.RemoveRange(slipEntry);
+
+                //Add New updated records to the database
+
+                await _databaseContext.SlipTransferEntry.AddRangeAsync(slipTransferEntries);
+
+                await _databaseContext.SaveChangesAsync();
+
+                return true;
+            }
+            return false;
         }
 
         public async Task<long> GetMaxSrNo(int slipType, string financialYearId)

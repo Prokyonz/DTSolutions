@@ -1,8 +1,10 @@
 ﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using EFCore.SQL.DBContext;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using Repository.Entities.Model;
+using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -95,224 +97,252 @@ namespace DiamondTrading.Transaction
                 //_EditedBrokerageMasterSet = _brokerageMaster.Where(s => s.Id == _selectedBrokerageId).FirstOrDefault();
                 if (_editedSalesMaster != null)
                 {
-                    List<SalesDetails> EditedSalesDetails=new List<SalesDetails>();
-                    SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
-                    try
+                    using (var dbContext = new DatabaseContext())
                     {
-                        this.lueCompany.EditValueChanged -= new System.EventHandler(this.lueCompany_EditValueChanged);
-                        this.lueBranch.EditValueChanged -= new System.EventHandler(this.lueBranch_EditValueChanged);
-                        this.lueSaler.EditValueChanged -= new System.EventHandler(this.lueSaler_EditValueChanged);
-                        this.lueParty.EditValueChanged -= new System.EventHandler(this.lueParty_EditValueChanged);
-                        this.lueBroker.EditValueChanged -= new System.EventHandler(this.lueBroker_EditValueChanged);
+                        await dbContext.Database.BeginTransactionAsync();
 
-                        btnSave.Text = AppMessages.GetString(AppMessageID.Update);
-                        //grdPurchaseDetails.Enabled = false;
-
-                        if(_editedSalesMaster.ApprovalType == 1)
-                            pnlStatus.Appearance.BackColor = Color.FromArgb(154, 205, 50);
-                        else if (_editedSalesMaster.ApprovalType == 2)
-                            pnlStatus.Appearance.BackColor = Color.FromArgb(255, 0, 0);
-                        else
-                            pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
-
-                        lueCompany.EditValue = _editedSalesMaster.CompanyId;
-                        lueBranch.EditValue = _editedSalesMaster.BranchId;
-                        lueParty.EditValue = _editedSalesMaster.PartyId;
-                        lueSaler.EditValue = _editedSalesMaster.SalerId;
-                        lueCurrencyType.EditValue = _editedSalesMaster.CurrencyId;
-                        //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
-                        lueBroker.EditValue = _editedSalesMaster.BrokerageId;
-                        txtCurrencyType.Text = _editedSalesMaster.CurrencyRate.ToString();
-                        txtSerialNo.Text = _editedSalesMaster.SaleBillNo.ToString();
-                        txtSlipNo.Text = _editedSalesMaster.SlipNo.ToString();
-                        luePaymentMode.EditValue = _editedSalesMaster.TransactionType;
-                        dtDate.EditValue = DateTime.ParseExact(_editedSalesMaster.Date, "yyyyMMdd", CultureInfo.InvariantCulture);
-                        dtTime.EditValue = DateTime.ParseExact(_editedSalesMaster.Time, "hh:mm:ss ttt", CultureInfo.InvariantCulture);
-                        //purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
-                        txtPartyBalance.Text = _editedSalesMaster.PartyLastBalanceWhileSale.ToString();
-                        txtBrokerPercentage.Text = _editedSalesMaster.BrokerPercentage.ToString();
-                        txtBrokerageAmount.Text = _editedSalesMaster.BrokerAmount.ToString();
-                        txtRoundAmount.Text = _editedSalesMaster.RoundUpAmount.ToString();
-                        txtAmount.Text = _editedSalesMaster.Total.ToString();
-                        txtNetAmount.Text = _editedSalesMaster.GrossTotal.ToString();
-                        txtDays.Text = _editedSalesMaster.DueDays.ToString();
-                        //purchaseMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
-                        txtPaymentDays.Text = _editedSalesMaster.PaymentDays.ToString();
-                        //purchaseMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
-                        tglSlip.IsOn = _editedSalesMaster.IsSlip;
-                        tglPF.IsOn = _editedSalesMaster.IsPF;
-                        txtSalerCommisionPercentage.Text = _editedSalesMaster.CommissionPercentage.ToString();
-                        txtCommisionAmount.Text = _editedSalesMaster.CommissionAmount.ToString();
-                        //if (Image1.Image != null)
-                        //    purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
-                        //if (Image2.Image != null)
-                        //    purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
-                        //if (Image3.Image != null)
-                        //    purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
-                        //purchaseMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
-
-                        txtRemark.Text = _editedSalesMaster.Remarks;
-
-                        var tempEditedSalesDetails = new SalesDetails[_editedSalesMaster.SalesDetails.Count];
-                        _editedSalesMaster.SalesDetails.CopyTo(tempEditedSalesDetails); //await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
-                        if (tempEditedSalesDetails != null)
-                        {
-                            ///await salesMasterRepository.DeleteSalesDetailSummaryRangeAsync(_editedSalesMaster.SalesDetails.SalesDetailsSummary);
-                            await salesMasterRepository.DeleteSalesDetailRangeAsync(_editedSalesMaster.SalesDetails);
-                        }
-
-                        EditedSalesDetails = tempEditedSalesDetails.ToList();
+                        List<SalesDetails> EditedSalesDetails = new List<SalesDetails>();
+                        SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
 
                         try
                         {
-                            this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
-                            for (int i = 0; i < EditedSalesDetails.Count; i++)
+                            this.lueCompany.EditValueChanged -= new System.EventHandler(this.lueCompany_EditValueChanged);
+                            this.lueBranch.EditValueChanged -= new System.EventHandler(this.lueBranch_EditValueChanged);
+                            this.lueSaler.EditValueChanged -= new System.EventHandler(this.lueSaler_EditValueChanged);
+                            this.lueParty.EditValueChanged -= new System.EventHandler(this.lueParty_EditValueChanged);
+                            this.lueBroker.EditValueChanged -= new System.EventHandler(this.lueBroker_EditValueChanged);
+
+                            btnSave.Text = AppMessages.GetString(AppMessageID.Update);
+                            //grdPurchaseDetails.Enabled = false;
+
+                            if (_editedSalesMaster.ApprovalType == 1)
+                                pnlStatus.Appearance.BackColor = Color.FromArgb(154, 205, 50);
+                            else if (_editedSalesMaster.ApprovalType == 2)
+                                pnlStatus.Appearance.BackColor = Color.FromArgb(255, 0, 0);
+                            else
+                                pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
+
+                            lueCompany.EditValue = _editedSalesMaster.CompanyId;
+                            lueBranch.EditValue = _editedSalesMaster.BranchId;
+                            lueParty.EditValue = _editedSalesMaster.PartyId;
+                            lueSaler.EditValue = _editedSalesMaster.SalerId;
+                            lueCurrencyType.EditValue = _editedSalesMaster.CurrencyId;
+                            //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
+                            lueBroker.EditValue = _editedSalesMaster.BrokerageId;
+                            txtCurrencyType.Text = _editedSalesMaster.CurrencyRate.ToString();
+                            txtSerialNo.Text = _editedSalesMaster.SaleBillNo.ToString();
+                            txtSlipNo.Text = _editedSalesMaster.SlipNo.ToString();
+                            luePaymentMode.EditValue = _editedSalesMaster.TransactionType;
+                            dtDate.EditValue = DateTime.ParseExact(_editedSalesMaster.Date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                            dtTime.EditValue = DateTime.ParseExact(_editedSalesMaster.Time, "hh:mm:ss ttt", CultureInfo.InvariantCulture);
+                            //purchaseMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                            txtPartyBalance.Text = _editedSalesMaster.PartyLastBalanceWhileSale.ToString();
+                            txtBrokerPercentage.Text = _editedSalesMaster.BrokerPercentage.ToString();
+                            txtBrokerageAmount.Text = _editedSalesMaster.BrokerAmount.ToString();
+                            txtRoundAmount.Text = _editedSalesMaster.RoundUpAmount.ToString();
+                            txtAmount.Text = _editedSalesMaster.Total.ToString();
+                            txtNetAmount.Text = _editedSalesMaster.GrossTotal.ToString();
+                            txtDays.Text = _editedSalesMaster.DueDays.ToString();
+                            //purchaseMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                            txtPaymentDays.Text = _editedSalesMaster.PaymentDays.ToString();
+                            //purchaseMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                            tglSlip.IsOn = _editedSalesMaster.IsSlip;
+                            tglPF.IsOn = _editedSalesMaster.IsPF;
+                            txtSalerCommisionPercentage.Text = _editedSalesMaster.CommissionPercentage.ToString();
+                            txtCommisionAmount.Text = _editedSalesMaster.CommissionAmount.ToString();
+                            //if (Image1.Image != null)
+                            //    purchaseMaster.Image1 = ImageToByteArray(Image1.Image);
+                            //if (Image2.Image != null)
+                            //    purchaseMaster.Image2 = ImageToByteArray(Image2.Image);
+                            //if (Image3.Image != null)
+                            //    purchaseMaster.Image3 = ImageToByteArray(Image3.Image);
+                            //purchaseMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+
+                            txtRemark.Text = _editedSalesMaster.Remarks;
+
+                            var tempEditedSalesDetails = new SalesDetails[_editedSalesMaster.SalesDetails.Count];
+                            _editedSalesMaster.SalesDetails.CopyTo(tempEditedSalesDetails); //await _purchaseMasterRepository.GetPurchaseDetailAsync(_selectedPurchaseId);
+                            if (tempEditedSalesDetails != null)
                             {
-                                grvPurchaseDetails.AddNewRow();
-
-                                //grvPurchaseDetails.SetFocusedRowCellValue(colShape, Common.DefaultShape);
-                                //grvPurchaseDetails.SetFocusedRowCellValue(colSize, Common.DefaultSize);
-                                //grvPurchaseDetails.SetFocusedRowCellValue(colPurity, Common.DefaultPurity);
-
-                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
-                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
-                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
-                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
-                                //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
-
-                                grvPurchaseDetails.SetFocusedRowCellValue(colSalesDetailId, EditedSalesDetails[i].Id);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCategory, EditedSalesDetails[i].Category);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
-                                try
-                                {
-                                    var Shape = ((List<SalesItemDetails>)repoShape.DataSource).Where(x => x.ShapeId == EditedSalesDetails[i].ShapeId).FirstOrDefault();
-                                    if (Shape != null)
-                                    {
-                                        grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
-                                    }
-                                }
-                                catch
-                                {
-                                    var Shape = ((List<ShapeMaster>)repoShape.DataSource).Where(x => x.Id == EditedSalesDetails[i].ShapeId).FirstOrDefault();
-                                    if (Shape != null)
-                                    {
-                                        grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
-                                    }
-                                }
-
-                                grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
-
-                                grvPurchaseDetails.SetFocusedRowCellValue(colShapeId, EditedSalesDetails[i].ShapeId);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedSalesDetails[i].SizeId);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedSalesDetails[i].PurityId);
-
-                                if (EditedSalesDetails[i].CharniSizeId != null && EditedSalesDetails[i].CharniSizeId != Common.DefaultGuid)
-                                    grvPurchaseDetails.SetFocusedRowCellValue(colCharniSize, EditedSalesDetails[i].CharniSizeId);
-                                if (EditedSalesDetails[i].GalaSizeId != null && EditedSalesDetails[i].GalaSizeId != Common.DefaultGuid)
-                                    grvPurchaseDetails.SetFocusedRowCellValue(colGalaSize, EditedSalesDetails[i].GalaSizeId);
-                                if (EditedSalesDetails[i].NumberSizeId != null && EditedSalesDetails[i].NumberSizeId != Common.DefaultGuid)
-                                    grvPurchaseDetails.SetFocusedRowCellValue(colNumberSize, EditedSalesDetails[i].NumberSizeId);
-
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCarat, EditedSalesDetails[i].Weight);
-
-                                grvPurchaseDetails.SetFocusedRowCellValue(colTipWeight, EditedSalesDetails[i].TIPWeight);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDWeight, EditedSalesDetails[i].CVDWeight);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colRejPer, EditedSalesDetails[i].RejectedPercentage);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colRejCts, EditedSalesDetails[i].RejectedWeight);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colLessCts, EditedSalesDetails[i].LessWeight);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colDisPer, EditedSalesDetails[i].LessDiscountPercentage);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colDisAmount, EditedSalesDetails[i].LessWeightDiscount);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colNetCts, EditedSalesDetails[i].NetWeight);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colRate, EditedSalesDetails[i].SaleRate);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDCharge, EditedSalesDetails[i].CVDCharge);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCVDAmount, EditedSalesDetails[i].CVDAmount);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colAmount, EditedSalesDetails[i].Amount);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCurrRate, EditedSalesDetails[i].CurrencyRate);
-                                grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
-                                grvPurchaseDetails.UpdateCurrentRow();
+                                ///await salesMasterRepository.DeleteSalesDetailSummaryRangeAsync(_editedSalesMaster.SalesDetails.SalesDetailsSummary);
+                                await salesMasterRepository.DeleteSalesDetailRangeAsync(_editedSalesMaster.SalesDetails, dbContext);
+                                //int a = 0;
+                                //int m = a / 0;
                             }
-                        }
-                        catch(Exception Ex)
-                        {
 
+                            EditedSalesDetails = tempEditedSalesDetails.ToList();
+
+                            try
+                            {
+                                this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                                for (int i = 0; i < EditedSalesDetails.Count; i++)
+                                {
+                                    grvPurchaseDetails.AddNewRow();
+
+                                    //grvPurchaseDetails.SetFocusedRowCellValue(colShape, Common.DefaultShape);
+                                    //grvPurchaseDetails.SetFocusedRowCellValue(colSize, Common.DefaultSize);
+                                    //grvPurchaseDetails.SetFocusedRowCellValue(colPurity, Common.DefaultPurity);
+
+                                    //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0.00");
+                                    //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0.00");
+                                    //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0.00");
+                                    //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0.00");
+                                    //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0.00");
+
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colSalesDetailId, EditedSalesDetails[i].Id);
+                                    this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCategory, EditedSalesDetails[i].Category);
+                                    this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
+                                    try
+                                    {
+                                        var Shape = ((List<SalesItemDetails>)repoShape.DataSource).Where(x => x.ShapeId == EditedSalesDetails[i].ShapeId).FirstOrDefault();
+                                        if (Shape != null)
+                                        {
+                                            grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                        }
+                                    }
+                                    catch
+                                    {
+                                        try
+                                        {
+                                            var Shape = ((List<AssortmentProcessSend>)repoShape.DataSource).Where(x => x.ShapeId == EditedSalesDetails[i].ShapeId).FirstOrDefault();
+                                            if (Shape != null)
+                                            {
+                                                grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            var Shape = ((List<ShapeMaster>)repoShape.DataSource).Where(x => x.Id == EditedSalesDetails[i].ShapeId).FirstOrDefault();
+                                            if (Shape != null)
+                                            {
+                                                grvPurchaseDetails.SetFocusedRowCellValue(colShape, Shape.Id);
+                                            }
+                                        }
+                                    }
+
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colKapan, EditedSalesDetails[i].KapanId);
+
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colShapeId, EditedSalesDetails[i].ShapeId);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colSize, EditedSalesDetails[i].SizeId);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colPurity, EditedSalesDetails[i].PurityId);
+
+                                    if (EditedSalesDetails[i].CharniSizeId != null && EditedSalesDetails[i].CharniSizeId != Common.DefaultGuid)
+                                        grvPurchaseDetails.SetFocusedRowCellValue(colCharniSize, EditedSalesDetails[i].CharniSizeId);
+                                    if (EditedSalesDetails[i].GalaSizeId != null && EditedSalesDetails[i].GalaSizeId != Common.DefaultGuid)
+                                        grvPurchaseDetails.SetFocusedRowCellValue(colGalaSize, EditedSalesDetails[i].GalaSizeId);
+                                    if (EditedSalesDetails[i].NumberSizeId != null && EditedSalesDetails[i].NumberSizeId != Common.DefaultGuid)
+                                        grvPurchaseDetails.SetFocusedRowCellValue(colNumberSize, EditedSalesDetails[i].NumberSizeId);
+
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCarat, EditedSalesDetails[i].Weight);
+
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colTipWeight, EditedSalesDetails[i].TIPWeight);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCVDWeight, EditedSalesDetails[i].CVDWeight);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colRejPer, EditedSalesDetails[i].RejectedPercentage);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colRejCts, EditedSalesDetails[i].RejectedWeight);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colLessCts, EditedSalesDetails[i].LessWeight);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colDisPer, EditedSalesDetails[i].LessDiscountPercentage);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colDisAmount, EditedSalesDetails[i].LessWeightDiscount);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colNetCts, EditedSalesDetails[i].NetWeight);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colRate, EditedSalesDetails[i].SaleRate);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCVDCharge, EditedSalesDetails[i].CVDCharge);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCVDAmount, EditedSalesDetails[i].CVDAmount);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colAmount, EditedSalesDetails[i].Amount);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCurrRate, EditedSalesDetails[i].CurrencyRate);
+                                    grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
+                                    grvPurchaseDetails.UpdateCurrentRow();
+                                }
+                            }
+                            catch (Exception Ex)
+                            {
+                                throw Ex;
+                            }
+                            finally
+                            {
+                                this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                            }
+
+                            if (!string.IsNullOrEmpty(_editedSalesMaster.TransferParentId))
+                            {
+                                _slipTransferEntries = await LoadSlipTransferDetails(Convert.ToInt32(_editedSalesMaster.TransferParentId));
+                                grdSlipParticularsDetails.DataSource = _slipTransferEntries;
+                            }
+
+                            byte[] Logo = null;
+                            MemoryStream ms = null;
+                            try
+                            {
+                                Logo = new byte[0];
+                                if (_editedSalesMaster.Image1 != null)
+                                {
+                                    Logo = (byte[])(_editedSalesMaster.Image1);
+                                    ms = new MemoryStream(Logo);
+                                    //ms.Write(Logo, 0, Logo.Length);
+                                    Image1.Image = new Bitmap(ms);
+                                    Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                    //Image1.Size = PictureBoxSizeMode.StretchImage;
+
+                                    Logo = null;
+                                    ms = null;
+                                }
+
+                                if (_editedSalesMaster.Image2 != null)
+                                {
+                                    Logo = (Byte[])(_editedSalesMaster.Image2);
+                                    ms = new MemoryStream(Logo);
+                                    ms.Write(Logo, 0, Logo.Length);
+                                    Image2.Image = Image.FromStream(ms);
+                                    Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                    //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                                    Logo = null;
+                                    ms = null;
+                                }
+
+                                if (_editedSalesMaster.Image3 != null)
+                                {
+                                    Logo = (Byte[])(_editedSalesMaster.Image3);
+                                    ms = new MemoryStream(Logo);
+                                    ms.Write(Logo, 0, Logo.Length);
+                                    Image3.Image = Image.FromStream(ms);
+                                    Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
+                                    //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                                    Logo = null;
+                                    ms = null;
+                                }
+                            }
+                            catch
+                            {
+                                Logo = null;
+                                ms = null;
+                            }
+
+                            if (EditedSalesDetails.Count > 0)
+                            {
+                                await salesMasterRepository.AddSalesDetailRangeAsync(EditedSalesDetails, dbContext);
+                            }                                                       
+
+                            dbContext.Database.CommitTransaction();
+                        }
+                        catch (Exception Ex)
+                        {
+                            dbContext.Database.RollbackTransaction();
+                            MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Name + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            this.Close();
                         }
                         finally
                         {
-                            this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+                            this.Cursor = Cursors.Default;
+                            this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
+                            this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
+                            this.lueSaler.EditValueChanged += new System.EventHandler(this.lueSaler_EditValueChanged);
+                            this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
+                            this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
                         }
 
-                        if (!string.IsNullOrEmpty(_editedSalesMaster.TransferParentId))
-                        {
-                            _slipTransferEntries = await LoadSlipTransferDetails(Convert.ToInt32(_editedSalesMaster.TransferParentId));
-                            grdSlipParticularsDetails.DataSource = _slipTransferEntries;
-                        }
-
-                        byte[] Logo = null;
-                        MemoryStream ms = null;
-                        try
-                        {
-                            Logo = new byte[0];
-                            if (_editedSalesMaster.Image1 != null)
-                            {
-                                Logo = (byte[])(_editedSalesMaster.Image1);
-                                ms = new MemoryStream(Logo);
-                                //ms.Write(Logo, 0, Logo.Length);
-                                Image1.Image = new Bitmap(ms);
-                                Image1.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-                                //Image1.Size = PictureBoxSizeMode.StretchImage;
-
-                                Logo = null;
-                                ms = null;
-                            }
-
-                            if (_editedSalesMaster.Image2 != null)
-                            {
-                                Logo = (Byte[])(_editedSalesMaster.Image2);
-                                ms = new MemoryStream(Logo);
-                                ms.Write(Logo, 0, Logo.Length);
-                                Image2.Image = Image.FromStream(ms);
-                                Image2.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-                                //picImage2.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                                Logo = null;
-                                ms = null;
-                            }
-
-                            if (_editedSalesMaster.Image3 != null)
-                            {
-                                Logo = (Byte[])(_editedSalesMaster.Image3);
-                                ms = new MemoryStream(Logo);
-                                ms.Write(Logo, 0, Logo.Length);
-                                Image3.Image = Image.FromStream(ms);
-                                Image3.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch;
-                                //picImage3.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                                Logo = null;
-                                ms = null;
-                            }
-                        }
-                        catch
-                        {
-                            Logo = null;
-                            ms = null;
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-                    finally
-                    {
-                        if (EditedSalesDetails.Count > 0)
-                        {
-                            await salesMasterRepository.AddSalesDetailRangeAsync(EditedSalesDetails);
-                        }
-                        this.lueCompany.EditValueChanged += new System.EventHandler(this.lueCompany_EditValueChanged);
-                        this.lueBranch.EditValueChanged += new System.EventHandler(this.lueBranch_EditValueChanged);
-                        this.lueSaler.EditValueChanged += new System.EventHandler(this.lueSaler_EditValueChanged);
-                        this.lueParty.EditValueChanged += new System.EventHandler(this.lueParty_EditValueChanged);
-                        this.lueBroker.EditValueChanged += new System.EventHandler(this.lueBroker_EditValueChanged);
-                        this.Cursor = Cursors.Default;
+                        
                     }
                 }
                 else
@@ -360,7 +390,7 @@ namespace DiamondTrading.Transaction
             luePaymentMode.Properties.ValueMember = "PTypeID";
             luePaymentMode.EditValue = 1;
 
-            await GetSalerList ();
+            await GetSalerList();
 
             //Commision
             //partyMaster = await partyMasterRepository.GetAllPartyAsync();
@@ -457,7 +487,7 @@ namespace DiamondTrading.Transaction
             lueCurrencyType.Properties.DataSource = currencyMaster;
             lueCurrencyType.Properties.DisplayMember = "Name";
             lueCurrencyType.Properties.ValueMember = "Id";
-            
+
             var defaultcurrency = currencyMaster.Where(x => x.ShortName.ToLower().Contains("inr")).FirstOrDefault();
             if (defaultcurrency != null)
             {
@@ -485,7 +515,7 @@ namespace DiamondTrading.Transaction
             await GetPurityDetail(false);
 
             //Kapan
-            await  GetKapanDetail(false);
+            await GetKapanDetail(false);
         }
 
         private async Task GetCategoryDetail(bool IsNew)
@@ -621,7 +651,7 @@ namespace DiamondTrading.Transaction
 
         private void txtPaymentDays_Leave(object sender, EventArgs e)
         {
-            if(txtPaymentDays.Text.Length > 0)
+            if (txtPaymentDays.Text.Length > 0)
             {
                 dtPayDate.EditValue = CalculateDate(Convert.ToInt32(txtPaymentDays.Text));
             }
@@ -760,7 +790,7 @@ namespace DiamondTrading.Transaction
 
             var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
             txtPartyBalance.Text = selectedParty.OpeningBalance.ToString();
-        }        
+        }
 
         private async void lueBroker_EditValueChanged(object sender, EventArgs e)
         {
@@ -832,7 +862,7 @@ namespace DiamondTrading.Transaction
                         //repoShape.ValueMember = "Id";
 
                         AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                        var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
+                        var ListKapanProcessSend = accountToAssortMasterRepository.GetAssortmentSendToDetails1(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
                         //var listKapanProcess = ListKapanProcessSend.Where(x => x.KapanId == grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString()).ToList();
 
                         var listKapanProcess1 = ListKapanProcessSend.Select(g => new Repository.Entities.Models.AssortmentProcessSend()
@@ -959,7 +989,7 @@ namespace DiamondTrading.Transaction
                         colGalaSize.Visible = false;
 
                         if (_salesItemObj.NumberItemList == null)
-                            _salesItemObj.NumberItemList = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                            _salesItemObj.NumberItemList = _salesMasterRepository.GetSalesItemDetails1(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
 
                         var listNumberProcess1 = _salesItemObj.NumberItemList.Select(g => new Repository.Entities.Model.SalesItemDetails()
                         {
@@ -1015,7 +1045,7 @@ namespace DiamondTrading.Transaction
                             AvailableWeight = g.Sum(x => x.AvailableWeight),
                         });
 
-                        repoShape.DataSource = listNumberProcess1;//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
+                        repoShape.DataSource = listNumberProcess1.ToList();//.Select(x => new { x.ShapeId, x.Shape }).Distinct().ToList();
                         repoShape.DisplayMember = "Shape";
                         repoShape.ValueMember = "Id";
 
@@ -1242,13 +1272,13 @@ namespace DiamondTrading.Transaction
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colShape, Common.DefaultShape);
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colSize, Common.DefaultSize);
             //grvPurchaseDetails.SetRowCellValue(e.RowHandle, colPurity, Common.DefaultPurity);
-            this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+            //this.grvPurchaseDetails.CellValueChanged -= new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDWeight, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejPer, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colRejCts, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisAmount, "0");
             grvPurchaseDetails.SetRowCellValue(e.RowHandle, colDisPer, "0");
-            this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
+            //this.grvPurchaseDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvPurchaseDetails_CellValueChanged);
         }
 
         private void grvPurchaseDetails_RowUpdated(object sender, DevExpress.XtraGrid.Views.Base.RowObjectEventArgs e)
@@ -1284,7 +1314,7 @@ namespace DiamondTrading.Transaction
                     if (lessWeightDetails != null)
                     {
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, TipWeight.ToString());
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight*CVDWeight).ToString("0.00"));
+                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight * CVDWeight).ToString("0.00"));
                         grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
                     }
                     //else
@@ -1834,7 +1864,7 @@ namespace DiamondTrading.Transaction
                                     if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
                                         salesDetailsSummary.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
 
-                                    if(row.Row.Table.Columns.Contains("SlipNo"))
+                                    if (row.Row.Table.Columns.Contains("SlipNo"))
                                         salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
                                     salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
                                     salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
@@ -1977,303 +2007,325 @@ namespace DiamondTrading.Transaction
                 }
                 else
                 {
-                    List<SalesDetails> salesDetailsList = new List<SalesDetails>();
-                    List<SalesDetailsSummary> salesDetailsSummaryList = new List<SalesDetailsSummary>();
-                    SalesDetails salesDetails = new SalesDetails();
-
-                    for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
+                    using (var dbContext = new DatabaseContext())
                     {
-                        DataView dtView = new DataView();
-                        string SalesDetailsId = Guid.NewGuid().ToString();
+                        await dbContext.Database.BeginTransactionAsync();
 
-                        if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString()))
-                            SalesDetailsId = Guid.NewGuid().ToString();
-                        else
-                            SalesDetailsId = grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString();
-
-                        #region "Sales Details Summary"
-                        DataTable dt = new DataTable();
-                        if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Number.ToString())
+                        try
                         {
-                            var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
-                            dt = Common.ToDataTable(listNumberProcess);
-                        }
-                        else if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
-                        {
-                            //var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
-                            //dt = Common.ToDataTable(listNumberProcess);
+                            await _salesMasterRepository.DeleteSalesDetailRangeAsync(_editedSalesMaster.SalesDetails, dbContext);
 
-                            AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-                            var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString());
-                            dt = Common.ToDataTable(ListKapanProcessSend);
-                        }
+                            List<SalesDetails> salesDetailsList = new List<SalesDetails>();
+                            List<SalesDetailsSummary> salesDetailsSummaryList = new List<SalesDetailsSummary>();
+                            SalesDetails salesDetails = new SalesDetails();
 
-                        if (dt.Rows.Count > 0)
-                        {
-                            dtView = new DataView(dt);
-                            string rowFilter = "";
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString()))
-                                rowFilter += "KapanId='" + grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString() + "'";
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString()))
+                            for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                             {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " PurityId ='" + grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString() + "'";
-                            }
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString()))
-                            {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " ShapeId='" + grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString() + "'";
-                            }
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSize).ToString()))
-                            {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " SizeId ='" + grvPurchaseDetails.GetRowCellValue(i, colSize).ToString() + "'";
-                            }
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString()))
-                            {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " CharniSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
-                            }
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString()))
-                            {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " GalaNumberId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
-                            }
-                            if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString()))
-                            {
-                                if (rowFilter.Length > 0)
-                                    rowFilter += " and";
-                                rowFilter += " NumberSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString() + "'";
-                            }
-                            dtView.RowFilter = rowFilter.Trim();
-                            if (dtView.Count > 0)
-                            {
-                                if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
-                                {
-                                    dtView.Sort = "SlipNo ASC";
-                                }
+                                DataView dtView = new DataView();
+                                string SalesDetailsId = Guid.NewGuid().ToString();
+
+                                if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString()))
+                                    SalesDetailsId = Guid.NewGuid().ToString();
                                 else
+                                    SalesDetailsId = grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString();
+
+                                #region "Sales Details Summary"
+                                DataTable dt = new DataTable();
+                                if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Number.ToString())
                                 {
-                                    dtView.Sort = "CharniSizeId ASC";
+                                    var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear, dbContext);
+                                    dt = Common.ToDataTable(listNumberProcess);
+                                }
+                                else if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                {
+                                    //var listNumberProcess = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear);
+                                    //dt = Common.ToDataTable(listNumberProcess);
+
+                                    AccountToAssortMasterRepository accountToAssortMasterRepository = new AccountToAssortMasterRepository();
+                                    var ListKapanProcessSend = await accountToAssortMasterRepository.GetAssortmentSendToDetails(lueCompany.EditValue.ToString(), lueBranch.EditValue.ToString(), Common.LoginFinancialYear.ToString(), dbContext);
+                                    dt = Common.ToDataTable(ListKapanProcessSend);
                                 }
 
-                                decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
-
-                                if (!dt.Columns.Contains("AdjustCarat"))
+                                if (dt.Rows.Count > 0)
                                 {
-                                    DataColumn column = new DataColumn();
-                                    column.ColumnName = "AdjustCarat";
-                                    column.DataType = System.Type.GetType("System.Decimal");
-                                    column.DefaultValue = 0;
-                                    column.ReadOnly = false;
-
-                                    dt.Columns.Add(column);
-                                }
-
-                                foreach (DataRowView row in dtView)
-                                {
-                                    row["AdjustCarat"] = 0;
-                                }
-
-                                decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(AvailableWeight)", string.Empty));
-                                if (Value > a)
-                                {
-                                    MessageBox.Show("Max Amount allowed for available Weight is '" + a.ToString("0.000") + "'.");
-                                    return;
-                                }
-                                decimal TotalValue = 0;
-                                decimal RemainValue = Value;
-                                decimal AvailableValue = 0;
-                                foreach (DataRowView row in dtView)
-                                {
-                                    if (TotalValue != Value)
+                                    dtView = new DataView(dt);
+                                    string rowFilter = "";
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString()))
+                                        rowFilter += "KapanId='" + grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString() + "'";
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString()))
                                     {
-                                        AvailableValue = Convert.ToDecimal(row["AvailableWeight"]);
-                                        decimal TempValue = AvailableValue - RemainValue;
-                                        if (TempValue <= 0)
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " PurityId ='" + grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString() + "'";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString()))
+                                    {
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " ShapeId='" + grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString() + "'";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSize).ToString()))
+                                    {
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " SizeId ='" + grvPurchaseDetails.GetRowCellValue(i, colSize).ToString() + "'";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString()))
+                                    {
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " CharniSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString()))
+                                    {
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " GalaNumberId='" + grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString() + "'";
+                                    }
+                                    if (!string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString()))
+                                    {
+                                        if (rowFilter.Length > 0)
+                                            rowFilter += " and";
+                                        rowFilter += " NumberSizeId='" + grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString() + "'";
+                                    }
+
+                                    if (rowFilter.Length > 0)
+                                        rowFilter += " and";
+                                    rowFilter += " AvailableWeight > 0";
+
+                                    dtView.RowFilter = rowFilter.Trim();
+                                    
+                                    if (dtView.Count > 0)
+                                    {
+                                        if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
                                         {
-                                            row["AdjustCarat"] = AvailableValue;
-                                            TotalValue += AvailableValue;
-                                            RemainValue = TempValue * -1;
+                                            dtView.Sort = "SlipNo ASC";
                                         }
                                         else
                                         {
-                                            row["AdjustCarat"] = RemainValue;
-                                            TotalValue += RemainValue;
-                                            RemainValue = 0;
+                                            dtView.Sort = "CharniSizeId ASC";
+                                        }
+
+                                        decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+
+                                        if (!dt.Columns.Contains("AdjustCarat"))
+                                        {
+                                            DataColumn column = new DataColumn();
+                                            column.ColumnName = "AdjustCarat";
+                                            column.DataType = System.Type.GetType("System.Decimal");
+                                            column.DefaultValue = 0;
+                                            column.ReadOnly = false;
+
+                                            dt.Columns.Add(column);
+                                        }
+
+                                        foreach (DataRowView row in dtView)
+                                        {
+                                            row["AdjustCarat"] = 0;
+                                        }
+
+                                        decimal a = Convert.ToDecimal(dtView.ToTable().Compute("SUM(AvailableWeight)", string.Empty));
+                                        if (Value > a)
+                                        {
+                                            MessageBox.Show("Max Amount allowed for available Weight is '" + a.ToString("0.000") + "'.");
+                                            return;
+                                        }
+                                        decimal TotalValue = 0;
+                                        decimal RemainValue = Value;
+                                        decimal AvailableValue = 0;
+                                        foreach (DataRowView row in dtView)
+                                        {
+                                            if (TotalValue != Value)
+                                            {
+                                                AvailableValue = Convert.ToDecimal(row["AvailableWeight"]);
+                                                decimal TempValue = AvailableValue - RemainValue;
+                                                if (TempValue <= 0)
+                                                {
+                                                    row["AdjustCarat"] = AvailableValue;
+                                                    TotalValue += AvailableValue;
+                                                    RemainValue = TempValue * -1;
+                                                }
+                                                else
+                                                {
+                                                    row["AdjustCarat"] = RemainValue;
+                                                    TotalValue += RemainValue;
+                                                    RemainValue = 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    dtView.RowFilter = "AdjustCarat > 0";
+                                    if (dtView.Count > 0)
+                                    {
+                                        SalesDetailsSummary salesDetailsSummary;
+                                        foreach (DataRowView row in dtView)
+                                        {
+                                            salesDetailsSummary = new SalesDetailsSummary();
+                                            salesDetailsSummary.Id = Guid.NewGuid().ToString();
+                                            salesDetailsSummary.SalesId = _editedSalesMaster.Id;
+                                            salesDetailsSummary.SalesDetailsId = SalesDetailsId;
+                                            salesDetailsSummary.CompanyId = lueCompany.EditValue.ToString();
+                                            salesDetailsSummary.BranchId = lueBranch.EditValue.ToString();
+                                            salesDetailsSummary.FinancialYearId = Common.LoginFinancialYear;
+                                            salesDetailsSummary.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                                            salesDetailsSummary.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
+                                            salesDetailsSummary.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
+                                            salesDetailsSummary.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                                            if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
+                                                salesDetailsSummary.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
+                                            if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
+                                                salesDetailsSummary.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
+                                            if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
+                                                salesDetailsSummary.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
+
+                                            if (row.Row.Table.Columns.Contains("SlipNo"))
+                                                salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
+                                            salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
+                                            salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
+                                            if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                            {
+                                                salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
+                                                salesDetailsSummary.StockId = row["StockId"].ToString();
+                                                salesDetailsSummary.KapanType = row["KapanType"].ToString();
+                                            }
+                                            salesDetailsSummary.CreatedDate = DateTime.Now;
+                                            salesDetailsSummary.CreatedBy = Common.LoginUserID;
+                                            salesDetailsSummary.UpdatedDate = DateTime.Now;
+                                            salesDetailsSummary.UpdatedBy = Common.LoginUserID;
+
+                                            salesDetailsSummaryList.Insert(i, salesDetailsSummary);
                                         }
                                     }
                                 }
+                                #endregion
+
+                                salesDetails = new SalesDetails();
+                                salesDetails.Id = SalesDetailsId;
+                                salesDetails.SalesId = _editedSalesMaster.Id;
+                                salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
+                                salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
+                                salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
+                                salesDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
+                                salesDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                                if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
+                                    salesDetails.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
+                                if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
+                                    salesDetails.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
+                                if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
+                                    salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
+
+                                salesDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+                                salesDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
+                                salesDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
+                                salesDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
+                                salesDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
+                                salesDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
+                                salesDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
+                                salesDetails.LessWeightDiscount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisAmount).ToString());
+                                salesDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
+                                salesDetails.SaleRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
+                                salesDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
+                                salesDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDAmount).ToString());
+                                salesDetails.Amount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colAmount).ToString());
+                                salesDetails.CurrencyRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrRate).ToString());
+                                salesDetails.CurrencyAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrAmount).ToString());
+                                salesDetails.IsTransfer = false;
+                                salesDetails.TransferParentId = null;
+                                salesDetails.CreatedDate = DateTime.Now;
+                                salesDetails.CreatedBy = Common.LoginUserID;
+                                salesDetails.UpdatedDate = DateTime.Now;
+                                salesDetails.UpdatedBy = Common.LoginUserID;
+                                salesDetails.SalesDetailsSummary = salesDetailsSummaryList;
+
+                                salesDetailsList.Insert(i, salesDetails);
                             }
 
-                            dtView.RowFilter = "AdjustCarat > 0";
-                            if (dtView.Count > 0)
+                            SalesMaster salesMaster = new SalesMaster();
+                            salesMaster.Id = _editedSalesMaster.Id;
+                            salesMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
+                            salesMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
+                            salesMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
+                            salesMaster.SalerId = lueSaler.GetColumnValue("Id").ToString();
+                            salesMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
+                            //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
+                            salesMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
+                            salesMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
+                            salesMaster.SaleBillNo = Convert.ToInt32(txtSerialNo.Text);
+                            salesMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
+                            salesMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("PTypeID"));
+                            salesMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                            salesMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                            salesMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
+                            //purchaseMaster.PartyLastBalanceWhilePurchase = float.Parse(txtPartyBalance.Text);
+                            salesMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPercentage.Text);
+                            salesMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
+                            salesMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
+                            salesMaster.Total = float.Parse(txtAmount.Text);
+                            salesMaster.GrossTotal = float.Parse(txtNetAmount.Text);
+                            salesMaster.DueDays = Convert.ToInt32(txtDays.Text);
+                            salesMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
+                            salesMaster.PaymentDays = Convert.ToInt32(txtPaymentDays.Text);
+                            salesMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
+                            salesMaster.IsSlip = tglSlip.IsOn;
+                            salesMaster.IsPF = tglPF.IsOn;
+                            salesMaster.CommissionPercentage = Convert.ToDecimal(txtSalerCommisionPercentage.Text);
+                            salesMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
+                            if (Image1.Image != null)
+                                salesMaster.Image1 = ImageToByteArray(Image1.Image);
+                            if (Image2.Image != null)
+                                salesMaster.Image2 = ImageToByteArray(Image2.Image);
+                            if (Image3.Image != null)
+                                salesMaster.Image3 = ImageToByteArray(Image3.Image);
+                            salesMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
+                            salesMaster.IsTransfer = false;
+                            salesMaster.TransferParentId = null;
+                            salesMaster.IsDelete = false;
+                            salesMaster.Remarks = txtRemark.Text;
+                            //purchaseMaster.CreatedDate = DateTime.Now;
+                            //purchaseMaster.CreatedBy = Common.LoginUserID;
+                            salesMaster.UpdatedDate = DateTime.Now;
+                            salesMaster.UpdatedBy = Common.LoginUserID;
+                            salesMaster.ApprovalType = 0;
+                            salesMaster.Message = "";
+                            salesMaster.SalesDetails = salesDetailsList;
+
+                            if (_slipTransferEntries.Count > 0)
                             {
-                                SalesDetailsSummary salesDetailsSummary;
-                                foreach (DataRowView row in dtView)
+                                salesMaster.TransferParentId = _slipTransferEntries[0].SrNo.ToString();
+                            }
+
+                            SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
+                            var Result = await salesMasterRepository.UpdateSalesAsync(salesMaster, dbContext);
+
+                            if (Result != null)
+                            {
+                                try
                                 {
-                                    salesDetailsSummary = new SalesDetailsSummary();
-                                    salesDetailsSummary.Id = Guid.NewGuid().ToString();
-                                    salesDetailsSummary.SalesId = _editedSalesMaster.Id;
-                                    salesDetailsSummary.SalesDetailsId = SalesDetailsId;
-                                    salesDetailsSummary.CompanyId = lueCompany.EditValue.ToString();
-                                    salesDetailsSummary.BranchId = lueBranch.EditValue.ToString();
-                                    salesDetailsSummary.FinancialYearId = Common.LoginFinancialYear;
-                                    salesDetailsSummary.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                                    salesDetailsSummary.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
-                                    salesDetailsSummary.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
-                                    salesDetailsSummary.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
-                                    if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
-                                        salesDetailsSummary.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
-                                    if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
-                                        salesDetailsSummary.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
-                                    if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
-                                        salesDetailsSummary.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
-
-                                    if (row.Row.Table.Columns.Contains("SlipNo"))
-                                        salesDetailsSummary.SlipNo = row["SlipNo"].ToString();
-                                    salesDetailsSummary.Weight = Convert.ToDecimal(row["AdjustCarat"]);
-                                    salesDetailsSummary.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
-                                    if (grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString() == CategoryMaster.Kapan.ToString())
+                                    foreach (var item in _slipTransferEntries)
                                     {
-                                        salesDetailsSummary.PurchaseDetailsId = row["PurchaseDetailsId"].ToString();
-                                        salesDetailsSummary.StockId = row["StockId"].ToString();
-                                        salesDetailsSummary.KapanType = row["KapanType"].ToString();
+                                        item.PurchaseSaleId = Result.Id;
+                                        //item.BranchId = Result.BranchId;
+                                        //item.FinancialYearId = Result.FinancialYearId;
                                     }
-                                    salesDetailsSummary.CreatedDate = DateTime.Now;
-                                    salesDetailsSummary.CreatedBy = Common.LoginUserID;
-                                    salesDetailsSummary.UpdatedDate = DateTime.Now;
-                                    salesDetailsSummary.UpdatedBy = Common.LoginUserID;
-
-                                    salesDetailsSummaryList.Insert(i, salesDetailsSummary);
+                                    _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries, dbContext);
                                 }
+                                catch
+                                {
+
+                                }
+
+                                dbContext.Database.CommitTransaction();
+                                this.DialogResult = DialogResult.OK;
+                                //MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                await Reset();
                             }
                         }
-                        #endregion
-
-                        salesDetails = new SalesDetails();
-                        salesDetails.Id = SalesDetailsId;
-                        salesDetails.SalesId = _editedSalesMaster.Id;
-                        salesDetails.Category = Convert.ToInt32(grvPurchaseDetails.GetRowCellValue(i, colCategory).ToString());
-                        salesDetails.KapanId = grvPurchaseDetails.GetRowCellValue(i, colKapan).ToString();
-                        salesDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShapeId).ToString();
-                        salesDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
-                        salesDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
-                        if (grvPurchaseDetails.GetRowCellValue(i, colCharniSize) != null)
-                            salesDetails.CharniSizeId = grvPurchaseDetails.GetRowCellValue(i, colCharniSize).ToString();
-                        if (grvPurchaseDetails.GetRowCellValue(i, colGalaSize) != null)
-                            salesDetails.GalaSizeId = grvPurchaseDetails.GetRowCellValue(i, colGalaSize).ToString();
-                        if (grvPurchaseDetails.GetRowCellValue(i, colNumberSize) != null)
-                            salesDetails.NumberSizeId = grvPurchaseDetails.GetRowCellValue(i, colNumberSize).ToString();
-
-                        salesDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
-                        salesDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
-                        salesDetails.CVDWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCVDWeight).ToString());
-                        salesDetails.RejectedPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejPer).ToString());
-                        salesDetails.RejectedWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colRejCts).ToString());
-                        salesDetails.LessWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colLessCts).ToString());
-                        salesDetails.LessDiscountPercentage = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisPer).ToString());
-                        salesDetails.LessWeightDiscount = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colDisAmount).ToString());
-                        salesDetails.NetWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
-                        salesDetails.SaleRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
-                        salesDetails.CVDCharge = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDCharge).ToString());
-                        salesDetails.CVDAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCVDAmount).ToString());
-                        salesDetails.Amount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colAmount).ToString());
-                        salesDetails.CurrencyRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrRate).ToString());
-                        salesDetails.CurrencyAmount = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colCurrAmount).ToString());
-                        salesDetails.IsTransfer = false;
-                        salesDetails.TransferParentId = null;
-                        salesDetails.CreatedDate = DateTime.Now;
-                        salesDetails.CreatedBy = Common.LoginUserID;
-                        salesDetails.UpdatedDate = DateTime.Now;
-                        salesDetails.UpdatedBy = Common.LoginUserID;
-                        salesDetails.SalesDetailsSummary = salesDetailsSummaryList;
-
-                        salesDetailsList.Insert(i, salesDetails);
-                    }
-
-                    SalesMaster salesMaster = new SalesMaster();
-                    salesMaster.Id = _editedSalesMaster.Id;
-                    salesMaster.CompanyId = lueCompany.GetColumnValue("Id").ToString();
-                    salesMaster.BranchId = lueBranch.GetColumnValue("Id").ToString();
-                    salesMaster.PartyId = lueParty.GetColumnValue("Id").ToString();
-                    salesMaster.SalerId = lueSaler.GetColumnValue("Id").ToString();
-                    salesMaster.CurrencyId = lueCurrencyType.GetColumnValue("Id").ToString();
-                    //purchaseMaster.FinancialYearId = Common.LoginFinancialYear;
-                    salesMaster.BrokerageId = lueBroker.GetColumnValue("Id").ToString();
-                    salesMaster.CurrencyRate = Convert.ToDecimal(txtCurrencyType.Text);
-                    salesMaster.SaleBillNo = Convert.ToInt32(txtSerialNo.Text);
-                    salesMaster.SlipNo = Convert.ToInt32(txtSlipNo.Text);
-                    salesMaster.TransactionType = Convert.ToInt32(luePaymentMode.GetColumnValue("PTypeID"));
-                    salesMaster.Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
-                    salesMaster.Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
-                    salesMaster.DayName = Convert.ToDateTime(dtDate.EditValue).DayOfWeek.ToString();
-                    //purchaseMaster.PartyLastBalanceWhilePurchase = float.Parse(txtPartyBalance.Text);
-                    salesMaster.BrokerPercentage = Convert.ToDecimal(txtBrokerPercentage.Text);
-                    salesMaster.BrokerAmount = float.Parse(txtBrokerageAmount.Text);
-                    salesMaster.RoundUpAmount = float.Parse(txtRoundAmount.Text);
-                    salesMaster.Total = float.Parse(txtAmount.Text);
-                    salesMaster.GrossTotal = float.Parse(txtNetAmount.Text);
-                    salesMaster.DueDays = Convert.ToInt32(txtDays.Text);
-                    salesMaster.DueDate = Convert.ToDateTime(dtDate.Text).AddDays(Convert.ToInt32(txtDays.Text));
-                    salesMaster.PaymentDays = Convert.ToInt32(txtPaymentDays.Text);
-                    salesMaster.PaymentDueDate = Convert.ToDateTime(dtPayDate.Text);
-                    salesMaster.IsSlip = tglSlip.IsOn;
-                    salesMaster.IsPF = tglPF.IsOn;
-                    salesMaster.CommissionPercentage = Convert.ToDecimal(txtSalerCommisionPercentage.Text);
-                    salesMaster.CommissionAmount = float.Parse(txtCommisionAmount.Text);
-                    if (Image1.Image != null)
-                        salesMaster.Image1 = ImageToByteArray(Image1.Image);
-                    if (Image2.Image != null)
-                        salesMaster.Image2 = ImageToByteArray(Image2.Image);
-                    if (Image3.Image != null)
-                        salesMaster.Image3 = ImageToByteArray(Image3.Image);
-                    salesMaster.AllowSlipPrint = tglSlip.IsOn ? true : false;
-                    salesMaster.IsTransfer = false;
-                    salesMaster.TransferParentId = null;
-                    salesMaster.IsDelete = false;
-                    salesMaster.Remarks = txtRemark.Text;
-                    //purchaseMaster.CreatedDate = DateTime.Now;
-                    //purchaseMaster.CreatedBy = Common.LoginUserID;
-                    salesMaster.UpdatedDate = DateTime.Now;
-                    salesMaster.UpdatedBy = Common.LoginUserID;
-                    salesMaster.ApprovalType = 0;
-                    salesMaster.Message = "";
-                    salesMaster.SalesDetails = salesDetailsList;
-
-                    if (_slipTransferEntries.Count > 0)
-                    {
-                        salesMaster.TransferParentId = _slipTransferEntries[0].SrNo.ToString();
-                    }
-
-                    SalesMasterRepository salesMasterRepository = new SalesMasterRepository();
-                    var Result = await salesMasterRepository.UpdateSalesAsync(salesMaster);
-
-                    if (Result != null)
-                    {
-                        try
+                        catch (Exception Ex)
                         {
-                            foreach (var item in _slipTransferEntries)
-                            {
-                                item.PurchaseSaleId = Result.Id;
-                                //item.BranchId = Result.BranchId;
-                                //item.FinancialYearId = Result.FinancialYearId;
-                            }
-                            _ = await _slipTransferEntryRepository.UpdateSlipTransferEntryAsync(_slipTransferEntries);
+                            dbContext.Database.RollbackTransaction();
+                            MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                        catch
-                        {
-
-                        }
-
-                        this.DialogResult = DialogResult.OK;
-                        //MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        await Reset();
                     }
                 }
             }
@@ -2286,7 +2338,7 @@ namespace DiamondTrading.Transaction
                 this.Cursor = Cursors.Default;
             }
         }
-         
+
         public byte[] ImageToByteArray(System.Drawing.Image imageIn)
         {
             using (var ms = new MemoryStream())
@@ -2400,7 +2452,7 @@ namespace DiamondTrading.Transaction
             _editedSalesMaster = null;
             pnlStatus.Appearance.BackColor = Color.FromArgb(128, 128, 128);
             await GetSalesNo();
-            
+
             txtSlipNo.Select();
             txtSlipNo.Focus();
         }

@@ -132,6 +132,7 @@ namespace EFCore.SQL.Repository
                     getUser.AadharCardNo = userMaster.AadharCardNo;
                     getUser.UpdatedDate = userMaster.UpdatedDate;
                     getUser.UpdatedBy = userMaster.UpdatedBy;
+                    getUser.Password = userMaster.Password;
 
                     if (userMaster.UserPermissionChilds != null)
                     {

@@ -31,6 +31,7 @@ namespace DiamondTrading
         public static bool RememberComapnyYearSelection = false;
         public static string LoginCompany = "00000000-0000-0000-0000-000000000000";
         public static string LoginCompanyName = "Demo Company";
+        public static List<CompanyMaster> CurrentSelectedCompany = new List<CompanyMaster>();
 
         public static string LoginBranch = "00000000-0000-0000-0000-000000000000";
         public static string LoginBranchName = "Demo Branch";

@@ -1,10 +1,14 @@
-﻿using EFCore.SQL.Repository;
+﻿using DevExpress.XtraEditors;
+using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace DiamondTrading.Master
@@ -16,6 +20,7 @@ namespace DiamondTrading.Master
         private readonly List<CompanyMaster> _companyMasters;
         private CompanyMaster _EditedCompnayMasterSet;
         private string _selectedCompany;
+        DataTable dtCompanyPermissionDetails = new DataTable();
 
         public FrmCompanyMaster(List<CompanyMaster> companyMasters)
         {
@@ -35,8 +40,10 @@ namespace DiamondTrading.Master
 
         private async void frmCompanyMaster_Load(object sender, EventArgs e)
         {
+            GetCompanyPermissionDefaultDetails();
+
             await GetParentCompanyList();
-            
+
             if (string.IsNullOrEmpty(_selectedCompany) == false)
             {
                 _EditedCompnayMasterSet = _companyMasters.Where(c => c.Id == _selectedCompany).FirstOrDefault();
@@ -54,8 +61,53 @@ namespace DiamondTrading.Master
                     txtGSTNo.Text = _EditedCompnayMasterSet.GSTNo;
                     txtPancardNo.Text = _EditedCompnayMasterSet.PanCardNo;
                     txtRegistrationNo.Text = _EditedCompnayMasterSet.RegistrationNo;
+
+                    if (_EditedCompnayMasterSet.CompanyOptions.Count > 0)
+                    {
+                        for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                        {
+                            string PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                            string PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+
+                            var result = _EditedCompnayMasterSet.CompanyOptions.Where(x => x.PermissionGroupName == PermissionGroupName && x.PermissionName == PermissionName).FirstOrDefault();
+                            if(result != null)
+                            {
+                                grvCompanyAccessPermission.SetRowCellValue(i, colPurchaseIsCheck, result.IsPurchase);
+                                grvCompanyAccessPermission.SetRowCellValue(i, colSaleIsCheck, result.IsSales);
+                                grvCompanyAccessPermission.SetRowCellValue(i, colOtherIsCheck, result.IsOther);
+                            }
+                        }
+                    }
                 }
             }
+        }
+
+        private void GetCompanyPermissionDefaultDetails()
+        {
+            dtCompanyPermissionDetails = new DataTable();
+            dtCompanyPermissionDetails.Columns.Add("PermissionGroup", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("Permission", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("DisplayName", typeof(string));
+            dtCompanyPermissionDetails.Columns.Add("Purchase", typeof(bool)); 
+            dtCompanyPermissionDetails.Columns.Add("Sale", typeof(bool));
+            dtCompanyPermissionDetails.Columns.Add("Other", typeof(bool));
+
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Shape", "Shape", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Purity", "Purity", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Tip", "Tip", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD", "CVD", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "(-) Cts", "(-) Cts", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD A", "CVD A", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Number", "Number", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Category", "Category", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", "Kapan", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", "Charni Size", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", "Gala Size", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "AllowProcess", "Allow Process", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "KapanLagad", "Kapan Lagad", false, false, false);
+            dtCompanyPermissionDetails.Rows.Add("Other", "GSTBillPrint", "GST Bill Print", false, false, false);
+
+            grdCompanyAccessPermission.DataSource = dtCompanyPermissionDetails;
         }
 
         private async Task GetParentCompanyList()
@@ -132,6 +184,26 @@ namespace DiamondTrading.Master
                 {
                     string tempId = Guid.NewGuid().ToString();
 
+                    List<CompanyOptions> companyOptionsList = new List<CompanyOptions>();
+                    CompanyOptions companyOptions = new CompanyOptions();
+                    for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                    {
+                        companyOptions = new CompanyOptions();
+                        companyOptions.Id = Guid.NewGuid().ToString();
+                        companyOptions.CompanyMasterId = tempId;
+                        companyOptions.PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                        companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+                        companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
+                        companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.IsOther= Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colOtherIsCheck));
+                        companyOptions.PermissionStatus = true;
+                        companyOptions.CreatedBy = Common.LoginUserID;
+                        companyOptions.CreatedDate = DateTime.Now;
+                        companyOptions.UpdatedBy = Common.LoginUserID;
+                        companyOptions.UpdatedDate = DateTime.Now;
+                        companyOptionsList.Add(companyOptions);
+                    }
+
                     CompanyMaster companyMaster = new CompanyMaster
                     {
                         Id = tempId,
@@ -151,6 +223,7 @@ namespace DiamondTrading.Master
                         CreatedDate = DateTime.Now,
                         UpdatedBy = Common.LoginUserID,
                         UpdatedDate = DateTime.Now,
+                        CompanyOptions = companyOptionsList,
                     };
 
                     if (companyMaster.Type == Common.DefaultGuid)
@@ -202,6 +275,26 @@ namespace DiamondTrading.Master
                 }
                 else
                 {
+                    List<CompanyOptions> companyOptionsList = new List<CompanyOptions>();
+                    CompanyOptions companyOptions = new CompanyOptions();
+                    for (int i = 0; i < grvCompanyAccessPermission.RowCount; i++)
+                    {
+                        companyOptions = new CompanyOptions();
+                        companyOptions.Id = Guid.NewGuid().ToString();
+                        companyOptions.CompanyMasterId = _EditedCompnayMasterSet.Id;
+                        companyOptions.PermissionGroupName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionGroup).ToString();
+                        companyOptions.PermissionName = grvCompanyAccessPermission.GetRowCellValue(i, colPermissionName).ToString();
+                        companyOptions.IsPurchase = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colPurchaseIsCheck));
+                        companyOptions.IsSales = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colSaleIsCheck));
+                        companyOptions.IsOther = Convert.ToBoolean(grvCompanyAccessPermission.GetRowCellValue(i, colOtherIsCheck));
+                        companyOptions.PermissionStatus = true;
+                        companyOptions.CreatedBy = Common.LoginUserID;
+                        companyOptions.CreatedDate = DateTime.Now;
+                        companyOptions.UpdatedBy = Common.LoginUserID;
+                        companyOptions.UpdatedDate = DateTime.Now;
+                        companyOptionsList.Add(companyOptions);
+                    }
+
                     _EditedCompnayMasterSet.Type = lueCompanyType.EditValue.ToString();
                     _EditedCompnayMasterSet.Name = txtCompanyName.Text;
                     _EditedCompnayMasterSet.Address = txtAddress.Text;
@@ -215,6 +308,7 @@ namespace DiamondTrading.Master
                     _EditedCompnayMasterSet.RegistrationNo = txtRegistrationNo.Text;
                     _EditedCompnayMasterSet.UpdatedBy = Common.LoginUserID;
                     _EditedCompnayMasterSet.UpdatedDate = DateTime.Now;
+                    _EditedCompnayMasterSet.CompanyOptions = companyOptionsList;
 
                     if (_EditedCompnayMasterSet.Type == Common.DefaultGuid)
                         _EditedCompnayMasterSet.Type = null;
@@ -230,6 +324,7 @@ namespace DiamondTrading.Master
 
                 if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "["+this.Text+"]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
+                    await FrmMain.currentInstance.CheckPermission();
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -261,6 +356,86 @@ namespace DiamondTrading.Master
             }
 
             return true;
+        }
+
+        private void grvCompanyAccessPermission_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            if (e.Column == colPurchaseIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale"
+                    || grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+            else if (e.Column == colSaleIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+            else if (e.Column == colOtherIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() != "Other")
+                {
+                    e.Appearance.BackColor = Color.LightGray;
+                }
+            }
+        }
+
+        private void grvCompanyAccessPermission_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            //if (e.Column == colPurchaseIsCheck)
+            //{
+            //    if (grvCompanyAccessPermission.GetRowCellValue(e.RowHandle, colPermissionGroup).ToString() == "Sale")
+            //    {
+            //        e.RepositoryItem.ReadOnly = true;
+            //        e.RepositoryItem.Enabled = false;
+            //    }
+            //    else
+            //    {
+            //        e.RepositoryItem.ReadOnly = false;
+            //        e.RepositoryItem.Enabled = true;
+            //    }
+            //}
+        }
+
+        private void repositoryItemCheckEdit1_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
+            //{
+            //    if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale")
+            //    {
+            //        e.Cancel = true;
+            //    }
+            //}
+        }
+
+        private void grvCompanyAccessPermission_ShowingEditor(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (grvCompanyAccessPermission.FocusedColumn == colPurchaseIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Sale"
+                    || grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Cancel = true;
+                }
+            }
+            if (grvCompanyAccessPermission.FocusedColumn == colSaleIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() == "Other")
+                {
+                    e.Cancel = true;
+                }
+            }
+            else if (grvCompanyAccessPermission.FocusedColumn == colOtherIsCheck)
+            {
+                if (grvCompanyAccessPermission.GetRowCellValue(grvCompanyAccessPermission.FocusedRowHandle, colPermissionGroup).ToString() != "Other")
+                {
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }

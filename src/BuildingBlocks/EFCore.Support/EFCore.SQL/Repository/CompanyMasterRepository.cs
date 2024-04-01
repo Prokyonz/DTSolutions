@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace EFCore.SQL.Repository
 {
@@ -14,7 +15,7 @@ namespace EFCore.SQL.Repository
         private DatabaseContext _databaseContext;
         public CompanyMasterRepository()
         {
-            
+
         }
         public async Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster)
         {
@@ -63,7 +64,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).ToListAsync();
+                List<CompanyMaster> companyMasters = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).Include("CompanyOptions").ToListAsync();
                 return companyMasters;
             }
         }
@@ -81,9 +82,9 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s=>s.CompanyId).ToListAsync();
+                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s => s.CompanyId).ToListAsync();
 
-                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).ToListAsync();
+                return await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).Include("CompanyOptions").ToListAsync();
             }
         }
 
@@ -91,26 +92,35 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == companyMaster.Id).FirstOrDefaultAsync();
-                if (getCompany != null)
+                using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
-                    getCompany.Name = companyMaster.Name;
-                    getCompany.Address = companyMaster.Address;
-                    getCompany.Address2 = companyMaster.Address2;
-                    getCompany.MobileNo = companyMaster.MobileNo;
-                    getCompany.Details = companyMaster.Details;
-                    getCompany.TermsCondition = companyMaster.TermsCondition;
-                    getCompany.GSTNo = companyMaster.GSTNo;
-                    getCompany.PanCardNo = companyMaster.PanCardNo;
-                    getCompany.RegistrationNo = companyMaster.RegistrationNo;
-                    getCompany.Type = companyMaster.Type;
-                    getCompany.IsDelete = companyMaster.IsDelete;
-                    getCompany.CreatedDate = companyMaster.CreatedDate;
-                    getCompany.UpdatedDate = companyMaster.UpdatedDate;
-                    getCompany.CreatedBy = companyMaster.CreatedBy;
-                    getCompany.UpdatedBy = companyMaster.UpdatedBy;
+                    var getCompany = await _databaseContext.CompanyMaster.Where(s => s.Id == companyMaster.Id).FirstOrDefaultAsync();
+                    if (getCompany != null)
+                    {
+                        var getOldCompanyOptions = await _databaseContext.CompanyOptions.Where(w => w.CompanyMasterId == getCompany.Id).ToListAsync();
+                        _databaseContext.CompanyOptions.RemoveRange(getOldCompanyOptions);
+
+                        await _databaseContext.CompanyOptions.AddRangeAsync(companyMaster.CompanyOptions);
+
+                        getCompany.Name = companyMaster.Name;
+                        getCompany.Address = companyMaster.Address;
+                        getCompany.Address2 = companyMaster.Address2;
+                        getCompany.MobileNo = companyMaster.MobileNo;
+                        getCompany.Details = companyMaster.Details;
+                        getCompany.TermsCondition = companyMaster.TermsCondition;
+                        getCompany.GSTNo = companyMaster.GSTNo;
+                        getCompany.PanCardNo = companyMaster.PanCardNo;
+                        getCompany.RegistrationNo = companyMaster.RegistrationNo;
+                        getCompany.Type = companyMaster.Type;
+                        getCompany.IsDelete = companyMaster.IsDelete;
+                        getCompany.CreatedDate = companyMaster.CreatedDate;
+                        getCompany.UpdatedDate = companyMaster.UpdatedDate;
+                        getCompany.CreatedBy = companyMaster.CreatedBy;
+                        getCompany.UpdatedBy = companyMaster.UpdatedBy;
+                    }
+                    await _databaseContext.SaveChangesAsync();
+                    transactionScope.Complete();
                 }
-                await _databaseContext.SaveChangesAsync();
                 return companyMaster;
             }
         }

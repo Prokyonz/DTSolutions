@@ -1,3 +1,4 @@
+truncate table CompanyOptions
 truncate table KapanMaster
 truncate table  CurrencyMaster
 truncate table LessWeightDetails

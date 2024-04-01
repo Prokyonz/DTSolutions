@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Repository.Entities
 {
@@ -29,5 +30,26 @@ namespace Repository.Entities
         //Get list of Child Records.
         public virtual List<BranchMaster> BranchMasters { get; set; }
         public virtual List<PartyMaster> PartyMasters { get; set; }
+        public virtual List<CompanyOptions> CompanyOptions { get; set; }
+    }
+
+    public class CompanyOptions
+    {
+        public int Sr { get; set; }
+        [Key]
+        public string Id { get; set; }
+
+        [ForeignKey("CompanyMaster")]
+        public string CompanyMasterId { get; set; }
+        public bool IsPurchase { get; set; }
+        public bool IsSales { get; set; }
+        public bool IsOther { get; set; }
+        public string PermissionGroupName { get; set; }
+        public string PermissionName { get; set; }
+        public bool PermissionStatus { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
     }
 }

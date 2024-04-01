@@ -1,4 +1,5 @@
 ﻿using DevExpress.XtraEditors;
+using DevExpress.XtraTabbedMdi;
 using DiamondTrading.Master;
 using EFCore.SQL.Repository;
 using Repository.Entities;
@@ -17,11 +18,14 @@ namespace DiamondTrading
     public partial class FrmMain : DevExpress.XtraEditors.XtraForm
     {
         UserMasterRepository userMasterRepository;
+        bool IsAllowProcess = true;
+        public static FrmMain currentInstance;
         #region "FormEvents"
 
         public FrmMain()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            currentInstance = this;
         }
 
         private void accordionControlElement15_Click(object sender, EventArgs e)
@@ -35,8 +39,19 @@ namespace DiamondTrading
             OpenMasterDetailsForm("CompanyMaster");
         }
 
-        private async Task CheckPermission()
+        public async Task CheckPermission()
         {
+            if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+            {
+                var isAllowProcess = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Other" && x.PermissionName == "AllowProcess").FirstOrDefault();
+                if (isAllowProcess != null)
+                {
+                    if (isAllowProcess.IsOther)
+                        IsAllowProcess = true;
+                    else
+                        IsAllowProcess = false;
+                }
+            }
 
             userMasterRepository = new UserMasterRepository();
             Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
@@ -52,7 +67,7 @@ namespace DiamondTrading
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
-                    case "branch_master":                        
+                    case "branch_master":
                         accordionControlElementMaster.Visible = true;
                         accrdianElementBranchMaster.Visible = true;
                         barSubItem1.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -384,7 +399,7 @@ namespace DiamondTrading
                     case "profit_report":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem80.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
-                        break;                    
+                        break;
 
                     //Reports Menu - Slip Print
                     case "purchase_slip_print":
@@ -412,6 +427,20 @@ namespace DiamondTrading
                         barButtonItemStockReport.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                 }
+            }
+
+            if (!IsAllowProcess)
+            {
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 
         }
@@ -649,42 +678,63 @@ namespace DiamondTrading
 
         }
 
-        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private XtraMdiTabPage GetActiveTab(string title)
         {
-            //panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
+            XtraMdiTabPage tabPageToActivate = null;
+            foreach (XtraMdiTabPage tabPage in xtraTabbedMdiManager1.Pages)
             {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
+                if (tabPage.Text == "Purchase Details") // Replace "YourTabTitle" with the title of your tab
+                {
+                    tabPageToActivate = tabPage;
+                    break;
+                }
             }
 
-            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
-            frmMasterDetails.SelectedTabPage = "Purchase";
-            frmMasterDetails.MdiParent = this;
-            frmMasterDetails.Show();
-            frmMasterDetails.BringToFront();
+            return tabPageToActivate;
+        }
 
-            accordionControlElementMaster.Expanded = true;
+        private void barButtonItem23_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();                
+            //}
+            var tab = GetActiveTab("Purchase Details");
 
+            if (tab == null)
+            {
+                FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+                frmMasterDetails.SelectedTabPage = "Purchase";
+                frmMasterDetails.MdiParent = this;
+                frmMasterDetails.Show();
+                frmMasterDetails.BringToFront();
+
+                accordionControlElementMaster.Expanded = true;
+            } else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
             //OpenMasterDetailsForm("Purchase");
         }
 
         private void barButtonItem24_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
             frmMasterDetails.SelectedTabPage = "Sales";
@@ -909,15 +959,15 @@ namespace DiamondTrading
         private void OpenTransactionDetailsForm(string PageRequested)
         {
             panelControl1.SendToBack();
-            FrmTransactionDetails page = Application.OpenForms["FrmTransactionDetails"] as FrmTransactionDetails;
-            if (page != null)
-            {
-                page.Close();
-                //barManager1.ForceInitialize();
-                //page.SelectedTabPage = PageRequested;
-                //page.ActiveTab();
-                //page.BringToFront();
-            }
+            //FrmTransactionDetails page = Application.OpenForms["FrmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //    //barManager1.ForceInitialize();
+            //    //page.SelectedTabPage = PageRequested;
+            //    //page.ActiveTab();
+            //    //page.BringToFront();
+            //}
 
             FrmTransactionDetails frmTransactionDetails = new FrmTransactionDetails();
             frmTransactionDetails.SelectedTabPage = PageRequested;

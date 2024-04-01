@@ -118,13 +118,40 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId)
+        public async Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId, DatabaseContext _databaseContext = null)
+        {
+            try
+            {
+                if (_databaseContext != null)
+                {
+                    return await GetAssortmentSendToDetail(companyId, branchId, financialYearId, _databaseContext);
+                }
+                else
+                {
+                    using (_databaseContext = new DatabaseContext())
+                    {
+                        return await GetAssortmentSendToDetail(companyId, branchId, financialYearId, _databaseContext);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        private async Task<List<AssortmentProcessSend>> GetAssortmentSendToDetail(string companyId, string branchId, string financialYearId, DatabaseContext _databaseContext)
+        {
+            return await _databaseContext.SPAssortmentProcessSend.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+        }
+
+        public List<AssortmentProcessSend> GetAssortmentSendToDetails1(string companyId, string branchId, string financialYearId)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var data = await _databaseContext.SPAssortmentProcessSend.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToListAsync();
+                    var data = _databaseContext.SPAssortmentProcessSend.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "', '" + branchId + "','" + financialYearId + "'").ToList();
 
                     return data;
                 }
@@ -133,7 +160,6 @@ namespace EFCore.SQL.Repository
             {
                 throw;
             }
-
         }
 
         public async Task<List<AccountToAssortSendReceiveReportModel>> GetAccountToAssortSendReportAsync(string companyId, string branchId, string financialYearId, int AccountToAssortType = 0)
