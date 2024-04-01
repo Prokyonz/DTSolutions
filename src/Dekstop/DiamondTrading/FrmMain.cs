@@ -37,6 +37,7 @@ namespace DiamondTrading
 
         private async Task CheckPermission()
         {
+
             userMasterRepository = new UserMasterRepository();
             Common.UserPermissionChildren = await userMasterRepository.GetUserPermissions(Common.LoginUserID);
 
