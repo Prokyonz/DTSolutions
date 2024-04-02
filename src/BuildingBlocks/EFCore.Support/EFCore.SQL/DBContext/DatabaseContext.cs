@@ -69,6 +69,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<UserCompanyMapping> UserCompanyMappings { get; set; }
         public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
         public virtual DbSet<CompanyOptions> CompanyOptions { get; set; }
+        public virtual DbSet<TransferDetails> TransferDetails { get; set; }
 
 
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
@@ -191,6 +192,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<BillPrintModel>().Property(c => c.Id).UseIdentityColumn();
             modelBuilder.Entity<UserCompanyMapping>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<CompanyOptions>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<TransferDetails>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();

@@ -9,7 +9,6 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-
         public string Id { get; set; }
         public int JangadNo { get; set; }
         public string Date { get; set; }
