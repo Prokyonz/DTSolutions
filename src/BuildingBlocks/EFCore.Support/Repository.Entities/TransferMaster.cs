@@ -29,5 +29,7 @@ namespace Repository.Entities
         public string CharniSizeId { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+
+        public virtual List<TransferDetails> TransferDetails { get; set; }
     }
 }

@@ -703,12 +703,37 @@ namespace DiamondTrading.Process
                 KapanMappingMaster kapanMappingMaster;
                 NumberProcessMaster numberProcessMaster;
                 OpeningStockMaster openingStockMaster;
+                List<TransferDetails> lstTransferDetails = new List<TransferDetails>();
 
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
                     string TransferEntryId = Guid.NewGuid().ToString();
                     DataView dtView = new DataView();
                     //string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
+
+                    TransferDetails transferDetails = new TransferDetails
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        TransferMasterId = TransferId,
+                        BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString(),
+                        ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString(),
+                        Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCarat)),
+                        Rate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate)),
+                        Amount = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colAmount)),
+
+                        ToCategory = grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString(),
+                        ToSizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString(),
+                        ToBranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString(),
+                        ToNumberIdORKapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString(),
+                        ToCarat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT)),
+                        ToRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT)),
+                        ToAmount = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colAmountT)),
+                        CreatedBy = Common.LoginUserID,
+                        CreatedDate = DateTime.Now,
+                    };
+
+                    lstTransferDetails.Add(transferDetails);
+
                     //Transfer From
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
@@ -1215,6 +1240,7 @@ namespace DiamondTrading.Process
                 transferMaster.CreatedBy = Common.LoginUserID;
                 transferMaster.UpdatedDate = DateTime.Now;
                 transferMaster.UpdatedBy = Common.LoginUserID;
+                transferMaster.TransferDetails = lstTransferDetails;
 
                 var Result = await _transferMasterRepository.AddTransferAsync(transferMaster);
 

@@ -11,6 +11,8 @@ namespace Repository.Entities
         public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
+
+        [ForeignKey("TransferMasterId")]
         public string TransferMasterId { get; set; }
         public string FromCategory { get; set; }
         public string BranchId { get; set; }

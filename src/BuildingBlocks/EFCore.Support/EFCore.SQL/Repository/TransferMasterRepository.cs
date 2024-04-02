@@ -16,7 +16,7 @@ namespace EFCore.SQL.Repository
 
         public TransferMasterRepository()
         {
-            
+
         }
 
         public async Task<List<TransferMaster>> GetAllTransferAsync()
@@ -31,16 +31,17 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                using (_databaseContext = new DatabaseContext())
-                {
-                    if (transferMaster.Id == null)
-                        transferMaster.Id = Guid.NewGuid().ToString();
+                _databaseContext.Database.BeginTransaction();
 
-                    await _databaseContext.TransferMaster.AddAsync(transferMaster);
-                    await _databaseContext.SaveChangesAsync();
+                if (transferMaster.Id == null)
+                    transferMaster.Id = Guid.NewGuid().ToString();
 
-                    return transferMaster;
-                }
+                await _databaseContext.TransferMaster.AddAsync(transferMaster);
+                await _databaseContext.SaveChangesAsync();
+
+                _databaseContext.Database.CommitTransaction();
+
+                return transferMaster;
             }
         }
 
@@ -68,15 +69,32 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var gettransfer = await _databaseContext.TransferMaster.Where(s => s.Id == transferMaster.Id).FirstOrDefaultAsync();
-                if (gettransfer != null)
+                await _databaseContext.Database.BeginTransactionAsync();
+                try
                 {
-                    //gettransfer.Name = transferMaster.Name;
-                    gettransfer.UpdatedDate = transferMaster.UpdatedDate;
-                    gettransfer.UpdatedBy = transferMaster.UpdatedBy;
+                    var gettransfer = await _databaseContext.TransferMaster.Where(s => s.Id == transferMaster.Id).FirstOrDefaultAsync();
+                    if (gettransfer != null)
+                    {
+                        //gettransfer.Name = transferMaster.Name;                    
+                        gettransfer.UpdatedDate = transferMaster.UpdatedDate;
+                        gettransfer.UpdatedBy = transferMaster.UpdatedBy;
+
+                        _databaseContext.TransferDetails.RemoveRange(gettransfer.TransferDetails);
+
+                        await _databaseContext.TransferDetails.AddRangeAsync(transferMaster.TransferDetails);
+                    }
+
+                    await _databaseContext.SaveChangesAsync();
+
+                    _databaseContext.Database.CommitTransaction();
+
+                    return transferMaster;
                 }
-                await _databaseContext.SaveChangesAsync();
-                return transferMaster;
+                catch (Exception)
+                {
+                    _databaseContext.Database.RollbackTransaction();
+                    throw;
+                }                                                
             }
         }
 
