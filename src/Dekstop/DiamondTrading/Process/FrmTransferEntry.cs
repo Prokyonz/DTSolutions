@@ -715,6 +715,7 @@ namespace DiamondTrading.Process
                     {
                         Id = Guid.NewGuid().ToString(),
                         TransferMasterId = TransferId,
+                        FromCategory = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString(),
                         BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString(),
                         ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString(),
                         Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCarat)),
@@ -730,6 +731,10 @@ namespace DiamondTrading.Process
                         ToAmount = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colAmountT)),
                         CreatedBy = Common.LoginUserID,
                         CreatedDate = DateTime.Now,
+                        Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                        Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),    
+                        UpdatedBy = Common.LoginUserID,
+                        UpdatedDate = DateTime.Now,
                     };
 
                     lstTransferDetails.Add(transferDetails);
@@ -811,9 +816,9 @@ namespace DiamondTrading.Process
                                     row["TransferEntryId"] = Guid.NewGuid().ToString();
                                 }
                             }
+                            dtView.RowFilter = "AdjustCarat > 0";
                         }
 
-                        dtView.RowFilter = "AdjustCarat > 0";
                         if (dtView.Count > 0)
                         {
                             foreach (DataRowView row in dtView)

@@ -29,19 +29,28 @@ namespace EFCore.SQL.Repository
 
         public async Task<TransferMaster> AddTransferAsync(TransferMaster transferMaster)
         {
-            using (_databaseContext = new DatabaseContext())
+            try
             {
-                _databaseContext.Database.BeginTransaction();
 
-                if (transferMaster.Id == null)
-                    transferMaster.Id = Guid.NewGuid().ToString();
 
-                await _databaseContext.TransferMaster.AddAsync(transferMaster);
-                await _databaseContext.SaveChangesAsync();
+                using (_databaseContext = new DatabaseContext())
+                {
+                    //_databaseContext.Database.BeginTransaction();
 
-                _databaseContext.Database.CommitTransaction();
+                    if (transferMaster.Id == null)
+                        transferMaster.Id = Guid.NewGuid().ToString();
 
-                return transferMaster;
+                    await _databaseContext.TransferMaster.AddAsync(transferMaster);
+                    await _databaseContext.SaveChangesAsync();
+
+                    //_databaseContext.Database.CommitTransaction();
+
+                    return transferMaster;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 
@@ -94,7 +103,7 @@ namespace EFCore.SQL.Repository
                 {
                     _databaseContext.Database.RollbackTransaction();
                     throw;
-                }                                                
+                }
             }
         }
 

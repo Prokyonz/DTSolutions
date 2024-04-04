@@ -32,7 +32,7 @@ namespace Repository.Entities
         public double ToRate { get; set; }
         public double ToAmount { get; set; }
         public string Date { get; set; }
-        public string Time { get; set; }
+        public string Time { get; set; }        
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
