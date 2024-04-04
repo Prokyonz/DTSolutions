@@ -188,7 +188,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        this.loading = true;
+        this.loading = false;
         //this.groupDataByCategory();
       }
     },(ex: any) => {
