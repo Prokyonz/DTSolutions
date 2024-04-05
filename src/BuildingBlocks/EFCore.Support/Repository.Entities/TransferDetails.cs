@@ -16,6 +16,7 @@ namespace Repository.Entities
         public string TransferMasterId { get; set; }
         public string FromCategory { get; set; }
         public string BranchId { get; set; }
+        public string FromNumberIdORKapanId { get; set; }
         public string ShapeId { get; set; }
         public decimal Carat { get; set; }
 

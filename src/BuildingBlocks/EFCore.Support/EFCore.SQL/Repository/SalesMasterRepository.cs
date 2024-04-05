@@ -114,6 +114,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
+                //return await _databaseContext.SalesMaster.Where(s => s.IsDelete == false && s.Id == salesId).Include("SalesDetails").Include("SalesDetailsSummary").FirstOrDefaultAsync();
                 return await _databaseContext.SalesMaster.Where(s => s.IsDelete == false && s.Id == salesId).Include("SalesDetails").FirstOrDefaultAsync();
             }
         }

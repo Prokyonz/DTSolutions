@@ -715,7 +715,8 @@ namespace DiamondTrading.Process
                     {
                         Id = Guid.NewGuid().ToString(),
                         TransferMasterId = TransferId,
-                        FromCategory = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString(),
+                        FromCategory = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString(),
+                        FromNumberIdORKapanId = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString(),
                         BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString(),
                         ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString(),
                         Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCarat)),
