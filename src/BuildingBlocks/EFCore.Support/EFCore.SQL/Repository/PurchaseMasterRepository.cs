@@ -22,7 +22,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.SlipNo == purchaseMaster.SlipNo && w.CompanyId == purchaseMaster.CompanyId && 
+                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.SlipNo == purchaseMaster.SlipNo && w.CompanyId == purchaseMaster.CompanyId &&
                 w.FinancialYearId == purchaseMaster.FinancialYearId && !w.IsDelete).FirstOrDefaultAsync();
                 if (existingSlipNo != null)
                     throw new Exception("Slipno already exist. You can not enter same slipno again.");
@@ -53,7 +53,9 @@ namespace EFCore.SQL.Repository
                     if (record.Any())
                     {
                         return false;
-                    } else { 
+                    }
+                    else
+                    {
                         if (isPermanantDetele)
                             _databaseContext.PurchaseMaster.Remove(getPurchase);
                         else
@@ -147,12 +149,20 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<PurchaseSPModel>> GetPurchaseReport(string companyId, string financialYearId, string currentWeek=null, string fromDate = null, string toDate = null)
+        public async Task<List<PurchaseSPModel>> GetPurchaseReport(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null)
         {
-            using (_databaseContext = new DatabaseContext())
+            try
             {
-                var purchaseReport = await _databaseContext.SPPurchaseModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "','" + currentWeek + "', '"+ fromDate +"', '"+ toDate +"'").ToListAsync();
-                return purchaseReport;
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var purchaseReport = await _databaseContext.SPPurchaseModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "','" + currentWeek + "', '" + fromDate + "', '" + toDate + "'").ToListAsync();
+                    return purchaseReport;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
 
@@ -178,7 +188,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == purchaseMaster.CompanyId 
+                var existingSlipNo = await _databaseContext.PurchaseMaster.Where(w => w.CompanyId == purchaseMaster.CompanyId
                 && w.FinancialYearId == purchaseMaster.FinancialYearId && !w.IsDelete
                 && w.SlipNo == purchaseMaster.SlipNo && w.Id != purchaseMaster.Id).FirstOrDefaultAsync();
                 if (existingSlipNo != null)
@@ -269,7 +279,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getPFRecord = await _databaseContext.SPPFReportModels.FromSqlRaw($"GetPFReport '" + companyId + "', '" + financialYearId + "', '"+ PFType +"'").ToListAsync();
+                var getPFRecord = await _databaseContext.SPPFReportModels.FromSqlRaw($"GetPFReport '" + companyId + "', '" + financialYearId + "', '" + PFType + "'").ToListAsync();
                 return getPFRecord;
             }
         }

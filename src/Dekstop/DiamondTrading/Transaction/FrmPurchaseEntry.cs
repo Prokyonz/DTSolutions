@@ -945,6 +945,15 @@ namespace DiamondTrading.Transaction
                 //    txtDueDays.Focus();
                 //}                    
             }
+
+            if (!colTipWeight.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colTipWeight, 0);
+
+            if (!colCVDCharge.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDCharge, 0);
+
+            if (!colLessCts.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colLessCts, 0);
         }
 
         private async Task GetLessWeightDetailBasedOnCity(string GroupName, decimal Weight, int GridRowIndex, decimal TipWeight, decimal CVDWeight)
