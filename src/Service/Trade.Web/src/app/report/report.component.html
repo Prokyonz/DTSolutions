@@ -27,8 +27,7 @@
         [rowsPerPageOptions]="[5, 10, 25, 50]"        
         [scrollable]="true"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
-        [globalFilterFields]="filterColumn"
-        >
+        [globalFilterFields]="filterColumn">
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
             <div class="flex">
@@ -108,11 +107,15 @@
                             <span *ngIf="item.displayName == 'Total' && item.dataType == 'numeric'">
                                     {{  purchase[item.fieldName] | number: '1.0-0': 'en-IN' }} 
                             </span>
+                            <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export'">
+                                <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2" pTooltip="XLS" (click) = "exportLedger(rowIndex,purchase)" tooltipPosition="bottom"></button>
+                            </span>
                             <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
                                 {{  formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }} 
                             </span>
+                         
                             <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                            && item.displayName.indexOf('Rate') === -1 && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }}</span>                    
+                          && item.dataType !== 'icon' && item.displayName.indexOf('Rate') === -1 && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }}</span>                    
                         </td>
                     </ng-container>
                 </ng-container>
@@ -150,7 +153,8 @@
                                         <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
                                             {{  formatIndianNumber(rowData[item.fieldName]) }} 
                                         </span>
-                                        <span *ngIf="item.dataType !== 'Date' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1">{{ rowData[item.fieldName] }}</span>                    
+                                     
+                                        <span *ngIf="item.dataType !== 'Date' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{ rowData[item.fieldName] }}</span>                    
                                     </td>
                                     </ng-container>
                             </tr>

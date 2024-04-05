@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ɵpublishDefaultGlobalUtils } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmEventType, ConfirmationService } from 'primeng/api';
 import { Table } from 'primeng/table';
@@ -62,7 +62,6 @@ export class ReportComponent implements OnInit {
         this.isChildReport = true;
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_approval")
           .subscribe((data: any) => {
-            debugger;
             this.isApproveButton = data.success;
 
             this.columnArray = [
@@ -128,7 +127,6 @@ export class ReportComponent implements OnInit {
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=payment_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
-            debugger;
             this.columnArray = [
               { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
               { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
@@ -240,6 +238,7 @@ export class ReportComponent implements OnInit {
           { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
           { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
           { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
+          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" } // New column for export icon
         ];
         break;
       case 11:
@@ -759,6 +758,7 @@ export class ReportComponent implements OnInit {
           this.loading = true;
           this.sharedService.customGetApi("Report/GetLedgerDetail?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&ledgerId=" + itemData.ledgerId)
             .subscribe((data: any) => {
+              debugger;
               this.childColumnArray = [
                 { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
                 { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
@@ -892,7 +892,7 @@ export class ReportComponent implements OnInit {
     //   this.saveAsExcelFile(excelBuffer, 'report');
     // });
 
-   
+
 
     let exportColumns: any[];
     let colArray: any[] = [];
@@ -1165,7 +1165,7 @@ export class ReportComponent implements OnInit {
     }
     exportColumns = colArray.map((col) => (col.fieldName));
 
-    
+
     // Get filtered data from the grid (assuming the grid has a method to get filtered data)
 
     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
@@ -1173,17 +1173,16 @@ export class ReportComponent implements OnInit {
     }
 
     // Calculate footer totals
- const footerTotals : any = [];
- 
- for (const col of this.columnArray) {    
-  let m: any = {};  
-  if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total' ) {
-      debugger;
-      m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
-      m["value"] = this.calculateColumnSum(col.fieldName);
-      footerTotals.push(m);
+    const footerTotals: any = [];
+
+    for (const col of this.columnArray) {
+      let m: any = {};
+      if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total') {
+        m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
+        m["value"] = this.calculateColumnSum(col.fieldName);
+        footerTotals.push(m);
+      }
     }
-  }
 
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
@@ -1207,7 +1206,6 @@ export class ReportComponent implements OnInit {
       exportColumns.map((column) => item[column])
     );
 
-    debugger;
     const data = {
       "columnsHeaders": colArray.map((col) => (col.displayName)),
       "rowData": extractedData,
@@ -1520,17 +1518,17 @@ export class ReportComponent implements OnInit {
     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
       this.PurchaseReportList = this.dataTable.filteredValue;
     }
-        // Calculate footer totals
- const footerTotals : any = [];
- 
- for (const col of this.columnArray) {    
-  let m: any = {};  
-  if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total' ) {
-      m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
-      m["value"] = this.calculateColumnSum(col.fieldName);
-      footerTotals.push(m);
+    // Calculate footer totals
+    const footerTotals: any = [];
+
+    for (const col of this.columnArray) {
+      let m: any = {};
+      if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total') {
+        m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
+        m["value"] = this.calculateColumnSum(col.fieldName);
+        footerTotals.push(m);
+      }
     }
-  }
     exportColumns = colArray.map((col) => (col.fieldName));
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
@@ -1559,7 +1557,6 @@ export class ReportComponent implements OnInit {
       "rowData": extractedData,
       "footerTotals": footerTotals
     };
-    debugger;
 
     this.loading = true;
     this.sharedService.customPostApi("Report/downloadpdf", data)
@@ -1593,6 +1590,107 @@ export class ReportComponent implements OnInit {
       });
   }
 
+  exportLedger(rowIndex: number, itemData: any) {
+    this.loading = true;
+    let exportColumns: any[];
+    this.sharedService.customGetApi("Report/GetLedgerDetail?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&ledgerId=" + itemData.ledgerId)
+      .subscribe((data: any) => {
+        debugger;
+        this.childColumnArray = [
+          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+          { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
+          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
+          { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit" },
+          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit" },
+        ];
+        this.childReportList = data.data;
+
+        this.childTotalColumn = this.childColumnArray.length;
+        console.log(data.data);
+      }, (ex: any) => {
+        this.loading = false;
+        this.showMessage('error', ex);
+      })
+
+    exportColumns = this.childColumnArray.map((col) => (col.fieldName));
+
+    // Get filtered data from the grid (assuming the grid has a method to get filtered data)
+    if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+      this.childReportList = this.dataTable.filteredValue;
+    }
+
+    // Calculate footer totals
+    const footerTotals: any = [];
+
+    for (const col of this.childColumnArray) {
+      let m: any = {};
+      if (col.fieldName === 'debit' || col.fieldName === 'credit') {
+        m["key"] = this.childColumnArray.find(x => x.fieldName === col.fieldName)?.displayName;
+        m["value"] = this.calculateChildColumnSum(col.fieldName);
+        footerTotals.push(m);
+      }
+    }
+    const formatDate = (dateString: string) => {
+      const date = new Date(dateString);
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const year = date.getFullYear();
+      return `${month}-${day}-${year}`;
+    };
+
+    let extractedData: any[] = this.childReportList.map((item) => {
+      const formattedItem = { ...item };
+      for (const key in formattedItem) {
+        if (formattedItem.hasOwnProperty(key) && this.isISODateString(formattedItem[key])) {
+          formattedItem[key] = formatDate(formattedItem[key]);
+        }
+      }
+      return formattedItem;
+    });
+
+    extractedData = extractedData.map((item) =>
+      exportColumns.map((column) => item[column])
+    );
+
+    const data = {
+      "columnsHeaders": this.childColumnArray.map((col) => (col.displayName)),
+      "rowData": extractedData,
+      "footerTotals": footerTotals  // Include footer totals in the data
+    };
+    this.loading = true;
+    this.sharedService.customPostApi("Report/downloadexcel", data)
+      .subscribe((data: any) => {
+        const options: DownloadFileOptions = {
+          path: this.PageTitle.replaceAll(" ", '') + ".csv",
+          url: data.data,
+          directory: Directory.Documents,
+        };
+
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            // Check downloadResult for success
+            if (downloadResult) {
+              alert("File downloaded successfully.");
+            } else {
+              alert("File download failed.");
+            }
+            this.loading = false;
+          })
+          .catch(ex => {
+            console.error("Error downloading file:", ex);
+            this.loading = false;
+            alert(ex);
+          });
+        this.loading = false;
+      }, (ex: any) => {
+        this.loading = false;
+        alert(ex);
+      });
+  }
+
   isISODateString(value: any) {
     return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}$/.test(value);
   }
@@ -1601,13 +1699,22 @@ export class ReportComponent implements OnInit {
     this.messageService.add({ severity: type, summary: message });
   }
 
-// Inside your component class
-calculateColumnSum(columnName: string): number {
-  let sum = 0;
-  for (const item of this.PurchaseReportList) {
-    sum +=  item[columnName];
+  // Inside your component class
+  calculateColumnSum(columnName: string): number {
+    let sum = 0;
+    for (const item of this.PurchaseReportList) {
+      sum += item[columnName];
+    }
+    return sum;
   }
-  return sum;
+
+  // Inside your component class
+  calculateChildColumnSum(columnName: string): number {
+    let sum = 0;
+    for (const item of this.childReportList) {
+      sum += item[columnName];
+    }
+    return sum;
   }
 
   getCompanyData() {
@@ -1628,9 +1735,9 @@ calculateColumnSum(columnName: string): number {
     this.ApproveRejectStatus = status;
   }
 
-  formatIndianNumber(amount: number, isSymbol : boolean = true): string {
+  formatIndianNumber(amount: number, isSymbol: boolean = true): string {
     const formatter = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 });
-    return isSymbol? '₹' + formatter.format(amount) : formatter.format(amount);
+    return isSymbol ? '₹' + formatter.format(amount) : formatter.format(amount);
   }
 
   onApproveReject() {
