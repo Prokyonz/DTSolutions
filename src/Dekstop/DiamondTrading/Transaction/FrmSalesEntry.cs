@@ -84,7 +84,7 @@ namespace DiamondTrading.Transaction
             _slipTransferEntries = new List<SlipTransferEntry>();
             SetThemeColors(Color.FromArgb(215, 246, 214));
 
-            FillCombos();
+            await FillCombos();
 
             await LoadCompany();
 
@@ -253,6 +253,8 @@ namespace DiamondTrading.Transaction
                                     grvPurchaseDetails.SetFocusedRowCellValue(colCurrAmount, EditedSalesDetails[i].CurrencyAmount);
                                     grvPurchaseDetails.UpdateCurrentRow();
                                 }
+
+                                txtCurrencyAmount.Text = GetCurrencyTotalAmount((decimal)_editedSalesMaster.GrossTotal).ToString("0.00");
                             }
                             catch (Exception Ex)
                             {
@@ -374,7 +376,7 @@ namespace DiamondTrading.Transaction
                 txtBrokerPercentage.BackColor = color;
             }
         }
-        private async void FillCombos()
+        private async Task FillCombos()
         {
             //dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
@@ -2425,7 +2427,7 @@ namespace DiamondTrading.Transaction
             lueSaler.EditValue = "";
             lueParty.EditValue = "";
             lueBroker.EditValue = "";
-            FillCombos();
+            await FillCombos();
             //FillBranches();
             await FillCurrency();
             txtRemark.Text = "";
