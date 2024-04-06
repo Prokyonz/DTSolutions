@@ -25,6 +25,7 @@ namespace DiamondTrading
 
         private void btnApply_Click(object sender, EventArgs e)
         {
+            EnableDisableApplyButton(true);
             SaveSettings();
             EnableDisableApplyButton(false);
         }
@@ -145,6 +146,46 @@ namespace DiamondTrading
         }
 
         private void txtSlipPrinterName_TextChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtDayHours_EditValueChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtPlusOTHourRate_EditValueChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtMinusOTHourRate_EditValueChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void rdbDays_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void rdbHours_CheckedChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtDayHours_TextChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtPlusOTHourRate_TextChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void txtMinusOTHourRate_TextChanged(object sender, EventArgs e)
         {
             EnableDisableApplyButton(true);
         }

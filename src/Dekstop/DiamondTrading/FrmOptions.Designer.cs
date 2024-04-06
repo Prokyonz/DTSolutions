@@ -50,11 +50,11 @@ namespace DiamondTrading
             this.chkAllowToSelectPaymentDueDate = new DevExpress.XtraEditors.CheckEdit();
             this.chkPrintSlip = new DevExpress.XtraEditors.CheckEdit();
             this.xtabOther = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.txtSlipPrinterName = new DevExpress.XtraEditors.TextEdit();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
-            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
-            this.txtSlipPrinterName = new DevExpress.XtraEditors.TextEdit();
             this.billPrintModelTableAdapter1 = new DiamondTrading.karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
@@ -159,6 +159,7 @@ namespace DiamondTrading
             this.txtMinusOTHourRate.Properties.MaskSettings.Set("mask", "f");
             this.txtMinusOTHourRate.Size = new System.Drawing.Size(58, 20);
             this.txtMinusOTHourRate.TabIndex = 8;
+            this.txtMinusOTHourRate.TextChanged += new System.EventHandler(this.txtMinusOTHourRate_TextChanged);
             // 
             // labelControl3
             // 
@@ -183,6 +184,7 @@ namespace DiamondTrading
             this.txtPlusOTHourRate.Properties.MaskSettings.Set("mask", "f");
             this.txtPlusOTHourRate.Size = new System.Drawing.Size(58, 20);
             this.txtPlusOTHourRate.TabIndex = 6;
+            this.txtPlusOTHourRate.TextChanged += new System.EventHandler(this.txtPlusOTHourRate_TextChanged);
             // 
             // labelControl2
             // 
@@ -207,6 +209,7 @@ namespace DiamondTrading
             this.txtDayHours.Properties.MaskSettings.Set("mask", "f");
             this.txtDayHours.Size = new System.Drawing.Size(58, 20);
             this.txtDayHours.TabIndex = 4;
+            this.txtDayHours.TextChanged += new System.EventHandler(this.txtDayHours_TextChanged);
             // 
             // labelControl1
             // 
@@ -228,6 +231,7 @@ namespace DiamondTrading
             this.rdbHours.TabIndex = 2;
             this.rdbHours.Text = "Hours";
             this.rdbHours.UseVisualStyleBackColor = true;
+            this.rdbHours.CheckedChanged += new System.EventHandler(this.rdbHours_CheckedChanged);
             // 
             // rdbDays
             // 
@@ -241,6 +245,7 @@ namespace DiamondTrading
             this.rdbDays.TabStop = true;
             this.rdbDays.Text = "Days";
             this.rdbDays.UseVisualStyleBackColor = true;
+            this.rdbDays.CheckedChanged += new System.EventHandler(this.rdbDays_CheckedChanged);
             // 
             // labelControl11
             // 
@@ -315,43 +320,6 @@ namespace DiamondTrading
             this.xtabOther.Size = new System.Drawing.Size(296, 321);
             this.xtabOther.Text = "Other";
             // 
-            // btnApply
-            // 
-            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnApply.Enabled = false;
-            this.btnApply.Location = new System.Drawing.Point(215, 350);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
-            this.btnApply.TabIndex = 9;
-            this.btnApply.Text = "&Apply";
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(134, 350);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 8;
-            this.btnCancel.Text = "&Cancel";
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(53, 350);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 7;
-            this.btnOk.Text = "&OK";
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
             // groupControl4
             // 
             this.groupControl4.Controls.Add(this.txtSlipPrinterName);
@@ -371,14 +339,54 @@ namespace DiamondTrading
             this.txtSlipPrinterName.TabIndex = 3;
             this.txtSlipPrinterName.TextChanged += new System.EventHandler(this.txtSlipPrinterName_TextChanged);
             // 
+            // btnApply
+            // 
+            this.btnApply.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnApply.Enabled = false;
+            this.btnApply.Location = new System.Drawing.Point(215, 350);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(75, 23);
+            this.btnApply.TabIndex = 9;
+            this.btnApply.Text = "&Apply";
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(134, 350);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 8;
+            this.btnCancel.Text = "&Cancel";
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnOk
+            // 
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(53, 350);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 23);
+            this.btnOk.TabIndex = 7;
+            this.btnOk.Text = "&OK";
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
             // billPrintModelTableAdapter1
             // 
             this.billPrintModelTableAdapter1.ClearBeforeFill = true;
             // 
             // FrmOptions
             // 
+            this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(298, 381);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
