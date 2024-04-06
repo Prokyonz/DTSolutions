@@ -11,6 +11,7 @@ namespace Repository.Entities.Model
         public string Name { get; set; }
         public string BranchName { get; set; }
         public string Party { get; set; }
+        public DateTime? Date { get; set; }
 
         [Column(TypeName = "decimal(18, 4)")]
         public decimal InwardNetWeight { get; set; }
@@ -54,6 +55,7 @@ namespace Repository.Entities.Model
     {
         public int Id { get; set; }
         public string OperationType { get; set; }
+        public DateTime? Date { get; set; }
         public string BranchName { get; set; }
         public string Number { get; set; }
         public string Size { get; set; }

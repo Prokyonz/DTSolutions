@@ -40,6 +40,7 @@ namespace DiamondTrading.Process
             this.gridColumn142 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn149 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colStockKapanDate = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardNetWeightCol = new DevExpress.XtraGrid.Columns.GridColumn();
             this.InwardRateCol = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -84,6 +85,7 @@ namespace DiamondTrading.Process
             this.gridColumn142,
             this.gridColumn149,
             this.gridColumn1,
+            this.colStockKapanDate,
             this.gridColumn2,
             this.InwardNetWeightCol,
             this.InwardRateCol,
@@ -130,12 +132,22 @@ namespace DiamondTrading.Process
             // 
             // gridColumn1
             // 
-            this.gridColumn1.Caption = "Operation Type";
+            this.gridColumn1.Caption = "OperationType/Party/Kapan";
             this.gridColumn1.FieldName = "Party";
             this.gridColumn1.Name = "gridColumn1";
             this.gridColumn1.Visible = true;
             this.gridColumn1.VisibleIndex = 2;
             this.gridColumn1.Width = 97;
+            // 
+            // colStockKapanDate
+            // 
+            this.colStockKapanDate.Caption = "Date";
+            this.colStockKapanDate.DisplayFormat.FormatString = "dd-MM-yyyy";
+            this.colStockKapanDate.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colStockKapanDate.FieldName = "Date";
+            this.colStockKapanDate.Name = "colStockKapanDate";
+            this.colStockKapanDate.Visible = true;
+            this.colStockKapanDate.VisibleIndex = 3;
             // 
             // gridColumn2
             // 
@@ -154,7 +166,7 @@ namespace DiamondTrading.Process
             this.InwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardNetWeight", "{0:0.##}")});
             this.InwardNetWeightCol.Visible = true;
-            this.InwardNetWeightCol.VisibleIndex = 3;
+            this.InwardNetWeightCol.VisibleIndex = 4;
             this.InwardNetWeightCol.Width = 83;
             // 
             // InwardRateCol
@@ -163,7 +175,7 @@ namespace DiamondTrading.Process
             this.InwardRateCol.FieldName = "InwardRate";
             this.InwardRateCol.Name = "InwardRateCol";
             this.InwardRateCol.Visible = true;
-            this.InwardRateCol.VisibleIndex = 4;
+            this.InwardRateCol.VisibleIndex = 5;
             this.InwardRateCol.Width = 69;
             // 
             // InwardAmountCol
@@ -174,7 +186,7 @@ namespace DiamondTrading.Process
             this.InwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "InwardAmount", "{0:0.##}")});
             this.InwardAmountCol.Visible = true;
-            this.InwardAmountCol.VisibleIndex = 5;
+            this.InwardAmountCol.VisibleIndex = 6;
             this.InwardAmountCol.Width = 81;
             // 
             // OutwardNetWeightCol
@@ -185,7 +197,7 @@ namespace DiamondTrading.Process
             this.OutwardNetWeightCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardNetWeight", "{0:0.##}")});
             this.OutwardNetWeightCol.Visible = true;
-            this.OutwardNetWeightCol.VisibleIndex = 6;
+            this.OutwardNetWeightCol.VisibleIndex = 7;
             this.OutwardNetWeightCol.Width = 89;
             // 
             // OutwardRateCol
@@ -194,7 +206,7 @@ namespace DiamondTrading.Process
             this.OutwardRateCol.FieldName = "OutwardRate";
             this.OutwardRateCol.Name = "OutwardRateCol";
             this.OutwardRateCol.Visible = true;
-            this.OutwardRateCol.VisibleIndex = 7;
+            this.OutwardRateCol.VisibleIndex = 8;
             this.OutwardRateCol.Width = 74;
             // 
             // OutwardAmountCol
@@ -205,7 +217,7 @@ namespace DiamondTrading.Process
             this.OutwardAmountCol.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OutwardAmount", "{0:0.##}")});
             this.OutwardAmountCol.Visible = true;
-            this.OutwardAmountCol.VisibleIndex = 8;
+            this.OutwardAmountCol.VisibleIndex = 9;
             this.OutwardAmountCol.Width = 89;
             // 
             // gcolClosingNetWeight
@@ -216,7 +228,7 @@ namespace DiamondTrading.Process
             this.gcolClosingNetWeight.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ClosingNetWeight", "{0:0.##}")});
             this.gcolClosingNetWeight.Visible = true;
-            this.gcolClosingNetWeight.VisibleIndex = 9;
+            this.gcolClosingNetWeight.VisibleIndex = 10;
             this.gcolClosingNetWeight.Width = 111;
             // 
             // gcolClosingRate
@@ -227,7 +239,7 @@ namespace DiamondTrading.Process
             this.gcolClosingRate.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Average, "ClosingRate", "{0:0.##}")});
             this.gcolClosingRate.Visible = true;
-            this.gcolClosingRate.VisibleIndex = 10;
+            this.gcolClosingRate.VisibleIndex = 11;
             this.gcolClosingRate.Width = 73;
             // 
             // gcolClosingAmount
@@ -238,7 +250,7 @@ namespace DiamondTrading.Process
             this.gcolClosingAmount.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "ClosingAmount", "{0:0.##}")});
             this.gcolClosingAmount.Visible = true;
-            this.gcolClosingAmount.VisibleIndex = 11;
+            this.gcolClosingAmount.VisibleIndex = 12;
             this.gcolClosingAmount.Width = 97;
             // 
             // repositoryItemComboBox2
@@ -329,5 +341,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn gcolClosingNetWeight;
         private DevExpress.XtraGrid.Columns.GridColumn gcolClosingRate;
         private DevExpress.XtraGrid.Columns.GridColumn gcolClosingAmount;
+        private DevExpress.XtraGrid.Columns.GridColumn colStockKapanDate;
     }
 }

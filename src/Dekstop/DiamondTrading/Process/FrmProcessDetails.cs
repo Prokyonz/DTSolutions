@@ -274,9 +274,20 @@ namespace DiamondTrading
                 {
                     if (IsForceLoad || _accountToAssortMasterRepository == null)
                     {
-                        stockReportModelReports = await LoadDataStock();
-                        numberReportModelReports = await LoadDataNumber();
+                        try
+                        {
+                            stockReportModelReports = await LoadDataStock();
+                        }catch (Exception ex)
+                        {
 
+                        }
+                        try
+                        {
+                            numberReportModelReports = await LoadDataNumber();
+                        }catch(Exception ex)
+                        {
+
+                        }
                         //Task<List<StockReportModelReport>> getKapanTask = LoadDataStock();
                         //Task<List<NumberReportModelReport>> getNumberTask = LoadDataNumber();
 
@@ -293,7 +304,7 @@ namespace DiamondTrading
                         decimal outwardWeight = 0;
                         decimal outwardRate = 0;
 
-                        if (stockReportModelReports.Count > 0)
+                        if (stockReportModelReports != null && stockReportModelReports.Count > 0)
                         {
                             inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
                             inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
@@ -311,7 +322,7 @@ namespace DiamondTrading
                         decimal outwardAmountN = 0;
                         decimal outwardWeightN = 0;
                         decimal outwardRateN = 0;
-                        if (numberReportModelReports.Count > 0)
+                        if (numberReportModelReports != null && numberReportModelReports.Count > 0)
                         {
                             inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
                             inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
