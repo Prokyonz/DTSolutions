@@ -29,8 +29,8 @@ namespace DiamondTrading
         /// </summary>
         private void InitializeComponent()
         {
+            DevExpress.XtraGrid.GridLevelNode gridLevelNode1 = new DevExpress.XtraGrid.GridLevelNode();
             DevExpress.XtraGrid.GridLevelNode gridLevelNode2 = new DevExpress.XtraGrid.GridLevelNode();
-            DevExpress.XtraGrid.GridLevelNode gridLevelNode3 = new DevExpress.XtraGrid.GridLevelNode();
             this.grdLessWeightGroupDetailMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdLessGroupWeightMaster = new DevExpress.XtraGrid.GridControl();
             this.grvLessGroupWeightMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -156,6 +156,8 @@ namespace DiamondTrading
             this.accordionExportToExcel = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
+            this.colSubTypeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMobileNo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessWeightGroupDetailMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdLessGroupWeightMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvLessGroupWeightMaster)).BeginInit();
@@ -219,10 +221,10 @@ namespace DiamondTrading
             // grdLessGroupWeightMaster
             // 
             this.grdLessGroupWeightMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode2.LevelTemplate = this.grdLessWeightGroupDetailMaster;
-            gridLevelNode2.RelationName = "Level1";
+            gridLevelNode1.LevelTemplate = this.grdLessWeightGroupDetailMaster;
+            gridLevelNode1.RelationName = "Level1";
             this.grdLessGroupWeightMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode2});
+            gridLevelNode1});
             this.grdLessGroupWeightMaster.Location = new System.Drawing.Point(0, 0);
             this.grdLessGroupWeightMaster.MainView = this.grvLessGroupWeightMaster;
             this.grdLessGroupWeightMaster.Name = "grdLessGroupWeightMaster";
@@ -350,10 +352,10 @@ namespace DiamondTrading
             // grdCompanyMaster
             // 
             this.grdCompanyMaster.Dock = System.Windows.Forms.DockStyle.Fill;
-            gridLevelNode3.LevelTemplate = this.grdChildCompanyMaster;
-            gridLevelNode3.RelationName = "Child";
+            gridLevelNode2.LevelTemplate = this.grdChildCompanyMaster;
+            gridLevelNode2.RelationName = "Child";
             this.grdCompanyMaster.LevelTree.Nodes.AddRange(new DevExpress.XtraGrid.GridLevelNode[] {
-            gridLevelNode3});
+            gridLevelNode2});
             this.grdCompanyMaster.Location = new System.Drawing.Point(0, 0);
             this.grdCompanyMaster.MainView = this.grvCompanyMaster;
             this.grdCompanyMaster.Name = "grdCompanyMaster";
@@ -1178,6 +1180,8 @@ namespace DiamondTrading
             this.colPartyStatus,
             this.colPartyName,
             this.colPartyType,
+            this.colSubTypeName,
+            this.colMobileNo,
             this.colPartyUpdatedDate});
             this.grvPartyMaster.GridControl = this.grdPartyMaster;
             this.grvPartyMaster.Name = "grvPartyMaster";
@@ -1198,8 +1202,6 @@ namespace DiamondTrading
             this.colPartyStatus.ColumnEdit = this.repositoryItemCheckEdit2;
             this.colPartyStatus.FieldName = "Status";
             this.colPartyStatus.Name = "colPartyStatus";
-            this.colPartyStatus.Visible = true;
-            this.colPartyStatus.VisibleIndex = 0;
             this.colPartyStatus.Width = 48;
             // 
             // repositoryItemCheckEdit2
@@ -1213,16 +1215,16 @@ namespace DiamondTrading
             this.colPartyName.FieldName = "Name";
             this.colPartyName.Name = "colPartyName";
             this.colPartyName.Visible = true;
-            this.colPartyName.VisibleIndex = 1;
+            this.colPartyName.VisibleIndex = 0;
             this.colPartyName.Width = 480;
             // 
             // colPartyType
             // 
-            this.colPartyType.Caption = "Type";
-            this.colPartyType.FieldName = "Type";
+            this.colPartyType.Caption = "Type Name";
+            this.colPartyType.FieldName = "TypeName";
             this.colPartyType.Name = "colPartyType";
             this.colPartyType.Visible = true;
-            this.colPartyType.VisibleIndex = 2;
+            this.colPartyType.VisibleIndex = 1;
             this.colPartyType.Width = 108;
             // 
             // colPartyUpdatedDate
@@ -1231,7 +1233,7 @@ namespace DiamondTrading
             this.colPartyUpdatedDate.FieldName = "UpdatedDate";
             this.colPartyUpdatedDate.Name = "colPartyUpdatedDate";
             this.colPartyUpdatedDate.Visible = true;
-            this.colPartyUpdatedDate.VisibleIndex = 3;
+            this.colPartyUpdatedDate.VisibleIndex = 2;
             this.colPartyUpdatedDate.Width = 92;
             // 
             // xtabUserMaster
@@ -1407,6 +1409,22 @@ namespace DiamondTrading
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
+            // 
+            // colSubTypeName
+            // 
+            this.colSubTypeName.Caption = "SubType Name";
+            this.colSubTypeName.FieldName = "SubTypeName";
+            this.colSubTypeName.Name = "colSubTypeName";
+            this.colSubTypeName.Visible = true;
+            this.colSubTypeName.VisibleIndex = 3;
+            // 
+            // colMobileNo
+            // 
+            this.colMobileNo.Caption = "MobileNo";
+            this.colMobileNo.FieldName = "MobileNo";
+            this.colMobileNo.Name = "colMobileNo";
+            this.colMobileNo.Visible = true;
+            this.colMobileNo.VisibleIndex = 4;
             // 
             // FrmMasterDetails
             // 
@@ -1607,5 +1625,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn16;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionExportToExcel;
         private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSubTypeName;
+        private DevExpress.XtraGrid.Columns.GridColumn colMobileNo;
     }
 }

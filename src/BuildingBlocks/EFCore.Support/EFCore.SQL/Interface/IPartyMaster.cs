@@ -10,6 +10,7 @@ namespace EFCore.SQL.Interface
     {
         Task<List<PartyMaster>> GetAllPartyAsync();
         Task<List<PartyMaster>> GetAllPartyAsync(string companyId);
+        Task<List<SPPartyMaster>> GetPartyMasterAsync(string companyId);
         Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partyTypeMaster);
         Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int[] partyTypeMaster);
         Task<decimal> GetPartyBalance(string partyId, string companyId, string financialYearId);

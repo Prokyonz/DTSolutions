@@ -400,7 +400,7 @@ namespace DiamondTrading
                 {
                     _partyMasterRepository = new PartyMasterRepository();
                     _partyMaster = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
-                    grdPartyMaster.DataSource = _partyMaster;
+                    grdPartyMaster.DataSource = await _partyMasterRepository.GetPartyMasterAsync(Common.LoginCompany);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)

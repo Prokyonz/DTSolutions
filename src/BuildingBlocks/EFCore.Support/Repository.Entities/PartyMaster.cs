@@ -38,4 +38,40 @@ namespace Repository.Entities
         [ForeignKey("CompanyId")]
         public virtual CompanyMaster CompanyMaster { get; set; }
     }
+
+    public class SPPartyMaster
+    {
+        public int Sr { get; }        
+        public string Id { get; set; }
+        public string CompanyId { get; set; }
+        public string BrokerageId { get; set; }
+        public int Type { get; set; }
+        public int SubType { get; set; }
+        public string Name { get; set; }
+        public string ShortName { get; set; }
+        public string EmailId { get; set; }
+        public string Address { get; set; }
+        public string Address2 { get; set; }
+        public string MobileNo { get; set; }
+        public string OfficeNo { get; set; }
+        public string GSTNo { get; set; }
+        public string AadharCardNo { get; set; }
+        public string PancardNo { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Salary { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal OpeningBalance { get; set; }
+        public bool IsDelete { get; set; }
+        public bool Status { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
+        public string CreatedBy { get; set; }
+        public string UpdatedBy { get; set; }
+        public int CRDRType { get; set; } // 0-Debit, 1-Credit
+        public string TypeName { get; set; }
+        public string SubTypeName { get; set; }
+
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Balance { get; set; }
+    }
 }

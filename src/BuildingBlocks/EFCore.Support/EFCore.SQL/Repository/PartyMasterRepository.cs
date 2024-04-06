@@ -79,6 +79,15 @@ namespace EFCore.SQL.Repository
             return partyMasters;
         }
 
+        public async Task<List<SPPartyMaster>> GetPartyMasterAsync(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.SPPartyMaster.FromSqlRaw($"GetPartyMasterReport '" + companyId + "'").ToListAsync();
+                return result;
+            }
+        }
+
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId)
         {
             List<PartyMaster> partyMasters;
