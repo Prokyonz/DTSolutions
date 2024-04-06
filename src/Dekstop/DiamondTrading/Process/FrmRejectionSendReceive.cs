@@ -148,6 +148,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("Amount");
             dt.Columns.Add("SlipNo1");
             dt.Columns.Add("ProcessType");
+            dt.Columns.Add("LessWeight");
             return dt;
         }
 
@@ -278,6 +279,7 @@ namespace DiamondTrading.Process
                         rejectionInOutMaster.UpdatedBy = Common.LoginUserID;
                         rejectionInOutMaster.ProcessType = grvParticularsDetails.GetRowCellValue(i, colProcessType).ToString();
                         rejectionInOutMaster.KapanId = grvParticularsDetails.GetRowCellValue(i, colkapanId).ToString();
+                        rejectionInOutMaster.LessWeight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colLessWeight).ToString());
 
                         var Result = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster);
                         IsSuccess = true;
