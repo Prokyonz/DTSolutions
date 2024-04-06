@@ -27,6 +27,7 @@ namespace DiamondTrading
         #region "CompanyYearSelection"
         public const string RememberCompanyYearSelection = "RememberCompanyYearSelection";
         public const string TranscationDateSelection = "TranscationDateSelection";
+        public const string StockTransferDateSelection = "StockTransferDateSelection";
         public const string PurchaseDateSelection = "PurchaseDateSelection";
         public const string SalesDateSelection = "SalesDateSelection";
         public const string LoginCompany = "LoginCompany";

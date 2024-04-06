@@ -35,7 +35,21 @@ namespace DiamondTrading.Process
 
         private void FrmTransferEntry_Load(object sender, EventArgs e)
         {
-            dtDate.EditValue = DateTime.Now;
+            string lastselectedDate = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.StockTransferDateSelection, "");
+            if (string.IsNullOrEmpty(lastselectedDate))
+                dtDate.EditValue = DateTime.Now;
+            else
+            {
+                try
+                {
+                    dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
+                }
+                catch (Exception)
+                {
+                    dtDate.EditValue = DateTime.Now;
+                }
+            }
+
             dtTime.EditValue = DateTime.Now;
             timer1.Start();
 
@@ -692,6 +706,7 @@ namespace DiamondTrading.Process
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.StockTransferDateSelection, dtDate.DateTime.ToString());
 
                 if (!CheckValidation())
                     return;
