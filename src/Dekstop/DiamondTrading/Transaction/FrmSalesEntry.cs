@@ -885,6 +885,7 @@ namespace DiamondTrading.Transaction
                             SlipNo = g.SlipNo
                         }).GroupBy(r => new
                         {
+                            r.Id,
                             r.Kapan,
                             r.KapanId,
                             r.Purity,
