@@ -211,7 +211,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _purchaseMaster.GetPurchaseTotal(CompanyId, FinancialYearId, null, FromDate.Date.ToString("yyyy-MM-dd"), ToDate.ToString("yyyy-MM-dd"));
+                var result = await _purchaseMaster.GetPurchaseTotal(CompanyId, FinancialYearId, "", FromDate.Date.ToString("yyyy-MM-dd"), ToDate.ToString("yyyy-MM-dd"));
 
                 return new Response<dynamic>
                 {

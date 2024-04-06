@@ -151,7 +151,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<DashboardSPModel> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null)
+        public async Task<DashboardSPModel> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = "", string fromDate = null, string toDate = null)
         {
             using (_databaseContext = new DatabaseContext())
             {
