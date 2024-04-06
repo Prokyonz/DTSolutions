@@ -75,7 +75,7 @@ export class ReportComponent implements OnInit {
               { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
               { "displayName": "Buy Rate", "dataType": "numeric", "fieldName": "buyingRate" },
               { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
               { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount" },
               { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
               { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
@@ -112,7 +112,7 @@ export class ReportComponent implements OnInit {
               { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
               { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
               { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
               { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
               { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
@@ -913,7 +913,7 @@ export class ReportComponent implements OnInit {
           { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
           { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
           { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
           { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
         ];
         break;
@@ -932,7 +932,7 @@ export class ReportComponent implements OnInit {
           { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
           { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
           { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
           { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
           { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
@@ -1264,7 +1264,7 @@ export class ReportComponent implements OnInit {
           { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
           { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
           { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
           { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
         ];
         break;
@@ -1283,7 +1283,7 @@ export class ReportComponent implements OnInit {
           { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
           { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
           { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" },
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
           { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
           { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
           // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
@@ -1702,6 +1702,9 @@ export class ReportComponent implements OnInit {
   // Inside your component class
   calculateColumnSum(columnName: string): number {
     let sum = 0;
+    if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+      this.PurchaseReportList = this.dataTable.filteredValue;
+    }
     for (const item of this.PurchaseReportList) {
       sum += item[columnName];
     }
