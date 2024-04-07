@@ -1428,7 +1428,6 @@ namespace DiamondTrading.Transaction
             // txtRoundAmount
             // 
             this.txtRoundAmount.EditValue = "0";
-            this.txtRoundAmount.Enabled = false;
             this.txtRoundAmount.Location = new System.Drawing.Point(11, 89);
             this.txtRoundAmount.Name = "txtRoundAmount";
             this.txtRoundAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1439,6 +1438,7 @@ namespace DiamondTrading.Transaction
             this.txtRoundAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.txtRoundAmount.Size = new System.Drawing.Size(150, 26);
             this.txtRoundAmount.TabIndex = 29;
+            this.txtRoundAmount.TextChanged += new System.EventHandler(this.txtRoundAmount_TextChanged);
             // 
             // labelControl20
             // 

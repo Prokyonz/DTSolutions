@@ -2534,5 +2534,33 @@ namespace DiamondTrading.Transaction
         {
 
         }
+
+        private void txtRoundAmount_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal parsedRoundAmount = 0;
+                if (string.IsNullOrWhiteSpace(txtRoundAmount.Text.Trim()) || txtRoundAmount.Text.Trim() == "-" || txtRoundAmount.Text.Trim() == ".")
+                {
+                    //skip
+                }
+                else
+                {
+                    parsedRoundAmount = Convert.ToDecimal(txtRoundAmount.Text);
+
+                    //Decimal.TryParse(txtRoundAmount.Text, out parsedRoundAmount);
+
+                    txtNetAmount.Text = (Convert.ToDecimal(txtAmount.Text) + parsedRoundAmount).ToString();
+
+                    txtCurrencyAmount.Text = GetCurrencyTotalAmount(Convert.ToDecimal(txtNetAmount.Text)).ToString("0.00");
+                    btnSave.Enabled = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                btnSave.Enabled = false;
+                MessageBox.Show("Invalid characters in the round up textbox. please change it to other. [" + ex.Message + "]", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }

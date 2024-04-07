@@ -130,7 +130,6 @@ namespace DiamondTrading.Transaction
             this.labelControl23 = new DevExpress.XtraEditors.LabelControl();
             this.txtNetAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl21 = new DevExpress.XtraEditors.LabelControl();
-            this.txtRoundAmount = new DevExpress.XtraEditors.TextEdit();
             this.labelControl20 = new DevExpress.XtraEditors.LabelControl();
             this.txtAmount = new DevExpress.XtraEditors.TextEdit();
             this.grpGroup8 = new DevExpress.XtraEditors.GroupControl();
@@ -145,6 +144,7 @@ namespace DiamondTrading.Transaction
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtRoundAmount = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -204,7 +204,6 @@ namespace DiamondTrading.Transaction
             this.grpGroup9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetAmount.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRoundAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup8)).BeginInit();
             this.grpGroup8.SuspendLayout();
@@ -216,6 +215,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRoundAmount.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grpGroup1
@@ -1492,21 +1492,6 @@ namespace DiamondTrading.Transaction
             this.labelControl21.TabIndex = 2;
             this.labelControl21.Text = "Round (+/-)";
             // 
-            // txtRoundAmount
-            // 
-            this.txtRoundAmount.EditValue = "0";
-            this.txtRoundAmount.Enabled = false;
-            this.txtRoundAmount.Location = new System.Drawing.Point(9, 89);
-            this.txtRoundAmount.Name = "txtRoundAmount";
-            this.txtRoundAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoundAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
-            this.txtRoundAmount.Properties.Appearance.Options.UseFont = true;
-            this.txtRoundAmount.Properties.Appearance.Options.UseForeColor = true;
-            this.txtRoundAmount.Properties.Appearance.Options.UseTextOptions = true;
-            this.txtRoundAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.txtRoundAmount.Size = new System.Drawing.Size(150, 26);
-            this.txtRoundAmount.TabIndex = 3;
-            // 
             // labelControl20
             // 
             this.labelControl20.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1653,6 +1638,21 @@ namespace DiamondTrading.Transaction
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtRoundAmount
+            // 
+            this.txtRoundAmount.EditValue = "0";
+            this.txtRoundAmount.Location = new System.Drawing.Point(9, 89);
+            this.txtRoundAmount.Name = "txtRoundAmount";
+            this.txtRoundAmount.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoundAmount.Properties.Appearance.ForeColor = System.Drawing.Color.Red;
+            this.txtRoundAmount.Properties.Appearance.Options.UseFont = true;
+            this.txtRoundAmount.Properties.Appearance.Options.UseForeColor = true;
+            this.txtRoundAmount.Properties.Appearance.Options.UseTextOptions = true;
+            this.txtRoundAmount.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.txtRoundAmount.Size = new System.Drawing.Size(150, 26);
+            this.txtRoundAmount.TabIndex = 3;
+            this.txtRoundAmount.TextChanged += new System.EventHandler(this.txtRoundAmount_TextChanged);
+            // 
             // FrmSalesEntry
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1756,7 +1756,6 @@ namespace DiamondTrading.Transaction
             this.grpGroup9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCurrencyAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNetAmount.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtRoundAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtAmount.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup8)).EndInit();
             this.grpGroup8.ResumeLayout(false);
@@ -1769,6 +1768,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtRoundAmount.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1834,7 +1834,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.LabelControl labelControl23;
         private DevExpress.XtraEditors.TextEdit txtNetAmount;
         private DevExpress.XtraEditors.LabelControl labelControl21;
-        private DevExpress.XtraEditors.TextEdit txtRoundAmount;
         private DevExpress.XtraEditors.LabelControl labelControl20;
         private DevExpress.XtraEditors.TextEdit txtAmount;
         private DevExpress.XtraEditors.LabelControl labelControl18;
@@ -1891,5 +1890,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoParty;
         private DevExpress.XtraEditors.SimpleButton btnSlipAdd;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.TextEdit txtRoundAmount;
     }
 }
