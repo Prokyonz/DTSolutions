@@ -36,7 +36,15 @@ namespace DiamondTrading
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlElementMaster);
-            OpenMasterDetailsForm("CompanyMaster");
+            var tab = GetActiveTab("Company Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("CompanyMaster");
+            } else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         public async Task CheckPermission()
@@ -496,7 +504,17 @@ namespace DiamondTrading
         private void barButtonItem2_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlElementMaster);
-            OpenMasterDetailsForm("BranchMaster");
+            var tab = GetActiveTab("Branch Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("BranchMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
+
         }
 
         private void barButtonItem10_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -519,12 +537,30 @@ namespace DiamondTrading
 
         private void accrdianElementCompanyMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("CompanyMaster");
+            var tab = GetActiveTab("Company Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("CompanyMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         private void accrdianElementBranchMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("BranchMaster");
+            var tab = GetActiveTab("Branch Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("BranchMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         private void accrdianElementShapeMaster_Click(object sender, EventArgs e)
@@ -615,23 +651,60 @@ namespace DiamondTrading
         private void barButtonItem7_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlElementMaster);
-            OpenMasterDetailsForm("KapanMaster");
+            var tab = GetActiveTab("Kapan Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("KapanMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
+
         }
 
         private void accrdianElementKapanMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("KapanMaster");
+            var tab = GetActiveTab("Kapan Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("KapanMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             accordionControl1.ExpandElement(accordionControlElementMaster);
-            OpenMasterDetailsForm("LedgerMaster");
+            var tab = GetActiveTab("Party Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("LedgerMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         private void accrdianElementPartyMaster_Click(object sender, EventArgs e)
         {
-            OpenMasterDetailsForm("LedgerMaster");
+            var tab = GetActiveTab("Party Master");
+
+            if (tab == null)
+            {
+                OpenMasterDetailsForm("LedgerMaster");
+            }
+            else
+            {
+                xtraTabbedMdiManager1.SelectedPage = tab;
+            }
         }
 
         private void barSubItem6_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -683,11 +756,11 @@ namespace DiamondTrading
             XtraMdiTabPage tabPageToActivate = null;
             foreach (XtraMdiTabPage tabPage in xtraTabbedMdiManager1.Pages)
             {
-                if (tabPage.Text == "Purchase Details") // Replace "YourTabTitle" with the title of your tab
+                if(tabPage.Text == title)
                 {
                     tabPageToActivate = tabPage;
                     break;
-                }
+                }                
             }
 
             return tabPageToActivate;
