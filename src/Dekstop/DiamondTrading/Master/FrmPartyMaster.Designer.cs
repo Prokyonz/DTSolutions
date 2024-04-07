@@ -188,6 +188,7 @@ namespace DiamondTrading.Master
             this.tglIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tglIsActive.Size = new System.Drawing.Size(134, 19);
             this.tglIsActive.TabIndex = 0;
+            this.tglIsActive.Visible = false;
             // 
             // txtPartyName
             // 
