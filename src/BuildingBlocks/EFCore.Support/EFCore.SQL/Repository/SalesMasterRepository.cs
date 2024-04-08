@@ -492,6 +492,15 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<DashboardSPModel> GetSalesTotal(string companyId, string financialYearId, string fromDate, string toDate)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var salesReport = await _databaseContext.SPDashboardModel.FromSqlRaw($"GetSalesReport '" + companyId + "','" + financialYearId + "', '" + fromDate + "', '" + toDate + "', 1").ToListAsync();
+                return salesReport.Count > 0 ? salesReport[0] : new DashboardSPModel() { TotalAmount = 0 };
+            }
+        }
+
         public async Task<List<SalesChildSPModel>> GetSalesChildAsync(string salesId)
         {
             using (_databaseContext = new DatabaseContext())

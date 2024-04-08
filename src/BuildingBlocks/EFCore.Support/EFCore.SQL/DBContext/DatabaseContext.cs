@@ -129,6 +129,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
         public virtual DbSet<CalculatorSPModel> SPCalculatorModel { get; set; }
 
+        public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
