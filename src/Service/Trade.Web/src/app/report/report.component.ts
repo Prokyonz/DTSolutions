@@ -238,7 +238,8 @@ export class ReportComponent implements OnInit {
           { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
           { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
           { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
-          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" } // New column for export icon
+          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" }, // New column for export icon
+          { "displayName": "Export Pdf", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" } // New column for export icon
         ];
         break;
       case 11:
@@ -1589,7 +1590,7 @@ export class ReportComponent implements OnInit {
       });
   }
 
-  exportLedger(rowIndex: number, itemData: any) {
+  exportLedger(type: string, itemData: any) {
     this.loading = true;
     let exportColumns: any[];
     this.sharedService.customGetApi("Report/GetLedgerDetail?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&ledgerId=" + itemData.ledgerId)
@@ -1658,7 +1659,9 @@ export class ReportComponent implements OnInit {
       "footerTotals": footerTotals  // Include footer totals in the data
     };
     this.loading = true;
-    this.sharedService.customPostApi("Report/downloadexcel", data)
+    if(type == 'excel')
+    {
+     this.sharedService.customPostApi("Report/downloadexcel", data)
       .subscribe((data: any) => {
         const options: DownloadFileOptions = {
           path: this.PageTitle.replaceAll(" ", '') + ".csv",
@@ -1686,6 +1689,39 @@ export class ReportComponent implements OnInit {
         this.loading = false;
         alert(ex);
       });
+    }
+    else
+    {
+      this.sharedService.customPostApi("Report/downloadpdf", data)
+      .subscribe((data: any) => {
+        const options: DownloadFileOptions = {
+          path: this.PageTitle.replaceAll(" ", '') + ".pdf",
+          url: data.data,
+          directory: Directory.Documents,
+        };
+
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            // Check downloadResult for success
+            if (downloadResult) {
+              alert("File downloaded successfully.");
+            } else {
+              alert("File download failed.");
+            }
+
+            this.loading = false;
+          })
+          .catch(ex => {
+            this.loading = false;
+            alert(ex);
+          });
+
+        this.loading = false;
+      }, (ex: any) => {
+        this.loading = false;
+        alert(ex);
+      });
+    }
   }
 
   isISODateString(value: any) {
