@@ -105,7 +105,7 @@
                                 <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
                             </div>
                             <span *ngIf="item.displayName == 'Total' && item.dataType == 'numeric'">
-                                    {{  purchase[item.fieldName] | number: '1.0-0': 'en-IN' }} 
+                                    {{  purchase[item.fieldName] | number: '1.2-2': 'en-IN' }} 
                             </span>
                             <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export'">
                                 <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2" pTooltip="XLS" (click) = "exportLedger(rowIndex,purchase)" tooltipPosition="bottom"></button>
