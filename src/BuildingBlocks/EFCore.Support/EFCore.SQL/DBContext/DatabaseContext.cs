@@ -127,6 +127,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
         public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
         public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
+        public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
