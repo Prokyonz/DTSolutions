@@ -68,10 +68,9 @@ namespace EFCore.SQL.DBContext
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
         public DbSet<UserCompanyMapping> UserCompanyMappings { get; set; }
         public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
+        public DbSet<DashboardSPModel> SPDashboardModel { get; set; }
         public virtual DbSet<CompanyOptions> CompanyOptions { get; set; }
         public virtual DbSet<TransferDetails> TransferDetails { get; set; }
-        public DbSet<DashboardSPModel> SPDashboardModel { get; set; }
-
 
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
         public virtual DbSet<JangadSPReceiveModel> JangadSPReceiveModel { get; set; }
@@ -240,7 +239,10 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
-            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
+            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
+            modelBuilder.Entity<CalculatorSPModel>().HasNoKey();
+            modelBuilder.Entity<DashboardSPModel>().HasNoKey();           
             modelBuilder.Entity<ValidationSPModel>().HasNoKey();
             modelBuilder.Entity<SalesSPModel>().HasNoKey();
             modelBuilder.Entity<SlipDetailPrintSPModel>().HasNoKey();
