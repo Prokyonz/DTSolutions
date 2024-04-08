@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -56,6 +57,7 @@ namespace DiamondTrading.Process
             this.lueCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.btnDelete = new DevExpress.XtraEditors.SimpleButton();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
@@ -393,6 +395,10 @@ namespace DiamondTrading.Process
             this.btnDelete.Text = "&Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmPriceMasterMobiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -464,5 +470,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colPrice;
         private DevExpress.XtraGrid.Columns.GridColumn colIndex;
         private DevExpress.XtraEditors.SimpleButton btnDelete;
+        private System.Windows.Forms.Timer timer1;
     }
 }

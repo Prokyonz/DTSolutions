@@ -119,9 +119,10 @@ namespace DiamondTrading.Transaction
             {
                 ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
                 var PaymentSrNo = await _paymentMaterRepository.GetMaxSrNoAsync(paymentType, lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
-
-                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
                 int SrNo = 0;
+                SrNo = PaymentSrNo;
+                var ExpenseSrNo = await expenseMasterRepository.GetMaxSrNoAsync(Common.LoginCompany.ToString(), Common.LoginFinancialYear);
+
                 if (PaymentSrNo >= ExpenseSrNo)
                     SrNo = PaymentSrNo;
                 else
@@ -161,8 +162,8 @@ namespace DiamondTrading.Transaction
                         dtDate.EditValue = DateTime.Now;
                     }
                 }
-                
-                dtTime.EditValue = DateTime.Now;
+
+                timer1.Start();
                 colBranch.Visible = false;
                 await LoadCompany();
                 LoadSeries(_paymentType);
@@ -215,7 +216,7 @@ namespace DiamondTrading.Transaction
                             lueLeadger.EditValue = _editedExpenseDetails[0].fromPartyId.ToString();
                             txtRemark.Text = _editedExpenseDetails[0].Remarks;
                             grvPaymentDetails.CellValueChanged -= grvPaymentDetails_CellValueChanged;
-                            dtDate.EditValue = DateTime.ParseExact(_editedExpenseDetails[0].EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture); ;
+                            dtDate.EditValue = DateTime.ParseExact(_editedExpenseDetails[0].EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture);
                             colBranch.Visible = true;
                             for (int i = 0; i < _editedExpenseDetails.Count; i++)
                             {
@@ -418,6 +419,15 @@ namespace DiamondTrading.Transaction
                     CrDr = "Dr";
                 }
                 txtLedgerBalance.Text = result.ToString("0.00") + " " + CrDr;
+
+                if (_selectedSrNo == 0 && grvPaymentDetails.RowCount > 0)
+                {
+                    for (int i = grvPaymentDetails.RowCount; i >= 0; i--)
+                    {
+                        grvPaymentDetails.DeleteRow(i);
+                    }
+                    await LoadLedgers(lueCompany.EditValue.ToString());
+                }
             }
         }
 
@@ -474,8 +484,9 @@ namespace DiamondTrading.Transaction
                             CreatedDate = DateTime.Now,
                             UpdatedBy = Common.LoginUserID,
                             UpdatedDate = DateTime.Now,
-                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
-                        };
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),                            
+                            EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
+                    };
 
                         var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
 
@@ -495,7 +506,7 @@ namespace DiamondTrading.Transaction
                     //Contra Entry
                     if (_paymentType == -1)
                     {
-                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo);
+                        _= await _contraEntryRepository.DeleteContraEntryAsync(_selectedSrNo,Common.LoginCompany, Common.LoginFinancialYear);
                         string contraMasterId = Guid.NewGuid().ToString();
                         List<ContraEntryDetails> contraEntryDetails = new List<ContraEntryDetails>();
 
@@ -531,7 +542,8 @@ namespace DiamondTrading.Transaction
                             CreatedDate = DateTime.Now,
                             UpdatedBy = Common.LoginUserID,
                             UpdatedDate = DateTime.Now,
-                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
+                            EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                            EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
                         };
 
                         var result = await _contraEntryRepository.AddContraEntryAsync(contraEntryMaster);
@@ -550,7 +562,7 @@ namespace DiamondTrading.Transaction
                         try
                         {
                             ExpenseMasterRepository expenseMasterRepository = new ExpenseMasterRepository();
-                            await expenseMasterRepository.DeleteExpenseAsync(_editedExpenseDetails[0].Id, true);
+                            await expenseMasterRepository.DeleteSrNoAllExpenseAsync(_editedExpenseDetails[0].SrNo, Common.LoginCompany, Common.LoginFinancialYear, true);
 
                             for (int i = 0; i < grvPaymentDetails.RowCount; i++)
                             {
@@ -597,7 +609,7 @@ namespace DiamondTrading.Transaction
                     }
                     else if(_paymentType == 0 || _paymentType == 1)
                     {
-                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType);
+                        bool isDelete = await _paymentMaterRepository.DeleteGroupPaymentAsync(_selectedSrNo, _paymentType, Common.LoginCompany, Common.LoginFinancialYear);
                         if (isDelete)
                         {
                             await SavePaymentReceipt();
@@ -727,7 +739,8 @@ namespace DiamondTrading.Transaction
                     UpdatedBy = Common.LoginUserID,
                     CreatedDate = DateTime.Now,
                     UpdatedDate = DateTime.Now,
-                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd")
+                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                    EntryTime = DateTime.Now.ToString("hh:mm:ss ttt")
                 };
 
                 var Result = await _paymentMaterRepository.AddPaymentAsync(groupPaymentMaster);
@@ -1090,7 +1103,9 @@ namespace DiamondTrading.Transaction
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
+                //if (Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) != PartyTypeMaster.Expense)
+                if(Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) == PartyTypeMaster.PartyBuy
+                    || Convert.ToInt32(grvPaymentDetails.GetRowCellValue(grvPaymentDetails.FocusedRowHandle, colPartyType)) == PartyTypeMaster.PartySale)
                 {
                     if (_paymentType != -1 && MessageBox.Show("Do you want view slip adjusted amount...???", "confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                     {
@@ -1098,6 +1113,11 @@ namespace DiamondTrading.Transaction
                     }
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

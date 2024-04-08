@@ -59,8 +59,8 @@ namespace Repository.Entities
             {
                 partyTypeMaster = new List<PartyTypeMaster>
                 {
-                    new PartyTypeMaster { Id = PartyBuy, Name = "Party-Buy" },
-                    new PartyTypeMaster { Id = PartySale, Name = "Party-Sale" },
+                    new PartyTypeMaster { Id = PartyBuy, Name = "Sundry Creditors" }, //Party-Buy
+                    new PartyTypeMaster { Id = PartySale, Name = "Sundry Debtors" }, //Party-Sale
                     new PartyTypeMaster { Id = Employee, Name = "Employee" },
                     new PartyTypeMaster { Id = DirectIncome, Name = "Direct Income" },
                     new PartyTypeMaster { Id = InDirectIncome, Name = "In-Direct Income" },

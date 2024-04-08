@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.lueKapan = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
@@ -66,6 +67,7 @@ namespace DiamondTrading.Process
             this.tglIsAutoAdjust = new DevExpress.XtraEditors.ToggleSwitch();
             this.labelControl14 = new DevExpress.XtraEditors.LabelControl();
             this.txtCarat = new DevExpress.XtraEditors.TextEdit();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
@@ -139,7 +141,6 @@ namespace DiamondTrading.Process
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -193,6 +194,7 @@ namespace DiamondTrading.Process
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
             this.txtRemark.TabIndex = 5;
             // 
@@ -448,7 +450,6 @@ namespace DiamondTrading.Process
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -562,12 +563,15 @@ namespace DiamondTrading.Process
             this.txtCarat.Name = "txtCarat";
             this.txtCarat.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCarat.Properties.Appearance.Options.UseFont = true;
-            this.txtCarat.Properties.BeepOnError = false;
             this.txtCarat.Properties.MaskSettings.Set("MaskManagerType", typeof(DevExpress.Data.Mask.NumericMaskManager));
             this.txtCarat.Properties.MaskSettings.Set("MaskManagerSignature", "allowNull=False");
             this.txtCarat.Properties.MaskSettings.Set("mask", "f3");
             this.txtCarat.Size = new System.Drawing.Size(90, 22);
             this.txtCarat.TabIndex = 15;
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmKapanMap
             // 
@@ -656,5 +660,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colDate;
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseID;
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseDetailId;
+        private System.Windows.Forms.Timer timer1;
     }
 }

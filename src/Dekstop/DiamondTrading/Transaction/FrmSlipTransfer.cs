@@ -28,7 +28,7 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
 
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             _ = LoadCompany();
             GetSlipTypes();
@@ -164,6 +164,11 @@ namespace DiamondTrading.Transaction
             {
                 grvParticularsDetails.SetRowCellValue(e.RowHandle, colTotal, 0);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

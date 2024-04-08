@@ -35,8 +35,23 @@ namespace DiamondTrading.Process
 
         private void FrmTransferEntry_Load(object sender, EventArgs e)
         {
-            dtDate.EditValue = DateTime.Now;
+            string lastselectedDate = RegistryHelper.GetSettings(RegistryHelper.MainSection, RegistryHelper.StockTransferDateSelection, "");
+            if (string.IsNullOrEmpty(lastselectedDate))
+                dtDate.EditValue = DateTime.Now;
+            else
+            {
+                try
+                {
+                    dtDate.EditValue = Convert.ToDateTime(lastselectedDate);
+                }
+                catch (Exception)
+                {
+                    dtDate.EditValue = DateTime.Now;
+                }
+            }
+
             dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             LoadTransferItemDetails();
         }
@@ -572,14 +587,14 @@ namespace DiamondTrading.Process
                     if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
                         //grvTransferItemDetails.Columns["ShapeT"].Visible = false;
-                        colSizeT.Visible = false;
+                        //colSizeT.Visible = false;
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 1);
                     }
                     else if (grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategoryT).ToString() == TransferCategoryMaster.Number.ToString())
                     {
                         //grvTransferItemDetails.Columns["ShapeT"].Visible = true;
-                        colSizeT.Visible = true;
+                        //colSizeT.Visible = true;
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colSizeT, null);
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, 0);
                     }
@@ -691,6 +706,7 @@ namespace DiamondTrading.Process
             try
             {
                 this.Cursor = Cursors.WaitCursor;
+                RegistryHelper.SaveSettings(RegistryHelper.MainSection, RegistryHelper.StockTransferDateSelection, dtDate.DateTime.ToString());
 
                 if (!CheckValidation())
                     return;
@@ -702,12 +718,43 @@ namespace DiamondTrading.Process
                 KapanMappingMaster kapanMappingMaster;
                 NumberProcessMaster numberProcessMaster;
                 OpeningStockMaster openingStockMaster;
+                List<TransferDetails> lstTransferDetails = new List<TransferDetails>();
 
                 for (int i = 0; i < grvTransferItemDetails.RowCount; i++)
                 {
                     string TransferEntryId = Guid.NewGuid().ToString();
                     DataView dtView = new DataView();
                     //string TransferType = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() + "-" + grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString();
+
+                    TransferDetails transferDetails = new TransferDetails
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        TransferMasterId = TransferId,
+                        FromCategory = grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString(),
+                        FromNumberIdORKapanId = grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString(),
+                        BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString(),
+                        ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString(),
+                        Carat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCarat)),
+                        Rate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate)),
+                        Amount = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colAmount)),
+
+                        ToCategory = grvTransferItemDetails.GetRowCellValue(i, colCategoryT).ToString(),
+                        ToSizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString(),
+                        ToBranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString(),
+                        ToNumberIdORKapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString(),
+                        ToCarat = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colCaratT)),
+                        ToRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT)),
+                        ToAmount = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colAmountT)),
+                        CreatedBy = Common.LoginUserID,
+                        CreatedDate = DateTime.Now,
+                        Date = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                        Time = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),    
+                        UpdatedBy = Common.LoginUserID,
+                        UpdatedDate = DateTime.Now,
+                    };
+
+                    lstTransferDetails.Add(transferDetails);
+
                     //Transfer From
                     if (grvTransferItemDetails.GetRowCellValue(i, colCategoryType).ToString() == TransferCategoryMaster.Kapan.ToString())
                     {
@@ -785,9 +832,9 @@ namespace DiamondTrading.Process
                                     row["TransferEntryId"] = Guid.NewGuid().ToString();
                                 }
                             }
+                            dtView.RowFilter = "AdjustCarat > 0";
                         }
 
-                        dtView.RowFilter = "AdjustCarat > 0";
                         if (dtView.Count > 0)
                         {
                             foreach (DataRowView row in dtView)
@@ -1033,7 +1080,8 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                if (row["KapanType"].ToString().Equals("KapanMapped"))
+                                if (!dtView.Table.Columns.Contains("KapanType") || 
+                                    (dtView.Table.Columns.Contains("KapanType") && row["KapanType"].ToString().Equals("KapanMapped")))
                                 {
                                     kapanMappingMaster = new KapanMappingMaster();
                                     kapanMappingMaster.Id = Guid.NewGuid().ToString();
@@ -1213,6 +1261,7 @@ namespace DiamondTrading.Process
                 transferMaster.CreatedBy = Common.LoginUserID;
                 transferMaster.UpdatedDate = DateTime.Now;
                 transferMaster.UpdatedBy = Common.LoginUserID;
+                transferMaster.TransferDetails = lstTransferDetails;
 
                 var Result = await _transferMasterRepository.AddTransferAsync(transferMaster);
 
@@ -1274,6 +1323,11 @@ namespace DiamondTrading.Process
 
             lueTransferBy.Focus();
             lueTransferBy.Select();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

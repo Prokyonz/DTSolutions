@@ -68,6 +68,8 @@ namespace EFCore.SQL.DBContext
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
         public DbSet<UserCompanyMapping> UserCompanyMappings { get; set; }
         public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
+        public virtual DbSet<CompanyOptions> CompanyOptions { get; set; }
+        public virtual DbSet<TransferDetails> TransferDetails { get; set; }
         public DbSet<DashboardSPModel> SPDashboardModel { get; set; }
 
 
@@ -135,8 +137,9 @@ namespace EFCore.SQL.DBContext
             optionsBuilder.UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {            
-            modelBuilder.Entity<CompanyMaster>().Property(c => c.Sr).UseIdentityColumn();            
+        {
+            modelBuilder.Entity<CompanyMaster>().HasMany(c => c.CompanyOptions).WithOne();
+            modelBuilder.Entity<CompanyMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BranchMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<UserMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<PartyMaster>().Property(c => c.Sr).UseIdentityColumn();
@@ -190,6 +193,8 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<CalculatorMaster>().Property(c => c.Sr).UseIdentityColumn();
             modelBuilder.Entity<BillPrintModel>().Property(c => c.Id).UseIdentityColumn();
             modelBuilder.Entity<UserCompanyMapping>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<CompanyOptions>().Property(c => c.Sr).UseIdentityColumn();
+            modelBuilder.Entity<TransferDetails>().Property(c => c.Sr).UseIdentityColumn();
 
 
             modelBuilder.Entity<KapanMapping>().HasNoKey();
@@ -235,10 +240,10 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
-            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
-            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
-            modelBuilder.Entity<CalculatorSPModel>().HasNoKey();
-            modelBuilder.Entity<DashboardSPModel>().HasNoKey();           
+            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();
+            modelBuilder.Entity<SalesSPModel>().HasNoKey();
+            modelBuilder.Entity<SlipDetailPrintSPModel>().HasNoKey();
         }
     }
 }

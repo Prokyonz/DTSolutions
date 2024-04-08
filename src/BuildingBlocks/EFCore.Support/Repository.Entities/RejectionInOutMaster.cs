@@ -46,5 +46,7 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
         public string ProcessType { get; set; }
         public string KapanId { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal LessWeight { get; set; }
     }
 }

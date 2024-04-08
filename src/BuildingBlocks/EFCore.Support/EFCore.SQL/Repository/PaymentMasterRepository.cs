@@ -56,11 +56,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeletePaymentAsync(string groupId)
+        public async Task<bool> DeletePaymentAsync(string groupId, string companyId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupId.ToString()).FirstOrDefaultAsync();
+                var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.Id == groupId.ToString() && w.CompanyId == companyId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
                 if (paymentRecord != null)
                 {
                     paymentRecord.IsDelete = true;
@@ -71,13 +71,13 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType)
+        public async Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType, string companyId, string financialYearId)
         {
             try
             {
                 using (_databaseContext = new DatabaseContext())
                 {
-                    var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.BillNo == SrNo && w.CrDrType == paymentType).FirstOrDefaultAsync();
+                    var paymentRecord = await _databaseContext.GroupPaymentMaster.Where(w => w.BillNo == SrNo && w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).FirstOrDefaultAsync();
                     if (paymentRecord != null)
                     {
                         var paymentMasterRecord = await _databaseContext.PaymentMaster.Where(x => x.GroupId == paymentRecord.Id).ToListAsync();
@@ -131,7 +131,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.Sr).FirstOrDefaultAsync();
+                var countResult = await _databaseContext.GroupPaymentMaster.Where(w => w.CrDrType == paymentType && w.CompanyId == companyId && w.FinancialYearId == financialYearId).OrderByDescending(o => o.BillNo).FirstOrDefaultAsync();
                 if (countResult == null)
                     return 1;
                 return countResult.BillNo + 1;

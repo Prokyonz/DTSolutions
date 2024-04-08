@@ -50,5 +50,7 @@ namespace Repository.Entities.Model
         public string Remarks { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal? AdjustAmount { get; set; }
+        public string NumberId { get; set; }
+        public string NumberName { get; set; }
     }
 }

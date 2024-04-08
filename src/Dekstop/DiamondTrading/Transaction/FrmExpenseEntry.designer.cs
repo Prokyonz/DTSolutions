@@ -29,6 +29,7 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblFormTitle = new DevExpress.XtraEditors.LabelControl();
             this.lueCompany = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl12 = new DevExpress.XtraEditors.LabelControl();
@@ -57,6 +58,7 @@ namespace DiamondTrading.Transaction
             this.lueAccounts = new DevExpress.XtraEditors.LookUpEdit();
             this.lueBranch = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
@@ -267,6 +269,7 @@ namespace DiamondTrading.Transaction
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
             this.txtRemark.TabIndex = 0;
             // 
@@ -459,6 +462,10 @@ namespace DiamondTrading.Transaction
             this.labelControl2.Text = "Branch* :";
             this.labelControl2.Visible = false;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmExpenseEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,5 +542,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.TextEdit txtLedgerBalance;
         private DevExpress.XtraGrid.Columns.GridColumn colBranch;
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoBranchList;
+        private System.Windows.Forms.Timer timer1;
     }
 }

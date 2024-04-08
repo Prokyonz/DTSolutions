@@ -218,11 +218,13 @@ namespace DiamondTrading
             this.accordionControlExit = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
+            this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -2023,6 +2025,10 @@ namespace DiamondTrading
             this.pictureEdit1.TabIndex = 1;
             this.pictureEdit1.EditValueChanged += new System.EventHandler(this.pictureEdit1_EditValueChanged);
             // 
+            // xtraTabbedMdiManager1
+            // 
+            this.xtraTabbedMdiManager1.MdiParent = this;
+            // 
             // FrmMain
             // 
             this.Appearance.Options.UseFont = true;
@@ -2039,6 +2045,7 @@ namespace DiamondTrading
             this.Controls.Add(this.barDockControlTop);
             this.Enabled = false;
             this.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow;
             this.IsMdiContainer = true;
             this.LookAndFeel.SkinName = "Office 2019 White";
             this.LookAndFeel.UseDefaultLookAndFeel = false;
@@ -2049,11 +2056,13 @@ namespace DiamondTrading
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.MdiChildActivate += new System.EventHandler(this.FrmMain_MdiChildActivate);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureEdit1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2250,5 +2259,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonRejectionOutSend;
         private DevExpress.XtraBars.BarButtonItem barButtonPriceMasterMobile;
         private DevExpress.XtraBars.BarButtonItem barButtonGSTBillPrint;
+        private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
     }
 }

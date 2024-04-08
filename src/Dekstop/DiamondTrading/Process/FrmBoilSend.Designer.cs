@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelControl8 = new DevExpress.XtraEditors.LabelControl();
             this.dtTime = new DevExpress.XtraEditors.DateEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
@@ -67,6 +68,7 @@ namespace DiamondTrading.Process
             this.lueReceiveFrom = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -168,6 +170,7 @@ namespace DiamondTrading.Process
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
             this.txtRemark.TabIndex = 0;
             // 
@@ -549,6 +552,10 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 8;
             this.labelControl1.Text = "Send To* :";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmBoilSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,5 +644,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repoKapan;
         private DevExpress.XtraGrid.Columns.GridColumn colStockId;
         private DevExpress.XtraGrid.Columns.GridColumn colAccountToAssortDetailsId;
+        private System.Windows.Forms.Timer timer1;
     }
 }

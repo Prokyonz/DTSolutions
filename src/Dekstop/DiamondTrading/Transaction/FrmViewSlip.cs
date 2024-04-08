@@ -18,6 +18,7 @@ namespace DiamondTrading.Transaction
         private string _SlipNo = string.Empty;
         private string _FinancialYearId = string.Empty;
         private int _ActionType = 0;
+        DataTable dt = new DataTable();
         public FrmViewSlip(int ActionType,string SlipNo, string FinancialYearId)
         {
             InitializeComponent();
@@ -30,17 +31,32 @@ namespace DiamondTrading.Transaction
         private async void FrmViewSlip_Load(object sender, EventArgs e)
         {
             var slipDetails = await _purchaseMasterRepository.GetSlipDetails(_ActionType,Common.LoginCompany, _SlipNo, _FinancialYearId);
-            DataTable dt = Common.ToDataTable(slipDetails);
+            dt = Common.ToDataTable(slipDetails);
             if (dt.Rows.Count > 0)
             {
                 Reports.rptSlipPrint cls = new Reports.rptSlipPrint();
                 cls.SetDataSource(dt);
                 cls.SetDatabaseLogon("sa", "123");
-                //cls.PrintOptions.PrinterName = "Canon LBP2900";
+                cls.PrintOptions.PrinterName = Common.SlipPrinterName;
                 //cls.PrintOptions.PrinterName = Common.BarcodePrinter;
                 //cls.PrintToPrinter(1, false, 0, 0);
                 crystalReportViewer1.ReportSource = cls;
                 crystalReportViewer1.Show();
+            }
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            if (dt.Rows.Count > 0)
+            {
+                Reports.rptSlipPrint cls = new Reports.rptSlipPrint();
+                cls.SetDataSource(dt);
+                cls.SetDatabaseLogon("sa", "123");
+                cls.PrintOptions.PrinterName = Common.SlipPrinterName;
+                //cls.PrintOptions.PrinterName = Common.BarcodePrinter;
+                cls.PrintToPrinter(1, false, 0, 0);
+                //crystalReportViewer1.ReportSource = cls;
+                //crystalReportViewer1.Show();
             }
         }
     }

@@ -17,8 +17,8 @@ namespace EFCore.SQL.Interface
         Task<GroupPaymentMaster> UpdatePaymentAsync(GroupPaymentMaster groupPaymentMaster);
 
         Task<List<MixedSPModel>> GetMixedReportAsync(string companyId, string financialYearId, string fromDate, string toDate);
-        Task<bool> DeletePaymentAsync(string groupId);
-        Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType);
+        Task<bool> DeletePaymentAsync(string groupId, string companyId, string financialYearId);
+        Task<bool> DeleteGroupPaymentAsync(int SrNo, int paymentType, string companyId, string financialYearId);
         Task<List<PayableReceivableSPModel>> GetPayableReceivalbeReport(string companyId, string financialYearId, int type);
         Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType);
         Task<List<ProfitLossSPModel>> GetProfitLossReportAsync(string companyId, string financialYearId, int PLType);

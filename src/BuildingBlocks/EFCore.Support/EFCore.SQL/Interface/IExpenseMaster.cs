@@ -15,7 +15,8 @@ namespace EFCore.SQL.Interface
         Task<int> GetMaxSrNoAsync(string companyId, string financialYearId);
         Task<ExpenseDetails> AddExpenseAsync(ExpenseDetails expenseDetails);
         Task<ExpenseDetails> UpdateExpenseAsync(ExpenseDetails expenseDetails);
-        Task<bool> DeleteExpenseAsync(string expenseId, bool isPermanantDetele = false);
+        Task<bool> DeleteExpenseAsync(string expenseId, string companyId, string financialYearId, bool isPermanantDetele = false);
+        Task<bool> DeleteSrNoAllExpenseAsync(int SrNo, string companyId, string financialYearId, bool isPermanantDetele = true);
         Task<bool> UpdateBalanceAsync(string partyId, string fromParty, decimal amount);
     }
 }

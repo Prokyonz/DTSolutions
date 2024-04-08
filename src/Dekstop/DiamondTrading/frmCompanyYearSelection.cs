@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
+using Repository.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,8 @@ namespace DiamondTrading
         private readonly CompanyMasterRepository _companyMasterRepository;
         private BranchMasterRepository _branchMasterRepository;
         private readonly FinancialYearMasterRepository _financialYearRepository;
+        private List<CompanyMaster> _companyList;
+        public delegate Task CheckPermission();
 
         public FrmCompanyYearSelection()
         {
@@ -35,7 +38,7 @@ namespace DiamondTrading
             LoadRegistrySettings();
         }
 
-        private void btnOk_Click(object sender, EventArgs e)
+        private async void btnOk_Click(object sender, EventArgs e)
         {
             if (!CheckValidation())
                 return;
@@ -50,6 +53,10 @@ namespace DiamondTrading
 
             Common.LoginCompany = lueCompany.EditValue.ToString();
             Common.LoginCompanyName = lueCompany.Text;
+            if (_companyList.Any())
+            {
+                Common.CurrentSelectedCompany = _companyList.Where(x => x.Id == Common.LoginCompany.ToString()).ToList();
+            }
 
             Common.LoginBranch = lueBranch.EditValue.ToString();
             Common.LoginBranchName = lueBranch.Text;
@@ -57,6 +64,7 @@ namespace DiamondTrading
             Common.LoginFinancialYear = lueFinancialYear.EditValue.ToString();
             Common.LoginFinancialYearName = lueFinancialYear.Text;
 
+            await FrmMain.currentInstance.CheckPermission();
             this.DialogResult = DialogResult.OK;
         }
 
@@ -66,11 +74,11 @@ namespace DiamondTrading
             chkRememberMe.Checked = Common.RememberComapnyYearSelection;
             if (chkRememberMe.Checked)
             {
-                if (Common.LoginCompany != Common.DefaultGuid)
+                //if (Common.LoginCompany != Common.DefaultGuid)
                     lueCompany.EditValue = Common.LoginCompany;
-                if (Common.LoginBranch != Common.DefaultGuid)
+                //if (Common.LoginBranch != Common.DefaultGuid)
                     lueBranch.EditValue = Common.LoginBranch;
-                if (Common.LoginFinancialYear != Common.DefaultGuid)
+                //if (Common.LoginFinancialYear != Common.DefaultGuid)
                     lueFinancialYear.EditValue = Common.LoginFinancialYear;
                 lueLanguage.EditValue = Convert.ToInt32(Common.LoginLanguage);
 
@@ -128,8 +136,8 @@ namespace DiamondTrading
 
         private async Task LoadCompany()
         {
-            var companies = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
-            lueCompany.Properties.DataSource = companies;
+            _companyList = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
+            lueCompany.Properties.DataSource = _companyList;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
             if (Common.RememberComapnyYearSelection == true)

@@ -168,7 +168,7 @@ namespace DiamondTrading
         }
 
         private async Task LoadGridData(bool IsForceLoad = false)
-        {            
+        {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
@@ -274,8 +274,27 @@ namespace DiamondTrading
                 {
                     if (IsForceLoad || _accountToAssortMasterRepository == null)
                     {
-                        stockReportModelReports = await LoadDataStock();
-                        numberReportModelReports = await LoadDataNumber();
+                        try
+                        {
+                            stockReportModelReports = await LoadDataStock();
+                        }catch (Exception ex)
+                        {
+
+                        }
+                        try
+                        {
+                            numberReportModelReports = await LoadDataNumber();
+                        }catch(Exception ex)
+                        {
+
+                        }
+                        //Task<List<StockReportModelReport>> getKapanTask = LoadDataStock();
+                        //Task<List<NumberReportModelReport>> getNumberTask = LoadDataNumber();
+
+                        //await Task.WhenAll(getKapanTask, getNumberTask);
+
+                        //stockReportModelReports = getKapanTask.Result;
+                        //numberReportModelReports = getNumberTask.Result;
 
                         decimal inwardAmount = 0;
                         decimal inwardWeight = 0;
@@ -285,7 +304,7 @@ namespace DiamondTrading
                         decimal outwardWeight = 0;
                         decimal outwardRate = 0;
 
-                        if (stockReportModelReports.Count > 0)
+                        if (stockReportModelReports != null && stockReportModelReports.Count > 0)
                         {
                             inwardAmount = stockReportModelReports.Sum(s => s.InwardAmount);
                             inwardWeight = stockReportModelReports.Sum(s => s.InwardNetWeight);
@@ -303,7 +322,7 @@ namespace DiamondTrading
                         decimal outwardAmountN = 0;
                         decimal outwardWeightN = 0;
                         decimal outwardRateN = 0;
-                        if (numberReportModelReports.Count > 0)
+                        if (numberReportModelReports != null && numberReportModelReports.Count > 0)
                         {
                             inwardAmountN = numberReportModelReports.Sum(s => s.InwardAmount);
                             inwardWeightN = numberReportModelReports.Sum(s => s.InwardNetWeight);
@@ -356,14 +375,14 @@ namespace DiamondTrading
                         accordionEditBtn.Visible = false;
                         accordionDeleteBtn.Visible = false;
                     }
-                }                
+                }
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.Error), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
-            {                
+            {
                 this.Cursor = Cursors.Default;
             }
         }
@@ -445,7 +464,7 @@ namespace DiamondTrading
                 _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
                 var result = await _accountToAssortMasterRepository.CheckIsKapanMapEntryProcessed(Common.LoginCompany, Common.LoginFinancialYear, PurchaseDetailsId, SlipNo);
 
-                if(result)
+                if (result)
                 {
                     MessageBox.Show("You can't edit this Slip as it's already processed.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -766,12 +785,12 @@ namespace DiamondTrading
                         this.Cursor = Cursors.Default;
                         MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
                     }
-                }                
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            } 
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -1079,27 +1098,31 @@ namespace DiamondTrading
         private async void grdStockReportMaster_DoubleClick(object sender, EventArgs e)
         {
             string id = gvStockReport.GetFocusedRowCellValue(grdColId).ToString();
-            
-            if(id == "1")
+
+            if (id == "1")
             {
                 FrmChildStockReport frmChildStockReport = new FrmChildStockReport(stockReportModelReports);
                 frmChildStockReport.Text = "Kapan Child Report";
                 frmChildStockReport.StartPosition = FormStartPosition.CenterScreen;
+                frmChildStockReport.WindowState = FormWindowState.Maximized;
                 frmChildStockReport.ShowDialog();
 
-            } else if(id == "2") {
+            }
+            else if (id == "2")
+            {
 
                 FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport(numberReportModelReports);
                 frmChildNumberReport.Text = "Number Child Report";
                 frmChildNumberReport.StartPosition = FormStartPosition.CenterScreen;
+                frmChildNumberReport.WindowState = FormWindowState.Maximized;
                 frmChildNumberReport.ShowDialog();
-            }            
+            }
         }
 
         public async Task<List<StockReportModelReport>> LoadDataStock()
         {
             _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-            return await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);            
+            return await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
         }
 
         public async Task<List<NumberReportModelReport>> LoadDataNumber()

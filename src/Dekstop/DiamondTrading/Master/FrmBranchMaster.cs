@@ -240,7 +240,7 @@ namespace DiamondTrading.Master
                 return false;
             }
 
-            BranchMaster BranchNameExist = _branchMasters.Where(c => c.Name == txtBranchName.Text).FirstOrDefault();
+            BranchMaster BranchNameExist = _branchMasters.Where(c => c.Name == txtBranchName.Text && c.CompanyId == lueParentCompany.EditValue.ToString()).FirstOrDefault();
             if((_EditedBranchMasterSet == null && BranchNameExist != null) || (BranchNameExist != null && _EditedBranchMasterSet != null && _EditedBranchMasterSet.Name != BranchNameExist.Name))
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.BranchNameExist), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);

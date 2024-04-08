@@ -75,7 +75,7 @@ namespace DiamondTrading.Process
         private void FrmPriceMaster_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
@@ -358,6 +358,11 @@ namespace DiamondTrading.Process
             {
                 return false;
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

@@ -98,6 +98,7 @@ namespace EFCore.SQL.Repository
                     record.EntryDate = rejectionInOutMaster.EntryDate;
                     record.UpdatedBy = rejectionInOutMaster.UpdatedBy;
                     record.UpdatedDate = rejectionInOutMaster.UpdatedDate;
+                    record.LessWeight = rejectionInOutMaster.LessWeight;
 
                     await _databaseContext.SaveChangesAsync();
                 }

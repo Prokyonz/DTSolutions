@@ -605,6 +605,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="strings.zh-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>strings.zh-CN.resx</DependentUpon>
+    </Compile>
     <Compile Include="Transaction\FrmApproveReject.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -882,7 +887,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="strings.zh-CN.resx" />
+    <EmbeddedResource Include="strings.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>strings.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transaction\FrmApproveReject.resx">
       <DependentUpon>FrmApproveReject.cs</DependentUpon>
     </EmbeddedResource>
@@ -1028,9 +1036,11 @@
     <Content Include="bin\Debug\x64\SNI.pdb" />
     <Content Include="bin\Debug\x86\SNI.dll" />
     <Content Include="bin\Debug\x86\SNI.pdb" />
+    <Content Include="DBBackup\livedbBackup.sql" />
     <Content Include="ExeRefrence\AForge.Controls.dll" />
     <Content Include="ExeRefrence\AForge.Video.DirectShow.dll" />
     <Content Include="ExeRefrence\AForge.Video.dll" />
+    <Content Include="TrncateTableQuery.sql" />
     <None Include="Resources\print_24.png" />
     <None Include="Resources\pdf_24.png" />
     <None Include="Resources\ibook_24.png" />

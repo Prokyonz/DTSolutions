@@ -29,6 +29,7 @@ namespace DiamondTrading.Process
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
@@ -56,6 +57,7 @@ namespace DiamondTrading.Process
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.lueCategory = new DevExpress.XtraEditors.LookUpEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
@@ -118,7 +120,6 @@ namespace DiamondTrading.Process
             this.dtDate.Name = "dtDate";
             this.dtDate.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtDate.Properties.Appearance.Options.UseFont = true;
-            this.dtDate.Properties.BeepOnError = false;
             this.dtDate.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.dtDate.Properties.CalendarTimeProperties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -139,7 +140,6 @@ namespace DiamondTrading.Process
             this.dtTime.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
             this.dtTime.Properties.AppearanceDisabled.Options.UseTextOptions = true;
             this.dtTime.Properties.AppearanceDisabled.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            this.dtTime.Properties.BeepOnError = false;
             this.dtTime.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.dtTime.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
@@ -424,6 +424,10 @@ namespace DiamondTrading.Process
             this.labelControl1.TabIndex = 6;
             this.labelControl1.Text = "Category* :";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FrmPriceMaster
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -497,5 +501,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colSize;
         private DevExpress.XtraEditors.LookUpEdit lueCategory;
         private DevExpress.XtraEditors.LabelControl labelControl1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

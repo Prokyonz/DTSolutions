@@ -26,5 +26,7 @@ namespace Repository.Entities.Model
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public DateTime? EntryDate { get; set; }
+        public string EntryTime { get; set; }
     }
 }

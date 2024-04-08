@@ -27,6 +27,9 @@ namespace DiamondTrading
         #region "CompanyYearSelection"
         public const string RememberCompanyYearSelection = "RememberCompanyYearSelection";
         public const string TranscationDateSelection = "TranscationDateSelection";
+        public const string StockTransferDateSelection = "StockTransferDateSelection";
+        public const string PurchaseDateSelection = "PurchaseDateSelection";
+        public const string SalesDateSelection = "SalesDateSelection";
         public const string LoginCompany = "LoginCompany";
         public const string LoginBranch = "LoginBranch";
         public const string LoginFinancialYear = "LoginFinancialYear";
@@ -47,6 +50,9 @@ namespace DiamondTrading
         public const string SalaryTotalDayHours = "SalaryTotalDayHours";
         public const string SalaryPlusOTRatePerHour = "SalaryPlusOTRatePerHour";
         public const string SalaryMinusOTRatePerHour = "SalaryMinusOTRatePerHour";
+
+        public const string SlipPrinterName = "SlipPrinterName";
+
         #endregion "FrmOther"
 
         public static void DeleteSettings()

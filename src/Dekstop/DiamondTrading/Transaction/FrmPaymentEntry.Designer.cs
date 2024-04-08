@@ -29,6 +29,7 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
@@ -53,6 +54,7 @@ namespace DiamondTrading.Transaction
             this.colAdjustAmt = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoAdjustAmt = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.colPartyId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colRowId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoTxtEdit = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.grpGroup2 = new DevExpress.XtraEditors.GroupControl();
             this.txtRemark = new DevExpress.XtraEditors.MemoEdit();
@@ -66,7 +68,7 @@ namespace DiamondTrading.Transaction
             this.dtDate = new DevExpress.XtraEditors.DateEdit();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.colRowId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSerialNo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
@@ -321,6 +323,12 @@ namespace DiamondTrading.Transaction
             this.colPartyId.FieldName = "PartyId";
             this.colPartyId.Name = "colPartyId";
             // 
+            // colRowId
+            // 
+            this.colRowId.Caption = "RowId";
+            this.colRowId.FieldName = "RowId";
+            this.colRowId.Name = "colRowId";
+            // 
             // repoTxtEdit
             // 
             this.repoTxtEdit.AutoHeight = false;
@@ -348,6 +356,7 @@ namespace DiamondTrading.Transaction
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRemark.Location = new System.Drawing.Point(10, 29);
             this.txtRemark.Name = "txtRemark";
+            this.txtRemark.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtRemark.Size = new System.Drawing.Size(586, 47);
             this.txtRemark.TabIndex = 0;
             // 
@@ -499,11 +508,9 @@ namespace DiamondTrading.Transaction
             this.panelControl1.Size = new System.Drawing.Size(628, 526);
             this.panelControl1.TabIndex = 0;
             // 
-            // colRowId
+            // timer1
             // 
-            this.colRowId.Caption = "RowId";
-            this.colRowId.FieldName = "RowId";
-            this.colRowId.Name = "colRowId";
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // FrmPaymentEntry
             // 
@@ -587,5 +594,6 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoAdjustAmt;
         private DevExpress.XtraGrid.Columns.GridColumn colPartyId;
         private DevExpress.XtraGrid.Columns.GridColumn colRowId;
+        private System.Windows.Forms.Timer timer1;
     }
 }

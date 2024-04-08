@@ -132,7 +132,7 @@ namespace DiamondTrading.Process
         private void FrmBoilSend_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
         }
 
         private static DataTable GetDTColumnsforParticularDetails()
@@ -375,6 +375,11 @@ namespace DiamondTrading.Process
         private void lueCompany_EditValueChanged(object sender, EventArgs e)
         {
             _ = GetSizeDetail();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

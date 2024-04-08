@@ -399,8 +399,40 @@ namespace DiamondTrading
                 if (IsForceLoad || _partyMaster == null)
                 {
                     _partyMasterRepository = new PartyMasterRepository();
-                    _partyMaster = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany);
-                    grdPartyMaster.DataSource = _partyMaster;
+                    var result = await _partyMasterRepository.GetPartyMasterAsync(Common.LoginCompany);
+                    _partyMaster = new List<PartyMaster>();
+                    foreach (var item in result)
+                    {
+                        _partyMaster.Add(new PartyMaster
+                        {
+                            AadharCardNo = item.AadharCardNo,
+                            Address = item.Address,
+                            Address2 = item.Address2,
+                            BrokerageId = item.BrokerageId,
+                            CompanyId = item.CompanyId,
+                            CRDRType = item.CRDRType,
+                            CreatedBy = item.CreatedBy,
+                            CreatedDate = item.CreatedDate,
+                            UpdatedBy = item.UpdatedBy,
+                            UpdatedDate = item.UpdatedDate,
+                            EmailId = item.EmailId,
+                            GSTNo = item.GSTNo,
+                            Id = item.Id,
+                            IsDelete = item.IsDelete,
+                            MobileNo = item.MobileNo,
+                            Name = item.Name,
+                            OfficeNo = item.OfficeNo,
+                            OpeningBalance = item.OpeningBalance,
+                            PancardNo = item.PancardNo,
+                            Salary = item.Salary,
+                            ShortName = item.ShortName,
+                            Status = item.Status,
+                            SubType = item.SubType,
+                            Type = item.Type
+                        });
+                    }
+
+                    grdPartyMaster.DataSource = await _partyMasterRepository.GetPartyMasterAsync(Common.LoginCompany);
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabUserMaster)

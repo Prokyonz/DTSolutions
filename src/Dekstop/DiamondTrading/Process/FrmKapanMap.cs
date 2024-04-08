@@ -35,7 +35,7 @@ namespace DiamondTrading.Process
         private void FrmKapanMap_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
-            dtTime.EditValue = DateTime.Now;
+            timer1.Start();
 
             _ = LoadCompany();
             _ = GetKapanDetail();
@@ -364,6 +364,11 @@ namespace DiamondTrading.Process
                     }
                 }
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            dtTime.EditValue = DateTime.Now;
         }
     }
 }

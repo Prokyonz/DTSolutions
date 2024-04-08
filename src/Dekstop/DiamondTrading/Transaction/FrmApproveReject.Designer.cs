@@ -77,6 +77,7 @@ namespace DiamondTrading.Transaction
             // 
             this.txtComment.Location = new System.Drawing.Point(12, 19);
             this.txtComment.Name = "txtComment";
+            this.txtComment.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtComment.Size = new System.Drawing.Size(443, 73);
             this.txtComment.TabIndex = 3;
             // 

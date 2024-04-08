@@ -9,7 +9,6 @@ namespace Repository.Entities
     {
         public int Sr { get; }
         [Key]
-
         public string Id { get; set; }
         public int JangadNo { get; set; }
         public string Date { get; set; }
@@ -30,5 +29,7 @@ namespace Repository.Entities
         public string CharniSizeId { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+
+        public virtual List<TransferDetails> TransferDetails { get; set; }
     }
 }

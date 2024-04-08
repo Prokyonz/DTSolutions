@@ -18,6 +18,7 @@ namespace DiamondTrading.Transaction
     {
         public string LedgerId { get; set; }
         public string ledgerType { get; set; }
+        public bool IsCustomLoaded { get; set; }
         private PartyMasterRepository _partyMasterRepository { get; set; }
         public FromChildLedgerReport()
         {
@@ -39,23 +40,27 @@ namespace DiamondTrading.Transaction
 
         private void grvChildLedgerReport_CustomSummaryCalculate(object sender, DevExpress.Data.CustomSummaryEventArgs e)
         {
-            try
+            if (!IsCustomLoaded)
             {
-                string v = LedgerId;
-                GridView view = sender as GridView;
-                GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
-                double Total = double.Parse(view.Columns["Credit"].SummaryText);
-                double saleRate = double.Parse(view.Columns["Debit"].SummaryText);
-                if (ledgerType.ToLower() == "expense" || ledgerType.ToLower() == "party-sale")
+                try
                 {
-                    e.TotalValue = saleRate - Total;
+                    string v = LedgerId;
+                    GridView view = sender as GridView;
+                    GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
+                    double Total = double.Parse(view.Columns["Credit"].SummaryText);
+                    double saleRate = double.Parse(view.Columns["Debit"].SummaryText);
+                    if (ledgerType.ToLower() == "expense" || ledgerType.ToLower() == "party-sale")
+                    {
+                        e.TotalValue = saleRate - Total;
+                    }
+                    else
+                        e.TotalValue = Total - saleRate;
                 }
-                else
-                    e.TotalValue = Total - saleRate;
-            }
-            catch (Exception)
-            {
-                e.TotalValue = 0;
+                catch (Exception)
+                {
+                    e.TotalValue = 0;
+                }
+                IsCustomLoaded = true;
             }
         }
 

@@ -50,9 +50,12 @@ namespace DiamondTrading
             this.chkAllowToSelectPaymentDueDate = new DevExpress.XtraEditors.CheckEdit();
             this.chkPrintSlip = new DevExpress.XtraEditors.CheckEdit();
             this.xtabOther = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.txtSlipPrinterName = new DevExpress.XtraEditors.TextEdit();
             this.btnApply = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
+            this.billPrintModelTableAdapter1 = new DiamondTrading.karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtabGeneral.SuspendLayout();
@@ -71,6 +74,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).BeginInit();
+            this.xtabOther.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -152,6 +159,7 @@ namespace DiamondTrading
             this.txtMinusOTHourRate.Properties.MaskSettings.Set("mask", "f");
             this.txtMinusOTHourRate.Size = new System.Drawing.Size(58, 20);
             this.txtMinusOTHourRate.TabIndex = 8;
+            this.txtMinusOTHourRate.TextChanged += new System.EventHandler(this.txtMinusOTHourRate_TextChanged);
             // 
             // labelControl3
             // 
@@ -176,6 +184,7 @@ namespace DiamondTrading
             this.txtPlusOTHourRate.Properties.MaskSettings.Set("mask", "f");
             this.txtPlusOTHourRate.Size = new System.Drawing.Size(58, 20);
             this.txtPlusOTHourRate.TabIndex = 6;
+            this.txtPlusOTHourRate.TextChanged += new System.EventHandler(this.txtPlusOTHourRate_TextChanged);
             // 
             // labelControl2
             // 
@@ -200,6 +209,7 @@ namespace DiamondTrading
             this.txtDayHours.Properties.MaskSettings.Set("mask", "f");
             this.txtDayHours.Size = new System.Drawing.Size(58, 20);
             this.txtDayHours.TabIndex = 4;
+            this.txtDayHours.TextChanged += new System.EventHandler(this.txtDayHours_TextChanged);
             // 
             // labelControl1
             // 
@@ -221,6 +231,7 @@ namespace DiamondTrading
             this.rdbHours.TabIndex = 2;
             this.rdbHours.Text = "Hours";
             this.rdbHours.UseVisualStyleBackColor = true;
+            this.rdbHours.CheckedChanged += new System.EventHandler(this.rdbHours_CheckedChanged);
             // 
             // rdbDays
             // 
@@ -234,6 +245,7 @@ namespace DiamondTrading
             this.rdbDays.TabStop = true;
             this.rdbDays.Text = "Days";
             this.rdbDays.UseVisualStyleBackColor = true;
+            this.rdbDays.CheckedChanged += new System.EventHandler(this.rdbDays_CheckedChanged);
             // 
             // labelControl11
             // 
@@ -303,9 +315,29 @@ namespace DiamondTrading
             // 
             // xtabOther
             // 
+            this.xtabOther.Controls.Add(this.groupControl4);
             this.xtabOther.Name = "xtabOther";
             this.xtabOther.Size = new System.Drawing.Size(296, 321);
             this.xtabOther.Text = "Other";
+            // 
+            // groupControl4
+            // 
+            this.groupControl4.Controls.Add(this.txtSlipPrinterName);
+            this.groupControl4.Location = new System.Drawing.Point(3, 5);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(290, 60);
+            this.groupControl4.TabIndex = 2;
+            this.groupControl4.Text = "Slip Printer Name";
+            // 
+            // txtSlipPrinterName
+            // 
+            this.txtSlipPrinterName.Location = new System.Drawing.Point(5, 26);
+            this.txtSlipPrinterName.Name = "txtSlipPrinterName";
+            this.txtSlipPrinterName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold);
+            this.txtSlipPrinterName.Properties.Appearance.Options.UseFont = true;
+            this.txtSlipPrinterName.Size = new System.Drawing.Size(280, 26);
+            this.txtSlipPrinterName.TabIndex = 3;
+            this.txtSlipPrinterName.TextChanged += new System.EventHandler(this.txtSlipPrinterName_TextChanged);
             // 
             // btnApply
             // 
@@ -325,6 +357,7 @@ namespace DiamondTrading
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Location = new System.Drawing.Point(134, 350);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -344,10 +377,16 @@ namespace DiamondTrading
             this.btnOk.Text = "&OK";
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // billPrintModelTableAdapter1
+            // 
+            this.billPrintModelTableAdapter1.ClearBeforeFill = true;
+            // 
             // FrmOptions
             // 
+            this.AcceptButton = this.btnApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(298, 381);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.btnCancel);
@@ -381,6 +420,10 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintPF.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkAllowToSelectPaymentDueDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chkPrintSlip.Properties)).EndInit();
+            this.xtabOther.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,5 +454,8 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.TextEdit txtPlusOTHourRate;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.TextEdit txtDayHours;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private DevExpress.XtraEditors.TextEdit txtSlipPrinterName;
+        private karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter billPrintModelTableAdapter1;
     }
 }

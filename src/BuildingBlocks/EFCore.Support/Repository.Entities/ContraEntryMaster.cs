@@ -22,6 +22,7 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public string EntryDate { get; set; }
+        public string EntryTime { get; set; }
 
         public virtual List<ContraEntryDetails> ContraEntryDetails { get; set; }
 

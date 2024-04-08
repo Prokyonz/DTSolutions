@@ -20,6 +20,7 @@ using System.Windows.Forms;
 using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
 using DevExpress.XtraGrid;
+using DevExpress.XtraSplashScreen;
 
 namespace DiamondTrading
 {
@@ -305,8 +306,8 @@ namespace DiamondTrading
 
             ActiveTab();
             try
-            {
-                await LoadGridData(true);
+            {                
+                await LoadGridData(true);                
             }
             catch(Exception ex)
             {
@@ -440,10 +441,12 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _partyMasterRepository == null)
                 {
+                    //splashScreenManager1.ShowWaitForm();
                     _partyMasterRepository = new PartyMasterRepository();
                     var data = await _partyMasterRepository.GetLedgerReport(Common.LoginCompany, Common.LoginFinancialYear);
                     gridControlLedgerReport.DataSource = data;
                     grvLedgerReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("LedgerReport"));
+                    //splashScreenManager1.CloseWaitForm();
                 }
             }
             else if (xtabManager.SelectedTabPage == xtabWeeklyPurchaseReport)
@@ -969,7 +972,7 @@ namespace DiamondTrading
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
         {
-            _ = LoadGridData();
+            //_ = LoadGridData();
         }
 
         private async void accordionRefreshBtn_Click(object sender, EventArgs e)
@@ -1022,9 +1025,9 @@ namespace DiamondTrading
             {
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    string id = grvExpenseMaster.GetFocusedRowCellValue(gridColumnExpenseIdCol).ToString();
+                    string id = grvExpenseMaster.GetFocusedRowCellValue(gridColumnExpenseSrNo).ToString();
 
-                    bool result = await _expenseMasterRepository.DeleteExpenseAsync(id, true);
+                    bool result = await _expenseMasterRepository.DeleteSrNoAllExpenseAsync(Convert.ToInt32(id), Common.LoginCompany, Common.LoginFinancialYear, true);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1034,7 +1037,7 @@ namespace DiamondTrading
                 if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string SelectedSrNo = grvContraDetails.GetFocusedRowCellValue("SrNo").ToString();
-                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(Convert.ToInt32(SelectedSrNo));
+                    bool result = await _contraEntryMasterRespository.DeleteContraEntryAsync(Convert.ToInt32(SelectedSrNo), Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1045,7 +1048,7 @@ namespace DiamondTrading
                 {
                     string id = gridView7.GetFocusedRowCellValue(gridColumnReceiptGroupId).ToString();
 
-                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id, Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1056,7 +1059,7 @@ namespace DiamondTrading
                 {
                     string id = gridView4.GetFocusedRowCellValue(gridColumnGroupId).ToString();
 
-                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id);
+                    bool result = await _paymentMasterRepository.DeletePaymentAsync(id, Common.LoginCompany, Common.LoginFinancialYear);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
@@ -1716,7 +1719,7 @@ namespace DiamondTrading
                 GridColumnSummaryItem item = e.Item as GridColumnSummaryItem;
                 double Total = double.Parse(view.Columns["GrossTotal"].SummaryText);
                 double saleRate = double.Parse(view.Columns["NetWeight"].SummaryText);
-                e.TotalValue = Total / saleRate;
+                e.TotalValue = (Total / saleRate).ToString("0");
             }
             catch (Exception)
             {
@@ -1735,7 +1738,7 @@ namespace DiamondTrading
                         case DevExpress.Data.CustomSummaryProcess.Finalize:
                             decimal Total = Convert.ToDecimal(gridColumnGrossTotal.SummaryItem.SummaryValue);
                             decimal BuyRate = Convert.ToDecimal(NetWeight.SummaryItem.SummaryValue);
-                            e.TotalValue = (Total / BuyRate).ToString();
+                            e.TotalValue = (Total / BuyRate).ToString("0");
                             break;
                     }
                 }

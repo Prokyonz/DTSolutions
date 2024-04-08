@@ -59,6 +59,17 @@ namespace DiamondTrading.Master
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
+            this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
+            this.grdCompanyAccessPermission = new DevExpress.XtraGrid.GridControl();
+            this.grvCompanyAccessPermission = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colPermissionName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPurchaseIsCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCheckEdit1 = new DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit();
+            this.colSaleIsCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colPermissionGroup = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colOtherIsCheck = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn7 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompanyType.Properties)).BeginInit();
@@ -78,15 +89,21 @@ namespace DiamondTrading.Master
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTermsCondition.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
+            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyAccessPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCompanyAccessPermission)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupControl1
             // 
-            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Controls.Add(this.lueCompanyType);
             this.groupControl1.Controls.Add(this.txtCompanyName);
             this.groupControl1.Controls.Add(this.labelControl2);
             this.groupControl1.Controls.Add(this.labelControl1);
+            resources.ApplyResources(this.groupControl1, "groupControl1");
             this.groupControl1.Name = "groupControl1";
             // 
             // lueCompanyType
@@ -111,21 +128,20 @@ namespace DiamondTrading.Master
             // 
             // labelControl2
             // 
-            resources.ApplyResources(this.labelControl2, "labelControl2");
             this.labelControl2.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl2.Appearance.Font")));
             this.labelControl2.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl2, "labelControl2");
             this.labelControl2.Name = "labelControl2";
             // 
             // labelControl1
             // 
-            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl1.Appearance.Font")));
             this.labelControl1.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl1, "labelControl1");
             this.labelControl1.Name = "labelControl1";
             // 
             // groupControl2
             // 
-            resources.ApplyResources(this.groupControl2, "groupControl2");
             this.groupControl2.Controls.Add(this.txtOfficeNo);
             this.groupControl2.Controls.Add(this.txtMobileNo);
             this.groupControl2.Controls.Add(this.labelControl5);
@@ -134,6 +150,7 @@ namespace DiamondTrading.Master
             this.groupControl2.Controls.Add(this.txtAddress);
             this.groupControl2.Controls.Add(this.labelControl3);
             this.groupControl2.Controls.Add(this.labelControl4);
+            resources.ApplyResources(this.groupControl2, "groupControl2");
             this.groupControl2.Name = "groupControl2";
             // 
             // txtOfficeNo
@@ -152,16 +169,16 @@ namespace DiamondTrading.Master
             // 
             // labelControl5
             // 
-            resources.ApplyResources(this.labelControl5, "labelControl5");
             this.labelControl5.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl5.Appearance.Font")));
             this.labelControl5.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl5, "labelControl5");
             this.labelControl5.Name = "labelControl5";
             // 
             // labelControl6
             // 
-            resources.ApplyResources(this.labelControl6, "labelControl6");
             this.labelControl6.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl6.Appearance.Font")));
             this.labelControl6.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl6, "labelControl6");
             this.labelControl6.Name = "labelControl6";
             // 
             // txtAddress2
@@ -176,27 +193,27 @@ namespace DiamondTrading.Master
             // 
             // labelControl3
             // 
-            resources.ApplyResources(this.labelControl3, "labelControl3");
             this.labelControl3.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl3.Appearance.Font")));
             this.labelControl3.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl3, "labelControl3");
             this.labelControl3.Name = "labelControl3";
             // 
             // labelControl4
             // 
-            resources.ApplyResources(this.labelControl4, "labelControl4");
             this.labelControl4.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl4.Appearance.Font")));
             this.labelControl4.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl4, "labelControl4");
             this.labelControl4.Name = "labelControl4";
             // 
             // groupControl3
             // 
-            resources.ApplyResources(this.groupControl3, "groupControl3");
             this.groupControl3.Controls.Add(this.txtRegistrationNo);
             this.groupControl3.Controls.Add(this.labelControl9);
             this.groupControl3.Controls.Add(this.txtPancardNo);
             this.groupControl3.Controls.Add(this.txtGSTNo);
             this.groupControl3.Controls.Add(this.labelControl7);
             this.groupControl3.Controls.Add(this.labelControl8);
+            resources.ApplyResources(this.groupControl3, "groupControl3");
             this.groupControl3.Name = "groupControl3";
             // 
             // txtRegistrationNo
@@ -208,9 +225,9 @@ namespace DiamondTrading.Master
             // 
             // labelControl9
             // 
-            resources.ApplyResources(this.labelControl9, "labelControl9");
             this.labelControl9.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl9.Appearance.Font")));
             this.labelControl9.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl9, "labelControl9");
             this.labelControl9.Name = "labelControl9";
             // 
             // txtPancardNo
@@ -229,25 +246,25 @@ namespace DiamondTrading.Master
             // 
             // labelControl7
             // 
-            resources.ApplyResources(this.labelControl7, "labelControl7");
             this.labelControl7.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl7.Appearance.Font")));
             this.labelControl7.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl7, "labelControl7");
             this.labelControl7.Name = "labelControl7";
             // 
             // labelControl8
             // 
-            resources.ApplyResources(this.labelControl8, "labelControl8");
             this.labelControl8.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl8.Appearance.Font")));
             this.labelControl8.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl8, "labelControl8");
             this.labelControl8.Name = "labelControl8";
             // 
             // groupControl4
             // 
-            resources.ApplyResources(this.groupControl4, "groupControl4");
             this.groupControl4.Controls.Add(this.txtTermsCondition);
             this.groupControl4.Controls.Add(this.txtNotes);
             this.groupControl4.Controls.Add(this.labelControl12);
             this.groupControl4.Controls.Add(this.labelControl13);
+            resources.ApplyResources(this.groupControl4, "groupControl4");
             this.groupControl4.Name = "groupControl4";
             // 
             // txtTermsCondition
@@ -262,16 +279,16 @@ namespace DiamondTrading.Master
             // 
             // labelControl12
             // 
-            resources.ApplyResources(this.labelControl12, "labelControl12");
             this.labelControl12.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl12.Appearance.Font")));
             this.labelControl12.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl12, "labelControl12");
             this.labelControl12.Name = "labelControl12";
             // 
             // labelControl13
             // 
-            resources.ApplyResources(this.labelControl13, "labelControl13");
             this.labelControl13.Appearance.Font = ((System.Drawing.Font)(resources.GetObject("labelControl13.Appearance.Font")));
             this.labelControl13.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this.labelControl13, "labelControl13");
             this.labelControl13.Name = "labelControl13";
             // 
             // btnSave
@@ -293,12 +310,101 @@ namespace DiamondTrading.Master
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // groupControl5
+            // 
+            this.groupControl5.Controls.Add(this.grdCompanyAccessPermission);
+            resources.ApplyResources(this.groupControl5, "groupControl5");
+            this.groupControl5.Name = "groupControl5";
+            // 
+            // grdCompanyAccessPermission
+            // 
+            resources.ApplyResources(this.grdCompanyAccessPermission, "grdCompanyAccessPermission");
+            this.grdCompanyAccessPermission.MainView = this.grvCompanyAccessPermission;
+            this.grdCompanyAccessPermission.Name = "grdCompanyAccessPermission";
+            this.grdCompanyAccessPermission.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemCheckEdit1});
+            this.grdCompanyAccessPermission.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvCompanyAccessPermission,
+            this.gridView2});
+            // 
+            // grvCompanyAccessPermission
+            // 
+            this.grvCompanyAccessPermission.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colPermissionName,
+            this.colPurchaseIsCheck,
+            this.colSaleIsCheck,
+            this.colPermissionGroup,
+            this.colOtherIsCheck});
+            this.grvCompanyAccessPermission.GridControl = this.grdCompanyAccessPermission;
+            this.grvCompanyAccessPermission.Name = "grvCompanyAccessPermission";
+            this.grvCompanyAccessPermission.OptionsDetail.EnableMasterViewMode = false;
+            this.grvCompanyAccessPermission.OptionsView.ShowGroupPanel = false;
+            this.grvCompanyAccessPermission.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.grvCompanyAccessPermission_RowCellStyle);
+            this.grvCompanyAccessPermission.CustomRowCellEdit += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.grvCompanyAccessPermission_CustomRowCellEdit);
+            this.grvCompanyAccessPermission.ShowingEditor += new System.ComponentModel.CancelEventHandler(this.grvCompanyAccessPermission_ShowingEditor);
+            // 
+            // colPermissionName
+            // 
+            resources.ApplyResources(this.colPermissionName, "colPermissionName");
+            this.colPermissionName.FieldName = "Permission";
+            this.colPermissionName.Name = "colPermissionName";
+            this.colPermissionName.OptionsFilter.AllowInHeaderSearch = DevExpress.Utils.DefaultBoolean.True;
+            // 
+            // colPurchaseIsCheck
+            // 
+            resources.ApplyResources(this.colPurchaseIsCheck, "colPurchaseIsCheck");
+            this.colPurchaseIsCheck.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colPurchaseIsCheck.FieldName = "Purchase";
+            this.colPurchaseIsCheck.Name = "colPurchaseIsCheck";
+            // 
+            // repositoryItemCheckEdit1
+            // 
+            resources.ApplyResources(this.repositoryItemCheckEdit1, "repositoryItemCheckEdit1");
+            this.repositoryItemCheckEdit1.Name = "repositoryItemCheckEdit1";
+            this.repositoryItemCheckEdit1.Validating += new System.ComponentModel.CancelEventHandler(this.repositoryItemCheckEdit1_Validating);
+            // 
+            // colSaleIsCheck
+            // 
+            resources.ApplyResources(this.colSaleIsCheck, "colSaleIsCheck");
+            this.colSaleIsCheck.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colSaleIsCheck.FieldName = "Sale";
+            this.colSaleIsCheck.Name = "colSaleIsCheck";
+            // 
+            // colPermissionGroup
+            // 
+            resources.ApplyResources(this.colPermissionGroup, "colPermissionGroup");
+            this.colPermissionGroup.FieldName = "PermissionGroup";
+            this.colPermissionGroup.Name = "colPermissionGroup";
+            // 
+            // colOtherIsCheck
+            // 
+            resources.ApplyResources(this.colOtherIsCheck, "colOtherIsCheck");
+            this.colOtherIsCheck.ColumnEdit = this.repositoryItemCheckEdit1;
+            this.colOtherIsCheck.FieldName = "Other";
+            this.colOtherIsCheck.Name = "colOtherIsCheck";
+            // 
+            // gridView2
+            // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn7});
+            this.gridView2.GridControl = this.grdCompanyAccessPermission;
+            this.gridView2.Name = "gridView2";
+            this.gridView2.OptionsBehavior.Editable = false;
+            this.gridView2.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn7
+            // 
+            resources.ApplyResources(this.gridColumn7, "gridColumn7");
+            this.gridColumn7.FieldName = "Id";
+            this.gridColumn7.Name = "gridColumn7";
+            // 
             // FrmCompanyMaster
             // 
-            resources.ApplyResources(this, "$this");
             this.Appearance.Options.UseFont = true;
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
+            this.Controls.Add(this.groupControl5);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -336,6 +442,12 @@ namespace DiamondTrading.Master
             this.groupControl4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtTermsCondition.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtNotes.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
+            this.groupControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdCompanyAccessPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvCompanyAccessPermission)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCheckEdit1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -371,5 +483,16 @@ namespace DiamondTrading.Master
         private DevExpress.XtraEditors.SimpleButton btnReset;
         private DevExpress.XtraEditors.SimpleButton btnCancel;
         private DevExpress.XtraEditors.LookUpEdit lueCompanyType;
+        private DevExpress.XtraEditors.GroupControl groupControl5;
+        private DevExpress.XtraGrid.GridControl grdCompanyAccessPermission;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvCompanyAccessPermission;
+        private DevExpress.XtraGrid.Columns.GridColumn colPermissionName;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseIsCheck;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCheckEdit repositoryItemCheckEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn colSaleIsCheck;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
+        private DevExpress.XtraGrid.Columns.GridColumn colPermissionGroup;
+        private DevExpress.XtraGrid.Columns.GridColumn colOtherIsCheck;
     }
 }

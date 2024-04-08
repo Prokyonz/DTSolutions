@@ -149,6 +149,7 @@ namespace EFCore.SQL.Repository
                     getUser.AadharCardNo = userMaster.AadharCardNo;
                     getUser.UpdatedDate = userMaster.UpdatedDate;
                     getUser.UpdatedBy = userMaster.UpdatedBy;
+                    getUser.Password = userMaster.Password;
 
                     if (userMaster.UserPermissionChilds != null)
                     {
@@ -170,6 +171,28 @@ namespace EFCore.SQL.Repository
                 await _databaseContext.SaveChangesAsync();
 
                 return userMaster;
+            }
+        }
+
+        public async Task<UserMaster> GetUserById(string id)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var user = await _databaseContext.UserMaster.Where(w => w.Id == id).FirstOrDefaultAsync();
+                user.UserPermissionChilds = await _databaseContext.UserPermissionChild.Where(w => w.UserId == id).ToListAsync();
+                user.UserCompanyMappings = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == id).ToListAsync();
+                return user;
+            }
+        }
+
+        public async Task<UserMaster> GetUserByName(string username)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var user = await _databaseContext.UserMaster.Where(w => w.UserName.ToLower() == username).FirstOrDefaultAsync();
+                user.UserPermissionChilds = await _databaseContext.UserPermissionChild.Where(w => w.UserId == user.Id).ToListAsync();
+                user.UserCompanyMappings = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == user.Id).ToListAsync();
+                return user;
             }
         }
     }
