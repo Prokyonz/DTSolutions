@@ -277,14 +277,16 @@ namespace DiamondTrading
                         try
                         {
                             stockReportModelReports = await LoadDataStock();
-                        }catch (Exception ex)
+                        }
+                        catch (Exception ex)
                         {
 
                         }
                         try
                         {
                             numberReportModelReports = await LoadDataNumber();
-                        }catch(Exception ex)
+                        }
+                        catch (Exception ex)
                         {
 
                         }

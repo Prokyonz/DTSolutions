@@ -12,7 +12,8 @@ namespace DiamondTrading
         Receive = 1,
         Return = 2,
         Transfer = 3,
-        OpeningStock = 4
+        OpeningStock = 4,
+        NumberPurchase = 5
     }
 
     public enum ExportDataType

@@ -49,5 +49,7 @@ namespace Repository.Entities
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public string CharniSizeId { get; set; }
+        public string PurchaseMasterId { get; set; }
+        public string PurchaseDetailsId { get; set; }
     }
 }

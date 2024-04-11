@@ -48,6 +48,7 @@ namespace Repository.Entities
         public DateTime? UpdatedDate { get; set; }
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
+        public bool IsNumberPurchase { get; set; }
 
         [ForeignKey("PurchaseId")]
         public virtual PurchaseMaster PurchaseMaster { get; set; }

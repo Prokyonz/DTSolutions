@@ -1027,7 +1027,7 @@ namespace DiamondTrading.Process
                         {
                             foreach (DataRowView row in dtView)
                             {
-                                numberProcessMaster = new NumberProcessMaster();
+                                numberProcessMaster = new NumberProcessMaster(); 
                                 numberProcessMaster.Id = Guid.NewGuid().ToString();
                                 numberProcessMaster.NumberNo = 0;
                                 numberProcessMaster.JangadNo = 0;
