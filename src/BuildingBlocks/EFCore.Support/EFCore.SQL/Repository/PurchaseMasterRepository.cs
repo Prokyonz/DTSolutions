@@ -171,7 +171,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var totalAmount = await _databaseContext.SPDashboardModel.FromSqlRaw($"GetPurchaseReport '" + companyId + "','" + financialYearId + "','" + currentWeek + "', '" + fromDate + "', '" + toDate + "',1").ToListAsync();
-                return totalAmount.Count > 0 ? totalAmount[0]: new DashboardSPModel() { TotalAmount = 0 } ;
+                return totalAmount.Count > 0 ? totalAmount[0] : new DashboardSPModel() { TotalAmount = 0 };
             }
         }
 
@@ -311,5 +311,40 @@ namespace EFCore.SQL.Repository
                 return getPurchaseChild;
             }
         }
+
+        public async Task<bool> DeleteFromNumberProcessMaster(string purchaseMasterId, DatabaseContext _databaseContext)
+        {
+            if (_databaseContext != null)
+            {
+                return await UpdateNumberProcessMaster(purchaseMasterId, _databaseContext);
+            }
+            else
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    return await UpdateNumberProcessMaster(purchaseMasterId, _databaseContext);
+                }
+            }
+        }
+
+        private async Task<bool> UpdateNumberProcessMaster(string purchaseMasterId, DatabaseContext _databaseContext = null)
+        {
+            var result = await _databaseContext.NumberProcessMaster.Where(w => w.PurchaseMasterId == purchaseMasterId).ToListAsync();
+            if (result.Any())
+            {
+                _databaseContext.NumberProcessMaster.RemoveRange(result);
+            }
+            await _databaseContext.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteFromNumberProcessMaster(string purchaseMasterId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await UpdateNumberProcessMaster(purchaseMasterId);                
+            }
+        }
     }
 }
+
