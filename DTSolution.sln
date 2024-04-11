@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{662900AE-5B30-464B-840F-FC76E964855E}"
 	ProjectSection(SolutionItems) = preProject
 		readme.txt = readme.txt
+		C:\Users\admin\Desktop\TrncateTableQuery.sql = C:\Users\admin\Desktop\TrncateTableQuery.sql
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{90D0F4B3-280D-4F6C-BFF2-464EEA272ECA}"

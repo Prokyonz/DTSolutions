@@ -23,3 +23,4 @@ namespace Repository.Entities.Model
         public DateTime? EntryDate { get; set; }
     }
 }
+

@@ -8,7 +8,7 @@ namespace Repository.Entities
 {
     public class CalculatorMaster
     {
-        public int Sr { get; }
+        public int Sr { get; set; }
         [Key]
         public string Id { get; set; }
         public int SrNo { get; set; }
@@ -35,6 +35,7 @@ namespace Repository.Entities
         public decimal Amount { get; set; }
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Percentage { get; set; }
+        public string Note { get; set; }
         public DateTime CreatedDate { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }

@@ -1,4 +1,4 @@
-<div class="header">
+<div class="header" style="padding-top: 50px;">
     <table class="table">
         <tr>
             <td style="width: 50px;">
@@ -18,15 +18,15 @@
 </div>
 
 <div class="card flex justify-content-center">
-    <p-sidebar [(visible)]="sidebarVisible" transitionOptions="300ms">
+    <p-sidebar [(visible)]="sidebarVisible">
         <ng-template pTemplate="header">
-            <div>
+            <div style="padding-top:50px;">
                 <b style="font-size: 25px;"><i class="pi pi-spin pi-star-fill"></i> Diamond Trade</b>
             </div>
 
         </ng-template>
         <div style="padding: 0 1rem 1rem 1rem;">
-            <span>Welcome, <span>demo user</span></span>
+            <span>Welcome, <b><span>{{ userName | uppercase }}</span></b></span>
         </div>    
         <ng-template pTemplate="content">
             <div class="card flex justify-content-center">          
@@ -36,3 +36,4 @@
         
     </p-sidebar>    
 </div>
+

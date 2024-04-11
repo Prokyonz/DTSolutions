@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EFCore.SQL.Repository
 {
-    public class PaymentMasterRepository : IPaymentMaster, IDisposable
+    public class PaymentMasterRepository : IPaymentMaster
     {
         private DatabaseContext _databaseContext;
 
@@ -154,6 +154,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<DashboardSPModel> GetPaymentOrReceiptTotal(string companyId, string financialYearId, int paymentType, string fromDate, string toDate)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var paymentRecords = await _databaseContext.SPDashboardModel.FromSqlRaw($"getPaymentReport '" + companyId + "','" + financialYearId + "','" + paymentType + "', '" + fromDate + "', '" + toDate + "', 1").ToListAsync();
+                return paymentRecords.Count > 0 ? paymentRecords[0] : new DashboardSPModel() { TotalAmount = 0 };
+            }
+        }
         public async Task<List<PaymentPSSlipDetails>> GetPaymentPSSlipDetails(string companyId, string actionType, int SrNo)
         {
             using (_databaseContext = new DatabaseContext())

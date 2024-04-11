@@ -37,6 +37,7 @@
               "src/styles.scss"
             ],
             "scripts": []
+            
           },
           "configurations": {
             "production": {
@@ -104,5 +105,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

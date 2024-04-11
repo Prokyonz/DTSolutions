@@ -1,0 +1,46 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
+</head>
+<app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
+<div>
+    <div style="height: calc(100vh - 200px); overflow:scroll;">
+        <p-table [value]="transformedData" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">    
+                    <tr>        
+                        <th>Account Type</th>            
+                        <th>Debit Amount</th>
+                        <th>Account Type</th>            
+                        <th>Credit Amount</th>
+                    </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-row>
+                    <tr>
+                        <td>{{ row.DebitColType }}</td>
+                        <td>{{ row.DebitAmount != null ? formatIndianNumber(row.DebitAmount?.toFixed(2)) : '' }}</td>
+                        <td>{{ row.CreditColType }}</td>
+                        <td>{{ row.CreditAmount != null ? formatIndianNumber(row.CreditAmount?.toFixed(2)) : ''}}</td>
+                    </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td>
+                        Total
+                    </td>
+                    <td>
+                        {{ formatIndianNumber(totalDebitAmount?.toFixed(2)) }}
+                    </td>
+                    <td>
+
+                    </td>
+                    <td>
+                        {{ formatIndianNumber(totalCreditAmount?.toFixed(2)) }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
+  </div>

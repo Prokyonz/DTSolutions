@@ -2,6 +2,14 @@ textarea {
     width: 100%;
 }
 
-.flex {
-    flex-direction: row-reverse !important;
+// .flex {
+//     flex-direction: row-reverse !important;
+// }
+
+.p-dropdown-panel.p-paginator-dropdown {
+    position: absolute;
+    bottom: calc(100% + 5px); /* Position dropdown above the paginator */
+    left: 0;
+    z-index: 1000; /* Ensure dropdown appears above other content */
 }
+

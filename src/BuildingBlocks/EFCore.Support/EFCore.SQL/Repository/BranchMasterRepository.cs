@@ -70,6 +70,14 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<BranchMaster>> GetAllBranchByCompanyIdAsync(string companyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                return await _databaseContext.BranchMaster.Where(s => s.CompanyId == companyId && s.IsDelete == false).ToListAsync();
+            }
+        }
+
         public async Task<List<BranchMaster>> GetAllBranchAsync(string companyId)
         {
             using (_databaseContext = new DatabaseContext())

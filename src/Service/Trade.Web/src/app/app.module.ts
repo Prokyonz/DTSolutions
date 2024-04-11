@@ -22,17 +22,26 @@ import { PanelModule } from 'primeng/panel';
 import { HeaderComponent } from './shared/component/header/header.component';
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { SharedService } from './common/shared.service';
+import { AuthService } from './auth.service';
 import { ToastModule } from 'primeng/toast';
 import { TableModule } from 'primeng/table';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ReportComponent } from './report/report.component';
 import { FilterbarComponent } from './shared/component/filterbar/filterbar.component';
-import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CheckboxModule } from 'primeng/checkbox';
 import { CompanyselectionComponent } from './shared/component/companyselection/companyselection.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { MessageService } from 'primeng/api';
 import { DialogModule } from 'primeng/dialog';
+import { DatePipe } from '@angular/common';
+import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
+import { BalancesheetComponent } from './report/balancesheet/balancesheet.component';
+import { ProfitlossComponent } from './report/profitloss/profitloss.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +55,9 @@ import { DialogModule } from 'primeng/dialog';
     ReportComponent,
     FilterbarComponent,
     CompanyselectionComponent,
+    KapanlagadComponent,
+    BalancesheetComponent,
+    ProfitlossComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,13 +79,15 @@ import { DialogModule } from 'primeng/dialog';
     ToastModule,
     TableModule,
     InputTextareaModule,
+    HttpClientModule,
     FormsModule,
+    CommonModule,
     RadioButtonModule,
     CheckboxModule,
     ProgressSpinnerModule,
     DialogModule
   ],
-  providers: [],
+  providers: [SharedService, AuthService, MessageService, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

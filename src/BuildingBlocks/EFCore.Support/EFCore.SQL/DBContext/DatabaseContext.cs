@@ -68,9 +68,9 @@ namespace EFCore.SQL.DBContext
         public DbSet<CalculatorMaster> CalculatorMaster { get; set; }
         public DbSet<UserCompanyMapping> UserCompanyMappings { get; set; }
         public virtual DbSet<BillPrintModel> BillPrintModel { get; set; }
+        public DbSet<DashboardSPModel> SPDashboardModel { get; set; }
         public virtual DbSet<CompanyOptions> CompanyOptions { get; set; }
         public virtual DbSet<TransferDetails> TransferDetails { get; set; }
-
 
         public virtual DbSet<PriceSPModel> PriceSPModel { get; set; }
         public virtual DbSet<JangadSPReceiveModel> JangadSPReceiveModel { get; set; }
@@ -127,8 +127,9 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
         public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
         public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
-        public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }        
+        public virtual DbSet<CalculatorSPModel> SPCalculatorModel { get; set; }
 
+        public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
@@ -239,7 +240,10 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
-            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
+            modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
+            modelBuilder.Entity<CalculatorSPModel>().HasNoKey();
+            modelBuilder.Entity<DashboardSPModel>().HasNoKey();           
             modelBuilder.Entity<ValidationSPModel>().HasNoKey();
             modelBuilder.Entity<SalesSPModel>().HasNoKey();
             modelBuilder.Entity<SlipDetailPrintSPModel>().HasNoKey();

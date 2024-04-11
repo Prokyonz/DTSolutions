@@ -1,5 +1,5 @@
-<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" leftIconName="pi-plus" (onClickLeftIcon)="onAddIconClick();" title="{{ PageTitle }}"></app-header>
-<p-toast></p-toast>
+<app-header (onClickMainIcon) = "myfunction()" iconName="pi-arrow-left" leftIconName="{{!isAddIcon ? '' : 'pi-plus'}}" (onClickLeftIcon)="onAddIconClick();" title="{{ PageTitle }}"></app-header>
+<p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <div *ngIf="showAddSection">
     <div class="panel">    
         <div class="card flex justify-content-center customClass">
@@ -11,9 +11,9 @@
                                 <td>
                                     <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
                                 </td>
-                                <td style="text-align: end; padding-right: 1rem">
+                                <!-- <td style="text-align: end; padding-right: 1rem">
                                     <span>SrNo:</span><b> &nbsp;<span>10</span></b>
-                                </td>
+                                </td> -->
                             </tr>
                         </table>
                     </ng-template>
@@ -22,28 +22,29 @@
                             <tr>                        
                                 <td style="width: 50%;">   
                                     <span style="bottom: 5px; position: relative;">Date</span><br/>                         
-                                    <p-calendar [showIcon]="true" [touchUI]="true" [readonlyInput]="true"></p-calendar>
+                                    <p-calendar [showIcon]="true" [(ngModel)]="date" (onChange)="handledate($event)" [touchUI]="true" [readonlyInput]="true"></p-calendar>
                                 </td>    
                                 <td>   
                                     <span style="bottom: 5px; position: relative;">Branch</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="branches" optionLabel="name" [(ngModel)]="branchid" (onChange)="handlebranch($event)"></p-dropdown>
                                 </td>                    
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Party</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="party" optionLabel="name" [editable]="true"  [(ngModel)]="partyid" [filterBy]="'name'" [filter]="true" (onChange)="handleparty($event)"></p-dropdown>                            
                                 </td>
                             </tr>
                             <tr>
                                 <td colspan="2" style="padding-top:10px;">   
                                     <span style="bottom: 5px; position: relative;">Broker</span><br/>                                                       
-                                    <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                                    <p-dropdown [options]="dealers" optionLabel="name" [editable]="true"  [(ngModel)]="dealerid" [filterBy]="'name'" [filter]="true" (onChange)="handledealer($event)" aria-required="true"></p-dropdown>              
                                 </td>
                             </tr>
                             <td colspan="2" style="padding-top:10px;">   
-                                <span style="bottom: 5px; position: relative;">Catats</span><br/>                                                       
-                                <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                                <span style="bottom: 5px; position: relative;">Carats</span><br/>                                                       
+                                <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)]="netcarat" inputmode="decimal"/>     
+                                         
                             </td>
                         </table>
                         
@@ -67,30 +68,51 @@
                     <tr style="border-bottom: 1px groove red;">
                         <td style="width: 50%;">   
                             <span style="bottom: 5px; position: relative;">Size</span><br/>                                                       
-                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
+                            <p-dropdown [options]="sizes" (onChange)="handlesize($event)" [(ngModel)] = "selectedsize"></p-dropdown>                            
                         </td>
                         <td style="width:50%;">   
-                            <span style="bottom: 5px; position: relative;">Total Catats</span><br/>                                                       
-                            <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
+                            <span style="bottom: 5px; position: relative;">Total Carats</span><br/>                                                       
+                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "selectedtotalcarat" inputmode="decimal"/>                            
                         </td>                        
                     </tr>
-                    <tr>
+                    <tr *ngIf="numbers.length > 0"> 
                         <td colspan="2">   
                             <p-panel header="Number Details">
-                                <table style="width:100%;">
+                                <table style="width:100%;" >
                                     <tr>
-                                        <td>   
-                                            <span style="bottom: 5px; position: relative;">Number</span><br/>                                                       
-                                            <p-dropdown [options]="cities" optionLabel="name"></p-dropdown>                            
-                                        </td>
-                                        <td style="width:50%;">   
-                                            <span style="bottom: 5px; position: relative;">CTS</span><br/>                                                       
-                                            <input pInputText pKeyFilter="int" style="width: 100%;"/>                            
-                                        </td>                                           
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">Number</span><br/>       
+                                        </th>
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">CTS</span><br/>              
+                                        </th>
+                                        <th>
+                                            <span style="bottom: 5px; position: relative;">Rate</span><br/>       
+                                        </th>
                                     </tr>
+                                    <tr *ngFor="let item of numbers">
+                                        <td>   
+                                            <input pInputText [(ngModel)]="item.numberName"  style="width: 100%;"  [readonly]="true"/>                                              
+                                            <!-- <p-dropdown [options]="numbers" (onChange)="handlerate($event)" [(ngModel)] = "selectednumber"></p-dropdown>   -->
+                                        </td>    
+                                        <td>
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.carat" (ngModelChange)="calculateTotal(item)" inputmode="decimal" />
+                                        </td>
+                                        <td>
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.price" (ngModelChange)="calculateTotal(item)" inputmode="decimal" />
+                                        </td> 
+                                        <!-- <td>
+                                            <span style="bottom: 5px; position: relative;">Total</span><br/>                                                       
+                                            <input pInputText type="number" pKeyFilter="int" style="width: 100%;" [(ngModel)] = "item.total"  />
+                                        </td>                                                                              -->
+                                    </tr>
+                                    <!-- <tr>
+                                        
+                                    </tr> -->
                                     <tr>
-                                        <td colspan="2" style="vertical-align: bottom;">                                                     
-                                            <p-button label="Add Item" (onClick)="showMessage()"></p-button>                         
+                                        <td colspan="3" style="vertical-align: bottom;">     
+                                            <span></span><br/>                                                
+                                            <p-button label="Add Item" (onClick)="addItems()" [disabled]="!isAnyCaratGreaterThanZero()"></p-button>                         
                                         </td>
                                     </tr>
                                 </table>
@@ -112,32 +134,78 @@
                 </table>
             </ng-template>
             <div>
-                <textarea rows="5" cols="30" pInputTextarea style="width: 100%;"></textarea>
+                <textarea rows="5" cols="30" pInputTextarea style="width: 100%;" [(ngModel)] = "note"></textarea>
             </div>
         </p-card>           
     </div>
-    <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>    
+    <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search" ></p-button>    
 </div>
 
-
-<div *ngIf="showViewSection">
+<div *ngIf="showViewSection">      
     <div class="panel">
-        <p-card class="customClass">
-            <ng-template pTemplate="header">
+        <div class="card flex justify-content-center customClass">
+            <div style="margin: 8px; width: 100%;">
+                <p-card>
+                    <ng-template pTemplate="header">
+                        <table style="width: 100%;">
+                            <tr>
+                                <td>
+                                    <b style="font-size: 20px; padding-left: 1rem;">Basic Details</b>
+                                </td>                                
+                            </tr>
+                        </table>
+                    </ng-template>
+                    <div>
+                        <table style="width: 100%;" [cellSpacing]="5">
+                            <tr>                        
+                                <td style="width: 50%;">   
+                                    <span style="bottom: 5px; position: relative;font-weight: bold;">Date</span><br/>                         
+                                    <span>{{date.toLocaleDateString()}}</span>
+                                </td>    
+                                <td>   
+                                    <span style="bottom: 5px; position: relative;font-weight: bold;">Branch</span><br/>                                                       
+                                    <span>{{branchid.name}}</span>                           
+                                </td>                    
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top:10px;">   
+                                    <span style="bottom: 5px; position: relative;font-weight: bold;">Party</span><br/>                                                       
+                                    <span>{{ partyid.name ?? partyid}}</span>                        
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="padding-top:10px;">   
+                                    <span style="bottom: 5px; position: relative;font-weight: bold;">Broker</span><br/>                                                       
+                                    <span>{{ dealerid.name ?? dealerid}}</span>                                                         
+                                </td>
+                            </tr>
+                            <td colspan="2" style="padding-top:10px;">   
+                                <span style="bottom: 5px; position: relative;font-weight: bold;">Carats</span><br/>                                                       
+                                <span>{{netcarat}}</span>                                              
+                            </td>
+                        </table>
+                        
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    
+    <div *ngFor="let header of SizeDetails">
+        <p-card class="customClass" >
+            <ng-template #headerTemplate pTemplate="header">                
                 <table style="width: 100%;">
                     <tr>
                         <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">+2</b>
+                            <b style="font-size: 20px; padding-left: 1rem;">{{header.sizeId}}</b>
                         </td>
                         <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
-                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
+                            <span>Total CTS:</span><b> &nbsp;<span>{{header.totalCarat}}</span></b>
                         </td>
                     </tr>
                 </table>
             </ng-template>
-            
             <div>
-                <p-table [value]="products" styleClass="p-datatable-striped">
+                <p-table [value]="getItemsBySize(header.sizeId)" styleClass="p-datatable-striped">
                     <ng-template pTemplate="header">
                         <tr>
                             <th>Number</th>
@@ -145,159 +213,116 @@
                             <th>Rate</th>
                             <th>%</th>
                             <th>Amount</th>
-                            <th>Action</th>
+                            <th *ngIf="isSaveButton">Action</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-product>
+                    <ng-template pTemplate="body" let-item>
                         <tr>
-                            <td>{{ product.number }}</td>
-                            <td>{{ product.cts }}</td>
-                            <td>{{ product.rate }}</td>
-                            <td>{{ product.percentage }}</td>
-                            <td>{{ product.amount }}</td>
-                            <td>
-                                <i class="pi text-red-500 pi-times-circle"></i>
+                            <td>{{ item.numberName }}</td>
+                            <td>{{ item.carat }}</td>
+                            <td>{{ item.rate | number:'.2-2' }}</td>
+                            <td>{{ (item.carat/getSizeCaratTotal(header.sizeId)) * 100 | number:'.2-2' }}</td>
+                            <td>{{ item.amount | number:'.2-2'}}</td>
+                            <td *ngIf="isSaveButton">
+                                <i class="pi text-red-500 pi-times-circle" (click)="deleteitems(item)"></i>
                             </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </p-card>
-        <p-card class="customClass">
-            <ng-template pTemplate="header">
-                <table style="width: 100%;">
-                    <tr>
-                        <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">+11</b>
-                        </td>
-                        <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
-                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
-                        </td>
-                    </tr>
-                </table>
-            </ng-template>
-            <div>
-                <p-table [value]="products" styleClass="p-datatable-striped">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Number</th>
-                            <th>CTS</th>
-                            <th>Rate</th>
-                            <th>%</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-product>
-                        <tr>
-                            <td>{{ product.number }}</td>
-                            <td>{{ product.cts }}</td>
-                            <td>{{ product.rate }}</td>
-                            <td>{{ product.percentage }}</td>
-                            <td>{{ product.amount }}</td>
-                            <td>
-                                <i class="pi text-red-500 pi-times-circle"></i>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </p-card>
-        <p-card class="customClass">
-            <ng-template pTemplate="header">
-                <table style="width: 100%;">
-                    <tr>
-                        <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">+6</b>
-                        </td>
-                        <td style="text-align: end; padding-right: 1rem; padding-top:2px;">
-                            <span>Total CTS:</span><b> &nbsp;<span>22</span></b>
-                        </td>
-                    </tr>
-                </table>
-            </ng-template>
-            <div>
-                <p-table [value]="products" styleClass="p-datatable-striped">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Number</th>
-                            <th>CTS</th>
-                            <th>Rate</th>
-                            <th>%</th>
-                            <th>Amount</th>
-                            <th>Action</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-product>
-                        <tr>
-                            <td>{{ product.number }}</td>
-                            <td>{{ product.cts }}</td>
-                            <td>{{ product.rate }}</td>
-                            <td>{{ product.percentage }}</td>
-                            <td>{{ product.amount }}</td>
-                            <td>
-                                <i class="pi text-red-500 pi-times-circle"></i>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </p-card>
-        <p-card class="customClass">
-            <ng-template pTemplate="header">
-                <table style="width: 100%;">
-                    <tr>
-                        <td>
-                            <b style="font-size: 20px; padding-left: 1rem;">Summary</b>
-                        </td>
-                    </tr>
-                </table>
-            </ng-template>
-            <div>
-                <p-table [value]="summary" styleClass="p-datatable-striped">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Size Name</th>
-                            <th>Percentage</th>
-                            <th>Amount</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-summ>
-                        <tr>
-                            <td>{{ summ.sizeName }}</td>
-                            <td>{{ summ.percentage }}</td>
-                            <td>{{ summ.amount | currency: 'USD' }}</td>
                         </tr>
                     </ng-template>
                     <ng-template pTemplate="footer">
                         <tr>
-                            <td colspan="2" class="text-right">Totals</td>
-                            <td>{{ 25000 | currency: 'USD'}}</td>
+                            <td class="text-right">Totals</td>
+                            <td>
+                                <ng-container>
+                                    {{ getSizeCaratTotal(header.sizeId) | number:'.2-2' }}
+                                </ng-container>
+                            </td>
+                            <td></td>                            
+                            <td>
+                                <ng-container>
+                                    {{ getSizeAmountTotal(header.sizeId) | number:'.2-2' }}
+                                </ng-container>
+                            </td>
+                            <td></td>
                         </tr>
                     </ng-template>
                 </p-table>
             </div>
         </p-card>
     </div>
-    <p-button pRipple label="Save Details" [loading]="loading" (onClick)="saveDetails()" icon="pi pi-check" styleClass="p-button-success"></p-button>
+    <p-card class="customClass">
+        <ng-template pTemplate="header">
+            <table style="width: 100%;">
+                <tr>
+                    <td>
+                        <b style="font-size: 20px; padding-left: 1rem;">Summary</b>
+                    </td>
+                </tr>
+            </table>
+        </ng-template>
+        <div>
+            <p-table [value]="summatydata" styleClass="p-datatable-striped">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Size Name</th>
+                        <th>Carat</th>
+                        <th>Percentage</th>                        
+                        <th>Rate</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-summ>
+                    <tr>
+                        <td>{{ summ.sizeName }}</td>
+                        <td>{{ getSizeCaratTotal(summ.sizeId) | number:'.2-2' }}</td>
+                        <td>{{ summ.percentage | number:'.2-2' }}</td>
+                        <td>{{ summ.rate | number:'.2-2'}}</td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <tr>
+                        <td colspan="3" class="text-right">Totals</td>
+                        <!-- <td>{{ summaryTotAmount | number:'.2-2'}}</td> -->
+                        <td>{{ summaryTotRate | number:'.2-2'}}</td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+        <p-card class="customClass">
+            <ng-template pTemplate="header">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            <b style="font-size: 20px; padding-left: 1rem;">Notes</b>
+                        </td>
+                    </tr>
+                </table>
+            </ng-template>
+            <div>
+                <textarea rows="5" cols="30" pInputTextarea style="width: 100%;" [(ngModel)] = "note" disabled="true"></textarea>
+            </div>
+        </p-card>
+    </p-card>
+    </div>
+    <p-button *ngIf="isSaveButton" pRipple label="Save Details" [loading]="loading" icon="pi pi-check" styleClass="p-button-success" (onClick)="saveData()"></p-button>
 </div>
 
 <div *ngIf="showHistory">
+    <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
     <div class="card" style="height: calc(100vh - 56px); overflow:scroll;">
         <p-table
             #dt1
-            [value]="customers"
-            dataKey="id"
+            [value]="calculatorListData"
+            dataKey="SrNo"
             [rows]="5"
             [showCurrentPageReport]="false"
             [rowsPerPageOptions]="[5, 10, 25, 50]"
             [loading]="loading"
             [paginator]="true"
             [scrollable]="true"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"            
             >
-            <!-- <ng-template pTemplate="caption">
+            <!-- 
+                [globalFilterFields]="['companyId', 'partyName', 'brokerName']"
+                <ng-template pTemplate="caption">
                 <div class="flex">
                     <span class="p-input-icon-left ml-auto">
                         <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
@@ -307,61 +332,94 @@
             </ng-template> -->
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="min-width:15rem">
+                    <!-- <th style="min-width:15rem">
                         <div class="flex align-items-center">
-                            Name
-                            <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                            Id
+                            <p-columnFilter type="text" field="id" display="menu"></p-columnFilter>
                         </div>
-                    </th>
-                    <th style="min-width:15rem">
+                    </th> -->
+                    <!-- <th style="min-width:15rem">
                         <div class="flex align-items-center">
-                            Country
-                            <p-columnFilter type="text" field="country.name" display="menu"></p-columnFilter>
+                            SR No
+                            <p-columnFilter type="text" field="companyId" display="menu"></p-columnFilter>
                         </div>
-                    </th>
-                    <th style="min-width:10rem">
+                    </th> -->
+                    <th style="min-width:5rem">
                         <div class="flex align-items-center">
                             Date
                             <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="min-width:10rem">
+                    <th style="min-width:15rem">
                         <div class="flex align-items-center">
-                            Balance
-                            <p-columnFilter type="numeric" field="balance" display="menu" currency="USD"></p-columnFilter>
+                            Party
+                            <p-columnFilter field="partyName" display="menu"></p-columnFilter>
                         </div>
                     </th>
-                    <th style="width: 3rem">
+                    <th style="min-width: 15rem">
                         <div class="flex align-items-center">
-                            Verified
-                            <p-columnFilter type="boolean" field="verified" display="menu"></p-columnFilter>
+                            Broker
+                            <p-columnFilter field="brokerName" display="menu"></p-columnFilter>
+                        </div>
+                    </th>    
+                    <th style="min-width: 10rem">
+                        <div class="flex align-items-center">
+                            Net Carat
+                            <p-columnFilter type="number" field="netCarat" display="menu"></p-columnFilter>
+                        </div>
+                    </th> 
+                    <th style="min-width: 10rem">
+                        <div class="flex align-items-center">
+                            User
+                            <p-columnFilter field="userName" display="menu"></p-columnFilter>
+                        </div>
+                    </th> 
+                    <th>
+                        <div class="flex align-items-center">
+                            View
+                        </div>
+                    </th>
+                    <th>
+                        <div class="flex align-items-center">
+                            Edit
                         </div>
                     </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-customer>
+            <ng-template pTemplate="body" let-calculatorData>
                 <tr>
-                    <td>
-                        {{ customer.name }}
+                    <!-- <td>
+                        {{ calculatorData.id }}
                     </td>
                     <td>
-                        <img src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png" [class]="'flag flag-' + customer.country.code" style="width: 20px" />
-                        <span class="ml-1 vertical-align-middle">{{ customer.country }}</span>
+                        {{ calculatorData.companyId }}
+                    </td>                     -->
+                    <td>
+                        {{ calculatorData.date | date: 'MM/dd/yyyy' }}
                     </td>
                     <td>
-                        {{ customer.date | date: 'MM/dd/yyyy' }}
+                        {{ calculatorData.partyName  }}
                     </td>
                     <td>
-                        {{ customer.balance | currency: 'USD':'symbol' }}
+                        {{ calculatorData.brokerName  }}
+                    </td>        
+                    <td>
+                        {{ calculatorData.netCarat  }}
+                    </td>   
+                    <td>
+                        {{ calculatorData.userName  }}
+                    </td>            
+                    <td>
+                        <i class="pi text-blue-500 pi-search" (click)="viewitem(calculatorData)"></i>
                     </td>
-                    <td class="text-center">
-                        <i class="pi" [ngClass]="{ 'text-green-500 pi-check-circle': customer.verified, 'text-red-500 pi-times-circle': !customer.verified }"></i>
+                    <td>
+                        <i class="pi text-blue-500 pi-pencil" (click)="edititem(calculatorData)"></i>
                     </td>
                 </tr>
             </ng-template>
             <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="7">No customers found.</td>
+                    <td colspan="7">No Data found.</td>
                 </tr>
             </ng-template>
         </p-table>
