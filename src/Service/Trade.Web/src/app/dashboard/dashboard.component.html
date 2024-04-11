@@ -1,49 +1,117 @@
-<app-header [showSideBar]="true" title="Dashboard" iconName="pi-align-justify" leftIconName=""></app-header>
-<app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+</head>
+<app-header [showSideBar]="true" title="Dashboard" [iconName]="showSecondPanel ? 'pi-arrow-left' : 'pi-align-justify'" 
+            leftIconName="pi-power-off" (onClickMainIcon)="showSecondPanel ? backFunction() : undefined" (onClickLeftIcon) = "onLogoutClick()">
+  <i class="pi pi-fw pi-power-off logout-icon"></i>
+</app-header>
 
-<div class="panel">
+
+<ng-template #noDashboardMessage>
+    <p>You have nothing to show.</p>
+
+  </ng-template>
+
+<div class="panel" *ngIf="showDashboard; else noDashboardMessage">
+
+<div class="panel" *ngIf="showFirstPanel; else secondPanel">
+  <div class="dashboard-container">
+    <ng-container *ngFor="let rowData of dashBoardReportItems; let i = index">
+      <div class="dashboard-row" *ngIf="i % 4 === 0 || i === 0">
+        <div class="dashboard-cell">
+          <a class="dashboard-item" [routerLink]="rowData.label !== 'Overview' ? rowData.routerLink : null">
+            <div class="dashboard-icon big-icon" (click)="togglePanel(rowData.label)">
+              <i [ngClass]="rowData.icon"></i>
+            </div>
+            <div class="dashboard-label" (click)="togglePanel(rowData.label)">
+              {{ rowData.label }}
+            </div>
+          </a>
+        </div>
+        <div class="dashboard-cell" *ngIf="i + 1 < dashBoardReportItems.length">
+          <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 1].label !== 'Overview' ? dashBoardReportItems[i + 1].routerLink : null">
+            <div class="dashboard-icon big-icon" (click)="togglePanel(dashBoardReportItems[i + 1].label)">
+              <i [ngClass]="dashBoardReportItems[i + 1].icon"></i>
+            </div>
+            <div class="dashboard-label" (click)="togglePanel(dashBoardReportItems[i + 1].label)">
+              {{ dashBoardReportItems[i + 1].label }}
+            </div>
+          </a>
+        </div>
+        <div class="dashboard-cell" *ngIf="i + 2 < dashBoardReportItems.length">
+            <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 2].label !== 'Overview' ? dashBoardReportItems[i + 2].routerLink : null">
+            <div class="dashboard-icon big-icon" (click)="togglePanel(dashBoardReportItems[i + 2].label)">
+              <i [ngClass]="dashBoardReportItems[i + 2].icon"></i>
+            </div>
+            <div class="dashboard-label" (click)="togglePanel(dashBoardReportItems[i + 2].label)">
+              {{ dashBoardReportItems[i + 2].label }}
+            </div>
+          </a>
+        </div>
+        <div class="dashboard-cell" *ngIf="i + 3 < dashBoardReportItems.length">
+          <a class="dashboard-item" [routerLink]="dashBoardReportItems[i + 3].label !== 'Overview' ?dashBoardReportItems[i + 3].routerLink :  null">
+            <div class="dashboard-icon big-icon" (click)="togglePanel(dashBoardReportItems[i + 3].label)">
+              <i [ngClass]="dashBoardReportItems[i + 3].icon"></i>
+            </div>
+            <div class="dashboard-label">
+              {{ dashBoardReportItems[i + 3].label }}
+            </div>
+          </a>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #secondPanel>
+ <div class="panel" *ngIf="!showFirstPanel">
     <div class="card flex justify-content-center">
-        <p-card subheader="Card Subheader" class="custom-design">
+        <p-card subheader="" class="custom-design">
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Purchase</b>
             </ng-template>
-            <i class="pi pi-dollar custom-amount"></i>
-            <span class="amount">13,950,990.10</span>
+            <span class="custom-amount">₹</span>
+            <span class="amount">{{  purchaseData  }}</span>
         </p-card>
     </div>
     <br/>
 
     <div class="card flex justify-content-center">
-        <p-card subheader="Card Subheader" class="custom-design">
+        <p-card subheader="" class="custom-design">
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Sales</b>
             </ng-template>
-            <i class="pi pi-dollar custom-amount"></i>
-            <span class="amount">53,490,900.45</span>
+            <span class="custom-amount">₹</span>
+            <span class="amount">{{ salesData }}</span>
         </p-card>
     </div>
 
     <br/>
 
     <div class="card flex justify-content-center">
-        <p-card subheader="Card Subheader" class="custom-design">
+        <p-card subheader="" class="custom-design">
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Payment</b>
             </ng-template>
-            <i class="pi pi-dollar custom-amount"></i>
-            <span class="amount">13,450,000.80</span>
+            <span class="custom-amount">₹</span>
+            <span class="amount">{{ paymentData }}</span>
         </p-card>
     </div>
 
     <br/>
 
     <div class="card flex justify-content-center">
-        <p-card subheader="Card Subheader" class="custom-design">
+        <p-card subheader="" class="custom-design">
             <ng-template pTemplate="header">
                 <b class="p-card-body header">Receipt</b>
             </ng-template>
-            <i class="pi pi-dollar custom-amount"></i>
-            <span class="amount">23,450,000.57</span>
+            <span class="custom-amount">₹</span>
+            <span class="amount">{{ receiptData }}</span>
         </p-card>
     </div>
+</div> 
+</ng-template>
+</div>
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
 </div>

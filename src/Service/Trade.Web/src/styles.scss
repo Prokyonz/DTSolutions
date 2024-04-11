@@ -88,6 +88,10 @@ app-companyselection > .card > p-card > .p-card {
   padding: 0px !important;
 }
 
+.p-toast {
+  top: 120px !important;
+}
+
 //Remove Shadow from control
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus,
 .p-dropdown:not(.p-disabled).p-focus,

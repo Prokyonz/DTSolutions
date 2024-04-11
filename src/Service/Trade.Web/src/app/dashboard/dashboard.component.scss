@@ -1,27 +1,92 @@
 .panel {
-    height: calc(100vh - 149px);
+    height: calc(100vh - 200px);
     padding: 8px;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
-}
-.custom-design {
+  }
+  
+  .custom-design {
     width: 100%;
-    border-color: rgb(100, 181, 246);
+    border-color: rgb(57, 145, 216);
     border-left-width: 4px;
     border-left-style: solid;
-    box-shadow: 3px 5px #00000005,0 0 2px #0000000d,0 1px 4px #00000014 !important;
-}
-
-.amount {
-    font-size: 40px;
-}
-
-.header {
+    box-shadow: 3px 5px #00000005, 0 0 2px #0000000d, 0 1px 4px #00000014 !important;
+  }
+  
+  .amount {
+    font-size: 35px;
+  }
+  
+  .header {
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 0.5rem;
-}
-
-.custom-amount {
-    font-size: 35px;
-}
+  }
+  
+  .custom-amount {font-size: 30px;
+  }
+  
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  .dashboard-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Distribute items evenly */
+  }
+  
+  .dashboard-cell {
+    flex: 1;
+    margin-bottom: 20px; /* Adjust spacing between rows */
+  }
+  
+  .dashboard-cell-center {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+  }
+  
+  .dashboard-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  .dashboard-label {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  
+  .dashboard-icon {
+    color: #2196F3; /* Change the color of the dashboard icon */
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .big-icon i {
+    font-size: 2rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .big-icon i:hover {
+    transform: scale(2);
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-cell {
+      width: 50%; /* Two items per row on smaller screens */
+    }
+  }
+  
+  .logout-button {
+    margin-left: 1rem; /* Adjust margin as needed */
+  }
+  
+  .logout-button:hover {
+    color: red; /* Change color on hover if desired */
+  }
+  

@@ -1,0 +1,134 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
+</head>
+<app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
+<div>
+    <table style="width: 100%; margin-top:10px;" [cellSpacing]="5">
+        <tr>                        
+            <td style="width: 50%;">   
+                <!-- [(ngModel)]="partyid" -->
+               <span style="bottom: 5px; position: relative;">Select Kapan</span><br/>                                                       
+               <p-dropdown [options]="allkapan" optionLabel="name.name" [editable]="true" [(ngModel)]="kapanid" (onChange)="handlekapan($event)"></p-dropdown>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>
+            </td>
+        </tr>
+    </table>
+    <div style="height: calc(100vh - 200px); overflow:scroll;">
+        <p-table [value]="inward" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template pTemplate="header">                
+                <ng-container *ngIf="inward.length > 0 || outward.length > 0 || closing.length > 0">
+                <tr>                    
+                    <th>Date</th>
+                    <th>Slip No</th>
+                    <th></th>
+                    <th>Net Weight</th>
+                    <th>Rate</th>
+                    <th>Amount</th>
+                </tr>
+                <tr *ngIf="inward.length > 0">
+                    <th colspan="6">
+                        Inward
+                    </th>
+                </tr>
+                </ng-container>
+            </ng-template>
+            <ng-template pTemplate="body" let-inwardTemp>
+                <ng-container *ngIf="inward.length > 0">                
+                <tr>
+                    <td>{{ inwardTemp.date | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ inwardTemp.slipNo }}</td>
+                    <td>{{ inwardTemp.party }}</td>
+                    <td>{{ inwardTemp.netWeight?.toFixed(2) || 0 }}</td>
+                    <td>{{ formatIndianNumber(inwardTemp.rate?.toFixed(2))}}</td>
+                    <td>{{ formatIndianNumber(inwardTemp.amount?.toFixed(2)) }}</td>
+                </tr>
+                </ng-container>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <ng-container *ngIf="inward.length > 0">
+                    <tr>
+                        <td colspan="3" class="text-right">Total</td>
+                        <td>{{ formatDecimal(TotalInwardNetWeight) }}</td>                    
+                        <td>{{ formatIndianNumber(TotalInwardRate) }}</td>                    
+                        <td>{{ formatIndianNumber(TotalInwardAmount) }}</td>                    
+                    </tr>
+                </ng-container>
+            </ng-template>
+        </p-table>
+
+        <p-table [value]="groupAndCalculateTotals(outward)" [tableStyle]="{ 'min-width': '50rem' }" *ngIf="outward.length > 0">   
+            <ng-template pTemplate="header">
+                <tr *ngIf="outward.length > 0">
+                    <th colspan="6">
+                        Outward
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-group>
+                <ng-container *ngFor="let item of group.items; let lastItem = last">
+                  <tr>
+                    <td>{{ item.date | date:'dd-MM-yyyy' }}</td>
+                    <td>{{ item.operationType }}</td>
+                    <td>{{ (item.netWeight / group.netWeightTotal * 100).toFixed(2) }}%</td>
+                    <td>{{ item.netWeight?.toFixed(2) || 0 }}</td>
+                    <td>{{ formatIndianNumber(item.rate?.toFixed(2)) }}</td>
+                    <td>{{ formatIndianNumber(item.amount?.toFixed(2)) }}</td>
+
+                  </tr>
+                  <ng-container *ngIf="lastItem">
+                    <tr>
+                        <td colspan="3" class="text-right" style="font-weight: bold;">Total</td>
+                        <td style="font-weight: bold;">{{ (group.netWeightTotal).toFixed(2) }}</td>
+                        <td style="font-weight: bold;">{{ formatIndianNumber(group.rateTotal) }}</td>
+                        <td style="font-weight: bold;">{{ formatIndianNumber(group.amountTotal) }}</td>
+                      </tr>
+                  </ng-container>
+                </ng-container>
+              </ng-template>
+        </p-table>
+        <p-table [value]="closing" [tableStyle]="{ 'min-width': '50rem' }" *ngIf="closing.length > 0">
+            <ng-template pTemplate="header">
+                <tr *ngIf="closing.length > 0">
+                    <th colspan="6">
+                        Closing
+                    </th>
+                </tr>
+            </ng-template>            
+            <ng-template pTemplate="body" let-closing>
+                <tr>
+                    <td>{{ closing.date | date:'dd-MM-yyyy' }}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{{ closing.netWeight?.toFixed(2) || 0 }}</td>
+                    <td>{{ formatIndianNumber(closing.rate?.toFixed(2)) }}</td>
+                    <td>{{ formatIndianNumber(closing.amount?.toFixed(2)) }}</td>
+
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="footer">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td class="text-right">Total</td>
+                    <td>{{ formatDecimal(TotalClosingNetWeight) }}</td>                      
+                    <td>{{ formatIndianNumber(TotalClosingRate) }}</td>                    
+                    <td>{{ formatIndianNumber(TotalClosingAmount) }}</td>                          
+                </tr>
+            </ng-template>
+        </p-table>
+        <!-- <div style="height: calc(100vh - 200px); overflow: scroll;">
+            <p>
+              Profit & Loss: {{ profitLossAndPerCtsData.profitLossPercentage }}%      Per Cts: {{ profitLossAndPerCtsData.perCtsValue }}
+            </p>
+          </div> -->
+          
+    </div>
+      
+</div>
+<div class="progress-spinner" *ngIf="loading">
+    <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
+</div>
