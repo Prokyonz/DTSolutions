@@ -1,5 +1,6 @@
 ﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using EFCore.SQL.Interface;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using System;
@@ -1592,8 +1593,10 @@ namespace DiamondTrading.Transaction
                 }
                 else
                 {
+                    var result = await _purchaseMasterRepository.DeleteFromNumberProcessMaster(_editedPurchaseMaster.Id,null);
                     List<PurchaseDetails> purchaseDetailsList = new List<PurchaseDetails>();
                     PurchaseDetails purchaseDetails = new PurchaseDetails();
+                    NumberProcessMaster numberProcessMaster = new NumberProcessMaster();
                     for (int i = 0; i < grvPurchaseDetails.RowCount; i++)
                     {
                         purchaseDetails = new PurchaseDetails();
@@ -1606,6 +1609,7 @@ namespace DiamondTrading.Transaction
                         purchaseDetails.ShapeId = grvPurchaseDetails.GetRowCellValue(i, colShape).ToString();
                         purchaseDetails.SizeId = grvPurchaseDetails.GetRowCellValue(i, colSize).ToString();
                         purchaseDetails.PurityId = grvPurchaseDetails.GetRowCellValue(i, colPurity).ToString();
+                        purchaseDetails.NumberId = grvPurchaseDetails.GetRowCellValue(i, colNumber).ToString();
 
                         purchaseDetails.Weight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
                         purchaseDetails.TIPWeight = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colTipWeight).ToString());
@@ -1628,8 +1632,54 @@ namespace DiamondTrading.Transaction
                         purchaseDetails.CreatedBy = Common.LoginUserID;
                         purchaseDetails.UpdatedDate = DateTime.Now;
                         purchaseDetails.UpdatedBy = Common.LoginUserID;
+                        purchaseDetails.IsNumberPurchase = colNumber.Visible;
 
                         purchaseDetailsList.Insert(i, purchaseDetails);
+
+                        //Number Add
+                        if (purchaseDetails.IsNumberPurchase)
+                        {
+                            string Cts = "0";
+                            Cts = (purchaseDetails.NetWeight + purchaseDetails.TIPWeight + purchaseDetails.LessWeight).ToString();
+                            numberProcessMaster = new NumberProcessMaster();
+                            numberProcessMaster.Id = Guid.NewGuid().ToString();
+                            //numberProcessMaster.NumberNo = Convert.ToInt32(lueKapan.GetColumnValue("NumberNo").ToString());
+                            numberProcessMaster.JangadNo = 0;
+                            //galaProcessMaster.BoilJangadNo = Convert.ToInt32(lueKapan.GetColumnValue("BoilJangadNo").ToString());
+                            numberProcessMaster.CompanyId = Common.LoginCompany;
+                            numberProcessMaster.BranchId = Common.LoginBranch;
+                            numberProcessMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                            numberProcessMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
+                            numberProcessMaster.FinancialYearId = Common.LoginFinancialYear;
+                            numberProcessMaster.NumberProcessType = Convert.ToInt32(ProcessType.NumberPurchase);
+                            numberProcessMaster.KapanId = purchaseDetails.KapanId;
+                            numberProcessMaster.ShapeId = purchaseDetails.ShapeId;
+                            numberProcessMaster.SizeId = purchaseDetails.SizeId;
+                            numberProcessMaster.PurityId = purchaseDetails.PurityId;
+                            numberProcessMaster.CharniSizeId = purchaseDetails.SizeId;
+                            numberProcessMaster.Weight = 0;// Convert.ToDecimal(txtACarat.Text);
+                                                           //numberProcessMaster.GalaNumberId = lueKapan.GetColumnValue("GalaNumberId").ToString(); //grvParticularsDetails.GetRowCellValue(i, colSize).ToString();
+                            numberProcessMaster.NumberId = purchaseDetails.NumberId;
+                            numberProcessMaster.NumberWeight = Convert.ToDecimal(Cts);
+                            numberProcessMaster.LossWeight = 0;
+                            numberProcessMaster.RejectionWeight = 0;
+                            numberProcessMaster.HandOverById = "0";
+                            numberProcessMaster.HandOverToId = "0";
+                            numberProcessMaster.SlipNo = txtSlipNo.Text;
+                            //numberProcessMaster.NumberCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
+                            numberProcessMaster.Remarks = txtRemark.Text;
+                            numberProcessMaster.IsDelete = false;
+                            numberProcessMaster.CreatedDate = DateTime.Now;
+                            numberProcessMaster.CreatedBy = Common.LoginUserID;
+                            numberProcessMaster.UpdatedDate = DateTime.Now;
+                            numberProcessMaster.UpdatedBy = Common.LoginUserID;
+                            numberProcessMaster.TransferCaratRate = 0;
+                            numberProcessMaster.PurchaseMasterId = purchaseDetails.PurchaseId;
+                            numberProcessMaster.PurchaseDetailsId = purchaseDetails.Id;
+
+                            NumberProcessMasterRepository numberProcessMasterRepository = new NumberProcessMasterRepository();
+                            var result1 = await numberProcessMasterRepository.AddNumberProcessAsync(numberProcessMaster);
+                        }
                     }
 
                     PurchaseMaster purchaseMaster = new PurchaseMaster();
