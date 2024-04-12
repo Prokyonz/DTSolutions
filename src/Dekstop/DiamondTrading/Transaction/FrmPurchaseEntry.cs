@@ -212,6 +212,7 @@ namespace DiamondTrading.Transaction
                             grvPurchaseDetails.UpdateCurrentRow();
                         }
 
+                        txtCurrencyAmount.Text = GetCurrencyTotalAmount(Convert.ToDecimal(txtNetAmount.Text)).ToString("0.00");
                         if (!string.IsNullOrEmpty(_editedPurchaseMaster.TransferParentId))
                         {
                             _slipTransferEntries = await LoadSlipTransferDetails(Convert.ToInt32(_editedPurchaseMaster.TransferParentId));
