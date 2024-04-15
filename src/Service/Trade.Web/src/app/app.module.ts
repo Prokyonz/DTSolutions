@@ -42,6 +42,7 @@ import { DatePipe } from '@angular/common';
 import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
 import { BalancesheetComponent } from './report/balancesheet/balancesheet.component';
 import { ProfitlossComponent } from './report/profitloss/profitloss.component';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import { ProfitlossComponent } from './report/profitloss/profitloss.component';
     RadioButtonModule,
     CheckboxModule,
     ProgressSpinnerModule,
-    DialogModule
+    DialogModule,
+    MultiSelectModule
   ],
   providers: [SharedService, AuthService, MessageService, DatePipe],
   bootstrap: [AppComponent]

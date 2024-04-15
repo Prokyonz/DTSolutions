@@ -13,3 +13,6 @@ textarea {
     z-index: 1000; /* Ensure dropdown appears above other content */
 }
 
+html {
+    touch-action: auto;
+}

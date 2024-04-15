@@ -35,6 +35,7 @@ export class ReportComponent implements OnInit {
   PurchaseReportList: any[];
   columnArray: any[] = [];
   childColumnArray: any[] = [];
+  selectedColumnArray: any[] = [];
   childReportList: any[];
   dataArray: any[];
   visible: boolean = false;
@@ -65,24 +66,24 @@ export class ReportComponent implements OnInit {
             this.isApproveButton = data.success;
 
             this.columnArray = [
-              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-              { "displayName": "Buyer Name", "dataType": "text", "fieldName": "buyerName", "minWidth": "15" },
+              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true , "minWidth": "8"},
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5" },
+              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
+              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10" },
+              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "5" },
+              { "displayName": "Buyer Name", "dataType": "text", "fieldName": "buyerName", "minWidth": "5" },
               { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
               { "displayName": "Buy Rate", "dataType": "numeric", "fieldName": "buyingRate" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5"  },
               { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
               { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount" },
-              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
-              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
-              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-              { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" },
+              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" ,"minWidth": "5"},
+              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" ,"minWidth": "5"},
+              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true,"minWidth": "8" },
+              { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true, "minWidth": "8" },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
+              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
               { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true },
               { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true }
@@ -99,23 +100,23 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
-              { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-              { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
-              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
-              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
-              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" },
-              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true ,"minWidth": "8"},
+              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10" },
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" ,"minWidth": "5"},
+              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
+              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10" },
+              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10" },
+              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "5" },
+              { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate", "minWidth": "8" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5" },
+              { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount", "minWidth": "5" },
+              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays", "minWidth": "5" },
+              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays", "minWidth": "5" },
+              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true, "minWidth": "8" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal","minWidth": "8" },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
+              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10" },
+              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" , "minWidth": "10"},
               { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true },
               { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true }
               // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
@@ -128,13 +129,13 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true , "minWidth": "8"},
+              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
+              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
               { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
               { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
               { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
               { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
@@ -147,13 +148,13 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
+              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
+              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
               { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
               { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
               { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
               { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
@@ -164,69 +165,69 @@ export class ReportComponent implements OnInit {
         this.PageTitle = "Contra Payment Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10" },
+          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10" },
           { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
+          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
           { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
         ];
         break;
       case 6:
         this.PageTitle = "Expense Report";
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
+          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "5"  },
+          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10" },
+          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10" },
           { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
         ];
         break;
       case 7:
         this.PageTitle = "Loan Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "25" },
+          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" , "minWidth": "5" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
+          { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "15" },
           { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "15" },
-          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true },
-          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true },
+          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "10" },
+          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true , "minWidth": "8"},
+          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true, "minWidth": "8" },
           { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
           { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
           { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
-          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
+          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true, "minWidth": "8"  }
         ];
         break;
       case 8:
         this.PageTitle = "Rojmel Report";
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
+          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
+          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "10" },
+          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "10" },
         ];
         break;
       case 9:
         this.PageTitle = "PF Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "15" },
-          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "15" },
-          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "15" },
-          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "15" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "15" },
-          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true }
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "8" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
+          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10" },
+          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "10" },
+          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "10" },
+          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "10" },
+          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "10" },
+          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "10" },
+          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "10" },
+          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true, "minWidth": "8" }
         ];
         break;
       case 10:
@@ -234,24 +235,24 @@ export class ReportComponent implements OnInit {
         this.isFilerRequired = false;
         this.isChildReport = true;
         this.columnArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
-          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
-          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" }, // New column for export icon
-          { "displayName": "Export Pdf", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "15" } // New column for export icon
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "10" },
+          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "10" },
+          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "10" },
+          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "15" },
+          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "5" }, // New column for export icon
+          { "displayName": "Export Pdf", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "5" } // New column for export icon
         ];
         break;
       case 11:
         this.PageTitle = "Payable Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "5" },
+          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5" },
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "10" },
+          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "20" },
           { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
+          { "displayName": "Total", "dataType": "numeric", "fieldName": "total", "minWidth": "15" }
         ];
         break;
       case 12:
@@ -396,10 +397,13 @@ export class ReportComponent implements OnInit {
         break;
     }
     console.log("filterData:" + this.filterColumn);
+    debugger;
+    this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
   }
 
   ngOnInit() {
     this.loading = false;
+   
     this.getCompanyData();
     let currentDate = new Date(); // Get the current date
     currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -415,8 +419,9 @@ export class ReportComponent implements OnInit {
   }
 
   //Tabel functions
-  clear(table: Table) {
-    table.clear();
+  clear() {
+    this.dataTable.clear();
+    this.ngOnInit();
   }
 
   myfunc(event: any): string {
@@ -441,9 +446,9 @@ export class ReportComponent implements OnInit {
       this.loading = true;
       switch (this.reportIndex) {
         case 1:
-
           this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
               this.PurchaseReportList = data.data;
               this.loading = false;
             }, (ex: any) => {
@@ -454,6 +459,7 @@ export class ReportComponent implements OnInit {
         case 2:
           this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -465,6 +471,7 @@ export class ReportComponent implements OnInit {
         case 3:
           this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -476,6 +483,7 @@ export class ReportComponent implements OnInit {
         case 4:
           this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -487,6 +495,7 @@ export class ReportComponent implements OnInit {
         case 5:
           this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -675,7 +684,6 @@ export class ReportComponent implements OnInit {
           break;
       }
       this.filterColumn = this.columnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
-
     }
     catch (e) {
       alert("Try catch error : " + JSON.stringify(e));
@@ -1782,6 +1790,17 @@ export class ReportComponent implements OnInit {
     const formatter = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 2 });
     return isSymbol ? '₹' + formatter.format(amount) : formatter.format(amount);
   }
+
+  getDistinctColumnValues(fieldName: string): any[] {
+    let filteredData = this.PurchaseReportList; // Assuming PurchaseReportList is your original data
+    if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+      filteredData = this.dataTable.filteredValue;
+    }
+  
+    const values = filteredData.map((item: any) => item[fieldName]);
+    return [...new Set(values)];
+  }
+
 
   onApproveReject() {
     const data = {

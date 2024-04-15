@@ -1,5 +1,5 @@
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 </head>
 <app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <div *ngIf="isFilerRequired">
@@ -17,7 +17,7 @@
     </div>
 </p-dialog>
 
-<div class="card" style="height: calc(100vh - 200px); overflow:scroll;">
+<div class="card">
     <p-table
         #dt1
         [value]="PurchaseReportList"
@@ -26,8 +26,11 @@
         [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]"        
         [scrollable]="true"
+        styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
-        [globalFilterFields]="filterColumn">
+        [globalFilterFields]="filterColumn"
+        scrollHeight="calc(100vh - 300px)" [tableStyle]="{'min-width': '50rem'}">
+        
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
             <div class="flex">
@@ -42,31 +45,45 @@
             <div class="flex">
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-                <span class="p-input-icon-left ml-auto">
+                <!-- <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
-                </span>
+                </span> -->
+                <p-multiSelect [options]="columnArray" [(ngModel)]="selectedColumnArray" optionLabel="displayName"  [showToggleAll]="false" 
+                selectedItemsLabel="{0} columns selected" [style]="{'min-width': '15rem'}" placeholder="Choose Columns"></p-multiSelect>
             </div>
         </ng-template>
 
         <ng-template pTemplate="header">
             <tr>           
                 <ng-container *ngIf="isChildReport">
-                    <th [ngStyle]="{'min-width': '2rem'}">
+                    <th>
                         <div class="flex align-items-center">
                          
                         </div>
                       </th>
                 </ng-container>     
-                <ng-container *ngFor="let item of columnArray">
-                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
-                        <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
+                <ng-container *ngFor="let item of selectedColumnArray">
+                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
+                        <th *ngIf="item.dataType === 'text'" pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
-                              {{item.displayName}}
-                              <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu"></p-columnFilter>
+                                {{item.displayName}}  <p-sortIcon field=" {{item.fieldName}}"></p-sortIcon>
+                                <p-columnFilter *ngIf="item.dataType === 'text' && !item.ishidefilter" [field]="item.fieldName" matchMode="in" display="menu" 
+                                [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" class="ml-auto">
+                                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                      <p-multiSelect  [options]="getDistinctColumnValues(item.fieldName)" [(ngModel)]="columnArray" placeholder="Any" (onChange)="filter($event.value)" optionLabel="displayName">
+                                      </p-multiSelect>
+                                  </ng-template>
+                                  </p-columnFilter>
+                            </div>
+                        </th>
+                        <th *ngIf="item.dataType !== 'text'">
+                            <div class="flex align-items-center">
+                                {{item.displayName}} 
+                              <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                           </th>
-                        </ng-container>
+                    </ng-container>
                 </ng-container>
                 <!-- <th style="min-height: 10rem;">
                     <div class="flex align-items-center">
@@ -88,9 +105,9 @@
                 <ng-container *ngIf="isChildReport">
                     <button type="button" pButton icon="pi pi-angle-down" styleClass="p-button-success" style="margin:5px;" (click)="showDetail(rowIndex,purchase)"></button>
                 </ng-container>
-                <ng-container *ngFor="let item of columnArray">
+                <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
-                        <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
+                        <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '6rem'}" >
                             <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
                             <div *ngIf="item.displayName == 'Approve'" [hidden]="!isApproveButton">
                                 <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
@@ -104,7 +121,7 @@
                                 <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
                                 <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
                             </div>
-                            <span *ngIf="item.displayName == 'Total' && item.dataType == 'numeric'">
+                            <span *ngIf="item.displayName === 'Total' && item.dataType == 'numeric'">
                                     {{  purchase[item.fieldName] | number: '1.2-2': 'en-IN' }} 
                             </span>
                             <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export'">
@@ -118,7 +135,7 @@
                             </span>
                          
                             <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                          && item.dataType !== 'icon' && item.displayName.indexOf('Rate') === -1 && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }}</span>                    
+                          && item.dataType !== 'icon' && item.displayName.indexOf('Rate') === -1  && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }} </span>                    
                         </td>
                     </ng-container>
                 </ng-container>
@@ -151,13 +168,13 @@
                         <ng-template pTemplate="body" let-rowData>
                             <tr>
                                 <ng-container *ngFor="let item of childColumnArray">
-                                    <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}" >
+                                    <td>
                                         <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
-                                        <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
+                                        <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
                                             {{  formatIndianNumber(rowData[item.fieldName]) }} 
                                         </span>
                                      
-                                        <span *ngIf="item.dataType !== 'Date' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{ rowData[item.fieldName] }}</span>                    
+                                        <span *ngIf="item.dataType !== 'Date' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{ rowData[item.fieldName] }}</span>                    
                                     </td>
                                     </ng-container>
                             </tr>
@@ -212,8 +229,8 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <td colspan="1"></td>
-                <th *ngFor="let col of columnArray">
-                    <span *ngIf="col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts'">
+                <th *ngFor="let col of selectedColumnArray">
+                    <span *ngIf="col.fieldName === 'grossTotal' || col.fieldName === 'netWeight'  || col.fieldName === 'totalCts'">
                         {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
                     </span>
                 </th>
