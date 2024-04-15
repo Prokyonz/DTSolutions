@@ -68,13 +68,13 @@
                         <th *ngIf="item.dataType === 'text'" pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
                                 {{item.displayName}}  <p-sortIcon field=" {{item.fieldName}}"></p-sortIcon>
-                                <p-columnFilter *ngIf="item.dataType === 'text' && !item.ishidefilter" [field]="item.fieldName" matchMode="in" display="menu" 
+                                <!-- <p-columnFilter *ngIf="item.dataType === 'text' && !item.ishidefilter" [field]="item.fieldName" matchMode="in" display="menu" 
                                 [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" class="ml-auto">
                                   <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                      <p-multiSelect  [options]="getDistinctColumnValues(item.fieldName)" [(ngModel)]="columnArray" placeholder="Any" (onChange)="filter($event.value)" optionLabel="displayName">
+                                      <p-multiSelect  [options]="getDistinctColumnValues(item.fieldName)" [(ngModel)]="selectedColumnArray" placeholder="Any" (onChange)="filter($event.value)" optionLabel="displayName">
                                       </p-multiSelect>
                                   </ng-template>
-                                  </p-columnFilter>
+                                  </p-columnFilter> -->
                             </div>
                         </th>
                         <th *ngIf="item.dataType !== 'text'">
