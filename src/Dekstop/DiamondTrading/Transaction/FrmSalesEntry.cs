@@ -33,6 +33,7 @@ namespace DiamondTrading.Transaction
         private SalesDetails _editedSalesDetails;
         private bool isLoading = false;
         private List<SlipTransferEntry> _slipTransferEntries;
+        private List<CompanyMaster> _companyList;
 
         public FrmSalesEntry()
         {
@@ -453,8 +454,8 @@ namespace DiamondTrading.Transaction
         private async Task LoadCompany()
         {
             CompanyMasterRepository companyMasterRepository = new CompanyMasterRepository();
-            var companies = await companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
-            lueCompany.Properties.DataSource = companies;
+            _companyList = await companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
+            lueCompany.Properties.DataSource = _companyList;
             lueCompany.Properties.DisplayMember = "Name";
             lueCompany.Properties.ValueMember = "Id";
 
@@ -504,8 +505,8 @@ namespace DiamondTrading.Transaction
         {
             grdPurchaseDetails.DataSource = GetDTColumnsforPurchaseDetails();
 
-            //Category
-            await GetCategoryDetail(false);
+            ////Category
+            //await GetCategoryDetail(false);
 
             //Shape
             await GetShapeDetail(false);
@@ -520,12 +521,20 @@ namespace DiamondTrading.Transaction
             await GetKapanDetail(false);
         }
 
-        private async Task GetCategoryDetail(bool IsNew)
+        private async Task GetCategoryDetail(bool IsNew, bool IsAllowNumber, bool IsAllowKapan)
         {
             var Category = CategoryMaster.GetAllCategory();
 
             if (Category != null)
             {
+                if (IsAllowNumber && !IsAllowKapan)
+                {
+                    Category = Category.Where(x => x.Id == CategoryMaster.Number).ToList();
+                }
+                else if (!IsAllowNumber && IsAllowKapan)
+                {
+                    Category = Category.Where(x => x.Id == CategoryMaster.Kapan).ToList();
+                }
                 repoCategory.DataSource = Category;
                 repoCategory.DisplayMember = "Name";
                 repoCategory.ValueMember = "Id";
@@ -830,7 +839,90 @@ namespace DiamondTrading.Transaction
 
             await LoadBranch(lueCompany.EditValue.ToString());
 
+            bool IsAllowNumber = true;
+            bool IsAllowKapan = true;
+
             //await FillCombos();
+            var CurrentSelectedCompany = _companyList.Where(x => x.Id == lueCompany.EditValue.ToString());
+            if (CurrentSelectedCompany.Any() && CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+            {
+                var IsShape = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                if (IsShape != null)
+                {
+                    if (IsShape.IsSales)
+                        colShape.Visible = true;
+                    else
+                        colShape.Visible = false;
+                }
+
+                //var IsPurity = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                //if (IsPurity != null)
+                //{
+                //    if (IsPurity.IsSales)
+                //        colPurity.Visible = true;
+                //    else
+                //        colPurity.Visible = false;
+                //}
+
+                var IsTip = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                if (IsTip != null)
+                {
+                    if (IsTip.IsSales)
+                        colTipWeight.Visible = true;
+                    else
+                        colTipWeight.Visible = false;
+                }
+
+                var IsCVD = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                if (IsCVD != null)
+                {
+                    if (IsCVD.IsSales)
+                        colCVDWeight.Visible = true;
+                    else
+                        colCVDWeight.Visible = false;
+                }
+
+                var IsLessCts = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                if (IsLessCts != null)
+                {
+                    if (IsLessCts.IsSales)
+                        colLessCts.Visible = true;
+                    else
+                        colLessCts.Visible = false;
+                }
+
+                var IsCVDCharge = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                if (IsCVDCharge != null)
+                {
+                    if (IsCVDCharge.IsSales)
+                        colCVDCharge.Visible = true;
+                    else
+                        colCVDCharge.Visible = false;
+                }
+
+                var IsNumber = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                if (IsNumber != null)
+                {
+                    IsAllowNumber = IsNumber.IsSales;
+                }
+                else
+                {
+                    IsAllowNumber = true;
+                }
+
+                var IsKapan = CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "Sale" && x.PermissionName == "Kapan").FirstOrDefault();
+                if (IsKapan != null)
+                {
+                    IsAllowKapan = IsKapan.IsSales;
+                }
+                else
+                {
+                    IsAllowKapan = true;
+                }
+            }
+              
+            //Category
+            await GetCategoryDetail(false, IsAllowNumber, IsAllowKapan);
         }
 
         private async void grvPurchaseDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
@@ -1316,9 +1408,14 @@ namespace DiamondTrading.Transaction
 
                     if (lessWeightDetails != null)
                     {
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, TipWeight.ToString());
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight * CVDWeight).ToString("0.00"));
-                        grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
+                        if (colTipWeight.Visible)
+                            grvPurchaseDetails.SetRowCellValue(GridRowIndex, colTipWeight, TipWeight.ToString());
+
+                        if (colCVDCharge.Visible)
+                            grvPurchaseDetails.SetRowCellValue(GridRowIndex, colCVDCharge, (Weight * CVDWeight).ToString("0.00"));
+
+                        if (colLessCts.Visible)
+                            grvPurchaseDetails.SetRowCellValue(GridRowIndex, colLessCts, lessWeightDetails.LessWeight.ToString());
                     }
                     //else
                     //{
@@ -2561,6 +2658,18 @@ namespace DiamondTrading.Transaction
                 btnSave.Enabled = false;
                 MessageBox.Show("Invalid characters in the round up textbox. please change it to other. [" + ex.Message + "]", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void grvPurchaseDetails_ValidateRow(object sender, DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs e)
+        {
+            if (!colTipWeight.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colTipWeight, 0);
+
+            if (!colCVDCharge.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colCVDCharge, 0);
+
+            if (!colLessCts.Visible)
+                grvPurchaseDetails.SetRowCellValue(e.RowHandle, colLessCts, 0);
         }
     }
 }

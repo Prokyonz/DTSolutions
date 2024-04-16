@@ -99,10 +99,10 @@ namespace DiamondTrading.Master
             dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "(-) Cts", "(-) Cts", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "CVD A", "CVD A", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("PurchaseSale", "Number", "Number", false, false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Category", "Category", false, false, false);
+            //dtCompanyPermissionDetails.Rows.Add("Sale", "Category", "Category", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("Sale", "Kapan", "Kapan", false, false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", "Charni Size", false, false, false);
-            dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", "Gala Size", false, false, false);
+            //dtCompanyPermissionDetails.Rows.Add("Sale", "Charni Size", "Charni Size", false, false, false);
+            //dtCompanyPermissionDetails.Rows.Add("Sale", "Gala Size", "Gala Size", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("Other", "AllowProcess", "Allow Process", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("Other", "KapanLagad", "Kapan Lagad", false, false, false);
             dtCompanyPermissionDetails.Rows.Add("Other", "GSTBillPrint", "GST Bill Print", false, false, false);
