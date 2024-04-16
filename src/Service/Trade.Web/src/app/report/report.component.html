@@ -45,12 +45,13 @@
             <div class="flex">
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                
                 <!-- <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
                 </span> -->
                 <p-multiSelect [options]="columnArray" [(ngModel)]="selectedColumnArray" optionLabel="displayName"  [showToggleAll]="false" 
-                selectedItemsLabel="{0} columns selected" [style]="{'min-width': '15rem'}" placeholder="Choose Columns"></p-multiSelect>
+                selectedItemsLabel="{0} columns selected" [style]="{'min-width': '15rem'}" placeholder="Choose Columns" (ngModelChange)="onSelectedColumnsChange($event)"></p-multiSelect>
             </div>
         </ng-template>
 
@@ -65,21 +66,9 @@
                 </ng-container>     
                 <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
-                        <th *ngIf="item.dataType === 'text'" pSortableColumn="{{item.fieldName}}">
+                        <th pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
                                 {{item.displayName}}  <p-sortIcon field=" {{item.fieldName}}"></p-sortIcon>
-                                <!-- <p-columnFilter *ngIf="item.dataType === 'text' && !item.ishidefilter" [field]="item.fieldName" matchMode="in" display="menu" 
-                                [showMatchModes]="false" [showOperator]="false" [showAddButton]="false" class="ml-auto">
-                                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                      <p-multiSelect  [options]="getDistinctColumnValues(item.fieldName)" [(ngModel)]="selectedColumnArray" placeholder="Any" (onChange)="filter($event.value)" optionLabel="displayName">
-                                      </p-multiSelect>
-                                  </ng-template>
-                                  </p-columnFilter> -->
-                            </div>
-                        </th>
-                        <th *ngIf="item.dataType !== 'text'">
-                            <div class="flex align-items-center">
-                                {{item.displayName}} 
                               <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu" class="ml-auto"></p-columnFilter>
                             </div>
                           </th>
