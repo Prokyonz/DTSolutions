@@ -68,22 +68,22 @@ export class ReportComponent implements OnInit {
             this.isApproveButton = data.success;
 
             this.columnArray = [
-              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10","sortIndex" : "1" },
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true , "minWidth": "8","sortIndex" : "2"},
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5","sortIndex" : "3" },
+              { "displayName": "Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5","sortIndex" : "1" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true , "minWidth": "15","sortIndex" : "2"},
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "1","sortIndex" : "3" },
               { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10","sortIndex" : "4" },
-              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10","sortIndex" : "5" },
-              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "5","sortIndex" : "6" },
-              { "displayName": "Buyer Name", "dataType": "text", "fieldName": "buyerName", "minWidth": "5","sortIndex" : "7" },
+              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "2","sortIndex" : "5" },
+              { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "1","sortIndex" : "6" },
+              { "displayName": "Buyer", "dataType": "text", "fieldName": "buyerName", "minWidth": "1","sortIndex" : "7" },
               { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight","sortIndex" : "8" },
-              { "displayName": "Buy Rate", "dataType": "numeric", "fieldName": "buyingRate","sortIndex" : "9" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5","sortIndex" : "10"  },
+              { "displayName": "Rate", "dataType": "numeric", "fieldName": "buyingRate","sortIndex" : "9" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "3","sortIndex" : "10"  },
               { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal","sortIndex" : "11" },
               { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount","sortIndex" : "12" },
               { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" ,"minWidth": "5", "sortIndex" : "13"},
               { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" ,"minWidth": "5", "sortIndex" : "14"},
               { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true,"minWidth": "8","sortIndex" : "15" },
-              { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true, "minWidth": "8","sortIndex" : "16" },
+              // { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true, "minWidth": "8","sortIndex" : "16" },
               { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10","sortIndex" : "17" },
               { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10","sortIndex" : "18" },
               { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType","sortIndex" : "19" },
@@ -422,6 +422,7 @@ export class ReportComponent implements OnInit {
   //Tabel functions
   clear() {
     this.dataTable.clear();
+    localStorage.removeItem('selectedColumns' + this.reportIndex);
     this.ngOnInit();
   }
 
@@ -876,9 +877,9 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.childColumnArray = [
                 { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-                { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo", "minWidth": "10" },
-                { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-                { "displayName": "Brok.Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
+                { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo", "minWidth": "5" },
+                { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
+                { "displayName": "Brok.Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "12" },
                 { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
                 { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
                 { "displayName": "Buy Rate", "dataType": "numeric", "fieldName": "buyingRate" },
@@ -1802,7 +1803,7 @@ export class ReportComponent implements OnInit {
      if (savedColumns) {
          // If saved columns exist, parse them and update the selection
          let parsedColumns = JSON.parse(savedColumns);
-         parsedColumns = this.selectedColumnArray.sort((a, b) => a.sortIndex - b.sortIndex);;
+         parsedColumns = selectedColumns.sort((a, b) => a.sortIndex - b.sortIndex);;
          // Save the updated selection back to localStorage
          localStorage.setItem('selectedColumns' + this.reportIndex, JSON.stringify(parsedColumns));
      } else {
@@ -1823,16 +1824,13 @@ export class ReportComponent implements OnInit {
     return isSymbol ? '₹' + formatter.format(amount) : formatter.format(amount);
   }
 
-  getDistinctColumnValues(fieldName: string): any[] {
-    let filteredData = this.PurchaseReportList; // Assuming PurchaseReportList is your original data
-    if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
-      filteredData = this.dataTable.filteredValue;
-    }
-  
-    const values = filteredData.map((item: any) => item[fieldName]);
-    return [...new Set(values)];
-  }
-
+  getDistinctColumnValues(fieldName: string): { fieldName: string, fieldValue: any }[] {
+    const data = this.dataTable.filteredValue || this.PurchaseReportList;
+    const distinctArray = Array.from(new Set(data.map(item => item[fieldName])))
+        .filter(fieldValue => fieldValue !== undefined) // Filter out undefined values
+        .map(fieldValue => ({ fieldName: fieldName, fieldValue: fieldValue }));
+    return distinctArray;
+}
 
   onApproveReject() {
     const data = {

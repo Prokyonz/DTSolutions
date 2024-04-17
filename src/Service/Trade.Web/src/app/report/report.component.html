@@ -45,7 +45,7 @@
             <div class="flex">
                 <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
                 <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-                
+                <button pButton class="p-button-outlined" style="text-align: center; width: 2.5rem; margin-right: 0.5rem;" icon="pi pi-filter-slash" (click)="clear()"></button>
                 <!-- <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
@@ -68,8 +68,20 @@
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
                         <th pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
-                                {{item.displayName}}  <p-sortIcon field=" {{item.fieldName}}"></p-sortIcon>
-                              <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu" class="ml-auto"></p-columnFilter>
+                                {{item.displayName}}  <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
+                                <p-columnFilter field="getDistinctColumnValues(item.fieldName)" matchMode="in" display="menu" [showMatchModes]="false" 
+                                    [showOperator]="false" [showAddButton]="false" >
+                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-multiSelect [ngModel]="value" [options]="getDistinctColumnValues(item.fieldName)" placeholder="Any"
+                                            (onChange)="filter($event.value)" [showToggleAll]="false">
+                                            <ng-template let-option pTemplate="item">
+                                                <div class="inline-block vertical-align-middle">
+                                                    <span class="ml-1 mt-1">{{ option.fieldValue  }}</span>
+                                                </div>
+                                            </ng-template>
+                                        </p-multiSelect>
+                                    </ng-template>
+                                    </p-columnFilter>
                             </div>
                           </th>
                     </ng-container>
@@ -96,8 +108,8 @@
                 </ng-container>
                 <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
-                        <td [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '6rem'}" >
-                            <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
+                        <td>
+                            <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yy'}}</span>
                             <div *ngIf="item.displayName == 'Approve'" [hidden]="!isApproveButton">
                                 <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
                             </div>
@@ -119,12 +131,12 @@
                             <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export Pdf'">
                                 <button type="button" pButton pRipple icon="pi pi-file-pdf" class="p-button-warning mr-2" pTooltip="PDF" (click) = "exportLedger('pdf',purchase)" tooltipPosition="bottom"></button>
                             </span>
-                            <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
+                            <span *ngIf="item.displayName.indexOf('Amount') > 0 && item.dataType == 'numeric'">
                                 {{  formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }} 
                             </span>
                          
                             <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                          && item.dataType !== 'icon' && item.displayName.indexOf('Rate') === -1  && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }} </span>                    
+                          && item.dataType !== 'icon'  && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }} </span>                    
                         </td>
                     </ng-container>
                 </ng-container>
