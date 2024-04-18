@@ -334,6 +334,7 @@ namespace DiamondTrading.Master
             }
             finally
             {
+                await FrmMain.currentInstance.CheckPermission();
                 this.Cursor = Cursors.Default;
             }
         }
