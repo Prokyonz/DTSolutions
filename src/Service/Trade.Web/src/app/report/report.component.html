@@ -71,18 +71,6 @@
                                 {{item.displayName}} <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
                                 <p-columnFilter [field]="item.fieldName" matchMode="in" display="menu"
                                     [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
-                                    <!-- <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                        <p-multiSelect [(ngModel)]="value" optionLabel="fieldValue" [filter]="true"
-                                            class="multiselect-custom-virtual-scroll"
-                                            [options]="getDistinctColumnValues(item.fieldName)" placeholder="Any"
-                                            [showToggleAll]="false">
-                                            <ng-template let-option pTemplate="item">
-                                                <div class="inline-block vertical-align-middle">
-                                                    <span class="ml-1 mt-1">{{ option.fieldValue }}</span>
-                                                </div>
-                                            </ng-template>
-                                        </p-multiSelect>
-                                    </ng-template> -->
                                 </p-columnFilter>
                             </div>
                         </th>
