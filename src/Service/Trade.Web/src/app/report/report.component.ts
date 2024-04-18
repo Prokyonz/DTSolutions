@@ -28,7 +28,7 @@ interface Customer {
 
 
 export class ReportComponent implements OnInit {
-  
+
   @ViewChild('dt1') dataTable: Table; // Assuming your p-table component has a template reference variable named 'dataTable'
   PageTitle: string = "Purchase Report";
   reportIndex: number = 0;
@@ -56,6 +56,7 @@ export class ReportComponent implements OnInit {
   isChildReport: boolean = false;
   childTotalColumn: number = 0;
   childFilterColumn: string[] = [];
+  selectedItems!: any[];
   constructor(private rote: Router, private activateRoute: ActivatedRoute,
     private sharedService: SharedService, private messageService: MessageService, private datePipe: DatePipe) {
     this.reportIndex = +activateRoute.snapshot.params['id'];
@@ -68,27 +69,27 @@ export class ReportComponent implements OnInit {
             this.isApproveButton = data.success;
 
             this.columnArray = [
-              { "displayName": "Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5","sortIndex" : "1" },
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true , "minWidth": "15","sortIndex" : "2"},
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "1","sortIndex" : "3" },
-              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10","sortIndex" : "4" },
-              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "2","sortIndex" : "5" },
-              { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "1","sortIndex" : "6" },
-              { "displayName": "Buyer", "dataType": "text", "fieldName": "buyerName", "minWidth": "1","sortIndex" : "7" },
-              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight","sortIndex" : "8" },
-              { "displayName": "Rate", "dataType": "numeric", "fieldName": "buyingRate","sortIndex" : "9" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "3","sortIndex" : "10"  },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal","sortIndex" : "11" },
-              { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount","sortIndex" : "12" },
-              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" ,"minWidth": "5", "sortIndex" : "13"},
-              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" ,"minWidth": "5", "sortIndex" : "14"},
-              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true,"minWidth": "8","sortIndex" : "15" },
+              { "displayName": "Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5", "sortIndex": "1" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "15", "sortIndex": "2" },
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "1", "sortIndex": "3" },
+              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "4" },
+              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "2", "sortIndex": "5" },
+              { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "1", "sortIndex": "6" },
+              { "displayName": "Buyer", "dataType": "text", "fieldName": "buyerName", "minWidth": "1", "sortIndex": "7" },
+              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight", "sortIndex": "8" },
+              { "displayName": "Rate", "dataType": "numeric", "fieldName": "buyingRate", "sortIndex": "9" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "3", "sortIndex": "10" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal", "sortIndex": "11" },
+              { "displayName": "CVD Amt", "dataType": "numeric", "fieldName": "cvdAmount", "sortIndex": "12" },
+              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays", "minWidth": "5", "sortIndex": "13" },
+              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays", "minWidth": "5", "sortIndex": "14" },
+              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "15" },
               // { "displayName": "Pay Date", "dataType": "Date", "fieldName": "paymentDueDate", "ishidefilter": true, "minWidth": "8","sortIndex" : "16" },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10","sortIndex" : "17" },
-              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10","sortIndex" : "18" },
-              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType","sortIndex" : "19" },
-              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true,"sortIndex" : "20" },
-              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true,"sortIndex" : "21" }
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "17" },
+              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10", "sortIndex": "18" },
+              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType", "sortIndex": "19" },
+              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true, "sortIndex": "20" },
+              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "purId", "ishidefilter": true, "sortIndex": "21" }
               // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"},
               // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"},
               // {"displayName":"Action","dataType":"action","fieldName":"approvalType","minWidth":"3"}
@@ -102,25 +103,25 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true ,"minWidth": "8","sortIndex" : "1"},
-              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10","sortIndex" : "2" },
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" ,"minWidth": "5","sortIndex" : "3"},
-              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10","sortIndex" : "4" },
-              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10","sortIndex" : "5" },
-              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10","sortIndex" : "6" },
-              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "5","sortIndex" : "7" },
-              { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate", "minWidth": "8","sortIndex" : "8" },
-              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5","sortIndex" : "9" },
-              { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount", "minWidth": "5","sortIndex" : "10" },
-              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays", "minWidth": "5","sortIndex" : "11" },
-              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays", "minWidth": "5","sortIndex" : "12" },
-              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true, "minWidth": "8","sortIndex" : "13" },
-              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal","minWidth": "8","sortIndex" : "14" },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10","sortIndex" : "15" },
-              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10","sortIndex" : "16" },
-              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" , "minWidth": "10","sortIndex" : "17"},
-              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true,"sortIndex" : "18" },
-              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true,"sortIndex" : "19" }
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10", "sortIndex": "2" },
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5", "sortIndex": "3" },
+              { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "4" },
+              { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10", "sortIndex": "5" },
+              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10", "sortIndex": "6" },
+              { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "5", "sortIndex": "7" },
+              { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate", "minWidth": "8", "sortIndex": "8" },
+              { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5", "sortIndex": "9" },
+              { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount", "minWidth": "5", "sortIndex": "10" },
+              { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays", "minWidth": "5", "sortIndex": "11" },
+              { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays", "minWidth": "5", "sortIndex": "12" },
+              { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "13" },
+              { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal", "minWidth": "8", "sortIndex": "14" },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "15" },
+              { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "10", "sortIndex": "16" },
+              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "sortIndex": "17" },
+              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true, "sortIndex": "18" },
+              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "id", "ishidefilter": true, "sortIndex": "19" }
               // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
             ];
           });
@@ -131,7 +132,7 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true , "minWidth": "8"},
+              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
               { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
               { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
               { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
@@ -180,7 +181,7 @@ export class ReportComponent implements OnInit {
         this.PageTitle = "Expense Report";
         this.columnArray = [
           { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "5"  },
+          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "5" },
           { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10" },
           { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10" },
           { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10" },
@@ -192,17 +193,17 @@ export class ReportComponent implements OnInit {
         this.PageTitle = "Loan Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" , "minWidth": "5" },
+          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr", "minWidth": "5" },
           { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
           { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "15" },
           { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
           { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "10" },
-          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true , "minWidth": "8"},
+          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true, "minWidth": "8" },
           { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true, "minWidth": "8" },
           { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
           { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
           { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
-          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true, "minWidth": "8"  }
+          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true, "minWidth": "8" }
         ];
         break;
       case 8:
@@ -399,12 +400,12 @@ export class ReportComponent implements OnInit {
         break;
     }
     console.log("filterData:" + this.filterColumn);
-    this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
+    this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
   }
 
   ngOnInit() {
     this.loading = false;
-   
+
     this.getCompanyData();
     let currentDate = new Date(); // Get the current date
     currentDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
@@ -413,6 +414,28 @@ export class ReportComponent implements OnInit {
     this.firstDate = this.datePipe.transform(this.RememberCompany.financialyear.startDate, 'yyyy-MM-dd');
     this.endDate = this.datePipe.transform(this.RememberCompany.financialyear.endDate, 'yyyy-MM-dd');
     this.purchseReport(this.firstDate, this.endDate);
+  }
+
+
+  onChange(event: any) {
+    this.selectedItems = event.value;
+    debugger;
+    // Apply filter on PurchaseReportList based on the selected items
+    this.PurchaseReportList = this.PurchaseReportList.filter(item => {
+      debugger;
+      // Check if all fields of the selectedItem match the corresponding fields of the item
+      for (const key in this.selectedItems) {
+        if (item.hasOwnProperty(key)) {
+          if (this.selectedItems[key] !== item[key]) {
+            return false; // Return false if any field doesn't match
+          }
+        }
+        else {
+          return false; // Return false if a field is missing in either selectedItem or item
+        }
+      }
+      return true; // Return true if all fields match
+    });
   }
 
   goBack() {
@@ -447,12 +470,12 @@ export class ReportComponent implements OnInit {
     let savedColumns = localStorage.getItem('selectedColumns' + index);
 
     if (savedColumns) {
-        // If saved columns exist, parse them and sort by the "sortIndex" field
-        return JSON.parse(savedColumns);
-      }
-     else {
-        //If no saved columns exist, sort the original columnArray by the "sortIndex" field
-        return  this.columnArray.slice();
+      // If saved columns exist, parse them and sort by the "sortIndex" field
+      return JSON.parse(savedColumns);
+    }
+    else {
+      //If no saved columns exist, sort the original columnArray by the "sortIndex" field
+      return this.columnArray.slice();
     }
   }
 
@@ -464,7 +487,7 @@ export class ReportComponent implements OnInit {
         case 1:
           this.sharedService.customGetApi("Report/GetPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray =  this.getSelectedColumnArray(this.reportIndex);
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
             }, (ex: any) => {
@@ -475,7 +498,7 @@ export class ReportComponent implements OnInit {
         case 2:
           this.sharedService.customGetApi("Report/GetSaleReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray =  this.getSelectedColumnArray(this.reportIndex);
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -487,7 +510,7 @@ export class ReportComponent implements OnInit {
         case 3:
           this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
+              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -499,7 +522,7 @@ export class ReportComponent implements OnInit {
         case 4:
           this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
+              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -511,7 +534,7 @@ export class ReportComponent implements OnInit {
         case 5:
           this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray =  this.columnArray.map(item => ({ ...item}));
+              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -1618,24 +1641,24 @@ export class ReportComponent implements OnInit {
     this.loading = true;
     let exportColumns: any[];
     this.sharedService.customGetApi("Report/GetLedgerDetail?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&ledgerId=" + itemData.ledgerId)
-            .subscribe((data: any) => {
-              this.childColumnArray = [
-                { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-                { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-                { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
-                { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-                { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
-                { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-                { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit" },
-                { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit" },
-              ];
-              this.childReportList = data.data;
-              
-              this.loading = false;
-            }, (ex: any) => {
-              this.loading = false;
-              this.showMessage('error', ex);
-            })
+      .subscribe((data: any) => {
+        this.childColumnArray = [
+          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+          { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+          { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
+          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
+          { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit" },
+          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit" },
+        ];
+        this.childReportList = data.data;
+
+        this.loading = false;
+      }, (ex: any) => {
+        this.loading = false;
+        this.showMessage('error', ex);
+      })
     exportColumns = this.childColumnArray.map((col) => (col.fieldName));
 
     // Get filtered data from the grid (assuming the grid has a method to get filtered data)
@@ -1683,68 +1706,66 @@ export class ReportComponent implements OnInit {
       "footerTotals": footerTotals  // Include footer totals in the data
     };
     this.loading = true;
-    if(type == 'excel')
-    {
-     this.sharedService.customPostApi("Report/downloadexcel", data)
-      .subscribe((data: any) => {
-        const options: DownloadFileOptions = {
-          path: this.PageTitle.replaceAll(" ", '') + ".csv",
-          url: data.data,
-          directory: Directory.Documents,
-        };
+    if (type == 'excel') {
+      this.sharedService.customPostApi("Report/downloadexcel", data)
+        .subscribe((data: any) => {
+          const options: DownloadFileOptions = {
+            path: this.PageTitle.replaceAll(" ", '') + ".csv",
+            url: data.data,
+            directory: Directory.Documents,
+          };
 
-        Filesystem.downloadFile(options)
-          .then(downloadResult => {
-            // Check downloadResult for success
-            if (downloadResult) {
-              alert("File downloaded successfully.");
-            } else {
-              alert("File download failed.");
-            }
-            this.loading = false;
-          })
-          .catch(ex => {
-            console.error("Error downloading file:", ex);
-            this.loading = false;
-            alert(ex);
-          });
-        this.loading = false;
-      }, (ex: any) => {
-        this.loading = false;
-        alert(ex);
-      });
+          Filesystem.downloadFile(options)
+            .then(downloadResult => {
+              // Check downloadResult for success
+              if (downloadResult) {
+                alert("File downloaded successfully.");
+              } else {
+                alert("File download failed.");
+              }
+              this.loading = false;
+            })
+            .catch(ex => {
+              console.error("Error downloading file:", ex);
+              this.loading = false;
+              alert(ex);
+            });
+          this.loading = false;
+        }, (ex: any) => {
+          this.loading = false;
+          alert(ex);
+        });
     }
-    else
-    {
+    else {
       this.sharedService.customPostApi("Report/downloadpdf", data)
-      .subscribe((data: any) => {
-        const options: DownloadFileOptions = {
-          path: this.PageTitle.replaceAll(" ", '') + ".pdf",
-          url: data.data,
-          directory: Directory.Documents,
-        };
+        .subscribe((data: any) => {
+          const options: DownloadFileOptions = {
+            path: this.PageTitle.replaceAll(" ", '') + ".pdf",
+            url: data.data,
+            directory: Directory.Documents,
+          };
 
-        Filesystem.downloadFile(options)
-          .then(downloadResult => {
-            // Check downloadResult for success
-            if (downloadResult) {
-              alert("File downloaded successfully.");
-            } else {
-              alert("File download failed.");
-            }
+          Filesystem.downloadFile(options)
+            .then(downloadResult => {
+              // Check downloadResult for success
+              if (downloadResult) {
+                alert("File downloaded successfully.");
+              } else {
+                alert("File download failed.");
+              }
 
-            this.loading = false;
-          })
-          .catch(ex => {
-            this.loading = false;
-            alert(ex);
-          });
+              this.loading = false;
+            })
+            .catch(ex => {
+              this.loading = false;
+              alert(ex);
+            });
 
-        this.loading = false;
-      }, (ex: any) => {
-        this.loading = false;
-        alert(ex);
-      });
+          this.loading = false;
+        }, (ex: any) => {
+          this.loading = false;
+          alert(ex);
+        });
     }
   }
 
@@ -1773,7 +1794,7 @@ export class ReportComponent implements OnInit {
     }
     return sum;
   }
-  
+
 
   // Inside your component class
   calculateChildColumnSum(columnName: string): number {
@@ -1795,21 +1816,20 @@ export class ReportComponent implements OnInit {
     }
   }
 
-  onSelectedColumnsChange(selectedColumns: any[]) 
-  {
-     // Retrieve existing saved columns from localStorage
-     let savedColumns = localStorage.getItem('selectedColumns' + this.reportIndex);
+  onSelectedColumnsChange(selectedColumns: any[]) {
+    // Retrieve existing saved columns from localStorage
+    let savedColumns = localStorage.getItem('selectedColumns' + this.reportIndex);
 
-     if (savedColumns) {
-         // If saved columns exist, parse them and update the selection
-         let parsedColumns = JSON.parse(savedColumns);
-         parsedColumns = selectedColumns.sort((a, b) => a.sortIndex - b.sortIndex);;
-         // Save the updated selection back to localStorage
-         localStorage.setItem('selectedColumns' + this.reportIndex, JSON.stringify(parsedColumns));
-     } else {
-         // If no saved columns exist, create a new entry with the current selection
-         localStorage.setItem('selectedColumns'+this.reportIndex, JSON.stringify(selectedColumns));
-     }
+    if (savedColumns) {
+      // If saved columns exist, parse them and update the selection
+      let parsedColumns = JSON.parse(savedColumns);
+      parsedColumns = selectedColumns.sort((a, b) => a.sortIndex - b.sortIndex);;
+      // Save the updated selection back to localStorage
+      localStorage.setItem('selectedColumns' + this.reportIndex, JSON.stringify(parsedColumns));
+    } else {
+      // If no saved columns exist, create a new entry with the current selection
+      localStorage.setItem('selectedColumns' + this.reportIndex, JSON.stringify(selectedColumns));
+    }
   }
 
   onApproveClick(reportIndex: number, item: any, status: any) {
@@ -1827,10 +1847,11 @@ export class ReportComponent implements OnInit {
   getDistinctColumnValues(fieldName: string): { fieldName: string, fieldValue: any }[] {
     const data = this.dataTable.filteredValue || this.PurchaseReportList;
     const distinctArray = Array.from(new Set(data.map(item => item[fieldName])))
-        .filter(fieldValue => fieldValue !== undefined) // Filter out undefined values
-        .map(fieldValue => ({ fieldName: fieldName, fieldValue: fieldValue }));
+      .filter(fieldValue => fieldValue !== undefined) // Filter out undefined values
+      .map(fieldValue => ({ fieldName: fieldName, fieldValue: fieldValue }));
     return distinctArray;
-}
+  }
+
 
   onApproveReject() {
     const data = {

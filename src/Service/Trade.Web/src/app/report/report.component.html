@@ -1,36 +1,30 @@
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 </head>
-<app-header (onClickMainIcon) = "goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
+<app-header (onClickMainIcon)="goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
 <div *ngIf="isFilerRequired">
-<app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
+    <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
 </div>
 <p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <p-dialog header="Approve Confirmation" [(visible)]="visible" [modal]="true" [dismissableMask]="true"
-         [style]="{ width: '90vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
+    [style]="{ width: '90vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
     <div>
-        <textarea rows="5" cols="5" [(ngModel)]="ApproveRejectComment"  pInputTextarea></textarea>
+        <textarea rows="5" cols="5" [(ngModel)]="ApproveRejectComment" pInputTextarea></textarea>
     </div>
     <div class="card flex flex-wrap gap-3 justify-content-right" style="flex-direction: row-reverse;">
-        <p-button label="Yes" icon="pi pi-check" (onClick)="onApproveReject();visible = false;" styleClass="p-button-success"></p-button>
+        <p-button label="Yes" icon="pi pi-check" (onClick)="onApproveReject();visible = false;"
+            styleClass="p-button-success"></p-button>
         <p-button label="No" icon="pi pi-times" (onClick)="visible = false;" styleClass="p-button-info"></p-button>
     </div>
 </p-dialog>
 
 <div class="card">
-    <p-table
-        #dt1
-        [value]="PurchaseReportList"
-        dataKey="id"
-        [rows]="10"
-        [showCurrentPageReport]="false"
-        [rowsPerPageOptions]="[5, 10, 25, 50]"        
-        [scrollable]="true"
-        styleClass="p-datatable-gridlines"
-        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"        
-        [globalFilterFields]="filterColumn"
-        scrollHeight="calc(100vh - 300px)" [tableStyle]="{'min-width': '50rem'}">
-        
+    <p-table #dt1 [value]="PurchaseReportList" dataKey="id" [rows]="10" [showCurrentPageReport]="false"
+        [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" styleClass="p-datatable-gridlines"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [globalFilterFields]="filterColumn" scrollHeight="calc(100vh - 300px)" [tableStyle]="{'min-width': '50rem'}">
+
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
             <div class="flex">
@@ -40,50 +34,58 @@
                 </span>
             </div>
         </ng-template> -->
-        
+
         <ng-template pTemplate="caption">
             <div class="flex">
-                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
-                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
-                <button pButton class="p-button-outlined" style="text-align: center; width: 2.5rem; margin-right: 0.5rem;" icon="pi pi-filter-slash" (click)="clear()"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+                    class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                    class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                <button pButton class="p-button-outlined"
+                    style="text-align: center; width: 2.5rem; margin-right: 0.5rem;" icon="pi pi-filter-slash"
+                    (click)="clear()"></button>
                 <!-- <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
                 </span> -->
-                <p-multiSelect [options]="columnArray" [(ngModel)]="selectedColumnArray" optionLabel="displayName"  [showToggleAll]="false" 
-                selectedItemsLabel="{0} columns selected" [style]="{'min-width': '15rem'}" placeholder="Choose Columns" (ngModelChange)="onSelectedColumnsChange($event)"></p-multiSelect>
+                <p-multiSelect [options]="columnArray" [(ngModel)]="selectedColumnArray" optionLabel="displayName"
+                    [showToggleAll]="false" selectedItemsLabel="{0} columns selected" [style]="{'min-width': '15rem'}"
+                    placeholder="Choose Columns" (ngModelChange)="onSelectedColumnsChange($event)"></p-multiSelect>
             </div>
         </ng-template>
 
         <ng-template pTemplate="header">
-            <tr>           
+            <tr>
                 <ng-container *ngIf="isChildReport">
                     <th>
                         <div class="flex align-items-center">
-                         
+
                         </div>
-                      </th>
-                </ng-container>     
+                    </th>
+                </ng-container>
                 <ng-container *ngFor="let item of selectedColumnArray">
-                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
+                    <ng-container
+                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
                         <th pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
-                                {{item.displayName}}  <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
-                                <p-columnFilter field="getDistinctColumnValues(item.fieldName)" matchMode="in" display="menu" [showMatchModes]="false" 
-                                    [showOperator]="false" [showAddButton]="false" >
-                                    <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                        <p-multiSelect [ngModel]="value" [options]="getDistinctColumnValues(item.fieldName)" placeholder="Any"
-                                            (onChange)="filter($event.value)" [showToggleAll]="false">
+                                {{item.displayName}} <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
+                                <p-columnFilter [field]="item.fieldName" matchMode="in" display="menu"
+                                    [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
+                                    <!-- <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                        <p-multiSelect [(ngModel)]="value" optionLabel="fieldValue" [filter]="true"
+                                            class="multiselect-custom-virtual-scroll"
+                                            [options]="getDistinctColumnValues(item.fieldName)" placeholder="Any"
+                                            [showToggleAll]="false">
                                             <ng-template let-option pTemplate="item">
                                                 <div class="inline-block vertical-align-middle">
-                                                    <span class="ml-1 mt-1">{{ option.fieldValue  }}</span>
+                                                    <span class="ml-1 mt-1">{{ option.fieldValue }}</span>
                                                 </div>
                                             </ng-template>
                                         </p-multiSelect>
-                                    </ng-template>
-                                    </p-columnFilter>
+                                    </ng-template> -->
+                                </p-columnFilter>
                             </div>
-                          </th>
+                        </th>
                     </ng-container>
                 </ng-container>
                 <!-- <th style="min-height: 10rem;">
@@ -104,39 +106,51 @@
                     <button type="button" pButton icon="pi pi-plus" (click)="showDetail(rowIndex,purchase)"></button>
                 </td> -->
                 <ng-container *ngIf="isChildReport">
-                    <button type="button" pButton icon="pi pi-angle-down" styleClass="p-button-success" style="margin:5px;" (click)="showDetail(rowIndex,purchase)"></button>
+                    <button type="button" pButton icon="pi pi-angle-down" styleClass="p-button-success"
+                        style="margin:5px;" (click)="showDetail(rowIndex,purchase)"></button>
                 </ng-container>
                 <ng-container *ngFor="let item of selectedColumnArray">
-                    <ng-container *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
+                    <ng-container
+                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject') || this.isApproveButton">
                         <td>
-                            <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date: 'dd-MM-yy'}}</span>
+                            <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date:
+                                'dd-MM-yy'}}</span>
                             <div *ngIf="item.displayName == 'Approve'" [hidden]="!isApproveButton">
-                                <p-button label="Approve" styleClass="p-button-success" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
+                                <p-button label="Approve" styleClass="p-button-success"
+                                    [disabled]="purchase[item.fieldName] != '0'"
+                                    (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
                             </div>
                             <div *ngIf="item.displayName == 'Reject'" [hidden]="!isApproveButton">
-                                <p-button label="Reject" styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'" (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
+                                <p-button label="Reject" styleClass="p-button-danger"
+                                    [disabled]="purchase[item.fieldName] != '0'"
+                                    (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
                             </div>
-                        
+
                             <div *ngIf="item.displayName == 'Approval Status'">
                                 <span *ngIf="purchase[item.fieldName] == '1'">Approved</span>
                                 <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
                                 <span *ngIf="purchase[item.fieldName] == '0'">Pending</span>
                             </div>
                             <span *ngIf="item.displayName === 'Total' && item.dataType == 'numeric'">
-                                    {{  purchase[item.fieldName] | number: '1.2-2': 'en-IN' }} 
+                                {{ purchase[item.fieldName] | number: '1.2-2': 'en-IN' }}
                             </span>
                             <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export'">
-                                <button type="button" pButton pRipple icon="pi pi-file-excel" class="p-button-success mr-2" pTooltip="XLS" (click) = "exportLedger('excel',purchase)" tooltipPosition="bottom"></button>
+                                <button type="button" pButton pRipple icon="pi pi-file-excel"
+                                    class="p-button-success mr-2" pTooltip="XLS"
+                                    (click)="exportLedger('excel',purchase)" tooltipPosition="bottom"></button>
                             </span>
                             <span *ngIf="item.dataType === 'icon'&& item.displayName === 'Export Pdf'">
-                                <button type="button" pButton pRipple icon="pi pi-file-pdf" class="p-button-warning mr-2" pTooltip="PDF" (click) = "exportLedger('pdf',purchase)" tooltipPosition="bottom"></button>
+                                <button type="button" pButton pRipple icon="pi pi-file-pdf"
+                                    class="p-button-warning mr-2" pTooltip="PDF" (click)="exportLedger('pdf',purchase)"
+                                    tooltipPosition="bottom"></button>
                             </span>
                             <span *ngIf="item.displayName.indexOf('Amount') > 0 && item.dataType == 'numeric'">
-                                {{  formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }} 
+                                {{ formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }}
                             </span>
-                         
+
                             <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                          && item.dataType !== 'icon'  && item.displayName.indexOf('Amount') === -1">{{ purchase[item.fieldName] }} </span>                    
+                          && item.dataType !== 'icon'  && item.displayName.indexOf('Amount') === -1">{{
+                                purchase[item.fieldName] }} </span>
                         </td>
                     </ng-container>
                 </ng-container>
@@ -144,9 +158,10 @@
             <tr *ngIf="selectedRowIndex === rowIndex">
                 <td [attr.colspan]="childTotalColumn">
                     <div class="detail-table" style="max-height: 500px; overflow-y: auto;">
-                        <p-table  #dt2 [value]="childReportList"  [scrollable]="true"  [rows]="5" [rowsPerPageOptions]="[10]">
-                        <!-- [globalFilterFields]="childFilterColumn"> -->
-                        <!-- <ng-template pTemplate="caption">
+                        <p-table #dt2 [value]="childReportList" [scrollable]="true" [rows]="5"
+                            [rowsPerPageOptions]="[10]">
+                            <!-- [globalFilterFields]="childFilterColumn"> -->
+                            <!-- <ng-template pTemplate="caption">
                             <div class="flex">
                                 <span class="p-input-icon-left ml-auto">
                                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
@@ -154,36 +169,40 @@
                                 </span>
                             </div>
                         </ng-template> -->
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <ng-container *ngFor="let item of childColumnArray">
-                                        <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
-                                            <div class="flex align-items-center">
-                                                {{item.displayName}}
-                                                <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName" display="menu"></p-columnFilter>
-                                            </div>
-                                            </th>
-                                </ng-container>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-rowData>
-                            <tr>
-                                <ng-container *ngFor="let item of childColumnArray">
-                                    <td>
-                                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
-                                        <span *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
-                                            {{  formatIndianNumber(rowData[item.fieldName]) }} 
-                                        </span>
-                                     
-                                        <span *ngIf="item.dataType !== 'Date' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{ rowData[item.fieldName] }}</span>                    
-                                    </td>
-                                    </ng-container>
-                            </tr>
-                        </ng-template>
-                        </p-table>
-                    </div>
-                </td>
-                <!-- <td colspan="10">
+                            <ng-template pTemplate="header">
+            <tr>
+                <ng-container *ngFor="let item of childColumnArray">
+                    <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
+                        <div class="flex align-items-center">
+                            {{item.displayName}}
+                            <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName"
+                                display="menu"></p-columnFilter>
+                        </div>
+                    </th>
+                </ng-container>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <ng-container *ngFor="let item of childColumnArray">
+                    <td>
+                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
+                        <span
+                            *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
+                            {{ formatIndianNumber(rowData[item.fieldName]) }}
+                        </span>
+
+                        <span
+                            *ngIf="item.dataType !== 'Date' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{
+                            rowData[item.fieldName] }}</span>
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+</td>
+<!-- <td colspan="10">
                     <div class="detail-table">
                         <p-table [value]="dataChild" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7']">
                             <ng-template pTemplate="header">
@@ -226,23 +245,23 @@
                           
                     </div>
                 </td> -->
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="footer">
-            <td colspan="1"></td>
-                <th *ngFor="let col of selectedColumnArray">
-                    <span *ngIf="col.fieldName === 'grossTotal' || col.fieldName === 'netWeight'  || col.fieldName === 'totalCts'">
-                        {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
-                    </span>
-                </th>
-        </ng-template>
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td colspan="7">No data found.</td>
-            </tr>
-        </ng-template>
-    </p-table>
+</tr>
+</ng-template>
+<ng-template pTemplate="footer">
+    <td colspan="1"></td>
+    <th *ngFor="let col of selectedColumnArray">
+        <span *ngIf="col.fieldName === 'grossTotal' || col.fieldName === 'netWeight'  || col.fieldName === 'totalCts'">
+            {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
+        </span>
+    </th>
+</ng-template>
+<ng-template pTemplate="emptymessage">
+    <tr>
+        <td colspan="7">No data found.</td>
+    </tr>
+</ng-template>
+</p-table>
 </div>
 <div class="progress-spinner" *ngIf="loading">
     <p-progressSpinner strokeWidth="4" styleClass="w-3rem h-3rem"></p-progressSpinner>
-  </div>
+</div>
