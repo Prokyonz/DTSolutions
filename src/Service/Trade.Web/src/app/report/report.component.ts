@@ -453,7 +453,7 @@ export class ReportComponent implements OnInit {
     return event.target.value;
   }
 
-  onSeach(event: any) {
+  onSearch(event: any) {
     const StartDate = this.datePipe.transform(event.startDate, 'yyyy-MM-dd');
     const EndDate = this.datePipe.transform(event.endDate, 'yyyy-MM-dd');
     this.firstDate = StartDate;

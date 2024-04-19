@@ -3,9 +3,9 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=yes">
 </head>
 <app-header (onClickMainIcon)="goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
-<div *ngIf="isFilerRequired">
-    <app-filterbar (onClickSearchButton)="onSeach($event)"></app-filterbar>
-</div>
+<p-panel [toggleable]="true" [collapsed]="true" *ngIf="isFilerRequired">
+    <app-filterbar (onClickSearchButton)="onSearch($event)"></app-filterbar>
+</p-panel>
 <p-toast [breakpoints]="{'920px': { right: '0', left: '50'}}"></p-toast>
 <p-dialog header="Approve Confirmation" [(visible)]="visible" [modal]="true" [dismissableMask]="true"
     [style]="{ width: '90vw' }" [draggable]="false" [resizable]="false" [focusOnShow]="true" [focusTrap]=true>
@@ -23,7 +23,7 @@
     <p-table #dt1 [value]="PurchaseReportList" dataKey="id" [rows]="10" [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="filterColumn" scrollHeight="calc(100vh - 300px)" [tableStyle]="{'min-width': '50rem'}">
+        [globalFilterFields]="filterColumn" scrollHeight="calc(100vh - 185px)" [tableStyle]="{'min-width': '50rem'}">
 
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
@@ -66,7 +66,8 @@
                 <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container
                         *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject' ||item.dataType === 'icon')  || this.isApproveButton">
-                        <th pSortableColumn="{{item.fieldName}}">
+                        <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '5rem'}"
+                            pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
                                 {{item.displayName}} <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
                                 <p-columnFilter [field]="item.fieldName" matchMode="in" display="menu"
