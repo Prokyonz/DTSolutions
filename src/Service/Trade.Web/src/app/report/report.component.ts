@@ -69,9 +69,9 @@ export class ReportComponent implements OnInit {
             this.isApproveButton = data.success;
 
             this.columnArray = [
-              { "displayName": "Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5", "sortIndex": "1" },
-              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "15", "sortIndex": "2" },
-              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "1", "sortIndex": "3" },
+              { "displayName": "K.Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5", "sortIndex": "1" },
+              { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "8", "sortIndex": "2" },
+              { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "2", "sortIndex": "3" },
               { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "4" },
               { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "2", "sortIndex": "5" },
               { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "1", "sortIndex": "6" },
@@ -104,13 +104,13 @@ export class ReportComponent implements OnInit {
             this.isApproveButton = data.success;
             this.columnArray = [
               { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
-              { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10", "sortIndex": "2" },
+              { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "5", "sortIndex": "2" },
               { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5", "sortIndex": "3" },
               { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "4" },
               { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10", "sortIndex": "5" },
-              { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10", "sortIndex": "6" },
+              { "displayName": "K.Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "10", "sortIndex": "6" },
               { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "5", "sortIndex": "7" },
-              { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate", "minWidth": "8", "sortIndex": "8" },
+              { "displayName": "Rate", "dataType": "numeric", "fieldName": "saleRate", "minWidth": "5", "sortIndex": "8" },
               { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight", "minWidth": "5", "sortIndex": "9" },
               { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount", "minWidth": "5", "sortIndex": "10" },
               { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays", "minWidth": "5", "sortIndex": "11" },
@@ -132,16 +132,16 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
-              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
-              { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-              { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
-              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
-              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
+              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10", "sortIndex": "2" },
+              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10", "sortIndex": "3" },
+              { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "8", "sortIndex": "4" },
+              { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo", "minWidth": "5", "sortIndex": "5" },
+              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true, "sortIndex": "6" },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "7" },
+              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType", "sortIndex": "8" },
+              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true, "sortIndex": "9" },
+              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true, "sortIndex": "10" }
             ];
           });
         break;
@@ -151,16 +151,16 @@ export class ReportComponent implements OnInit {
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
             this.columnArray = [
-              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
-              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
-              { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-              { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
-              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
-              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
-              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
+              { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+              { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "10", "sortIndex": "2" },
+              { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10", "sortIndex": "3" },
+              { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "8", "sortIndex": "4" },
+              { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo", "minWidth": "8", "sortIndex": "5" },
+              { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true, "sortIndex": "6" },
+              { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "7" },
+              { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType", "sortIndex": "8" },
+              { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true, "sortIndex": "9" },
+              { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true, "sortIndex": "10" }
             ];
           });
         break;
@@ -168,69 +168,69 @@ export class ReportComponent implements OnInit {
         this.PageTitle = "Contra Payment Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10", "sortIndex": "2" },
+          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10", "sortIndex": "3" },
+          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo", "minWidth": "5", "sortIndex": "4" },
+          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "8", "ishidefilter": true, "sortIndex": "5" },
+          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "8", "sortIndex": "6" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "7" },
         ];
         break;
       case 6:
         this.PageTitle = "Expense Report";
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "5" },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "10" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "3", "sortIndex": "2" },
+          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "8", "sortIndex": "3" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "10", "sortIndex": "4" },
+          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "10", "sortIndex": "5" },
+          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "sortIndex": "6" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "7" },
         ];
         break;
       case 7:
         this.PageTitle = "Loan Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr", "minWidth": "5" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
-          { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "10" },
-          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
-          { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
-          { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
-          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true, "minWidth": "8" }
+          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr", "minWidth": "5", "sortIndex": "1" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "2" },
+          { "displayName": "Cash/Bank Party", "dataType": "text", "fieldName": "cashBankName", "minWidth": "10", "sortIndex": "3" },
+          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "8", "sortIndex": "4" },
+          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "10", "sortIndex": "5" },
+          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "6" },
+          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "7" },
+          { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate", "minWidth": "5", "sortIndex": "8" },
+          { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest", "minWidth": "5", "sortIndex": "9" },
+          { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount", "minWidth": "8", "sortIndex": "10" },
+          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "11" }
         ];
         break;
       case 8:
         this.PageTitle = "Rojmel Report";
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8" },
-          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "10" },
-          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "10" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "10" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "10" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "1" },
+          { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "10", "sortIndex": "2" },
+          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "10", "sortIndex": "3" },
+          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "10", "sortIndex": "4" },
+          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "5", "sortIndex": "5" },
+          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "5", "sortIndex": "6" },
         ];
         break;
       case 9:
         this.PageTitle = "PF Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "8" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10" },
-          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "10" },
-          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "10" },
-          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "10" },
-          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "10" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "10" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "10" },
-          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true, "minWidth": "8" }
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "5", "sortIndex": "1" },
+          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "10", "sortIndex": "2" },
+          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "10", "sortIndex": "3" },
+          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "5", "sortIndex": "4" },
+          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "5", "sortIndex": "5" },
+          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "5", "sortIndex": "6" },
+          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "5", "sortIndex": "7" },
+          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "5", "sortIndex": "8" },
+          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "5", "sortIndex": "9" },
+          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true, "minWidth": "8", "sortIndex": "10" }
         ];
         break;
       case 10:
@@ -238,12 +238,12 @@ export class ReportComponent implements OnInit {
         this.isFilerRequired = false;
         this.isChildReport = true;
         this.columnArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "10" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "10" },
-          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "10" },
-          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "15" },
-          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "5" }, // New column for export icon
-          { "displayName": "Export Pdf", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "5" } // New column for export icon
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "5", "sortIndex": "1" },
+          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "20", "sortIndex": "2" },
+          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "5", "sortIndex": "3" },
+          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "8", "sortIndex": "4" },
+          { "displayName": "Export", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "2", "sortIndex": "5" }, // New column for export icon
+          { "displayName": "Export Pdf", "dataType": "icon", "fieldName": "exportIcon", "minWidth": "2", "sortIndex": "6" } // New column for export icon
         ];
         break;
       case 11:
@@ -510,7 +510,7 @@ export class ReportComponent implements OnInit {
         case 3:
           this.sharedService.customGetApi("Report/GetPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -522,7 +522,7 @@ export class ReportComponent implements OnInit {
         case 4:
           this.sharedService.customGetApi("Report/GetReceiptReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -534,7 +534,7 @@ export class ReportComponent implements OnInit {
         case 5:
           this.sharedService.customGetApi("Report/GetContraPaymentReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
-              this.selectedColumnArray = this.columnArray.map(item => ({ ...item }));
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -546,6 +546,7 @@ export class ReportComponent implements OnInit {
         case 6:
           this.sharedService.customGetApi("Report/GetExpenseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -557,6 +558,7 @@ export class ReportComponent implements OnInit {
         case 7:
           this.sharedService.customGetApi("Report/GetLoanReport?CompanyId=" + this.RememberCompany.company.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -568,6 +570,7 @@ export class ReportComponent implements OnInit {
         case 8:
           this.sharedService.customGetApi("Report/GetMixedReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -579,6 +582,7 @@ export class ReportComponent implements OnInit {
         case 9:
           this.sharedService.customGetApi("Report/GetPFReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -590,6 +594,7 @@ export class ReportComponent implements OnInit {
         case 10:
           this.sharedService.customGetApi("Report/GetLedgerReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -601,6 +606,7 @@ export class ReportComponent implements OnInit {
         case 11:
           this.sharedService.customGetApi("Report/GetPayableReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -612,6 +618,7 @@ export class ReportComponent implements OnInit {
         case 12:
           this.sharedService.customGetApi("Report/GetReceivableReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -623,6 +630,7 @@ export class ReportComponent implements OnInit {
         case 13:
           this.sharedService.customGetApi("Report/GetCashBankReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&FromDate=" + startDate + "&ToDate=" + endDate + "")
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -634,6 +642,7 @@ export class ReportComponent implements OnInit {
         case 14:
           this.sharedService.customGetApi("Report/GetSalariesReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -645,6 +654,7 @@ export class ReportComponent implements OnInit {
         case 15:
           this.sharedService.customGetApi("Report/GetRejectionInReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -656,6 +666,7 @@ export class ReportComponent implements OnInit {
         case 16:
           this.sharedService.customGetApi("Report/GetRejectionOutReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -678,6 +689,7 @@ export class ReportComponent implements OnInit {
         case 18:
           this.sharedService.customGetApi("Report/GetOpeningStockReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -689,6 +701,7 @@ export class ReportComponent implements OnInit {
         case 19:
           this.sharedService.customGetApi("Report/GetWeeklyPurchaseReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -700,6 +713,7 @@ export class ReportComponent implements OnInit {
         case 20:
           this.sharedService.customGetApi("Report/GetBalanceSheetReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -711,6 +725,7 @@ export class ReportComponent implements OnInit {
         case 21:
           this.sharedService.customGetApi("Report/GetProfitLossReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
+              this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
               this.loading = false;
               console.log(this.PurchaseReportList);
@@ -722,7 +737,7 @@ export class ReportComponent implements OnInit {
         default:
           break;
       }
-      this.filterColumn = this.columnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
+      this.filterColumn = this.selectedColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
     }
     catch (e) {
       alert("Try catch error : " + JSON.stringify(e));
@@ -943,274 +958,8 @@ export class ReportComponent implements OnInit {
 
     let exportColumns: any[];
     let colArray: any[] = [];
-    switch (this.reportIndex) {
-      case 1:
-        this.loading = true;
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
-          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
-          { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
-          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
-          { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
-          { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
-          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-          { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
-          { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
-          { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
-          { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
-          { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
-        ];
-        break;
-      case 2:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-          { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-          { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
-          { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
-          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-          { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
-          { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
-          { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
-          { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
-          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
-        ];
-        break;
-      case 3:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-          // { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
-          // { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
-        ];
-        break;
-      case 4:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-        ];
-        break;
-      case 5:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-        ];
-        break;
-      case 6:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 7:
-        colArray = [
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "25" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "15" },
-          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true },
-          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true },
-          { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
-          { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
-          { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
-          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
-        ];
-        break;
-      case 8:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
-        ];
-        break;
-      case 9:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "15" },
-          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "15" },
-          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "15" },
-          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "15" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "15" },
-          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true }
-        ];
-        break;
-      case 10:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
-          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
-        ];
-        break;
-      case 11:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
-        ];
-        break;
-      case 12:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
-        ];
-        break;
-      case 13:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromParty", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toParty", "minWidth": "15" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
-        ];
-        break;
-      case 14:
-        colArray = [
-          { "displayName": "Sr No", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
-          { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "20" },
-          { "displayName": "Date", "dataType": "Date", "fieldName": "salaryMonthDateTime", "ishidefilter": true },
-          { "displayName": "Worked Days/Hrs", "dataType": "numeric", "fieldName": "workedDays", "minWidth": "20" },
-          { "displayName": "Month", "dataType": "numeric", "fieldName": "workedDays" },
-          { "displayName": "OT Hrs(-)", "dataType": "numeric", "fieldName": "otMinusHrs" },
-          { "displayName": "OT Rate(-)", "dataType": "numeric", "fieldName": "otMinusRate" },
-          { "displayName": "OT Hrs(+)", "dataType": "numeric", "fieldName": "otPlusHrs" },
-          { "displayName": "OT Rate(+)", "dataType": "numeric", "fieldName": "otPlusRate" },
-          { "displayName": "Rounf(+/-)", "dataType": "numeric", "fieldName": "roundOfAmount" },
-          { "displayName": "Total Salary", "dataType": "numeric", "fieldName": "salaryAmount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 15:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
-          { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
-          { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
-          { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
-          { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
-          { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 16:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
-          { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
-          { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
-          { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
-          { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
-          { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 17:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "name", "minWidth": "10" },
-          { "displayName": "Total Weight", "dataType": "numeric", "fieldName": "totalWeight", "minWidth": "20" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Total Amount", "dataType": "numeric", "fieldName": "totalAmount", "minWidth": "20" }
-        ];
-        break;
-      case 18:
-        colArray = [
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-          { "displayName": "Size", "dataType": "text", "fieldName": "sizeName", "minWidth": "10" },
-          { "displayName": "Number", "dataType": "text", "fieldName": "numberName", "minWidth": "10" },
-          { "displayName": "Total Cts", "dataType": "numeric", "fieldName": "totalCts" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Update Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
-        ];
-        break;
-      case 19:
-        colArray = [
-          { "displayName": "Week No", "dataType": "text", "fieldName": "weekNo" },
-          { "displayName": "Period", "dataType": "text", "fieldName": "period", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      case 20:
-        colArray = [
-          { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
-          { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      case 21:
-        colArray = [
-          { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
-          { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      default:
-        colArray = this.columnArray;
-        break;
-    }
-    exportColumns = colArray.map((col) => (col.fieldName));
+    colArray = this.selectedColumnArray.slice();
+    exportColumns = this.selectedColumnArray.map((col) => (col.fieldName));
 
 
     // Get filtered data from the grid (assuming the grid has a method to get filtered data)
@@ -1222,7 +971,7 @@ export class ReportComponent implements OnInit {
     // Calculate footer totals
     const footerTotals: any = [];
 
-    for (const col of this.columnArray) {
+    for (const col of this.selectedColumnArray) {
       let m: any = {};
       if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'grossTotal') {
         m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
@@ -1236,7 +985,7 @@ export class ReportComponent implements OnInit {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
       const year = date.getFullYear();
-      return `${month}-${day}-${year}`;
+      return `${day}-${month}-${year}`;
     };
 
     let extractedData: any[] = this.PurchaseReportList.map((item) => {
@@ -1294,274 +1043,274 @@ export class ReportComponent implements OnInit {
   exportPdf() {
     let exportColumns: any[];
     let colArray: any[] = [];
-    switch (this.reportIndex) {
-      case 1:
-        this.loading = true;
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
-          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
-          { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
-          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
-          { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
-          { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
-          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-          { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
-          { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
-          { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
-          { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
-          { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
-        ];
-        break;
-      case 2:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-          { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-          { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
-          { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
-          { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
-          { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
-          { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
-          { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
-          { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
-          // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
-        ];
-        break;
-      case 3:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-          // { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
-          // { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
-        ];
-        break;
-      case 4:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-          { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
-        ];
-        break;
-      case 5:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
-          { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
-          { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
-        ];
-        break;
-      case 6:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 7:
-        colArray = [
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "25" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "15" },
-          { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true },
-          { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true },
-          { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
-          { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
-          { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
-          { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
-        ];
-        break;
-      case 8:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
-          { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
-        ];
-        break;
-      case 9:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
-          { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "15" },
-          { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "15" },
-          { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "15" },
-          { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "15" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "15" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "15" },
-          { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true }
-        ];
-        break;
-      case 10:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
-          { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
-        ];
-        break;
-      case 11:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
-        ];
-        break;
-      case 12:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
-          { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
-          { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
-        ];
-        break;
-      case 13:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "From Party", "dataType": "text", "fieldName": "fromParty", "minWidth": "15" },
-          { "displayName": "To Party", "dataType": "text", "fieldName": "toParty", "minWidth": "15" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
-        ];
-        break;
-      case 14:
-        colArray = [
-          { "displayName": "Sr No", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
-          { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "20" },
-          { "displayName": "Date", "dataType": "Date", "fieldName": "salaryMonthDateTime", "ishidefilter": true },
-          { "displayName": "Worked Days/Hrs", "dataType": "numeric", "fieldName": "workedDays", "minWidth": "20" },
-          { "displayName": "Month", "dataType": "numeric", "fieldName": "workedDays" },
-          { "displayName": "OT Hrs(-)", "dataType": "numeric", "fieldName": "otMinusHrs" },
-          { "displayName": "OT Rate(-)", "dataType": "numeric", "fieldName": "otMinusRate" },
-          { "displayName": "OT Hrs(+)", "dataType": "numeric", "fieldName": "otPlusHrs" },
-          { "displayName": "OT Rate(+)", "dataType": "numeric", "fieldName": "otPlusRate" },
-          { "displayName": "Rounf(+/-)", "dataType": "numeric", "fieldName": "roundOfAmount" },
-          { "displayName": "Total Salary", "dataType": "numeric", "fieldName": "salaryAmount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 15:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
-          { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
-          { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
-          { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
-          { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
-          { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 16:
-        colArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
-          { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
-          { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
-          { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
-          { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
-          { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
-          { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
-          { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
-          { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-        ];
-        break;
-      case 17:
-        colArray = [
-          { "displayName": "Type", "dataType": "text", "fieldName": "name", "minWidth": "10" },
-          { "displayName": "Total Weight", "dataType": "numeric", "fieldName": "totalWeight", "minWidth": "20" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Total Amount", "dataType": "numeric", "fieldName": "totalAmount", "minWidth": "20" }
-        ];
-        break;
-      case 18:
-        colArray = [
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
-          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-          { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
-          { "displayName": "Size", "dataType": "text", "fieldName": "sizeName", "minWidth": "10" },
-          { "displayName": "Number", "dataType": "text", "fieldName": "numberName", "minWidth": "10" },
-          { "displayName": "Total Cts", "dataType": "numeric", "fieldName": "totalCts" },
-          { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
-          { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
-          { "displayName": "Update Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
-        ];
-        break;
-      case 19:
-        colArray = [
-          { "displayName": "Week No", "dataType": "text", "fieldName": "weekNo" },
-          { "displayName": "Period", "dataType": "text", "fieldName": "period", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      case 20:
-        colArray = [
-          { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
-          { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      case 21:
-        colArray = [
-          { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
-          { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
-          { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
-        ];
-        break;
-      default:
-        colArray = this.columnArray;
-        break;
-    }
-
+    // switch (this.reportIndex) {
+    //   case 1:
+    //     this.loading = true;
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "date" },
+    //       { "displayName": "Branch", "dataType": "text", "fieldName": "branchName" },
+    //       { "displayName": "SlipNo", "dataType": "numeric", "fieldName": "slipNo" },
+    //       { "displayName": "Party", "dataType": "text", "fieldName": "partyName" },
+    //       { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName" },
+    //       { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName" },
+    //       { "displayName": "NetCts", "dataType": "numeric", "fieldName": "netWeight" },
+    //       { "displayName": "BuyRate", "dataType": "numeric", "fieldName": "buyingRate" },
+    //       { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+    //       { "displayName": "CVDAmt", "dataType": "numeric", "fieldName": "cvdAmount" },
+    //       { "displayName": "DueDays", "dataType": "numeric", "fieldName": "dueDays" },
+    //       { "displayName": "PayDays", "dataType": "numeric", "fieldName": "paymentDays" },
+    //       { "displayName": "DueDate", "dataType": "Date", "fieldName": "dueDate" },
+    //       { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
+    //       { "displayName": "Status", "dataType": "text", "fieldName": "approvalType" },
+    //     ];
+    //     break;
+    //   case 2:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+    //       { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+    //       { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+    //       { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
+    //       { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
+    //       { "displayName": "Kapan Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
+    //       { "displayName": "Net Cts", "dataType": "numeric", "fieldName": "netWeight" },
+    //       { "displayName": "Sale Rate", "dataType": "numeric", "fieldName": "saleRate" },
+    //       { "displayName": "Less", "dataType": "numeric", "fieldName": "lessWeight" },
+    //       { "displayName": "CVD Amount", "dataType": "numeric", "fieldName": "cvdAmount" },
+    //       { "displayName": "Pay Days", "dataType": "numeric", "fieldName": "paymentDays" },
+    //       { "displayName": "Due Days", "dataType": "numeric", "fieldName": "dueDays" },
+    //       { "displayName": "Due Date", "dataType": "Date", "fieldName": "dueDate", "ishidefilter": true },
+    //       { "displayName": "Total", "dataType": "numeric", "fieldName": "grossTotal" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+    //       { "displayName": "Message", "dataType": "text", "fieldName": "message", "minWidth": "15" }
+    //       // {"displayName":"Approval Type","dataType":"boolean","fieldName":"approvalType","minWidth":"3"}
+    //     ];
+    //     break;
+    //   case 3:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
+    //       { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
+    //       { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+    //       { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
+    //       // { "displayName": "Approve", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true },
+    //       // { "displayName": "Reject", "dataType": "text", "fieldName": "approvalType", "minWidth": "10", "reportid": "groupId", "ishidefilter": true }
+    //     ];
+    //     break;
+    //   case 4:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "To Party", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
+    //       { "displayName": "From Party", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
+    //       { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+    //       { "displayName": "Approval Status", "dataType": "text", "fieldName": "approvalType" },
+    //     ];
+    //     break;
+    //   case 5:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
+    //       { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+    //       { "displayName": "Cheque No", "dataType": "text", "fieldName": "chequeNo" },
+    //       { "displayName": "Cheque Date", "dataType": "Date", "fieldName": "chequeDate", "minWidth": "15", "ishidefilter": true },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
+    //     ];
+    //     break;
+    //   case 6:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
+    //       { "displayName": "Branch Name", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+    //       { "displayName": "From Party", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
+    //       { "displayName": "To Party", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //     ];
+    //     break;
+    //   case 7:
+    //     colArray = [
+    //       { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
+    //       { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
+    //       { "displayName": "Cash/Bank Party Name", "dataType": "text", "fieldName": "cashBankName", "minWidth": "25" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Duration Type", "dataType": "text", "fieldName": "duratonType", "minWidth": "15" },
+    //       { "displayName": "Start Date", "dataType": "Date", "fieldName": "startDate", "ishidefilter": true },
+    //       { "displayName": "End Date", "dataType": "Date", "fieldName": "endDate", "ishidefilter": true },
+    //       { "displayName": "Interest Rate", "dataType": "numeric", "fieldName": "interestRate" },
+    //       { "displayName": "Total Interest", "dataType": "numeric", "fieldName": "totalInterest" },
+    //       { "displayName": "Net Amount", "dataType": "numeric", "fieldName": "netAmount" },
+    //       { "displayName": "Updated Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
+    //     ];
+    //     break;
+    //   case 8:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromName", "minWidth": "15" },
+    //       { "displayName": "To Name", "dataType": "text", "fieldName": "toName", "minWidth": "15" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //       { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
+    //       { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
+    //     ];
+    //     break;
+    //   case 9:
+    //     colArray = [
+    //       { "displayName": "Type", "dataType": "text", "fieldName": "type" },
+    //       { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "15" },
+    //       { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "15" },
+    //       { "displayName": "Size", "dataType": "numeric", "fieldName": "size", "minWidth": "15" },
+    //       { "displayName": "Number", "dataType": "numeric", "fieldName": "number", "minWidth": "15" },
+    //       { "displayName": "Weight", "dataType": "numeric", "fieldName": "weight", "minWidth": "15" },
+    //       { "displayName": "Net Weight", "dataType": "numeric", "fieldName": "netWeight", "minWidth": "15" },
+    //       { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate", "minWidth": "15" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "15" },
+    //       { "displayName": "Created Date", "dataType": "Date", "fieldName": "createdDate", "ishidefilter": true }
+    //     ];
+    //     break;
+    //   case 10:
+    //     colArray = [
+    //       { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
+    //       { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
+    //       { "displayName": "Sub Type", "dataType": "text", "fieldName": "subType", "minWidth": "15" },
+    //       { "displayName": "Closing Balance", "dataType": "numeric", "fieldName": "closingBalance", "minWidth": "20" },
+    //     ];
+    //     break;
+    //   case 11:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+    //       { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
+    //       { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
+    //       { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
+    //       { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
+    //     ];
+    //     break;
+    //   case 12:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
+    //       { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "15" },
+    //       { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
+    //       { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
+    //       { "displayName": "Total", "dataType": "numeric", "fieldName": "total" }
+    //     ];
+    //     break;
+    //   case 13:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "From Party", "dataType": "text", "fieldName": "fromParty", "minWidth": "15" },
+    //       { "displayName": "To Party", "dataType": "text", "fieldName": "toParty", "minWidth": "15" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //       { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "15" },
+    //       { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "15" },
+    //     ];
+    //     break;
+    //   case 14:
+    //     colArray = [
+    //       { "displayName": "Sr No", "dataType": "numeric", "fieldName": "srNo" },
+    //       { "displayName": "Sr", "dataType": "numeric", "fieldName": "sr" },
+    //       { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "20" },
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "salaryMonthDateTime", "ishidefilter": true },
+    //       { "displayName": "Worked Days/Hrs", "dataType": "numeric", "fieldName": "workedDays", "minWidth": "20" },
+    //       { "displayName": "Month", "dataType": "numeric", "fieldName": "workedDays" },
+    //       { "displayName": "OT Hrs(-)", "dataType": "numeric", "fieldName": "otMinusHrs" },
+    //       { "displayName": "OT Rate(-)", "dataType": "numeric", "fieldName": "otMinusRate" },
+    //       { "displayName": "OT Hrs(+)", "dataType": "numeric", "fieldName": "otPlusHrs" },
+    //       { "displayName": "OT Rate(+)", "dataType": "numeric", "fieldName": "otPlusRate" },
+    //       { "displayName": "Rounf(+/-)", "dataType": "numeric", "fieldName": "roundOfAmount" },
+    //       { "displayName": "Total Salary", "dataType": "numeric", "fieldName": "salaryAmount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //     ];
+    //     break;
+    //   case 15:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
+    //       { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
+    //       { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
+    //       { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
+    //       { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
+    //       { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
+    //       { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
+    //       { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
+    //       { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
+    //       { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
+    //       { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //     ];
+    //     break;
+    //   case 16:
+    //     colArray = [
+    //       { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true },
+    //       { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
+    //       { "displayName": "Slip No", "dataType": "text", "fieldName": "slipNo" },
+    //       { "displayName": "Party Name", "dataType": "text", "fieldName": "partyName", "minWidth": "20" },
+    //       { "displayName": "Broker Name", "dataType": "text", "fieldName": "brokerName", "minWidth": "20" },
+    //       { "displayName": "Size Name", "dataType": "text", "fieldName": "sizeName" },
+    //       { "displayName": "Charni Size Name", "dataType": "text", "fieldName": "charniSizeName", "minWidth": "20" },
+    //       { "displayName": "Gala Size Name", "dataType": "text", "fieldName": "galaSizeName", "minWidth": "20" },
+    //       { "displayName": "Number Size Name", "dataType": "text", "fieldName": "numberSizeName", "minWidth": "20" },
+    //       { "displayName": "Purity Name", "dataType": "text", "fieldName": "purityName", "minWidth": "20" },
+    //       { "displayName": "Rate  ", "dataType": "numeric", "fieldName": "rate" },
+    //       { "displayName": "Carat", "dataType": "numeric", "fieldName": "totalCarat" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //     ];
+    //     break;
+    //   case 17:
+    //     colArray = [
+    //       { "displayName": "Type", "dataType": "text", "fieldName": "name", "minWidth": "10" },
+    //       { "displayName": "Total Weight", "dataType": "numeric", "fieldName": "totalWeight", "minWidth": "20" },
+    //       { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
+    //       { "displayName": "Total Amount", "dataType": "numeric", "fieldName": "totalAmount", "minWidth": "20" }
+    //     ];
+    //     break;
+    //   case 18:
+    //     colArray = [
+    //       { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo" },
+    //       { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
+    //       { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName", "minWidth": "15" },
+    //       { "displayName": "Size", "dataType": "text", "fieldName": "sizeName", "minWidth": "10" },
+    //       { "displayName": "Number", "dataType": "text", "fieldName": "numberName", "minWidth": "10" },
+    //       { "displayName": "Total Cts", "dataType": "numeric", "fieldName": "totalCts" },
+    //       { "displayName": "Rate", "dataType": "numeric", "fieldName": "rate" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount" },
+    //       { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20" },
+    //       { "displayName": "Update Date", "dataType": "Date", "fieldName": "updatedDate", "ishidefilter": true }
+    //     ];
+    //     break;
+    //   case 19:
+    //     colArray = [
+    //       { "displayName": "Week No", "dataType": "text", "fieldName": "weekNo" },
+    //       { "displayName": "Period", "dataType": "text", "fieldName": "period", "minWidth": "20" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
+    //     ];
+    //     break;
+    //   case 20:
+    //     colArray = [
+    //       { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
+    //       { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
+    //     ];
+    //     break;
+    //   case 21:
+    //     colArray = [
+    //       { "displayName": "Col Type", "dataType": "text", "fieldName": "colType" },
+    //       { "displayName": "Account Name", "dataType": "text", "fieldName": "type", "minWidth": "20" },
+    //       { "displayName": "Amount", "dataType": "numeric", "fieldName": "amount", "minWidth": "20" }
+    //     ];
+    //     break;
+    //   default:
+    //     colArray = this.columnArray;
+    //     break;
+    // }
+    colArray = this.columnArray;
     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
       this.PurchaseReportList = this.dataTable.filteredValue;
     }
@@ -1582,7 +1331,7 @@ export class ReportComponent implements OnInit {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
       const year = date.getFullYear();
-      return `${month}-${day}-${year}`;
+      return `${day}-${month}-${year}`;
     };
 
     let extractedData: any[] = this.PurchaseReportList.map((item) => {
@@ -1682,7 +1431,7 @@ export class ReportComponent implements OnInit {
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
       const day = date.getDate().toString().padStart(2, '0');
       const year = date.getFullYear();
-      return `${month}-${day}-${year}`;
+      return `${day}-${month}-${year}`;
     };
 
     let extractedData: any[] = this.childReportList.map((item) => {

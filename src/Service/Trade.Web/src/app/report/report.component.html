@@ -65,7 +65,7 @@
                 </ng-container>
                 <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container
-                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject')  || this.isApproveButton">
+                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject' ||item.dataType === 'icon')  || this.isApproveButton">
                         <th pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
                                 {{item.displayName}} <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
@@ -132,12 +132,14 @@
                                     class="p-button-warning mr-2" pTooltip="PDF" (click)="exportLedger('pdf',purchase)"
                                     tooltipPosition="bottom"></button>
                             </span>
-                            <span *ngIf="item.displayName.indexOf('Amount') > 0 && item.dataType == 'numeric'">
+                            <span
+                                *ngIf="(item.displayName.indexOf('Amount') > 0 || item.displayName === 'Amount') && item.dataType == 'numeric'">
                                 {{ formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }}
                             </span>
 
-                            <span *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                          && item.dataType !== 'icon'  && item.displayName.indexOf('Amount') === -1">{{
+                            <span
+                                *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
+                          && item.dataType !== 'icon' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1">{{
                                 purchase[item.fieldName] }} </span>
                         </td>
                     </ng-container>
