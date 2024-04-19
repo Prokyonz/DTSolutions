@@ -55,6 +55,8 @@ export class ReportComponent implements OnInit {
   selectedRowIndex: number;
   dataChild: any[] = [];
   isChildReport: boolean = false;
+  isCollapsed: boolean = true;
+  isExpanded: boolean = false;
   childTotalColumn: number = 0;
   childFilterColumn: string[] = [];
   selectedItems!: any[];
@@ -68,7 +70,6 @@ export class ReportComponent implements OnInit {
         this.sharedService.customGetApi("Auth/GetPermission?userid=" + localStorage.getItem("userid") + "&keyname=purchase_approval")
           .subscribe((data: any) => {
             this.isApproveButton = data.success;
-
             this.columnArray = [
               { "displayName": "K.Name", "dataType": "text", "fieldName": "kapanName", "minWidth": "5", "sortIndex": "1" },
               { "displayName": "Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "8", "sortIndex": "2" },
@@ -415,28 +416,6 @@ export class ReportComponent implements OnInit {
     this.firstDate = this.datePipe.transform(this.RememberCompany.financialyear.startDate, 'yyyy-MM-dd');
     this.endDate = this.datePipe.transform(this.RememberCompany.financialyear.endDate, 'yyyy-MM-dd');
     this.purchseReport(this.firstDate, this.endDate);
-  }
-
-
-  onChange(event: any) {
-    this.selectedItems = event.value;
-    debugger;
-    // Apply filter on PurchaseReportList based on the selected items
-    this.PurchaseReportList = this.PurchaseReportList.filter(item => {
-      debugger;
-      // Check if all fields of the selectedItem match the corresponding fields of the item
-      for (const key in this.selectedItems) {
-        if (item.hasOwnProperty(key)) {
-          if (this.selectedItems[key] !== item[key]) {
-            return false; // Return false if any field doesn't match
-          }
-        }
-        else {
-          return false; // Return false if a field is missing in either selectedItem or item
-        }
-      }
-      return true; // Return true if all fields match
-    });
   }
 
   goBack() {
