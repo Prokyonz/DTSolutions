@@ -6,10 +6,11 @@ import { SharedService } from '../common/shared.service';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { Message, MessageService } from 'primeng/api';
 import { DatePipe } from '@angular/common';
-import * as FileSaver from 'file-saver';
 import { EventEmitter } from '@angular/core';
 import 'jspdf-autotable';
 import { Filesystem, Directory, Encoding, DownloadFileOptions } from '@capacitor/filesystem';
+import { FileOpener } from '@capacitor-community/file-opener';
+
 interface Customer {
   name: string,
   country: string,
@@ -479,7 +480,6 @@ export class ReportComponent implements OnInit {
     }
   }
 
-
   purchseReport(startDate: string | null, endDate: string | null) {
     try {
       this.loading = true;
@@ -945,6 +945,19 @@ export class ReportComponent implements OnInit {
     }
   }
 
+  async openFile(uri: string, mimeType: string) {
+    try {
+      await (FileOpener as any).open({
+        path: uri,
+        contentType: mimeType,
+        error404: true,
+        showAppsSuggestions: true
+      });
+    } catch (error) {
+      console.error('Error opening file:', error);
+      // Handle error opening file
+    }
+  }
 
   exportExcel() {
     // import('xlsx').then((xlsx) => {
@@ -1227,9 +1240,7 @@ export class ReportComponent implements OnInit {
     }
     exportColumns = colArray.map((col) => (col.fieldName));
 
-
     // Get filtered data from the grid (assuming the grid has a method to get filtered data)
-
     if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
       this.PurchaseReportList = this.dataTable.filteredValue;
     }
@@ -1287,10 +1298,11 @@ export class ReportComponent implements OnInit {
             // Check downloadResult for success
             if (downloadResult) {
               alert("File downloaded successfully.");
-            } else {
+              this.openFile(options.path, 'text/csv');
+            }
+            else {
               alert("File download failed.");
             }
-
             this.loading = false;
           })
           .catch(ex => {
@@ -1303,7 +1315,6 @@ export class ReportComponent implements OnInit {
         this.loading = false;
         alert(ex);
       });
-
   }
 
   exportPdf() {
@@ -1808,7 +1819,6 @@ export class ReportComponent implements OnInit {
     }
     return sum;
   }
-
 
   // Inside your component class
   calculateChildColumnSum(columnName: string): number {
