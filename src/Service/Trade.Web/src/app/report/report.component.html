@@ -105,16 +105,15 @@
                             <span *ngIf="item.dataType == 'Date'">{{ purchase[item.fieldName] | date:
                                 'dd-MM-yy'}}</span>
                             <div *ngIf="item.displayName == 'Approve'" [hidden]="!isApproveButton">
-                                <p-button label="Approve" styleClass="p-button-success"
+                                <p-button styleClass="p-button-success" icon="pi pi-check" iconPos="left"
                                     [disabled]="purchase[item.fieldName] != '0'"
                                     (onClick)="onApproveClick(reportIndex,purchase[item.reportid],1)"></p-button>
                             </div>
                             <div *ngIf="item.displayName == 'Reject'" [hidden]="!isApproveButton">
-                                <p-button label="Reject" styleClass="p-button-danger"
-                                    [disabled]="purchase[item.fieldName] != '0'"
+                                <p-button styleClass="p-button-danger" [disabled]="purchase[item.fieldName] != '0'"
+                                    icon="pi pi-times" iconPos="left"
                                     (onClick)="onApproveClick(reportIndex,purchase[item.reportid],2)"></p-button>
                             </div>
-
                             <div *ngIf="item.displayName == 'Approval Status'">
                                 <span *ngIf="purchase[item.fieldName] == '1'">Approved</span>
                                 <span *ngIf="purchase[item.fieldName] == '2'">Rejected</span>
@@ -193,49 +192,6 @@
     </p-table>
 </div>
 </td>
-<!-- <td colspan="10">
-                    <div class="detail-table">
-                        <p-table [value]="dataChild" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]" [globalFilterFields]="['column1', 'column2', 'column3', 'column4', 'column5', 'column6', 'column7']">
-                            <ng-template pTemplate="header">
-                              <tr>
-                                <th>Column 1</th>
-                                <th>Column 2</th>
-                                <th>Column 3</th>
-                                <th>Column 4</th>
-                                <th>Column 5</th>
-                                <th>Column 6</th>
-                                <th>Column 7</th>
-                              </tr>
-                            </ng-template>
-                            <ng-template pTemplate="body" let-rowData>
-                              <tr>
-                                <td>
-                                  <span>{{ rowData.column1 }}</span>
-                                </td>
-                                <td>
-                                  <div [innerHTML]="rowData.column2"></div>
-                                </td>
-                                <td>
-                                  <span>{{ rowData.column3 }}</span>
-                                </td>
-                                <td>
-                                    <span>{{ rowData.column4 }}</span>
-                                  </td>
-                                  <td>
-                                    <span>{{ rowData.column5 }}</span>
-                                  </td>
-                                  <td>
-                                    <span>{{ rowData.column6 }}</span>
-                                  </td>
-                                  <td>
-                                    <span>{{ rowData.column7 }}</span>
-                                  </td>
-                              </tr>
-                            </ng-template>
-                          </p-table>
-                          
-                    </div>
-                </td> -->
 </tr>
 </ng-template>
 <ng-template pTemplate="footer">
