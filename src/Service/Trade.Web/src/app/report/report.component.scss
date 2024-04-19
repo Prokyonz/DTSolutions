@@ -8,9 +8,11 @@ textarea {
 
 .p-dropdown-panel.p-paginator-dropdown {
     position: absolute;
-    bottom: calc(100% + 5px); /* Position dropdown above the paginator */
+    bottom: calc(100% + 5px);
+    /* Position dropdown above the paginator */
     left: 0;
-    z-index: 1000; /* Ensure dropdown appears above other content */
+    z-index: 1000;
+    /* Ensure dropdown appears above other content */
 }
 
 html {
@@ -18,27 +20,30 @@ html {
 }
 
 /* Reduce header row height and make it bold */
-:host ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-    height: 3rem  !important;; /* Adjust this value as needed */
+:host ::ng-deep .p-datatable .p-datatable-thead>tr>th {
+    height: 3rem !important;
+    ;
+    /* Adjust this value as needed */
     font-weight: bold;
     padding-left: 0.3rem !important;
     padding-right: 0.2rem !important;
     padding-top: 0.1rem !important;
     padding-bottom: 0.1rem !important;
 }
+
 /* Reduce footer row height */
-:host ::ng-deep .p-datatable .p-datatable-tfoot > tr > td {
-    height: 3rem; /* Adjust this value as needed */
+:host ::ng-deep .p-datatable .p-datatable-tfoot>tr>td {
+    height: 3rem;
+    /* Adjust this value as needed */
 }
 
 /* Reduce body row height */
-:host ::ng-deep .p-datatable .p-datatable-tbody > tr > td {
-    height: 1rem !important; /* Adjust this value as needed */
-    line-height: 1.1 !important;; /* Adjust this value as needed */
-    padding-top: 0rem !important;
-    padding-bottom: 0rem !important;
-}
-
-:host ::ng-deep .p-datatable .p-button {
-    display: inline-table; 
+:host ::ng-deep .p-datatable .p-datatable-tbody>tr>td {
+    height: 1rem !important;
+    /* Adjust this value as needed */
+    line-height: 1.1 !important;
+    ;
+    /* Adjust this value as needed */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
 }
