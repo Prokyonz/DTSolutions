@@ -162,7 +162,7 @@
                             <ng-template pTemplate="header">
             <tr>
                 <ng-container *ngFor="let item of childColumnArray">
-                    <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '10rem'}">
+                    <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '5rem'}">
                         <div class="flex align-items-center">
                             {{item.displayName}}
                             <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName"
@@ -176,7 +176,7 @@
             <tr>
                 <ng-container *ngFor="let item of childColumnArray">
                     <td>
-                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yyyy'}}</span>
+                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yy'}}</span>
                         <span
                             *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
                             {{ formatIndianNumber(rowData[item.fieldName]) }}
