@@ -2083,11 +2083,13 @@ namespace DiamondTrading
         private void grvLedgerReport_DoubleClick(object sender, EventArgs e)
         {
             string LedgerType = ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Type;
-
-            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType);
-            fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
-            fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
-            fromChildLedgerReport.ShowDialog();
+            if (((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).PartyType > 0)
+            {
+                FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType);
+                fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
+                fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
+                fromChildLedgerReport.ShowDialog();
+            }
         }
     }
 }
