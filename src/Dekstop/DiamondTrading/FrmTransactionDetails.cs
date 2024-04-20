@@ -324,6 +324,80 @@ namespace DiamondTrading
                     _purchaseMasterRepository = new PurchaseMasterRepository();
                     var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear,null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
+
+
+                    if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+                    {
+                        var IsShape = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                        if (IsShape != null)
+                        {
+                            if (IsShape.IsPurchase)
+                                gridColumn180.Visible = true;
+                            else
+                                gridColumn180.Visible = false;
+                        }
+
+                        var IsPurity = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                        if (IsPurity != null)
+                        {
+                            if (IsPurity.IsPurchase)
+                                gridColumn182.Visible = true;
+                            else
+                                gridColumn182.Visible = false;
+                        }
+
+                        var IsTip = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                        if (IsTip != null)
+                        {
+                            if (IsTip.IsPurchase)
+                                gridColumn162.Visible = true;
+                            else
+                                gridColumn162.Visible = false;
+                        }
+
+                        var IsCVD = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                        if (IsCVD != null)
+                        {
+                            if (IsCVD.IsPurchase)
+                                gridColumn163.Visible = true;
+                            else
+                                gridColumn163.Visible = false;
+                        }
+
+                        var IsLessCts = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                        if (IsLessCts != null)
+                        {
+                            if (IsLessCts.IsPurchase)
+                                gridColumn114.Visible = true;
+                            else
+                                gridColumn114.Visible = false;
+                        }
+
+                        var IsCVDCharge = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                        if (IsCVDCharge != null)
+                        {
+                            if (IsCVDCharge.IsPurchase)
+                            {
+                                gridColumn113.Visible = true;
+                                gridColumn166.Visible = true;
+                            }
+                            else
+                            {
+                                gridColumn113.Visible = false;
+                                gridColumn166.Visible = false;
+                            }
+                        }
+
+                        var IsNumber = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                        if (IsNumber != null)
+                        {
+                            if (IsNumber.IsPurchase)
+                                gridColumn227NumberName.Visible = true;
+                            else
+                                gridColumn227NumberName.Visible = false;
+                        }
+                    }
+
                     grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
                 }
             }
@@ -334,6 +408,79 @@ namespace DiamondTrading
                     _salesMasterRepository = new SalesMasterRepository();
                     var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear, dtSalesFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtSalesToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+
+                    if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+                    {
+                        var IsShape = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                        if (IsShape != null)
+                        {
+                            if (IsShape.IsPurchase)
+                                gridColumn183.Visible = true;
+                            else
+                                gridColumn183.Visible = false;
+                        }
+
+                        var IsPurity = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                        if (IsPurity != null)
+                        {
+                            if (IsPurity.IsPurchase)
+                                gridColumn185.Visible = true;
+                            else
+                                gridColumn185.Visible = false;
+                        }
+
+                        var IsTip = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                        if (IsTip != null)
+                        {
+                            if (IsTip.IsPurchase)
+                                gridColumn172.Visible = true;
+                            else
+                                gridColumn172.Visible = false;
+                        }
+
+                        var IsCVD = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                        if (IsCVD != null)
+                        {
+                            if (IsCVD.IsPurchase)
+                                gridColumn173.Visible = true;
+                            else
+                                gridColumn173.Visible = false;
+                        }
+
+                        var IsLessCts = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                        if (IsLessCts != null)
+                        {
+                            if (IsLessCts.IsPurchase)
+                                gridColumn118.Visible = true;
+                            else
+                                gridColumn118.Visible = false;
+                        }
+
+                        var IsCVDCharge = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                        if (IsCVDCharge != null)
+                        {
+                            if (IsCVDCharge.IsPurchase)
+                            {
+                                gridColumn119.Visible = true;
+                                gridColumn176.Visible = true;
+                            }
+                            else
+                            {
+                                gridColumn119.Visible = false;
+                                gridColumn176.Visible = false;
+                            }
+                        }
+
+                        var IsNumber = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                        if (IsNumber != null)
+                        {
+                            if (IsNumber.IsPurchase)
+                                gridColumn187.Visible = true;
+                            else
+                                gridColumn187.Visible = false;
+                        }
+                    }
+
                     grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
                 }
             }
