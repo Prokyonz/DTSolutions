@@ -21,6 +21,7 @@ using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
 using DevExpress.XtraGrid;
 using DevExpress.XtraSplashScreen;
+using DiamondTrading.Utility;
 
 namespace DiamondTrading
 {
@@ -1114,6 +1115,17 @@ namespace DiamondTrading
                 {
                     await LoadGridData(true);
                 }
+            }
+            else if(xtabManager.SelectedTabPage == xtabLoan)
+            {
+                string SelectedGuid = gridView9.GetFocusedRowCellValue("Id").ToString();
+                FrmLoanEntry frmLoanEntry = new FrmLoanEntry(SelectedGuid);
+
+                if (frmLoanEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+
             }
         }
 

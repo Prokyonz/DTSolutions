@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EFCore.SQL.Interface;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 
@@ -11,6 +15,9 @@ namespace DiamondTrading.Utility
         PartyMasterRepository _partyMasterRepository;
         LoanMasterRepository _loanMasterRepository;
         CompanyMasterRepository _companyMasterRepository;
+        private string _selectedLoanId;
+        private readonly List<LoanMaster> _loanMasters;
+        private LoanMaster _selectedLoanToEdit;
 
 
         public FrmLoanEntry()
@@ -20,24 +27,33 @@ namespace DiamondTrading.Utility
             _loanMasterRepository = new LoanMasterRepository();
             _companyMasterRepository = new CompanyMasterRepository();
         }
+        public FrmLoanEntry(string selectedLoanId)
+        {
+            InitializeComponent();
+            _partyMasterRepository = new PartyMasterRepository();
+            _loanMasterRepository = new LoanMasterRepository();
+            _companyMasterRepository = new CompanyMasterRepository();
+            _selectedLoanId = selectedLoanId;
+            _selectedLoanToEdit = _loanMasterRepository.GetLoanAsync(selectedLoanId, Common.LoginCompany, Common.LoginFinancialYear);
+        }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void FrmLoanEntry_Load(object sender, EventArgs e)
+        private async void FrmLoanEntry_Load(object sender, EventArgs e)
         {
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
 
-            _ = LoadParty();
+            await LoadParty();
 
-            _ = LoadCompany();
+            await LoadCompany();
 
-            _ = GetMaxSrNo();
+            await GetMaxSrNo();
 
-            _ = LoadCashank();
+            await LoadCashank();
 
             lueReceiveFrom.Properties.DataSource = Common.GetLoanType();
             lueReceiveFrom.Properties.DisplayMember = "Name";
@@ -46,6 +62,32 @@ namespace DiamondTrading.Utility
             lueDuration.Properties.DataSource = Common.GetLoanDuration();
             lueDuration.Properties.DisplayMember = "Name";
             lueDuration.Properties.ValueMember = "Id";
+
+            if (string.IsNullOrEmpty(_selectedLoanId) == false)
+            {
+                if(_selectedLoanToEdit != null)
+                {
+                    btnSave.Text = AppMessages.GetString(AppMessageID.Update);
+                    lueParty.EditValue = _selectedLoanToEdit.PartyId;                    
+                    txtAmount.Text = _selectedLoanToEdit.Amount.ToString();
+                    lueCompany.EditValue = _selectedLoanToEdit.CompanyId;
+                    lueDuration.EditValue = _selectedLoanToEdit.DuratonType;
+                    dateEnd.DateTime = Convert.ToDateTime(_selectedLoanToEdit.EndDate);
+                    dateStart.DateTime = Convert.ToDateTime(_selectedLoanToEdit.StartDate);
+                    txtInterestRate.Text = _selectedLoanToEdit.InterestRate.ToString();
+                    lueReceiveFrom.EditValue = _selectedLoanToEdit.LoanType;
+                    txtNetAmount.Text = _selectedLoanToEdit.NetAmount.ToString();
+                    txtRemark.Text = _selectedLoanToEdit.Remarks;
+                    lueCashBank.EditValue = _selectedLoanToEdit.CashBankPartyId.ToString();
+                    txtTotalInterest.Text = _selectedLoanToEdit.TotalInterest.ToString();
+                    dtDate.EditValue = DateTime.ParseExact(_selectedLoanToEdit.EntryDate, "yyyyMMdd", CultureInfo.InvariantCulture);
+                    dtTime.EditValue = DateTime.ParseExact(_selectedLoanToEdit.EntryTime, "hh:mm:ss ttt", CultureInfo.InvariantCulture);
+                    txtSerialNo.Text = _selectedLoanToEdit.Sr.ToString();
+                } else
+                {
+                    MessageBox.Show("You can not edit this loan entry due to some database issue. Please contact software developers.", "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private async Task GetMaxSrNo()
@@ -87,33 +129,60 @@ namespace DiamondTrading.Utility
             bool IsSucess = false;
             try
             {
-                LoanMaster loanMaster = new LoanMaster()
+                if (btnSave.Text == AppMessages.GetString(AppMessageID.Save))
                 {
-                    Id = Guid.NewGuid().ToString(),
-                    PartyId = lueParty.EditValue.ToString(),
-                    CashBankPartyId = lueCashBank.EditValue.ToString(),
-                    Amount = decimal.Parse(txtAmount.Text),
-                    CompanyId = lueCompany.EditValue.ToString(),
-                    CreatedBy = Common.LoginCompany.ToString(),
-                    CreatedDate = DateTime.Now,
-                    DuratonType = (int)lueDuration.EditValue,
-                    EndDate = dateEnd.DateTime,
-                    StartDate = dateStart.DateTime,
-                    InterestRate = decimal.Parse(txtInterestRate.Text),
-                    IsDelete = false,
-                    LoanType = int.Parse(lueReceiveFrom.EditValue.ToString()),
-                    NetAmount = decimal.Parse(txtNetAmount.Text),
-                    Remarks = txtRemark.Text,
-                    TotalInterest = decimal.Parse(txtTotalInterest.Text),
-                    UpdatedBy = Common.LoginUserID,
-                    UpdatedDate = DateTime.Now,
-                    EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
-                    EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),
-                    FinancialYearId = Common.LoginFinancialYear
-                };
+                    LoanMaster loanMaster = new LoanMaster()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        PartyId = lueParty.EditValue.ToString(),
+                        CashBankPartyId = lueCashBank.EditValue.ToString(),
+                        Amount = decimal.Parse(txtAmount.Text),
+                        CompanyId = lueCompany.EditValue.ToString(),
+                        CreatedBy = Common.LoginCompany.ToString(),
+                        CreatedDate = DateTime.Now,
+                        DuratonType = (int)lueDuration.EditValue,
+                        EndDate = dateEnd.DateTime,
+                        StartDate = dateStart.DateTime,
+                        InterestRate = decimal.Parse(txtInterestRate.Text),
+                        IsDelete = false,
+                        LoanType = int.Parse(lueReceiveFrom.EditValue.ToString()),
+                        NetAmount = decimal.Parse(txtNetAmount.Text),
+                        Remarks = txtRemark.Text,
+                        TotalInterest = decimal.Parse(txtTotalInterest.Text),
+                        UpdatedBy = Common.LoginUserID,
+                        UpdatedDate = DateTime.Now,
+                        EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd"),
+                        EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt"),
+                        FinancialYearId = Common.LoginFinancialYear
+                    };
 
-                await _loanMasterRepository.AddLoanAsync(loanMaster);
-                IsSucess = true;
+                    await _loanMasterRepository.AddLoanAsync(loanMaster);
+                    IsSucess = true;
+                }
+                else
+                {                    
+                    _selectedLoanToEdit.PartyId = lueParty.EditValue.ToString();
+                    _selectedLoanToEdit.CashBankPartyId = lueCashBank.EditValue.ToString();
+                    _selectedLoanToEdit.Amount = Convert.ToDecimal(txtAmount.Text);
+                    _selectedLoanToEdit.CompanyId = lueCompany.EditValue.ToString();
+                    _selectedLoanToEdit.DuratonType = (int)lueDuration.EditValue;
+                    _selectedLoanToEdit.EndDate = dateEnd.DateTime;
+                    _selectedLoanToEdit.StartDate = Convert.ToDateTime(dateStart.EditValue);
+                    _selectedLoanToEdit.InterestRate = Convert.ToDecimal(txtInterestRate.Text);
+                    _selectedLoanToEdit.LoanType = (int)lueReceiveFrom.EditValue;
+                    _selectedLoanToEdit.NetAmount = Convert.ToDecimal(txtNetAmount.Text);
+                    _selectedLoanToEdit.Remarks  = txtRemark.Text;
+                    _selectedLoanToEdit.TotalInterest = Convert.ToDecimal(txtTotalInterest.Text);
+                    _selectedLoanToEdit.EntryDate = Convert.ToDateTime(dtDate.EditValue).ToString("yyyyMMdd");
+                    _selectedLoanToEdit.EntryTime = Convert.ToDateTime(dtTime.EditValue).ToString("hh:mm:ss ttt");
+                    _selectedLoanToEdit.FinancialYearId = Common.LoginFinancialYear;
+                    _selectedLoanToEdit.UpdatedBy = Common.LoginUserID;
+                    _selectedLoanToEdit.UpdatedDate = DateTime.Now;
+
+                    await _loanMasterRepository.UpdateLoanAsync(_selectedLoanToEdit);
+                    IsSucess = true;
+                    btnSave.Text = AppMessages.GetString(AppMessageID.Save);
+                }
             }
             catch (Exception Ex)
             {
@@ -128,6 +197,7 @@ namespace DiamondTrading.Utility
             {
                 MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ResetForm();
+                this.DialogResult = DialogResult.OK;
             }
         }
 
@@ -178,7 +248,7 @@ namespace DiamondTrading.Utility
 
         private void lueDuration_EditValueChanged(object sender, EventArgs e)
         {
-            int lueDurations = Convert.ToInt32(lueDuration.EditValue.ToString());
+            int lueDurations = Convert.ToInt32(lueDuration.EditValue);
 
             if (lueDurations == 1) //Daily
             {
