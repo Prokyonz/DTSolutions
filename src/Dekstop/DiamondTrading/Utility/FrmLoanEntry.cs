@@ -138,7 +138,7 @@ namespace DiamondTrading.Utility
                         CashBankPartyId = lueCashBank.EditValue.ToString(),
                         Amount = decimal.Parse(txtAmount.Text),
                         CompanyId = lueCompany.EditValue.ToString(),
-                        CreatedBy = Common.LoginCompany.ToString(),
+                        CreatedBy = Common.LoginUserID.ToString(),
                         CreatedDate = DateTime.Now,
                         DuratonType = (int)lueDuration.EditValue,
                         EndDate = dateEnd.DateTime,
