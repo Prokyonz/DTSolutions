@@ -307,12 +307,12 @@ namespace DiamondTrading
 
             ActiveTab();
             try
-            {                
-                await LoadGridData(true);                
-            }
-            catch(Exception ex)
             {
-            }            
+                await LoadGridData(true);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private async Task LoadGridData(bool IsForceLoad = false)
@@ -323,7 +323,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear,null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear, null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
 
 
@@ -1116,7 +1116,7 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabLoan)
+            else if (xtabManager.SelectedTabPage == xtabLoan)
             {
                 string SelectedGuid = gridView9.GetFocusedRowCellValue("Id").ToString();
                 FrmLoanEntry frmLoanEntry = new FrmLoanEntry(SelectedGuid);
@@ -1234,17 +1234,18 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabSalaryReport)
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete complete thread?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
                     string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
 
-                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId,id,true);
+                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId, id, true);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                } else if(MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                }
+                else if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
                     string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
@@ -1254,10 +1255,10 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtraTabRejectionReport)
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionReport)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {                    
+                {
                     string rejectionId = gridView13.GetFocusedRowCellValue(gridColumn115).ToString();
 
                     await _rejectionInOutMasterRepository.DeleteRejectionAsync(rejectionId);
@@ -1265,7 +1266,7 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "Deleted Successfully");
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -1356,7 +1357,7 @@ namespace DiamondTrading
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
-                else if(xtabManager.SelectedTabPage == xtabPayment)
+                else if (xtabManager.SelectedTabPage == xtabPayment)
                 {
                     string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
@@ -1366,7 +1367,7 @@ namespace DiamondTrading
                     string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
-                
+
                 _ = LoadGridData(true);
             }
         }
@@ -2095,13 +2096,14 @@ namespace DiamondTrading
         private void grvLedgerReport_DoubleClick(object sender, EventArgs e)
         {
             string LedgerType = ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Type;
-            if (((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).PartyType > 0)
-            {
-                FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType);
-                fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
-                fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
-                fromChildLedgerReport.ShowDialog();
-            }
+
+            int partyType = ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).PartyType;
+
+            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType, partyType);
+            fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
+            fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
+            fromChildLedgerReport.ShowDialog();
+
         }
     }
 }

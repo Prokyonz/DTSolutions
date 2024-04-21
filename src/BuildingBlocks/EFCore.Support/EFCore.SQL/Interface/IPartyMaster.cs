@@ -18,6 +18,6 @@ namespace EFCore.SQL.Interface
         Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster);
         Task<int> DeletePartyAsync(string partyId, bool isPermanantDetele = false);
         Task<List<LedgerBalanceSPModel>> GetLedgerReport(string companyId, string financialYearId);
-        Task<List<ChildLedgerSPModel>> GetLedgerChildReport(string companyId, string finanialYearId, string ledgerId);
+        Task<List<ChildLedgerSPModel>> GetLedgerChildReport(string companyId, string finanialYearId, string ledgerId, int partyType = 0);
     }
 }
