@@ -293,6 +293,11 @@ namespace DiamondTrading
                     _companyMasterRepository = new CompanyMasterRepository();
                     _companyMaster = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
                     grdCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();
+                    //Update company options
+                    if (_companyMaster.Any())
+                    {
+                        Common.CurrentSelectedCompany = _companyMaster.Where(x => x.Id == Common.LoginCompany.ToString()).ToList();
+                    }
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
