@@ -11,6 +11,7 @@ namespace EFCore.SQL.Interface
         Task<List<LoanMaster>> GetAllLoanAsync(string CompanyId);
         Task<List<LoanSPModel>> GetLoanReportAsync(string CompanyId);
         Task<List<LoanMaster>> GetAllLoanAsync(int loanType, string CompanyId);
+        LoanMaster GetLoanAsync(string loanId, string companyId, string financialYearId);
         Task<LoanMaster> AddLoanAsync(LoanMaster loanMaster);
         Task<LoanMaster> UpdateLoanAsync(LoanMaster loanMaster);
         Task<long> GetMaxSrNo(string companyId);
