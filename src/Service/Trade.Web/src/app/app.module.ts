@@ -43,6 +43,7 @@ import { KapanlagadComponent } from './report/kapanlagad/kapanlagad.component';
 import { BalancesheetComponent } from './report/balancesheet/balancesheet.component';
 import { ProfitlossComponent } from './report/profitloss/profitloss.component';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,9 @@ import { MultiSelectModule } from 'primeng/multiselect';
     CheckboxModule,
     ProgressSpinnerModule,
     DialogModule,
-    MultiSelectModule
+    MultiSelectModule,
+    AccordionModule,
+    BrowserAnimationsModule
   ],
   providers: [SharedService, AuthService, MessageService, DatePipe],
   bootstrap: [AppComponent]

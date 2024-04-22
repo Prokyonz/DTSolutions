@@ -90,6 +90,7 @@
                 </th> -->
             </tr>
         </ng-template>
+
         <ng-template pTemplate="body" let-purchase let-rowIndex="rowIndex">
             <tr>
                 <!-- <td>
@@ -198,7 +199,8 @@
 <ng-template pTemplate="footer">
     <td colspan="1"></td>
     <th *ngFor="let col of selectedColumnArray">
-        <span *ngIf="col.fieldName === 'grossTotal' || col.fieldName === 'netWeight'  || col.fieldName === 'totalCts'">
+        <span
+            *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts') && col.dataType === 'numeric'">
             {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
         </span>
     </th>

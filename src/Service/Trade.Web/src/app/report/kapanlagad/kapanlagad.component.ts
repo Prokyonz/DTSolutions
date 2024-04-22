@@ -18,8 +18,8 @@ export class KapanlagadComponent implements OnInit {
   groupedData: { [category: string]: any[] } = {};
   kapandata: any[] = [];
   inward: any[] = [];
-  outward:any[] = [];
-  closing:any[] = [];
+  outward: any[] = [];
+  closing: any[] = [];
   PageTitle = "Kapan Lagad Report";
   TotalInwardAmount: number = 0;
   TotalInwardRate: number = 0;
@@ -38,8 +38,10 @@ export class KapanlagadComponent implements OnInit {
 
   profitLossAndPerCtsData: any; // Define the property with the appropriate type
 
+  currentSortField: string = 'date'; // Set default sorting field
+  currentSortOrder: number = 1; // 1 for ascending, -1 for descending
 
-  constructor(private rote: Router, private activateRoute: ActivatedRoute, private messageService: MessageService, 
+  constructor(private rote: Router, private activateRoute: ActivatedRoute, private messageService: MessageService,
     private sharedService: SharedService, private datePipe: DatePipe) {
 
   }
@@ -65,41 +67,48 @@ export class KapanlagadComponent implements OnInit {
     }
   }
 
-  getkapan(){
+  getkapan() {
     this.allkapan = [];
     this.sharedService.customGetApi("Report/GetAllKapan?companyid=" + this.RememberCompany.company.id).subscribe((t) => {
-      if (t.success == true){
-        if (t.data != null && t.data.length > 0){
+      if (t.success == true) {
+        if (t.data != null && t.data.length > 0) {
           t.data = [
             ...t.data
           ];
 
           t.data.forEach((item: any) => {
-            this.allkapan.push({ name: item});
+            this.allkapan.push({ name: item });
           });
           console.log(this.allkapan);
         }
       }
-    });      
+    });
   }
 
-  handlekapan(event: any){
+  handlekapan(event: any) {
     this.kapanid = event.value;
   }
 
-  showDetails(){
+  showDetails() {
     this.loading = true;
+    debugger;
+    if (!this.kapanid || !this.kapanid.name || typeof this.kapanid.name.id === 'undefined') {
+      alert("kapan is not selected");
+      this.loading = false;
+      return;
+    }
+
     this.sharedService.customGetApi("Report/GetKapanLagadReport?kapanId=" + this.kapanid.name.id).subscribe((t) => {
-      if (t.success == true){
+      if (t.success == true) {
         console.log(t.data);
         this.kapandata = t.data;
-        this.inward = this.kapandata.filter(f=>f.category.toLowerCase() == "inward");
-        if (this.inward.length > 0){
+        this.inward = this.kapandata.filter(f => f.category.toLowerCase() == "inward");
+        if (this.inward.length > 0) {
           this.profitLossAndPerCtsData = {
             profitLossPercentage: this.inward[0].profitLossPer,
             perCtsValue: this.inward[0].inwardAvg
           };
-          
+
         }
         this.TotalInwardAmount = this.inward.reduce((accumulator, currentObject) => {
           if (currentObject.amount !== null && currentObject.amount !== undefined) {
@@ -108,7 +117,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalInwardRate = this.inward.reduce((accumulator, currentObject) => {
           if (currentObject.rate !== null && currentObject.rate !== undefined) {
             return accumulator + currentObject.rate;
@@ -116,7 +125,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalInwardNetWeight = this.inward.reduce((accumulator, currentObject) => {
           if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
             return accumulator + currentObject.netWeight;
@@ -124,14 +133,14 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
-        
-        this.outward = this.kapandata.filter(f=>f.category.toLowerCase() == "outward");        
-        if (this.outward.length > 0){
+
+
+        this.outward = this.kapandata.filter(f => f.category.toLowerCase() == "outward");
+        if (this.outward.length > 0) {
           this.profitLossAndPerCtsData = {
             profitLossPercentage: this.outward[0].profitLossPer,
             perCtsValue: this.outward[0].inwardAvg
-          };          
+          };
         }
         this.TotalOutwardAmount = this.outward.reduce((accumulator, currentObject) => {
           if (currentObject.amount !== null && currentObject.amount !== undefined) {
@@ -140,7 +149,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalOutwardRate = this.outward.reduce((accumulator, currentObject) => {
           if (currentObject.rate !== null && currentObject.rate !== undefined) {
             return accumulator + currentObject.rate;
@@ -148,7 +157,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalOutwardNetWeight = this.outward.reduce((accumulator, currentObject) => {
           if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
             return accumulator + currentObject.netWeight;
@@ -158,12 +167,12 @@ export class KapanlagadComponent implements OnInit {
         }, 0);
 
 
-        this.closing = this.kapandata.filter(f=>f.category.toLowerCase() == "closing");
-        if (this.closing.length > 0){
+        this.closing = this.kapandata.filter(f => f.category.toLowerCase() == "closing");
+        if (this.closing.length > 0) {
           this.profitLossAndPerCtsData = {
             profitLossPercentage: this.closing[0].profitLossPer,
             perCtsValue: this.closing[0].inwardAvg
-          };          
+          };
         }
         this.TotalClosingAmount = this.closing.reduce((accumulator, currentObject) => {
           if (currentObject.amount !== null && currentObject.amount !== undefined) {
@@ -172,7 +181,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalClosingRate = this.closing.reduce((accumulator, currentObject) => {
           if (currentObject.rate !== null && currentObject.rate !== undefined) {
             return accumulator + currentObject.rate;
@@ -180,7 +189,7 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-        
+
         this.TotalClosingNetWeight = this.closing.reduce((accumulator, currentObject) => {
           if (currentObject.netWeight !== null && currentObject.netWeight !== undefined) {
             return accumulator + currentObject.netWeight;
@@ -191,7 +200,7 @@ export class KapanlagadComponent implements OnInit {
         this.loading = false;
         //this.groupDataByCategory();
       }
-    },(ex: any) => {
+    }, (ex: any) => {
       this.loading = false;
       this.showMessage('error', ex);
     });
@@ -205,8 +214,31 @@ export class KapanlagadComponent implements OnInit {
     return items.reduce((total, item) => total + (item[field] || 0), 0);
   }
 
+  onSort(event: any) {
+    this.currentSortField = event.field;
+    this.currentSortOrder = event.order;
+  }
+
+  sortData(data: any[], field: string, order: number): any[] {
+    // Sort the data based on the field and order
+    return data.sort((a, b) => {
+      const valueA = a[field];
+      const valueB = b[field];
+      if (valueA < valueB) {
+        return -1 * order;
+      } else if (valueA > valueB) {
+        return 1 * order;
+      } else {
+        return 0;
+      }
+    });
+  }
+
   groupAndCalculateTotals(data: any[]): any[] {
-    debugger;
+    // Sort the outward data based on the current sorting state
+    if (this.currentSortField && this.currentSortOrder) {
+      data = this.sortData(data, this.currentSortField, this.currentSortOrder);
+    }
     const groupedData: { [key: string]: any } = {};
 
     for (const item of data) {
@@ -257,6 +289,6 @@ export class KapanlagadComponent implements OnInit {
 
   formatIndianNumber(amount: number): string {
     const formatter = new Intl.NumberFormat('en-IN');
-    return '₹' +formatter.format(amount);
+    return '₹' + formatter.format(amount);
   }
 }
