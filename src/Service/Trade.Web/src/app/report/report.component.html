@@ -24,7 +24,7 @@
     <p-table #dt1 [value]="PurchaseReportList" dataKey="id" [rows]="10" [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-        [globalFilterFields]="filterColumn" scrollHeight="calc(100vh - 185px)" [tableStyle]="{'min-width': '50rem'}">
+        [globalFilterFields]="filterColumn" scrollHeight="calc(100vh - 200px)" [tableStyle]="{'min-width': '50rem'}">
 
         <!-- [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']" -->
         <!-- <ng-template pTemplate="caption">
