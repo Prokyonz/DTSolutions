@@ -66,12 +66,15 @@
                 </ng-container>
                 <ng-container *ngFor="let item of selectedColumnArray">
                     <ng-container
-                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject' ||item.dataType === 'icon')  || this.isApproveButton">
+                        *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject' || item.dataType === 'icon')  || this.isApproveButton">
                         <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '5rem'}"
                             pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
-                                {{item.displayName}} <p-sortIcon field="{{item.fieldName}}"></p-sortIcon>
+                                {{item.displayName}} <p-sortIcon
+                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
+                                    field="{{item.fieldName}}"></p-sortIcon>
                                 <p-columnFilter [field]="item.fieldName" matchMode="in" display="menu"
+                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
                                     [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                                 </p-columnFilter>
                             </div>

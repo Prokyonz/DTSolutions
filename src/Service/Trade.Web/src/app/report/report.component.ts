@@ -358,8 +358,8 @@ export class ReportComponent implements OnInit {
         this.isFilerRequired = false;
         this.isChildReport = false;
         this.columnArray = [
-          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "sortIndex": "1" },
-          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "10", "sortIndex": "2" },
+          { "displayName": "SrNo", "dataType": "numeric", "fieldName": "srNo", "minWidth": "5", "sortIndex": "1" },
+          { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "5", "sortIndex": "2" },
           { "displayName": "Kapan", "dataType": "text", "fieldName": "kapanName", "minWidth": "10", "sortIndex": "3" },
           { "displayName": "Size", "dataType": "text", "fieldName": "sizeName", "minWidth": "5", "sortIndex": "4" },
           { "displayName": "Number", "dataType": "text", "fieldName": "numberName", "minWidth": "5", "sortIndex": "5" },
@@ -828,8 +828,8 @@ export class ReportComponent implements OnInit {
             this.sharedService.customGetApi("Report/GetStockKapanReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
               .subscribe((data: any) => {
                 this.childColumnArray = [
-                  { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "15" },
-                  { "displayName": "Kapan Name", "dataType": "text", "fieldName": "name", "minWidth": "15" },
+                  { "displayName": "Branch", "dataType": "text", "fieldName": "branchName", "minWidth": "5" },
+                  { "displayName": "Kapan Name", "dataType": "text", "fieldName": "name", "minWidth": "5" },
                   { "displayName": "Operation Type", "dataType": "text", "fieldName": "party", "minWidth": "15" },
                   { "displayName": "Inward Weight", "dataType": "numeric", "fieldName": "inwardNetWeight" },
                   { "displayName": "Inward Rate", "dataType": "numeric", "fieldName": "inwardRate" },
