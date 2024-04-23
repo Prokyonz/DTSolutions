@@ -1673,6 +1673,7 @@ export class ReportComponent implements OnInit {
             // Check downloadResult for success
             if (downloadResult) {
               alert("File downloaded successfully.");
+              this.openFile(downloadResult.path ?? "", 'application/pdf');
             } else {
               alert("File download failed.");
             }
@@ -1774,6 +1775,7 @@ export class ReportComponent implements OnInit {
               // Check downloadResult for success
               if (downloadResult) {
                 alert("File downloaded successfully.");
+                this.openFile(downloadResult.path ?? "", 'text/csv');
               } else {
                 alert("File download failed.");
               }
@@ -1804,6 +1806,7 @@ export class ReportComponent implements OnInit {
               // Check downloadResult for success
               if (downloadResult) {
                 alert("File downloaded successfully.");
+                this.openFile(downloadResult.path ?? "", 'application/pdf');
               } else {
                 alert("File download failed.");
               }
