@@ -299,6 +299,7 @@ namespace DiamondTrading
                     {
                         Common.CurrentSelectedCompany = _companyMaster.Where(x => x.Id == Common.LoginCompany.ToString()).ToList();
                     }
+                    await FrmMain.currentInstance.CheckPermission();
                 }
             }
             else if (xtabMasterDetails.SelectedTabPage == xtabBranchMaster)
