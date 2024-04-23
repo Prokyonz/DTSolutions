@@ -979,11 +979,9 @@ export class ReportComponent implements OnInit {
 
   async openFile(uri: string, mimeType: string) {
     try {
-      await (FileOpener as any).open({
-        path: uri,
-        contentType: mimeType,
-        error404: true,
-        showAppsSuggestions: true
+      await FileOpener.open({
+        filePath: uri,
+        contentType: mimeType
       });
     } catch (error) {
       console.error('Error opening file:', error);
@@ -1329,7 +1327,7 @@ export class ReportComponent implements OnInit {
           .then(downloadResult => {
             if (downloadResult) {
               alert("File downloaded successfully.");
-              this.openFile(options.directory + options.path, 'text/csv');
+              this.openFile(downloadResult.path ?? "", 'text/csv');
             }
             else {
               alert("File download failed.");
