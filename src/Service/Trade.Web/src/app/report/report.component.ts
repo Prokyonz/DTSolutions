@@ -36,6 +36,7 @@ export class ReportComponent implements OnInit {
   RememberCompany: RememberCompany = new RememberCompany();
 
   PurchaseReportList: any[];
+  PurchaseReportCloneList: any[];
   columnArray: any[] = [];
   childColumnArray: any[] = [];
   selectedColumnArray: any[] = [];
@@ -459,6 +460,35 @@ export class ReportComponent implements OnInit {
     }
   }
 
+  applyFilter(event: any, fieldName: string) {
+
+    if (!event || !event.value || event.value.length === 0) {
+      this.PurchaseReportList = [...this.PurchaseReportCloneList];
+      return;
+    }
+
+    const selectedValues = event?.value.map((item: any) => item.fieldValue);
+    if (selectedValues != null) {
+      this.PurchaseReportList = this.PurchaseReportCloneList.filter(row => {
+        return selectedValues.includes(row[fieldName]);
+      });
+    }
+    else {
+      this.PurchaseReportList = [...this.PurchaseReportCloneList];
+    }
+  }
+
+
+  getSelectedItemsLabel(fieldName: any): string {
+    const selectedValues = this.PurchaseReportCloneList[fieldName];
+    if (selectedValues && selectedValues.length > 0) {
+      // Change the label format as needed
+      return `${selectedValues.length} selected`;
+    } else {
+      return 'Select';
+    }
+  }
+
   purchseReport(startDate: string | null, endDate: string | null) {
     try {
       this.loading = true;
@@ -468,6 +498,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
             }, (ex: any) => {
               this.loading = false;
@@ -479,6 +510,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -491,6 +523,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -503,6 +536,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -515,6 +549,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -527,6 +562,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -539,6 +575,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -551,6 +588,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -563,6 +601,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -575,6 +614,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -587,6 +627,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -599,6 +640,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -611,6 +653,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -623,6 +666,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -635,6 +679,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -647,6 +692,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -658,6 +704,7 @@ export class ReportComponent implements OnInit {
           this.sharedService.customGetApi("Report/GetStockReport?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id)
             .subscribe((data: any) => {
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -670,6 +717,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -682,6 +730,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -694,6 +743,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -706,6 +756,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.selectedColumnArray = this.getSelectedColumnArray(this.reportIndex);
               this.PurchaseReportList = data.data;
+              this.PurchaseReportCloneList = [...this.PurchaseReportList];
               this.loading = false;
               console.log(this.PurchaseReportList);
             }, (ex: any) => {
@@ -716,6 +767,7 @@ export class ReportComponent implements OnInit {
         default:
           break;
       }
+
       this.filterColumn = this.selectedColumnArray.filter(e => e.dataType == "text" || e.dataType == "numeric").map(column => column.fieldName).filter(Boolean);
     }
     catch (e) {
@@ -1826,7 +1878,7 @@ export class ReportComponent implements OnInit {
     if (savedColumns) {
       // If saved columns exist, parse them and update the selection
       let parsedColumns = JSON.parse(savedColumns);
-      parsedColumns = selectedColumns.sort((a, b) => a.sortIndex - b.sortIndex);;
+      parsedColumns = selectedColumns.sort((a, b) => a.sortIndex - b.sortIndex);
       // Save the updated selection back to localStorage
       localStorage.setItem('selectedColumns' + this.reportIndex, JSON.stringify(parsedColumns));
     } else {
@@ -1848,7 +1900,7 @@ export class ReportComponent implements OnInit {
   }
 
   getDistinctColumnValues(fieldName: string): { fieldName: string, fieldValue: any }[] {
-    const data = this.dataTable.filteredValue || this.PurchaseReportList;
+    const data = this.dataTable.filteredValue || this.PurchaseReportCloneList;
     const distinctArray = Array.from(new Set(data.map(item => item[fieldName])))
       .filter(fieldValue => fieldValue !== undefined) // Filter out undefined values
       .map(fieldValue => ({ fieldName: fieldName, fieldValue: fieldValue }));

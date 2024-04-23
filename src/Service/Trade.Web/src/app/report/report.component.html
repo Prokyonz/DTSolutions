@@ -76,11 +76,14 @@
                                 <p-columnFilter field="item.fieldName" matchMode="in" display="menu"
                                     [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                        <p-multiSelect *ngIf="!item.hideFilter" (onChange)="filter($event.fieldValue)"
+                                        <p-multiSelect *ngIf="!item.hideFilter"
                                             [options]="getDistinctColumnValues(item.fieldName)" optionLabel="fieldValue"
-                                            [(ngModel)]="PurchaseReportList[item.fieldName]"
+                                            [(ngModel)]="PurchaseReportCloneList[item.fieldName]"
                                             [style]="{'min-width': '15rem'}"
-                                            placeholder="Filter {{ item.displayName }}">
+                                            (onChange)="applyFilter($event, item.fieldName)"
+                                            placeholder="Filter {{ item.displayName }}"
+                                            [selectedItemsLabel]="getSelectedItemsLabel(item.fieldName)" appendTo="body"
+                                            [showClear]="false">
                                         </p-multiSelect>
                                     </ng-template>
                                 </p-columnFilter>
