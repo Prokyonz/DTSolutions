@@ -74,6 +74,7 @@
                                     *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
                                     field="{{item.fieldName}}"></p-sortIcon>
                                 <p-columnFilter field="item.fieldName" matchMode="in" display="menu"
+                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
                                     [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                         <p-multiSelect *ngIf="!item.hideFilter"
