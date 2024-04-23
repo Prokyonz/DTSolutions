@@ -462,6 +462,7 @@ export class ReportComponent implements OnInit {
 
   applyFilter(event: any, fieldName: string) {
 
+    debugger;
     if (!event || !event.value || event.value.length === 0) {
       this.PurchaseReportList = [...this.PurchaseReportCloneList];
       return;
@@ -1326,10 +1327,9 @@ export class ReportComponent implements OnInit {
 
         Filesystem.downloadFile(options)
           .then(downloadResult => {
-            // Check downloadResult for success
             if (downloadResult) {
               alert("File downloaded successfully.");
-              this.openFile(options.path, 'text/csv');
+              this.openFile(options.directory + options.path, 'text/csv');
             }
             else {
               alert("File download failed.");
