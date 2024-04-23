@@ -73,6 +73,15 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public LoanMaster GetLoanAsync(string loanId, string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = _databaseContext.LoanMaster.Where(w => w.CompanyId == companyId && w.FinancialYearId == financialYearId && w.Id == loanId).FirstOrDefault();
+                return result;
+            }
+        }
+
         public async Task<List<LoanSPModel>> GetLoanReportAsync(string CompanyId)
         {
             using (_databaseContext = new DatabaseContext())
@@ -106,8 +115,9 @@ namespace EFCore.SQL.Repository
                 if (getLoan != null)
                 {
                     getLoan.CompanyId = loanMaster.CompanyId;
+                    getLoan.FinancialYearId = loanMaster.FinancialYearId;
+                    getLoan.CashBankPartyId = loanMaster.CashBankPartyId;
                     getLoan.LoanType = loanMaster.LoanType;
-
                     getLoan.PartyId = loanMaster.PartyId;
                     getLoan.Amount = loanMaster.Amount;
                     getLoan.DuratonType = loanMaster.DuratonType;
@@ -118,6 +128,8 @@ namespace EFCore.SQL.Repository
                     getLoan.NetAmount = loanMaster.NetAmount;
                     getLoan.Remarks = loanMaster.Remarks;
                     getLoan.IsDelete = false;
+                    getLoan.EntryDate = loanMaster.EntryDate;
+                    getLoan.EntryTime = loanMaster.EntryTime;
                     getLoan.UpdatedBy = loanMaster.UpdatedBy;
                     getLoan.UpdatedDate = loanMaster.UpdatedDate;                    
                 }

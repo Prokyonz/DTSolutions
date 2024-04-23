@@ -21,6 +21,7 @@ using DevExpress.XtraPrinting;
 using DevExpress.XtraPrintingLinks;
 using DevExpress.XtraGrid;
 using DevExpress.XtraSplashScreen;
+using DiamondTrading.Utility;
 
 namespace DiamondTrading
 {
@@ -306,12 +307,12 @@ namespace DiamondTrading
 
             ActiveTab();
             try
-            {                
-                await LoadGridData(true);                
-            }
-            catch(Exception ex)
             {
-            }            
+                await LoadGridData(true);
+            }
+            catch (Exception ex)
+            {
+            }
         }
 
         private async Task LoadGridData(bool IsForceLoad = false)
@@ -322,8 +323,82 @@ namespace DiamondTrading
                 if (IsForceLoad || _purchaseMasterRepository == null)
                 {
                     _purchaseMasterRepository = new PurchaseMasterRepository();
-                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear,null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
+                    var purchaseData = await _purchaseMasterRepository.GetPurchaseReport(Common.LoginCompany, Common.LoginFinancialYear, null, dtFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdTransactionMaster.DataSource = purchaseData.OrderBy(o => o.SlipNo);
+
+
+                    if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+                    {
+                        var IsShape = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                        if (IsShape != null)
+                        {
+                            if (IsShape.IsPurchase)
+                                gridColumn180.Visible = true;
+                            else
+                                gridColumn180.Visible = false;
+                        }
+
+                        var IsPurity = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                        if (IsPurity != null)
+                        {
+                            if (IsPurity.IsPurchase)
+                                gridColumn182.Visible = true;
+                            else
+                                gridColumn182.Visible = false;
+                        }
+
+                        var IsTip = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                        if (IsTip != null)
+                        {
+                            if (IsTip.IsPurchase)
+                                gridColumn162.Visible = true;
+                            else
+                                gridColumn162.Visible = false;
+                        }
+
+                        var IsCVD = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                        if (IsCVD != null)
+                        {
+                            if (IsCVD.IsPurchase)
+                                gridColumn163.Visible = true;
+                            else
+                                gridColumn163.Visible = false;
+                        }
+
+                        var IsLessCts = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                        if (IsLessCts != null)
+                        {
+                            if (IsLessCts.IsPurchase)
+                                gridColumn114.Visible = true;
+                            else
+                                gridColumn114.Visible = false;
+                        }
+
+                        var IsCVDCharge = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                        if (IsCVDCharge != null)
+                        {
+                            if (IsCVDCharge.IsPurchase)
+                            {
+                                gridColumn113.Visible = true;
+                                gridColumn166.Visible = true;
+                            }
+                            else
+                            {
+                                gridColumn113.Visible = false;
+                                gridColumn166.Visible = false;
+                            }
+                        }
+
+                        var IsNumber = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                        if (IsNumber != null)
+                        {
+                            if (IsNumber.IsPurchase)
+                                gridColumn227NumberName.Visible = true;
+                            else
+                                gridColumn227NumberName.Visible = false;
+                        }
+                    }
+
                     grvTransMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("PurchaseReport"));
                 }
             }
@@ -334,6 +409,79 @@ namespace DiamondTrading
                     _salesMasterRepository = new SalesMasterRepository();
                     var salesData = await _salesMasterRepository.GetSalesReport(Common.LoginCompany, Common.LoginFinancialYear, dtSalesFromDate.DateTime.Date.ToString("yyyy-MM-dd"), dtSalesToDate.DateTime.Date.ToString("yyyy-MM-dd"));
                     grdSalesTransactonMaster.DataSource = salesData.OrderBy(o => o.SlipNo);
+
+                    if (Common.CurrentSelectedCompany.Any() && Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Any())
+                    {
+                        var IsShape = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Shape").FirstOrDefault();
+                        if (IsShape != null)
+                        {
+                            if (IsShape.IsPurchase)
+                                gridColumn183.Visible = true;
+                            else
+                                gridColumn183.Visible = false;
+                        }
+
+                        var IsPurity = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Purity").FirstOrDefault();
+                        if (IsPurity != null)
+                        {
+                            if (IsPurity.IsPurchase)
+                                gridColumn185.Visible = true;
+                            else
+                                gridColumn185.Visible = false;
+                        }
+
+                        var IsTip = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Tip").FirstOrDefault();
+                        if (IsTip != null)
+                        {
+                            if (IsTip.IsPurchase)
+                                gridColumn172.Visible = true;
+                            else
+                                gridColumn172.Visible = false;
+                        }
+
+                        var IsCVD = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD").FirstOrDefault();
+                        if (IsCVD != null)
+                        {
+                            if (IsCVD.IsPurchase)
+                                gridColumn173.Visible = true;
+                            else
+                                gridColumn173.Visible = false;
+                        }
+
+                        var IsLessCts = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "(-) Cts").FirstOrDefault();
+                        if (IsLessCts != null)
+                        {
+                            if (IsLessCts.IsPurchase)
+                                gridColumn118.Visible = true;
+                            else
+                                gridColumn118.Visible = false;
+                        }
+
+                        var IsCVDCharge = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "CVD A").FirstOrDefault();
+                        if (IsCVDCharge != null)
+                        {
+                            if (IsCVDCharge.IsPurchase)
+                            {
+                                gridColumn119.Visible = true;
+                                gridColumn176.Visible = true;
+                            }
+                            else
+                            {
+                                gridColumn119.Visible = false;
+                                gridColumn176.Visible = false;
+                            }
+                        }
+
+                        var IsNumber = Common.CurrentSelectedCompany.FirstOrDefault().CompanyOptions.Where(x => x.PermissionGroupName == "PurchaseSale" && x.PermissionName == "Number").FirstOrDefault();
+                        if (IsNumber != null)
+                        {
+                            if (IsNumber.IsPurchase)
+                                gridColumn187.Visible = true;
+                            else
+                                gridColumn187.Visible = false;
+                        }
+                    }
+
                     grvSalesTransactonMaster.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("SalesReport"));
                 }
             }
@@ -968,6 +1116,17 @@ namespace DiamondTrading
                     await LoadGridData(true);
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabLoan)
+            {
+                string SelectedGuid = gridView9.GetFocusedRowCellValue("Id").ToString();
+                FrmLoanEntry frmLoanEntry = new FrmLoanEntry(SelectedGuid);
+
+                if (frmLoanEntry.ShowDialog() == DialogResult.OK)
+                {
+                    await LoadGridData(true);
+                }
+
+            }
         }
 
         private void xtabMasterDetails_SelectedPageChanged(object sender, DevExpress.XtraTab.TabPageChangedEventArgs e)
@@ -1075,17 +1234,18 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabSalaryReport)
+            else if (xtabManager.SelectedTabPage == xtabSalaryReport)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete complete thread?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
                     string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
 
-                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId,id,true);
+                    bool result = await _salaryMasterRepository.DeleteSalary(salaryMasterId, id, true);
 
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
-                } else if(MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                }
+                else if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
                     string id = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryId).ToString();
                     string salaryMasterId = grdViewSalaryReport.GetFocusedRowCellValue(gridColumnSalaryMasterId).ToString();
@@ -1095,10 +1255,10 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully));
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtraTabRejectionReport)
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionReport)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
-                {                    
+                {
                     string rejectionId = gridView13.GetFocusedRowCellValue(gridColumn115).ToString();
 
                     await _rejectionInOutMasterRepository.DeleteRejectionAsync(rejectionId);
@@ -1106,7 +1266,7 @@ namespace DiamondTrading
                     MessageBox.Show(AppMessages.GetString(AppMessageID.DeleteSuccessfully), "Deleted Successfully");
                 }
             }
-            else if(xtabManager.SelectedTabPage == xtabJangadSendReceive)
+            else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
             {
                 if (MessageBox.Show(string.Format("Do you want to delete current record only?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
                 {
@@ -1197,7 +1357,7 @@ namespace DiamondTrading
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
-                else if(xtabManager.SelectedTabPage == xtabPayment)
+                else if (xtabManager.SelectedTabPage == xtabPayment)
                 {
                     string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
@@ -1207,7 +1367,7 @@ namespace DiamondTrading
                     string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
-                
+
                 _ = LoadGridData(true);
             }
         }
@@ -1937,10 +2097,13 @@ namespace DiamondTrading
         {
             string LedgerType = ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Type;
 
-            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType);
+            int partyType = ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).PartyType;
+
+            FromChildLedgerReport fromChildLedgerReport = new FromChildLedgerReport(((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).LedgerId, LedgerType, partyType);
             fromChildLedgerReport.Text = "Ledger Child Report - " + ((LedgerBalanceSPModel)grvLedgerReport.GetFocusedRow()).Name;
             fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
             fromChildLedgerReport.ShowDialog();
+
         }
     }
 }

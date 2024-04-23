@@ -66,7 +66,7 @@ namespace Repository.Entities
                     new PartyTypeMaster { Id = InDirectIncome, Name = "In-Direct Income" },
                     new PartyTypeMaster { Id = Asset, Name = "Asset" },
                     new PartyTypeMaster { Id = Deposit, Name = "Deposit" },
-                    new PartyTypeMaster { Id = Uchina, Name = "Uchina" },
+                    new PartyTypeMaster { Id = Uchina, Name = "Loan And Advance" },
                     new PartyTypeMaster { Id = CapitalAccount, Name = "Capital Account" },
                     new PartyTypeMaster { Id = Investment, Name = "Investment" },
                     new PartyTypeMaster { Id = Expense, Name = "Expense" },

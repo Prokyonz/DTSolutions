@@ -160,6 +160,8 @@ namespace DiamondTrading
             this.colPurImage = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit7 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumnNetAmount = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn226NumberId = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn227NumberName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.grvSalesChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -634,8 +636,6 @@ namespace DiamondTrading
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
-            this.gridColumn226NumberId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn227NumberName = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -1336,6 +1336,20 @@ namespace DiamondTrading
             this.gridColumnNetAmount.Name = "gridColumnNetAmount";
             this.gridColumnNetAmount.Visible = true;
             this.gridColumnNetAmount.VisibleIndex = 15;
+            // 
+            // gridColumn226NumberId
+            // 
+            this.gridColumn226NumberId.Caption = "NumberId";
+            this.gridColumn226NumberId.FieldName = "NumberId";
+            this.gridColumn226NumberId.Name = "gridColumn226NumberId";
+            // 
+            // gridColumn227NumberName
+            // 
+            this.gridColumn227NumberName.Caption = "Number Name";
+            this.gridColumn227NumberName.FieldName = "NumberName";
+            this.gridColumn227NumberName.Name = "gridColumn227NumberName";
+            this.gridColumn227NumberName.Visible = true;
+            this.gridColumn227NumberName.VisibleIndex = 7;
             // 
             // repositoryItemComboBox1
             // 
@@ -3389,7 +3403,7 @@ namespace DiamondTrading
             // gridColumn36
             // 
             this.gridColumn36.Caption = "Duration Type";
-            this.gridColumn36.FieldName = "DurationType";
+            this.gridColumn36.FieldName = "DurationName";
             this.gridColumn36.Name = "gridColumn36";
             this.gridColumn36.Visible = true;
             this.gridColumn36.VisibleIndex = 5;
@@ -6262,20 +6276,6 @@ namespace DiamondTrading
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // gridColumn226NumberId
-            // 
-            this.gridColumn226NumberId.Caption = "NumberId";
-            this.gridColumn226NumberId.FieldName = "NumberId";
-            this.gridColumn226NumberId.Name = "gridColumn226NumberId";
-            // 
-            // gridColumn227NumberName
-            // 
-            this.gridColumn227NumberName.Caption = "Number Name";
-            this.gridColumn227NumberName.FieldName = "NumberName";
-            this.gridColumn227NumberName.Name = "gridColumn227NumberName";
-            this.gridColumn227NumberName.Visible = true;
-            this.gridColumn227NumberName.VisibleIndex = 7;
             // 
             // FrmTransactionDetails
             // 

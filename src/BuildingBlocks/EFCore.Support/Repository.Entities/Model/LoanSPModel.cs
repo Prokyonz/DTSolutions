@@ -15,6 +15,7 @@ namespace Repository.Entities.Model
         public string CashBankName { get; set; }
         public decimal Amount { get; set; }
         public int DuratonType { get; set; }
+        public string DurationName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public decimal InterestRate { get; set; }

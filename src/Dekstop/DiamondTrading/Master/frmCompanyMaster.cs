@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
+using Microsoft.Win32;
 using Repository.Entities;
 using System;
 using System.Collections.Generic;
@@ -324,7 +325,12 @@ namespace DiamondTrading.Master
 
                 if (MessageBox.Show(AppMessages.GetString(AppMessageID.AddMoreCompaniesConfirmation), "["+this.Text+"]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                 {
-                    await FrmMain.currentInstance.CheckPermission();
+                    string MainSec = @"InfoLogs\\" + Common.AppName +"\\ReportLayouts\\PurchaseReport\\ReportLayouts";
+                    Registry.CurrentUser.DeleteSubKeyTree(MainSec, false);
+
+                    string MainSec1 = @"InfoLogs\\" + Common.AppName + "\\ReportLayouts\\SalesReport\\ReportLayouts";
+                    Registry.CurrentUser.DeleteSubKeyTree(MainSec1, false);
+
                     this.DialogResult = DialogResult.OK;
                 }
             }
@@ -333,8 +339,7 @@ namespace DiamondTrading.Master
                 MessageBox.Show("Error : "+Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
-            {
-                await FrmMain.currentInstance.CheckPermission();
+            {                
                 this.Cursor = Cursors.Default;
             }
         }
