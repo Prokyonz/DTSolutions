@@ -470,7 +470,7 @@ export class ReportComponent implements OnInit {
 
     const selectedValues = event?.value.map((item: any) => item.fieldValue);
     if (selectedValues != null) {
-      this.PurchaseReportList = this.PurchaseReportList.filter(row => {
+      this.PurchaseReportList = this.PurchaseReportCloneList.filter(row => {
         return selectedValues.includes(row[fieldName]);
       });
     }
