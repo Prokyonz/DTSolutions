@@ -1103,6 +1103,7 @@ namespace DiamondTrade.API.Controllers
                     {
                         headerRow.Cell(columnIndex + 1).Value = exportModel.columnsHeaders[columnIndex];
                         headerRow.Cell(columnIndex + 1).Style.Font.Bold = true; // Make the header bold
+                        headerRow.Cell(columnIndex + 1).Style.Font.FontSize = 14;
                     }
 
                     // Add data rows
@@ -1115,6 +1116,9 @@ namespace DiamondTrade.API.Controllers
                         }
                     }
 
+                    // Auto fit columns for data rows
+                    worksheet.Columns().AdjustToContents();
+
                     // Add footer totals
                     var footerRow = worksheet.Row(exportModel.rowData.Count + 2);
                     foreach (var footerItem in exportModel.footerTotals)
@@ -1125,6 +1129,7 @@ namespace DiamondTrade.API.Controllers
                         if (columnIndex != -1)
                         {
                             footerRow.Cell(columnIndex + 1).Value = Math.Round(Convert.ToDecimal(footerItem.Value), 2).ToString();
+                            footerRow.Cell(columnIndex + 1).Style.Font.Bold=true;
                             // Optionally, you can apply formatting to the footer cells
                         }
                     }
