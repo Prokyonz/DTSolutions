@@ -280,8 +280,8 @@ export class ReportComponent implements OnInit {
           { "displayName": "From Party", "dataType": "text", "fieldName": "fromParty", "minWidth": "15", "sortIndex": "2" },
           { "displayName": "To Party", "dataType": "text", "fieldName": "toParty", "minWidth": "15", "sortIndex": "3" },
           { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "20", "sortIndex": "4" },
-          { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit", "minWidth": "10", "sortIndex": "5" },
-          { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit", "minWidth": "10", "sortIndex": "6" },
+          { "displayName": "Debit", "dataType": "text", "fieldName": "debit", "minWidth": "10", "sortIndex": "5" },
+          { "displayName": "Credit", "dataType": "text", "fieldName": "credit", "minWidth": "10", "sortIndex": "6" },
         ];
         break;
       case 14:
@@ -856,9 +856,9 @@ export class ReportComponent implements OnInit {
               this.childColumnArray = [
                 { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
                 { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
-                { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
                 { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
                 { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
+                { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
                 { "displayName": "Remarks", "dataType": "text", "fieldName": "remarks", "minWidth": "15" },
                 { "displayName": "Debit", "dataType": "numeric", "fieldName": "debit" },
                 { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit" },
@@ -1834,20 +1834,29 @@ export class ReportComponent implements OnInit {
     this.messageService.add({ severity: type, summary: message });
   }
 
-  // Inside your component class
   calculateColumnSum(columnName: string): number {
     let sum = 0;
     let count = 0;
     // Use the filteredValue directly without reassigning it to PurchaseReportList
-    if (this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+    if (this.dataTable != undefined && this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
       this.PurchaseReportList = this.dataTable.filteredValue;
     }
-    for (const item of this.PurchaseReportList) {
-      // Check if the property exists before summing
-      if (item.hasOwnProperty(columnName)) {
-        sum += item[columnName];
-        count++;
+
+    if (this.PurchaseReportList === undefined) {
+      return 0;
+    }
+
+    try {
+      for (const item of this.PurchaseReportList) {
+        // Check if the property exists before summing
+        if (item.hasOwnProperty(columnName) && !isNaN(parseFloat(item[columnName]))) {
+          sum += parseFloat(item[columnName]);
+          count++;
+        }
       }
+    } catch (ex) {
+      this.loading = false;
+      alert(ex);
     }
     return sum;
   }

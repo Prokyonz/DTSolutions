@@ -152,9 +152,10 @@
                                 *ngIf="(item.displayName.indexOf('Amount') > 0 || item.displayName === 'Amount') && item.dataType == 'numeric'">
                                 {{ formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }}
                             </span>
-
+                            <span *ngIf="(item.displayName === 'Credit' || item.displayName === 'Debit')">{{
+                                purchase[item.fieldName] == 0 ? '' : purchase[item.fieldName] }} </span>
                             <span
-                                *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
+                                *ngIf="item.displayName !== 'Credit' && item.displayName !== 'Debit' && item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
                           && item.dataType !== 'icon' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1">{{
                                 purchase[item.fieldName] }} </span>
                         </td>
@@ -211,9 +212,11 @@
 </tr>
 </ng-template>
 <ng-template pTemplate="footer">
-    <td colspan="1"></td>
-    <th *ngFor="let col of selectedColumnArray">
-        <span *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts')">
+    <th *ngIf="isChildReport"></th>
+    <th *ngFor="let col of selectedColumnArray" class="footer-th"
+        [ngStyle]="{'min-width': col.minWidth ? col.minWidth + 'rem' : '5rem'}">
+        <span
+            *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total')">
             {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
         </span>
     </th>
