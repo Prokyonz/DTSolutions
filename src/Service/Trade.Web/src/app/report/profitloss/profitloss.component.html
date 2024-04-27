@@ -7,6 +7,14 @@
     <div>
         <p-table [value]="transformedData" [tableStyle]="{ 'min-width': '50rem' }"
             styleClass="p-datatable-gridlines dark-gridlines" scrollHeight="calc(100vh - 200px)">
+            <ng-template pTemplate="caption">
+                <div class="flex">
+                    <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+                        class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                    <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                        class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                </div>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th [ngStyle]="{'min-width': '5rem'}">Account Type</th>
