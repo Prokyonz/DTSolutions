@@ -450,7 +450,7 @@ namespace DiamondTrade.API.Controllers
         {
             try
             {
-                var result = await _partyMaster.GetLedgerChildReport(CompanyId, FinancialYearId, ledgerId);
+                var result = await _partyMaster.GetLedgerChildReport(CompanyId, FinancialYearId, ledgerId, partyType: 1);
                 result = result.OrderBy(o => o.Date).ToList();
 
                 return new Response<dynamic>

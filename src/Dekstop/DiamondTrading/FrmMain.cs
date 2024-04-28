@@ -459,29 +459,19 @@ namespace DiamondTrading
 
             if (!IsAllowProcess)
             {
-                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem7.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem9.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem10.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem11.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                //barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-                barSubItem12.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                barSubItem3.Visibility = DevExpress.XtraBars.BarItemVisibility.Never; //Process Main menu hide
+                barSubItem15.Visibility = DevExpress.XtraBars.BarItemVisibility.Never; //Report -> Process menu hide
             }
 
             if(!IsGSTBillPrint)
             {
                 barButtonGSTBillPrint.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
-
             }
 
             if (!IsKapanLagad)
             {
                 barButtonItem81.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
-
         }
 
         private async void frmMain_Load(object sender, EventArgs e)
