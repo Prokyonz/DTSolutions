@@ -203,6 +203,7 @@ namespace DiamondTrading.Transaction
             this.Controls.Add(this.gridControlChildLedgerReport);
             this.Name = "FromChildLedgerReport";
             this.Text = "FromChildLedgerReport";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FromChildLedgerReport_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FromChildLedgerReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChildLedgerReport)).EndInit();
