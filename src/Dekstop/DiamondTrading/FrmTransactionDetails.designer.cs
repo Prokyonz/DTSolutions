@@ -1495,8 +1495,6 @@ namespace DiamondTrading
             this.gridColumn186.Caption = "CharniSizeName";
             this.gridColumn186.FieldName = "CharniSizeName";
             this.gridColumn186.Name = "gridColumn186";
-            this.gridColumn186.Visible = true;
-            this.gridColumn186.VisibleIndex = 3;
             this.gridColumn186.Width = 89;
             // 
             // gridColumn188
@@ -1505,7 +1503,7 @@ namespace DiamondTrading
             this.gridColumn188.FieldName = "GalaSizeName";
             this.gridColumn188.Name = "gridColumn188";
             this.gridColumn188.Visible = true;
-            this.gridColumn188.VisibleIndex = 4;
+            this.gridColumn188.VisibleIndex = 3;
             this.gridColumn188.Width = 84;
             // 
             // gridColumn178
@@ -1528,7 +1526,7 @@ namespace DiamondTrading
             this.gridColumn171.FieldName = "Weight";
             this.gridColumn171.Name = "gridColumn171";
             this.gridColumn171.Visible = true;
-            this.gridColumn171.VisibleIndex = 5;
+            this.gridColumn171.VisibleIndex = 4;
             this.gridColumn171.Width = 86;
             // 
             // gridColumn172
@@ -1537,7 +1535,7 @@ namespace DiamondTrading
             this.gridColumn172.FieldName = "TipWeight";
             this.gridColumn172.Name = "gridColumn172";
             this.gridColumn172.Visible = true;
-            this.gridColumn172.VisibleIndex = 6;
+            this.gridColumn172.VisibleIndex = 5;
             this.gridColumn172.Width = 78;
             // 
             // gridColumn173
@@ -1546,7 +1544,7 @@ namespace DiamondTrading
             this.gridColumn173.FieldName = "CVDWeight";
             this.gridColumn173.Name = "gridColumn173";
             this.gridColumn173.Visible = true;
-            this.gridColumn173.VisibleIndex = 7;
+            this.gridColumn173.VisibleIndex = 6;
             this.gridColumn173.Width = 78;
             // 
             // gridColumn174
@@ -1555,7 +1553,7 @@ namespace DiamondTrading
             this.gridColumn174.FieldName = "NetWeight";
             this.gridColumn174.Name = "gridColumn174";
             this.gridColumn174.Visible = true;
-            this.gridColumn174.VisibleIndex = 9;
+            this.gridColumn174.VisibleIndex = 8;
             this.gridColumn174.Width = 84;
             // 
             // gridColumn175
@@ -1564,7 +1562,7 @@ namespace DiamondTrading
             this.gridColumn175.FieldName = "SaleRate";
             this.gridColumn175.Name = "gridColumn175";
             this.gridColumn175.Visible = true;
-            this.gridColumn175.VisibleIndex = 10;
+            this.gridColumn175.VisibleIndex = 9;
             this.gridColumn175.Width = 85;
             // 
             // gridColumn176
@@ -1573,7 +1571,7 @@ namespace DiamondTrading
             this.gridColumn176.FieldName = "CVDAmount";
             this.gridColumn176.Name = "gridColumn176";
             this.gridColumn176.Visible = true;
-            this.gridColumn176.VisibleIndex = 8;
+            this.gridColumn176.VisibleIndex = 7;
             this.gridColumn176.Width = 70;
             // 
             // gridColumn177
@@ -1582,7 +1580,7 @@ namespace DiamondTrading
             this.gridColumn177.FieldName = "Amount";
             this.gridColumn177.Name = "gridColumn177";
             this.gridColumn177.Visible = true;
-            this.gridColumn177.VisibleIndex = 11;
+            this.gridColumn177.VisibleIndex = 10;
             this.gridColumn177.Width = 87;
             // 
             // grdSalesTransactonMaster
