@@ -46,5 +46,6 @@ namespace Repository.Entities.Model
         public string Remarks { get; set; }
         public string Message { get; set; }
         public string ApprovalType { get; set; }
+        public string SizeName { get; set; }
     }
 }

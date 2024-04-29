@@ -29,11 +29,11 @@ namespace DiamondTrading.Transaction
         /// </summary>
         private void InitializeComponent()
         {
-            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions1 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject1 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject2 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject3 = new DevExpress.Utils.SerializableAppearanceObject();
-            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject4 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions4 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject13 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject14 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject15 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject16 = new DevExpress.Utils.SerializableAppearanceObject();
             this.gridControlChildLedgerReport = new DevExpress.XtraGrid.GridControl();
             this.grvChildLedgerReport = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumnDate = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -47,20 +47,24 @@ namespace DiamondTrading.Transaction
             this.gridColumnChildSlipNo = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnChildRemarks = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChildLedgerReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChildLedgerReport)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gridControlChildLedgerReport
             // 
             this.gridControlChildLedgerReport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridControlChildLedgerReport.Location = new System.Drawing.Point(0, 0);
+            this.gridControlChildLedgerReport.Location = new System.Drawing.Point(0, 24);
             this.gridControlChildLedgerReport.MainView = this.grvChildLedgerReport;
             this.gridControlChildLedgerReport.Name = "gridControlChildLedgerReport";
             this.gridControlChildLedgerReport.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
             this.repositoryItemButtonEdit2});
-            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(973, 467);
+            this.gridControlChildLedgerReport.Size = new System.Drawing.Size(973, 443);
             this.gridControlChildLedgerReport.TabIndex = 7;
             this.gridControlChildLedgerReport.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.grvChildLedgerReport});
@@ -189,11 +193,36 @@ namespace DiamondTrading.Transaction
             // repositoryItemButtonEdit2
             // 
             this.repositoryItemButtonEdit2.AutoHeight = false;
-            editorButtonImageOptions1.Image = global::DiamondTrading.Properties.Resources.View_16;
+            editorButtonImageOptions4.Image = global::DiamondTrading.Properties.Resources.View_16;
             this.repositoryItemButtonEdit2.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
-            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions1, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject1, serializableAppearanceObject2, serializableAppearanceObject3, serializableAppearanceObject4, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions4, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject13, serializableAppearanceObject14, serializableAppearanceObject15, serializableAppearanceObject16, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
             this.repositoryItemButtonEdit2.Name = "repositoryItemButtonEdit2";
             this.repositoryItemButtonEdit2.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportExcelToolStripMenuItem,
+            this.exportPDFToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(973, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // exportExcelToolStripMenuItem
+            // 
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.exportExcelToolStripMenuItem.Text = "Export Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
+            // 
+            // exportPDFToolStripMenuItem
+            // 
+            this.exportPDFToolStripMenuItem.Name = "exportPDFToolStripMenuItem";
+            this.exportPDFToolStripMenuItem.Size = new System.Drawing.Size(77, 20);
+            this.exportPDFToolStripMenuItem.Text = "Export PDF";
+            this.exportPDFToolStripMenuItem.Click += new System.EventHandler(this.exportPDFToolStripMenuItem_Click);
             // 
             // FromChildLedgerReport
             // 
@@ -201,14 +230,20 @@ namespace DiamondTrading.Transaction
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(973, 467);
             this.Controls.Add(this.gridControlChildLedgerReport);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FromChildLedgerReport";
             this.Text = "FromChildLedgerReport";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FromChildLedgerReport_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FromChildLedgerReport_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.gridControlChildLedgerReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvChildLedgerReport)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit2)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -227,5 +262,8 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCredit;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnChildSlipNo;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnChildRemarks;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportPDFToolStripMenuItem;
     }
 }

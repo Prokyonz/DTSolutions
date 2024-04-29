@@ -755,71 +755,121 @@ namespace DiamondTrade.API.Controllers
             }
         }
 
+        //[Route("GetStockReport")]
+        //[HttpGet]
+        //public async Task<Response<dynamic>> GetStockReport(string CompanyId, string financialYearId)
+        //{
+        //    try
+        //    {
+        //        var stockReport = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
+        //        var numberReport = await _accountToAssortMaster.GetNumberReportAsync(CompanyId, financialYearId);
+
+        //        decimal inwardAmount = 0;
+        //        decimal inwardWeight = 0;
+        //        decimal inwardRate = 0;
+
+        //        decimal outwardAmount = 0;
+        //        decimal outwardWeight = 0;
+        //        decimal outwardRate = 0;
+
+        //        if (stockReport.Any())
+        //        {
+        //            inwardAmount = stockReport.Sum(s => s.InwardAmount);
+        //            inwardWeight = stockReport.Sum(s => s.InwardNetWeight);
+        //            inwardRate = stockReport.Average(a => a.InwardRate);
+
+        //            outwardAmount = stockReport.Sum(s => s.OutwardAmount);
+        //            outwardWeight = stockReport.Sum(s => s.OutwardNetWeight);
+        //            outwardRate = stockReport.Sum(s => s.OutwardRate);
+        //        }
+
+        //        decimal inwardAmountN = 0;
+        //        decimal inwardWeightN = 0;
+        //        decimal inwardRateN = 0;
+
+        //        decimal outwardAmountN = 0;
+        //        decimal outwardWeightN = 0;
+        //        decimal outwardRateN = 0;
+        //        if (numberReport.Any())
+        //        {
+        //            inwardAmountN = numberReport.Sum(s => s.InwardAmount);
+        //            inwardWeightN = numberReport.Sum(s => s.InwardNetWeight);
+        //            inwardRateN = numberReport.Average(a => a.InwardRate);
+
+        //            outwardAmountN = numberReport.Sum(s => s.OutwardAmount);
+        //            outwardWeightN = numberReport.Sum(s => s.OutwardNetWeight);
+        //            outwardRateN = numberReport.Sum(s => s.OutwardRate);
+        //        }
+
+        //        List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
+        //            {
+        //                new StockReportMasterGrid()
+        //                {
+        //                    Id = 1,
+        //                    Name = "Kapan",
+        //                    Rate = Math.Round((inwardRate - outwardRate),2),
+        //                    TotalWeight = inwardWeight - outwardWeight,
+        //                    TotalAmount = inwardAmount - outwardAmount
+        //                },
+        //                new StockReportMasterGrid()
+        //                {
+        //                    Id = 2,
+        //                    Name = "Number",
+        //                    Rate = Math.Round(inwardRateN - outwardRateN,2),
+        //                    TotalWeight = inwardWeightN - outwardWeightN,
+        //                    TotalAmount = inwardAmountN - outwardAmountN
+        //                },
+        //            };
+        //        return new Response<dynamic>
+        //        {
+        //            StatusCode = 200,
+        //            Success = true,
+        //            Data = stockReportMasterGrids
+        //        };
+        //    }
+        //    catch
+        //    {
+        //        throw;
+        //    }
+        //}
+
         [Route("GetStockReport")]
         [HttpGet]
         public async Task<Response<dynamic>> GetStockReport(string CompanyId, string financialYearId)
         {
             try
             {
-                var stockReport = await _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
-                var numberReport = await _accountToAssortMaster.GetNumberReportAsync(CompanyId, financialYearId);
+                var stockReportTask = _accountToAssortMaster.GetStockReportAsync(CompanyId, financialYearId);
+                var numberReportTask = _accountToAssortMaster.GetNumberReportAsync(CompanyId, financialYearId);
 
-                decimal inwardAmount = 0;
-                decimal inwardWeight = 0;
-                decimal inwardRate = 0;
+                await Task.WhenAll(stockReportTask, numberReportTask);
 
-                decimal outwardAmount = 0;
-                decimal outwardWeight = 0;
-                decimal outwardRate = 0;
+                var stockReport = stockReportTask.Result;
+                var numberReport = numberReportTask.Result;
 
-                if (stockReport.Any())
-                {
-                    inwardAmount = stockReport.Sum(s => s.InwardAmount);
-                    inwardWeight = stockReport.Sum(s => s.InwardNetWeight);
-                    inwardRate = stockReport.Average(a => a.InwardRate);
+                var stockReportStats = CalculateReportStats(stockReport);
+                var numberReportStats = CalculateReportStats(numberReport);
 
-                    outwardAmount = stockReport.Sum(s => s.OutwardAmount);
-                    outwardWeight = stockReport.Sum(s => s.OutwardNetWeight);
-                    outwardRate = stockReport.Sum(s => s.OutwardRate);
-                }
+                var stockReportMasterGrids = new List<StockReportMasterGrid>
+                 {
+                      new StockReportMasterGrid
+                      {
+                          Id = 1,
+                          Name = "Kapan",
+                          Rate = Math.Round(stockReportStats.Rate, 2),
+                          TotalWeight = stockReportStats.TotalWeight,
+                          TotalAmount = stockReportStats.TotalAmount
+                      },
+                      new StockReportMasterGrid
+                      {
+                          Id = 2,
+                          Name = "Number",
+                          Rate = Math.Round(numberReportStats.Rate, 2),
+                          TotalWeight = numberReportStats.TotalWeight,
+                          TotalAmount = numberReportStats.TotalAmount
+                      }
+                 };
 
-                decimal inwardAmountN = 0;
-                decimal inwardWeightN = 0;
-                decimal inwardRateN = 0;
-
-                decimal outwardAmountN = 0;
-                decimal outwardWeightN = 0;
-                decimal outwardRateN = 0;
-                if (numberReport.Any())
-                {
-                    inwardAmountN = numberReport.Sum(s => s.InwardAmount);
-                    inwardWeightN = numberReport.Sum(s => s.InwardNetWeight);
-                    inwardRateN = numberReport.Average(a => a.InwardRate);
-
-                    outwardAmountN = numberReport.Sum(s => s.OutwardAmount);
-                    outwardWeightN = numberReport.Sum(s => s.OutwardNetWeight);
-                    outwardRateN = numberReport.Sum(s => s.OutwardRate);
-                }
-
-                List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
-                    {
-                        new StockReportMasterGrid()
-                        {
-                            Id = 1,
-                            Name = "Kapan",
-                            Rate = Math.Round((inwardRate - outwardRate),2),
-                            TotalWeight = inwardWeight - outwardWeight,
-                            TotalAmount = inwardAmount - outwardAmount
-                        },
-                        new StockReportMasterGrid()
-                        {
-                            Id = 2,
-                            Name = "Number",
-                            Rate = Math.Round(inwardRateN - outwardRateN,2),
-                            TotalWeight = inwardWeightN - outwardWeightN,
-                            TotalAmount = inwardAmountN - outwardAmountN
-                        },
-                    };
                 return new Response<dynamic>
                 {
                     StatusCode = 200,
@@ -831,6 +881,42 @@ namespace DiamondTrade.API.Controllers
             {
                 throw;
             }
+        }
+
+        private (decimal Rate, decimal TotalWeight, decimal TotalAmount) CalculateReportStats(IEnumerable<StockReportModelReport> report)
+        {
+            decimal inwardAmount = 0, inwardWeight = 0, inwardRate = 0, outwardAmount = 0, outwardWeight = 0, outwardRate = 0;
+
+            if (report.Any())
+            {
+                inwardAmount = report.Sum(s => s.InwardAmount);
+                inwardWeight = report.Sum(s => s.InwardNetWeight);
+                inwardRate = report.Average(a => a.InwardRate);
+
+                outwardAmount = report.Sum(s => s.OutwardAmount);
+                outwardWeight = report.Sum(s => s.OutwardNetWeight);
+                outwardRate = report.Average(a => a.OutwardRate);
+            }
+
+            return (inwardRate - outwardRate, inwardWeight - outwardWeight, inwardAmount - outwardAmount);
+        }
+
+        private (decimal Rate, decimal TotalWeight, decimal TotalAmount) CalculateReportStats(IEnumerable<NumberReportModelReport> report)
+        {
+            decimal inwardAmount = 0, inwardWeight = 0, inwardRate = 0, outwardAmount = 0, outwardWeight = 0, outwardRate = 0;
+
+            if (report.Any())
+            {
+                inwardAmount = report.Sum(s => s.InwardAmount);
+                inwardWeight = report.Sum(s => s.InwardNetWeight);
+                inwardRate = report.Average(a => a.InwardRate);
+
+                outwardAmount = report.Sum(s => s.OutwardAmount);
+                outwardWeight = report.Sum(s => s.OutwardNetWeight);
+                outwardRate = report.Average(a => a.OutwardRate);
+            }
+
+            return (inwardRate - outwardRate, inwardWeight - outwardWeight, inwardAmount - outwardAmount);
         }
 
         [Route("GetRejectionInReport")]
