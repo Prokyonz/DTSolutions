@@ -150,7 +150,7 @@
                             </span>
                             <span
                                 *ngIf="(item.displayName.indexOf('Amount') > 0 || item.displayName === 'Amount') && item.dataType == 'numeric'">
-                                {{ formatIndianNumber(purchase[item.fieldName]?.toFixed(2)) }}
+                                {{ formatIndianNumber( purchase[item.fieldName]?.toFixed(2),false)}}
                             </span>
                             <span *ngIf="(item.displayName === 'Credit' || item.displayName === 'Debit')">{{
                                 purchase[item.fieldName] == 0 ? '' : purchase[item.fieldName] }} </span>
@@ -196,7 +196,7 @@
                         <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yy'}}</span>
                         <span
                             *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
-                            {{ formatIndianNumber(rowData[item.fieldName]) }}
+                            {{ formatIndianNumber(rowData[item.fieldName], false) }}
                         </span>
 
                         <span
@@ -212,14 +212,17 @@
 </tr>
 </ng-template>
 <ng-template pTemplate="footer">
-    <th *ngIf="isChildReport"></th>
-    <th *ngFor="let col of selectedColumnArray" class="footer-th footer-row"
-        [ngStyle]="{'min-width': col.minWidth ? col.minWidth + 'rem' : '5rem'}">
-        <span
-            *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'total')">
-            {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
-        </span>
-    </th>
+    <tr>
+        <td *ngIf="isChildReport"></td>
+        <td *ngFor="let col of selectedColumnArray"
+            [ngStyle]="{'min-width': col.minWidth ? col.minWidth + 'rem' : '5rem'}">
+            <span *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts' 
+                || col.fieldName === 'total' ||  col.fieldName === 'amount' || col.fieldName === 'credit' || col.fieldName === 'debit'
+                || col.fieldName ===  'totalAmount')">
+                {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
+            </span>
+        </td>
+    </tr>
 </ng-template>
 <ng-template pTemplate="emptymessage">
     <tr>

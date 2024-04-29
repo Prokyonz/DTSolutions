@@ -1280,7 +1280,9 @@ export class ReportComponent implements OnInit {
 
     for (const col of this.selectedColumnArray) {
       let m: any = {};
-      if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'grossTotal') {
+      if (col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts'
+        || col.fieldName === 'total' || col.fieldName === 'amount' || col.fieldName === 'credit' || col.fieldName === 'debit'
+        || col.fieldName === 'totalAmount') {
         m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
         m["value"] = this.calculateColumnSum(col.fieldName);
         footerTotals.push(m);
@@ -1624,7 +1626,9 @@ export class ReportComponent implements OnInit {
 
     for (const col of this.selectedColumnArray) {
       let m: any = {};
-      if (col.fieldName === 'netWeight' || col.fieldName === 'totalCts' || col.fieldName === 'grossTotal') {
+      if (col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts'
+        || col.fieldName === 'total' || col.fieldName === 'amount' || col.fieldName === 'credit' || col.fieldName === 'debit'
+        || col.fieldName === 'totalAmount') {
         m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
         m["value"] = this.calculateColumnSum(col.fieldName);
         footerTotals.push(m);
