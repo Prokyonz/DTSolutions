@@ -20,7 +20,7 @@
     </div>
 </p-dialog>
 
-<div class="card">
+<div class="card" style="overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; pinch-zoom: zoom;">
     <p-table #dt1 [value]="PurchaseReportList" dataKey="id" [rows]="10" [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
