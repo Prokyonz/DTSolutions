@@ -253,9 +253,9 @@ export class ReportComponent implements OnInit {
         this.PageTitle = "Payable Report";
         this.isFilerRequired = false;
         this.columnArray = [
-          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "5", "sortIndex": "1" },
+          { "displayName": "Date", "dataType": "Date", "fieldName": "entryDate", "ishidefilter": true, "minWidth": "7", "sortIndex": "1" },
           { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo", "minWidth": "5", "sortIndex": "2" },
-          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "5", "sortIndex": "3" },
+          { "displayName": "Type", "dataType": "text", "fieldName": "type", "minWidth": "8", "sortIndex": "3" },
           { "displayName": "Name", "dataType": "text", "fieldName": "name", "minWidth": "25", "sortIndex": "4" },
           { "displayName": "Broker", "dataType": "text", "fieldName": "brokerName", "minWidth": "20", "sortIndex": "5" },
           { "displayName": "Total", "dataType": "numeric", "fieldName": "total", "minWidth": "10", "sortIndex": "6" }
