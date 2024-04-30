@@ -1865,6 +1865,39 @@ export class ReportComponent implements OnInit {
     return sum;
   }
 
+  calculateAverage(): number {
+    let sumWeight = 0;
+    let sumAmount = 0;
+    let average = 0;
+    // Use the filteredValue directly without reassigning it to PurchaseReportList
+    if (this.dataTable != undefined && this.dataTable.filteredValue !== undefined && this.dataTable.filteredValue !== null) {
+      this.PurchaseReportList = this.dataTable.filteredValue;
+    }
+
+    if (this.PurchaseReportList === undefined) {
+      return 0;
+    }
+
+    try {
+      for (const item of this.PurchaseReportList) {
+        // Check if the property exists before summing
+        if (item.hasOwnProperty('netWeight') && !isNaN(parseFloat(item['netWeight']))) {
+          sumWeight += parseFloat(item['netWeight']);
+        }
+
+        if (item.hasOwnProperty('grossTotal') && !isNaN(parseFloat(item['grossTotal']))) {
+          sumAmount += parseFloat(item['grossTotal']);
+        }
+      }
+
+      average = sumAmount / sumWeight;
+    } catch (ex) {
+      this.loading = false;
+      alert(ex);
+    }
+    return average;
+  }
+
   // Inside your component class
   calculateChildColumnSum(columnName: string): number {
     let sum = 0;

@@ -221,6 +221,10 @@
                 || col.fieldName ===  'totalAmount')">
                 {{ formatIndianNumber(calculateColumnSum(col.fieldName), false) }}
             </span>
+            <span
+                *ngIf="(col.fieldName === 'buyingRate' || col.fieldName === 'saleRate') && (reportIndex === 1 || reportIndex === 2)">
+                {{ formatIndianNumber(calculateAverage(), false) }}
+            </span>
         </td>
     </tr>
 </ng-template>
