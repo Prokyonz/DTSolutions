@@ -149,14 +149,14 @@
                                     tooltipPosition="bottom"></button>
                             </span>
                             <span
-                                *ngIf="(item.displayName.indexOf('Amount') > 0 || item.displayName === 'Amount') && item.dataType == 'numeric'">
+                                *ngIf="(item.displayName.indexOf('Amount') > 0 || item.displayName === 'Amount' || item.fieldName === 'closingBalance') && item.dataType == 'numeric'">
                                 {{ formatIndianNumber( purchase[item.fieldName]?.toFixed(2),false)}}
                             </span>
                             <span *ngIf="(item.displayName === 'Credit' || item.displayName === 'Debit')">{{
                                 purchase[item.fieldName] == 0 ? '' : purchase[item.fieldName] }} </span>
                             <span
                                 *ngIf="item.displayName !== 'Credit' && item.displayName !== 'Debit' && item.displayName !== 'Approve' && item.displayName !== 'Reject' && item.displayName !== 'Approval Status' && item.dataType !== 'Date' && item.dataType !== 'Decimal' && item.displayName !== 'Total' 
-                          && item.dataType !== 'icon' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1">{{
+                          && item.dataType !== 'icon' && item.displayName !== 'Amount' && item.fieldName !== 'closingBalance'  && item.displayName.indexOf('Amount') === -1">{{
                                 purchase[item.fieldName] }} </span>
                         </td>
                     </ng-container>

@@ -97,7 +97,7 @@ export class ProfitlossComponent {
   // Function to format the number in Indian numbering system
   formatIndianNumber(amount: number): string {
     const formatter = new Intl.NumberFormat('en-IN');
-    return '₹' + formatter.format(amount);
+    return formatter.format(amount);
   }
 
   showMessage(type: string, message: string) {

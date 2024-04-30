@@ -101,7 +101,7 @@ export class BalancesheetComponent {
 
   formatIndianNumber(amount: number): string {
     const formatter = new Intl.NumberFormat('en-IN');
-    return '₹' + formatter.format(amount);
+    return formatter.format(amount);
   }
 
   exportPdf() {
