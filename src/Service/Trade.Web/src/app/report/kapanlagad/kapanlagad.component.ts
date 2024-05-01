@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { SharedService } from '../../common/shared.service';
 import { RememberCompany } from '../../shared/component/companyselection/companyselection.component';
+import { Filesystem, Directory, Encoding, DownloadFileOptions } from '@capacitor/filesystem';
+import { FileOpener } from '@capacitor-community/file-opener';
 
 @Component({
   selector: 'app-kapanlagad',
@@ -13,6 +15,7 @@ import { RememberCompany } from '../../shared/component/companyselection/company
 export class KapanlagadComponent implements OnInit {
   allkapan: any[] = [];
   loading: boolean = true;
+  isOpen: boolean = false;
   RememberCompany: RememberCompany = new RememberCompany();
   kapanid: any = [];
   groupedData: { [category: string]: any[] } = {};
@@ -20,6 +23,7 @@ export class KapanlagadComponent implements OnInit {
   inward: any[] = [];
   outward: any[] = [];
   closing: any[] = [];
+  transformedData: any[] = [];
   PageTitle = "Kapan Lagad Report";
   TotalInwardAmount: number = 0;
   TotalInwardRate: number = 0;
@@ -91,7 +95,6 @@ export class KapanlagadComponent implements OnInit {
 
   showDetails() {
     this.loading = true;
-    debugger;
     if (!this.kapanid || !this.kapanid.name || typeof this.kapanid.name.id === 'undefined') {
       alert("kapan is not selected");
       this.loading = false;
@@ -108,7 +111,6 @@ export class KapanlagadComponent implements OnInit {
             profitLossPercentage: this.inward[0].profitLossPer,
             perCtsValue: this.inward[0].inwardAvg
           };
-
         }
         this.TotalInwardAmount = this.inward.reduce((accumulator, currentObject) => {
           if (currentObject.amount !== null && currentObject.amount !== undefined) {
@@ -133,7 +135,34 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
-
+        if (this.inward.length > 0) {
+          let row: any = {};
+          row['Date'] = 'Inward'
+          row['SlipNo'] = '';
+          row['PartyName'] = '';
+          row['NetWeight'] = '';
+          row['Rate'] = '';
+          row['Amount'] = '';
+          this.transformedData.push(row);
+          this.inward.forEach(element => {
+            row = {};
+            row['Date'] = this.formatDate(element.date);
+            row['SlipNo'] = element.slipNo;
+            row['PartyName'] = element.party;
+            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
+            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
+            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            this.transformedData.push(row);
+          });
+          row = {};
+          row['Date'] = '';
+          row['SlipNo'] = '';
+          row['PartyName'] = 'Total';
+          row['NetWeight'] = this.TotalInwardNetWeight.toFixed(2).toString() || "0";
+          row['Rate'] = this.TotalInwardRate.toFixed(2).toString() || "0";
+          row['Amount'] = this.TotalInwardAmount.toFixed(2).toString() || "0";
+          this.transformedData.push(row);
+        }
 
         this.outward = this.kapandata.filter(f => f.category.toLowerCase() == "outward");
         if (this.outward.length > 0) {
@@ -166,6 +195,34 @@ export class KapanlagadComponent implements OnInit {
           }
         }, 0);
 
+        if (this.outward.length > 0) {
+          let row: any = {};
+          row['Date'] = 'Outward'
+          row['SlipNo'] = '';
+          row['PartyName'] = '';
+          row['NetWeight'] = '';
+          row['Rate'] = '';
+          row['Amount'] = '';
+          this.transformedData.push(row);
+          this.outward.forEach(element => {
+            row = {};
+            row['Date'] = this.formatDate(element.date);
+            row['SlipNo'] = element.slipNo;
+            row['PartyName'] = element.party;
+            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
+            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
+            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            this.transformedData.push(row);
+          });
+          row = {};
+          row['Date'] = '';
+          row['SlipNo'] = '';
+          row['PartyName'] = 'Total';
+          row['NetWeight'] = this.TotalOutwardNetWeight.toFixed(2).toString() || "0";
+          row['Rate'] = this.TotalOutwardRate.toFixed(2).toString() || "0";
+          row['Amount'] = this.TotalOutwardAmount.toFixed(2).toString() || "0";
+          this.transformedData.push(row);
+        }
 
         this.closing = this.kapandata.filter(f => f.category.toLowerCase() == "closing");
         if (this.closing.length > 0) {
@@ -197,6 +254,36 @@ export class KapanlagadComponent implements OnInit {
             return accumulator; // Skip null or undefined values
           }
         }, 0);
+
+        if (this.closing.length > 0) {
+          let row: any = {};
+          row['Date'] = 'Closing'
+          row['SlipNo'] = '';
+          row['PartyName'] = '';
+          row['NetWeight'] = '';
+          row['Rate'] = '';
+          row['Amount'] = '';
+          this.transformedData.push(row);
+          this.closing.forEach(element => {
+            row = {};
+            row['Date'] = this.formatDate(element.date);
+            row['SlipNo'] = element.slipNo;
+            row['PartyName'] = element.party;
+            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
+            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
+            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            this.transformedData.push(row);
+          });
+          row = {};
+          row['Date'] = '';
+          row['SlipNo'] = '';
+          row['PartyName'] = 'Total';
+          row['NetWeight'] = this.TotalClosingNetWeight.toFixed(2).toString() || "0";
+          row['Rate'] = this.TotalClosingRate.toFixed(2).toString() || "0";
+          row['Amount'] = this.TotalClosingAmount.toFixed(2).toString() || "0";
+          this.transformedData.push(row);
+        }
+
         this.loading = false;
         //this.groupDataByCategory();
       }
@@ -204,6 +291,143 @@ export class KapanlagadComponent implements OnInit {
       this.loading = false;
       this.showMessage('error', ex);
     });
+
+    this.handlePanelToggle();
+  }
+
+  handlePanelToggle() {
+    debugger;
+    this.isOpen = !this.isOpen;
+  }
+
+  formatDate(dateString: string) {
+    const date = new Date(dateString);
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  }
+
+  exportExcel() {
+    let exportColumns: any[];
+    let colArray: any[] = [];
+    colArray = [
+      { "displayName": "Date", "dataType": "text", "fieldName": "Date" },
+      { "displayName": "Slip No", "dataType": "text", "fieldName": "SlipNo" },
+      { "displayName": "Party Name", "dataType": "text", "fieldName": "PartyName" },
+      { "displayName": "Net Weight", "dataType": "text", "fieldName": "NetWeight" },
+      { "displayName": "Rate", "dataType": "text", "fieldName": "Rate" },
+      { "displayName": "Amount", "dataType": "text", "fieldName": "Amount" }
+    ];
+
+    exportColumns = colArray.map((col) => (col.fieldName));
+    const footerTotals: any = [];
+
+    let exportedData = this.transformedData.map((item) =>
+      exportColumns.map((column) => item[column])
+    );
+    const data = {
+      "columnsHeaders": colArray.map((col) => (col.displayName)),
+      "rowData": exportedData,
+      "footerTotals": footerTotals  // Include footer totals in the data
+    };
+    this.loading = true;
+    this.sharedService.customPostApi("Report/downloadexcel", data)
+      .subscribe((data: any) => {
+        const options: DownloadFileOptions = {
+          path: this.PageTitle.replaceAll(" ", '') + ".csv",
+          url: data.data,
+          directory: Directory.Documents,
+        };
+
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            if (downloadResult) {
+              alert("File downloaded successfully.");
+              this.openFile(downloadResult.path ?? "", 'text/csv');
+            }
+            else {
+              alert("File download failed.");
+            }
+            this.loading = false;
+          })
+          .catch(ex => {
+            console.error("Error downloading file:", ex);
+            this.loading = false;
+            alert(ex);
+          });
+        this.loading = false;
+      }, (ex: any) => {
+        this.loading = false;
+        alert(ex);
+      });
+  }
+
+  exportPdf() {
+    let exportColumns: any[];
+    let colArray: any[] = [];
+    colArray = [
+      { "displayName": "Date", "dataType": "text", "fieldName": "Date" },
+      { "displayName": "Slip No", "dataType": "text", "fieldName": "SlipNo" },
+      { "displayName": "Party Name", "dataType": "text", "fieldName": "PartyName" },
+      { "displayName": "Net Weight", "dataType": "text", "fieldName": "NetWeight" },
+      { "displayName": "Rate", "dataType": "text", "fieldName": "Rate" },
+      { "displayName": "Amount", "dataType": "text", "fieldName": "Amount" }
+    ];
+
+    exportColumns = colArray.map((col) => (col.fieldName));
+    const footerTotals: any = [];
+
+    let exportedData = this.transformedData.map((item) =>
+      exportColumns.map((column) => item[column])
+    );
+    const data = {
+      "columnsHeaders": colArray.map((col) => (col.displayName)),
+      "rowData": exportedData,
+      "footerTotals": footerTotals  // Include footer totals in the data
+    };
+    this.loading = true;
+    this.sharedService.customPostApi("Report/downloadpdf", data)
+      .subscribe((data: any) => {
+        const options: DownloadFileOptions = {
+          path: this.PageTitle.replaceAll(" ", '') + ".pdf",
+          url: data.data,
+          directory: Directory.Documents,
+        };
+
+        Filesystem.downloadFile(options)
+          .then(downloadResult => {
+            if (downloadResult) {
+              alert("File downloaded successfully.");
+              this.openFile(downloadResult.path ?? "", 'application/pdf');
+            }
+            else {
+              alert("File download failed.");
+            }
+            this.loading = false;
+          })
+          .catch(ex => {
+            console.error("Error downloading file:", ex);
+            this.loading = false;
+            alert(ex);
+          });
+        this.loading = false;
+      }, (ex: any) => {
+        this.loading = false;
+        alert(ex);
+      });
+  }
+
+  async openFile(uri: string, mimeType: string) {
+    try {
+      await FileOpener.open({
+        filePath: uri,
+        contentType: mimeType
+      });
+    } catch (error) {
+      console.error('Error opening file:', error);
+      // Handle error opening file
+    }
   }
 
   showMessage(type: string, message: string) {

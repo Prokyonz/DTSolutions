@@ -3,27 +3,40 @@
         content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes">
 </head>
 <app-header (onClickMainIcon)="goBack()" iconName="pi-arrow-left" title="{{ PageTitle }}" leftIconName=""></app-header>
+
 <div>
-    <table style="width: 100%; margin-top:10px;" [cellSpacing]="5">
-        <tr>
-            <td style="width: 50%;">
-                <!-- [(ngModel)]="partyid" -->
-                <span style="bottom: 5px; position: relative;">Select Kapan</span><br />
-                <p-dropdown [options]="allkapan" optionLabel="name.name" [editable]="true" [(ngModel)]="kapanid"
-                    (onChange)="handlekapan($event)"></p-dropdown>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>
-            </td>
-        </tr>
-    </table>
+    <p-panel [toggleable]="true" [collapsed]="isOpen" [showHeader]="true" (onToggle)="handlePanelToggle()">
+        <table style="width: 100%; margin-top:10px;" [cellSpacing]="5">
+            <tr>
+                <td style="width: 50%;">
+                    <!-- [(ngModel)]="partyid" -->
+                    <span style="bottom: 5px; position: relative;">Select Kapan</span><br />
+                    <p-dropdown [options]="allkapan" optionLabel="name.name" [editable]="true" [(ngModel)]="kapanid"
+                        (onChange)="handlekapan($event)"></p-dropdown>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p-button label="View Deatils" (onClick)="showDetails()" icon="pi pi-search"></p-button>
+                </td>
+            </tr>
+        </table>
+    </p-panel>
     <div>
         <!-- <p-accordion>
             <p-accordionTab header="Inward" *ngIf="inward.length > 0"> -->
         <p-table [value]="inward" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-gridlines"
             scrollHeight="calc(100vh - 300px)" (sort)="onSort($event)">
+            <ng-template pTemplate="caption">
+                <ng-container *ngIf="inward.length > 0 || outward.length > 0 || closing.length > 0">
+                    <div class="flex">
+                        <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()"
+                            class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                        <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()"
+                            class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                    </div>
+                </ng-container>
+            </ng-template>
             <ng-template pTemplate="header">
                 <ng-container *ngIf="inward.length > 0 || outward.length > 0 || closing.length > 0">
                     <tr>
