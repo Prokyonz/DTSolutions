@@ -100,7 +100,7 @@ export class KapanlagadComponent implements OnInit {
       this.loading = false;
       return;
     }
-
+    this.transformedData = [];
     this.sharedService.customGetApi("Report/GetKapanLagadReport?kapanId=" + this.kapanid.name.id).subscribe((t) => {
       if (t.success == true) {
         console.log(t.data);
@@ -137,30 +137,85 @@ export class KapanlagadComponent implements OnInit {
         }, 0);
         if (this.inward.length > 0) {
           let row: any = {};
-          row['Date'] = 'Inward'
-          row['SlipNo'] = '';
-          row['PartyName'] = '';
-          row['NetWeight'] = '';
-          row['Rate'] = '';
-          row['Amount'] = '';
+          row['Date'] = {
+            value: 'Inward',
+            isBold: true
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] = {
+            value: '',
+            isBold: false
+          };
+          row['NetWeight'] = {
+            value: '',
+            isBold: false
+          };
+          row['Rate'] = {
+            value: '',
+            isBold: false
+          };
+          row['Amount'] = {
+            value: '',
+            isBold: false
+          };
           this.transformedData.push(row);
           this.inward.forEach(element => {
             row = {};
-            row['Date'] = this.formatDate(element.date);
-            row['SlipNo'] = element.slipNo;
-            row['PartyName'] = element.party;
-            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
-            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
-            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            row['Date'] = {
+              value: this.formatDate(element.date),
+              isBold: false
+            };
+            row['SlipNo'] = {
+              value: element.slipNo,
+              isBold: false
+            };
+            row['PartyName'] = {
+              value: element.party,
+              isBold: false
+            };
+            row['NetWeight'] = {
+              value: element.netWeight?.toFixed(2) || "0",
+              isBold: false
+            };
+            row['Rate'] = {
+              value: element.rate?.toFixed(2).toString() || "0",
+              isBold: false
+            };
+            row['Amount'] = {
+              value: element.amount?.toFixed(2).toString() || "0",
+              isBold: false
+            };
             this.transformedData.push(row);
           });
           row = {};
-          row['Date'] = '';
-          row['SlipNo'] = '';
-          row['PartyName'] = 'Total';
-          row['NetWeight'] = this.TotalInwardNetWeight.toFixed(2).toString() || "0";
-          row['Rate'] = this.TotalInwardRate.toFixed(2).toString() || "0";
-          row['Amount'] = this.TotalInwardAmount.toFixed(2).toString() || "0";
+          row['Date'] = {
+            value: '',
+            isBold: false
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] =
+          {
+            value: 'Total',
+            isBold: true
+          };
+          row['NetWeight'] = {
+            value: this.TotalInwardNetWeight.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Rate'] = {
+            value: this.TotalInwardRate.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Amount'] = {
+            value: this.TotalInwardAmount.toFixed(2).toString() || "0",
+            isBold: true
+          };
           this.transformedData.push(row);
         }
 
@@ -197,30 +252,85 @@ export class KapanlagadComponent implements OnInit {
 
         if (this.outward.length > 0) {
           let row: any = {};
-          row['Date'] = 'Outward'
-          row['SlipNo'] = '';
-          row['PartyName'] = '';
-          row['NetWeight'] = '';
-          row['Rate'] = '';
-          row['Amount'] = '';
+          row['Date'] = {
+            value: 'Outward',
+            isBold: true
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] = {
+            value: '',
+            isBold: false
+          };
+          row['NetWeight'] = {
+            value: '',
+            isBold: false
+          };
+          row['Rate'] = {
+            value: '',
+            isBold: false
+          };
+          row['Amount'] = {
+            value: '',
+            isBold: false
+          };
           this.transformedData.push(row);
           this.outward.forEach(element => {
             row = {};
-            row['Date'] = this.formatDate(element.date);
-            row['SlipNo'] = element.slipNo;
-            row['PartyName'] = element.party;
-            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
-            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
-            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            row['Date'] = {
+              value: '',
+              isBold: false
+            }; this.formatDate(element.date);
+            row['SlipNo'] = {
+              value: '',
+              isBold: false
+            }; element.slipNo;
+            row['PartyName'] = {
+              value: element.party,
+              isBold: false
+            };
+            row['NetWeight'] = {
+              value: element.netWeight?.toFixed(2) || "0",
+              isBold: false
+            };
+            row['Rate'] = {
+              value: element.rate?.toFixed(2).toString() || "0",
+              isBold: false
+            };
+            row['Amount'] = {
+              value: element.amount?.toFixed(2).toString() || "0",
+              isBold: false
+            };
             this.transformedData.push(row);
           });
           row = {};
-          row['Date'] = '';
-          row['SlipNo'] = '';
-          row['PartyName'] = 'Total';
-          row['NetWeight'] = this.TotalOutwardNetWeight.toFixed(2).toString() || "0";
-          row['Rate'] = this.TotalOutwardRate.toFixed(2).toString() || "0";
-          row['Amount'] = this.TotalOutwardAmount.toFixed(2).toString() || "0";
+          row['Date'] = {
+            value: '',
+            isBold: false
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] =
+          {
+            value: 'Total',
+            isBold: true
+          };
+          row['NetWeight'] = {
+            value: this.TotalOutwardNetWeight.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Rate'] = {
+            value: this.TotalOutwardRate.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Amount'] = {
+            value: this.TotalOutwardAmount.toFixed(2).toString() || "0",
+            isBold: true
+          };
           this.transformedData.push(row);
         }
 
@@ -257,30 +367,85 @@ export class KapanlagadComponent implements OnInit {
 
         if (this.closing.length > 0) {
           let row: any = {};
-          row['Date'] = 'Closing'
-          row['SlipNo'] = '';
-          row['PartyName'] = '';
-          row['NetWeight'] = '';
-          row['Rate'] = '';
-          row['Amount'] = '';
+          row['Date'] = {
+            value: 'Closing',
+            isBold: true
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] = {
+            value: '',
+            isBold: false
+          };
+          row['NetWeight'] = {
+            value: '',
+            isBold: false
+          };
+          row['Rate'] = {
+            value: '',
+            isBold: false
+          };
+          row['Amount'] = {
+            value: '',
+            isBold: false
+          };
           this.transformedData.push(row);
           this.closing.forEach(element => {
             row = {};
-            row['Date'] = this.formatDate(element.date);
-            row['SlipNo'] = element.slipNo;
-            row['PartyName'] = element.party;
-            row['NetWeight'] = element.netWeight?.toFixed(2) || "0"
-            row['Rate'] = element.rate?.toFixed(2).toString() || "0"
-            row['Amount'] = element.amount?.toFixed(2).toString() || "0"
+            row['Date'] = {
+              value: this.formatDate(element.date),
+              isBold: false
+            };
+            row['SlipNo'] = {
+              value: element.slipNo,
+              isBold: false
+            };
+            row['PartyName'] = {
+              value: element.party,
+              isBold: false
+            };
+            row['NetWeight'] = {
+              value: element.netWeight?.toFixed(2) || "0",
+              isBold: false
+            };
+            row['Rate'] = {
+              value: element.rate?.toFixed(2).toString() || "0",
+              isBold: false
+            };
+            row['Amount'] = {
+              value: element.amount?.toFixed(2).toString() || "0",
+              isBold: false
+            };
             this.transformedData.push(row);
           });
           row = {};
-          row['Date'] = '';
-          row['SlipNo'] = '';
-          row['PartyName'] = 'Total';
-          row['NetWeight'] = this.TotalClosingNetWeight.toFixed(2).toString() || "0";
-          row['Rate'] = this.TotalClosingRate.toFixed(2).toString() || "0";
-          row['Amount'] = this.TotalClosingAmount.toFixed(2).toString() || "0";
+          row['Date'] = {
+            value: '',
+            isBold: false
+          };
+          row['SlipNo'] = {
+            value: '',
+            isBold: false
+          };
+          row['PartyName'] =
+          {
+            value: 'Total',
+            isBold: true
+          };
+          row['NetWeight'] = {
+            value: this.TotalClosingNetWeight.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Rate'] = {
+            value: this.TotalClosingRate.toFixed(2).toString() || "0",
+            isBold: true
+          };
+          row['Amount'] = {
+            value: this.TotalClosingAmount.toFixed(2).toString() || "0",
+            isBold: true
+          };
           this.transformedData.push(row);
         }
 
