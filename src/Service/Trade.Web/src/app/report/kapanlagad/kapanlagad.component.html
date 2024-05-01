@@ -40,9 +40,9 @@
             <ng-template pTemplate="header">
                 <ng-container *ngIf="inward.length > 0 || outward.length > 0 || closing.length > 0">
                     <tr>
-                        <th pSortableColumn="date" [ngStyle]="{'min-width': '5rem'}">Date <p-sortIcon
+                        <th pSortableColumn="date" [ngStyle]="{'min-width': '9rem'}">Date <p-sortIcon
                                 field="date"></p-sortIcon></th>
-                        <th pSortableColumn="slipNo" [ngStyle]="{'min-width': '5rem'}">Slip No <p-sortIcon
+                        <th pSortableColumn="slipNo" [ngStyle]="{'min-width': '6rem'}">Slip No <p-sortIcon
                                 field="slipNo"></p-sortIcon></th>
                         <th pSortableColumn="party" [ngStyle]="{'min-width': '5rem'}"> Party Name<p-sortIcon
                                 field="party"></p-sortIcon></th>
@@ -94,7 +94,7 @@
             <ng-template pTemplate="body" let-group>
                 <ng-container *ngFor="let item of group.items; let lastItem = last">
                     <tr>
-                        <td [ngStyle]="{'min-width': '5rem'}">{{ item.date | date:'dd-MM-yyyy' }}</td>
+                        <td [ngStyle]="{'min-width': '9rem'}">{{ item.date | date:'dd-MM-yyyy' }}</td>
                         <td [ngStyle]="{'min-width': '5rem'}">{{ item.operationType }}</td>
                         <td [ngStyle]="{'min-width': '9rem'}">{{ (item.netWeight / group.netWeightTotal *
                             100).toFixed(2) }}%</td>
@@ -129,7 +129,7 @@
             </ng-template>
             <ng-template pTemplate="body" let-closing>
                 <tr>
-                    <td [ngStyle]="{'min-width': '5rem'}">{{ closing.date | date:'dd-MM-yyyy' }}</td>
+                    <td [ngStyle]="{'min-width': '9rem'}">{{ closing.date | date:'dd-MM-yyyy' }}</td>
                     <td [ngStyle]="{'min-width': '9rem'}"></td>
                     <td [ngStyle]="{'min-width': '9rem'}"></td>
                     <td [ngStyle]="{'min-width': '5rem'}">{{ closing.netWeight?.toFixed(2) || 0 }}</td>
