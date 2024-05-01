@@ -1222,7 +1222,21 @@ namespace DiamondTrade.API.Controllers
                     workbook.SaveAs(memoryStream);
                 }
 
+                // Adjust column widths according to data length or size
                 var excelContent = memoryStream.ToArray();
+                using (var ms = new MemoryStream(excelContent))
+                {
+                    using (var workbook = new ClosedXML.Excel.XLWorkbook(ms))
+                    {
+                        var worksheet = workbook.Worksheet(1);
+                        foreach (var column in worksheet.ColumnsUsed())
+                        {
+                            column.AdjustToContents();
+                        }
+                        workbook.SaveAs(memoryStream);
+                    }
+                }
+
 
                 System.IO.File.WriteAllBytes(excelFilePath, excelContent);
 
