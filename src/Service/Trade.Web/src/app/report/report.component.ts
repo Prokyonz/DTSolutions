@@ -1287,6 +1287,11 @@ export class ReportComponent implements OnInit {
         m["value"] = this.calculateColumnSum(col.fieldName);
         footerTotals.push(m);
       }
+      else if ((col.fieldName === 'buyingRate' || col.fieldName === 'saleRate') && (this.reportIndex === 1 || this.reportIndex === 2)) {
+        m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
+        m["value"] = this.calculateColumnSum(col.fieldName);
+        footerTotals.push(m);
+      }
     }
 
     const formatDate = (dateString: string) => {
@@ -1623,7 +1628,6 @@ export class ReportComponent implements OnInit {
     }
     // Calculate footer totals
     const footerTotals: any = [];
-
     for (const col of this.selectedColumnArray) {
       let m: any = {};
       if (col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts'
@@ -1633,7 +1637,13 @@ export class ReportComponent implements OnInit {
         m["value"] = this.calculateColumnSum(col.fieldName);
         footerTotals.push(m);
       }
+      else if ((col.fieldName === 'buyingRate' || col.fieldName === 'saleRate') && (this.reportIndex === 1 || this.reportIndex === 2)) {
+        m["key"] = colArray.find(x => x.fieldName === col.fieldName)?.displayName;
+        m["value"] = this.calculateColumnSum(col.fieldName);
+        footerTotals.push(m);
+      }
     }
+
     exportColumns = colArray.map((col) => (col.fieldName));
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
