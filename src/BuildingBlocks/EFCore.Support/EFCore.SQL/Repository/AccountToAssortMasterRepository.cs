@@ -213,6 +213,24 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<StockReportSummayGrid>> GetStockReportSummaryAsync(string companyId, string financialYearId)
+        {
+            try
+            {
+                using (_databaseContext = new DatabaseContext())
+                {
+                    //var data = await _databaseContext.SPStockReportModelReport.FromSqlRaw($"GetAssortProcessSendToDetail '" + companyId + "','', '" + financialYearId + "'").ToListAsync();
+                    var data = await _databaseContext.SPStockReportSummayGrid.FromSqlRaw($"GetAllKapanLagadSummary '" + companyId + "','" + financialYearId + "'").ToListAsync();
+
+                    return data;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
         public async Task<List<NumberReportModelReport>> GetNumberReportAsync(string companyId, string financialYearId)
         {
             try

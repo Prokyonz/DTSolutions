@@ -39,6 +39,15 @@ namespace Repository.Entities.Model
         public decimal ClosingAmount { get; set; }
     }
 
+    public class StockReportSummayGrid
+    {
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal NetWeight { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Rate { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal Amount { get; set; }
+    }
     public class StockReportMasterGrid
     {
         public int Id { get; set; }

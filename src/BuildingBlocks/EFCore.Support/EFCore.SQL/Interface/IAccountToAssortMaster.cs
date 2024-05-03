@@ -22,6 +22,8 @@ namespace EFCore.SQL.Interface
         Task<List<AssortmentProcessSend>> GetAssortmentSendToDetails(string companyId, string branchId, string financialYearId, DatabaseContext databaseContext=null);
         List<AssortmentProcessSend> GetAssortmentSendToDetails1(string companyId, string branchId, string financialYearId);
         Task<List<StockReportModelReport>> GetStockReportAsync(string companyId, string financialYearId);
+
+        Task<List<StockReportSummayGrid>> GetStockReportSummaryAsync(string companyId, string financialYearId);
         Task<List<NumberReportModelReport>> GetNumberReportAsync(string companyId, string financialYearId);
         Task<bool> CheckIsKapanMapEntryProcessed(string companyId, string financialYearId, string purchaseDetailsId, string slipNo);
     }
