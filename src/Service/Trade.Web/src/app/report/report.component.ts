@@ -44,6 +44,7 @@ export class ReportComponent implements OnInit {
   dataArray: any[];
   visible: boolean = false;
   loading: boolean = true;
+  isFilter: boolean = false;
   dialogReportIndex: number = 0;
   ApproveRejectComment: string = '';
   ApproveRejectStatus: number = 0;
@@ -1964,6 +1965,10 @@ export class ReportComponent implements OnInit {
     return distinctArray;
   }
 
+  toggle() {
+
+    this.isFilter = !this.isFilter;
+  }
 
   onApproveReject() {
     const data = {

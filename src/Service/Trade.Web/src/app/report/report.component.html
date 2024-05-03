@@ -45,6 +45,11 @@
                 <button pButton class="p-button-outlined"
                     style="text-align: center; width: 2.5rem; margin-right: 0.5rem;" icon="pi pi-filter-slash"
                     (click)="clear()"></button>
+                <!-- New Toggle Button -->
+                <button pButton class="p-button-square" style="width: 3rem; margin-right: 0.5rem;"
+                    [ngClass]="{'p-button-secondary': !isFilter, 'p-button-success': isFilter}" (click)="toggle()">
+                    <i class="pi" [ngClass]="{'pi-eye': isFilter, 'pi-eye-slash': !isFilter}"></i>
+                </button>
                 <!-- <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
                     <input pInputText type="text" (input)="dt1.filterGlobal(myfunc($event), 'contains')" placeholder="Search keyword" />
@@ -71,10 +76,10 @@
                             pSortableColumn="{{item.fieldName}}">
                             <div class="flex align-items-center">
                                 {{item.displayName}} <p-sortIcon
-                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
+                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && isFilter"
                                     field="{{item.fieldName}}"></p-sortIcon>
                                 <p-columnFilter field="item.fieldName" matchMode="in" display="menu"
-                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject'"
+                                    *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && isFilter"
                                     [showMatchModes]="false" [showOperator]="false" [showAddButton]="false">
                                     <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                         <p-multiSelect *ngIf="!item.hideFilter"
