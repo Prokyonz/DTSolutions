@@ -61,7 +61,7 @@ namespace EFCore.SQL.Repository
             {
                 var result = await _databaseContext.LedgerBalanceManager.Where(w => w.LedgerId == ledgerBalanceManager.LedgerId && w.TypeOfBalance == ledgerBalanceManager.TypeOfBalance).FirstOrDefaultAsync();
 
-                if(result != null)
+                if (result != null)
                 {
                     result.UpdatedBy = ledgerBalanceManager.UpdatedBy;
                     result.UpdatedDate = ledgerBalanceManager.UpdatedDate;
@@ -74,5 +74,14 @@ namespace EFCore.SQL.Repository
                 return ledgerBalanceManager;
             }
         }
+        public async Task<LedgerBalanceManager> GetLedgerBalance(string partyId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var result = await _databaseContext.LedgerBalanceManager.Where(w => w.LedgerId == partyId).FirstOrDefaultAsync();
+                return result;
+            }
+        }
+
     }
 }

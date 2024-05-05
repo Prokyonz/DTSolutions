@@ -188,6 +188,10 @@ namespace DiamondTrading.Master
                     txtAadharcardNo.Text = _EditedPartyMasterSet.AadharCardNo;
                     txtSalary.Text = _EditedPartyMasterSet.Salary.ToString();
                     lueCrDr.EditValue = _EditedPartyMasterSet.CRDRType.ToString();
+
+                    var result = await _ledgerBalanceManagerRepository.GetLedgerBalance(_EditedPartyMasterSet.Id);
+                    txtOpeningBalance.Text = result.Balance.ToString();
+
                 }
             }
 
