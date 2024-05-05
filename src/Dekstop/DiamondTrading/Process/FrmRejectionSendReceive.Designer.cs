@@ -58,6 +58,7 @@ namespace DiamondTrading.Process
             this.repoLessWeight = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
             this.colAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colProcessType = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colNumberId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repoPayType = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoSize = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
             this.repoPurity = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
@@ -76,6 +77,7 @@ namespace DiamondTrading.Process
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.grpDocuments = new DevExpress.XtraEditors.GroupControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.colPurchaseSaleDetailsId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
@@ -284,7 +286,9 @@ namespace DiamondTrading.Process
             this.colRate,
             this.colLessWeight,
             this.colAmount,
-            this.colProcessType});
+            this.colProcessType,
+            this.colNumberId,
+            this.colPurchaseSaleDetailsId});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -312,6 +316,8 @@ namespace DiamondTrading.Process
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SlipNo", "SlipNo", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("KapanId", "KapanId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Kapan", "Kapan", 60, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("NumberId", "NumberId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Number", "Number"),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("ShapeId", "ShapeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SizeId", "SizeId", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Size", "Size", 60, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
@@ -429,6 +435,12 @@ namespace DiamondTrading.Process
             this.colProcessType.FieldName = "ProcessType";
             this.colProcessType.Name = "colProcessType";
             // 
+            // colNumberId
+            // 
+            this.colNumberId.Caption = "NumberId";
+            this.colNumberId.FieldName = "NumberId";
+            this.colNumberId.Name = "colNumberId";
+            // 
             // repoPayType
             // 
             this.repoPayType.AutoHeight = false;
@@ -516,7 +528,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl1.Appearance.Options.UseFont = true;
-            this.labelControl1.Location = new System.Drawing.Point(12, 105);
+            this.labelControl1.Location = new System.Drawing.Point(10, 135);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(46, 16);
             this.labelControl1.TabIndex = 8;
@@ -526,7 +538,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl2.Appearance.Options.UseFont = true;
-            this.labelControl2.Location = new System.Drawing.Point(12, 134);
+            this.labelControl2.Location = new System.Drawing.Point(10, 106);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.Size = new System.Drawing.Size(57, 16);
             this.labelControl2.TabIndex = 10;
@@ -549,7 +561,8 @@ namespace DiamondTrading.Process
             // 
             // lueParty
             // 
-            this.lueParty.Location = new System.Drawing.Point(107, 102);
+            this.lueParty.Enabled = false;
+            this.lueParty.Location = new System.Drawing.Point(105, 132);
             this.lueParty.Name = "lueParty";
             this.lueParty.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueParty.Properties.Appearance.Options.UseFont = true;
@@ -565,7 +578,7 @@ namespace DiamondTrading.Process
             // 
             // lueSlipNo
             // 
-            this.lueSlipNo.Location = new System.Drawing.Point(107, 131);
+            this.lueSlipNo.Location = new System.Drawing.Point(105, 103);
             this.lueSlipNo.Name = "lueSlipNo";
             this.lueSlipNo.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueSlipNo.Properties.Appearance.Options.UseFont = true;
@@ -582,7 +595,7 @@ namespace DiamondTrading.Process
             // 
             this.labelControl3.Appearance.Font = new System.Drawing.Font("Tahoma", 10F);
             this.labelControl3.Appearance.Options.UseFont = true;
-            this.labelControl3.Location = new System.Drawing.Point(347, 134);
+            this.labelControl3.Location = new System.Drawing.Point(347, 135);
             this.labelControl3.Name = "labelControl3";
             this.labelControl3.Size = new System.Drawing.Size(54, 16);
             this.labelControl3.TabIndex = 13;
@@ -590,7 +603,8 @@ namespace DiamondTrading.Process
             // 
             // lueBroker
             // 
-            this.lueBroker.Location = new System.Drawing.Point(405, 131);
+            this.lueBroker.Enabled = false;
+            this.lueBroker.Location = new System.Drawing.Point(405, 132);
             this.lueBroker.Name = "lueBroker";
             this.lueBroker.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lueBroker.Properties.Appearance.Options.UseFont = true;
@@ -641,6 +655,12 @@ namespace DiamondTrading.Process
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // colPurchaseSaleDetailsId
+            // 
+            this.colPurchaseSaleDetailsId.Caption = "PurchaseSaleDetailsId";
+            this.colPurchaseSaleDetailsId.FieldName = "PurchaseSaleDetailsId";
+            this.colPurchaseSaleDetailsId.Name = "colPurchaseSaleDetailsId";
             // 
             // FrmRejectionSendReceive
             // 
@@ -746,5 +766,7 @@ namespace DiamondTrading.Process
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraGrid.Columns.GridColumn colLessWeight;
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoLessWeight;
+        private DevExpress.XtraGrid.Columns.GridColumn colNumberId;
+        private DevExpress.XtraGrid.Columns.GridColumn colPurchaseSaleDetailsId;
     }
 }

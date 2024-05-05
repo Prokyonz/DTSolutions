@@ -1123,10 +1123,10 @@ namespace DiamondTrading.Process
                                     openingStockMaster.FinancialYearId = Common.LoginFinancialYear.ToString();
 
                                     openingStockMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
-                                    openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeId).ToString();
+                                    openingStockMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
 
-                                    openingStockMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeId).ToString();
-                                    openingStockMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityId).ToString();
+                                    openingStockMaster.ShapeId = grvTransferItemDetails.GetRowCellValue(i, colShapeT).ToString();
+                                    openingStockMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
 
                                     openingStockMaster.TotalCts = Convert.ToDecimal(row["AdjustCarat"].ToString());
                                     openingStockMaster.Rate = Convert.ToDecimal(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());

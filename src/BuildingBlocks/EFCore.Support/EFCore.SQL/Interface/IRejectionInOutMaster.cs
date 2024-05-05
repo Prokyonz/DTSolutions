@@ -16,7 +16,7 @@ namespace EFCore.SQL.Interface
         Task<RejectionInOutMaster> AddRejectionAsync(RejectionInOutMaster priceMaster);
         Task<RejectionInOutMaster> UpdateRejectionAsync(RejectionInOutMaster priceMaster);
         Task<bool> DeleteRejectionAsync(string priceId);
-        Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, string partyId = null, int TransType = 0);
+        Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, int TransType = 0);
         Task<List<RejectionInOutSPModel>> GetRejectionSendReceiveReport(string companyId, string financialYearId, int TransType);
     }
 }
