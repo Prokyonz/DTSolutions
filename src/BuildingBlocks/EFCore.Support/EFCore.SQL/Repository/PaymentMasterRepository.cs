@@ -222,6 +222,7 @@ namespace EFCore.SQL.Repository
             }
         }
 
+
         public async Task<List<BalanceSheetSPModel>> GetBalanceSheetReportAsync(string companyId, string financialYearId, int balanceSheetType)
         {
             using (_databaseContext = new DatabaseContext())
