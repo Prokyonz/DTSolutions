@@ -125,9 +125,14 @@ namespace DiamondTrading.Process
             await LoadParty();
             await GetBrokerList();
             grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
-            
+
+            await GetRejectionData();
+        }
+
+        private async Task GetRejectionData()
+        {
             ListRejectionSendReceiveSPModel = await _rejectionInOutMasterRepository.GetRejectionSendReceiveDetail(lueCompany.EditValue.ToString(), Common.LoginFinancialYear, _RejectionType);
-            var SlipNos = ListRejectionSendReceiveSPModel.Select(x => new { x.SlipNo }).Distinct().OrderBy(x=>x.SlipNo).ToList();
+            var SlipNos = ListRejectionSendReceiveSPModel.Select(x => new { x.SlipNo }).Distinct().OrderBy(x => Convert.ToInt32(x.SlipNo)).ToList();
             lueSlipNo.Properties.DataSource = SlipNos;
             lueSlipNo.Properties.DisplayMember = "SlipNo";
             lueSlipNo.Properties.ValueMember = "SlipNo";
@@ -156,6 +161,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("ProcessType");
             dt.Columns.Add("LessWeight");
             dt.Columns.Add("NumberId");
+            dt.Columns.Add("PurchaseSaleDetailsId");
             return dt;
         }
 
@@ -163,7 +169,7 @@ namespace DiamondTrading.Process
         {
             if (lueSlipNo.EditValue != null)
             {
-                var SelectedSlips = ListRejectionSendReceiveSPModel.Where(x => x.SlipNo.ToString() == lueSlipNo.EditValue.ToString()).ToList();
+                var SelectedSlips = ListRejectionSendReceiveSPModel?.Where(x => x.SlipNo.ToString() == lueSlipNo.EditValue.ToString()).ToList();
                 repoSlipNo.DataSource = SelectedSlips;
                 repoSlipNo.DisplayMember = "SlipNo";
                 repoSlipNo.ValueMember = "Id";
@@ -323,7 +329,7 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
-            ListRejectionSendReceiveSPModel = null;
+            await GetRejectionData();
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
