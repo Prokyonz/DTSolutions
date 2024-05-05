@@ -52,5 +52,6 @@ namespace Repository.Entities.Model
         public decimal? AdjustAmount { get; set; }
         public string NumberId { get; set; }
         public string NumberName { get; set; }
+        public string SizeName { get; set; }
     }
 }
