@@ -34,6 +34,7 @@ namespace DiamondTrading.Transaction
         ContraEntryMaster _contraEntryMaster = new ContraEntryMaster();
         List<PartyMaster> PartyList = new List<PartyMaster>();
 
+
         public FrmPaymentEntry(string PaymentType)
         {
             InitializeComponent();
