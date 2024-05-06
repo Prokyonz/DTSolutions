@@ -12,5 +12,6 @@ namespace EFCore.SQL.Interface
         Task<LedgerBalanceManager> AddLedgerBalanceAsync(LedgerBalanceManager ledgerBalanceManager);
         Task<LedgerBalanceManager> UpdateLedgerBalanceAsync(LedgerBalanceManager ledgerBalanceManager);
         Task<bool> DeleteLedgerBalanceAsync(string id);
+        Task<LedgerBalanceManager> GetLedgerBalance(string partyId);
     }
 }

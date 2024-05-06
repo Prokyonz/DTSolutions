@@ -106,11 +106,11 @@ namespace EFCore.SQL.Repository
             }
         }
 
-        public async Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, string partyId = null, int TransType = 0)
+        public async Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, int TransType = 0)
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var purchaseReport = await _databaseContext.SPRejectionSendReceiveModel.FromSqlRaw($"GetRejectionSendReceiveDetail '" + companyId + "','" + financialYearId + "','" + partyId + "', '" + TransType + "'").ToListAsync();
+                var purchaseReport = await _databaseContext.SPRejectionSendReceiveModel.FromSqlRaw($"GetRejectionSendReceiveDetail '" + companyId + "','" + financialYearId + "','" + TransType + "'").ToListAsync();
                 return purchaseReport;
             }
         }

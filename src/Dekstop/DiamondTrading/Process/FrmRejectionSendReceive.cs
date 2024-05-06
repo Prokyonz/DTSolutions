@@ -125,6 +125,17 @@ namespace DiamondTrading.Process
             await LoadParty();
             await GetBrokerList();
             grdParticularsDetails.DataSource = GetDTColumnsforParticularDetails();
+
+            await GetRejectionData();
+        }
+
+        private async Task GetRejectionData()
+        {
+            ListRejectionSendReceiveSPModel = await _rejectionInOutMasterRepository.GetRejectionSendReceiveDetail(lueCompany.EditValue.ToString(), Common.LoginFinancialYear, _RejectionType);
+            var SlipNos = ListRejectionSendReceiveSPModel.Select(x => new { x.SlipNo }).Distinct().OrderBy(x => Convert.ToInt32(x.SlipNo)).ToList();
+            lueSlipNo.Properties.DataSource = SlipNos;
+            lueSlipNo.Properties.DisplayMember = "SlipNo";
+            lueSlipNo.Properties.ValueMember = "SlipNo";
         }
 
         private async Task GetMaxSrNo()
@@ -149,6 +160,8 @@ namespace DiamondTrading.Process
             dt.Columns.Add("SlipNo1");
             dt.Columns.Add("ProcessType");
             dt.Columns.Add("LessWeight");
+            dt.Columns.Add("NumberId");
+            dt.Columns.Add("PurchaseSaleDetailsId");
             return dt;
         }
 
@@ -156,12 +169,16 @@ namespace DiamondTrading.Process
         {
             if (lueSlipNo.EditValue != null)
             {
-                repoSlipNo.DataSource = ListRejectionSendReceiveSPModel.Where(x => x.SlipNo.ToString() == lueSlipNo.EditValue.ToString()).ToList();
+                var SelectedSlips = ListRejectionSendReceiveSPModel?.Where(x => x.SlipNo.ToString() == lueSlipNo.EditValue.ToString()).ToList();
+                repoSlipNo.DataSource = SelectedSlips;
                 repoSlipNo.DisplayMember = "SlipNo";
                 repoSlipNo.ValueMember = "Id";
 
                 repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
                 repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+
+                lueParty.EditValue = SelectedSlips.FirstOrDefault().PartyId;
+                lueBroker.EditValue = SelectedSlips.FirstOrDefault().BrokerageId;
             }
         }
 
@@ -179,6 +196,8 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colkapanId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).KapanId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Rate);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colProcessType, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ProcessType);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseSaleDetailsId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseSaleDetailsId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
@@ -266,7 +285,7 @@ namespace DiamondTrading.Process
                         rejectionInOutMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
                         rejectionInOutMaster.CharniSizeId = "";
                         rejectionInOutMaster.GalaSizeId = "";
-                        rejectionInOutMaster.NumberSizeId = "";
+                        rejectionInOutMaster.NumberSizeId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
                         rejectionInOutMaster.TableName = ""; //Boil/Charni/Gala/Number
                         rejectionInOutMaster.TableEntryID = "";
                         rejectionInOutMaster.Rate = float.Parse(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
@@ -280,6 +299,7 @@ namespace DiamondTrading.Process
                         rejectionInOutMaster.ProcessType = grvParticularsDetails.GetRowCellValue(i, colProcessType).ToString();
                         rejectionInOutMaster.KapanId = grvParticularsDetails.GetRowCellValue(i, colkapanId).ToString();
                         rejectionInOutMaster.LessWeight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colLessWeight).ToString());
+                        rejectionInOutMaster.PurchaseSaleDetailsId = grvParticularsDetails.GetRowCellValue(i, colPurchaseSaleDetailsId).ToString();
 
                         var Result = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster);
                         IsSuccess = true;
@@ -309,7 +329,7 @@ namespace DiamondTrading.Process
         private async void Reset()
         {
             grdParticularsDetails.DataSource = null;
-            ListRejectionSendReceiveSPModel = null;
+            await GetRejectionData();
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
@@ -344,21 +364,6 @@ namespace DiamondTrading.Process
                 if (lueCompany.EditValue.ToString() != Common.LoginCompany)
                     companyId = lueCompany.EditValue.ToString();
             }
-
-            var selectedParty = (PartyMaster)lueParty.GetSelectedDataRow();
-            ListRejectionSendReceiveSPModel = await _rejectionInOutMasterRepository.GetRejectionSendReceiveDetail(companyId, Common.LoginFinancialYear, selectedParty.Id, _RejectionType);
-            //repoSlipNo.DataSource = ListRejectionSendReceiveSPModel;
-            //repoSlipNo.DisplayMember = "SlipNo";
-            //repoSlipNo.ValueMember = "Id";
-
-            //repoSlipNo.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-            //repoSlipNo.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
-
-
-            var SlipNos = ListRejectionSendReceiveSPModel.Select(x => new { x.SlipNo }).Distinct().ToList();
-            lueSlipNo.Properties.DataSource = SlipNos;
-            lueSlipNo.Properties.DisplayMember = "SlipNo";
-            lueSlipNo.Properties.ValueMember = "SlipNo";
         }
 
         private void timer1_Tick(object sender, EventArgs e)

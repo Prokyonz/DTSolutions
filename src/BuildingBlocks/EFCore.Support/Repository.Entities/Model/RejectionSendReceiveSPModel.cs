@@ -25,5 +25,9 @@ namespace Repository.Entities.Model
         public decimal Available { get; set; }
         public double Rate { get; set; }
         public string ProcessType { get; set; }
+        public string BrokerageId { get; set; }
+        public string PartyId { get; set; }
+        public string NumberId { get; set; }
+        public string PurchaseSaleDetailsId { get; set; }
     }
 }

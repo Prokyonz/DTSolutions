@@ -48,5 +48,6 @@ namespace Repository.Entities
         public string KapanId { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal LessWeight { get; set; }
+        public string PurchaseSaleDetailsId { get; set; }
     }
 }
