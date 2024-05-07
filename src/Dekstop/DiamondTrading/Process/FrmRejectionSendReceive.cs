@@ -201,15 +201,27 @@ namespace DiamondTrading.Process
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
-                else if (e.Column == colRate || e.Column == colCarat)
+                else if (e.Column == colCarat || e.Column == colLessWeight) //e.Column == colRate
                 {
-                    decimal Rate = 0;
-                    if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString()))
-                        Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
+                    decimal AvailableCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat).ToString());
                     decimal Carat = 0;
                     if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString()))
                         Carat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colCarat).ToString());
-                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, Carat*Rate);
+
+                    if(Carat > AvailableCarat)
+                    {
+                        MessageBox.Show("Sorry, You can send/receive rejection max to "+AvailableCarat+".", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colCarat, 0);
+                        return;
+                    }
+
+                    decimal Rate = 0;
+                    if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString()))
+                        Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
+                    decimal LessCarat = 0;
+                    if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString()))
+                        LessCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString());
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, (Carat-LessCarat)*Rate);
                 }
             }
             catch
