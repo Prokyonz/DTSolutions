@@ -201,7 +201,7 @@ namespace DiamondTrading.Process
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
                 }
-                else if (e.Column == colCarat || e.Column == colLessWeight) //e.Column == colRate
+                else if (e.Column == colCarat || e.Column == colLessWeight || e.Column == colRate)
                 {
                     decimal AvailableCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colACarat).ToString());
                     decimal Carat = 0;
@@ -218,10 +218,18 @@ namespace DiamondTrading.Process
                     decimal Rate = 0;
                     if(!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString()))
                         Rate = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colRate).ToString());
-                    decimal LessCarat = 0;
-                    if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString()))
-                        LessCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString());
-                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, (Carat-LessCarat)*Rate);
+                    //decimal LessCarat = 0;
+                    //if (!string.IsNullOrWhiteSpace(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString()))
+                    //    LessCarat = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight).ToString());
+
+                    decimal FinalAmount = (Carat * Rate);
+                    decimal LessPer = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(e.RowHandle, colLessWeight));
+                    if (LessPer < 0)
+                        LessPer *= -1;
+                    decimal LessAmt = (FinalAmount * LessPer) / 100;
+                    FinalAmount -= LessAmt;
+
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, FinalAmount);
                 }
             }
             catch
