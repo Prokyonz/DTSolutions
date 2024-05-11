@@ -28,6 +28,7 @@ namespace Repository.Entities.Model
         public string BrokerageId { get; set; }
         public string PartyId { get; set; }
         public string NumberId { get; set; }
+        public string Number { get; set; }
         public string PurchaseSaleDetailsId { get; set; }
     }
 }
