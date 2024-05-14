@@ -43,4 +43,16 @@ namespace Repository.Entities.Model
         //public byte?[] Image3 { get; set; }
         public string Remarks { get; set; }
     }
+
+    public class RejectionPendingSPModel
+    {
+        public string CompanyId { get; set; }
+        public string PartyId { get; set; }
+        public string PartyName { get; set; }
+        public string FinancialYearId { get; set; }
+        public string SlipNo { get; set; }
+        public string ProcessType { get; set; }
+        [Column(TypeName = "decimal(18, 4)")]
+        public decimal RejectionWeight { get; set; }
+    }
 }

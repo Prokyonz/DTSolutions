@@ -109,6 +109,11 @@ namespace DiamondTrading
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject50 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject51 = new DevExpress.Utils.SerializableAppearanceObject();
             DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject52 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.XtraEditors.Controls.EditorButtonImageOptions editorButtonImageOptions14 = new DevExpress.XtraEditors.Controls.EditorButtonImageOptions();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject53 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject54 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject55 = new DevExpress.Utils.SerializableAppearanceObject();
+            DevExpress.Utils.SerializableAppearanceObject serializableAppearanceObject56 = new DevExpress.Utils.SerializableAppearanceObject();
             this.grdChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn158 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -162,6 +167,7 @@ namespace DiamondTrading
             this.gridColumnNetAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn226NumberId = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn227NumberName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnPurSizeName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
             this.repositoryItemImageComboBox1 = new DevExpress.XtraEditors.Repository.RepositoryItemImageComboBox();
             this.grvSalesChildTransMaster = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -628,6 +634,19 @@ namespace DiamondTrading
             this.gridView24 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn217 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridView37 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.xtraTabRejectionPendingReport = new DevExpress.XtraTab.XtraTabPage();
+            this.grdRejectionPending = new DevExpress.XtraGrid.GridControl();
+            this.grvRejectionPending = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn229 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn231 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn232 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn233 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn236 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn240 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemButtonEdit12 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.gridView38 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn251 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridView39 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.barManager1 = new DevExpress.XtraBars.BarManager(this.components);
             this.barDockControlTop = new DevExpress.XtraBars.BarDockControl();
             this.barDockControlBottom = new DevExpress.XtraBars.BarDockControl();
@@ -637,7 +656,7 @@ namespace DiamondTrading
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
-            this.gridColumnPurSizeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn226 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -788,6 +807,12 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView37)).BeginInit();
+            this.xtraTabRejectionPendingReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdRejectionPending)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvRejectionPending)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView38)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView39)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).BeginInit();
             this.SuspendLayout();
@@ -1351,6 +1376,14 @@ namespace DiamondTrading
             this.gridColumn227NumberName.Name = "gridColumn227NumberName";
             this.gridColumn227NumberName.Visible = true;
             this.gridColumn227NumberName.VisibleIndex = 8;
+            // 
+            // gridColumnPurSizeName
+            // 
+            this.gridColumnPurSizeName.Caption = "Size";
+            this.gridColumnPurSizeName.FieldName = "SizeName";
+            this.gridColumnPurSizeName.Name = "gridColumnPurSizeName";
+            this.gridColumnPurSizeName.Visible = true;
+            this.gridColumnPurSizeName.VisibleIndex = 6;
             // 
             // repositoryItemComboBox1
             // 
@@ -2121,7 +2154,8 @@ namespace DiamondTrading
             this.xtraTabProfitLoss,
             this.xtabCashBankReport,
             this.xtabSalaryReport,
-            this.xtraTabRejectionReport});
+            this.xtraTabRejectionReport,
+            this.xtraTabRejectionPendingReport});
             this.xtabManager.SelectedPageChanged += new DevExpress.XtraTab.TabPageChangedEventHandler(this.xtabMasterDetails_SelectedPageChanged);
             // 
             // xtabPurchase
@@ -6214,6 +6248,129 @@ namespace DiamondTrading
             this.gridView37.GridControl = this.gridControlRejectionReport;
             this.gridView37.Name = "gridView37";
             // 
+            // xtraTabRejectionPendingReport
+            // 
+            this.xtraTabRejectionPendingReport.Controls.Add(this.grdRejectionPending);
+            this.xtraTabRejectionPendingReport.Name = "xtraTabRejectionPendingReport";
+            this.xtraTabRejectionPendingReport.PageVisible = false;
+            this.xtraTabRejectionPendingReport.Size = new System.Drawing.Size(778, 420);
+            this.xtraTabRejectionPendingReport.Text = "Rejection Pending Report";
+            // 
+            // grdRejectionPending
+            // 
+            this.grdRejectionPending.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdRejectionPending.Location = new System.Drawing.Point(0, 0);
+            this.grdRejectionPending.MainView = this.grvRejectionPending;
+            this.grdRejectionPending.Name = "grdRejectionPending";
+            this.grdRejectionPending.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemButtonEdit12});
+            this.grdRejectionPending.Size = new System.Drawing.Size(778, 420);
+            this.grdRejectionPending.TabIndex = 10;
+            this.grdRejectionPending.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.grvRejectionPending,
+            this.gridView38,
+            this.gridView39});
+            // 
+            // grvRejectionPending
+            // 
+            this.grvRejectionPending.Appearance.FooterPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvRejectionPending.Appearance.FooterPanel.Options.UseFont = true;
+            this.grvRejectionPending.Appearance.GroupFooter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F);
+            this.grvRejectionPending.Appearance.GroupFooter.Options.UseFont = true;
+            this.grvRejectionPending.Appearance.Row.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F);
+            this.grvRejectionPending.Appearance.Row.Options.UseFont = true;
+            this.grvRejectionPending.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn229,
+            this.gridColumn231,
+            this.gridColumn232,
+            this.gridColumn233,
+            this.gridColumn236,
+            this.gridColumn240,
+            this.gridColumn226});
+            this.grvRejectionPending.GridControl = this.grdRejectionPending;
+            this.grvRejectionPending.GroupSummary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Total", null, "")});
+            this.grvRejectionPending.Name = "grvRejectionPending";
+            this.grvRejectionPending.OptionsBehavior.Editable = false;
+            this.grvRejectionPending.OptionsBehavior.ReadOnly = true;
+            this.grvRejectionPending.OptionsView.ShowFooter = true;
+            // 
+            // gridColumn229
+            // 
+            this.gridColumn229.Caption = "CompanyId";
+            this.gridColumn229.FieldName = "CompanyId";
+            this.gridColumn229.Name = "gridColumn229";
+            // 
+            // gridColumn231
+            // 
+            this.gridColumn231.Caption = "FinancialYearId";
+            this.gridColumn231.FieldName = "FinancialYearId";
+            this.gridColumn231.Name = "gridColumn231";
+            // 
+            // gridColumn232
+            // 
+            this.gridColumn232.Caption = "PartyId";
+            this.gridColumn232.FieldName = "PartyId";
+            this.gridColumn232.Name = "gridColumn232";
+            // 
+            // gridColumn233
+            // 
+            this.gridColumn233.Caption = "Party Name";
+            this.gridColumn233.FieldName = "PartyName";
+            this.gridColumn233.Name = "gridColumn233";
+            this.gridColumn233.Visible = true;
+            this.gridColumn233.VisibleIndex = 1;
+            this.gridColumn233.Width = 98;
+            // 
+            // gridColumn236
+            // 
+            this.gridColumn236.Caption = "SlipNo";
+            this.gridColumn236.FieldName = "SlipNo";
+            this.gridColumn236.Name = "gridColumn236";
+            this.gridColumn236.Visible = true;
+            this.gridColumn236.VisibleIndex = 0;
+            this.gridColumn236.Width = 55;
+            // 
+            // gridColumn240
+            // 
+            this.gridColumn240.Caption = "Carat";
+            this.gridColumn240.FieldName = "RejectionWeight";
+            this.gridColumn240.Name = "gridColumn240";
+            this.gridColumn240.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] {
+            new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCarat", "{0:0.##}")});
+            this.gridColumn240.Visible = true;
+            this.gridColumn240.VisibleIndex = 2;
+            this.gridColumn240.Width = 65;
+            // 
+            // repositoryItemButtonEdit12
+            // 
+            this.repositoryItemButtonEdit12.AutoHeight = false;
+            editorButtonImageOptions14.Image = global::DiamondTrading.Properties.Resources.View_16;
+            this.repositoryItemButtonEdit12.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, true, true, false, editorButtonImageOptions14, new DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), serializableAppearanceObject53, serializableAppearanceObject54, serializableAppearanceObject55, serializableAppearanceObject56, "", null, null, DevExpress.Utils.ToolTipAnchor.Default)});
+            this.repositoryItemButtonEdit12.Name = "repositoryItemButtonEdit12";
+            this.repositoryItemButtonEdit12.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor;
+            // 
+            // gridView38
+            // 
+            this.gridView38.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn251});
+            this.gridView38.GridControl = this.grdRejectionPending;
+            this.gridView38.Name = "gridView38";
+            this.gridView38.OptionsBehavior.Editable = false;
+            this.gridView38.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn251
+            // 
+            this.gridColumn251.Caption = "Id";
+            this.gridColumn251.FieldName = "Id";
+            this.gridColumn251.Name = "gridColumn251";
+            // 
+            // gridView39
+            // 
+            this.gridView39.GridControl = this.grdRejectionPending;
+            this.gridView39.Name = "gridView39";
+            // 
             // barManager1
             // 
             this.barManager1.DockControls.Add(this.barDockControlTop);
@@ -6284,13 +6441,13 @@ namespace DiamondTrading
             // 
             this.splashScreenManager1.ClosingDelay = 500;
             // 
-            // gridColumnPurSizeName
+            // gridColumn226
             // 
-            this.gridColumnPurSizeName.Caption = "Size";
-            this.gridColumnPurSizeName.FieldName = "SizeName";
-            this.gridColumnPurSizeName.Name = "gridColumnPurSizeName";
-            this.gridColumnPurSizeName.Visible = true;
-            this.gridColumnPurSizeName.VisibleIndex = 6;
+            this.gridColumn226.Caption = "Process Type";
+            this.gridColumn226.FieldName = "ProcessType";
+            this.gridColumn226.Name = "gridColumn226";
+            this.gridColumn226.Visible = true;
+            this.gridColumn226.VisibleIndex = 3;
             // 
             // FrmTransactionDetails
             // 
@@ -6474,6 +6631,12 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView37)).EndInit();
+            this.xtraTabRejectionPendingReport.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grdRejectionPending)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grvRejectionPending)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView38)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView39)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.popupMenu1)).EndInit();
             this.ResumeLayout(false);
@@ -7011,5 +7174,19 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn227NumberName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnSizeName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnPurSizeName;
+        private DevExpress.XtraTab.XtraTabPage xtraTabRejectionPendingReport;
+        private DevExpress.XtraGrid.GridControl grdRejectionPending;
+        private DevExpress.XtraGrid.Views.Grid.GridView grvRejectionPending;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn229;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn231;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn232;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn233;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn236;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn240;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repositoryItemButtonEdit12;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView38;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn251;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView39;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn226;
     }
 }

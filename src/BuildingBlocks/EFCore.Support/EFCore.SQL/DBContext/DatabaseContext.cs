@@ -126,6 +126,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<SalaryReportSPModel> SPSalaryReport{ get; set; }
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
         public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
+        public virtual DbSet<RejectionPendingSPModel> SPRejectionPendingReport { get; set; }        
         public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
         public virtual DbSet<CalculatorSPModel> SPCalculatorModel { get; set; }
 
@@ -239,6 +240,7 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<ChildLedgerSPModel>().HasNoKey();
             modelBuilder.Entity<SalaryReportSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
+            modelBuilder.Entity<RejectionPendingSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
             modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();

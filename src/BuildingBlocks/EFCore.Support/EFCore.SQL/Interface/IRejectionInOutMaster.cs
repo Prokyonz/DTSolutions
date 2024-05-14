@@ -18,5 +18,6 @@ namespace EFCore.SQL.Interface
         Task<bool> DeleteRejectionAsync(string priceId);
         Task<List<RejectionSendReceiveSPModel>> GetRejectionSendReceiveDetail(string companyId, string financialYearId, int TransType = 0);
         Task<List<RejectionInOutSPModel>> GetRejectionSendReceiveReport(string companyId, string financialYearId, int TransType);
+        Task<List<RejectionPendingSPModel>> GetRejectionPendingReport(string companyId, string financialYearId);
     }
 }

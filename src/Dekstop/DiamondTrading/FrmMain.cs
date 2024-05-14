@@ -2566,5 +2566,23 @@ namespace DiamondTrading
             //if (this.MdiChildren.Length <= 0)
                 //panelControl1.BringToFront();           
         }
+
+        private void barButtonItem83_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
+
+            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+            frmMasterDetails.SelectedTabPage = "RejectionPending";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
     }   
 }

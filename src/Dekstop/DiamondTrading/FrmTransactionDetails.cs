@@ -210,6 +210,13 @@ namespace DiamondTrading
                     xtraTabRejectionReport.Text = "Rejection Out/Send";
                     this.Text = "Rejection Out/Send";
                     break;
+                case "RejectionPending":
+                    xtraTabRejectionPendingReport.PageVisible = true;
+                    accordionEditBtn.Visible = false;
+                    xtabManager.SelectedTabPage = xtraTabRejectionPendingReport;
+                    xtraTabRejectionPendingReport.Text = "Rejection Pending";
+                    this.Text = "Rejection Pending";
+                    break;
                 default:
                     xtabPurchase.PageVisible = true;
                     xtabManager.SelectedTabPage = xtabPurchase;
@@ -240,6 +247,7 @@ namespace DiamondTrading
             xtabCashBankReport.PageVisible = false;
             xtabSalaryReport.PageVisible = false;
             xtraTabRejectionReport.PageVisible = false;
+            xtraTabRejectionPendingReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -695,6 +703,17 @@ namespace DiamondTrading
                     gridView13.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionPendingReport)
+            {
+                if (IsForceLoad || _rejectionInOutMasterRepository == null)
+                {
+                    _rejectionInOutMasterRepository = new RejectionInOutMasterRepository();
+                    var data = await _rejectionInOutMasterRepository.GetRejectionPendingReport(Common.LoginCompany, Common.LoginFinancialYear);
+                    grdRejectionPending.DataSource = data;
+
+                    grvRejectionPending.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -910,6 +929,17 @@ namespace DiamondTrading
                     ExportToPDF(gridControlRejectionReport);
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionPendingReport)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvRejectionPending);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(grdRejectionPending);
+                }
+            }
             this.Cursor = Cursors.Default;
         }
 
@@ -1041,6 +1071,10 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabSalaryReport)
             {
                 gridView13.SaveLayoutToRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
+            }
+            else if (xtabManager.SelectedTabPage == xtraTabRejectionPendingReport)
+            {
+                grvRejectionPending.SaveLayoutToRegistry(RegistryHelper.ReportLayouts(SelectedTabPage));
             }
         }
 

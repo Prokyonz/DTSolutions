@@ -123,5 +123,14 @@ namespace EFCore.SQL.Repository
                 return rejectionReport;
             }
         }
+
+        public async Task<List<RejectionPendingSPModel>> GetRejectionPendingReport(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var rejectionReport = await _databaseContext.SPRejectionPendingReport.FromSqlRaw($"GetRejectionProcessReceivedDetails '" + companyId + "','" + financialYearId + "'").ToListAsync();
+                return rejectionReport;
+            }
+        }
     }
 }
