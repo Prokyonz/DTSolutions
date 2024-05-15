@@ -13,10 +13,10 @@
             </ng-template>
             <ng-template pTemplate="header">
                 <tr>
-                    <th [ngStyle]="{'min-width': '5rem'}">Account Type</th>
-                    <th [ngStyle]="{'min-width': '5rem'}">Debit Amount</th>
-                    <th [ngStyle]="{'min-width': '5rem'}">Account Type</th>
-                    <th [ngStyle]="{'min-width': '5rem'}">Credit Amount</th>
+                    <th [ngStyle]="{'min-width': '5rem'}" class="header-cell">Account Type</th>
+                    <th [ngStyle]="{'min-width': '5rem'}" class="header-cell">Debit Amount</th>
+                    <th [ngStyle]="{'min-width': '5rem'}" class="header-cell">Account Type</th>
+                    <th [ngStyle]="{'min-width': '5rem'}" class="header-cell">Credit Amount</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-row>
@@ -29,16 +29,16 @@
             </ng-template>
             <ng-template pTemplate="footer">
                 <tr>
-                    <td>
+                    <td class="footer-td">
                         Total
                     </td>
-                    <td>
+                    <td class="footer-td">
                         {{ formatIndianNumber(totalDebitAmount?.toFixed(2)) }}
                     </td>
-                    <td>
+                    <td class="footer-td">
 
                     </td>
-                    <td>
+                    <td class="footer-td">
                         {{ formatIndianNumber(totalCreditAmount?.toFixed(2)) }}
                     </td>
                 </tr>

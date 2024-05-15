@@ -59,7 +59,7 @@
         <ng-template pTemplate="header">
             <tr>
                 <ng-container *ngIf="isChildReport">
-                    <th>
+                    <th class="header-cell">
                         <div class="flex align-items-center">
 
                         </div>
@@ -69,7 +69,7 @@
                     <ng-container
                         *ngIf="!(item.displayName === 'Approve' || item.displayName === 'Reject' || item.dataType === 'icon')  || this.isApproveButton">
                         <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '5rem'}"
-                            pSortableColumn="{{item.fieldName}}">
+                            pSortableColumn="{{item.fieldName}}" class="header-cell">
                             <div class="flex align-items-center">
                                 {{item.displayName}} <p-sortIcon
                                     *ngIf="item.displayName !== 'Approve' && item.displayName !== 'Reject' && isFilter"
@@ -214,9 +214,9 @@
 </ng-template>
 <ng-template pTemplate="footer">
     <tr>
-        <td *ngIf="isChildReport"></td>
+        <td *ngIf="isChildReport" class="footer-td"></td>
         <td *ngFor="let col of selectedColumnArray"
-            [ngStyle]="{'min-width': col.minWidth ? col.minWidth + 'rem' : '5rem'}">
+            [ngStyle]="{'min-width': col.minWidth ? col.minWidth + 'rem' : '5rem'}" class="footer-td">
             <span *ngIf="(col.fieldName === 'grossTotal' || col.fieldName === 'netWeight' || col.fieldName === 'totalCts' 
                 || col.fieldName === 'total' ||  col.fieldName === 'amount' || col.fieldName === 'credit' || col.fieldName === 'debit'
                 || col.fieldName ===  'totalAmount')">
