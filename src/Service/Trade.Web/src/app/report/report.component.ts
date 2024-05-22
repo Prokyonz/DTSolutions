@@ -865,10 +865,38 @@ export class ReportComponent implements OnInit {
                 { "displayName": "Credit", "dataType": "numeric", "fieldName": "credit" },
               ];
               this.childReportList = data.data;
+
+              // Calculate the closing balance
+              let closingBalance = 0;
+              debugger;
+              this.childReportList.forEach((item: any) => {
+                closingBalance += item.debit - item.credit;
+              });
+
+              // Add the closing balance row
+              this.childReportList.push({
+                slipNo: "",
+                date: "",
+                fromPartyName: "",
+                toPartyName: "",
+                entryType: "Closing Balance",
+                remarks: "",
+                debit: 0,
+                credit: 0,
+                closingBalance: closingBalance
+              });
+
+              // Set the closing balance in the debit or credit column based on the value
+              if (closingBalance > 0) {
+                this.childReportList[this.childReportList.length - 1].debit = closingBalance;
+              } else {
+                this.childReportList[this.childReportList.length - 1].credit = -closingBalance;
+              }
+
               if (this.columnArray.length > 0)
                 this.childTotalColumn = this.columnArray.length
               else
-                this.childTotalColumn = this.childColumnArray.length;
+                this.childTotalColumn = this.childColumnArray.length + 1;
               this.loading = false;
               console.log(data.data);
             }, (ex: any) => {
