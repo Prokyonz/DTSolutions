@@ -5,7 +5,7 @@ import { Table } from 'primeng/table';
 import { SharedService } from '../common/shared.service';
 import { RememberCompany } from '../shared/component/companyselection/companyselection.component';
 import { Message, MessageService } from 'primeng/api';
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { EventEmitter } from '@angular/core';
 import 'jspdf-autotable';
 import { Filesystem, Directory, Encoding, DownloadFileOptions } from '@capacitor/filesystem';
@@ -866,6 +866,11 @@ export class ReportComponent implements OnInit {
               ];
               this.childReportList = data.data;
 
+              const formatDate = (dateString: string) => {
+                const [date, time] = dateString.split('T');
+                const [year, month, day] = date.split('-').map(Number);
+                return new Date(year, month - 1, day);
+              };
               // Calculate the closing balance
               let closingBalance = 0;
               debugger;
@@ -876,7 +881,7 @@ export class ReportComponent implements OnInit {
               // Add the closing balance row
               this.childReportList.push({
                 slipNo: "",
-                date: "",
+                date: formatDate(new Date().toISOString().split('T')[0]),
                 fromPartyName: "",
                 toPartyName: "",
                 entryType: "Closing Balance",
@@ -1752,6 +1757,32 @@ export class ReportComponent implements OnInit {
         ];
         this.childReportList = data.data;
 
+        // Calculate the closing balance
+        let closingBalance = 0;
+        debugger;
+        this.childReportList.forEach((item: any) => {
+          closingBalance += item.debit - item.credit;
+        });
+
+        this.childReportList.push({
+          slipNo: "",
+          date: formatDate(new Date().toISOString().split('T')[0]), // Adds today's date in YYYY-MM-DD format
+          fromPartyName: "",
+          toPartyName: "",
+          entryType: "Closing Balance",
+          remarks: "",
+          debit: 0,
+          credit: 0,
+          closingBalance: closingBalance
+        });
+
+        // Set the closing balance in the debit or credit column based on the value
+        if (closingBalance > 0) {
+          this.childReportList[this.childReportList.length - 1].debit = closingBalance;
+        } else {
+          this.childReportList[this.childReportList.length - 1].credit = -closingBalance;
+        }
+
         this.loading = false;
       }, (ex: any) => {
         this.loading = false;
@@ -1941,7 +1972,9 @@ export class ReportComponent implements OnInit {
   calculateChildColumnSum(columnName: string): number {
     let sum = 0;
     for (const item of this.childReportList) {
-      sum += item[columnName];
+      if (item["entryType"] !== 'Closing Balance') {
+        sum += item[columnName];
+      }
     }
     return sum;
   }
