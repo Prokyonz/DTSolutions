@@ -2048,6 +2048,7 @@ namespace DiamondTrading
             this.barButtonItem84.Id = 134;
             this.barButtonItem84.Name = "barButtonItem84";
             this.barButtonItem84.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            this.barButtonItem84.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem84_ItemClick);
             // 
             // FrmMain
             // 
