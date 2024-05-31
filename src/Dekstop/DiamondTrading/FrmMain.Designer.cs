@@ -107,6 +107,7 @@ namespace DiamondTrading
             this.barButtonSalaryReport = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonRejectionInReceive = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonRejectionOutSend = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem83 = new DevExpress.XtraBars.BarButtonItem();
             this.barSubItem8 = new DevExpress.XtraBars.BarSubItem();
             this.barButtonItem57 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem55 = new DevExpress.XtraBars.BarButtonItem();
@@ -219,7 +220,7 @@ namespace DiamondTrading
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.pictureEdit1 = new DevExpress.XtraEditors.PictureEdit();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            this.barButtonItem83 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem84 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
@@ -359,9 +360,10 @@ namespace DiamondTrading
             this.barButtonRejectionOutSend,
             this.barButtonPriceMasterMobile,
             this.barButtonGSTBillPrint,
-            this.barButtonItem83});
+            this.barButtonItem83,
+            this.barButtonItem84});
             this.barManager1.MainMenu = this.bar2;
-            this.barManager1.MaxItemId = 134;
+            this.barManager1.MaxItemId = 135;
             this.barManager1.StatusBar = this.bar3;
             // 
             // bar2
@@ -982,7 +984,8 @@ namespace DiamondTrading
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonSalaryReport),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonRejectionInReceive),
             new DevExpress.XtraBars.LinkPersistInfo(this.barButtonRejectionOutSend),
-            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem83)});
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem83),
+            new DevExpress.XtraBars.LinkPersistInfo(this.barButtonItem84)});
             this.barSubItem6.Name = "barSubItem6";
             this.barSubItem6.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
@@ -1113,6 +1116,13 @@ namespace DiamondTrading
             this.barButtonRejectionOutSend.Name = "barButtonRejectionOutSend";
             this.barButtonRejectionOutSend.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             this.barButtonRejectionOutSend.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonRejectionOutSend_ItemClick);
+            // 
+            // barButtonItem83
+            // 
+            this.barButtonItem83.Caption = "Rejection Pending";
+            this.barButtonItem83.Id = 133;
+            this.barButtonItem83.Name = "barButtonItem83";
+            this.barButtonItem83.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem83_ItemClick);
             // 
             // barSubItem8
             // 
@@ -2032,12 +2042,12 @@ namespace DiamondTrading
             // 
             this.xtraTabbedMdiManager1.MdiParent = this;
             // 
-            // barButtonItem83
+            // barButtonItem84
             // 
-            this.barButtonItem83.Caption = "Rejection Pending";
-            this.barButtonItem83.Id = 133;
-            this.barButtonItem83.Name = "barButtonItem83";
-            this.barButtonItem83.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem83_ItemClick);
+            this.barButtonItem84.Caption = "Transfer Report";
+            this.barButtonItem84.Id = 134;
+            this.barButtonItem84.Name = "barButtonItem84";
+            this.barButtonItem84.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // FrmMain
             // 
@@ -2271,5 +2281,6 @@ namespace DiamondTrading
         private DevExpress.XtraBars.BarButtonItem barButtonGSTBillPrint;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
         private DevExpress.XtraBars.BarButtonItem barButtonItem83;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem84;
     }
 }

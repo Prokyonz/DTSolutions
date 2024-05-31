@@ -276,6 +276,7 @@ namespace DiamondTrading
                         accordionControlTransfer.Visible = true;
                         barSubItem4.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barButtonItem27.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        barButtonItem84.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "calculator":
                         accordionControlUtility.Visible = true;
