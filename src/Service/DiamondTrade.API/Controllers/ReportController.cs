@@ -989,26 +989,27 @@ namespace DiamondTrade.API.Controllers
                         }
                     }
 
-                    // Add column footers with totals
-                    for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
+                    if (exportModel.footerTotals != null && exportModel.footerTotals.Count > 0)
                     {
-                        var columnName = exportModel.columnsHeaders[i];
-                        string total = exportModel.footerTotals.FirstOrDefault(ft => ft.Key == columnName)?.Value.ToString() ?? string.Empty;
-                        if (!string.IsNullOrWhiteSpace(total))
+                        for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
                         {
-                            table.AddFooterCell(new iText.Layout.Element.Cell().Add(new Paragraph($"Total : {Math.Round(Convert.ToDecimal(total), 2)}"))
-                                .SetTextAlignment(TextAlignment.CENTER)
-                                .SetPadding(5)
-                                .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
-                                .SetFontSize(maxFontSize));
+                            var columnName = exportModel.columnsHeaders[i];
+                            string total = exportModel.footerTotals.FirstOrDefault(ft => ft.Key == columnName)?.Value.ToString() ?? string.Empty;
+                            if (!string.IsNullOrWhiteSpace(total))
+                            {
+                                table.AddCell(new iText.Layout.Element.Cell().Add(new Paragraph($"Total : {Math.Round(Convert.ToDecimal(total), 2)}"))
+                                    .SetTextAlignment(TextAlignment.CENTER)
+                                    .SetPadding(5)
+                                    .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                                    .SetFontSize(maxFontSize));
+                            }
+                            else
+                            {
+                                table.AddCell(new iText.Layout.Element.Cell());
+                            }
                         }
-                        else
-                        {
-                            table.AddFooterCell(new iText.Layout.Element.Cell());
-                        }
+                        document.Add(table);
                     }
-
-                    document.Add(table);
 
                     document.Close();
                     pdfDocument.Close();
@@ -1130,7 +1131,7 @@ namespace DiamondTrade.API.Controllers
                         if (columnIndex != -1)
                         {
                             footerRow.Cell(columnIndex + 1).Value = Math.Round(Convert.ToDecimal(footerItem.Value), 2).ToString();
-                            footerRow.Cell(columnIndex + 1).Style.Font.Bold=true;
+                            footerRow.Cell(columnIndex + 1).Style.Font.Bold = true;
                             // Optionally, you can apply formatting to the footer cells
                         }
                     }
