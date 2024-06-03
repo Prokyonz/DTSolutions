@@ -1034,7 +1034,114 @@ namespace DiamondTrade.API.Controllers
             {
                 throw;
             }
+        }
 
+
+        [Route("downloadledgerpdf")]
+        [HttpPost]
+        public Response<dynamic> DownloadLedgerPDF([FromBody] ExportModel exportModel)
+        {
+            try
+            {
+                string pdfDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
+
+                // Create the directory if it doesn't exist
+                // Directory.CreateDirectory(pdfDirectory);
+
+                string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.pdf";
+                string pdfFilePath = System.IO.Path.Combine(pdfDirectory, uniqueFilename);
+                //pdfFilePath = pdfFilePath.Replace('\\', '/');
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    PdfWriter pdfWriter = new PdfWriter(memoryStream);
+                    PdfDocument pdfDocument = new PdfDocument(pdfWriter);
+
+                    PageSize customPageSize = PageSize.A4.Rotate(); // Landscape mode
+                    iText.Layout.Document document = new iText.Layout.Document(pdfDocument, customPageSize);
+
+                    document.SetMargins(0, 0, 0, 0);
+
+                    Table table = new Table(exportModel.columnsHeaders.Count);
+                    table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                    float maxFontSize = CalculateMaxFontSize(exportModel.columnsHeaders.Count);
+
+                    foreach (var header in exportModel.columnsHeaders)
+                    {
+                        table.AddHeaderCell(new iText.Layout.Element.Cell().Add(new Paragraph(header))
+                            .SetBackgroundColor(iText.Kernel.Colors.ColorConstants.LIGHT_GRAY)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetFontSize(maxFontSize));
+                    }
+
+                    for (int i = 0; i < exportModel.rowData.Count() -1; i++)
+                    {
+                        foreach (var cellData in exportModel.rowData[i])
+                        {
+                            table.AddCell(new iText.Layout.Element.Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                                .SetTextAlignment(TextAlignment.CENTER)
+                                .SetPadding(5)
+                                .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                                .SetFontSize(maxFontSize));
+                        }
+                    }
+
+                    if (exportModel.footerTotals != null && exportModel.footerTotals.Count > 0)
+                    {
+                        for (int i = 0; i < exportModel.columnsHeaders.Count; i++)
+                        {
+                            var columnName = exportModel.columnsHeaders[i];
+                            string total = exportModel.footerTotals.FirstOrDefault(ft => ft.Key == columnName)?.Value.ToString() ?? string.Empty;
+                            if (!string.IsNullOrWhiteSpace(total))
+                            {
+                                table.AddCell(new iText.Layout.Element.Cell().Add(new Paragraph($"Total : {Math.Round(Convert.ToDecimal(total), 2)}"))
+                                    .SetTextAlignment(TextAlignment.CENTER)
+                                    .SetPadding(5)
+                                    .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                                    .SetFontSize(maxFontSize));
+                            }
+                            else
+                            {
+                                table.AddCell(new iText.Layout.Element.Cell());
+                            }
+                        }
+                    }
+
+                    foreach (var cellData in exportModel.rowData.Last())
+                    {
+                        table.AddCell(new iText.Layout.Element.Cell().Add(new Paragraph(cellData?.ToString() ?? ""))
+                           .SetTextAlignment(TextAlignment.CENTER)
+                           .SetPadding(5)
+                           .SetWidth(UnitValue.CreatePercentValue(100 / exportModel.columnsHeaders.Count))
+                           .SetFontSize(maxFontSize));
+                    }
+
+                    document.Add(table); // 
+
+                    document.Close();
+                    pdfDocument.Close();
+
+                    var pdfContent = memoryStream.ToArray();
+
+                    System.IO.File.WriteAllBytes(pdfFilePath, pdfContent);
+
+                    // Get the URL for the saved PDF
+                    string pdfRelativePath = $"diamondapi/csvs/{uniqueFilename}";
+                    string pdfUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{pdfRelativePath}";
+
+                    return new Response<dynamic>
+                    {
+                        StatusCode = 200,
+                        Success = true,
+                        Data = pdfUrl
+                    };
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private float CalculateMaxFontSize(int numberOfColumns)
@@ -1059,33 +1166,97 @@ namespace DiamondTrade.API.Controllers
         {
             string excelDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
 
-            // Create the directory if it doesn't exist
-            // Impersonate a user with sufficient permissions
+            
 
-            //try
-            //{
-            //    WindowsIdentity identity = WindowsIdentity.GetCurrent();
-            //    if (identity != null && identity.IsAuthenticated && identity.IsGuest == false)
-            //    {
-            //        // Check if the current user has the necessary permissions
-            //        if (!Directory.Exists(excelDirectory))
-            //        {
-            //            WindowsIdentity.RunImpersonated(identity.AccessToken, () =>
-            //            {
-            //                Directory.CreateDirectory(excelDirectory);
-            //                Console.WriteLine("Directory created successfully.");
-            //            });
-            //        }
-            //        else
-            //        {
-            //            Console.WriteLine("Directory already exists.");
-            //        }
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("Error: " + ex.Message);
-            //}
+            string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
+            string excelFilePath = System.IO.Path.Combine(excelDirectory, uniqueFilename);
+            //excelFilePath = excelFilePath.Replace('\\', '/');
+
+
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                using (var workbook = new ClosedXML.Excel.XLWorkbook())
+                {
+                    var worksheet = workbook.Worksheets.Add("Sheet1");
+
+                    // Add headers to the first row
+                    var headerRow = worksheet.Row(1);
+                    for (int columnIndex = 0; columnIndex < exportModel.columnsHeaders.Count; columnIndex++)
+                    {
+                        headerRow.Cell(columnIndex + 1).Value = exportModel.columnsHeaders[columnIndex];
+                        headerRow.Cell(columnIndex + 1).Style.Font.Bold = true; // Make the header bold
+                        headerRow.Cell(columnIndex + 1).Style.Font.FontSize = 14;
+                    }
+
+                    // Add data rows
+                    for (int rowIndex = 0; rowIndex < exportModel.rowData.Count; rowIndex++)
+                    {
+                        var dataRow = worksheet.Row(rowIndex + 2);
+                        for (int columnIndex = 0; columnIndex < exportModel.rowData[rowIndex].Count; columnIndex++)
+                        {
+                            dataRow.Cell(columnIndex + 1).Value = exportModel.rowData[rowIndex][columnIndex]?.ToString() ?? "";
+                        }
+                    }
+
+                    // Auto fit columns for data rows
+                    worksheet.Columns().AdjustToContents();
+
+                    // Add footer totals
+                    var footerRow = worksheet.Row(exportModel.rowData.Count + 2);
+                    foreach (var footerItem in exportModel.footerTotals)
+                    {
+                        footerRow.Cell(1).Value = "Total";
+
+                        int columnIndex = exportModel.columnsHeaders.IndexOf(footerItem.Key);
+                        if (columnIndex != -1)
+                        {
+                            footerRow.Cell(columnIndex + 1).Value = Math.Round(Convert.ToDecimal(footerItem.Value), 2).ToString();
+                            footerRow.Cell(columnIndex + 1).Style.Font.Bold = true;
+                            // Optionally, you can apply formatting to the footer cells
+                        }
+                    }
+                    workbook.SaveAs(memoryStream);
+                }
+
+                // Adjust column widths according to data length or size
+                var excelContent = memoryStream.ToArray();
+                using (var ms = new MemoryStream(excelContent))
+                {
+                    using (var workbook = new ClosedXML.Excel.XLWorkbook(ms))
+                    {
+                        var worksheet = workbook.Worksheet(1);
+                        foreach (var column in worksheet.ColumnsUsed())
+                        {
+                            column.AdjustToContents();
+                        }
+                        workbook.SaveAs(memoryStream);
+                    }
+                }
+
+
+                System.IO.File.WriteAllBytes(excelFilePath, excelContent);
+
+
+
+                // Get the URL for the saved csv
+                string csvRelativePath = $"diamondapi/csvs/{uniqueFilename}";
+                string excelUrl = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{csvRelativePath}";
+
+                return new Response<dynamic>
+                {
+                    StatusCode = 200,
+                    Success = true,
+                    Data = excelUrl
+                };
+            }
+        }
+
+        [Route("downloadledgerexcel")]
+        [HttpPost]
+        public Response<dynamic> DownloadLedgerExcel([FromBody] ExportModel exportModel)
+        {
+            string excelDirectory = System.IO.Path.Combine("C:\\inetpub\\wwwroot\\diamondapi\\wwwroot", "csvs");
+
 
 
             string uniqueFilename = $"report_{DateTime.Now:yyyyMMddHHmmssfff}.csv";
@@ -1118,6 +1289,12 @@ namespace DiamondTrade.API.Controllers
                         }
                     }
 
+                    // Add last row from rowData after footer total
+                    var lastDataRow = worksheet.Row(exportModel.rowData.Count + 3);
+                    for (int columnIndex = 0; columnIndex < exportModel.rowData.Last().Count; columnIndex++)
+                    {
+                        lastDataRow.Cell(columnIndex + 1).Value = exportModel.rowData.Last()[columnIndex]?.ToString() ?? "";
+                    }
                     // Auto fit columns for data rows
                     worksheet.Columns().AdjustToContents();
 

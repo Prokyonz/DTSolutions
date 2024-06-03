@@ -1742,6 +1742,8 @@ export class ReportComponent implements OnInit {
 
   exportLedger(type: string, itemData: any) {
     this.loading = true;
+    let closingBalance = 0;
+    let footerTotals: any = [];
     let exportColumns: any[];
     this.sharedService.customGetApi("Report/GetLedgerDetail?CompanyId=" + this.RememberCompany.company.id + "&FinancialYearId=" + this.RememberCompany.financialyear.id + "&ledgerId=" + itemData.ledgerId)
       .subscribe((data: any) => {
@@ -1758,8 +1760,6 @@ export class ReportComponent implements OnInit {
         this.childReportList = data.data;
 
         // Calculate the closing balance
-        let closingBalance = 0;
-        debugger;
         this.childReportList.forEach((item: any) => {
           closingBalance += item.debit - item.credit;
         });
@@ -1773,14 +1773,16 @@ export class ReportComponent implements OnInit {
           remarks: "",
           debit: 0,
           credit: 0,
-          closingBalance: closingBalance
         });
 
+        // Calculate debit and credit totals
+        const debitTotal = this.calculateChildColumnSum('debit');
+        const creditTotal = this.calculateChildColumnSum('credit');
         // Set the closing balance in the debit or credit column based on the value
-        if (closingBalance > 0) {
-          this.childReportList[this.childReportList.length - 1].debit = closingBalance;
+        if (debitTotal < creditTotal) {
+          this.childReportList[this.childReportList.length - 1].debit = closingBalance < 0 ? closingBalance * -1 : closingBalance;
         } else {
-          this.childReportList[this.childReportList.length - 1].credit = -closingBalance;
+          this.childReportList[this.childReportList.length - 1].credit = closingBalance < 0 ? closingBalance * -1 : closingBalance;
         }
 
         this.loading = false;
@@ -1795,9 +1797,6 @@ export class ReportComponent implements OnInit {
       this.childReportList = this.dataTable.filteredValue;
     }
 
-    // Calculate footer totals
-    const footerTotals: any = [];
-
     for (const col of this.childColumnArray) {
       let m: any = {};
       if (col.fieldName === 'debit' || col.fieldName === 'credit') {
@@ -1806,6 +1805,7 @@ export class ReportComponent implements OnInit {
         footerTotals.push(m);
       }
     }
+
     const formatDate = (dateString: string) => {
       const date = new Date(dateString);
       const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -1836,7 +1836,7 @@ export class ReportComponent implements OnInit {
     };
     this.loading = true;
     if (type == 'excel') {
-      this.sharedService.customPostApi("Report/downloadexcel", data)
+      this.sharedService.customPostApi("Report/downloadledgerexcel", data)
         .subscribe((data: any) => {
           const options: DownloadFileOptions = {
             path: this.PageTitle.replaceAll(" ", '') + ".csv",
@@ -1867,7 +1867,7 @@ export class ReportComponent implements OnInit {
         });
     }
     else {
-      this.sharedService.customPostApi("Report/downloadpdf", data)
+      this.sharedService.customPostApi("Report/downloadledgerpdf", data)
         .subscribe((data: any) => {
           const options: DownloadFileOptions = {
             path: this.PageTitle.replaceAll(" ", '') + ".pdf",
