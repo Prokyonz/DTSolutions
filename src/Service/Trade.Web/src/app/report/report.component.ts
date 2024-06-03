@@ -856,7 +856,7 @@ export class ReportComponent implements OnInit {
             .subscribe((data: any) => {
               this.childColumnArray = [
                 { "displayName": "Slip No", "dataType": "numeric", "fieldName": "slipNo" },
-                { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true },
+                { "displayName": "Entry Date", "dataType": "Date", "fieldName": "date", "ishidefilter": true, "minWidth": "15" },
                 { "displayName": "From Party Name", "dataType": "text", "fieldName": "fromPartyName", "minWidth": "15" },
                 { "displayName": "To Party Name", "dataType": "text", "fieldName": "toPartyName", "minWidth": "15" },
                 { "displayName": "Entry Type", "dataType": "text", "fieldName": "entryType", "minWidth": "15" },
