@@ -16,7 +16,7 @@
     </div>
 </p-dialog>
 
-<div class="card" style="overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; pinch-zoom: zoom;">
+<div class="card" style="overflow: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y;">
     <p-table #dt1 [value]="PurchaseReportList" dataKey="id" [rows]="10" [showCurrentPageReport]="false"
         [rowsPerPageOptions]="[5, 10, 25, 50]" [scrollable]="true" styleClass="p-datatable-gridlines"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
@@ -165,18 +165,10 @@
             </tr>
             <tr *ngIf="selectedRowIndex === rowIndex">
                 <td [attr.colspan]="childTotalColumn">
-                    <div class="detail-table" style="max-height: 500px; overflow-y: auto;">
+                    <div class="detail-table border-table" style="max-height: 500px; overflow-y: auto;">
                         <p-table #dt2 [value]="childReportList" [scrollable]="true" [rows]="5"
-                            [rowsPerPageOptions]="[10]">
-                            <!-- [globalFilterFields]="childFilterColumn"> -->
-                            <!-- <ng-template pTemplate="caption">
-                            <div class="flex">
-                                <span class="p-input-icon-left ml-auto">
-                                    <i class="pi pi-search" style="padding-left: 10px;"></i>&nbsp;
-                                    <input pInputText type="text" (input)="dt2.filterGlobal(childReportSearch($event), 'contains')" placeholder="Search keyword" />
-                                </span>
-                            </div>
-                        </ng-template> -->
+                            styleClass="p-datatable-gridlines" [rowsPerPageOptions]="[10]"
+                            scrollHeight="calc(100vh - 300px)">
                             <ng-template pTemplate="header">
             <tr>
                 <ng-container *ngFor="let item of childColumnArray">
@@ -194,12 +186,11 @@
             <tr>
                 <ng-container *ngFor="let item of childColumnArray">
                     <td>
-                        <span *ngIf="item.dataType == 'Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yy'}}</span>
-                        <span
-                            *ngIf="(item.displayName.indexOf('Amount') > 0  || item.displayName === 'Amount' || item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
+                        <span *ngIf=" item.dataType=='Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yy'}}</span>
+                        <span *ngIf=" (item.displayName.indexOf('Amount')> 0 || item.displayName === 'Amount' ||
+                        item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
                             {{ formatIndianNumber(rowData[item.fieldName], false) }}
                         </span>
-
                         <span
                             *ngIf="item.dataType !== 'Date' && item.displayName !== 'Amount' && item.displayName.indexOf('Amount') === -1 && item.displayName.indexOf('Rate') === -1 && item.dataType !== 'icon'">{{
                             rowData[item.fieldName] }}</span>
