@@ -175,8 +175,8 @@
                     <th [ngStyle]="{'min-width': item.minWidth ? item.minWidth + 'rem' : '5rem'}">
                         <div class="flex align-items-center">
                             {{item.displayName}}
-                            <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName"
-                                display="menu"></p-columnFilter>
+                            <!-- <p-columnFilter *ngIf="!item.ishidefilter" [type]="item.dataType" [field]="item.fieldName"
+                                display="menu"></p-columnFilter> -->
                         </div>
                     </th>
                 </ng-container>
@@ -185,7 +185,7 @@
         <ng-template pTemplate="body" let-rowData>
             <tr>
                 <ng-container *ngFor="let item of childColumnArray">
-                    <td>
+                    <td [ngClass]="{'footer-td': rowData.entryType === 'Closing Balance'}">
                         <span *ngIf=" item.dataType=='Date'">{{ rowData[item.fieldName] | date: 'dd-MM-yy'}}</span>
                         <span *ngIf=" (item.displayName.indexOf('Amount')> 0 || item.displayName === 'Amount' ||
                         item.displayName.indexOf('Rate') > 0) && item.dataType == 'numeric'">
