@@ -65,7 +65,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.TransferViewModel.FromSqlRaw($"SELET * FROM TransferMaster_Details_Numbers;").ToListAsync();
+                var getReccord = await _databaseContext.TransferViewModel.FromSqlRaw($"SELECT * FROM TransferMaster_Details_Numbers;").ToListAsync();
 
                 return getReccord;
             }

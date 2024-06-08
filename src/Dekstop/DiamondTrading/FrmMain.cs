@@ -2588,7 +2588,20 @@ namespace DiamondTrading
 
         private void barButtonItem84_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            panelControl1.SendToBack();
+            //FrmProcessDetails page = Application.OpenForms["FrmProcessDetails"] as FrmProcessDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
 
+            FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
+            frmMasterDetails.SelectedTabPage = "TransferReport";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
         }
     }   
 }

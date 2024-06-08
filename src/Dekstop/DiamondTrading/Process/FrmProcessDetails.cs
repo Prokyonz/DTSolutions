@@ -114,9 +114,9 @@ namespace DiamondTrading
                     xtraOpeningStock.Text = this.Text = "Opening Stock Report";
                     break;
                 case "TransferReport":
-                    xtraOpeningStock.PageVisible = true;
+                    xtraTabTransferReport.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabTransferReport;
-                    xtraOpeningStock.Text = this.Text = "Transfer Report";
+                    xtraTabTransferReport.Text = this.Text = "Transfer Report";
                     break;
 
                 default:
@@ -389,8 +389,8 @@ namespace DiamondTrading
                     if (IsForceLoad || _openingStockMasterRepositody == null)
                     {
                         _openingStockMasterRepositody = new OpeningStockMasterRepositody();
-                        var Data = await _openingStockMasterRepositody.GetAllOpeningStockAsync(Common.LoginCompany, Common.LoginFinancialYear);
-                        gridControlOpeningStock.DataSource = Data.OrderBy(o => o.SrNo);
+                        var Data = await _openingStockMasterRepositody.GetTransferViewModelAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                        gridControlTransferReport.DataSource = Data.OrderBy(o => o.Sr);
 
                         accordionEditBtn.Visible = false;
                         accordionDeleteBtn.Visible = false;
