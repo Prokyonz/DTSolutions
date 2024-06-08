@@ -61,6 +61,18 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<List<TransferViewModel>> GetTransferViewModelAsync(string companyId, string financialYearId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getReccord = await _databaseContext.TransferViewModel.FromSqlRaw($"SELET * FROM TransferMaster_Details_Numbers;").ToListAsync();
+
+                return getReccord;
+            }
+        }
+
+        
+
         public async Task<int> GetMaxAsync(string companyId, string financialYearId)
         {
             try

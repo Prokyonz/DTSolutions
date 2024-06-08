@@ -113,6 +113,11 @@ namespace DiamondTrading
                     xtabManager.SelectedTabPage = xtraOpeningStock;
                     xtraOpeningStock.Text = this.Text = "Opening Stock Report";
                     break;
+                case "TransferReport":
+                    xtraOpeningStock.PageVisible = true;
+                    xtabManager.SelectedTabPage = xtraTabTransferReport;
+                    xtraOpeningStock.Text = this.Text = "Transfer Report";
+                    break;
 
                 default:
                     xtabKapanMapping.PageVisible = true;
@@ -134,6 +139,7 @@ namespace DiamondTrading
             xtabNumberSendReceive.PageVisible = false;
             xtraTabStockReport.PageVisible = false;
             xtraOpeningStock.PageVisible = false;
+            xtraTabTransferReport.PageVisible = false;
         }
 
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
@@ -367,6 +373,18 @@ namespace DiamondTrading
                     accordionDeleteBtn.Visible = false;
                 }
                 else if (xtabManager.SelectedTabPage == xtraOpeningStock)
+                {
+                    if (IsForceLoad || _openingStockMasterRepositody == null)
+                    {
+                        _openingStockMasterRepositody = new OpeningStockMasterRepositody();
+                        var Data = await _openingStockMasterRepositody.GetAllOpeningStockAsync(Common.LoginCompany, Common.LoginFinancialYear);
+                        gridControlOpeningStock.DataSource = Data.OrderBy(o => o.SrNo);
+
+                        accordionEditBtn.Visible = false;
+                        accordionDeleteBtn.Visible = false;
+                    }
+                }
+                else if (xtabManager.SelectedTabPage == xtraTabTransferReport)
                 {
                     if (IsForceLoad || _openingStockMasterRepositody == null)
                     {

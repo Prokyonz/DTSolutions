@@ -129,6 +129,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<RejectionPendingSPModel> SPRejectionPendingReport { get; set; }        
         public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
         public virtual DbSet<CalculatorSPModel> SPCalculatorModel { get; set; }
+        public virtual DbSet<TransferViewModel> TransferViewModel { get; set; }
 
         public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
