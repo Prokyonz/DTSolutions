@@ -41,7 +41,7 @@ namespace Repository.Entities.Model
 
     public class StockReportMasterGrid
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
         public decimal TotalWeight { get; set; }

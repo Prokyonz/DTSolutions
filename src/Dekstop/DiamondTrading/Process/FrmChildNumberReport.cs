@@ -29,9 +29,28 @@ namespace DiamondTrading.Process
 
         public async Task LoadDataNumber()
         {
-            //_accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-            //var salesData = await _accountToAssortMasterRepository.GetNumberReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
-            grdNumberReportMaster.DataSource = _numberReportModelReports;
+            List<StockReportMasterGrid> groupedStockReports = new List<StockReportMasterGrid>();
+
+            if (_numberReportModelReports != null && _numberReportModelReports.Count > 0)
+            {
+                groupedStockReports = _numberReportModelReports
+                    .GroupBy(x => new { x.Number})
+                    .Select(g => new StockReportMasterGrid
+                    {
+                        Id = g.Key.Number, // Assuming KapanId is unique and can be used as Id
+                        Name = g.Key.Number,
+                        Rate = Math.Round(g.Average(a => a.InwardRate) - g.Average(a => a.OutwardRate), 2),
+                        TotalWeight = g.Sum(s => s.InwardNetWeight) - g.Sum(s => s.OutwardNetWeight),
+                        TotalAmount = g.Sum(s => s.InwardAmount) - g.Sum(s => s.OutwardAmount)
+                    })
+                    .ToList();
+            }
+
+            grdGroupedStockReports.BringToFront();
+            grdGroupedStockReports.DataSource = groupedStockReports;
+
+            //grdNumberReportMaster.DataSource = _numberReportModelReports;
+            grvGroupedStockReports.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("GroupNumberChildReport"));
             gvNumberReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("NumberChildReport"));
         }
 
@@ -42,7 +61,15 @@ namespace DiamondTrading.Process
 
         private void FrmChildNumberReport_FormClosed(object sender, FormClosedEventArgs e)
         {
+            grvGroupedStockReports.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("GroupNumberChildReport"));
             gvNumberReport.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("NumberChildReport"));
+        }
+
+        private void grdGroupedStockReports_DoubleClick(object sender, EventArgs e)
+        {
+            string NumberId = grvGroupedStockReports.GetFocusedRowCellValue(grdColId).ToString();
+            grdNumberReportMaster.DataSource = _numberReportModelReports.Where(x => x.Number == NumberId).ToList();
+            grdNumberReportMaster.BringToFront();
         }
     }
 }

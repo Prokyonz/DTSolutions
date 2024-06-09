@@ -345,24 +345,24 @@ namespace DiamondTrading
 
 
                         List<StockReportMasterGrid> stockReportMasterGrids = new List<StockReportMasterGrid>()
-                    {
-                        new StockReportMasterGrid()
                         {
-                            Id = 1,
-                            Name = "Kapan",
-                            Rate = Math.Round((inwardRate - outwardRate),2),
-                            TotalWeight = inwardWeight - outwardWeight,
-                            TotalAmount = inwardAmount - outwardAmount
-                        },
-                        new StockReportMasterGrid()
-                        {
-                            Id = 2,
-                            Name = "Number",
-                            Rate = Math.Round(inwardRateN - outwardRateN,2),
-                            TotalWeight = inwardWeightN - outwardWeightN,
-                            TotalAmount = inwardAmountN - outwardAmountN
-                        },
-                    };
+                            new StockReportMasterGrid()
+                            {
+                                Id = "1",
+                                Name = "Kapan",
+                                Rate = Math.Round((inwardRate - outwardRate),2),
+                                TotalWeight = inwardWeight - outwardWeight,
+                                TotalAmount = inwardAmount - outwardAmount
+                            },
+                            new StockReportMasterGrid()
+                            {
+                                Id = "2",
+                                Name = "Number",
+                                Rate = Math.Round(inwardRateN - outwardRateN,2),
+                                TotalWeight = inwardWeightN - outwardWeightN,
+                                TotalAmount = inwardAmountN - outwardAmountN
+                            },
+                        };
 
                         grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
 
