@@ -65,7 +65,7 @@ namespace DiamondTrading.Process
             this.grdGroupedStockReports = new DevExpress.XtraGrid.GridControl();
             this.grvGroupedStockReports = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.grdColId = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.gridColumn110 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.grdColName = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -390,7 +390,7 @@ namespace DiamondTrading.Process
             this.grvGroupedStockReports.Appearance.Row.Options.UseFont = true;
             this.grvGroupedStockReports.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.grdColId,
-            this.gridColumn110,
+            this.grdColName,
             this.gridColumn3,
             this.gridColumn4,
             this.gridColumn5,
@@ -420,14 +420,14 @@ namespace DiamondTrading.Process
             this.grdColId.Name = "grdColId";
             this.grdColId.Width = 46;
             // 
-            // gridColumn110
+            // grdColName
             // 
-            this.gridColumn110.Caption = "Number";
-            this.gridColumn110.FieldName = "Name";
-            this.gridColumn110.Name = "gridColumn110";
-            this.gridColumn110.Visible = true;
-            this.gridColumn110.VisibleIndex = 0;
-            this.gridColumn110.Width = 361;
+            this.grdColName.Caption = "Number";
+            this.grdColName.FieldName = "Name";
+            this.grdColName.Name = "grdColName";
+            this.grdColName.Visible = true;
+            this.grdColName.VisibleIndex = 0;
+            this.grdColName.Width = 361;
             // 
             // gridColumn3
             // 
@@ -608,7 +608,7 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.GridControl grdGroupedStockReports;
         private DevExpress.XtraGrid.Views.Grid.GridView grvGroupedStockReports;
         private DevExpress.XtraGrid.Columns.GridColumn grdColId;
-        private DevExpress.XtraGrid.Columns.GridColumn gridColumn110;
+        private DevExpress.XtraGrid.Columns.GridColumn grdColName;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn3;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn4;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;

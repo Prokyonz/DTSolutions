@@ -854,7 +854,7 @@ namespace DiamondTrade.API.Controllers
                  {
                       new StockReportMasterGrid
                       {
-                          Id = 1,
+                          Id = "1",
                           Name = "Kapan",
                           Rate = Math.Round(stockReportStats.Rate, 2),
                           TotalWeight = stockReportStats.TotalWeight,
@@ -862,7 +862,7 @@ namespace DiamondTrade.API.Controllers
                       },
                       new StockReportMasterGrid
                       {
-                          Id = 2,
+                          Id = "2",
                           Name = "Number",
                           Rate = Math.Round(numberReportStats.Rate, 2),
                           TotalWeight = numberReportStats.TotalWeight,
