@@ -15,5 +15,6 @@ namespace Repository.Entities.Model
         public string BrokerageId { get; set; }
         public string Broker { get; set; }
         public string FinancialYearId { get; set; }
+        public bool IsSlipPrint { get; set; }
     }
 }

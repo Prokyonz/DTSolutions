@@ -34,5 +34,6 @@ namespace EFCore.SQL.Interface
         List<SalesChildSPModel> GetSalesChild(string salesId);
         Task<List<SalesChildSPModel>> GetSalesChildAsync(string salesId);
         Task<DashboardSPModel> GetSalesTotal(string companyId, string financialYearId, string fromDate, string toDate);
+        Task<bool> UpdateSlipPrintStatusAsync(string SalesId, bool SlipPrintStatus);
     }
 }

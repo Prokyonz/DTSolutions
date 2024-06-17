@@ -32,5 +32,6 @@ namespace EFCore.SQL.Interface
         Task<DashboardSPModel> GetPurchaseTotal(string companyId, string financialYearId, string currentWeek = null, string fromDate = null, string toDate = null);
 
         Task<bool> DeleteFromNumberProcessMaster(string purchaseMasterId);
+        Task<bool> UpdateSlipPrintStatusAsync(string PurchaseId, bool SlipPrintStatus);
     }
 }

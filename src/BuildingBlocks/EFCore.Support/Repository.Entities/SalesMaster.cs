@@ -56,6 +56,7 @@ namespace Repository.Entities
         public string UpdatedBy { get; set; }
         public string Message { get; set; }
         public int ApprovalType { get; set; }
+        public bool IsSlipPrint { get; set; }
         public virtual List<SalesDetails> SalesDetails { get; set; }
 
     }

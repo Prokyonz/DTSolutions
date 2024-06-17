@@ -345,6 +345,22 @@ namespace EFCore.SQL.Repository
                 return await UpdateNumberProcessMaster(purchaseMasterId);                
             }
         }
+
+        public async Task<bool> UpdateSlipPrintStatusAsync(string PurchaseId, bool SlipPrintStatus)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getPurchase = await _databaseContext.PurchaseMaster.Where(s => s.Id == PurchaseId && s.IsDelete == false).FirstOrDefaultAsync();
+
+                if (getPurchase != null)
+                {
+                    getPurchase.IsSlipPrint = SlipPrintStatus;
+
+                    await _databaseContext.SaveChangesAsync();
+                }
+                return true;
+            }
+        }
     }
 }
 

@@ -3524,6 +3524,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<double>("RoundUpAmount")
                         .HasColumnType("float");
 
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("SlipNo")
                         .HasColumnType("bigint");
 
@@ -3660,6 +3663,32 @@ namespace EFCore.SQL.Migrations
                     b.ToTable("SPRejectionSendReceiveReport");
                 });
 
+            modelBuilder.Entity("Repository.Entities.Model.RejectionPendingSPModel", b =>
+                {
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinancialYearId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PartyName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ProcessType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("RejectionWeight")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("SlipNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("SPRejectionPendingReport");
+                });
+
             modelBuilder.Entity("Repository.Entities.Model.RejectionSendReceiveSPModel", b =>
                 {
                     b.Property<decimal>("Available")
@@ -3681,6 +3710,9 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NumberId")
@@ -4084,6 +4116,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<string>("SalerName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("SizeName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<long>("SlipNo")
                         .HasColumnType("bigint");
 
@@ -4232,6 +4267,88 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.ToTable("SPTransferCategoryList");
+                });
+
+            modelBuilder.Entity("Repository.Entities.Model.TransferViewModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("BranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Carat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("CharniSizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CompanyId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("FromCategory")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FromNumberIdORKapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("JangadNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Rate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("ShapeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Sr")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TRansferById")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("ToAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ToBranchId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ToCarat")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ToCategory")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ToNumberIdORKapanId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("ToRate")
+                        .HasColumnType("decimal(18, 4)");
+
+                    b.Property<string>("ToSizeId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransferMasterId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TrasnferDetailsSR")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TransferViewModel");
                 });
 
             modelBuilder.Entity("Repository.Entities.Model.ValidationSPModel", b =>
@@ -5585,6 +5702,9 @@ namespace EFCore.SQL.Migrations
                     b.Property<bool>("IsSlip")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsSlipPrint")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsTransfer")
                         .HasColumnType("bit");
 
@@ -6282,6 +6402,9 @@ namespace EFCore.SQL.Migrations
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsSlip")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsSlipPrint")
                         .HasColumnType("bit");
 
                     b.Property<bool>("IsTransfer")

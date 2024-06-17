@@ -510,5 +510,21 @@ namespace EFCore.SQL.Repository
                 return data;
             }
         }
+
+        public async Task<bool> UpdateSlipPrintStatusAsync(string SalesId, bool SlipPrintStatus)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var getSale = await _databaseContext.SalesMaster.Where(s => s.Id == SalesId && s.IsDelete == false).FirstOrDefaultAsync();
+
+                if (getSale != null)
+                {
+                    getSale.IsSlipPrint = SlipPrintStatus;
+
+                    await _databaseContext.SaveChangesAsync();
+                }
+                return true;
+            }
+        }
     }
 }
