@@ -7,7 +7,7 @@ namespace Repository.Entities.Model
 {
     public class PurchaseSlipDetailsSPModel
     {
-        public long Id { get; set; }
+        public string Id { get; set; }
         public long SlipNo { get; set; }
         public string Date { get; set; }
         public string PartyId { get; set; }

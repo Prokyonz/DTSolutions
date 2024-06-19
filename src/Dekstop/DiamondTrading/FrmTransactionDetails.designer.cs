@@ -643,6 +643,7 @@ namespace DiamondTrading
             this.gridColumn233 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn236 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn240 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn226 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit12 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridView38 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.gridColumn251 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -656,7 +657,6 @@ namespace DiamondTrading
             this.btnReject = new DevExpress.XtraBars.BarButtonItem();
             this.popupMenu1 = new DevExpress.XtraBars.PopupMenu(this.components);
             this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::DiamondTrading.WaitForm1), true, true);
-            this.gridColumn226 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdChildTransMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdTransactionMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvTransMaster)).BeginInit();
@@ -3811,6 +3811,7 @@ namespace DiamondTrading
             this.grvPurchaseSlipDetails.GridControl = this.grdPurchaseSlipDetails;
             this.grvPurchaseSlipDetails.Name = "grvPurchaseSlipDetails";
             this.grvPurchaseSlipDetails.OptionsView.ShowFooter = true;
+            this.grvPurchaseSlipDetails.RowStyle += new DevExpress.XtraGrid.Views.Grid.RowStyleEventHandler(this.grvPurchaseSlipDetails_RowStyle);
             // 
             // gridColumn50
             // 
@@ -3884,7 +3885,7 @@ namespace DiamondTrading
             // 
             this.colPurchaseSlipPrint.Caption = "Print";
             this.colPurchaseSlipPrint.ColumnEdit = this.repoPurchaseSlipPrintBtn;
-            this.colPurchaseSlipPrint.FieldName = "Id";
+            this.colPurchaseSlipPrint.FieldName = "IsSlipPrint";
             this.colPurchaseSlipPrint.Name = "colPurchaseSlipPrint";
             this.colPurchaseSlipPrint.Visible = true;
             this.colPurchaseSlipPrint.VisibleIndex = 4;
@@ -6342,6 +6343,14 @@ namespace DiamondTrading
             this.gridColumn240.VisibleIndex = 2;
             this.gridColumn240.Width = 65;
             // 
+            // gridColumn226
+            // 
+            this.gridColumn226.Caption = "Process Type";
+            this.gridColumn226.FieldName = "ProcessType";
+            this.gridColumn226.Name = "gridColumn226";
+            this.gridColumn226.Visible = true;
+            this.gridColumn226.VisibleIndex = 3;
+            // 
             // repositoryItemButtonEdit12
             // 
             this.repositoryItemButtonEdit12.AutoHeight = false;
@@ -6440,14 +6449,6 @@ namespace DiamondTrading
             // splashScreenManager1
             // 
             this.splashScreenManager1.ClosingDelay = 500;
-            // 
-            // gridColumn226
-            // 
-            this.gridColumn226.Caption = "Process Type";
-            this.gridColumn226.FieldName = "ProcessType";
-            this.gridColumn226.Name = "gridColumn226";
-            this.gridColumn226.Visible = true;
-            this.gridColumn226.VisibleIndex = 3;
             // 
             // FrmTransactionDetails
             // 

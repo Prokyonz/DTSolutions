@@ -1344,7 +1344,10 @@ namespace DiamondTrading
             string SlipNo = grvPurchaseSlipDetails.GetRowCellValue(grvPurchaseSlipDetails.FocusedRowHandle, "SlipNo").ToString();
             string FinancialYear = grvPurchaseSlipDetails.GetRowCellValue(grvPurchaseSlipDetails.FocusedRowHandle, "FinancialYearId").ToString();
             Transaction.FrmViewSlip fvs = new Transaction.FrmViewSlip(ActionType, SlipNo, FinancialYear, Id);
-            fvs.ShowDialog();
+            if(fvs.ShowDialog() == DialogResult.Cancel)
+            {
+                _= LoadGridData(true);
+            }
 
         }
 
@@ -2139,6 +2142,25 @@ namespace DiamondTrading
             fromChildLedgerReport.StartPosition = FormStartPosition.CenterScreen;
             fromChildLedgerReport.ShowDialog();
 
+        }
+
+        private void grvPurchaseSlipDetails_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+            if (e.RowHandle >= 0)
+            {
+                bool status = Convert.ToBoolean(view.GetRowCellValue(e.RowHandle, view.Columns[colPurchaseSlipPrint.FieldName]));
+
+                if (status)
+                {
+                    e.Appearance.ForeColor = Color.Green;
+                }
+                else
+                {
+                    e.Appearance.ForeColor = Color.Black;
+                }
+            }
         }
     }
 }
