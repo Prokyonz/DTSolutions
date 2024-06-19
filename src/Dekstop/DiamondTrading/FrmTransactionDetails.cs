@@ -2154,10 +2154,12 @@ namespace DiamondTrading
 
                 if (status)
                 {
-                    e.Appearance.ForeColor = Color.Green;
+                    e.Appearance.BackColor = Color.Green;
+                    e.Appearance.ForeColor = Color.White;
                 }
                 else
                 {
+                    e.Appearance.BackColor = Color.White;
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
