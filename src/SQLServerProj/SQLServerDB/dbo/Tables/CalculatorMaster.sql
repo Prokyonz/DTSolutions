@@ -1,0 +1,28 @@
+﻿CREATE TABLE [dbo].[CalculatorMaster] (
+    [Id]              NVARCHAR (450)  NOT NULL,
+    [Date]            DATETIME2 (7)   NOT NULL,
+    [UserId]          NVARCHAR (MAX)  NULL,
+    [PartyId]         NVARCHAR (MAX)  NULL,
+    [DealerId]        NVARCHAR (MAX)  NULL,
+    [BranchId]        NVARCHAR (MAX)  NULL,
+    [SizeId]          NVARCHAR (MAX)  NULL,
+    [NumberId]        NVARCHAR (MAX)  NULL,
+    [Carat]           DECIMAL (18, 4) NOT NULL,
+    [Rate]            DECIMAL (18, 4) NOT NULL,
+    [Amount]          DECIMAL (18, 4) NOT NULL,
+    [Percentage]      DECIMAL (18, 2) NOT NULL,
+    [CreatedDate]     DATETIME2 (7)   NOT NULL,
+    [CreatedBy]       NVARCHAR (MAX)  NULL,
+    [UpdatedDate]     DATETIME2 (7)   NULL,
+    [UpdatedBy]       NVARCHAR (MAX)  NULL,
+    [IsDelete]        BIT             NOT NULL,
+    [NetCarat]        DECIMAL (18, 4) DEFAULT ((0.0)) NOT NULL,
+    [TotalCarat]      DECIMAL (18, 4) DEFAULT ((0.0)) NOT NULL,
+    [Sr]              INT             IDENTITY (1, 1) NOT NULL,
+    [SrNo]            INT             DEFAULT ((0)) NOT NULL,
+    [CompanyId]       NVARCHAR (MAX)  NULL,
+    [FinancialYearId] NVARCHAR (MAX)  NULL,
+    [Note]            NVARCHAR (MAX)  NULL,
+    CONSTRAINT [PK_CalculatorMaster] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+

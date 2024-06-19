@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[AccountToAssortMaster] (
+    [Id]                  NVARCHAR (450) NOT NULL,
+    [Sr]                  INT            IDENTITY (1, 1) NOT NULL,
+    [CompanyId]           NVARCHAR (450) NULL,
+    [BranchId]            NVARCHAR (MAX) NULL,
+    [FinancialYearId]     NVARCHAR (MAX) NULL,
+    [EntryDate]           NVARCHAR (MAX) NULL,
+    [EntryTime]           NVARCHAR (MAX) NULL,
+    [AccountToAssortType] INT            NOT NULL,
+    [FromParyId]          NVARCHAR (MAX) NULL,
+    [ToPartyId]           NVARCHAR (MAX) NULL,
+    [KapanId]             NVARCHAR (MAX) NULL,
+    [Department]          INT            NOT NULL,
+    [Remarks]             NVARCHAR (MAX) NULL,
+    [IsDelete]            BIT            NOT NULL,
+    [CreatedDate]         DATETIME2 (7)  NOT NULL,
+    [UpdatedDate]         DATETIME2 (7)  NULL,
+    [CreatedBy]           NVARCHAR (MAX) NULL,
+    [UpdatedBy]           NVARCHAR (MAX) NULL,
+    [TransferId]          NVARCHAR (MAX) NULL,
+    [TransferEntryId]     NVARCHAR (MAX) NULL,
+    [TransferType]        NVARCHAR (MAX) NULL,
+    [EntryType]           INT            NOT NULL,
+    CONSTRAINT [PK_AccountToAssortMaster] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT [FK_AccountToAssortMaster_CompanyMaster_CompanyId] FOREIGN KEY ([CompanyId]) REFERENCES [dbo].[CompanyMaster] ([Id])
+);
+

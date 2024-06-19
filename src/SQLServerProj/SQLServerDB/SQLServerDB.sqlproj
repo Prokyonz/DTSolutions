@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>SQLServerDB</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{5e757ca3-a7dc-41fe-b461-812390ecd440}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>SQLServerDB</RootNamespace>
+    <AssemblyName>SQLServerDB</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\UserPermissionChild.sql" />
+    <Build Include="dbo\Tables\UserMaster.sql" />
+    <Build Include="dbo\Tables\UserCompanyMappings.sql" />
+    <Build Include="dbo\Tables\TransferViewModel.sql" />
+    <Build Include="dbo\Tables\TransferMaster.sql" />
+    <Build Include="dbo\Tables\TransferDetails.sql" />
+    <Build Include="dbo\Tables\tblSlipPrint.sql" />
+    <Build Include="dbo\Tables\tblJangadPrint.sql" />
+    <Build Include="dbo\Tables\SPWeeklyPurchaseReport.sql" />
+    <Build Include="dbo\Tables\SPValidationModel.sql" />
+    <Build Include="dbo\Tables\SPTransferCategoryList.sql" />
+    <Build Include="dbo\Tables\SPStockReportModelReport.sql" />
+    <Build Include="dbo\Tables\SPSlipDetailPrintModel.sql" />
+    <Build Include="dbo\Tables\SPSalesModel.sql" />
+    <Build Include="dbo\Tables\SPSalesChildReport.sql" />
+    <Build Include="dbo\Tables\SPSalaryReport.sql" />
+    <Build Include="dbo\Tables\SPRejectionSendReceiveReport.sql" />
+    <Build Include="dbo\Tables\SPRejectionSendReceiveModel.sql" />
+    <Build Include="dbo\Tables\SPRejectionPendingReport.sql" />
+    <Build Include="dbo\Tables\SPPurchaseSlipDetailsModel.sql" />
+    <Build Include="dbo\Tables\SPPurchaseModel.sql" />
+    <Build Include="dbo\Tables\SPPurchaseChildReport.sql" />
+    <Build Include="dbo\Tables\SPProfitLossReport.sql" />
+    <Build Include="dbo\Tables\SPPFReportModels.sql" />
+    <Build Include="dbo\Tables\SPPaymentPSSlipDetails.sql" />
+    <Build Include="dbo\Tables\SPPaymentModel.sql" />
+    <Build Include="dbo\Tables\SPPayableReceivableReport.sql" />
+    <Build Include="dbo\Tables\SPPartyMaster.sql" />
+    <Build Include="dbo\Tables\SPOpeningStockSPModel.sql" />
+    <Build Include="dbo\Tables\SPNumberProcessSendReceiveReportModels.sql" />
+    <Build Include="dbo\Tables\SPNumberProcessSend.sql" />
+    <Build Include="dbo\Tables\SPNumberProcessReturn.sql" />
+    <Build Include="dbo\Tables\SPNumberProcessReceive.sql" />
+    <Build Include="dbo\Tables\SPNumberkReportModelReport.sql" />
+    <Build Include="dbo\Tables\SPMixedReportModel.sql" />
+    <Build Include="dbo\Tables\SPLoanReportModel.sql" />
+    <Build Include="dbo\Tables\SPLedgerChildReport.sql" />
+    <Build Include="dbo\Tables\SPLedgerBalanceReport.sql" />
+    <Build Include="dbo\Tables\SPKapanMappingReportModel.sql" />
+    <Build Include="dbo\Tables\SPKapanMapping.sql" />
+    <Build Include="dbo\Tables\SPKapanLagadReportModel.sql" />
+    <Build Include="dbo\Tables\SPJangadSendReceiveReportModel.sql" />
+    <Build Include="dbo\Tables\SPGalaProcessSendReceiveReportModels.sql" />
+    <Build Include="dbo\Tables\SPGalaProcessSend.sql" />
+    <Build Include="dbo\Tables\SPGalaProcessReceive.sql" />
+    <Build Include="dbo\Tables\SPExpenseModel.sql" />
+    <Build Include="dbo\Tables\SPContraModel.sql" />
+    <Build Include="dbo\Tables\SPCharniSendReceiveReportModels.sql" />
+    <Build Include="dbo\Tables\SPCharniProcessSend.sql" />
+    <Build Include="dbo\Tables\SPCharniProcessReceive.sql" />
+    <Build Include="dbo\Tables\SPCashBankReport.sql" />
+    <Build Include="dbo\Tables\SPBoilSendReceiveReportModels.sql" />
+    <Build Include="dbo\Tables\SPBoilProcessSend.sql" />
+    <Build Include="dbo\Tables\SPBoilProcessReceive.sql" />
+    <Build Include="dbo\Tables\SPBalanceSheetReport.sql" />
+    <Build Include="dbo\Tables\SPAssortmentProcessSend.sql" />
+    <Build Include="dbo\Tables\SPAccountToAssortSendReceiveReportModels.sql" />
+    <Build Include="dbo\Tables\SPAccountToAssoftReceiveReportModel.sql" />
+    <Build Include="dbo\Tables\SlipTransferEntry.sql" />
+    <Build Include="dbo\Tables\SizeMaster.sql" />
+    <Build Include="dbo\Tables\ShapeMaster.sql" />
+    <Build Include="dbo\Tables\SalesMaster.sql" />
+    <Build Include="dbo\Tables\SalesItemDetails.sql" />
+    <Build Include="dbo\Tables\SalesDetailsSummary.sql" />
+    <Build Include="dbo\Tables\SalesDetails.sql" />
+    <Build Include="dbo\Tables\SalaryMaster.sql" />
+    <Build Include="dbo\Tables\SalaryDetails.sql" />
+    <Build Include="dbo\Tables\RejectionInOutMaster.sql" />
+    <Build Include="dbo\Tables\PurityMaster.sql" />
+    <Build Include="dbo\Tables\PurchaseMaster.sql" />
+    <Build Include="dbo\Tables\PurchaseDetails.sql" />
+    <Build Include="dbo\Tables\PriceSPModel.sql" />
+    <Build Include="dbo\Tables\PriceMasterMobile.sql" />
+    <Build Include="dbo\Tables\PriceMaster.sql" />
+    <Build Include="dbo\Tables\PermissionMaster.sql" />
+    <Build Include="dbo\Tables\PaymentMaster.sql" />
+    <Build Include="dbo\Tables\PaymentDetails.sql" />
+    <Build Include="dbo\Tables\PartyMaster.sql" />
+    <Build Include="dbo\Tables\OpeningStockMaster.sql" />
+    <Build Include="dbo\Tables\NumberProcessMaster.sql" />
+    <Build Include="dbo\Tables\NumberMaster.sql" />
+    <Build Include="dbo\Tables\LoanMaster.sql" />
+    <Build Include="dbo\Tables\LessWeightMasters.sql" />
+    <Build Include="dbo\Tables\LessWeightDetails.sql" />
+    <Build Include="dbo\Tables\LedgerBalanceManager.sql" />
+    <Build Include="dbo\Tables\KapanMaster.sql" />
+    <Build Include="dbo\Tables\KapanMappingMaster.sql" />
+    <Build Include="dbo\Tables\JangadSPReceiveModel.sql" />
+    <Build Include="dbo\Tables\JangadPrintDetailModel.sql" />
+    <Build Include="dbo\Tables\JangadMaster.sql" />
+    <Build Include="dbo\Tables\GroupPaymentMaster.sql" />
+    <Build Include="dbo\Tables\GalaProcessMaster.sql" />
+    <Build Include="dbo\Tables\GalaMaster.sql" />
+    <Build Include="dbo\Tables\FinancialYearMaster.sql" />
+    <Build Include="dbo\Tables\ExpenseMaster.sql" />
+    <Build Include="dbo\Tables\ExpenseDetails.sql" />
+    <Build Include="dbo\Tables\CurrencyMaster.sql" />
+    <Build Include="dbo\Tables\ContraEntryMaster.sql" />
+    <Build Include="dbo\Tables\ContraEntryDetails.sql" />
+    <Build Include="dbo\Tables\CompanyOptions.sql" />
+    <Build Include="dbo\Tables\CompanyMaster.sql" />
+    <Build Include="dbo\Tables\CharniProcessMaster.sql" />
+    <Build Include="dbo\Tables\CaratCategoryType.sql" />
+    <Build Include="dbo\Tables\CalculatorMaster.sql" />
+    <Build Include="dbo\Tables\BrokerageMaster.sql" />
+    <Build Include="dbo\Tables\BranchMaster.sql" />
+    <Build Include="dbo\Tables\BoilProcessMaster.sql" />
+    <Build Include="dbo\Tables\BillPrintModel.sql" />
+    <Build Include="dbo\Tables\ApprovalPermissionMaster.sql" />
+    <Build Include="dbo\Tables\AccountToAssortMaster.sql" />
+    <Build Include="dbo\Tables\AccountToAssortDetails.sql" />
+    <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
+    <Build Include="dbo\Views\TransferMaster_Details_Numbers.sql" />
+    <Build Include="Security\admin.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\CSVToTable.sql" />
+    <Build Include="dbo\Functions\GetTransferToDetails_Backup.sql" />
+    <Build Include="dbo\Functions\GetTransferToDetails.sql" />
+    <Build Include="dbo\Functions\GetTransferFromDetails_Backup.sql" />
+    <Build Include="dbo\Functions\GetTransferFromDetails.sql" />
+    <Build Include="dbo\Functions\GetSaleRejectionReceiveDetails.sql" />
+    <Build Include="dbo\Functions\GetRejectionOutDetail.sql" />
+    <Build Include="dbo\Functions\GetPurchaseRejectionReturnDetails.sql" />
+    <Build Include="dbo\Functions\GetKapanSaleDetail.sql" />
+    <Build Include="dbo\Functions\GetKapanPurchaseExpenseDetail.sql" />
+    <Build Include="dbo\Functions\GetKapanPurchaseDetails.sql" />
+    <Build Include="dbo\Functions\GetKapanOpeningBalance.sql" />
+    <Build Include="dbo\Functions\GetKapanLagadDetails.sql" />
+    <Build Include="dbo\Functions\GetAssortmentReceiveDetails.sql" />
+    <Build Include="dbo\Stored Procedures\Validate_Records.sql" />
+    <Build Include="dbo\Stored Procedures\GetWeeklyPurchaseReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetTypeDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetTransferCategoryList.sql" />
+    <Build Include="dbo\Stored Procedures\GetStockReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetSlipDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetSalesSlipDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetSalesReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetSalesItemDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetSalaryReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetRejectionSendReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetRejectionProcessReceivedDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetRejectInOutReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetReceivablePayableReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetPurchaseSlipPrintList.sql" />
+    <Build Include="dbo\Stored Procedures\GetPurchaseSlipDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetPurchaseReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetPurchaseDetailsForEdit.sql" />
+    <Build Include="dbo\Stored Procedures\GetPSSlipDetailsForPayment.sql" />
+    <Build Include="dbo\Stored Procedures\GetProfitAndLoss.sql" />
+    <Build Include="dbo\Stored Procedures\GetPFReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetPendingKapanMapping.sql" />
+    <Build Include="dbo\Stored Procedures\getPaymentReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetPartyMasterReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetOpeningStockReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetNumberSendReceiveReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetNumberProcessSendToDetail_bk_20220308.sql" />
+    <Build Include="dbo\Stored Procedures\GetNumberProcessSendToDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetNumberProcessReturnDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetNumberProcessReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetMixedRepot.sql" />
+    <Build Include="dbo\Stored Procedures\GetLoanReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetLedgerChildReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetLedgerBalanceReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetKapanReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetKapanLagadReportDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetJangadReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetJangadReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetJangadPrintDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetGalaSendReceiveReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetGalaProcessSendToDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetGalaProcessReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetExpenseReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetDefaultSizeNumberDetailsForPriceMaster.sql" />
+    <Build Include="dbo\Stored Procedures\GetContraReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetChildSalesReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetChildPurchaseReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetCharniToDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetCharniSendReceiveReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetCharniProcessReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetCharniDetailsForSales.sql" />
+    <Build Include="dbo\Stored Procedures\GetCashBankReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetCalulatorDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetBoilSendReceiveReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetBoilProcessSendToDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetBoilProcessReceiveDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetBalanceSheet.sql" />
+    <Build Include="dbo\Stored Procedures\GetAvailableSlipsDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetAvailableSlipDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetAssortSendReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetAssortReceiveReport.sql" />
+    <Build Include="dbo\Stored Procedures\GetAssortProcessSendToDetail_bk.sql" />
+    <Build Include="dbo\Stored Procedures\GetAssortProcessSendToDetail.sql" />
+    <Build Include="dbo\Stored Procedures\GetAssortProcessKapanDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllNumberStockDetails_New.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllNumberStockDetails.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllKapanLagadSummary.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllKapanLagadDetails_bk_20340308.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllKapanLagadDetails_bk_20240308.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllKapanLagadDetails_bk.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllKapanLagadDetails.sql" />
+    <Build Include="dbo\Stored Procedures\CheckIsKapanMapEntryProcessed.sql" />
+  </ItemGroup>
+</Project>

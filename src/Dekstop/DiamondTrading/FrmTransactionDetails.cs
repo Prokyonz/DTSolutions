@@ -1,26 +1,18 @@
-﻿using DevExpress.Export;
-using DevExpress.XtraEditors;
+﻿using DevExpress.XtraEditors;
 using DevExpress.XtraGrid;
 using DevExpress.XtraGrid.Views.Grid;
-using DevExpress.XtraPrinting;
 using DiamondTrading.Transaction;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevExpress.XtraPrinting;
-using DevExpress.XtraPrintingLinks;
-using DevExpress.XtraGrid;
-using DevExpress.XtraSplashScreen;
 using DiamondTrading.Utility;
 
 namespace DiamondTrading

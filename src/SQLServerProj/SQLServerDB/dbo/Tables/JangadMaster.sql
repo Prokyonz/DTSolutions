@@ -1,0 +1,27 @@
+﻿CREATE TABLE [dbo].[JangadMaster] (
+    [Id]              NVARCHAR (450)  NOT NULL,
+    [Sr]              INT             IDENTITY (1, 1) NOT NULL,
+    [SrNo]            INT             NOT NULL,
+    [ReceivedSrNo]    INT             NOT NULL,
+    [CompanyId]       NVARCHAR (MAX)  NULL,
+    [BranchId]        NVARCHAR (MAX)  NULL,
+    [FinancialYearId] NVARCHAR (MAX)  NULL,
+    [PartyId]         NVARCHAR (MAX)  NULL,
+    [BrokerId]        NVARCHAR (MAX)  NULL,
+    [SizeId]          NVARCHAR (MAX)  NULL,
+    [Totalcts]        DECIMAL (18, 4) NOT NULL,
+    [Rate]            DECIMAL (18, 4) NOT NULL,
+    [Amount]          FLOAT (53)      NOT NULL,
+    [Image1]          VARBINARY (MAX) NULL,
+    [Image2]          VARBINARY (MAX) NULL,
+    [Image3]          VARBINARY (MAX) NULL,
+    [Remarks]         NVARCHAR (MAX)  NULL,
+    [EntryType]       INT             NOT NULL,
+    [IsDelete]        BIT             NOT NULL,
+    [CreatedDate]     DATETIME2 (7)   NOT NULL,
+    [UpdatedDate]     DATETIME2 (7)   NULL,
+    [CreatedBy]       NVARCHAR (MAX)  NULL,
+    [UpdatedBy]       NVARCHAR (MAX)  NULL,
+    CONSTRAINT [PK_JangadMaster] PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
