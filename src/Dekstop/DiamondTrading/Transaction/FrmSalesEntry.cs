@@ -1814,6 +1814,7 @@ namespace DiamondTrading.Transaction
                     {
                         DataView dtView = new DataView();
                         string SalesDetailsId = Guid.NewGuid().ToString();
+                        salesDetailsSummaryList = new List<SalesDetailsSummary>();
 
                         #region "Sales Details Summary"
                         DataTable dt = new DataTable();
@@ -1944,6 +1945,7 @@ namespace DiamondTrading.Transaction
                             if (dtView.Count > 0)
                             {
                                 SalesDetailsSummary salesDetailsSummary;
+                                int j = 0;
                                 foreach (DataRowView row in dtView)
                                 {
                                     salesDetailsSummary = new SalesDetailsSummary();
@@ -1979,7 +1981,8 @@ namespace DiamondTrading.Transaction
                                     salesDetailsSummary.UpdatedDate = DateTime.Now;
                                     salesDetailsSummary.UpdatedBy = Common.LoginUserID;
 
-                                    salesDetailsSummaryList.Insert(i, salesDetailsSummary);
+                                    salesDetailsSummaryList.Insert(j, salesDetailsSummary);
+                                    j++;
                                 }
                             }
                         }
@@ -2123,6 +2126,7 @@ namespace DiamondTrading.Transaction
                             {
                                 DataView dtView = new DataView();
                                 string SalesDetailsId = Guid.NewGuid().ToString();
+                                salesDetailsSummaryList = new List<SalesDetailsSummary>();
 
                                 if (string.IsNullOrWhiteSpace(grvPurchaseDetails.GetRowCellValue(i, colSalesDetailId).ToString()))
                                     SalesDetailsId = Guid.NewGuid().ToString();
@@ -2259,6 +2263,7 @@ namespace DiamondTrading.Transaction
                                     if (dtView.Count > 0)
                                     {
                                         SalesDetailsSummary salesDetailsSummary;
+                                        int j = 0;
                                         foreach (DataRowView row in dtView)
                                         {
                                             salesDetailsSummary = new SalesDetailsSummary();
@@ -2294,7 +2299,8 @@ namespace DiamondTrading.Transaction
                                             salesDetailsSummary.UpdatedDate = DateTime.Now;
                                             salesDetailsSummary.UpdatedBy = Common.LoginUserID;
 
-                                            salesDetailsSummaryList.Insert(i, salesDetailsSummary);
+                                            salesDetailsSummaryList.Insert(j, salesDetailsSummary);
+                                            j++;
                                         }
                                     }
                                 }
