@@ -1,5 +1,5 @@
 ﻿--GetReceivablePayableReport '9ce68881-bee2-44a1-8a9f-4449303accde','2ac16086-fb8c-4e2c-803b-1748dbe4fd30', 0 
-CREATE proc [GetReceivablePayableReport]              
+CREATE proc [dbo].[GetReceivablePayableReport]              
 @CompanyId as varchar(50)='',         
 @FinancialYear as varchar(50) ='',        
 @Type int = 0        
@@ -22,7 +22,9 @@ BEGIN
  PaymentTo varchar(200),     
  ReceiptFrom decimal(18,2),     
  ReceiptTo decimal(18,2),     
- ClosingBalance decimal(18,2))        
+ ClosingBalance decimal(18,2),
+ Debit decimal(18,2),
+ Credit decimal(18,2))        
  INSERT @tempTable EXEC [GetLedgerBalanceReport] @CompanyId, @FinancialYear        
         
  IF @Type = 0        
