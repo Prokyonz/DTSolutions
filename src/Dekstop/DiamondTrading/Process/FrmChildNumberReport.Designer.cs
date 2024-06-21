@@ -422,7 +422,7 @@ namespace DiamondTrading.Process
             // 
             // grdColName
             // 
-            this.grdColName.Caption = "Number";
+            this.grdColName.Caption = "Number/Size";
             this.grdColName.FieldName = "Name";
             this.grdColName.Name = "grdColName";
             this.grdColName.Visible = true;

@@ -1131,7 +1131,7 @@ namespace DiamondTrading
             else if (id == "2")
             {
 
-                FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport(numberReportModelReports);
+                FrmChildNumberReport frmChildNumberReport = new FrmChildNumberReport(numberReportModelReports, 1);
                 frmChildNumberReport.Text = "Number Child Report";
                 frmChildNumberReport.StartPosition = FormStartPosition.CenterScreen;
                 frmChildNumberReport.WindowState = FormWindowState.Maximized;
