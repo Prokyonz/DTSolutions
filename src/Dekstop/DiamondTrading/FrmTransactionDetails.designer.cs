@@ -464,6 +464,8 @@ namespace DiamondTrading
             this.gridColumn103 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn104 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn121 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnDebitColumn = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumnCreditColumn = new DevExpress.XtraGrid.Columns.GridColumn();
             this.repositoryItemButtonEdit2 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.xtabWeeklyPurchaseReport = new DevExpress.XtraTab.XtraTabPage();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
@@ -4407,7 +4409,9 @@ namespace DiamondTrading
             this.gridColumn102,
             this.gridColumn103,
             this.gridColumn104,
-            this.gridColumn121});
+            this.gridColumn121,
+            this.gridColumnDebitColumn,
+            this.gridColumnCreditColumn});
             this.grvLedgerReport.GridControl = this.gridControlLedgerReport;
             this.grvLedgerReport.Name = "grvLedgerReport";
             this.grvLedgerReport.OptionsBehavior.ReadOnly = true;
@@ -4437,7 +4441,7 @@ namespace DiamondTrading
             new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Count, "Name", "Total={0}")});
             this.gridColumn101.Visible = true;
             this.gridColumn101.VisibleIndex = 0;
-            this.gridColumn101.Width = 579;
+            this.gridColumn101.Width = 393;
             // 
             // gridColumn102
             // 
@@ -4446,7 +4450,7 @@ namespace DiamondTrading
             this.gridColumn102.Name = "gridColumn102";
             this.gridColumn102.Visible = true;
             this.gridColumn102.VisibleIndex = 1;
-            this.gridColumn102.Width = 140;
+            this.gridColumn102.Width = 112;
             // 
             // gridColumn103
             // 
@@ -4455,7 +4459,7 @@ namespace DiamondTrading
             this.gridColumn103.Name = "gridColumn103";
             this.gridColumn103.Visible = true;
             this.gridColumn103.VisibleIndex = 2;
-            this.gridColumn103.Width = 132;
+            this.gridColumn103.Width = 101;
             // 
             // gridColumn104
             // 
@@ -4471,9 +4475,29 @@ namespace DiamondTrading
             this.gridColumn121.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
             this.gridColumn121.FieldName = "ClosingBalance";
             this.gridColumn121.Name = "gridColumn121";
-            this.gridColumn121.Visible = true;
-            this.gridColumn121.VisibleIndex = 3;
-            this.gridColumn121.Width = 210;
+            this.gridColumn121.Width = 115;
+            // 
+            // gridColumnDebitColumn
+            // 
+            this.gridColumnDebitColumn.Caption = "Debit";
+            this.gridColumnDebitColumn.DisplayFormat.FormatString = "n";
+            this.gridColumnDebitColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumnDebitColumn.FieldName = "Debit";
+            this.gridColumnDebitColumn.Name = "gridColumnDebitColumn";
+            this.gridColumnDebitColumn.Visible = true;
+            this.gridColumnDebitColumn.VisibleIndex = 3;
+            this.gridColumnDebitColumn.Width = 91;
+            // 
+            // gridColumnCreditColumn
+            // 
+            this.gridColumnCreditColumn.Caption = "Credit";
+            this.gridColumnCreditColumn.DisplayFormat.FormatString = "n";
+            this.gridColumnCreditColumn.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.gridColumnCreditColumn.FieldName = "Credit";
+            this.gridColumnCreditColumn.Name = "gridColumnCreditColumn";
+            this.gridColumnCreditColumn.Visible = true;
+            this.gridColumnCreditColumn.VisibleIndex = 4;
+            this.gridColumnCreditColumn.Width = 94;
             // 
             // repositoryItemButtonEdit2
             // 
@@ -7189,5 +7213,7 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn251;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView39;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn226;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnDebitColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumnCreditColumn;
     }
 }
