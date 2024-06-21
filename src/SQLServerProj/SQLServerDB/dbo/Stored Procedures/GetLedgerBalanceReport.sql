@@ -31,21 +31,61 @@ BEGIN
 	WHEN SubType=16 THEN 'Salaried'
    END AS SubType,   
   
-   LBM.Id, PM.Name, LBM.CompanyId, LBM.FinancialYearId, LBM.LedgerId, (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance * -1 ELSE LBM.Balance END) 'OpeningBalance', ISNULL(Purchase.Amount,0) 'PurchaseAmount', ISNULL(Brokerage.Amount, 0) 'Brokerage',  
-   ISNULL(Sales.Amount,0) 'SalesAmount', ISNULL(PaymentFrom.Amount,0) 'PaymentFrom', ISNULL(PaymentTo.Amount,0) 'PaymentTo',  
-   ISNULL(ReceiptFrom.Amount, 0) 'ReceiptFrom', ISNULL(ReceivedTo.Amount, 0) 'ReceiptTo',      
+   LBM.Id, PM.Name, LBM.CompanyId, LBM.FinancialYearId, LBM.LedgerId, (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance * -1 ELSE LBM.Balance END) 'OpeningBalance', 
+   ISNULL(Purchase.Amount,0) 'PurchaseAmount', ISNULL(Brokerage.Amount, 0) 'Brokerage',  
+   ISNULL(Sales.Amount,0) 'SalesAmount', ISNULL(PaymentFrom.Amount,0) 'PaymentFrom', ISNULL(PaymentTo.Amount,0) 'PaymentTo', ISNULL(ReceiptFrom.Amount, 0) 'ReceiptFrom', 
+   ISNULL(ReceivedTo.Amount, 0) 'ReceiptTo',      
     
 	--SUM of Debit - SUM of Credit
    ((ISNULL(LoansGiven.Amount, 0) + ISNULL(Sales.Amount,0) + ISNULL(PaymentTo.Amount,0) + ISNULL(PaymentFrom.Amount,0) + (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance ELSE 0 END))  
    - ((CASE WHEN PM.CRDRType = 0 THEN 0 ELSE LBM.Balance END) + ISNULL(LoansReceive.Amount, 0) + ISNULL(Purchase.Amount,0) + ISNULL(ReceiptFrom.Amount, 0) + ISNULL(ReceivedTo.Amount, 0) +   
-   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))) 'ClosingBalance'  
+   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))) 'ClosingBalance',
+
+   -- Setup Debit and Credit Columns based on ClosingBalance, ClosingBalance > 0 'Credit' else 'Debit' without minus sign
+   (CASE WHEN 
+
+   ((ISNULL(LoansGiven.Amount, 0) + ISNULL(Sales.Amount,0) + ISNULL(PaymentTo.Amount,0) + ISNULL(PaymentFrom.Amount,0) + (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance ELSE 0 END))  
+   - ((CASE WHEN PM.CRDRType = 0 THEN 0 ELSE LBM.Balance END) + ISNULL(LoansReceive.Amount, 0) + ISNULL(Purchase.Amount,0) + ISNULL(ReceiptFrom.Amount, 0) + ISNULL(ReceivedTo.Amount, 0) +   
+   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))) >= 0
+
+   THEN
+
+   ISNULL(((ISNULL(LoansGiven.Amount, 0) + ISNULL(Sales.Amount,0) + ISNULL(PaymentTo.Amount,0) + ISNULL(PaymentFrom.Amount,0) + (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance ELSE 0 END))  
+   - ((CASE WHEN PM.CRDRType = 0 THEN 0 ELSE LBM.Balance END) + ISNULL(LoansReceive.Amount, 0) + ISNULL(Purchase.Amount,0) + ISNULL(ReceiptFrom.Amount, 0) + ISNULL(ReceivedTo.Amount, 0) +   
+   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))),0)
+
+   ELSE 
+
+   0.00
+
+   END) 'Credit',
+
+   (CASE WHEN 
+
+   ((ISNULL(LoansGiven.Amount, 0) + ISNULL(Sales.Amount,0) + ISNULL(PaymentTo.Amount,0) + ISNULL(PaymentFrom.Amount,0) + (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance ELSE 0 END))  
+   - ((CASE WHEN PM.CRDRType = 0 THEN 0 ELSE LBM.Balance END) + ISNULL(LoansReceive.Amount, 0) + ISNULL(Purchase.Amount,0) + ISNULL(ReceiptFrom.Amount, 0) + ISNULL(ReceivedTo.Amount, 0) +   
+   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))) <= 0
+
+   THEN
+
+   ISNULL(((ISNULL(LoansGiven.Amount, 0) + ISNULL(Sales.Amount,0) + ISNULL(PaymentTo.Amount,0) + ISNULL(PaymentFrom.Amount,0) + (CASE WHEN PM.CRDRType = 0 THEN LBM.Balance ELSE 0 END))  
+   - ((CASE WHEN PM.CRDRType = 0 THEN 0 ELSE LBM.Balance END) + ISNULL(LoansReceive.Amount, 0) + ISNULL(Purchase.Amount,0) + ISNULL(ReceiptFrom.Amount, 0) + ISNULL(ReceivedTo.Amount, 0) +   
+   ISNULL(Salary.Amount, 0) + ISNULL(Brokerage.Amount, 0) + ISNULL(BrokerageSales.Amount, 0) + ISNULL(Buyer.Amount,0) + ISNULL(Saler.Amount, 0))) * -1,0)   
+
+   ELSE 
+
+   0.00
+
+   END) 'Debit'
+
+
      
    FROM LedgerBalanceManager LBM --Inner Join PartyMaster PMs ON LBM.LedgerId = PMs.Id  
 
 
     LEFT JOIN   
     (  
-	SELECT K.RecType, K.FromPartyId, K.Name, SUM(Amount) 'Amount' FROM (
+	 SELECT K.RecType, K.FromPartyId, K.Name, SUM(Amount) 'Amount' FROM (
      SELECT 'Purchase' RecType, PartyId 'FromPartyId', PM.Name, CAST(ISNULL(GrossTotal,0) AS DECIMAL(18,2)) 'Amount' From PurchaseMaster P  
      INNER JOIN PartyMaster PM ON PM.Id = P.PartyId  
      WHERE P.IsDelete=0 AND P.FinancialYearId = @FinancialYearId AND p.CompanyId = @CompanyId  
@@ -257,7 +297,12 @@ BEGIN
 
   UNION ALL
 
-  SELECT 0 'PartyType', 'Direct Expense' 'Type' , '' 'SubType', CONVERT(VARCHAR(50), NEWID()) 'Id', 'DIRECT EXPENSE' 'Name',  @CompanyId 'CompanyName', @FinancialYearId 'FinancialYearId', CONVERT(VARCHAR(50), NEWID()) 'LedgerId', '0' 'OpeningBalance', 0 'PurchaseAmount', 125000.00 'Brokerage', 0 'SaleswAmount', 0 'PaymentFrom', 0 'PaymentTo', 0 'ReceiptFrom', 0 'ReceiptTo', CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) 'ClosingBalance'
+  SELECT 0 'PartyType', 'Direct Expense' 'Type' , '' 'SubType', CONVERT(VARCHAR(50), NEWID()) 'Id', 'DIRECT EXPENSE' 'Name',  
+  @CompanyId 'CompanyName', @FinancialYearId 'FinancialYearId', CONVERT(VARCHAR(50), NEWID()) 'LedgerId', '0' 'OpeningBalance', 
+  0 'PurchaseAmount', 125000.00 'Brokerage', 0 'SaleswAmount', 0 'PaymentFrom', 0 'PaymentTo', 0 'ReceiptFrom', 0 'ReceiptTo', 
+  CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) 'ClosingBalance',
+  CASE WHEN CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) >= 0 THEN CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) ELSE 0.00 END 'Credit',
+  CASE WHEN CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) < 0 THEN CAST(ISNULL(SUM(Amount),0) AS Decimal(18,2)) ELSE 0.00 END 'Debit'
 
   FROM (
 
@@ -270,7 +315,6 @@ BEGIN
 	WHERE IsDelete = 0 AND CompanyId=@CompanyId AND FinancialYearId = @FinancialYearId
 
   )T
-
 
   Order By PM.Name ASC 
   
