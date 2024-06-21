@@ -1505,7 +1505,7 @@ namespace DiamondTrading.Transaction
                             numberProcessMaster.CreatedBy = Common.LoginUserID;
                             numberProcessMaster.UpdatedDate = DateTime.Now;
                             numberProcessMaster.UpdatedBy = Common.LoginUserID;
-                            numberProcessMaster.TransferCaratRate = 0;
+                            numberProcessMaster.TransferCaratRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
                             numberProcessMaster.PurchaseMasterId = PurchaseId;
                             numberProcessMaster.PurchaseDetailsId = purchaseDetails.Id;
 
@@ -1674,7 +1674,7 @@ namespace DiamondTrading.Transaction
                             numberProcessMaster.CreatedBy = Common.LoginUserID;
                             numberProcessMaster.UpdatedDate = DateTime.Now;
                             numberProcessMaster.UpdatedBy = Common.LoginUserID;
-                            numberProcessMaster.TransferCaratRate = 0;
+                            numberProcessMaster.TransferCaratRate = float.Parse(grvPurchaseDetails.GetRowCellValue(i, colRate).ToString());
                             numberProcessMaster.PurchaseMasterId = purchaseDetails.PurchaseId;
                             numberProcessMaster.PurchaseDetailsId = purchaseDetails.Id;
 
