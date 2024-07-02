@@ -73,7 +73,7 @@ IF @ActionType = 0
  ORDER BY 
 	SM.Date,
 	SM.Time,
-	SM.SlipNo DESC         
+	convert(numeric(18,0),SM.SlipNo) DESC         
         
 ELSE        
         

@@ -21,7 +21,7 @@ from salesdetailssummary sds
 where sds.Category=1                        
 and sds.PurchaseDetailsId=pd.Id          
 and sds.SlipNo=convert(varchar,pm.SlipNo) and sds.ShapeId=pd.ShapeId and sds.SizeId=pd.SizeId and sds.PurityId=pd.PurityId                        
-and sds.FinancialYearId=pm.FinancialYearId                        
+and sds.FinancialYearId=pm.FinancialYearId and sds.CompanyId=pm.CompanyId and sds.KapanId=km.KapanId         
 union all          
 select sum(AssignWeight)'Weight'        
 from AccountToAssortDetails a                        
@@ -42,7 +42,7 @@ left join ShapeMaster s on s.Id=pd.ShapeId
 left join SizeMaster sm on sm.Id=pd.SizeId                        
 left join PurityMaster p on p.Id=pd.PurityId                      
 where pm.CompanyId=@CompanyId and pm.FinancialYearId=@FinancialYear  --Removed the branchid condition as per riddesh                      
-group by km.KapanId,pm.SlipNo,k.Name,pd.ShapeId,s.Name,pd.SizeId,sm.Name,pd.PurityId,p.Name,pm.FinancialYearId,pd.Id,pd.PurchaseId                        
+group by km.KapanId,pm.SlipNo,k.Name,pd.ShapeId,s.Name,pd.SizeId,sm.Name,pd.PurityId,p.Name,pm.FinancialYearId,pm.CompanyId,pd.Id,pd.PurchaseId                        
 )x                        
                     
 union                    
@@ -59,7 +59,7 @@ from salesdetailssummary sds
 where sds.Category=1                        
 and sds.StockId=o.Id
 and sds.SlipNo='0' and sds.ShapeId=o.ShapeId and sds.SizeId=o.SizeId and sds.PurityId=o.PurityId                        
-and sds.FinancialYearId=o.FinancialYearId                        
+and sds.FinancialYearId=o.FinancialYearId and sds.CompanyId=o.CompanyId and sds.KapanId=o.KapanId                       
 union all     
 --Assort Send Details
 select sum(AssignWeight)'Weight'                          
@@ -87,7 +87,7 @@ left join PurityMaster p on p.Id=o.PurityId
 where Category=1                    
 and o.CompanyId=@CompanyId and FinancialYearId=@FinancialYear   
 and isnull(TransferType,'') in ('','TransferedTo') 
-group by o.Id,KapanId,k.Name,ShapeId,sh.Name, p.Name, SizeId,s.Name,PurityId,FinancialYearId            
+group by o.Id,KapanId,k.Name,ShapeId,sh.Name, p.Name, SizeId,s.Name,PurityId,FinancialYearId,o.CompanyId            
                 
 union                
 select '0' as StockId,KapanId,k.Name'Kapan',convert(varchar,SlipNo)'SlipNo',ShapeId,s.Name as 'Shape',PurchsaeDetailId,PurchaseMasterId,                

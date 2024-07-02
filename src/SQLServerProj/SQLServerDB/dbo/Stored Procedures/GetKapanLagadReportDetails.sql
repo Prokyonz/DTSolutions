@@ -28,7 +28,7 @@ as
  --group by PM.Date,PM.SlipNo,PAM.Name,PM.GrossTotal      
   SELECT 1 as Id,CAST(PM.Date as date) Date, PM.SlipNo,'' as OperationType,'' as Size,                    
  PAM.Name AS Party, PD.NetWeight as NetWeight,
- (case when PD.LessWeight > 0 then PM.GrossTotal/PD.NetWeight else PD.BuyingRate end) as 'Rate', PM.GrossTotal as Amount,'Inward' as Category, 1 as CategoryId,1 as Records    
+ (case when PD.LessWeight > 0 then PD.Amount/PD.NetWeight else PD.BuyingRate end) as 'Rate', PD.Amount as Amount,'Inward' as Category, 1 as CategoryId,1 as Records    
  FROM KapanMappingMaster KM                    
  Left JOIN [PurchaseMaster] AS PM ON PM.Id=KM.PurchaseMasterId                    
  Left JOIN [PurchaseDetails] AS PD ON PD.Id=KM.PurchaseDetailsId AND PM.Id = PD.PurchaseId                        
@@ -199,7 +199,7 @@ as
  FROM [PurchaseDetails] AS PD                   
  left JOIN [PurchaseMaster] AS PM ON PM.Id=PD.PurchaseId  
  left JOIN KapanMappingMaster KM  ON PD.Id=KM.PurchaseDetailsId  
- where KM.KapanId=@KapanId)y  
+ where KM.KapanId=@KapanId and isnull(KM.TransferType,'')='')y  
  )z                    
                    
                    
