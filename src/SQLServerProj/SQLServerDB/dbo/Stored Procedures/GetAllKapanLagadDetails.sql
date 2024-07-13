@@ -1,4 +1,5 @@
-﻿CREATE   PROC [dbo].[GetAllKapanLagadDetails]
+﻿--exec GetAllKapanLagadDetails_bk '00000000-0000-0000-0000-000000000000','2ac16086-fb8c-4e2c-803b-1748dbe4fd30'
+CREATE PROC [dbo].[GetAllKapanLagadDetails]
     @CompanyId AS VARCHAR(50),
     @FinancialYearId AS VARCHAR(50)      
 AS          
@@ -259,8 +260,8 @@ FROM (
         GETDATE() AS Date,
         'Tip Weight' AS Party,
         SUM(y.TIPWeight) + SUM(y.LessWeight) AS 'InwardNetWeight',
-        (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1) AS 'InwardRate',
-        (SUM(y.TIPWeight) + SUM(y.LessWeight)) * (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1) AS 'InwardAmount',
+        (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1 and KapanId=y.KapanId) AS 'InwardRate',
+        (SUM(y.TIPWeight) + SUM(y.LessWeight)) * (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1 and KapanId=y.KapanId) AS 'InwardAmount',
         0 AS OutwardNetWeight,
         0 AS OutwardRate,
         0 AS OutwardAmount,
@@ -279,7 +280,7 @@ FROM (
         FROM [PurchaseDetails] AS PD
         LEFT JOIN [PurchaseMaster] AS PM ON PM.Id = PD.PurchaseId
         LEFT JOIN KapanMappingMaster KM ON PD.Id = KM.PurchaseDetailsId
-        WHERE KM.KapanId IN (SELECT id FROM CSVToTable(@kapanId))
+        WHERE KM.KapanId IN (SELECT id FROM CSVToTable(@kapanId)) and isnull(KM.TransferType,'')=''
     ) y
     GROUP BY y.KapanId, y.BranchId
 ) x

@@ -65,13 +65,12 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var getReccord = await _databaseContext.TransferViewModel.FromSqlRaw($"SELECT * FROM TransferMaster_Details_Numbers;").ToListAsync();
+                string query = $"SELECT (CASE WHEN FromCategory = 1 THEN 'Kapan' ELSE 'Number' END) 'FromCategoryName', (CASE WHEN ToCategory = 1 THEN 'Kapan' ELSE 'Number' END) 'ToCategoryName' ,* FROM TransferMaster_Details_Numbers;";
+                var getReccord = await _databaseContext.TransferViewModel.FromSqlRaw(query).ToListAsync();
 
                 return getReccord;
             }
         }
-
-        
 
         public async Task<int> GetMaxAsync(string companyId, string financialYearId)
         {

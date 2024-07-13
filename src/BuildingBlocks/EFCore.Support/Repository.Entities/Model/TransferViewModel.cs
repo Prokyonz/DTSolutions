@@ -16,6 +16,7 @@ namespace Repository.Entities.Model
         public string CompanyId { get; set; }
         public string CharniSizeId { get; set; }
         public int FromCategory { get; set; }
+        public string FromCategoryName { get; set; }
         public string BranchId { get; set; }
         public string ShapeId { get; set; }
         public decimal Carat { get; set; }
@@ -23,6 +24,7 @@ namespace Repository.Entities.Model
         public double Rate { get; set; }
         public double Amount { get; set; }
         public int ToCategory { get; set; }
+        public string ToCategoryName { get; set; }
         public string ToSizeId { get; set; }
         public string ToBranchId { get; set; }
         public string ToNumberIdORKapanId { get; set; }

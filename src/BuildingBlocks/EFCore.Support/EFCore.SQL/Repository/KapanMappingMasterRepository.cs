@@ -25,7 +25,7 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                return await _databaseContext.KapanMappingMaster.Where(s => s.PurchaseMasterId == purchaseId).FirstOrDefaultAsync();
+                return await _databaseContext.KapanMappingMaster.Where(s => s.PurchaseMasterId == purchaseId && string.IsNullOrWhiteSpace(s.TransferType)).FirstOrDefaultAsync();
             }
         }
 

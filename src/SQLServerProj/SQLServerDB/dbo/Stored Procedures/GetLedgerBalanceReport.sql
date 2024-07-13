@@ -1,8 +1,8 @@
 ﻿CREATE proc [dbo].[GetLedgerBalanceReport] --'00000000-0000-0000-0000-000000000000', '2ac16086-fb8c-4e2c-803b-1748dbe4fd30'  
      
 @CompanyId as varchar(50),  
-@FinancialYearId as varchar(50)  
-  
+@FinancialYearId as varchar(50),  
+@LedgerId as VARCHAR(50) = ''  
 AS    
 BEGIN  
   SELECT PM.Type 'PartyType',  
@@ -315,7 +315,7 @@ BEGIN
 	WHERE IsDelete = 0 AND CompanyId=@CompanyId AND FinancialYearId = @FinancialYearId
 
   )T
-
+  --WHERE LedgerId=@LedgerId
   Order By PM.Name ASC 
   
 END

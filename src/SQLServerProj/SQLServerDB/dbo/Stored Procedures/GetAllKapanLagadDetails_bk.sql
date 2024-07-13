@@ -1,98 +1,343 @@
-﻿--exec GetAllKapanLagadDetails_bk 'dba610f5-d394-4cf4-bdfe-dc561bf75af4','2ac16086-fb8c-4e2c-803b-1748dbe4fd30'
-CREATE proc [dbo].[GetAllKapanLagadDetails_bk]  
-  
-@CompanyId as varchar(50),  
-@FinancialYearId as varchar(50)    
-      
-as        
-    
---drop table #tempKapanDetails        
-declare @kapanId as varchar(max)        
-set @KapanId=(select STUFF(                
-(SELECT ',' + convert(nvarchar(MAX),k.Id)        
-FROM KapanMaster k  
-order by Sr desc        
-for xml path(''),TYPE).value('.', 'varchar(MAX)'),1,1,''))        
---set @kapanId='3d992a40-c8c2-452b-8b45-0352abeb147f,9f1d241c-26e1-4878-9d70-f6b7d3c4162c,d9556fc5-a020-4a8f-ad13-eefe541ea675'        
-        
-select --ROW_NUMBER() OVER(PARTITION BY k.Name ORDER BY k.Name,x.Date,x.Id ASC) AS RowNo,k.Name,        
-x.Id,x.Date,x.Party,        
-convert(decimal(18,2),x.InwardNetWeight)'InwardNetWeight',        
-convert(decimal(18,2),x.InwardRate)'InwardRate',        
-convert(decimal(18,2),x.InwardAmount)'InwardAmount',        
-convert(decimal(18,2),x.OutwardNetWeight)'OutwardNetWeight',        
-convert(decimal(18,2),x.OutwardRate)'OutwardRate',        
-convert(decimal(18,2),x.OutwardAmount)'OutwardAmount',x.Category,x.CategoryId,x.Records,x.KapanId,x.BranchId--,b.Name as BranchName        
-into #tempKapanDetails from(        
-select Id,Date,Party, NetWeight as InwardNetWeight,Rate as InwardRate,Amount as InwardAmount, 0 as OutwardNetWeight,      
-0 as OutwardRate,0 as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetKapanOpeningBalance(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Party,       
-NetWeight as InwardNetWeight,Rate as InwardRate,Amount as InwardAmount, 0 as OutwardNetWeight,      
-0 as OutwardRate,0 as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetKapanPurchaseDetails(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Kapan +(case when Size<> null then (Size) else '' end) as Party, Weight as InwardNetWeight,Rate as InwardRate,Amount as InwardAmount, 0 as OutwardNetWeight,      
-0 as OutwardRate,0 as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetTransferToDetails(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Party, NetWeight as InwardNetWeight,Rate as InwardRate,Amount as InwardAmount, 0 as OutwardNetWeight,      
-0 as OutwardRate,0 as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetKapanPurchaseExpenseDetail(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Party, 0 as InwardNetWeight,0 as InwardRate,0 as InwardAmount,       
-NetWeight as OutwardNetWeight,Rate as OutwardRate,Amount as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetKapanSaleDetail(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Party, 0 as InwardNetWeight,0 as InwardRate,0 as InwardAmount,       
-NetWeight as OutwardNetWeight,Rate as OutwardRate,Amount as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetAssortmentReceiveDetails(@KapanId,@CompanyId,@FinancialYearId)       
-union       
-select Id,Date,Party, 0 as InwardNetWeight,0 as InwardRate,0 as InwardAmount,       
-NetWeight as OutwardNetWeight,Rate as OutwardRate,Amount as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId        
-from GetTransferFromDetails(@KapanId,@CompanyId,@FinancialYearId)
-union       
-select Id,Date,Party, 0 as InwardNetWeight,0 as InwardRate,0 as InwardAmount,       
-NetWeight as OutwardNetWeight,Rate as OutwardRate,Amount as OutwardAmount, Category,CategoryId,Records,KapanId,BranchId       
-from GetRejectionOutDetail(@KapanId,@CompanyId,@FinancialYearId)          
-)x  
+﻿--exec GetAllKapanLagadDetails_bk '00000000-0000-0000-0000-000000000000','2ac16086-fb8c-4e2c-803b-1748dbe4fd30'
+CREATE PROC [dbo].[GetAllKapanLagadDetails_bk]
+    @CompanyId AS VARCHAR(50),
+    @FinancialYearId AS VARCHAR(50)      
+AS          
 
-select ROW_NUMBER() OVER(PARTITION BY k.Name ORDER BY k.Name,x.Date,x.Id ASC) AS RowNo,k.Name, 
-x.*,
-b.Name as BranchName
-into #tempKapanDetails1
-from(
-select Id,Date,Party,InwardNetWeight,InwardRate,InwardAmount,OutwardNetWeight,OutwardRate,OutwardAmount,Category,CategoryId,Records,KapanId,BranchId 
-from #tempKapanDetails
-union
-select 4 as Id,GetDate() as Date,         
-'Tip Weight' as Party,sum(y.TIPWeight)+sum(y.LessWeight) 'InwardNetWeight',convert(decimal(18,2),(select Sum(InwardAmount)/Sum(InwardNetWeight) from #tempKapanDetails where CategoryId=1)) 'InwardRate',                     
-convert(decimal(18,2),(sum(y.TIPWeight)+sum(y.LessWeight))*(select Sum(InwardAmount)/Sum(InwardNetWeight) from #tempKapanDetails where CategoryId=1))'InwardAmount',
-0 as OutwardNetWeight,0 as OutwardRate,0 as OutwardAmount,
-'Inward' as Category, 1 as CategoryId, 1 as Records,y.KapanId,y.BranchId                   
-from(  
- SELECT distinct pd.id,pd.TIPWeight,pd.LessWeight,km.KapanId,km.BranchId  
- FROM [PurchaseDetails] AS PD                   
- left JOIN [PurchaseMaster] AS PM ON PM.Id=PD.PurchaseId  
- left JOIN KapanMappingMaster KM  ON PD.Id=KM.PurchaseDetailsId  
- where KM.KapanId in (select id from CSVToTable(@kapanId))
- )y  
- group by y.KapanId,y.BranchId 
- )x
-left join KapanMaster k on k.Id=x.KapanId        
-left join BranchMaster b on b.Id=x.BranchId      
-order by KapanId,Category    
-    
-select k1.RowNo,k1.Name,k1.Id,k1.Date,k1.Party,k1.InwardNetWeight,k1.InwardRate,k1.InwardAmount,    
-k1.OutwardNetWeight,k1.OutwardRate,k1.OutwardAmount,k1.Category,k1.CategoryId,k1.Records,    
-k1.KapanId,k1.BranchId,k1.BranchName,    
-sum(k2.InwardNetWeight)-sum(k2.OutwardNetWeight) as ClosingNetWeight,        
-(sum(k2.InwardRate)/k1.RowNo)-(sum(k2.OutwardRate)/k1.RowNo) as ClosingRate,        
-sum(k2.InwardAmount)-sum(k2.OutwardAmount) as ClosingAmount      
-from #tempKapanDetails1 k1    
-inner join #tempKapanDetails1 k2 on k1.RowNo>=k2.RowNo and k1.Name=k2.Name    
-group by k1.Name,k1.RowNo,k1.Id,k1.Date,k1.Party,k1.InwardNetWeight,k1.InwardRate,k1.InwardAmount,    
-k1.OutwardNetWeight,k1.OutwardRate,k1.OutwardAmount,k1.Category,k1.CategoryId,k1.Records,    
-k1.KapanId,k1.BranchId,k1.BranchName    
-order by k1.Name
+-- Drop table #tempKapanDetails          
+
+DECLARE @KapanId AS VARCHAR(MAX)
+
+SELECT @KapanId = STUFF(                  
+    (
+        SELECT ',' + CONVERT(NVARCHAR(MAX), k.Id)          
+        FROM KapanMaster k    
+        WHERE k.CompanyId = @CompanyId  
+		--and k.name='jk-7'
+        ORDER BY Sr DESC          
+        FOR XML PATH(''), TYPE
+    ).value('.', 'VARCHAR(MAX)'), 1, 1, '')
+
+SELECT
+    ROW_NUMBER() OVER(PARTITION BY k2.Name ORDER BY k2.Name, x.Date, x.Id ASC) AS RowNo,
+    k2.Name,
+    x.Id,
+    x.Date,
+    x.Party,
+    CONVERT(DECIMAL(18, 2), x.InwardNetWeight) AS 'InwardNetWeight',
+    CONVERT(DECIMAL(18, 2), x.InwardRate) AS 'InwardRate',
+    CONVERT(DECIMAL(18, 2), x.InwardAmount) AS 'InwardAmount',
+    CONVERT(DECIMAL(18, 2), x.OutwardNetWeight) AS 'OutwardNetWeight',
+    CONVERT(DECIMAL(18, 2), x.OutwardRate) AS 'OutwardRate',
+    CONVERT(DECIMAL(18, 2), x.OutwardAmount) AS 'OutwardAmount',
+    x.Category,
+    x.CategoryId,
+    x.Records,
+    x.KapanId,
+    x.BranchId
+INTO #tempKapanDetails
+FROM (
+    SELECT
+        Id,
+        Date,
+        Party,
+        NetWeight AS InwardNetWeight,
+        Rate AS InwardRate,
+        Amount AS InwardAmount,
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetKapanOpeningBalance(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        NetWeight AS InwardNetWeight,
+        Rate AS InwardRate,
+        Amount AS InwardAmount,
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetKapanPurchaseDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Kapan + ISNULL(Size, '') AS Party,
+        Weight AS InwardNetWeight,
+        Rate AS InwardRate,
+        Amount AS InwardAmount,
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetTransferToDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+	--Rejection receive
+	UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        NetWeight AS InwardNetWeight,
+        Rate AS InwardRate,
+        Amount AS InwardAmount,
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetSaleRejectionReceiveDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        NetWeight AS InwardNetWeight,
+        Rate AS InwardRate,
+        Amount AS InwardAmount,
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetKapanPurchaseExpenseDetail(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        0 AS InwardNetWeight,
+        0 AS InwardRate,
+        0 AS InwardAmount,
+        NetWeight AS OutwardNetWeight,
+        Rate AS OutwardRate,
+        Amount AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetKapanSaleDetail(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        0 AS InwardNetWeight,
+        0 AS InwardRate,
+        0 AS InwardAmount,
+        NetWeight AS OutwardNetWeight,
+        Rate AS OutwardRate,
+        Amount AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetAssortmentReceiveDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        0 AS InwardNetWeight,
+        0 AS InwardRate,
+        0 AS InwardAmount,
+        NetWeight AS OutwardNetWeight,
+        Rate AS OutwardRate,
+        Amount AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetTransferFromDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+    UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        0 AS InwardNetWeight,
+        0 AS InwardRate,
+        0 AS InwardAmount,
+        NetWeight AS OutwardNetWeight,
+        Rate AS OutwardRate,
+        Amount AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetRejectionOutDetail(@KapanId, @CompanyId, @FinancialYearId)
+
+	--Rejection Out
+	UNION ALL
+
+    SELECT
+        Id,
+        Date,
+        Party,
+        0 AS InwardNetWeight,
+        0 AS InwardRate,
+        0 AS InwardAmount,
+        NetWeight AS OutwardNetWeight,
+        Rate AS OutwardRate,
+        Amount AS OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM GetPurchaseRejectionReturnDetails(@KapanId, @CompanyId, @FinancialYearId)
+
+) x
+LEFT JOIN KapanMaster k2 ON k2.Id = x.KapanId
+
+SELECT
+    ROW_NUMBER() OVER(PARTITION BY k.Name ORDER BY k.Name, x.Date, x.Id ASC) AS RowNo,
+    k.Name,
+    x.*,
+    b.Name AS BranchName
+INTO #tempKapanDetails1
+FROM (
+    SELECT
+        Id,
+        Date,
+        Party,
+        InwardNetWeight,
+        InwardRate,
+        InwardAmount,
+        OutwardNetWeight,
+        OutwardRate,
+        OutwardAmount,
+        Category,
+        CategoryId,
+        Records,
+        KapanId,
+        BranchId
+    FROM #tempKapanDetails
+
+    UNION ALL
+
+    SELECT
+        4 AS Id,
+        GETDATE() AS Date,
+        'Tip Weight' AS Party,
+        SUM(y.TIPWeight) + SUM(y.LessWeight) AS 'InwardNetWeight',
+        (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1 and KapanId=y.KapanId) AS 'InwardRate',
+        (SUM(y.TIPWeight) + SUM(y.LessWeight)) * (SELECT SUM(InwardAmount) / SUM(InwardNetWeight) FROM #tempKapanDetails WHERE CategoryId = 1 and KapanId=y.KapanId) AS 'InwardAmount',
+        0 AS OutwardNetWeight,
+        0 AS OutwardRate,
+        0 AS OutwardAmount,
+        'Inward' AS Category,
+        1 AS CategoryId,
+        1 AS Records,
+        y.KapanId,
+        y.BranchId
+    FROM (
+        SELECT DISTINCT
+            pd.id,
+            pd.TIPWeight,
+            pd.LessWeight,
+            km.KapanId,
+            km.BranchId
+        FROM [PurchaseDetails] AS PD
+        LEFT JOIN [PurchaseMaster] AS PM ON PM.Id = PD.PurchaseId
+        LEFT JOIN KapanMappingMaster KM ON PD.Id = KM.PurchaseDetailsId
+        WHERE KM.KapanId IN (SELECT id FROM CSVToTable(@kapanId)) and isnull(KM.TransferType,'')=''
+    ) y
+    GROUP BY y.KapanId, y.BranchId
+) x
+LEFT JOIN KapanMaster k ON k.Id = x.KapanId
+LEFT JOIN BranchMaster b ON b.Id = x.BranchId;
+
+WITH KapanDetailsCTE AS (  
+    SELECT  
+        RowNo,  
+        Name,  
+        Id,  
+        Date,  
+        Party,  
+        InwardNetWeight,  
+        InwardRate,  
+        InwardAmount,  
+        OutwardNetWeight,  
+        OutwardRate,  
+        OutwardAmount,  
+        Category,  
+        CategoryId,  
+        Records,  
+        KapanId,  
+        BranchId,  
+        BranchName,  
+        SUM(InwardNetWeight) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningInwardNetWeight,  
+        SUM(OutwardNetWeight) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningOutwardNetWeight,  
+        SUM(InwardRate) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningInwardRate,  
+        SUM(OutwardRate) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningOutwardRate,  
+        SUM(InwardAmount) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningInwardAmount,  
+        SUM(OutwardAmount) OVER (PARTITION BY Name ORDER BY RowNo) AS RunningOutwardAmount  
+    FROM  
+        #tempKapanDetails1  
+)  
+SELECT  
+    RowNo,  
+    Name,  
+    Id,  
+    Date,  
+    Party,  
+    InwardNetWeight,  
+    InwardRate,  
+    InwardAmount,  
+    OutwardNetWeight,  
+    OutwardRate,  
+    OutwardAmount,  
+    Category,  
+    CategoryId,  
+    Records,  
+    KapanId,  
+    BranchId,  
+    BranchName,  
+    RunningInwardNetWeight - RunningOutwardNetWeight AS ClosingNetWeight,  
+    (RunningInwardRate / RowNo) - (RunningOutwardRate / RowNo) AS ClosingRate,  
+    RunningInwardAmount - RunningOutwardAmount AS ClosingAmount  
+FROM  
+    KapanDetailsCTE  
+ORDER BY  
+    Name;
