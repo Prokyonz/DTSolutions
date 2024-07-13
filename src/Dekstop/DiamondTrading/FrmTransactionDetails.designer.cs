@@ -225,6 +225,9 @@ namespace DiamondTrading
             this.repositoryItemButtonEdit8 = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.gridColumn226NetAmount = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumnSizeName = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridApproveButton = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repoApproveButton = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
+            this.repoRejectButton = new DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit();
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordianAddBtn = new DevExpress.XtraBars.Navigation.AccordionControlElement();
@@ -669,6 +672,8 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesTransactonMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSalesTransactonMaster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoApproveButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoRejectButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).BeginInit();
@@ -1630,7 +1635,9 @@ namespace DiamondTrading
             this.grdSalesTransactonMaster.MainView = this.grvSalesTransactonMaster;
             this.grdSalesTransactonMaster.Name = "grdSalesTransactonMaster";
             this.grdSalesTransactonMaster.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
-            this.repositoryItemButtonEdit8});
+            this.repositoryItemButtonEdit8,
+            this.repoApproveButton,
+            this.repoRejectButton});
             this.grdSalesTransactonMaster.Size = new System.Drawing.Size(778, 382);
             this.grdSalesTransactonMaster.TabIndex = 3;
             this.grdSalesTransactonMaster.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
@@ -1677,7 +1684,8 @@ namespace DiamondTrading
             this.gridColumn120,
             this.colSalesImage,
             this.gridColumn226NetAmount,
-            this.gridColumnSizeName});
+            this.gridColumnSizeName,
+            this.gridApproveButton});
             this.grvSalesTransactonMaster.GridControl = this.grdSalesTransactonMaster;
             this.grvSalesTransactonMaster.Name = "grvSalesTransactonMaster";
             this.grvSalesTransactonMaster.OptionsBehavior.ReadOnly = true;
@@ -2018,6 +2026,29 @@ namespace DiamondTrading
             this.gridColumnSizeName.Visible = true;
             this.gridColumnSizeName.VisibleIndex = 6;
             this.gridColumnSizeName.Width = 54;
+            // 
+            // gridApproveButton
+            // 
+            this.gridApproveButton.Caption = "Approve";
+            this.gridApproveButton.ColumnEdit = this.repoApproveButton;
+            this.gridApproveButton.FieldName = "Id";
+            this.gridApproveButton.Name = "gridApproveButton";
+            this.gridApproveButton.Visible = true;
+            this.gridApproveButton.VisibleIndex = 20;
+            // 
+            // repoApproveButton
+            // 
+            this.repoApproveButton.AutoHeight = false;
+            this.repoApproveButton.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repoApproveButton.Name = "repoApproveButton";
+            // 
+            // repoRejectButton
+            // 
+            this.repoRejectButton.AutoHeight = false;
+            this.repoRejectButton.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repoRejectButton.Name = "repoRejectButton";
             // 
             // btnCancel
             // 
@@ -6506,6 +6537,8 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.grdSalesTransactonMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grvSalesTransactonMaster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.repositoryItemButtonEdit8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoApproveButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repoRejectButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.xtabManager)).EndInit();
@@ -7215,5 +7248,8 @@ namespace DiamondTrading
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn226;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnDebitColumn;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumnCreditColumn;
+        private DevExpress.XtraGrid.Columns.GridColumn gridApproveButton;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoApproveButton;
+        private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit repoRejectButton;
     }
 }
