@@ -1379,21 +1379,53 @@ namespace DiamondTrading
             {
                 if (xtabManager.SelectedTabPage == xtabPurchase)
                 {
+                    string approvestatus = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "approved")
+                    {
+                        MessageBox.Show("This is already Approved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "PurId").ToString();
                     var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
                 else if (xtabManager.SelectedTabPage == xtabSales)
                 {
+                    string approvestatus = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "approved")
+                    {
+                        MessageBox.Show("This is already Approved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
                 else if (xtabManager.SelectedTabPage == xtabPayment)
                 {
+                    string approvestatus = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "approved")
+                    {
+                        MessageBox.Show("This is already Approved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
                 else if (xtabManager.SelectedTabPage == xtabReceipt)
                 {
+                    string approvestatus = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "approved")
+                    {
+                        MessageBox.Show("This is already Approved.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 1);
                 }
@@ -1409,21 +1441,52 @@ namespace DiamondTrading
             {
                 if (xtabManager.SelectedTabPage == xtabPurchase)
                 {
+                    string approvestatus = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if(approvestatus.ToLower() == "reject")
+                    {
+                        MessageBox.Show("This is already rejected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = grvTransMaster.GetRowCellValue(grvTransMaster.FocusedRowHandle, "PurId").ToString();
                     var result = await _purchaseMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
                 else if (xtabManager.SelectedTabPage == xtabSales)
                 {
+                    string approvestatus = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "reject")
+                    {
+                        MessageBox.Show("This is already rejected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = grvSalesTransactonMaster.GetRowCellValue(grvSalesTransactonMaster.FocusedRowHandle, "Id").ToString();
                     var result = await _salesMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
                 else if (xtabManager.SelectedTabPage == xtabPayment)
                 {
+                    string approvestatus = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "reject")
+                    {
+                        MessageBox.Show("This is already rejected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     string Id = gridView4.GetRowCellValue(gridView4.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
                 else if (xtabManager.SelectedTabPage == xtabReceipt)
                 {
+                    string approvestatus = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "ApprovalType").ToString();
+
+                    if (approvestatus.ToLower() == "reject")
+                    {
+                        MessageBox.Show("This is already rejected.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     string Id = gridView7.GetRowCellValue(gridView7.FocusedRowHandle, "GroupId").ToString();
                     var result = await _paymentMasterRepository.UpdateApprovalStatus(Id, frmApproveReject.Comment, 2);
                 }
@@ -2155,6 +2218,46 @@ namespace DiamondTrading
                     e.Appearance.ForeColor = Color.Black;
                 }
             }
+        }
+
+        private void repoApproveButton_Click(object sender, EventArgs e)
+        {
+            btnApprove_ItemClick(sender, null);
+        }
+
+        private void repoRejectButton_Click(object sender, EventArgs e)
+        {
+            btnReject_ItemClick(sender,null);
+        }
+
+        private void repoPurRejectButton_Click(object sender, EventArgs e)
+        {
+            btnReject_ItemClick(sender, null);
+        }
+
+        private void repoPurApproveButton_Click(object sender, EventArgs e)
+        {
+            btnApprove_ItemClick(sender, null);
+        }
+
+        private void repoPayApproveButton_Click(object sender, EventArgs e)
+        {
+            btnApprove_ItemClick(sender, null);
+        }
+
+        private void repoPayRejectButtonCol_Click(object sender, EventArgs e)
+        {
+            btnReject_ItemClick(sender, null);
+        }
+
+        private void repoReceApproveButton_Click(object sender, EventArgs e)
+        {
+            btnApprove_ItemClick(sender, null);
+        }
+
+        private void repoReceRejectButton_Click(object sender, EventArgs e)
+        {
+            btnReject_ItemClick(sender, null);
         }
     }
 }
