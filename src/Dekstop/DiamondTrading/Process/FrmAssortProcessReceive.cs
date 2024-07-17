@@ -104,9 +104,10 @@ namespace DiamondTrading.Process
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            //lueSendto.Properties.DataSource = EmployeeDetailList;
+            //lueSendto.Properties.DisplayMember = "Name";
+            //lueSendto.Properties.ValueMember = "Id";
+            txtSendToName.Text = Common.LoginUserName;
         }
 
         private async Task GetKapanDetail()
@@ -435,7 +436,8 @@ namespace DiamondTrading.Process
                                 boilProcessMaster.LossWeight = 0;
                                 boilProcessMaster.RejectionWeight = 0;
                                 boilProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                                boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                //boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                boilProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                                 boilProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
                                 //boilProcessMaster.BoilCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                                 boilProcessMaster.Remarks = txtRemark.Text;
@@ -495,7 +497,8 @@ namespace DiamondTrading.Process
                                 charniProcessMaster.LossWeight = 0;
                                 charniProcessMaster.RejectionWeight = 0;
                                 charniProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                                charniProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                //charniProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                charniProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                                 charniProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                                 //charniProcessMaster.CharniCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                                 charniProcessMaster.Remarks = txtRemark.Text;
@@ -556,7 +559,8 @@ namespace DiamondTrading.Process
                                 galaProcessMaster.LossWeight = 0;
                                 galaProcessMaster.RejectionWeight = 0;
                                 galaProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                                galaProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                //galaProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                galaProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                                 galaProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                                 // galaProcessMaster.GalaCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                                 galaProcessMaster.Remarks = txtRemark.Text;
@@ -619,7 +623,8 @@ namespace DiamondTrading.Process
                                 numberProcessMaster.LossWeight = 0;
                                 numberProcessMaster.RejectionWeight = 0;
                                 numberProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                                numberProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                //numberProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                                numberProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                                 numberProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                                 //numberProcessMaster.NumberCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                                 numberProcessMaster.Remarks = txtRemark.Text;
@@ -665,12 +670,12 @@ namespace DiamondTrading.Process
                 lueReceiveFrom.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
-                return false;
-            }
+            //else if (lueSendto.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueSendto.Focus();
+            //    return false;
+            //}
             if (lueKapan.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -693,7 +698,7 @@ namespace DiamondTrading.Process
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            //lueSendto.EditValue = null;
             lueDepartment.EditValue = null;
             lueKapan.EditValue = null;
             repoSlipNo.DataSource = null;

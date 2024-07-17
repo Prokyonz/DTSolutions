@@ -79,9 +79,10 @@ namespace DiamondTrading.Process
         private async Task GetEmployeeList()
         {
             var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, new int[] { PartyTypeMaster.Other, PartyTypeMaster.Process });
-            lueReceiveFrom.Properties.DataSource = EmployeeDetailList;
-            lueReceiveFrom.Properties.DisplayMember = "Name";
-            lueReceiveFrom.Properties.ValueMember = "Id";
+            //lueReceiveFrom.Properties.DataSource = EmployeeDetailList;
+            //lueReceiveFrom.Properties.DisplayMember = "Name";
+            //lueReceiveFrom.Properties.ValueMember = "Id";
+            txtReceivedFromName.Text = Common.LoginUserName;
 
             lueSendto.Properties.DataSource = EmployeeDetailList;
             lueSendto.Properties.DisplayMember = "Name";
@@ -192,13 +193,14 @@ namespace DiamondTrading.Process
 
         private bool CheckValidation()
         {
-            if (lueReceiveFrom.EditValue == null)
-            {
-                MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueReceiveFrom.Focus();
-                return false;
-            }
-            else if (lueSendto.EditValue == null)
+            //if (lueReceiveFrom.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueReceiveFrom.Focus();
+            //    return false;
+            //}
+            //else 
+            if (lueSendto.EditValue == null)
             {
                 MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lueSendto.Focus();
@@ -266,7 +268,8 @@ namespace DiamondTrading.Process
                 accountToAssortMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                 accountToAssortMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");
                 accountToAssortMaster.AccountToAssortType = Convert.ToInt32(ProcessType.Send);
-                accountToAssortMaster.FromParyId = lueReceiveFrom.EditValue.ToString();
+                //accountToAssortMaster.FromParyId = lueReceiveFrom.EditValue.ToString();
+                accountToAssortMaster.FromParyId = Common.LoginUserID.ToString();
                 accountToAssortMaster.ToPartyId = lueSendto.EditValue.ToString();
                 accountToAssortMaster.KapanId = lueKapan.EditValue.ToString();
                 accountToAssortMaster.Department = Convert.ToInt32(lueDepartment.EditValue);
@@ -309,7 +312,8 @@ namespace DiamondTrading.Process
             await GetEmployeeList();
             await GetKapanDetail();
             await GetAssortProcessSendDetail();
-            lueReceiveFrom.Focus();
+            //lueReceiveFrom.Focus();
+            lueSendto.Focus();
         }
 
         private async void lueDepartment_EditValueChanged(object sender, EventArgs e)
