@@ -62,9 +62,10 @@ namespace DiamondTrading.Process
         private async Task GetEmployeeList()
         {
             var EmployeeDetailList = await _partyMasterRepository.GetAllPartyAsync(Common.LoginCompany.ToString(), PartyTypeMaster.Employee, new int[] { PartyTypeMaster.Other });
-            lueReceiveFrom.Properties.DataSource = EmployeeDetailList;
-            lueReceiveFrom.Properties.DisplayMember = "Name";
-            lueReceiveFrom.Properties.ValueMember = "Id";
+            //lueReceiveFrom.Properties.DataSource = EmployeeDetailList;
+            //lueReceiveFrom.Properties.DisplayMember = "Name";
+            //lueReceiveFrom.Properties.ValueMember = "Id";
+            txtReceivedFromName.Text = Common.LoginUserName;
 
             lueSendto.Properties.DataSource = EmployeeDetailList;
             lueSendto.Properties.DisplayMember = "Name";
@@ -143,13 +144,14 @@ namespace DiamondTrading.Process
 
         private bool CheckValidation()
         {
-            if (lueReceiveFrom.EditValue == null)
-            {
-                MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueReceiveFrom.Focus();
-                return false;
-            }
-            else if (lueSendto.EditValue == null)
+            //if (lueReceiveFrom.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Receive from name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueReceiveFrom.Focus();
+            //    return false;
+            //}
+            //else 
+            if (lueSendto.EditValue == null)
             {
                 MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lueSendto.Focus();
@@ -203,7 +205,8 @@ namespace DiamondTrading.Process
                         boilProcessMaster.Weight = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colBoilCarat).ToString());
                         boilProcessMaster.LossWeight = 0;
                         boilProcessMaster.RejectionWeight = 0;
-                        boilProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
+                        //boilProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
+                        boilProcessMaster.HandOverById = Common.LoginUserID.ToString();
                         boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
                         boilProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo1).ToString();
                         boilProcessMaster.StockId = grvParticularsDetails.GetRowCellValue(i, colStockId).ToString();
@@ -248,7 +251,7 @@ namespace DiamondTrading.Process
             dtDate.EditValue = DateTime.Now;
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
-            lueReceiveFrom.EditValue = null;
+            //lueReceiveFrom.EditValue = null;
             lueSendto.EditValue = null;
             lueKapan.EditValue = null;
             repoSlipNo.DataSource = null;
@@ -257,8 +260,8 @@ namespace DiamondTrading.Process
             await GetEmployeeList();
             await GetBoilProcessSendDetail();
 
-            lueReceiveFrom.Select();
-            lueReceiveFrom.Focus();
+            lueSendto.Select();
+            lueSendto.Focus();
         }
 
         private void btnReset_Click(object sender, EventArgs e)

@@ -67,9 +67,10 @@ namespace DiamondTrading.Process
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            //lueSendto.Properties.DataSource = EmployeeDetailList;
+            //lueSendto.Properties.DisplayMember = "Name";
+            //lueSendto.Properties.ValueMember = "Id";
+            txtSendToName.Text = Common.LoginUserName;
         }
 
         private void GetCategoryList()
@@ -214,12 +215,12 @@ namespace DiamondTrading.Process
                 lueReceiveFrom.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
-                return false;
-            }
+            //else if (lueSendto.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueSendto.Focus();
+            //    return false;
+            //}
             if (lueKapan.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -286,7 +287,8 @@ namespace DiamondTrading.Process
                         numberProcessMaster.LossWeight = Convert.ToDecimal(LossCts);
                         numberProcessMaster.RejectionWeight = Convert.ToDecimal(RejCts);
                         numberProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                        numberProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        //numberProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        numberProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                         numberProcessMaster.SlipNo = lueKapan.GetColumnValue("SlipNo").ToString();
                         numberProcessMaster.NumberCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                         numberProcessMaster.Remarks = txtRemark.Text;
@@ -329,7 +331,7 @@ namespace DiamondTrading.Process
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            //lueSendto.EditValue = null;
             lueKapan.EditValue = null;
             repoSize.DataSource = null;
             repoCategory.DataSource = null;

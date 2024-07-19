@@ -61,9 +61,10 @@ namespace DiamondTrading.Process
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            //lueSendto.Properties.DataSource = EmployeeDetailList;
+            //lueSendto.Properties.DisplayMember = "Name";
+            //lueSendto.Properties.ValueMember = "Id";
+            txtSendToName.Text = Common.LoginUserName;
         }
 
         private async Task GetKapanDetail()
@@ -204,7 +205,8 @@ namespace DiamondTrading.Process
                         boilProcessMaster.LossWeight = Convert.ToDecimal(LossCts);
                         boilProcessMaster.RejectionWeight = Convert.ToDecimal(RejCts);
                         boilProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                        boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        //boilProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        boilProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                         boilProcessMaster.SlipNo = grvParticularsDetails.GetRowCellValue(i, colSlipNo).ToString();
                         boilProcessMaster.BoilCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                         boilProcessMaster.Remarks = txtRemark.Text;
@@ -247,7 +249,7 @@ namespace DiamondTrading.Process
             dtTime.EditValue = DateTime.Now;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            //lueSendto.EditValue = null;
             lueKapan.EditValue = null;
             repoSlipNo.DataSource = null;
 
@@ -265,12 +267,12 @@ namespace DiamondTrading.Process
                 lueReceiveFrom.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
-                return false;
-            }
+            //else if (lueSendto.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueSendto.Focus();
+            //    return false;
+            //}
             if (lueKapan.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);

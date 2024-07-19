@@ -69,6 +69,7 @@ namespace DiamondTrading.Process
             this.btnReset = new DevExpress.XtraEditors.SimpleButton();
             this.btnSave = new DevExpress.XtraEditors.SimpleButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtSendToName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtCharniSize.Properties)).BeginInit();
@@ -94,6 +95,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSendToName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl2
@@ -118,6 +120,7 @@ namespace DiamondTrading.Process
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtSendToName);
             this.panelControl1.Controls.Add(this.txtCharniSize);
             this.panelControl1.Controls.Add(this.labelControl7);
             this.panelControl1.Controls.Add(this.lueKapan);
@@ -589,6 +592,17 @@ namespace DiamondTrading.Process
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtSendToName
+            // 
+            this.txtSendToName.Enabled = false;
+            this.txtSendToName.Location = new System.Drawing.Point(119, 102);
+            this.txtSendToName.Name = "txtSendToName";
+            this.txtSendToName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.txtSendToName.Properties.Appearance.Options.UseFont = true;
+            this.txtSendToName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtSendToName.Size = new System.Drawing.Size(189, 22);
+            this.txtSendToName.TabIndex = 20;
+            // 
             // FrmGalaReceive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -637,6 +651,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtSendToName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -681,5 +696,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.LabelControl lblRemainingWeight;
         private DevExpress.XtraEditors.LabelControl labelControl9;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.TextEdit txtSendToName;
     }
 }

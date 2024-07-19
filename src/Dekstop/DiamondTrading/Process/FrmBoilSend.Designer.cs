@@ -69,6 +69,7 @@ namespace DiamondTrading.Process
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.txtReceivedFromName = new DevExpress.XtraEditors.TextEdit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtTime.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtRemark.Properties)).BeginInit();
@@ -92,6 +93,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReceivedFromName.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // labelControl8
@@ -467,6 +469,7 @@ namespace DiamondTrading.Process
             // 
             // panelControl1
             // 
+            this.panelControl1.Controls.Add(this.txtReceivedFromName);
             this.panelControl1.Controls.Add(this.lueKapan);
             this.panelControl1.Controls.Add(this.lueSendto);
             this.panelControl1.Controls.Add(this.lueReceiveFrom);
@@ -556,6 +559,17 @@ namespace DiamondTrading.Process
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // txtReceivedFromName
+            // 
+            this.txtReceivedFromName.Enabled = false;
+            this.txtReceivedFromName.Location = new System.Drawing.Point(119, 73);
+            this.txtReceivedFromName.Name = "txtReceivedFromName";
+            this.txtReceivedFromName.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Bold);
+            this.txtReceivedFromName.Properties.Appearance.Options.UseFont = true;
+            this.txtReceivedFromName.Properties.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
+            this.txtReceivedFromName.Size = new System.Drawing.Size(274, 22);
+            this.txtReceivedFromName.TabIndex = 18;
+            // 
             // FrmBoilSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,6 +615,7 @@ namespace DiamondTrading.Process
             ((System.ComponentModel.ISupportInitialize)(this.lueKapan.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueSendto.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lueReceiveFrom.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtReceivedFromName.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -645,5 +660,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraGrid.Columns.GridColumn colStockId;
         private DevExpress.XtraGrid.Columns.GridColumn colAccountToAssortDetailsId;
         private System.Windows.Forms.Timer timer1;
+        private DevExpress.XtraEditors.TextEdit txtReceivedFromName;
     }
 }

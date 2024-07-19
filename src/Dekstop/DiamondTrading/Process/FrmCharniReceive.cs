@@ -66,9 +66,10 @@ namespace DiamondTrading.Process
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            //lueSendto.Properties.DataSource = EmployeeDetailList;
+            //lueSendto.Properties.DisplayMember = "Name";
+            //lueSendto.Properties.ValueMember = "Id";
+            txtSendToName.Text = Common.LoginUserName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -213,12 +214,12 @@ namespace DiamondTrading.Process
                 lueReceiveFrom.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
-                return false;
-            }
+            //else if (lueSendto.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueSendto.Focus();
+            //    return false;
+            //}
             if (lueKapan.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -283,7 +284,8 @@ namespace DiamondTrading.Process
                         charniProcessMaster.LossWeight = Convert.ToDecimal(LossCts);
                         charniProcessMaster.RejectionWeight = Convert.ToDecimal(RejCts);
                         charniProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                        charniProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        //charniProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        charniProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                         charniProcessMaster.SlipNo = lueKapan.GetColumnValue("SlipNo").ToString();
                         charniProcessMaster.CharniCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                         charniProcessMaster.Remarks = txtRemark.Text;
@@ -326,7 +328,7 @@ namespace DiamondTrading.Process
             SelectedKapanId = string.Empty;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            //lueSendto.EditValue = null;
             lueKapan.EditValue = null;
             repoSize.DataSource = null;
             repoCategory.DataSource = null;

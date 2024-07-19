@@ -67,9 +67,10 @@ namespace DiamondTrading.Process
             lueReceiveFrom.Properties.DisplayMember = "Name";
             lueReceiveFrom.Properties.ValueMember = "Id";
 
-            lueSendto.Properties.DataSource = EmployeeDetailList;
-            lueSendto.Properties.DisplayMember = "Name";
-            lueSendto.Properties.ValueMember = "Id";
+            //lueSendto.Properties.DataSource = EmployeeDetailList;
+            //lueSendto.Properties.DisplayMember = "Name";
+            //lueSendto.Properties.ValueMember = "Id";
+            txtSendToName.Text = Common.LoginUserName;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -216,12 +217,12 @@ namespace DiamondTrading.Process
                 lueReceiveFrom.Focus();
                 return false;
             }
-            else if (lueSendto.EditValue == null)
-            {
-                MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                lueSendto.Focus();
-                return false;
-            }
+            //else if (lueSendto.EditValue == null)
+            //{
+            //    MessageBox.Show("Please select Send to name", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    lueSendto.Focus();
+            //    return false;
+            //}
             if (lueKapan.EditValue == null)
             {
                 MessageBox.Show("Please select Kapan", this.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -287,7 +288,8 @@ namespace DiamondTrading.Process
                         galaProcessMaster.LossWeight = Convert.ToDecimal(LossCts);
                         galaProcessMaster.RejectionWeight = Convert.ToDecimal(RejCts);
                         galaProcessMaster.HandOverById = lueReceiveFrom.EditValue.ToString();
-                        galaProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        //galaProcessMaster.HandOverToId = lueSendto.EditValue.ToString();
+                        galaProcessMaster.HandOverToId = Common.LoginUserID.ToString();
                         galaProcessMaster.SlipNo = lueKapan.GetColumnValue("SlipNo").ToString();
                         galaProcessMaster.GalaCategoy = Convert.ToInt32(grvParticularsDetails.GetRowCellValue(i, colCategory));
                         galaProcessMaster.Remarks = txtRemark.Text;
@@ -330,7 +332,7 @@ namespace DiamondTrading.Process
             SelectedKapanId = string.Empty;
             txtRemark.Text = "";
             lueReceiveFrom.EditValue = null;
-            lueSendto.EditValue = null;
+            //lueSendto.EditValue = null;
             lueKapan.EditValue = null;
             repoSize.DataSource = null;
             repoCategory.DataSource = null;
