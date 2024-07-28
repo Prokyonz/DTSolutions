@@ -146,5 +146,18 @@ namespace EFCore.SQL.Repository
                 return kapanMappingMaster;
             }
         }
+        public async Task<bool> DeleteKapanMappingByTransferIdAsync(string transferId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var record = await _databaseContext.KapanMappingMaster.Where(x => x.TransferId == transferId).FirstOrDefaultAsync();
+                if(record != null) {
+                    _databaseContext.KapanMappingMaster.Remove(record);
+                    return true;
+                }
+                return false;
+            }
+        }
+
     }
 }

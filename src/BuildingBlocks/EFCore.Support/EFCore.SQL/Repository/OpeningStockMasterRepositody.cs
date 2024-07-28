@@ -116,5 +116,19 @@ namespace EFCore.SQL.Repository
                 return openingStockMaster;
             }
         }
+
+        public async Task<bool> DeleteOpeningStockByTransferId(string transferId)
+        {
+            using (_databaseContext = new DatabaseContext())
+            {
+                var record = await _databaseContext.OpeningStockMaster.Where(x => x.TransferId == transferId).FirstOrDefaultAsync();
+                if (record != null)
+                {
+                    _databaseContext.OpeningStockMaster.Remove(record);
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

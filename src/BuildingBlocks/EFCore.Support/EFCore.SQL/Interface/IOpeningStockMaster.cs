@@ -14,5 +14,6 @@ namespace EFCore.SQL.Interface
         Task<OpeningStockMaster> AddOpeningStockAsync(OpeningStockMaster openingStockMaster);
         Task<OpeningStockMaster> UpdateBranchAsync(OpeningStockMaster openingStockMaster);
         Task<bool> DeleteBranchAsync(string stockMasterId);
+        Task<bool> DeleteOpeningStockByTransferId(string transferId);
     }
 }

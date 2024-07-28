@@ -29,6 +29,7 @@ namespace DiamondTrading
         private GalaProcessMasterRepository _galaProcessMasterRepository;
         private NumberProcessMasterRepository _numberProcessMasterRepository;
         private OpeningStockMasterRepositody _openingStockMasterRepositody;
+        private TransferMasterRepository _transferMasterRepository;
 
         private List<PurchaseMaster> _purchaseMaster;
         private List<SalesMaster> _salesMaster;
@@ -393,7 +394,7 @@ namespace DiamondTrading
                         gridControlTransferReport.DataSource = Data.OrderBy(o => o.Sr);
 
                         accordionEditBtn.Visible = false;
-                        accordionDeleteBtn.Visible = false;
+                        accordionDeleteBtn.Visible = true;
                     }
                 }
             }
@@ -804,6 +805,22 @@ namespace DiamondTrading
                         }
                         this.Cursor = Cursors.Default;
                         MessageBox.Show(message, "[" + this.Text + "]", MessageBoxButtons.OK, messageBoxIcon);
+                    }
+                }
+                else if(xtabManager.SelectedTabPage == xtraTabTransferReport && SelectedTabPage == "TransferReport")
+                {
+                    if (MessageBox.Show(string.Format(AppMessages.GetString(AppMessageID.DleteExpenseConfirmation), "Do you want to delete this record?"), "[" + this.Text + "]", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        this.Cursor = Cursors.WaitCursor;
+                        string message = "";
+
+                        await _openingStockMasterRepositody.DeleteOpeningStockByTransferId("");
+                        await _kapanMappingMasterRepository.DeleteKapanMappingByTransferIdAsync("");
+
+                        _transferMasterRepository = new TransferMasterRepository();
+                        await _transferMasterRepository.DeleteTransferAsync("", true);                        
+
+                        MessageBox.Show(message, "Transfer record and dependant record(s) deleted successfully.", MessageBoxButtons.OK, messageBoxIcon);
                     }
                 }
             }

@@ -17,5 +17,6 @@ namespace EFCore.SQL.Interface
         Task<KapanMappingMaster> UpdateKapanMappingMasterAsync(KapanMappingMaster kapanMappingMaster);
         Task<int> GetMaxSrNo(string companyId, string financialYearId);
         Task<bool> DeleteKapanMappingAsync(string kapanMappingId, string financialYearId);
+        Task<bool> DeleteKapanMappingByTransferIdAsync(string transferId);
     }
 }

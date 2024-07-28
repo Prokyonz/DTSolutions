@@ -14,19 +14,23 @@ namespace EFCore.SQL.Repository
     public class PartyMasterRepository : IPartyMaster
     {
         private DatabaseContext _databaseContext;
+        private readonly CacheService _cacheService;
+
 
         public PartyMasterRepository()
         {
-
+            _cacheService = new CacheService();
         }
 
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
         {
+            _cacheService.RemoveCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
+            _cacheService.RemoveCacheItem(CacheConstant.GET_BROKER);
             using (_databaseContext = new DatabaseContext())
             {
                 if (partyMaster.Id == null)
                     partyMaster.Id = Guid.NewGuid().ToString();
-                await _databaseContext.PartyMaster.AddAsync(partyMaster);                
+                await _databaseContext.PartyMaster.AddAsync(partyMaster);
                 await _databaseContext.SaveChangesAsync();
                 return partyMaster;
             }
@@ -34,6 +38,9 @@ namespace EFCore.SQL.Repository
 
         public async Task<int> DeletePartyAsync(string partyId, bool isPermanantDetele = false)
         {
+            _cacheService.RemoveCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
+            _cacheService.RemoveCacheItem(CacheConstant.GET_BROKER);
+
             using (_databaseContext = new DatabaseContext())
             {
                 var resultCount = await _databaseContext.SPValidationModel.FromSqlRaw($"Validate_Records '" + partyId + "',4").ToListAsync();
@@ -62,19 +69,20 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 //var result = await _databaseContext.LedgerBalanceManager.ToListAsync();                
-                partyMasters =  await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
+                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false).ToListAsync();
                 foreach (var item in partyMasters)
                 {
                     var getBalance = LedgerData.Where(w => w.LedgerId == item.Id).FirstOrDefault();
 
-                    if(getBalance != null)
+                    if (getBalance != null)
                     {
                         item.OpeningBalance = getBalance.ClosingBalance;
-                    } else
+                    }
+                    else
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
             }
             return partyMasters;
         }
@@ -94,7 +102,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
-                
+
                 partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
                 foreach (var item in partyMasters)
                 {
@@ -108,7 +116,7 @@ namespace EFCore.SQL.Repository
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
             }
             return partyMasters;
         }
@@ -116,12 +124,14 @@ namespace EFCore.SQL.Repository
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partyTypeMaster)
         {
             List<PartyMaster> partyMasters;
+            //List<PartyMaster> partyMasters = _cacheService.GetCacheItem<List<PartyMaster>>(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
+
+            //if (partyMasters == null)
+            //{
             List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport(companyId, "");
 
             using (_databaseContext = new DatabaseContext())
             {
-                //var result = await _databaseContext.LedgerBalanceManager.ToListAsync();                
-
                 partyMasters = await _databaseContext.PartyMaster.Where(s => s.CompanyId == companyId && s.IsDelete == false && s.Type == partyTypeMaster).ToListAsync();
                 foreach (var item in partyMasters)
                 {
@@ -135,8 +145,10 @@ namespace EFCore.SQL.Repository
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
+                //_cacheService.SetCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE, partyMasters, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
             }
+            //}
             return partyMasters;
         }
 
@@ -148,7 +160,7 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 //var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
-                
+
                 partyMasters = await _databaseContext.PartyMaster.Where(w => w.CompanyId == companyId && w.IsDelete == false && partyTypeMaster.Contains(w.Type)).ToListAsync();
                 foreach (var item in partyMasters)
                 {
@@ -162,14 +174,17 @@ namespace EFCore.SQL.Repository
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
             }
             return partyMasters;
         }
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId, int partTypeMaster, int[] subType)
         {
             List<PartyMaster> partyMasters;
+            //List<PartyMaster> partyMasters = _cacheService.GetCacheItem<List<PartyMaster>>(CacheConstant.GET_BROKER);
 
+            //if (partyMasters == null)
+            //{
             List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport(companyId, "");
 
             using (_databaseContext = new DatabaseContext())
@@ -187,8 +202,10 @@ namespace EFCore.SQL.Repository
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
+                //_cacheService.SetCacheItem(CacheConstant.GET_BROKER, partyMasters, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
             }
+            //}
             return partyMasters;
         }
 
@@ -214,13 +231,16 @@ namespace EFCore.SQL.Repository
                     {
                         item.OpeningBalance = 0;
                     }
-                }                
+                }
             }
             return partyMasters;
         }
 
         public async Task<PartyMaster> UpdatePartyAsync(PartyMaster partyMaster)
         {
+            _cacheService.RemoveCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
+            _cacheService.RemoveCacheItem(CacheConstant.GET_BROKER);
+
             using (_databaseContext = new DatabaseContext())
             {
                 var getParty = await _databaseContext.PartyMaster.Where(s => s.Id == partyMaster.Id).FirstOrDefaultAsync();
@@ -257,7 +277,7 @@ namespace EFCore.SQL.Repository
             List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport(companyId, financialYearId);
 
             using (_databaseContext = new DatabaseContext())
-            {                
+            {
                 var ledger = LedgerData.Where(w => w.LedgerId == partyId).FirstOrDefault();
 
                 if (ledger != null)
@@ -274,16 +294,16 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReport '" + companyId + "', '"+ financialYearId + "'").ToListAsync();
+                var result = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReport '" + companyId + "', '" + financialYearId + "'").ToListAsync();
                 return result;
             }
         }
 
-        public async Task<List<ChildLedgerSPModel>> GetLedgerChildReport(string companyId, string finanialYearId, string ledgerId, int partyType=0)
+        public async Task<List<ChildLedgerSPModel>> GetLedgerChildReport(string companyId, string finanialYearId, string ledgerId, int partyType = 0)
         {
-            using(_databaseContext = new DatabaseContext())
+            using (_databaseContext = new DatabaseContext())
             {
-                var result = await _databaseContext.SPLedgerChildReport.FromSqlRaw("GetLedgerChildReport '" + companyId + "', '"+ finanialYearId +"', '"+ ledgerId +"', " + partyType).ToListAsync();
+                var result = await _databaseContext.SPLedgerChildReport.FromSqlRaw("GetLedgerChildReport '" + companyId + "', '" + finanialYearId + "', '" + ledgerId + "', " + partyType).ToListAsync();
                 return result;
             }
         }
