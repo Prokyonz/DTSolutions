@@ -252,11 +252,14 @@ namespace DiamondTrading.Utility
         {
             try
             {
-                
+                this.Enabled = false;
                 this.Cursor = Cursors.WaitCursor;
 
                 if (!CheckValidation())
+                {
+                    this.Enabled = true;
                     return;
+                }
 
                 string AccountToAssortMasterId = Guid.NewGuid().ToString();
 
@@ -349,17 +352,18 @@ namespace DiamondTrading.Utility
                 }
 
                 if (IsStatus)
-                {
+                {                    
                     await Reset();
                     MessageBox.Show(AppMessages.GetString(AppMessageID.SaveSuccessfully), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception Ex)
-            {
+            {                
                 MessageBox.Show("Error : " + Ex.Message.ToString(), "[" + this.Text + "]", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
+                this.Enabled = true;
                 this.Cursor = Cursors.Default;
             }
         }
