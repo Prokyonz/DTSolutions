@@ -33,6 +33,18 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<BoilProcessMaster> AddBoilAsync(BoilProcessMaster boilMaster, DatabaseContext _databaseContext)
+        {
+            if (boilMaster.Id == null)
+                boilMaster.Id = Guid.NewGuid().ToString();
+
+            await _databaseContext.BoilProcessMaster.AddAsync(boilMaster);
+            await _databaseContext.SaveChangesAsync();
+
+            return boilMaster;
+
+        }
+
         public async Task<bool> DeleteBoilAsync(string boilMasterId, string slipNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
@@ -64,9 +76,9 @@ namespace EFCore.SQL.Repository
         {
             using (_databaseContext = new DatabaseContext())
             {
-                var findCharniSendRecord = await _databaseContext.CharniProcessMaster.Where(w=>w.BoilJangadNo == boilNo && w.CharniType == 0).ToListAsync();
+                var findCharniSendRecord = await _databaseContext.CharniProcessMaster.Where(w => w.BoilJangadNo == boilNo && w.CharniType == 0).ToListAsync();
                 if (findCharniSendRecord.Any())
-                    return false;                
+                    return false;
                 else
                 {
                     var checkInAssortReceive = await _databaseContext.BoilProcessMaster.Where(w => w.JangadNo == boilNo && w.BoilType == 2).ToListAsync();
@@ -79,7 +91,7 @@ namespace EFCore.SQL.Repository
                     {
                         if (isValidateOnly)
                             return true;
-                        
+
                         _databaseContext.BoilProcessMaster.RemoveRange(getReccord);
                         await _databaseContext.SaveChangesAsync();
 

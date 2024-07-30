@@ -34,6 +34,18 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<OpeningStockMaster> AddOpeningStockAsync(OpeningStockMaster openingStockMaster, DatabaseContext _databaseContext)
+        {
+            if (openingStockMaster.Id == null)
+                openingStockMaster.Id = Guid.NewGuid().ToString();
+
+            await _databaseContext.OpeningStockMaster.AddAsync(openingStockMaster);
+            await _databaseContext.SaveChangesAsync();
+
+            return openingStockMaster;
+
+        }
+
         public async Task<bool> DeleteBranchAsync(string stockMasterId)
         {
             using (_databaseContext = new DatabaseContext())

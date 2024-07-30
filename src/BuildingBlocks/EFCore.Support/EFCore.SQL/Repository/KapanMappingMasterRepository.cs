@@ -50,6 +50,18 @@ namespace EFCore.SQL.Repository
             return kapanMappingMaster;
         }
 
+        public async Task<KapanMappingMaster> AddKapanMappingAsync(KapanMappingMaster kapanMappingMaster, DatabaseContext _databaseContext)
+        {
+
+            if (kapanMappingMaster.Id == null)
+                kapanMappingMaster.Id = Guid.NewGuid().ToString();
+
+            await _databaseContext.KapanMappingMaster.AddAsync(kapanMappingMaster);
+            await _databaseContext.SaveChangesAsync();
+
+            return kapanMappingMaster;
+        }
+
         public async Task<bool> DeleteKapanMappingAsync(string kapanMappingId, string financialYearId)
         {
             using (_databaseContext = new DatabaseContext())
@@ -151,7 +163,8 @@ namespace EFCore.SQL.Repository
             using (_databaseContext = new DatabaseContext())
             {
                 var record = await _databaseContext.KapanMappingMaster.Where(x => x.TransferId == transferId).FirstOrDefaultAsync();
-                if(record != null) {
+                if (record != null)
+                {
                     _databaseContext.KapanMappingMaster.Remove(record);
                     return true;
                 }

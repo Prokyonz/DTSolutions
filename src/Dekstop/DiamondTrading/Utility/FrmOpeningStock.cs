@@ -320,7 +320,8 @@ namespace DiamondTrading.Utility
                     openingStockMaster = new OpeningStockMaster();
                     openingStockMaster.Id = guid;
                     openingStockMaster.StockId = guid;
-                    openingStockMaster.TransferId = TempGuid;
+                    if (grvTransferItemDetails.GetRowCellValue(i, colCategory).ToString() == OpeningStockCategoryMaster.Number.ToString())
+                        openingStockMaster.TransferId = TempGuid;
                     openingStockMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
                     openingStockMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
                     openingStockMaster.EntryTime = Convert.ToDateTime(dtTime.Text).ToString("hh:mm:ss ttt");

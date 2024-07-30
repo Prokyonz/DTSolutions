@@ -33,6 +33,17 @@ namespace EFCore.SQL.Repository
             }
         }
 
+        public async Task<NumberProcessMaster> AddNumberProcessAsync(NumberProcessMaster numberProcessMaster, DatabaseContext _databaseContext)
+        {            
+            if (numberProcessMaster.Id == null)
+                numberProcessMaster.Id = Guid.NewGuid().ToString();
+
+            await _databaseContext.NumberProcessMaster.AddAsync(numberProcessMaster);
+            await _databaseContext.SaveChangesAsync();
+
+            return numberProcessMaster;            
+        }
+
         public async Task<bool> DeleteNumberProcessAsync(int numberNo, bool isValidateOnly = false)
         {
             using (_databaseContext = new DatabaseContext())
