@@ -1,5 +1,4 @@
-﻿using EFCore.SQL.Interface;
-using Microsoft.Extensions.Caching.Memory;
+﻿using Microsoft.Extensions.Caching.Memory;
 using System;
 
 namespace EFCore.SQL
@@ -36,12 +35,12 @@ namespace EFCore.SQL
 
     public static class CacheConstant
     {
-        public static string ALL_COMPANY = "AllCompany";
-        public static string GET_PARENT_COMPANY = "GetParentCompany";
-        public static string GET_USER_COMPANY_MAPPING = "GetUserCompanyMapping";
-        public static string GET_PARTY_BY_PARTY_TYPE = "GetPartyByPartyType";
-        public static string GET_BROKER = "GetBroker";
-        public static int CACHE_HOURS = 5;
+        public static string ALL_COMPANY { get ; set; } = "AllCompany";
+        public static string GET_PARENT_COMPANY { get; set; } = "GetParentCompany";
+        public static string GET_USER_COMPANY_MAPPING { get; set; } = "GetUserCompanyMapping";
+        public static string GET_PARTY_BY_PARTY_TYPE { get; set; } = "GetPartyByPartyType";
+        public static string GET_BROKER { get; set; } = "GetBroker";
+        public static int CACHE_HOURS { get; set; } = 5;
     }
 
 }

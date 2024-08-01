@@ -44,6 +44,7 @@ namespace DiamondTrading
         public const string PrintPurchaseSlip = "PrintPurchaseSlip";
         public const string PrintPurchasePF = "PrintPurchasePF";
         public const string AllowToSelectPurchaseDueDate = "AllowToSelectPurchaseDueDate";
+        public const string CacheAllowOrNot = "CacheAllowOrNot";
 
 
         public const string SalaryPaidInDays = "SalaryPaidInDays";

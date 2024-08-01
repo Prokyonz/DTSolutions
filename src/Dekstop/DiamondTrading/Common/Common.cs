@@ -21,7 +21,7 @@ namespace DiamondTrading
         OpeningBalance = 0,
         ClosingBalance = 1
     }
-    internal static class Common
+    public static class Common
     {
         public const string AppName = "Diamond Trading";
         public static string DefaultGuid = "00000000-0000-0000-0000-000000000000";
@@ -53,6 +53,7 @@ namespace DiamondTrading
         public static decimal SalaryMinusOTRatePerHour = 0;
         
         public static string SlipPrinterName = "";
+        public static bool MakeSoftwareFaster = false;
 
 
         public static List<UserPermissionChild> UserPermissionChildren

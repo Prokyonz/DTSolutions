@@ -56,6 +56,7 @@ namespace DiamondTrading
             this.btnCancel = new DevExpress.XtraEditors.SimpleButton();
             this.btnOk = new DevExpress.XtraEditors.SimpleButton();
             this.billPrintModelTableAdapter1 = new DiamondTrading.karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter();
+            this.chkCache = new DevExpress.XtraEditors.CheckEdit();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
             this.xtraTabControl1.SuspendLayout();
             this.xtabGeneral.SuspendLayout();
@@ -78,6 +79,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
             this.groupControl4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCache.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // xtraTabControl1
@@ -139,7 +141,7 @@ namespace DiamondTrading
             this.groupControl3.Controls.Add(this.rdbHours);
             this.groupControl3.Controls.Add(this.rdbDays);
             this.groupControl3.Controls.Add(this.labelControl11);
-            this.groupControl3.Location = new System.Drawing.Point(3, 135);
+            this.groupControl3.Location = new System.Drawing.Point(3, 153);
             this.groupControl3.Name = "groupControl3";
             this.groupControl3.Size = new System.Drawing.Size(290, 139);
             this.groupControl3.TabIndex = 1;
@@ -259,13 +261,14 @@ namespace DiamondTrading
             // 
             // groupControl2
             // 
+            this.groupControl2.Controls.Add(this.chkCache);
             this.groupControl2.Controls.Add(this.checkEditClearReportLayout);
             this.groupControl2.Controls.Add(this.chkPrintPF);
             this.groupControl2.Controls.Add(this.chkAllowToSelectPaymentDueDate);
             this.groupControl2.Controls.Add(this.chkPrintSlip);
             this.groupControl2.Location = new System.Drawing.Point(3, 3);
             this.groupControl2.Name = "groupControl2";
-            this.groupControl2.Size = new System.Drawing.Size(290, 126);
+            this.groupControl2.Size = new System.Drawing.Size(290, 144);
             this.groupControl2.TabIndex = 0;
             this.groupControl2.Text = "Purchase Entry Settings";
             // 
@@ -381,6 +384,17 @@ namespace DiamondTrading
             // 
             this.billPrintModelTableAdapter1.ClearBeforeFill = true;
             // 
+            // chkCache
+            // 
+            this.chkCache.Location = new System.Drawing.Point(9, 120);
+            this.chkCache.Name = "chkCache";
+            this.chkCache.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkCache.Properties.Appearance.Options.UseFont = true;
+            this.chkCache.Properties.Caption = "Do not check this";
+            this.chkCache.Size = new System.Drawing.Size(233, 18);
+            this.chkCache.TabIndex = 4;
+            this.chkCache.CheckedChanged += new System.EventHandler(this.chkCache_CheckedChanged);
+            // 
             // FrmOptions
             // 
             this.AcceptButton = this.btnApply;
@@ -424,6 +438,7 @@ namespace DiamondTrading
             ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
             this.groupControl4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtSlipPrinterName.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chkCache.Properties)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -457,5 +472,6 @@ namespace DiamondTrading
         private DevExpress.XtraEditors.GroupControl groupControl4;
         private DevExpress.XtraEditors.TextEdit txtSlipPrinterName;
         private karmajew_DiamondTradingLiveDataSetTableAdapters.BillPrintModelTableAdapter billPrintModelTableAdapter1;
+        private DevExpress.XtraEditors.CheckEdit chkCache;
     }
 }

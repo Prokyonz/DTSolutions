@@ -52,6 +52,11 @@ namespace DiamondTrading
                 rdbDays.Checked = true;
             else
                 rdbHours.Checked = true;
+
+            if (Common.MakeSoftwareFaster)
+                chkCache.Checked = true;
+            else chkCache.Checked = false;
+
             txtDayHours.Text = Common.SalaryTotalDayHours.ToString();
             txtPlusOTHourRate.Text = Common.SalaryPlusOTRatePerHour.ToString();
             txtMinusOTHourRate.Text = Common.SalaryMinusOTRatePerHour.ToString();
@@ -95,6 +100,10 @@ namespace DiamondTrading
 
                 Common.SalaryMinusOTRatePerHour = Convert.ToDecimal(txtMinusOTHourRate.Text);
                 RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.SalaryMinusOTRatePerHour, txtMinusOTHourRate.Text);
+
+                Common.MakeSoftwareFaster = chkCache.Checked;
+                RegistryHelper.SaveSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, chkCache.Checked.ToString());
+
                 #endregion
 
                 #region "Other"
@@ -186,6 +195,11 @@ namespace DiamondTrading
         }
 
         private void txtMinusOTHourRate_TextChanged(object sender, EventArgs e)
+        {
+            EnableDisableApplyButton(true);
+        }
+
+        private void chkCache_CheckedChanged(object sender, EventArgs e)
         {
             EnableDisableApplyButton(true);
         }
