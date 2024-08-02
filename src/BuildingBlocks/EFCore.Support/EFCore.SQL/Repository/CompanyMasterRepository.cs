@@ -10,21 +10,48 @@ using System.Transactions;
 
 namespace EFCore.SQL.Repository
 {
+    public class CacheKeyGenerator
+    {
+        public string CompanyId { get; set; }
+        public string FinancialYearId { get; set; }
+        public string UserId { get; set; }
+        public bool IsCacheEnabled { get; set; }
+    }
+
     public class CompanyMasterRepository : ICompanyMaster, IDisposable
     {
-        private readonly CacheService _cacheService;
+        private readonly CacheKeyGenerator _cacheKeyGenerator;
+        private readonly CacheService _cacheService;        
         private DatabaseContext _databaseContext;
 
         public CompanyMasterRepository()
         {
-            _cacheService = new CacheService();
-
+            _cacheService = new CacheService(false);
         }
+
+        public CompanyMasterRepository(CacheKeyGenerator cacheKeyGenerator)
+        {
+            _cacheKeyGenerator = cacheKeyGenerator;
+            _cacheService = new CacheService(_cacheKeyGenerator.IsCacheEnabled);
+        }
+
+        public string GetKey(string key)
+        {
+            if (_cacheKeyGenerator == null)
+                return "NoKey";
+            return _cacheKeyGenerator.CompanyId + _cacheKeyGenerator.FinancialYearId + _cacheKeyGenerator.UserId + key;
+        }
+
+        public void RemoveCache()
+        {
+            _cacheService.RemoveCacheItem(GetKey(CacheConstant.ALL_COMPANY));
+            _cacheService.RemoveCacheItem(GetKey(CacheConstant.GET_PARENT_COMPANY));
+            _cacheService.RemoveCacheItem(GetKey(CacheConstant.GET_USER_COMPANY_MAPPING));
+        }
+
         public async Task<CompanyMaster> AddCompanyAsync(CompanyMaster companyMaster)
         {
-            _cacheService.RemoveCacheItem(CacheConstant.ALL_COMPANY);
-            _cacheService.RemoveCacheItem(CacheConstant.GET_PARENT_COMPANY);
-            _cacheService.RemoveCacheItem(CacheConstant.GET_USER_COMPANY_MAPPING);
+            RemoveCache();
 
             using (_databaseContext = new DatabaseContext())
             {
@@ -47,9 +74,7 @@ namespace EFCore.SQL.Repository
 
         public async Task<int> DeleteCompanyAsync(string CompanyId)
         {
-            _cacheService.RemoveCacheItem(CacheConstant.ALL_COMPANY);
-            _cacheService.RemoveCacheItem(CacheConstant.GET_PARENT_COMPANY);
-            _cacheService.RemoveCacheItem(CacheConstant.GET_USER_COMPANY_MAPPING);
+            RemoveCache();
 
             using (_databaseContext = new DatabaseContext())
             {
@@ -76,16 +101,15 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<CompanyMaster>> GetAllCompanyAsync()
         {
-            List<CompanyMaster> allCompanies;
+            List<CompanyMaster> allCompanies = _cacheService.GetCacheItem<List<CompanyMaster>>(GetKey(CacheConstant.ALL_COMPANY));
 
-            //List<CompanyMaster> allCompanies = _cacheService.GetCacheItem<List<CompanyMaster>>(CacheConstant.ALL_COMPANY);
-
-            //if (allCompanies == null)
-            //{
-            using (_databaseContext = new DatabaseContext())
+            if (allCompanies == null)
             {
-                allCompanies = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).Include("CompanyOptions").ToListAsync();
-                //_cacheService.SetCacheItem(CacheConstant.ALL_COMPANY, allCompanies, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
+                using (_databaseContext = new DatabaseContext())
+                {
+                    allCompanies = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false).Include("CompanyOptions").ToListAsync();
+                    _cacheService.SetCacheItem(GetKey(CacheConstant.ALL_COMPANY), allCompanies, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
+                }
             }
 
             return allCompanies;
@@ -93,38 +117,33 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<CompanyMaster>> GetParentCompanyAsync()
         {
-            List<CompanyMaster> parentCompanies;
-            //List<CompanyMaster> parentCompanies = _cacheService.GetCacheItem<List<CompanyMaster>>(CacheConstant.GET_PARENT_COMPANY);
+            List<CompanyMaster> parentCompanies = _cacheService.GetCacheItem<List<CompanyMaster>>(GetKey(CacheConstant.GET_PARENT_COMPANY));
 
-            //if (parentCompanies == null)
-            //{
-            using (_databaseContext = new DatabaseContext())
+            if (parentCompanies == null)
             {
-                parentCompanies = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
-                //_cacheService.SetCacheItem(CacheConstant.GET_PARENT_COMPANY, companyMasters, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
-                //return companyMasters;
+                using (_databaseContext = new DatabaseContext())
+                {
+                    parentCompanies = await _databaseContext.CompanyMaster.Where(s => s.IsDelete == false && s.Type == null).ToListAsync();
+                    _cacheService.SetCacheItem(GetKey(CacheConstant.GET_PARENT_COMPANY), parentCompanies, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));                    
+                }
             }
-            //}
             return parentCompanies;
         }
 
         public async Task<List<CompanyMaster>> GetUserCompanyMappingAsync(string userId)
-        {
-            List<CompanyMaster> userCompanyMappings;
+        {            
+            List<CompanyMaster> userCompanyMappings = _cacheService.GetCacheItem<List<CompanyMaster>>(GetKey(CacheConstant.GET_USER_COMPANY_MAPPING));
 
-            //List<CompanyMaster> userCompanyMappings = _cacheService.GetCacheItem<List<CompanyMaster>>(CacheConstant.GET_USER_COMPANY_MAPPING);
-
-            //if (userCompanyMappings == null)
-            //{
-
-            using (_databaseContext = new DatabaseContext())
+            if (userCompanyMappings == null)
             {
-                var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s => s.CompanyId).ToListAsync();
-                userCompanyMappings = await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).Include("CompanyOptions").ToListAsync();
+                using (_databaseContext = new DatabaseContext())
+                {
+                    var result = await _databaseContext.UserCompanyMappings.Where(w => w.UserId == userId).Select(s => s.CompanyId).ToListAsync();
+                    userCompanyMappings = await _databaseContext.CompanyMaster.Where(w => result.Contains(w.Id)).Include("CompanyOptions").ToListAsync();
 
-                //_cacheService.SetCacheItem(CacheConstant.GET_USER_COMPANY_MAPPING, userCompanyMappings, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
+                    _cacheService.SetCacheItem(GetKey(CacheConstant.GET_USER_COMPANY_MAPPING), userCompanyMappings, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
+                }
             }
-
             return userCompanyMappings;
         }
 

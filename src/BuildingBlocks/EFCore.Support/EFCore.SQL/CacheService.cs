@@ -6,18 +6,21 @@ namespace EFCore.SQL
     public class CacheService
     {
         private readonly IMemoryCache _cache;
+        private readonly bool _isCacheEnabled;
 
-        public CacheService()
+        public CacheService(bool isCacheEnabled= false)
         {
+            _isCacheEnabled = isCacheEnabled; ;
             _cache = MemoryCacheSingleton.Instance.Cache;
         }
 
         public void SetCacheItem<T>(string key, T value, TimeSpan expirationTime)
         {
-            _cache.Set(key, value, new MemoryCacheEntryOptions
-            {
-                AbsoluteExpirationRelativeToNow = expirationTime
-            });
+            if (_isCacheEnabled)
+                _cache.Set(key, value, new MemoryCacheEntryOptions
+                {
+                    AbsoluteExpirationRelativeToNow = expirationTime
+                });
         }
 
         public T GetCacheItem<T>(string key)
@@ -35,7 +38,7 @@ namespace EFCore.SQL
 
     public static class CacheConstant
     {
-        public static string ALL_COMPANY { get ; set; } = "AllCompany";
+        public static string ALL_COMPANY { get; set; } = "AllCompany";
         public static string GET_PARENT_COMPANY { get; set; } = "GetParentCompany";
         public static string GET_USER_COMPANY_MAPPING { get; set; } = "GetUserCompanyMapping";
         public static string GET_PARTY_BY_PARTY_TYPE { get; set; } = "GetPartyByPartyType";
