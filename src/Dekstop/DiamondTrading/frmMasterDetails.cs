@@ -290,7 +290,10 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _companyMaster == null)
                 {
-                    _companyMasterRepository = new CompanyMasterRepository();
+                    bool cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+
+                    _companyMasterRepository = new CompanyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
+
                     _companyMaster = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
                     Common.CurrentSelectedCompany = _companyMaster.Where(x => x.Id == Common.LoginCompany.ToString()).ToList();                    
                     grdCompanyMaster.DataSource = _companyMaster.Where(w=>w.Type == null).ToList();

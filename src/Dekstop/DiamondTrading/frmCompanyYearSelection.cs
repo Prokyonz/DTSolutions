@@ -25,7 +25,9 @@ namespace DiamondTrading
         {
             InitializeComponent();
 
-            _companyMasterRepository = new CompanyMasterRepository();
+            bool cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+
+            _companyMasterRepository = new CompanyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             _branchMasterRepository = new BranchMasterRepository();
             _financialYearRepository = new FinancialYearMasterRepository();
         }
