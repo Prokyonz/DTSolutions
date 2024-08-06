@@ -273,11 +273,11 @@ namespace EFCore.SQL.Repository
         }
 
         public async Task<decimal> GetPartyBalance(string partyId, string companyId, string financialYearId)
-        {
-            List<LedgerBalanceSPModel> LedgerData = await GetLedgerReport(companyId, financialYearId);
-
+        {            
             using (_databaseContext = new DatabaseContext())
             {
+                List<LedgerBalanceSPModel> LedgerData = await _databaseContext.SPLedgerBalanceReport.FromSqlRaw("GetLedgerBalanceReportOfParty '" + companyId + "', '" + financialYearId + "','" + partyId + "'").ToListAsync();
+
                 var ledger = LedgerData.Where(w => w.LedgerId == partyId).FirstOrDefault();
 
                 if (ledger != null)
