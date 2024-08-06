@@ -18,5 +18,5 @@ BEGIN
  INNER JOIN PartyMaster as P1 ON L.CashBankPartyId = P1.Id  
  INNER JOIN CompanyMaster as C ON L.CompanyId = C.Id  
  WHERE C.Id = @CompanyId AND L.IsDelete=0  
- ORDER BY Sr  
+ ORDER BY L.Sr  
 END

@@ -59,7 +59,6 @@
     <Folder Include="dbo\" />
     <Folder Include="dbo\Tables\" />
     <Folder Include="dbo\Views\" />
-    <Folder Include="Security\" />
     <Folder Include="dbo\Functions\" />
     <Folder Include="dbo\Stored Procedures\" />
   </ItemGroup>
@@ -177,8 +176,6 @@
     <Build Include="dbo\Tables\AccountToAssortDetails.sql" />
     <Build Include="dbo\Tables\__EFMigrationsHistory.sql" />
     <Build Include="dbo\Views\TransferMaster_Details_Numbers.sql" />
-    <Build Include="Security\admin.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Functions\CSVToTable.sql" />
     <Build Include="dbo\Functions\GetTransferToDetails_Backup.sql" />
     <Build Include="dbo\Functions\GetTransferToDetails.sql" />
