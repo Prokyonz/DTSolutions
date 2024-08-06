@@ -49,5 +49,9 @@ namespace Repository.Entities
         [Column(TypeName = "decimal(18, 4)")]
         public decimal LessWeight { get; set; }
         public string PurchaseSaleDetailsId { get; set; }
+        public string TransferId { get; set; }
+        public string TransferType { get; set; }
+        public string TransferEntryId { get; set; }
+        public double TransferCaratRate { get; set; }
     }
 }

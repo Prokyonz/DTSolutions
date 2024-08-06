@@ -948,6 +948,47 @@ namespace DiamondTrading.Process
                                             BoilMasterRepository boilMasterRepository = new BoilMasterRepository();
                                             var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster, dbContext);
                                         }
+                                        else if (row["KapanType"].ToString().Equals("RejectionReceive"))
+                                        {
+                                            RejectionInOutMaster rejectionInOutMaster = new RejectionInOutMaster();
+                                            rejectionInOutMaster = new RejectionInOutMaster();
+                                            rejectionInOutMaster.Id = Guid.NewGuid().ToString();
+                                            rejectionInOutMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
+                                            rejectionInOutMaster.CompanyId = lueCompany.EditValue.ToString();
+                                            rejectionInOutMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranch).ToString();
+                                            rejectionInOutMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                                            rejectionInOutMaster.PartyId = "";
+                                            rejectionInOutMaster.BrokerageId = "";
+                                            rejectionInOutMaster.FinancialYearId = row["FinancialYearId"].ToString();
+                                            rejectionInOutMaster.TransType = Convert.ToInt32(ProcessType.Transfer); //send/Boil/Charni/Gala/Number receive-2 or receive/Sales-1 or Transfer-3
+                                            rejectionInOutMaster.SlipNo = "0";
+                                            rejectionInOutMaster.SizeId = row["SizeId"].ToString();
+                                            rejectionInOutMaster.PurityId = row["PurityId"].ToString();
+                                            rejectionInOutMaster.CharniSizeId = "";
+                                            rejectionInOutMaster.GalaSizeId = "";
+                                            rejectionInOutMaster.NumberSizeId = "";
+                                            rejectionInOutMaster.TableName = ""; //Boil/Charni/Gala/Number
+                                            rejectionInOutMaster.TableEntryID = "";
+                                            rejectionInOutMaster.Rate = 0;
+                                            rejectionInOutMaster.TotalCarat = Convert.ToDecimal(row["AdjustCarat"]) * -1;
+                                            rejectionInOutMaster.Amount = 0;
+                                            rejectionInOutMaster.Remarks = txtRemark.Text;
+                                            rejectionInOutMaster.CreatedDate = DateTime.Now;
+                                            rejectionInOutMaster.CreatedBy = Common.LoginUserID;
+                                            rejectionInOutMaster.UpdatedDate = DateTime.Now;
+                                            rejectionInOutMaster.UpdatedBy = Common.LoginUserID;
+                                            rejectionInOutMaster.ProcessType = "Transfer";
+                                            rejectionInOutMaster.KapanId = row["KapanId"].ToString();
+                                            rejectionInOutMaster.LessWeight = 0;
+                                            rejectionInOutMaster.PurchaseSaleDetailsId = "";
+                                            rejectionInOutMaster.TransferId = TransferId;
+                                            rejectionInOutMaster.TransferType = "TransferedFrom";
+                                            rejectionInOutMaster.TransferEntryId = row["TransferEntryId"].ToString();
+                                            rejectionInOutMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRate).ToString());
+
+                                            RejectionInOutMasterRepository _rejectionInOutMasterRepository = new RejectionInOutMasterRepository();
+                                            var Result1 = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster, dbContext);
+                                        }
                                     }
                                 }
                             }
@@ -1189,6 +1230,47 @@ namespace DiamondTrading.Process
 
                                             BoilMasterRepository boilMasterRepository = new BoilMasterRepository();
                                             var Result1 = await boilMasterRepository.AddBoilAsync(boilProcessMaster, dbContext);
+                                        }
+                                        else if (row["KapanType"].ToString().Equals("RejectionReceive"))
+                                        {
+                                            RejectionInOutMaster rejectionInOutMaster = new RejectionInOutMaster();
+                                            rejectionInOutMaster = new RejectionInOutMaster();
+                                            rejectionInOutMaster.Id = Guid.NewGuid().ToString();
+                                            rejectionInOutMaster.SrNo = Convert.ToInt32(txtSerialNo.Text);
+                                            rejectionInOutMaster.CompanyId = lueCompany.EditValue.ToString();
+                                            rejectionInOutMaster.BranchId = grvTransferItemDetails.GetRowCellValue(i, colBranchT).ToString();
+                                            rejectionInOutMaster.EntryDate = Convert.ToDateTime(dtDate.Text).ToString("yyyyMMdd");
+                                            rejectionInOutMaster.PartyId = "";
+                                            rejectionInOutMaster.BrokerageId = "";
+                                            rejectionInOutMaster.FinancialYearId = row["FinancialYearId"].ToString();
+                                            rejectionInOutMaster.TransType = Convert.ToInt32(ProcessType.Transfer); //send/Boil/Charni/Gala/Number receive-2 or receive/Sales-1 or Transfer-3
+                                            rejectionInOutMaster.SlipNo = "0";
+                                            rejectionInOutMaster.SizeId = grvTransferItemDetails.GetRowCellValue(i, colSizeT).ToString();
+                                            rejectionInOutMaster.PurityId = grvTransferItemDetails.GetRowCellValue(i, colPurityT).ToString();
+                                            rejectionInOutMaster.CharniSizeId = "";
+                                            rejectionInOutMaster.GalaSizeId = "";
+                                            rejectionInOutMaster.NumberSizeId = "";
+                                            rejectionInOutMaster.TableName = ""; //Boil/Charni/Gala/Number
+                                            rejectionInOutMaster.TableEntryID = "";
+                                            rejectionInOutMaster.Rate = 0;
+                                            rejectionInOutMaster.TotalCarat = Convert.ToDecimal(row["AdjustCarat"]);
+                                            rejectionInOutMaster.Amount = 0;
+                                            rejectionInOutMaster.Remarks = txtRemark.Text;
+                                            rejectionInOutMaster.CreatedDate = DateTime.Now;
+                                            rejectionInOutMaster.CreatedBy = Common.LoginUserID;
+                                            rejectionInOutMaster.UpdatedDate = DateTime.Now;
+                                            rejectionInOutMaster.UpdatedBy = Common.LoginUserID;
+                                            rejectionInOutMaster.ProcessType = "Transfer";
+                                            rejectionInOutMaster.KapanId = grvTransferItemDetails.GetRowCellValue(i, colTypeIdT).ToString();
+                                            rejectionInOutMaster.LessWeight = 0;
+                                            rejectionInOutMaster.PurchaseSaleDetailsId = "";
+                                            rejectionInOutMaster.TransferId = TransferId;
+                                            rejectionInOutMaster.TransferType = "TransferedTo";
+                                            rejectionInOutMaster.TransferEntryId = row["TransferEntryId"].ToString();
+                                            rejectionInOutMaster.TransferCaratRate = Convert.ToDouble(grvTransferItemDetails.GetRowCellValue(i, colRateT).ToString());
+
+                                            RejectionInOutMasterRepository _rejectionInOutMasterRepository = new RejectionInOutMasterRepository();
+                                            var Result1 = await _rejectionInOutMasterRepository.AddRejectionAsync(rejectionInOutMaster, dbContext);
                                         }
                                     }
                                 }

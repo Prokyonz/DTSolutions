@@ -32,6 +32,18 @@ namespace EFCore.SQL.Repository
             return rejectionInOutMaster;
         }
 
+        public async Task<RejectionInOutMaster> AddRejectionAsync(RejectionInOutMaster rejectionInOutMaster, DatabaseContext _databaseContext)
+        {
+            if (rejectionInOutMaster.Id == null)
+                rejectionInOutMaster.Id = Guid.NewGuid().ToString();
+
+            await _databaseContext.RejectionInOutMaster.AddAsync(rejectionInOutMaster);
+            await _databaseContext.SaveChangesAsync();
+
+            return rejectionInOutMaster;
+
+        }
+
         public async Task<bool> DeleteRejectionAsync(string rejectionId)
         {
             using (_databaseContext = new DatabaseContext())
