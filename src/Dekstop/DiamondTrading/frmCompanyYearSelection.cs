@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

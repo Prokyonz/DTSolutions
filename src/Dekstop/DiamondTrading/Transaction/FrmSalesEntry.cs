@@ -34,10 +34,13 @@ namespace DiamondTrading.Transaction
         private bool isLoading = false;
         private List<SlipTransferEntry> _slipTransferEntries;
         private List<CompanyMaster> _companyList;
+        bool cacheAllowedOrNot = false;
 
         public FrmSalesEntry()
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+
             _salesMasterRepository = new SalesMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _slipTransferEntryRepository = new SlipTransferEntryRepository();
@@ -552,7 +555,7 @@ namespace DiamondTrading.Transaction
 
         private async Task GetSizeDetail(bool IsNew)
         {
-            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
             repoSize.DataSource = sizeMaster;
             repoSize.DisplayMember = "Name";

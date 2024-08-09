@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,12 @@ namespace DiamondTrading.Process
         PartyMasterRepository _partyMasterRepository;
         JangadMasterRepository _JangadMasterRepository;
         int _RejectionType = 0;
+        bool cacheAllowedOrNot = false;
 
         public FrmJangadSend(int RejectionType)
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
             _boilMasterRepository = new BoilMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
             _JangadMasterRepository = new JangadMasterRepository();
@@ -90,7 +93,7 @@ namespace DiamondTrading.Process
             }
             else
             {
-                SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+                SizeMasterRepository sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
                 var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
                 repoSize.DataSource = sizeMaster;
                 repoSize.DisplayMember = "Name";

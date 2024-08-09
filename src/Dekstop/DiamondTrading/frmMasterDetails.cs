@@ -3,6 +3,7 @@ using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraSplashScreen;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,10 +49,12 @@ namespace DiamondTrading
         private List<KapanMaster> _kapanMaster;
         private List<PartyMaster> _partyMaster;
         private List<UserMaster> _userMaster;
+        bool cacheAllowedOrNot = false;
 
         public FrmMasterDetails()
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
             _unitOfWorkMaster = new UnitOfWorkMaster();
         }
 
@@ -289,9 +292,7 @@ namespace DiamondTrading
             if (xtabMasterDetails.SelectedTabPage == xtabCompanyMaster)
             {
                 if (IsForceLoad || _companyMaster == null)
-                {
-                    bool cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
-
+                {                    
                     _companyMasterRepository = new CompanyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
 
                     _companyMaster = await _companyMasterRepository.GetUserCompanyMappingAsync(Common.LoginUserID);
@@ -344,8 +345,8 @@ namespace DiamondTrading
             else if (xtabMasterDetails.SelectedTabPage == xtabSizeMaster)
             {
                 if (IsForceLoad || _sizeMaster == null)
-                {
-                    _sizeMasterRepository = new SizeMasterRepository();
+                {                    
+                    _sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
                     _sizeMaster = await _sizeMasterRepository.GetAllSizeAsync();
                     grdSizeMaster.DataSource = _sizeMaster;
                 }
