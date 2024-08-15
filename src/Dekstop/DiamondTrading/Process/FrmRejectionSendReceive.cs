@@ -376,7 +376,7 @@ namespace DiamondTrading.Process
 
         private async void lueParty_EditValueChanged(object sender, EventArgs e)
         {
-            if (lueParty.EditValue == null || lueParty.EditValue == "")
+            if (lueParty.EditValue == null)
                 return;
 
             string companyId = Common.LoginCompany;
