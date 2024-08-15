@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,7 @@ using System.Threading.Tasks;
 using System.Transactions;
 
 namespace EFCore.SQL.Repository
-{
-    public class CacheKeyGenerator
-    {
-        public string CompanyId { get; set; }
-        public string FinancialYearId { get; set; }
-        public string UserId { get; set; }
-        public bool IsCacheEnabled { get; set; }
-    }
-
+{    
     public class CompanyMasterRepository : ICompanyMaster, IDisposable
     {
         private readonly CacheKeyGenerator _cacheKeyGenerator;

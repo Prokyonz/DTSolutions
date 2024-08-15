@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 
 namespace DiamondTrading.Master
 {
@@ -19,24 +20,28 @@ namespace DiamondTrading.Master
         private List<SizeMaster> _sizeMaster;
         private SizeMaster _EditedSizeMasterSet;
         private string _selectedSizeId;
+        bool cacheAllowedOrNot = false;
 
         public FrmSizeMaster()
         {
             InitializeComponent();
-            _sizeMasterRepository = new SizeMasterRepository();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+            _sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
         }
 
         public FrmSizeMaster(List<SizeMaster> SizeMasters)
         {
             InitializeComponent();
-            _sizeMasterRepository = new SizeMasterRepository();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+            _sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             this._sizeMaster = SizeMasters;
         }
 
         public FrmSizeMaster(List<SizeMaster> SizeMasters, string SelectedSizeId)
         {
             InitializeComponent();
-            _sizeMasterRepository = new SizeMasterRepository();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+            _sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             this._sizeMaster = SizeMasters;
             _selectedSizeId = SelectedSizeId;
         }

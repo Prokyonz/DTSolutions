@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using Repository.Entities.Models;
 using System;
 using System.Collections.Generic;
@@ -20,9 +21,12 @@ namespace DiamondTrading.Process
         PartyMasterRepository _partyMasterRepository;
         List<CharniProcessReceive> ListCharniProcessReceive;
         string SelectedKapanId = string.Empty;
+        bool cacheAllowedOrNot = false;
+
         public FrmCharniReceive()
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
             _charniProcessMasterRepository = new CharniProcessMasterRepository();
             _partyMasterRepository = new PartyMasterRepository();
         }
@@ -159,7 +163,7 @@ namespace DiamondTrading.Process
 
         private async Task GetSizeList()
         {
-            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             repoSize.DataSource = await sizeMasterRepository.GetAllSizeAsync();
             repoSize.DisplayMember = "Name";
             repoSize.ValueMember = "Id";

@@ -26,10 +26,12 @@ namespace DiamondTrading.Process
         SalesMasterRepository _salesMasterRepository;
         SalesItemObj _salesItemObj;
         List<CaratCategoryType> _caratCategoryTypes;
+        bool cacheAllowedOrNot = false;
 
         public FrmTransferEntry()
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
             _transferMasterRepository = new TransferMasterRepository();
             _salesMasterRepository = new SalesMasterRepository();
             _salesItemObj = new SalesItemObj();
@@ -227,7 +229,7 @@ namespace DiamondTrading.Process
 
         private async void GetSizeDetail()
         {
-            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
 
             repoSizeT.DataSource = sizeMaster;

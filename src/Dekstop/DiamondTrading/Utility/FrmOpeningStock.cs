@@ -2,6 +2,7 @@
 using EFCore.SQL.DBContext;
 using EFCore.SQL.Repository;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,9 +18,13 @@ namespace DiamondTrading.Utility
     public partial class FrmOpeningStock : DevExpress.XtraEditors.XtraForm
     {
         private OpeningStockMasterRepositody _openingStockMasterRepositody;
+        bool cacheAllowedOrNot = false;
+
         public FrmOpeningStock()
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
+
             _openingStockMasterRepositody = new OpeningStockMasterRepositody();
         }
 
@@ -120,7 +125,7 @@ namespace DiamondTrading.Utility
 
         private async Task GetSizeDetail()
         {
-            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository();
+            SizeMasterRepository sizeMasterRepository = new SizeMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
             var sizeMaster = await sizeMasterRepository.GetAllSizeAsync();
 
             repoSize.DataSource = sizeMaster;
