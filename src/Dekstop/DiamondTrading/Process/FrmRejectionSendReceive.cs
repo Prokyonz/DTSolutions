@@ -161,6 +161,7 @@ namespace DiamondTrading.Process
             dt.Columns.Add("ProcessType");
             dt.Columns.Add("LessWeight");
             dt.Columns.Add("NumberId");
+            dt.Columns.Add("CharniSizeId");
             dt.Columns.Add("PurchaseSaleDetailsId");
             return dt;
         }
@@ -197,6 +198,7 @@ namespace DiamondTrading.Process
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).Rate);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colProcessType, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).ProcessType);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).NumberId);
+                    grvParticularsDetails.SetRowCellValue(e.RowHandle, colCharniSizeId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).CharniSizeId);
                     grvParticularsDetails.SetRowCellValue(e.RowHandle, colPurchaseSaleDetailsId, ((Repository.Entities.Model.RejectionSendReceiveSPModel)repoSlipNo.GetDataSourceRowByKeyValue(e.Value)).PurchaseSaleDetailsId);
                     //grvPurchaseItems.FocusedRowHandle = e.RowHandle;
                     //grvPurchaseItems.FocusedColumn = colBoilCarat;
@@ -274,8 +276,7 @@ namespace DiamondTrading.Process
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            try
-  
+            try  
             {
                 this.Cursor = Cursors.WaitCursor;
 
@@ -303,7 +304,7 @@ namespace DiamondTrading.Process
                         rejectionInOutMaster.SlipNo = lueSlipNo.EditValue.ToString();
                         rejectionInOutMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
                         rejectionInOutMaster.PurityId = grvParticularsDetails.GetRowCellValue(i, colPurityId).ToString();
-                        rejectionInOutMaster.CharniSizeId = "";
+                        rejectionInOutMaster.CharniSizeId = grvParticularsDetails.GetRowCellValue(i, colCharniSizeId).ToString();
                         rejectionInOutMaster.GalaSizeId = "";
                         rejectionInOutMaster.NumberSizeId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
                         rejectionInOutMaster.TableName = ""; //Boil/Charni/Gala/Number

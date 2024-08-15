@@ -78,6 +78,7 @@ namespace DiamondTrading.Process
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.grpDocuments = new DevExpress.XtraEditors.GroupControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.colCharniSizeId = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.separatorControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtDate.Properties)).BeginInit();
@@ -288,7 +289,8 @@ namespace DiamondTrading.Process
             this.colAmount,
             this.colProcessType,
             this.colNumberId,
-            this.colPurchaseSaleDetailsId});
+            this.colPurchaseSaleDetailsId,
+            this.colCharniSizeId});
             this.grvParticularsDetails.GridControl = this.grdParticularsDetails;
             this.grvParticularsDetails.Name = "grvParticularsDetails";
             this.grvParticularsDetails.OptionsNavigation.EnterMoveNextColumn = true;
@@ -665,6 +667,12 @@ namespace DiamondTrading.Process
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // colCharniSizeId
+            // 
+            this.colCharniSizeId.Caption = "CharniSizeId";
+            this.colCharniSizeId.FieldName = "CharniSizeId";
+            this.colCharniSizeId.Name = "colCharniSizeId";
+            // 
             // FrmRejectionSendReceive
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -771,5 +779,6 @@ namespace DiamondTrading.Process
         private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repoLessWeight;
         private DevExpress.XtraGrid.Columns.GridColumn colNumberId;
         private DevExpress.XtraGrid.Columns.GridColumn colPurchaseSaleDetailsId;
+        private DevExpress.XtraGrid.Columns.GridColumn colCharniSizeId;
     }
 }
