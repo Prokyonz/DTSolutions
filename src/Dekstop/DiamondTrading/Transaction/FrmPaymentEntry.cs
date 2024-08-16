@@ -19,6 +19,7 @@ namespace DiamondTrading.Transaction
 {
     public partial class FrmPaymentEntry : DevExpress.XtraEditors.XtraForm
     {
+        private readonly bool cacheAllowedOrNot;
         private readonly CompanyMasterRepository _companyMasterRepository;
         private readonly PartyMasterRepository _partyMasterRepository;
         private PaymentMasterRepository _paymentMaterRepository;
@@ -38,9 +39,11 @@ namespace DiamondTrading.Transaction
         public FrmPaymentEntry(string PaymentType)
         {
             InitializeComponent();
+            cacheAllowedOrNot = Convert.ToBoolean(RegistryHelper.GetSettings(RegistryHelper.OtherSection, RegistryHelper.CacheAllowOrNot, "false"));
 
             _companyMasterRepository = new CompanyMasterRepository();
-            _partyMasterRepository = new PartyMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
+
             _paymentMaterRepository = new PaymentMasterRepository();
             _contraEntryRepository = new ContraEntryMasterRespository();
 
@@ -70,7 +73,8 @@ namespace DiamondTrading.Transaction
             InitializeComponent();
 
             _companyMasterRepository = new CompanyMasterRepository();
-            _partyMasterRepository = new PartyMasterRepository();
+            _partyMasterRepository = new PartyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
+
             _paymentMaterRepository = new PaymentMasterRepository();
             _contraEntryRepository = new ContraEntryMasterRespository();
 

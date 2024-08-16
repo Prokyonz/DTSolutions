@@ -39,6 +39,8 @@ namespace EFCore.SQL
     public static class CacheConstant
     {
         public static string ALL_COMPANY { get; set; } = "AllCompany";
+        public static string ALL_MASTER_PARTY { get; set; } = "AllMasterParty";
+        public static string ALL_PARTY { get; set; } = "AllParty";
         public static string ALL_SIZE { get; set; } = "AllSize";
         public static string GET_PARENT_COMPANY { get; set; } = "GetParentCompany";
         public static string GET_USER_COMPANY_MAPPING { get; set; } = "GetUserCompanyMapping";

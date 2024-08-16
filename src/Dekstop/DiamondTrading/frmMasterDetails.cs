@@ -409,7 +409,8 @@ namespace DiamondTrading
             {
                 if (IsForceLoad || _partyMaster == null)
                 {
-                    _partyMasterRepository = new PartyMasterRepository();
+                    _partyMasterRepository = new PartyMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
+
                     var result = await _partyMasterRepository.GetPartyMasterAsync(Common.LoginCompany);
                     _partyMaster = new List<PartyMaster>();
                     foreach (var item in result)

@@ -14,22 +14,40 @@ namespace EFCore.SQL.Repository
     public class PartyMasterRepository : IPartyMaster
     {
         private DatabaseContext _databaseContext;
+        private readonly CacheKeyGenerator _cacheKeyGenerator;
         private readonly CacheService _cacheService;
-
 
         public PartyMasterRepository()
         {
             _cacheService = new CacheService();
         }
 
+        public PartyMasterRepository(CacheKeyGenerator cacheKeyGenerator)
+        {
+            _cacheKeyGenerator = cacheKeyGenerator;
+            _cacheService = new CacheService(_cacheKeyGenerator.IsCacheEnabled);
+        }
+
+        public string GetKey(string key)
+        {
+            if (_cacheKeyGenerator == null)
+                return "NoKey";
+            return _cacheKeyGenerator.CompanyId + _cacheKeyGenerator.FinancialYearId + _cacheKeyGenerator.UserId + key;
+        }
+
         public async Task<PartyMaster> AddPartyAsync(PartyMaster partyMaster)
         {
             _cacheService.RemoveCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
             _cacheService.RemoveCacheItem(CacheConstant.GET_BROKER);
+            _cacheService.RemoveCacheItem(CacheConstant.ALL_MASTER_PARTY);
+            _cacheService.RemoveCacheItem(CacheConstant.ALL_PARTY);
+
+
             using (_databaseContext = new DatabaseContext())
             {
                 if (partyMaster.Id == null)
                     partyMaster.Id = Guid.NewGuid().ToString();
+
                 await _databaseContext.PartyMaster.AddAsync(partyMaster);
                 await _databaseContext.SaveChangesAsync();
                 return partyMaster;
@@ -40,6 +58,8 @@ namespace EFCore.SQL.Repository
         {
             _cacheService.RemoveCacheItem(CacheConstant.GET_PARTY_BY_PARTY_TYPE);
             _cacheService.RemoveCacheItem(CacheConstant.GET_BROKER);
+            _cacheService.RemoveCacheItem(CacheConstant.ALL_MASTER_PARTY);
+            _cacheService.RemoveCacheItem(CacheConstant.ALL_PARTY);
 
             using (_databaseContext = new DatabaseContext())
             {
@@ -89,34 +109,45 @@ namespace EFCore.SQL.Repository
 
         public async Task<List<SPPartyMaster>> GetPartyMasterAsync(string companyId)
         {
-            using (_databaseContext = new DatabaseContext())
+            List<SPPartyMaster> allParties = _cacheService.GetCacheItem<List<SPPartyMaster>>(GetKey(CacheConstant.ALL_PARTY));
+
+            if (allParties == null)
             {
-                var result = await _databaseContext.SPPartyMaster.FromSqlRaw($"GetPartyMasterReport '" + companyId + "'").ToListAsync();
-                return result;
+                using (_databaseContext = new DatabaseContext())
+                {
+                    allParties = await _databaseContext.SPPartyMaster.FromSqlRaw($"GetPartyMasterReport '" + companyId + "'").ToListAsync();
+                    _cacheService.SetCacheItem(GetKey(CacheConstant.ALL_MASTER_PARTY), allParties, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
+                }
             }
+            return allParties;
         }
 
         public async Task<List<PartyMaster>> GetAllPartyAsync(string companyId)
         {
-            List<PartyMaster> partyMasters;
-            using (_databaseContext = new DatabaseContext())
+            List<PartyMaster> partyMasters  = _cacheService.GetCacheItem<List<PartyMaster>>(GetKey(CacheConstant.ALL_PARTY));
+
+            if (partyMasters == null)
             {
-                var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
-
-                partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
-                foreach (var item in partyMasters)
+                using (_databaseContext = new DatabaseContext())
                 {
-                    var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+                    var result = await _databaseContext.LedgerBalanceManager.ToListAsync();
 
-                    if (getBalance != null)
+                    partyMasters = await _databaseContext.PartyMaster.Where(s => s.IsDelete == false && s.CompanyId == companyId).ToListAsync();
+                    foreach (var item in partyMasters)
                     {
-                        item.OpeningBalance = getBalance.Balance;
-                    }
-                    else
-                    {
-                        item.OpeningBalance = 0;
+                        var getBalance = result.Where(w => w.LedgerId == item.Id).FirstOrDefault();
+
+                        if (getBalance != null)
+                        {
+                            item.OpeningBalance = getBalance.Balance;
+                        }
+                        else
+                        {
+                            item.OpeningBalance = 0;
+                        }
                     }
                 }
+                _cacheService.SetCacheItem(GetKey(CacheConstant.ALL_PARTY), partyMasters, TimeSpan.FromHours(CacheConstant.CACHE_HOURS));
             }
             return partyMasters;
         }
