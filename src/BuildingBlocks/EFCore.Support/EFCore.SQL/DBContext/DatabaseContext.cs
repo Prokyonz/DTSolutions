@@ -138,7 +138,7 @@ namespace EFCore.SQL.DBContext
             //optionsBuilder.
                 //UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading1;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
             optionsBuilder
-                .UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;").EnableSensitiveDataLogging();
+                .UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;Connection Timeout=60;").EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
