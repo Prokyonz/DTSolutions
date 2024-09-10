@@ -1895,7 +1895,7 @@ namespace DiamondTrading.Transaction
                                     dtView.Sort = "CharniSizeId ASC";
                                 }
 
-                                decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+                                decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
 
                                 if (!dt.Columns.Contains("AdjustCarat"))
                                 {
@@ -2213,7 +2213,7 @@ namespace DiamondTrading.Transaction
                                             dtView.Sort = "CharniSizeId ASC";
                                         }
 
-                                        decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colCarat).ToString());
+                                        decimal Value = Convert.ToDecimal(grvPurchaseDetails.GetRowCellValue(i, colNetCts).ToString());
 
                                         if (!dt.Columns.Contains("AdjustCarat"))
                                         {
