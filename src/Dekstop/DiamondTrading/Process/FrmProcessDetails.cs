@@ -281,6 +281,7 @@ namespace DiamondTrading
                 {
                     if (IsForceLoad || _accountToAssortMasterRepository == null)
                     {
+                        gvStockReport.GridControl.Cursor = Cursors.WaitCursor;
                         try
                         {
                             stockReportModelReports = await LoadDataStock();
@@ -368,6 +369,7 @@ namespace DiamondTrading
                         grdStockReportMaster.DataSource = stockReportMasterGrids;//.OrderBy(o => o.Kapan);
 
                         gvStockReport.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("MasterStockReport"));
+                        gvStockReport.GridControl.Cursor = Cursors.Default;
                     }
 
                     accordionEditBtn.Visible = false;
@@ -1158,8 +1160,11 @@ namespace DiamondTrading
 
         public async Task<List<StockReportModelReport>> LoadDataStock()
         {
+            this.Cursor = Cursors.WaitCursor;
             _accountToAssortMasterRepository = new AccountToAssortMasterRepository();
-            return await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+            var result = await _accountToAssortMasterRepository.GetStockReportAsync(Common.LoginCompany, Common.LoginFinancialYear);
+            this.Cursor = Cursors.Default;
+            return result;
         }
 
         public async Task<List<NumberReportModelReport>> LoadDataNumber()

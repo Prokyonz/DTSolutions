@@ -273,11 +273,11 @@ namespace DiamondTrading.Process
         }
 
         private async void grvTransferItemDetails_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
-        {
+        {                       
             try
-            {
+            {                
                 if (e.Column == colCategory || e.Column == colBranch)
-                {
+                {                    
                     if (e.Column == colCategory)
                     {
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCategoryType, ((Repository.Entities.Model.TransferCategoryList)repoCategory.GetDataSourceRowByKeyValue(e.Value)).CategoryID);
@@ -361,7 +361,7 @@ namespace DiamondTrading.Process
                         grvTransferItemDetails.SetRowCellValue(e.RowHandle, colCaratCategoryT, TransferCategoryMaster.Number);
 
                         if (!string.IsNullOrEmpty(grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString()))
-                        {
+                        {                            
                             var ListNumberProcessReturn = await _salesMasterRepository.GetSalesItemDetails(CategoryMaster.Number, lueCompany.EditValue.ToString(), grvTransferItemDetails.GetRowCellValue(e.RowHandle, colBranch).ToString(), Common.LoginFinancialYear);
                             var listNumberProcess = ListNumberProcessReturn.Where(x => x.CharniSizeId == grvTransferItemDetails.GetRowCellValue(e.RowHandle, colCategory).ToString()).ToList();
 
@@ -433,7 +433,7 @@ namespace DiamondTrading.Process
                             repoShape.Columns["NumberSize"].Visible = true;
 
                             repoShape.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
-                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;
+                            repoShape.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoFilter;                            
                         }
                     }
                 }
@@ -604,11 +604,13 @@ namespace DiamondTrading.Process
                     }
                     grvTransferItemDetails.SetRowCellValue(e.RowHandle, colTypeT, "");
                     this.grvTransferItemDetails.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.grvTransferItemDetails_CellValueChanged);
-                }
+                }                
             }
             catch (Exception Ex)
             {
+                grvTransferItemDetails.GridControl.Cursor = this.Cursor = Cursors.Default;
             }
+            
         }
 
         private async void grvTransferItemDetails_CustomRowCellEdit(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
