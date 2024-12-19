@@ -1,6 +1,8 @@
 ﻿using DevExpress.Utils;
 using DevExpress.XtraEditors;
+using DevExpress.XtraLayout.Resizing;
 using EFCore.SQL.DBContext;
+using EFCore.SQL.Interface;
 using EFCore.SQL.Repository;
 using Repository.Entities;
 using Repository.Entities.Model;
@@ -91,8 +93,11 @@ namespace DiamondTrading.Transaction
             await FillCombos();
 
             await LoadCompany();
+            await LoadCompany();
 
             await FillCurrency();
+
+            await FillJangad();
 
             if (string.IsNullOrEmpty(_selectedSalesId) == false)
             {
@@ -502,6 +507,15 @@ namespace DiamondTrading.Transaction
             }
         }
 
+        private async Task FillJangad()
+        {
+            JangadMasterRepository jangadMasterRepository = new JangadMasterRepository();
+            
+            var JangadReceiveDetails = await jangadMasterRepository.GetJangadReceiveDetails(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
+            lueJangad.Properties.DataSource = JangadReceiveDetails;
+            lueJangad.Properties.DisplayMember = "SrNo";
+            lueJangad.Properties.ValueMember = "Id";
+        }
         #endregion
 
         private async Task LoadPurchaseItemDetails()
@@ -2079,6 +2093,7 @@ namespace DiamondTrading.Transaction
                     salesMaster.UpdatedDate = DateTime.Now;
                     salesMaster.UpdatedBy = Common.LoginUserID;
                     salesMaster.SalesDetails = salesDetailsList;
+                    salesMaster.JangadId = lueJangad.EditValue.ToString();
 
                     var SlipTransferEntity = await _slipTransferEntryRepository.AddSlipTransferEntryAsync(_slipTransferEntries);
 
@@ -2398,6 +2413,7 @@ namespace DiamondTrading.Transaction
                             salesMaster.ApprovalType = 0;
                             salesMaster.Message = "";
                             salesMaster.SalesDetails = salesDetailsList;
+                            salesMaster.JangadId = lueJangad.EditValue.ToString();
 
                             if (_slipTransferEntries.Count > 0)
                             {

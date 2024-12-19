@@ -145,6 +145,8 @@ namespace DiamondTrading.Transaction
             this.pnlStatus = new DevExpress.XtraEditors.PanelControl();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.labelControl11 = new DevExpress.XtraEditors.LabelControl();
+            this.lueJangad = new DevExpress.XtraEditors.LookUpEdit();
             ((System.ComponentModel.ISupportInitialize)(this.grpGroup1)).BeginInit();
             this.grpGroup1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lueCompany.Properties)).BeginInit();
@@ -216,6 +218,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueJangad.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // grpGroup1
@@ -1654,6 +1657,34 @@ namespace DiamondTrading.Transaction
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // labelControl11
+            // 
+            this.labelControl11.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelControl11.Appearance.Options.UseFont = true;
+            this.labelControl11.Location = new System.Drawing.Point(604, 623);
+            this.labelControl11.Name = "labelControl11";
+            this.labelControl11.Size = new System.Drawing.Size(59, 16);
+            this.labelControl11.TabIndex = 23;
+            this.labelControl11.Text = "Jangad No";
+            // 
+            // lueJangad
+            // 
+            this.lueJangad.Location = new System.Drawing.Point(604, 640);
+            this.lueJangad.Name = "lueJangad";
+            this.lueJangad.Properties.Appearance.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lueJangad.Properties.Appearance.Options.UseFont = true;
+            this.lueJangad.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.lueJangad.Properties.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("Id", "ID", 20, DevExpress.Utils.FormatType.None, "", false, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("SrNo", "Jangad No", 50, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("PartyName", "Party Name", 70, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TotalWeight", "Total Weight", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "Available Weight", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
+            this.lueJangad.Properties.NullText = "";
+            this.lueJangad.Size = new System.Drawing.Size(76, 22);
+            this.lueJangad.TabIndex = 24;
+            // 
             // FrmSalesEntry
             // 
             this.Appearance.BackColor = System.Drawing.Color.White;
@@ -1662,6 +1693,8 @@ namespace DiamondTrading.Transaction
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1094, 668);
+            this.Controls.Add(this.labelControl11);
+            this.Controls.Add(this.lueJangad);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.grpGroup7);
@@ -1770,6 +1803,7 @@ namespace DiamondTrading.Transaction
             ((System.ComponentModel.ISupportInitialize)(this.Image2.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Image1.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pnlStatus)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lueJangad.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1892,5 +1926,7 @@ namespace DiamondTrading.Transaction
         private DevExpress.XtraEditors.SimpleButton btnSlipAdd;
         private System.Windows.Forms.Timer timer1;
         private DevExpress.XtraEditors.TextEdit txtRoundAmount;
+        private DevExpress.XtraEditors.LabelControl labelControl11;
+        private DevExpress.XtraEditors.LookUpEdit lueJangad;
     }
 }
