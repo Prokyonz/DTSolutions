@@ -117,6 +117,13 @@ namespace DiamondTrading
                     xtabJangadSendReceive.Text = "Jangad Receive";
                     this.Text = "Jangad Receive";
                     break;
+                case "JangadNew":
+                    xtabJangadNew.PageVisible = true;
+                    accordionEditBtn.Visible = false;
+                    xtabManager.SelectedTabPage = xtabJangadNew;
+                    xtabJangadNew.Text = "Jangad Report New";
+                    this.Text = "Jangad Report New";
+                    break;
                 case "PFReport":
                     xtraTabPFReport.PageVisible = true;
                     xtabManager.SelectedTabPage = xtraTabPFReport;
@@ -230,6 +237,7 @@ namespace DiamondTrading
             xtabMixed.PageVisible = false;
             xtabPurchaseSlipPrint.PageVisible = false;
             xtabJangadSendReceive.PageVisible = false;
+            xtabJangadNew.PageVisible = false;
             xtraTabPFReport.PageVisible = false;
             xtraTabLedgerBalance.PageVisible = false;
             xtabWeeklyPurchaseReport.PageVisible = false;
@@ -575,6 +583,16 @@ namespace DiamondTrading
                     grvJangadSendReceive.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadReport"));
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabJangadNew)
+            {
+                if (IsForceLoad || _JangadMasterRepository == null)
+                {
+                    _JangadMasterRepository = new JangadMasterRepository();
+                    var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    gridControlJangadNew.DataSource = data;
+                    gvrJangadNew.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadNew"));
+                }
+            }
             else if (xtabManager.SelectedTabPage == xtraTabPFReport)
             {
                 if (IsForceLoad || _purchaseMasterRepository == null)
@@ -822,6 +840,17 @@ namespace DiamondTrading
                     ExportToPDF(gridControlJangadSendReceive);
                 }
             }
+            else if (xtabManager.SelectedTabPage == xtabJangadNew)
+            {
+                if (exportType == ExportDataType.Excel)
+                {
+                    ExportToExcel(grvJangadSendReceive);
+                }
+                else if (exportType == ExportDataType.PDF)
+                {
+                    ExportToPDF(gridControlJangadSendReceive);
+                }
+            }
             else if (xtabManager.SelectedTabPage == xtraTabPFReport)
             {
                 if (exportType == ExportDataType.Excel)
@@ -1027,6 +1056,10 @@ namespace DiamondTrading
             else if (xtabManager.SelectedTabPage == xtabJangadSendReceive)
             {
                 grvJangadSendReceive.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("JangadReport"));
+            }
+            else if (xtabManager.SelectedTabPage == xtabJangadNew)
+            {
+                grvJangadSendReceive.SaveLayoutToRegistry(RegistryHelper.ReportLayouts("JangadNew"));
             }
             else if (xtabManager.SelectedTabPage == xtraTabPFReport)
             {
