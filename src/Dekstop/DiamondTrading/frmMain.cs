@@ -450,6 +450,7 @@ namespace DiamondTrading
                     case "jangad_reports":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         barSubItem16.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+                        brButtonJangad.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                         break;
                     case "stock_report":
                         barSubItem5.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
@@ -2597,6 +2598,24 @@ namespace DiamondTrading
 
             FrmProcessDetails frmMasterDetails = new FrmProcessDetails();
             frmMasterDetails.SelectedTabPage = "TransferReport";
+            frmMasterDetails.MdiParent = this;
+            frmMasterDetails.Show();
+            frmMasterDetails.BringToFront();
+
+            accordionControlElementMaster.Expanded = true;
+        }
+
+        private void brButtonJangad_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            panelControl1.SendToBack();
+            //FrmTransactionDetails page = Application.OpenForms["frmTransactionDetails"] as FrmTransactionDetails;
+            //if (page != null)
+            //{
+            //    page.Close();
+            //}
+
+            FrmTransactionDetails frmMasterDetails = new FrmTransactionDetails();
+            frmMasterDetails.SelectedTabPage = "JangadNew";
             frmMasterDetails.MdiParent = this;
             frmMasterDetails.Show();
             frmMasterDetails.BringToFront();
