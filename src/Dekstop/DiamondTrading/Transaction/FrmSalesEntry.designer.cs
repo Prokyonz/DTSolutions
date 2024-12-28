@@ -1414,7 +1414,7 @@ namespace DiamondTrading.Transaction
             this.tglSlip.Properties.OnText = "";
             this.tglSlip.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.tglSlip.Size = new System.Drawing.Size(56, 19);
-            this.tglSlip.TabIndex = 11;
+            this.tglSlip.TabIndex = 12;
             // 
             // grpGroup9
             // 
@@ -1682,8 +1682,8 @@ namespace DiamondTrading.Transaction
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TotalWeight", "Total Weight", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default),
             new DevExpress.XtraEditors.Controls.LookUpColumnInfo("AvailableWeight", "Available Weight", 40, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.Default)});
             this.lueJangad.Properties.NullText = "";
-            this.lueJangad.Size = new System.Drawing.Size(76, 22);
-            this.lueJangad.TabIndex = 24;
+            this.lueJangad.Size = new System.Drawing.Size(95, 22);
+            this.lueJangad.TabIndex = 11;
             // 
             // FrmSalesEntry
             // 

@@ -9,6 +9,7 @@ namespace Repository.Entities.Model
     {
         public string Id { get; set; }
         public int SrNo { get; set; }
+        public string JangadId { get; set; }
         public string SizeId { get; set; }
         public string Size { get; set; }
         public string PartyId { get; set; }

@@ -514,7 +514,7 @@ namespace DiamondTrading.Transaction
             var JangadReceiveDetails = await jangadMasterRepository.GetJangadReceiveDetails(lueCompany.EditValue.ToString(), Common.LoginFinancialYear);
             lueJangad.Properties.DataSource = JangadReceiveDetails;
             lueJangad.Properties.DisplayMember = "SrNo";
-            lueJangad.Properties.ValueMember = "Id";
+            lueJangad.Properties.ValueMember = "JangadId";
         }
         #endregion
 

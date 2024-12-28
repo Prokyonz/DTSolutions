@@ -588,7 +588,7 @@ namespace DiamondTrading
                 if (IsForceLoad || _JangadMasterRepository == null)
                 {
                     _JangadMasterRepository = new JangadMasterRepository();
-                    var data = await _JangadMasterRepository.GetJangadReport(Common.LoginCompany, Common.LoginFinancialYear, 1);
+                    var data = await _JangadMasterRepository.GetJangadReportNew(Common.LoginCompany, Common.LoginFinancialYear, 2);
                     gridControlJangadNew.DataSource = data;
                     gvrJangadNew.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("JangadNew"));
                 }

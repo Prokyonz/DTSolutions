@@ -17,6 +17,7 @@ namespace EFCore.SQL.Interface
         Task<List<JangadSPReceiveModel>> GetJangadReceiveDetails(string CompanyId, string FinancialYearId);
         Task<List<JangadPrintDetailModel>> GetJangadPrintDetails(string CompanyId, string FinancialYearId, string SrNo, int JangadType);
         Task<List<JangadSPReportModel>> GetJangadReport(string CompanyId, string FinancialYearId, int jangadType);
+        Task<List<JangadSPReportNewModel>> GetJangadReportNew(string CompanyId, string FinancialYearId, int jangadType);
 
     }
 }
