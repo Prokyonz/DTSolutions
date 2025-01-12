@@ -19,6 +19,9 @@ namespace Repository.Entities
         public string PartyId { get; set; }
         public string BrokerId { get; set; }
         public string SizeId { get; set; }
+        public string NumberId { get; set; }
+        public string KapanId { get; set; }
+
         [Column(TypeName = "decimal(18, 4)")]
         public decimal Totalcts { get; set; }
         [Column(TypeName = "decimal(18, 4)")]
