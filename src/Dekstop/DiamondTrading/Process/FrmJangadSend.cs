@@ -44,6 +44,7 @@ namespace DiamondTrading.Process
                 this.Text = "JANGAD RECEIVE";
 
                 grvParticularsDetails.Columns["Size"].Visible = false;
+                grvParticularsDetails.Columns["Number"].Visible = false;
                 grvParticularsDetails.Columns["SizeR"].Visible = true;
                 grvParticularsDetails.Columns["SizeR"].Width = 355;
             }
@@ -53,6 +54,7 @@ namespace DiamondTrading.Process
                 this.Text = "JANGAD SEND";
 
                 grvParticularsDetails.Columns["Size"].Visible = true;
+                grvParticularsDetails.Columns["Number"].Visible = true;
                 grvParticularsDetails.Columns["SizeR"].Visible = false;
                 grvParticularsDetails.Columns["Size"].Width = 355;
             }
@@ -98,6 +100,12 @@ namespace DiamondTrading.Process
                 repoSize.DataSource = sizeMaster;
                 repoSize.DisplayMember = "Name";
                 repoSize.ValueMember = "Id";
+
+                NumberMasterRepository numberMasterRepository = new NumberMasterRepository(new CacheKeyGenerator { IsCacheEnabled = cacheAllowedOrNot, CompanyId = Common.LoginCompany, FinancialYearId = Common.LoginFinancialYear, UserId = Common.LoginUserID });
+                var numberMaster = await numberMasterRepository.GetAllNumberAsync();
+                repoNumber.DataSource = numberMaster;
+                repoNumber.DisplayMember = "Name";
+                repoNumber.ValueMember = "Id";
             }
 
             repoSizeR.BestFitMode = DevExpress.XtraEditors.Controls.BestFitMode.BestFitResizePopup;
@@ -143,7 +151,9 @@ namespace DiamondTrading.Process
             DataTable dt = new DataTable();
             dt.Columns.Add("Size");
             dt.Columns.Add("SizeR");
+            dt.Columns.Add("Number");
             dt.Columns.Add("SizeId");
+            dt.Columns.Add("NumberId");
             dt.Columns.Add("Carat");
             dt.Columns.Add("Rate");
             dt.Columns.Add("Amount");
@@ -160,6 +170,7 @@ namespace DiamondTrading.Process
                     if (_RejectionType == 2)
                     {
                         grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((SizeMaster)repoSize.GetDataSourceRowByKeyValue(e.Value)).Id);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((SizeMaster)repoSize.GetDataSourceRowByKeyValue(e.Value)).Id);
                     }
                 }
                 else if(e.Column == colSizeR)
@@ -167,6 +178,7 @@ namespace DiamondTrading.Process
                     if (_RejectionType == 1)
                     {
                         grvParticularsDetails.SetRowCellValue(e.RowHandle, colSizeId, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).SizeId);
+                        grvParticularsDetails.SetRowCellValue(e.RowHandle, colNumberId, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).NumberId);
                         grvParticularsDetails.SetRowCellValue(e.RowHandle, colCarat, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).AvailableWeight);
                         grvParticularsDetails.SetRowCellValue(e.RowHandle, colRate, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).Rate);
                         grvParticularsDetails.SetRowCellValue(e.RowHandle, colAmount, ((Repository.Entities.Model.JangadSPReceiveModel)repoSizeR.GetDataSourceRowByKeyValue(e.Value)).Amount);
@@ -251,6 +263,7 @@ namespace DiamondTrading.Process
                         jangadMaster.BrokerId = lueParty.EditValue.ToString();
 
                         jangadMaster.SizeId = grvParticularsDetails.GetRowCellValue(i, colSizeId).ToString();
+                        jangadMaster.NumberId = grvParticularsDetails.GetRowCellValue(i, colNumberId).ToString();
                         jangadMaster.Totalcts = Convert.ToDecimal(grvParticularsDetails.GetRowCellValue(i, colCarat).ToString());
                         jangadMaster.Rate = float.Parse(grvParticularsDetails.GetRowCellValue(i, colRate).ToString());
                         jangadMaster.Amount = float.Parse(grvParticularsDetails.GetRowCellValue(i, colAmount).ToString());

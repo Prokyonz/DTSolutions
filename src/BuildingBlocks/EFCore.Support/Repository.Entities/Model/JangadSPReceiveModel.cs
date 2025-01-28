@@ -12,6 +12,8 @@ namespace Repository.Entities.Model
         public string JangadId { get; set; }
         public string SizeId { get; set; }
         public string Size { get; set; }
+        public string NumberId { get; set; }
+        public string Number { get; set; }
         public string PartyId { get; set; }
         public string PartyName { get; set; }
         public string BrokerId { get; set; }

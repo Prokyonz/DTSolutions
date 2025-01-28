@@ -2,6 +2,7 @@
 using EFCore.SQL.Interface;
 using Microsoft.EntityFrameworkCore;
 using Repository.Entities;
+using Repository.Entities.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,32 @@ namespace EFCore.SQL.Repository
     public class NumberMasterRepository : INumberMaster
     {
         private DatabaseContext _databaseContext;
+        private readonly CacheKeyGenerator _cacheKeyGenerator;
+        private readonly CacheService _cacheService;
 
         public NumberMasterRepository()
         {
             
         }
+        public NumberMasterRepository(CacheKeyGenerator cacheKeyGenerator)
+        {
+            _cacheKeyGenerator = cacheKeyGenerator;
+            _cacheService = new CacheService(_cacheKeyGenerator.IsCacheEnabled);
+        }
+
+        #region CacheMethod
+        public string GetKey(string key)
+        {
+            if (_cacheKeyGenerator == null)
+                return "NoKey";
+            return _cacheKeyGenerator.CompanyId + _cacheKeyGenerator.FinancialYearId + _cacheKeyGenerator.UserId + key;
+        }
+
+        public void RemoveCache()
+        {
+            _cacheService.RemoveCacheItem(GetKey(CacheConstant.ALL_SIZE));
+        }
+        #endregion
 
         public async Task<List<NumberMaster>> GetAllNumberAsync()
         {
