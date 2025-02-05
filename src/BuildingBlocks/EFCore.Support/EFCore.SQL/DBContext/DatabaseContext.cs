@@ -3,15 +3,71 @@ using Repository.Entities;
 using Repository.Entities.Model;
 using Repository.Entities.Models;
 
+
+using System.IO;
+using System;
+using System.Text.Json;
+
 namespace EFCore.SQL.DBContext
 {
-    public class DatabaseContext: DbContext
+    public class AppSettings
+    {
+        public ConnectionStrings ConnectionStrings { get; set; }
+    }
+
+    public class ConnectionStrings
+    {
+        public string DefaultConnection { get; set; }
+    }
+
+    public static class DbConfig
+    {
+        private static string _connectionString;
+
+        public static string GetConnectionString()
+        {
+            if (!string.IsNullOrEmpty(_connectionString))
+                return _connectionString; // Return cached value
+
+            try
+            {
+                // Locate the appsettings.json file in the main application's directory
+                string configPath = Path.Combine(Directory.GetCurrentDirectory(), "appsettings.json");
+
+                if (!File.Exists(configPath))
+                    throw new FileNotFoundException($"Configuration file not found: {configPath}");
+
+                // Read JSON content from the file
+                string json = File.ReadAllText(configPath);
+
+                // Deserialize into AppSettings model
+                var appSettings = JsonSerializer.Deserialize<AppSettings>(json);
+
+                if (appSettings?.ConnectionStrings?.DefaultConnection == null)
+                    throw new Exception("Connection string not found in appsettings.json.");
+
+                // Cache the connection string
+                _connectionString = appSettings.ConnectionStrings.DefaultConnection;
+
+                return _connectionString;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error reading connection string: {ex.Message}");
+                throw;
+            }
+        }
+    }
+
+
+    public class DatabaseContext : DbContext
     {
         public DatabaseContext()
         {
 
         }
 
+        #region DBSetting
         public DbSet<CompanyMaster> CompanyMaster { get; set; }
         public DbSet<BranchMaster> BranchMaster { get; set; }
         public DbSet<UserMaster> UserMaster { get; set; }
@@ -22,7 +78,7 @@ namespace EFCore.SQL.DBContext
         //public DbSet<RoleClaimMaster> RoleClaimMaster { get; set; }
         //public DbSet<UserRoleMaster> UserRoleMaster { get; set; }
         public DbSet<KapanMaster> KapanMaster { get; set; }
-        public DbSet<CurrencyMaster> CurrencyMaster{ get; set; }
+        public DbSet<CurrencyMaster> CurrencyMaster { get; set; }
         public DbSet<LessWeightMaster> LessWeightMasters { get; set; }
         public DbSet<LessWeightDetails> LessWeightDetails { get; set; }
         public DbSet<ShapeMaster> ShapeMaster { get; set; }
@@ -32,7 +88,7 @@ namespace EFCore.SQL.DBContext
         public DbSet<NumberMaster> NumberMaster { get; set; }
         public DbSet<BrokerageMaster> BrokerageMaster { get; set; }
         public DbSet<FinancialYearMaster> FinancialYearMaster { get; set; }
-        public DbSet<PurchaseMaster> PurchaseMaster  { get; set; }
+        public DbSet<PurchaseMaster> PurchaseMaster { get; set; }
         public DbSet<PurchaseDetails> PurchaseDetails { get; set; }
         public DbSet<SalesMaster> SalesMaster { get; set; }
         public DbSet<SalesDetails> SalesDetails { get; set; }
@@ -47,13 +103,13 @@ namespace EFCore.SQL.DBContext
         public DbSet<ContraEntryMaster> ContraEntryMaster { get; set; }
         public DbSet<ContraEntryDetails> ContraEntryDetails { get; set; }
         public DbSet<SlipTransferEntry> SlipTransferEntry { get; set; }
-        public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }        
+        public DbSet<KapanMappingMaster> KapanMappingMaster { get; set; }
         public DbSet<AccountToAssortMaster> AccountToAssortMaster { get; set; }
         public DbSet<AccountToAssortDetails> AccountToAssortDetails { get; set; }
         public DbSet<BoilProcessMaster> BoilProcessMaster { get; set; }
         public DbSet<CharniProcessMaster> CharniProcessMaster { get; set; }
         public DbSet<GalaProcessMaster> GalaProcessMaster { get; set; }
-        public  DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
+        public DbSet<NumberProcessMaster> NumberProcessMaster { get; set; }
         public DbSet<TransferMaster> TransferMaster { get; set; }
         public DbSet<LoanMaster> LoanMaster { get; set; }
         public DbSet<PermissionMaster> PermissionMaster { get; set; }
@@ -100,7 +156,7 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<CaratCategoryType> CaratCategoryType { get; set; }
         public virtual DbSet<PaymentPSSlipDetails> SPPaymentPSSlipDetails { get; set; }
         public virtual DbSet<KapanMappingReportModel> SPKapanMappingReportModel { get; set; }
-        public virtual DbSet<AccountToAssortSendReceiveReportModel> SPAccountToAssortSendReceiveReportModels  { get; set; }
+        public virtual DbSet<AccountToAssortSendReceiveReportModel> SPAccountToAssortSendReceiveReportModels { get; set; }
         public virtual DbSet<AccountToAssoftReceiveReportModel> SPAccountToAssoftReceiveReportModel { get; set; }
         public virtual DbSet<BoilSendReceiveReportModel> SPBoilSendReceiveReportModels { get; set; }
         public virtual DbSet<CharniSendReceiveReportModel> SPCharniSendReceiveReportModels { get; set; }
@@ -108,8 +164,8 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<NumberProcessSendReceiveReportModel> SPNumberProcessSendReceiveReportModels { get; set; }
         public virtual DbSet<JangadSPReportModel> SPJangadSendReceiveReportModel { get; set; }
         public virtual DbSet<JangadSPReportNewModel> SPJangadSendReceiveReportNewModel { get; set; }
-        public virtual DbSet<StockReportModelReport> SPStockReportModelReport  { get; set; }
-        public virtual DbSet<NumberReportModelReport> SPNumberkReportModelReport  { get; set; }
+        public virtual DbSet<StockReportModelReport> SPStockReportModelReport { get; set; }
+        public virtual DbSet<NumberReportModelReport> SPNumberkReportModelReport { get; set; }
 
         public virtual DbSet<OpeningStockSPModel> SPOpeningStockSPModel { get; set; }
         public virtual DbSet<PFReportSPModel> SPPFReportModels { get; set; }
@@ -124,22 +180,20 @@ namespace EFCore.SQL.DBContext
         public virtual DbSet<PurchaseChildSPModel> SPPurchaseChildReport { get; set; }
         public virtual DbSet<CashBankSPReport> SPCashBankReport { get; set; }
         public virtual DbSet<ChildLedgerSPModel> SPLedgerChildReport { get; set; }
-        public virtual DbSet<SalaryReportSPModel> SPSalaryReport{ get; set; }
+        public virtual DbSet<SalaryReportSPModel> SPSalaryReport { get; set; }
         public virtual DbSet<RejectionSendReceiveSPModel> SPRejectionSendReceiveModel { get; set; }
-        public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }        
-        public virtual DbSet<RejectionPendingSPModel> SPRejectionPendingReport { get; set; }        
-        public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }        
+        public virtual DbSet<RejectionInOutSPModel> SPRejectionSendReceiveReport { get; set; }
+        public virtual DbSet<RejectionPendingSPModel> SPRejectionPendingReport { get; set; }
+        public virtual DbSet<ValidationSPModel> SPValidationModel { get; set; }
         public virtual DbSet<CalculatorSPModel> SPCalculatorModel { get; set; }
         public virtual DbSet<TransferViewModel> TransferViewModel { get; set; }
 
         public virtual DbSet<SPPartyMaster> SPPartyMaster { get; set; }
+
+        #endregion
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer("Data Source=103.83.81.7;Initial Catalog=karmajew_DiamondTrading;Persist Security Info=True;User ID=karmajew_DiamondTrading;Password=Karmajew@123;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
-            optionsBuilder.
-            UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading1;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;Connection Timeout=120;").EnableSensitiveDataLogging();
-            //optionsBuilder
-            //    .UseSqlServer("Data Source=diamondtrading.csfyfhqidvqw.ap-east-1.rds.amazonaws.com;Initial Catalog=diamondtrading;Persist Security Info=True;User ID=admin;Password=Bbgk#2023;TrustServerCertificate=True;Connection Timeout=120;Command Timeout=120;").EnableSensitiveDataLogging();
+            optionsBuilder.UseSqlServer(DbConfig.GetConnectionString()).EnableSensitiveDataLogging();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -247,10 +301,10 @@ namespace EFCore.SQL.DBContext
             modelBuilder.Entity<RejectionSendReceiveSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionPendingSPModel>().HasNoKey();
             modelBuilder.Entity<RejectionInOutSPModel>().HasNoKey();
-            modelBuilder.Entity<ValidationSPModel>().HasNoKey();            
+            modelBuilder.Entity<ValidationSPModel>().HasNoKey();
             modelBuilder.Entity<NumberReportModelReport>().HasNoKey();
             modelBuilder.Entity<CalculatorSPModel>().HasNoKey();
-            modelBuilder.Entity<DashboardSPModel>().HasNoKey();           
+            modelBuilder.Entity<DashboardSPModel>().HasNoKey();
             modelBuilder.Entity<ValidationSPModel>().HasNoKey();
             modelBuilder.Entity<SalesSPModel>().HasNoKey();
             modelBuilder.Entity<SlipDetailPrintSPModel>().HasNoKey();

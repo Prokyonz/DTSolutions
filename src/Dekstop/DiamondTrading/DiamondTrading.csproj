@@ -937,6 +937,9 @@
     <EmbeddedResource Include="WaitForm1.resx">
       <DependentUpon>WaitForm1.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="karmajew_DiamondTradingLiveDataSet.xsc">
       <DependentUpon>karmajew_DiamondTradingLiveDataSet.xsd</DependentUpon>
     </None>
