@@ -42,6 +42,8 @@ namespace Repository.Entities.Model
         public string PartyName { get; set; }
         public string SizeId { get; set; }
         public string SizeName { get; set; }
+        public string NumberId { get; set; }
+        public string NumberName { get; set; }
         public string BrokerId { get; set; }
         public string BrokerName { get; set; }
 
