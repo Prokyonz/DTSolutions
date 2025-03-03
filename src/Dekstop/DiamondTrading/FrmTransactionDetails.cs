@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiamondTrading.Utility;
+using DevExpress.Data;
 
 namespace DiamondTrading
 {
@@ -663,6 +664,19 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetBalanceSheetReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueBalanceSheetType.EditValue));
                     gridControlBalanceSheet.DataSource = data;
+
+                    decimal creditTotal = data
+                     .Where(b => b.ColType == "Credit") // Filter for "Credit" rows
+                     .Sum(b => b.Amount); // Sum the Amount for "Credit"
+
+                    decimal debitTotal = data
+                     .Where(b => b.ColType == "Debit") // Filter for "Debit" rows
+                     .Sum(b => b.Amount); // Sum the Amount for "Debit"
+
+                    // Calculate the difference between Credit and Debit
+                    decimal difference = creditTotal - debitTotal;
+                    lblDifference.Text = difference > 0 ? difference.ToString() + " Cr": difference.ToString() + " Dr";
+
                     gridView29.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("BalanceSheetReport"));
                 }
             }
@@ -673,6 +687,19 @@ namespace DiamondTrading
                     _paymentMasterRepository = new PaymentMasterRepository();
                     var data = await _paymentMasterRepository.GetProfitLossReportAsync(Common.LoginCompany, Common.LoginFinancialYear, Convert.ToInt32(lueProfitLossType.EditValue));
                     gridControlProfitLoss.DataSource = data;
+
+                    decimal creditTotal = data
+                    .Where(b => b.ColType == "Credit") // Filter for "Credit" rows
+                    .Sum(b => b.Amount); // Sum the Amount for "Credit"
+
+                    decimal debitTotal = data
+                     .Where(b => b.ColType == "Debit") // Filter for "Debit" rows
+                     .Sum(b => b.Amount); // Sum the Amount for "Debit"
+
+                    // Calculate the difference between Credit and Debit
+                    decimal difference = creditTotal - debitTotal;
+                    lblProfitLoss.Text = difference > 0 ? difference.ToString() + " Cr" : difference.ToString() + " Dr";
+
                     gridView32.RestoreLayoutFromRegistry(RegistryHelper.ReportLayouts("ProfitLossReport"));
                 }
             }
